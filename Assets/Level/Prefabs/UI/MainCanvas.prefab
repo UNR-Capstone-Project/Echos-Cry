@@ -325,3 +325,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   hitQualityText: {fileID: 7966699270862996379}
+  metronomeImage: {fileID: 840251735800372354}

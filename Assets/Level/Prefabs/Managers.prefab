@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TempoManagerV2
   RenderMetronome: {fileID: 7268934246999311627}
-  _tempo: 60
+  _tempo: 100
 --- !u!82 &7413370735531543187
 AudioSource:
   m_ObjectHideFlags: 0

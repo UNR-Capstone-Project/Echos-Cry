@@ -33,8 +33,10 @@ public class TempoManagerV2 : MonoBehaviour
 
     private void BeatTick()
     {
-        _currentBeatTime = 0;
+        GameObject.FindWithTag("MainCanvas").GetComponent<CanvasManager>().FlashOutline(0.1f);
+        
         _tickSound.Play();
+        _currentBeatTime = 0;
     }
 
     public HIT_QUALITY CheckHitQuality() //ISSUE: Naming inconsistencies! --- maybe _excellentHitTimeStart and _excellentHitTimeEnd are meant to be swapped?
@@ -69,11 +71,6 @@ public class TempoManagerV2 : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        _currentBeatTime += Time.deltaTime;
-    }
-
     void Start()
     {
         _tickSound = GetComponent<AudioSource>();
@@ -81,6 +78,11 @@ public class TempoManagerV2 : MonoBehaviour
         SetTempo(_tempo);
         StartBeatTick();
         //_timeToPlayTick = _timeBetweenBeats - (_tickSound.clip.length/2);
+    }
+
+    void Update()
+    {
+        _currentBeatTime += Time.deltaTime;
     }
 
     //Tempo/Beat Values
