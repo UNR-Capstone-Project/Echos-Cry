@@ -175,7 +175,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   pendulumObject: {fileID: 3905710050136705331}
-  metronomeBody: {fileID: 5680886640758310634}
 --- !u!1 &5566484175808646855
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,6 +367,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7181307483577013225, guid: 8d3c33999cc87a348a63d63b95de75e9, type: 3}
+      propertyPath: m_UpdateMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7517663788444344910, guid: 8d3c33999cc87a348a63d63b95de75e9, type: 3}
       propertyPath: m_Name
       value: Metronome
@@ -429,8 +432,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1 &5680886640758310634 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8005448776024452475, guid: 8d3c33999cc87a348a63d63b95de75e9, type: 3}
-  m_PrefabInstance: {fileID: 2436308251485973393}
-  m_PrefabAsset: {fileID: 0}

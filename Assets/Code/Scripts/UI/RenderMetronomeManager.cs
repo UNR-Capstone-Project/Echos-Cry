@@ -23,9 +23,8 @@ public class RenderMetronomeManager : MonoBehaviour
         _tempoManager.UpdateTempoEvent -= SetPendulumSpeed;
     }
 
-    public void SetPendulumSpeed(float multiplier)
+    public void SetPendulumSpeed(float angle)
     {
-        pendulumAnimator.SetTrigger("PlayAnim");
-        pendulumAnimator.SetFloat("speedMultiplier", multiplier);
+        pendulumObject.transform.localRotation = Quaternion.Euler(0f, 0f, angle);
     }
 }

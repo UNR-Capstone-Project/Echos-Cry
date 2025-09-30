@@ -26,15 +26,15 @@ public class TempoManagerV2 : MonoBehaviour
         _excellentHitTimeEnd = _timeBetweenBeats - _excellentHitTimeStart;
         _goodHitTimeEnd = _timeBetweenBeats - _goodHitTimeStart;
         _badHitTimeEnd = _timeBetweenBeats - _badHitTimeStart;
-
-        UpdateTempoEvent?.Invoke((_tempo / 60f) / 2);
     }
+
     private void BeatTick()
     {
         _currentBeatTime = 0;
         _tickSound.Play();
         BeatTickEvent?.Invoke();
     }
+
     public void UpdateHitQuality()
     {
         if (_currentBeatTime < _excellentHitTimeStart || _currentBeatTime > _excellentHitTimeEnd) { currentHitQuality = HIT_QUALITY.EXCELLENT; }
@@ -44,33 +44,30 @@ public class TempoManagerV2 : MonoBehaviour
 
         UpdateHitQualityEvent?.Invoke(currentHitQuality);
     }
-    public void StartBeatTick()
-    {
-        StartCoroutine(UpdateBeatTick());
-    }
-    public void StopBeatTick()
-    {
-        StopCoroutine(UpdateBeatTick());
-    }
-
-    private IEnumerator UpdateBeatTick()
-    {
-        yield return new WaitForSeconds(_timeBetweenBeats);
-        BeatTick();
-        StartBeatTick();
-    }
 
     private void Awake()
     {
         _tickSound = GetComponent<AudioSource>();
     }
+
     void Start()
     {
         SetTempo(_tempo);
-        StartBeatTick();
     }
+
     void Update()
     {
+        float swingTime = _timeBetweenBeats * 2f;
+        float angle = Mathf.Sin((Time.time / swingTime) * Mathf.PI * 2f) * 30f;
+
+        if (Mathf.Sign(previousAngle) != Mathf.Sign(angle))
+        {
+            BeatTick();
+        }
+        previousAngle = angle;
+
+        UpdateTempoEvent?.Invoke(angle);
+
         _currentBeatTime += Time.deltaTime;
     }
 
@@ -78,6 +75,7 @@ public class TempoManagerV2 : MonoBehaviour
     [SerializeField] private float _tempo = 85f;
     private float _timeBetweenBeats = 0;
     private float _currentBeatTime = 0;
+    private float previousAngle = 0;
 
     public HIT_QUALITY currentHitQuality = HIT_QUALITY.MISS;
 
