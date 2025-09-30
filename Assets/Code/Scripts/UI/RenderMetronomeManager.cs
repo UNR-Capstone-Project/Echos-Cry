@@ -8,7 +8,7 @@ public class RenderMetronomeManager : MonoBehaviour
 
     private TempoManagerV2 _tempoManager;
     //private Animator pendulumAnimator;
-    private float _currentPendelemBeatTime = 0;
+    private float _currentPendulumBeatTime = 0;
     private float _swingTime = 0;
 
     private void Awake()
@@ -22,12 +22,12 @@ public class RenderMetronomeManager : MonoBehaviour
     }
     private void Update()
     {
-        _currentPendelemBeatTime += Time.deltaTime;
+        _currentPendulumBeatTime += Time.deltaTime;
 
-        float angle = Mathf.Sin((_currentPendelemBeatTime / _swingTime) * Mathf.PI * 2f) * 30f;
+        float angle = Mathf.Sin((_currentPendulumBeatTime / _swingTime) * Mathf.PI * 2f) * 30f;
         pendulumObject.transform.localRotation = Quaternion.Euler(0f, 0f, angle);
 
-        if (_currentPendelemBeatTime >= _swingTime) _currentPendelemBeatTime -= _swingTime;
+        if (_currentPendulumBeatTime >= _swingTime) _currentPendulumBeatTime -= _swingTime;
     }
     private void OnDestroy()
     {
