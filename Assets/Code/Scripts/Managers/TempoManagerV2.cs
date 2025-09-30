@@ -17,7 +17,7 @@ public class TempoManagerV2 : MonoBehaviour
         _tempo = new_tempo;
 
         //The time between each beat(60 seconds / BPM)
-        _timeBetweenBeats = 60 / _tempo;
+        _timeBetweenBeats = 60 / _tempo; //Seconds per beat
 
         _excellentHitTimeStart = _timeBetweenBeats * _excellentPercent;
         _goodHitTimeStart = _timeBetweenBeats * _goodPercent;
@@ -27,11 +27,12 @@ public class TempoManagerV2 : MonoBehaviour
         _goodHitTimeEnd = _timeBetweenBeats - _goodHitTimeStart;
         _badHitTimeEnd = _timeBetweenBeats - _badHitTimeStart;
 
-        UpdateTempoEvent?.Invoke(_tempo/60f);
+        UpdateTempoEvent?.Invoke((_tempo / 60f) / 2);
     }
     private void BeatTick()
     {
         _currentBeatTime = 0;
+        _tickSound.Play();
         BeatTickEvent?.Invoke();
     }
     public void UpdateHitQuality()
@@ -46,12 +47,10 @@ public class TempoManagerV2 : MonoBehaviour
     public void StartBeatTick()
     {
         StartCoroutine(UpdateBeatTick());
-        StartCoroutine(UpdateBeatTickSound());
     }
     public void StopBeatTick()
     {
         StopCoroutine(UpdateBeatTick());
-        StopCoroutine(UpdateBeatTickSound());
     }
 
     private IEnumerator UpdateBeatTick()
@@ -59,11 +58,6 @@ public class TempoManagerV2 : MonoBehaviour
         yield return new WaitForSeconds(_timeBetweenBeats);
         BeatTick();
         StartBeatTick();
-    }
-    private IEnumerator UpdateBeatTickSound()
-    {
-        yield return new WaitForSeconds(_goodHitTimeEnd);
-        _tickSound.Play();
     }
 
     private void Awake()

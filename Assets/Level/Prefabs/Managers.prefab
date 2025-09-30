@@ -124,8 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27b935cf4de731f47ae8416bf0d3f114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TempoManagerV2
-  RenderMetronome: {fileID: 7268934246999311627}
-  _tempo: 100
+  _tempo: 60
+  currentHitQuality: 0
 --- !u!82 &7413370735531543187
 AudioSource:
   m_ObjectHideFlags: 0
@@ -361,10 +361,5 @@ PrefabInstance:
 --- !u!4 &6587462203573440916 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 31369443905719066, guid: f4c0953c4f20de340ba6c0f87ec71c90, type: 3}
-  m_PrefabInstance: {fileID: 6558419386955455118}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7268934246999311627 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4603908624531791749, guid: f4c0953c4f20de340ba6c0f87ec71c90, type: 3}
   m_PrefabInstance: {fileID: 6558419386955455118}
   m_PrefabAsset: {fileID: 0}

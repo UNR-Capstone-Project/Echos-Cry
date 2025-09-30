@@ -25,7 +25,7 @@ public class RenderMetronomeManager : MonoBehaviour
 
     public void SetPendulumSpeed(float multiplier)
     {
-        pendulumAnimator.Play("PendulumSwing", -1, 0f); //Reset animation
-        pendulumAnimator.SetFloat("speedMultiplier", multiplier / 2);
+        pendulumAnimator.SetTrigger("PlayAnim");
+        pendulumAnimator.SetFloat("speedMultiplier", multiplier);
     }
 }
