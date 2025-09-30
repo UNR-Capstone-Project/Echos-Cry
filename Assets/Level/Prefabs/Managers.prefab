@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27b935cf4de731f47ae8416bf0d3f114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TempoManagerV2
-  _tempo: 60
+  _tempo: 100
   currentHitQuality: 0
 --- !u!82 &7413370735531543187
 AudioSource:

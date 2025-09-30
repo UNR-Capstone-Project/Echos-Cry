@@ -4,6 +4,7 @@ using System.Collections;
 using UnityEngine.InputSystem;
 using static TempoManagerV2;
 using UnityEngine.Windows;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -43,6 +44,9 @@ public class Player : MonoBehaviour
 
     //Minigame Variables
     private bool miniGameOpened = false;
+
+    //Events
+    public event Action<float> HealthUpdateEvent;
 
     //----------End Variables----------
 
@@ -195,6 +199,8 @@ public class Player : MonoBehaviour
     public void takeDamage(float damageAmount)
     {
         playerHealth -= damageAmount;
+        HealthUpdateEvent?.Invoke(playerHealth);
+
         StopCoroutine(flashPlayer());
         StartCoroutine(flashPlayer());
     }
