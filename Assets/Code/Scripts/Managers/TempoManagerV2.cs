@@ -32,7 +32,6 @@ public class TempoManagerV2 : MonoBehaviour
 
     private void BeatTick()
     {
-        _currentBeatTime -= _timeBetweenBeats;
         _tickSound.Play();
         BeatTickEvent?.Invoke();
     }
@@ -46,21 +45,6 @@ public class TempoManagerV2 : MonoBehaviour
 
         UpdateHitQualityEvent?.Invoke(currentHitQuality);
     }
-    public void StartBeatTick()
-    {
-        StartCoroutine(UpdateBeatTick());
-    }
-    public void StopBeatTick()
-    {
-        StopCoroutine(UpdateBeatTick());
-    }
-
-    private IEnumerator UpdateBeatTick()
-    {
-        yield return new WaitForSeconds(_timeBetweenBeats);
-        BeatTick();
-        StartBeatTick();
-    }
 
     private void Awake()
     {
@@ -70,12 +54,16 @@ public class TempoManagerV2 : MonoBehaviour
     void Start()
     {
         SetTempo(_tempo);
-        StartBeatTick();
     }
 
     void Update()
     {
-        _currentBeatTime += Time.deltaTime;     
+        _currentBeatTime += Time.deltaTime;
+        while (_currentBeatTime > _timeBetweenBeats)
+        {
+            _currentBeatTime -= _timeBetweenBeats;
+            BeatTick();
+        }
     }
 
     //Tempo/Beat Values
