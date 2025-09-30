@@ -180,8 +180,8 @@ MonoBehaviour:
   playerSpeed: 4
   groundCheckBoxDimensions: {x: 0.2, y: 0.1, z: 0.2}
   groundCheckBoxHeight: 0.75
-  playerHealth: 4
-  attackWait: 1
+  playerHealth: 100
+  attackWait: 0.5
   playerSprite: {fileID: 4323622196322604754}
   fireballPrefab: {fileID: 2607949553819214744, guid: ec973f6f5bbe9ed4399b6611ce554980, type: 3}
   musicMiniGamePrefab: {fileID: 3030777457210945652, guid: 41e3a6898f0175547aaf1b2d8457eb9f, type: 3}

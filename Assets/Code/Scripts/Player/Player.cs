@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 
     //Player Stats
     public float playerHealth = 10f;
-    public float attackWait = 1f;
+    public float attackWait = 0.5f;
 
     //Player Components
     public GameObject playerSprite;
