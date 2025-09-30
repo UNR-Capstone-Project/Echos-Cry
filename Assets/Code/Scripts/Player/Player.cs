@@ -123,7 +123,8 @@ public class Player : MonoBehaviour
 
     public void HandleMousePrimaryInteraction()
     {
-        switch (tempoManager.CheckHitQuality())
+        tempoManager.UpdateHitQuality();
+        switch (tempoManager.currentHitQuality)
         {
             case HIT_QUALITY.EXCELLENT:
                 Debug.Log("EXCELLENT");
