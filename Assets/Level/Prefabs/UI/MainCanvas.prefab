@@ -683,6 +683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aea4dc729f4e95438b52c1d682eefad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  playerHealthPrefab: {fileID: 7922927021215593826, guid: 6c8e4edc8c4df97439169177a9baa6f7, type: 3}
   hitQualityText: {fileID: 7966699270862996379}
   playerHealthText: {fileID: 8583406580470477534}
   metronomeImage: {fileID: 840251735800372354}

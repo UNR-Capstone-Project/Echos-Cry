@@ -20,7 +20,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float groundCheckBoxHeight;
 
     //Player Stats
-    public float playerHealth = 10f;
+    private playerHealthController healthController;
+    //public float playerHealth = 10f;
     public float attackWait = 0.5f;
 
     //Player Components
@@ -46,7 +47,7 @@ public class Player : MonoBehaviour
     private bool miniGameOpened = false;
 
     //Events
-    public event Action<float> HealthUpdateEvent;
+    //public event Action<float> HealthUpdateEvent;
 
     //----------End Variables----------
 
@@ -63,6 +64,7 @@ public class Player : MonoBehaviour
         //Hook up input signals
         inputTranslator.OnMovementEvent += HandleMovement;
         inputTranslator.OnMousePrimaryInteractionEvent += HandleMousePrimaryInteraction;
+        healthController = GetComponent<playerHealthController>();
     }
     private void OnDestroy()
     {
@@ -198,8 +200,12 @@ public class Player : MonoBehaviour
 
     public void takeDamage(float damageAmount)
     {
-        playerHealth -= damageAmount;
-        HealthUpdateEvent?.Invoke(playerHealth);
+        if (healthController != null)
+        {
+            healthController.onDamageTaken(damageAmount);
+        }
+        //playerHealth -= damageAmount;
+        //HealthUpdateEvent?.Invoke(playerHealth);
 
         StopCoroutine(flashPlayer());
         StartCoroutine(flashPlayer());

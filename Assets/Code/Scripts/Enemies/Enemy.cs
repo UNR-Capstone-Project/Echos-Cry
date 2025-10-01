@@ -7,7 +7,7 @@ using UnityEngine.Windows;
 
 public class Enemy : MonoBehaviour
 {
-    public float enemyDamage = 10f;
+    public float enemyDamage = 1f;
     public float enemyAttackWait = 2f;
     public float enemyHealth = 10f;
     public float enemySpeed = 2f;
