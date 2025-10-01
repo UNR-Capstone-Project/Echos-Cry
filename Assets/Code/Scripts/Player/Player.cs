@@ -15,18 +15,20 @@ public class Player : MonoBehaviour
 
     [SerializeField] private InputTranslator inputTranslator;
     [SerializeField] private float playerGravity = 9.8f;
-    [SerializeField] private float playerSpeed = 10;
+    [SerializeField] private float playerSpeed = 10f;
     [SerializeField] private Vector3 groundCheckBoxDimensions;
     [SerializeField] private float groundCheckBoxHeight;
 
     //Player Stats
     public float playerHealth = 10f;
-    public float attackWait = 0.5f;
+    public Color flashColor = Color.red;
+
+    private Color originalColor;
+    private float flashDuration = 0.2f;
 
     //Player Components
     public GameObject playerSprite;
-    public GameObject fireballPrefab;
-    public GameObject musicMiniGamePrefab;
+    public GameObject attackPrefab;
 
     private TempoManagerV2 tempoManager;
     private Transform mainCameraRef;
@@ -35,15 +37,13 @@ public class Player : MonoBehaviour
     private Animator playerAnimator;
 
     //Player Attacking
-    public Color flashColor = Color.red;
-
+    private float attackWait = 0f;
+    private float damageMultiplier = 1f;
     private bool isAttackCooldown = false;
-    private Color originalColor;
-    private float flashDuration = 0.2f;
-    private Quaternion playerRotation;
 
     //Minigame Variables
-    private bool miniGameOpened = false;
+    //private bool miniGameOpened = false;
+    //public GameObject musicMiniGamePrefab;
 
     //Events
     public event Action<float> HealthUpdateEvent;
@@ -60,13 +60,13 @@ public class Player : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
         originalColor = playerSpriteRenderer.material.GetColor("_TintColor");
 
-        //Hook up input signals
+        //Hook up input events
         inputTranslator.OnMovementEvent += HandleMovement;
         inputTranslator.OnMousePrimaryInteractionEvent += HandleMousePrimaryInteraction;
     }
     private void OnDestroy()
     {
-        //Signal cleaup
+        //Event cleanup
         inputTranslator.OnMovementEvent -= HandleMovement;
         inputTranslator.OnMousePrimaryInteractionEvent -= HandleMousePrimaryInteraction;
     }
@@ -131,69 +131,69 @@ public class Player : MonoBehaviour
         switch (tempoManager.currentHitQuality)
         {
             case HIT_QUALITY.EXCELLENT:
-                Debug.Log("EXCELLENT");
+                damageMultiplier = 1.5f;
                 break;
             case HIT_QUALITY.GOOD:
-                Debug.Log("GOOD");
+                damageMultiplier = 1.2f;
                 break;
             case HIT_QUALITY.BAD:
-                Debug.Log("BAD");
+                damageMultiplier = 1.1f;
                 break;
-            default:
-                Debug.Log("MISS");
+            default: //Miss
+                damageMultiplier = 1.0f;
                 break;
         };
 
-        ProjectileAttack();
+        Attack();
     }
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(transform.position + (Vector3.down * groundCheckBoxHeight), groundCheckBoxDimensions);
     }
 
-    private void ProjectileAttack()
+    private void Attack()
     {
+        BaseAttack baseAttack = attackPrefab.GetComponent<BaseAttack>();
+        attackWait = baseAttack.GetAttackWait();
+
         if (!isAttackCooldown)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-            RaycastHit hit;
-            int groundMask = LayerMask.GetMask("Ground");
+            GameObject attackInstance = Instantiate(attackPrefab, transform.position, Quaternion.identity);
+            attackInstance.GetComponent<BaseAttack>().StartAttack(damageMultiplier);
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask))
-            {
-                Vector3 hitPoint = hit.point;
-                Vector3 targetVec = hitPoint - transform.position;
-                Vector3 projectileDirection = targetVec.normalized;
-
-                if (projectileDirection.y < 0f) { projectileDirection.y = 0f; } //Clamp to angles above 0 degrees horizontally
-                projectileDirection.Normalize();
-
-                Vector3 spawnPos = transform.position + projectileDirection * 0.5f;
-                GameObject fireballInstance = Instantiate(fireballPrefab, spawnPos, Quaternion.identity);
-                fireballInstance.GetComponent<ProjectileAttack>().setProjectileDirection(projectileDirection);
-
-                isAttackCooldown = true;
-                StartCoroutine(AttackCooldown(attackWait));
-            }
+            //Init attack cooldown
+            isAttackCooldown = true;
+            damageMultiplier = 1f; //Reset multiplier
+            StartCoroutine(AttackCooldown(attackWait));
         }
     }
+
+    /*
     public void closeMiniGame() { miniGameOpened = false; }
 
     private void OpenMinigame()
     {
         //ISSUE: Determine type of weapon being used, and open the corresponding mini-game.
+        
         if (!miniGameOpened)
         {
             GameObject musicMiniGameInstance = Instantiate(musicMiniGamePrefab);
             musicMiniGameInstance.name = musicMiniGamePrefab.name;
             miniGameOpened = true;
         }
+        
     }
+    */
 
     IEnumerator AttackCooldown(float cooldownTime)
     {
         yield return new WaitForSeconds(cooldownTime);
         isAttackCooldown = false;
+    }
+
+    public float getHealth()
+    {
+        return playerHealth;
     }
 
     public void takeDamage(float damageAmount)

@@ -24,6 +24,8 @@ public class RenderMetronomeManager : MonoBehaviour
     {
         _currentPendelemBeatTime += Time.deltaTime;
 
+        if (_swingTime <= 0) { return; }
+
         float angle = Mathf.Sin((_currentPendelemBeatTime / _swingTime) * Mathf.PI * 2f) * 30f;
         pendulumObject.transform.localRotation = Quaternion.Euler(0f, 0f, angle);
 

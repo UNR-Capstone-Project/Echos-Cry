@@ -37,6 +37,7 @@ public class CanvasManager : MonoBehaviour
         //Setup player reference
         mPlayer = GameObject.FindWithTag("Player").GetComponent<Player>();
         mPlayer.HealthUpdateEvent += UpdateHealthBar;
+        UpdateHealthBar(mPlayer.getHealth()); //Init starting health
     }
     private void OnDestroy()
     {
@@ -46,7 +47,7 @@ public class CanvasManager : MonoBehaviour
 
     public void UpdateHealthBar(float health)
     {
-        playerHealthText.GetComponent<TextMeshProUGUI>().text = "HP:" + health.ToString();
+        playerHealthText.GetComponent<TextMeshProUGUI>().text = "HP: " + health.ToString();
     }
 
     public void UpdateHitQualityText(TempoManagerV2.HIT_QUALITY quality)
