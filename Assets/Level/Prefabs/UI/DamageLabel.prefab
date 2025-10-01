@@ -151,7 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageLabel
   damageText: {fileID: 1475154962704249299}
   normalFontColor: {r: 1, g: 1, b: 1, a: 1}
-  startColorFadeAtPercent: 0.8
+  startColorFadeAtPercent: 0.7
   easeCurve:
     serializedVersion: 2
     m_Curve:
@@ -176,7 +176,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  highPointOffset: {x: 0, y: 16}
-  lowPointOffset: {x: 0, y: 0}
+  highPointOffset: {x: 10, y: 20}
+  lowPointOffset: {x: 20, y: 0}
   heightVariationMax: 50
   heightVariationMin: 20
