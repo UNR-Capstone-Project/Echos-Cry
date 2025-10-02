@@ -6,13 +6,11 @@ using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
-    [SerializeField] private GameObject playerHealthPrefab;
     [SerializeField] private TextMeshProUGUI hitQualityText;
     [SerializeField] private TextMeshProUGUI playerHealthText;
     [SerializeField] private GameObject metronomeImage;
     [SerializeField] private float flashDuration = 0.1f;
 
-    private Player mPlayer;
     private TempoManagerV2 tempoManager;
     private Material metronomeMaterial;
 
@@ -22,9 +20,6 @@ public class CanvasManager : MonoBehaviour
         Canvas mCanvas = GetComponent<Canvas>();
         mCanvas.worldCamera = Camera.main;
         mCanvas.planeDistance = 1;
-
-        //Setup Player Health UI
-        Instantiate(playerHealthPrefab);
 
         //Setup metronome image
         RawImage image = metronomeImage.GetComponent<RawImage>();
@@ -36,9 +31,6 @@ public class CanvasManager : MonoBehaviour
        
         tempoManager.BeatTickEvent += FlashOutline;
         tempoManager.UpdateHitQualityEvent += UpdateHitQualityText;
-
-        //Setup player reference
-        mPlayer = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
     private void OnDestroy()
     {

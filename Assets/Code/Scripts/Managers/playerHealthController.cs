@@ -6,17 +6,16 @@ public class playerHealthController : MonoBehaviour
 {
     public static event Action<float> onPlayerDamaged;
     public static event Action<float> onPlayerHealed;
-    public static event Action<float> onPlayerHealthChange;
+    public static event Action<float, float> onPlayerHealthChange;
     public static event Action onPlayerDeath;
 
-    [SerializeField] private float maxHealth = 17f;
+    [SerializeField] private float MAX_HEALTH = 100f;
     private float currentHealth;
 
     private void Awake()
     {
-        currentHealth = maxHealth;
+        currentHealth = MAX_HEALTH;
     }
-
     public float getCurrentPlayerHealth()
     {
         return currentHealth;
@@ -24,34 +23,30 @@ public class playerHealthController : MonoBehaviour
 
     public float getPlayerMaxHealth()
     {
-        return maxHealth;
+        return MAX_HEALTH;
     }
 
     public void onDamageTaken(float damageAmount)
     {
-
         currentHealth -= damageAmount;
-        Debug.Log("Damage has been taken by the player: now health is at: " + currentHealth + " DamageAmount: " + damageAmount);
         onPlayerDamaged?.Invoke(damageAmount);
-        onPlayerHealthChange?.Invoke(currentHealth);
+        onPlayerHealthChange?.Invoke(currentHealth, MAX_HEALTH);
 
         if (currentHealth <= 0)
         {
             onPlayerDeath?.Invoke();
         }
-
-        
     }
 
     public void onDamageHealed(float healAmount)
     {
         currentHealth += healAmount;
         onPlayerHealed?.Invoke(healAmount);
-        onPlayerHealthChange?.Invoke(currentHealth);
+        onPlayerHealthChange?.Invoke(currentHealth, MAX_HEALTH);
 
-        if (currentHealth > 17)
+        if (currentHealth > MAX_HEALTH) //Clamp health
         {
-            currentHealth = 17;
+            currentHealth = MAX_HEALTH;
         }
 
         
