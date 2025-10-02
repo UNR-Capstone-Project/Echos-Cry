@@ -22,7 +22,6 @@ public class Player : MonoBehaviour
     //Player Stats
 
     private playerHealthController healthController;
-    public float attackWait = 0.5f;
 
     public float playerHealth = 10f;
     public Color flashColor = Color.red;
