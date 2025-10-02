@@ -8,6 +8,7 @@ TagManager:
   - Note
   - Billboard
   - MainCanvas
+  - HealthCanvas
   layers:
   - Default
   - TransparentFX

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
-
+    [SerializeField] private GameObject playerHealthPrefab;
     [SerializeField] private TextMeshProUGUI hitQualityText;
     [SerializeField] private TextMeshProUGUI playerHealthText;
     [SerializeField] private GameObject metronomeImage;
@@ -23,6 +23,9 @@ public class CanvasManager : MonoBehaviour
         mCanvas.worldCamera = Camera.main;
         mCanvas.planeDistance = 1;
 
+        //Setup Player Health UI
+        Instantiate(playerHealthPrefab);
+
         //Setup metronome image
         RawImage image = metronomeImage.GetComponent<RawImage>();
         metronomeMaterial = Instantiate(image.material);
@@ -36,18 +39,11 @@ public class CanvasManager : MonoBehaviour
 
         //Setup player reference
         mPlayer = GameObject.FindWithTag("Player").GetComponent<Player>();
-        mPlayer.HealthUpdateEvent += UpdateHealthBar;
-        UpdateHealthBar(mPlayer.getHealth()); //Init starting health
     }
     private void OnDestroy()
     {
         tempoManager.BeatTickEvent -= FlashOutline;
         tempoManager.UpdateHitQualityEvent -= UpdateHitQualityText;
-    }
-
-    public void UpdateHealthBar(float health)
-    {
-        playerHealthText.GetComponent<TextMeshProUGUI>().text = "HP: " + health.ToString();
     }
 
     public void UpdateHitQualityText(TempoManagerV2.HIT_QUALITY quality)

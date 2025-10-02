@@ -1,2 +1,15 @@
 fileFormatVersion: 2
 guid: 5aea4dc729f4e95438b52c1d682eefad
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - playerHealthPrefab: {fileID: 7922927021215593826, guid: 6c8e4edc8c4df97439169177a9baa6f7, type: 3}
+  - hitQualityText: {instanceID: 0}
+  - playerHealthText: {instanceID: 0}
+  - metronomeImage: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

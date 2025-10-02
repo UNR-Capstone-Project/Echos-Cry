@@ -20,11 +20,16 @@ public class Player : MonoBehaviour
     [SerializeField] private float groundCheckBoxHeight;
 
     //Player Stats
+
+    private playerHealthController healthController;
+    public float attackWait = 0.5f;
+
     public float playerHealth = 10f;
     public Color flashColor = Color.red;
 
     private Color originalColor;
     private float flashDuration = 0.2f;
+
 
     //Player Components
     public GameObject playerSprite;
@@ -46,7 +51,7 @@ public class Player : MonoBehaviour
     //public GameObject musicMiniGamePrefab;
 
     //Events
-    public event Action<float> HealthUpdateEvent;
+    //public event Action<float> HealthUpdateEvent;
 
     //----------End Variables----------
 
@@ -63,6 +68,9 @@ public class Player : MonoBehaviour
         //Hook up input events
         inputTranslator.OnMovementEvent += HandleMovement;
         inputTranslator.OnMousePrimaryInteractionEvent += HandleMousePrimaryInteraction;
+        //healthController = GetComponent<playerHealthController>();
+        healthController = gameObject.AddComponent<playerHealthController>();
+        Debug.Log("Health Controller found? " + (healthController != null));
     }
     private void OnDestroy()
     {
@@ -198,8 +206,10 @@ public class Player : MonoBehaviour
 
     public void takeDamage(float damageAmount)
     {
-        playerHealth -= damageAmount;
-        HealthUpdateEvent?.Invoke(playerHealth);
+        if (healthController != null)
+        {
+            healthController.onDamageTaken(damageAmount);
+        }
 
         StopCoroutine(flashPlayer());
         StartCoroutine(flashPlayer());

@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8be8345009220eb4db7a8c772e4d0bd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  enemyDamage: 10
+  enemyDamage: 1
   enemyAttackWait: 2
   enemyHealth: 50
   enemySpeed: 2.6
