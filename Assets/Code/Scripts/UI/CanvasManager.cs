@@ -39,19 +39,12 @@ public class CanvasManager : MonoBehaviour
 
         //Setup player reference
         mPlayer = GameObject.FindWithTag("Player").GetComponent<Player>();
-        //mPlayer.HealthUpdateEvent += UpdateHealthBar;
     }
     private void OnDestroy()
     {
         tempoManager.BeatTickEvent -= FlashOutline;
         tempoManager.UpdateHitQualityEvent -= UpdateHitQualityText;
     }
-
-    /*
-    public void UpdateHealthBar(float health)
-    {
-        playerHealthText.GetComponent<TextMeshProUGUI>().text = "HP:" + health.ToString();
-    }*/
 
     public void UpdateHitQualityText(TempoManagerV2.HIT_QUALITY quality)
     {

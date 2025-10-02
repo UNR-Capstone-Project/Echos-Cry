@@ -68,9 +68,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 786ee3a68e3638e46ae7a439e1148726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  attackDamage: 10
+  destroyTime: 5
+  attackWait: 0.5
+  knockForce: 8
   projectileSpeed: 6
-  projectileDamage: 10
-  knockForce: 5
   destroyParticlePrefab: {fileID: 8653895834777587694, guid: 54c60506412377741a30233dd16c7774, type: 3}
 --- !u!54 &5983872728584852824
 Rigidbody:

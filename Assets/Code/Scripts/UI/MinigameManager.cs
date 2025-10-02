@@ -101,7 +101,7 @@ public class MinigameManager : MonoBehaviour
     IEnumerator TimedDestroy()
     {
         yield return new WaitForSeconds(1);
-        GameObject.FindWithTag("Player").GetComponent<Player>().closeMiniGame();
+        //GameObject.FindWithTag("Player").GetComponent<Player>().closeMiniGame();
         Destroy(gameObject);
     }
 

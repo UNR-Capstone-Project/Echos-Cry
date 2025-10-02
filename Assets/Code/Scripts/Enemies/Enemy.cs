@@ -182,6 +182,8 @@ public class Enemy : MonoBehaviour
         enemyHealth -= damageAmount;
         StopCoroutine(flashEnemy());
         StartCoroutine(flashEnemy());
+
+        SpawnsDamagePopups.Instance.DamageDone(damageAmount, transform.position);
     }
 
     IEnumerator flashEnemy()
