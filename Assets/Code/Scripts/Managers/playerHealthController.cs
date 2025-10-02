@@ -29,8 +29,9 @@ public class playerHealthController : MonoBehaviour
 
     public void onDamageTaken(float damageAmount)
     {
+
         currentHealth -= damageAmount;
-        Debug.Log("Damage has been taken by the player: now health is at: " + currentHealth);
+        Debug.Log("Damage has been taken by the player: now health is at: " + currentHealth + " DamageAmount: " + damageAmount);
         onPlayerDamaged?.Invoke(damageAmount);
         onPlayerHealthChange?.Invoke(currentHealth);
 

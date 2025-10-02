@@ -18,13 +18,14 @@ public class playerHealthManager : MonoBehaviour
         
     }
 
-    void OnEnable()
+    void Start()
     {
+        Debug.Log("Health manager being setup!");
         playerHealthController.onPlayerHealthChange += updateHealth;
         playerHealthController.onPlayerDeath += updateHealthOnDeath;
     }
 
-    void OnDisable()
+    void OnDestroy()
     {
         playerHealthController.onPlayerHealthChange -= updateHealth;
         playerHealthController.onPlayerDeath -= updateHealthOnDeath;
@@ -32,12 +33,11 @@ public class playerHealthManager : MonoBehaviour
 
     private void updateHealth(float updatedValue)
     {
-        Debug.Log("Updating Health UI from health change");
+        
         int roundedValue = Mathf.RoundToInt(updatedValue);
         
         if (roundedValue >= 1 && roundedValue <= 17)
         {
-            //int damagedHitpoints = 17 - roundedValue;
             for (int i = 0; i < allHealthPoints.Length; i++)
             {
                 allHealthPoints[i].enabled = (i < roundedValue);

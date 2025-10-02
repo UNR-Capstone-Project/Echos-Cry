@@ -64,7 +64,9 @@ public class Player : MonoBehaviour
         //Hook up input signals
         inputTranslator.OnMovementEvent += HandleMovement;
         inputTranslator.OnMousePrimaryInteractionEvent += HandleMousePrimaryInteraction;
-        healthController = GetComponent<playerHealthController>();
+        //healthController = GetComponent<playerHealthController>();
+        healthController = gameObject.AddComponent<playerHealthController>();
+        Debug.Log("Health Controller found? " + (healthController != null));
     }
     private void OnDestroy()
     {
@@ -204,8 +206,6 @@ public class Player : MonoBehaviour
         {
             healthController.onDamageTaken(damageAmount);
         }
-        //playerHealth -= damageAmount;
-        //HealthUpdateEvent?.Invoke(playerHealth);
 
         StopCoroutine(flashPlayer());
         StartCoroutine(flashPlayer());
