@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
             playerRigidbody.AddForce(playerGravity * Vector3.down, ForceMode.Acceleration);
         }
     }
-
+    
     public bool IsGrounded()
     {
         return Physics.BoxCast(transform.position, groundCheckBoxDimensions, Vector3.down, transform.rotation, groundCheckBoxHeight);
@@ -208,4 +208,5 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(flashDuration);
         playerSpriteRenderer.material.SetColor("_TintColor", originalColor);
     }
+    
 }
