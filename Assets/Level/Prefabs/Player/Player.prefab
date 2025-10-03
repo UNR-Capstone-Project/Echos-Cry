@@ -136,6 +136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 415338203038042998}
+  - component: {fileID: 8684078267991321208}
   - component: {fileID: 2336914877269605693}
   - component: {fileID: 2019051602396369572}
   - component: {fileID: 6060951237239432870}
@@ -163,6 +164,19 @@ Transform:
   - {fileID: 4782297013487666229}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8684078267991321208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2428720641269041060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bb0d8d974a229a4ab05cb29a4d24eed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::playerHealthController
+  MAX_HEALTH: 100
 --- !u!114 &2336914877269605693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,12 +194,10 @@ MonoBehaviour:
   playerSpeed: 4
   groundCheckBoxDimensions: {x: 0.2, y: 0.1, z: 0.2}
   groundCheckBoxHeight: 0.75
-  playerHealth: 4
-  attackWait: 1
-  playerSprite: {fileID: 4323622196322604754}
-  fireballPrefab: {fileID: 2607949553819214744, guid: ec973f6f5bbe9ed4399b6611ce554980, type: 3}
-  musicMiniGamePrefab: {fileID: 3030777457210945652, guid: 41e3a6898f0175547aaf1b2d8457eb9f, type: 3}
+  playerHealth: 100
   flashColor: {r: 1, g: 0, b: 0, a: 1}
+  playerSprite: {fileID: 4323622196322604754}
+  attackPrefab: {fileID: 2607949553819214744, guid: ec973f6f5bbe9ed4399b6611ce554980, type: 3}
 --- !u!54 &2019051602396369572
 Rigidbody:
   m_ObjectHideFlags: 0

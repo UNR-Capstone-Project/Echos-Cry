@@ -1,10 +1,9 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class TempoManagerV2 : MonoBehaviour
 {
-    [SerializeField] private GameObject RenderMetronome;
-
     public enum HIT_QUALITY
     {
         MISS,
@@ -18,7 +17,7 @@ public class TempoManagerV2 : MonoBehaviour
         _tempo = new_tempo;
 
         //The time between each beat(60 seconds / BPM)
-        _timeBetweenBeats = 60 / _tempo;
+        _timeBetweenBeats = 60 / _tempo; //Seconds per beat
 
         _excellentHitTimeStart = _timeBetweenBeats * _excellentPercent;
         _goodHitTimeStart = _timeBetweenBeats * _goodPercent;
@@ -28,75 +27,67 @@ public class TempoManagerV2 : MonoBehaviour
         _goodHitTimeEnd = _timeBetweenBeats - _goodHitTimeStart;
         _badHitTimeEnd = _timeBetweenBeats - _badHitTimeStart;
 
-        RenderMetronome.GetComponent<RenderMetronomeManager>().SetPendulumSpeed(_tempo / 60f); //Syncs the metronomes pendulum swing animation with current tempo.
+        UpdateTempoEvent?.Invoke(_timeBetweenBeats);
     }
 
     private void BeatTick()
     {
-        _currentBeatTime = 0;
         _tickSound.Play();
+        BeatTickEvent?.Invoke();
     }
 
-    public HIT_QUALITY CheckHitQuality() //ISSUE: Naming inconsistencies! --- maybe _excellentHitTimeStart and _excellentHitTimeEnd are meant to be swapped?
+    public void UpdateHitQuality()
     {
-        HIT_QUALITY quality;
-        if (_currentBeatTime < _excellentHitTimeStart || _currentBeatTime > _excellentHitTimeEnd) { quality = HIT_QUALITY.EXCELLENT; }
-        else if (_currentBeatTime < _goodHitTimeStart || _currentBeatTime > _goodHitTimeEnd) { quality = HIT_QUALITY.GOOD; }
-        else if (_currentBeatTime < _badHitTimeStart || _currentBeatTime > _badHitTimeEnd) { quality = HIT_QUALITY.BAD; }
-        else { quality = HIT_QUALITY.MISS; }
+        if (_currentBeatTime < _excellentHitTimeStart || _currentBeatTime > _excellentHitTimeEnd) { currentHitQuality = HIT_QUALITY.EXCELLENT; }
+        else if (_currentBeatTime < _goodHitTimeStart || _currentBeatTime > _goodHitTimeEnd) { currentHitQuality = HIT_QUALITY.GOOD; }
+        else if (_currentBeatTime < _badHitTimeStart || _currentBeatTime > _badHitTimeEnd) { currentHitQuality = HIT_QUALITY.BAD; }
+        else currentHitQuality = HIT_QUALITY.MISS;
 
-        GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<CanvasManager>().UpdateHitQualityText(quality.ToString()); //Update canvas with hit quality text
-
-        return quality;
+        UpdateHitQualityEvent?.Invoke(currentHitQuality);
     }
 
-    public void StartBeatTick()
+    private void Awake()
     {
-        StartCoroutine(UpdateBeatTick());
+        _tickSound = GetComponent<AudioSource>();
     }
 
-    public void StopBeatTick()
+    void Start()
     {
-        StopCoroutine(UpdateBeatTick());
-    }
-
-    private IEnumerator UpdateBeatTick()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(_timeBetweenBeats);
-            BeatTick();
-        }
+        SetTempo(_tempo);
     }
 
     void Update()
     {
         _currentBeatTime += Time.deltaTime;
-    }
-
-    void Start()
-    {
-        _tickSound = GetComponent<AudioSource>();
-
-        SetTempo(_tempo);
-        StartBeatTick();
-        //_timeToPlayTick = _timeBetweenBeats - (_tickSound.clip.length/2);
+        while (_currentBeatTime > _timeBetweenBeats)
+        {
+            _currentBeatTime -= _timeBetweenBeats;
+            BeatTick();
+        }
     }
 
     //Tempo/Beat Values
-    [SerializeField] private float _tempo = 60f;
+    [SerializeField] private float _tempo = 85f;
     private float _timeBetweenBeats = 0;
     private float _currentBeatTime = 0;
 
-    //Hit Time Percentage
+    public HIT_QUALITY currentHitQuality = HIT_QUALITY.MISS;
+
+    //Hit Time
     private float _excellentPercent = 0.07f;
     private float _goodPercent = 0.15f;
     private float _badPercent = 0.30f;
 
-    //    Start                     End
-    //      |------------------------|
-    //   BEAT 1                    BEAT 2
+    //            Tempo Threshold
+    // Start                           End
+    //   |--|-|-|---------------|-|-|---|
+    // BEAT 1                         BEAT 2
+
     //These HitTime measurements are used to compare the _currentBeatTime with whether it lands within the thresholds of Excellent, Good, Bad or Miss
+
+    //   ***HitTimeStart represents the time value that is compared to the currentBeatTime at the start of the tempo threshold
+    //   ***HitTimeEnd represents the time value that is compared to the currentBeatTime at the end of the tempo threshold
+
     private float _excellentHitTimeStart = 0;
     private float _goodHitTimeStart = 0;
     private float _badHitTimeStart = 0;
@@ -106,5 +97,9 @@ public class TempoManagerV2 : MonoBehaviour
     
     //Audio
     private AudioSource _tickSound;
-    private float _timeToPlayTick = 0;
+
+    // Events
+    public event Action BeatTickEvent;
+    public event Action<float> UpdateTempoEvent;
+    public event Action<HIT_QUALITY> UpdateHitQualityEvent;
 }

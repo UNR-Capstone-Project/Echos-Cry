@@ -48,6 +48,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: 686263447e347fe4ebf95b2350380c44, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: 686263447e347fe4ebf95b2350380c44, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 077af55a2f74a024fae3ded7e1fa7acd, type: 2}
     - target: {fileID: 919132149155446097, guid: 686263447e347fe4ebf95b2350380c44, type: 3}
       propertyPath: m_Name
       value: Pendulum
@@ -140,10 +148,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 0654445af7979384c8636a945affca09, type: 3}
+      propertyPath: m_Name
+      value: Body
+      objectReference: {fileID: 0}
+    - target: {fileID: -4683669308469848369, guid: 0654445af7979384c8636a945affca09, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4683669308469848369, guid: 0654445af7979384c8636a945affca09, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4683669308469848369, guid: 0654445af7979384c8636a945affca09, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a05066a8175e5574cbdeb248e9fe78f1, type: 2}
+    - target: {fileID: -4683669308469848369, guid: 0654445af7979384c8636a945affca09, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6bec7a832d8fdac45a99ce1d87bfe5f4, type: 2}
+    - target: {fileID: -4683669308469848369, guid: 0654445af7979384c8636a945affca09, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a97a2cb535a19da49b5b0c7d42ddf7e7, type: 2}
+    - target: {fileID: -4683669308469848369, guid: 0654445af7979384c8636a945affca09, type: 3}
+      propertyPath: 'm_Materials.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 077af55a2f74a024fae3ded7e1fa7acd, type: 2}
     - target: {fileID: 919132149155446097, guid: 0654445af7979384c8636a945affca09, type: 3}
       propertyPath: m_Name
       value: Metronome
       objectReference: {fileID: 0}
+    - target: {fileID: 6317578925029434746, guid: 0654445af7979384c8636a945affca09, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317578925029434746, guid: 0654445af7979384c8636a945affca09, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 077af55a2f74a024fae3ded7e1fa7acd, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

@@ -367,6 +367,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7181307483577013225, guid: 8d3c33999cc87a348a63d63b95de75e9, type: 3}
+      propertyPath: m_UpdateMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7517663788444344910, guid: 8d3c33999cc87a348a63d63b95de75e9, type: 3}
       propertyPath: m_Name
       value: Metronome

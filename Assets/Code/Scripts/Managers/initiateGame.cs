@@ -7,10 +7,8 @@ public class initiateGame : MonoBehaviour
 {
     [SerializeField] private GameObject mainManager;
     [SerializeField] private GameObject mainCanvas;
-    [SerializeField] private GameObject mainCamera;
     [SerializeField] private Volume mainGlobalVolume;
     [SerializeField] private Light mainDirectionalLight;
-    [SerializeField] private GameObject mainPlayer;
 
     //Loads all relevant data at start of each level.
     public void Start()
@@ -23,13 +21,11 @@ public class initiateGame : MonoBehaviour
     private void bindObjects()
     {
         //Bind objects to prefabs
-
-        Instantiate(mainManager);
-        Instantiate(mainCanvas);
-        Instantiate(mainPlayer);
-        Instantiate(mainCamera);
         Instantiate(mainGlobalVolume);
         Instantiate(mainDirectionalLight);
+        Instantiate(mainManager);
+        Instantiate(mainCanvas);
+        
     }
 
     private void createObjects()

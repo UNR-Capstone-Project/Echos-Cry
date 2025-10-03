@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3016788951364905046}
   - component: {fileID: 2270180594265222523}
   - component: {fileID: 1524348524237038881}
-  - component: {fileID: 2480468020676357367}
+  - component: {fileID: 8310259683820124466}
   m_Layer: 0
   m_Name: SlashEffect
   m_TagString: Untagged
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea07031b24d8a9f4ca7368458aaa6f07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::timedDestroy
---- !u!114 &2480468020676357367
+--- !u!114 &8310259683820124466
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,4 +139,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 971a2c0256099cb4683bd85d1c810450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Billboard
-  lockZRotation: 0
+  lockZRotation: 1
