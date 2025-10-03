@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
             playerRigidbody.AddForce(playerGravity * Vector3.down, ForceMode.Acceleration);
         }
     }
-    
+
     public bool IsGrounded()
     {
         return Physics.BoxCast(transform.position, groundCheckBoxDimensions, Vector3.down, transform.rotation, groundCheckBoxHeight);
@@ -97,7 +97,7 @@ public class Player : MonoBehaviour
         Vector3 rightVector = mainCameraRef.right;
         rightVector.y = 0f;
         rightVector = rightVector.normalized;
-        
+
         Vector3 targetVel = (playerLocomotion.y * playerSpeed * forwardVector)
                           + (playerLocomotion.x * playerSpeed * rightVector)
                           + (Vector3.up * playerRigidbody.linearVelocity.y);
@@ -145,7 +145,8 @@ public class Player : MonoBehaviour
             default: //Miss
                 damageMultiplier = 1.0f;
                 break;
-        };
+        }
+        ;
 
         Attack();
     }
@@ -208,5 +209,4 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(flashDuration);
         playerSpriteRenderer.material.SetColor("_TintColor", originalColor);
     }
-    
 }
