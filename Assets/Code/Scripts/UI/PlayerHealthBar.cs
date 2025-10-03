@@ -10,7 +10,6 @@ public class PlayerHealthBar : MonoBehaviour
     [SerializeField] private Sprite[] spriteFrames;
     [SerializeField] private UnityEngine.UI.Image mImage;
     [SerializeField] private TMPro.TextMeshProUGUI healthText;
-    [SerializeField] private TMPro.TextMeshProUGUI maxHealthText;
     private int totalFrames;
 
     void Awake()
@@ -33,12 +32,11 @@ public class PlayerHealthBar : MonoBehaviour
 
     private void updateHealth(float currentHealth, float maxHealth)
     {
-        healthText.text = currentHealth.ToString();
-        maxHealthText.text = maxHealth.ToString();
+        //healthText.text = currentHealth.ToString();
+        //maxHealthText.text = maxHealth.ToString();
+
         float percentHealth = currentHealth / maxHealth;
         int healthBarFrame = (int)Mathf.Ceil(totalFrames * percentHealth) - 1;
-        //Debug.Log(currentHealth);
-        //Debug.Log(healthBarFrame);
 
         mImage.sprite = spriteFrames[healthBarFrame];
     }
