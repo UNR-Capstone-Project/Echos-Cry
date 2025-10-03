@@ -7,7 +7,7 @@ public class ComboState : ScriptableObject
 {
     void InitiateComboState()
     {
-
+        //Initiates AttackFunctions
     }
     //ComboState TransitionToNextComboState()
     //{
