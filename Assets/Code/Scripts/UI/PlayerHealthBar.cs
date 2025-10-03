@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerHealthBar : MonoBehaviour
 {
-
+    
     [SerializeField] private Sprite[] spriteFrames;
     [SerializeField] private UnityEngine.UI.Image mImage;
     [SerializeField] private TMPro.TextMeshProUGUI healthText;
@@ -14,6 +14,19 @@ public class PlayerHealthBar : MonoBehaviour
 
     void Awake()
     {
+        UnityEngine.UI.Image[] allComponents = GetComponentsInChildren<UnityEngine.UI.Image>();
+        foreach (var component in allComponents)
+        {
+            if (component.gameObject.name == "HealthBarImage")
+            {
+                
+            }
+
+            if (component.gameObject.name == "PlayerHealthText")
+            {
+                
+            }
+        }
         totalFrames = spriteFrames.Length;
     }
 
