@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
-    //[SerializeField] private GameObject playerHealthPrefab;
+    [SerializeField] private GameObject playerHealthPrefab;
     [SerializeField] private TextMeshProUGUI hitQualityText;
     [SerializeField] private TextMeshProUGUI playerHealthText;
     [SerializeField] private GameObject metronomeImage;
@@ -24,7 +24,7 @@ public class CanvasManager : MonoBehaviour
         mCanvas.planeDistance = 1;
 
         //Setup Separate PlayerHealth Canvas
-        //Instantiate(playerHealthPrefab);
+        Instantiate(playerHealthPrefab);
 
         //Setup metronome image
         RawImage image = metronomeImage.GetComponent<RawImage>();
