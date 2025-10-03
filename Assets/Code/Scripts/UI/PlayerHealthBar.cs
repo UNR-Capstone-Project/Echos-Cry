@@ -32,8 +32,7 @@ public class PlayerHealthBar : MonoBehaviour
 
     private void updateHealth(float currentHealth, float maxHealth)
     {
-        //healthText.text = currentHealth.ToString();
-        //maxHealthText.text = maxHealth.ToString();
+        healthText.text = currentHealth.ToString() + "/" + maxHealth.ToString();
 
         float percentHealth = currentHealth / maxHealth;
         int healthBarFrame = (int)Mathf.Ceil(totalFrames * percentHealth) - 1;
