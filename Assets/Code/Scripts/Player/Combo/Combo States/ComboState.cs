@@ -5,6 +5,16 @@ using Unity.VisualScripting;
 [CreateAssetMenu(menuName = "Combo System/Combo State")]
 public class ComboState : ScriptableObject
 {
+    void InitiateComboState()
+    {
+
+    }
+    //ComboState TransitionToNextComboState()
+    //{
+    //    ComboState newComboState;
+
+    //    return newComboState;
+    //}
     public enum AttackInput
     {
         UNASSIGNED = 0,
@@ -21,10 +31,9 @@ public class ComboState : ScriptableObject
     public AttackInput ComboAttackInput;
     public StateType ComboStateType;
 
-    public ComboState StartState;
-    public ComboState NextLightAttack;
-    public ComboState NextHeavyAttack;
-    
+    [SerializeField] public ComboState StartState;
+    [SerializeField] public ComboState NextLightAttack;
+    [SerializeField] public ComboState NextHeavyAttack;
 }
 
 [CustomEditor(typeof(ComboState))]
@@ -59,6 +68,19 @@ public class ComboStateCustomInspector : Editor
                     comboState.StartState = null;
                     Debug.LogError("Only a ComboState registered as a START_STATE in ComboStateType can be assigned!");
                 }
+            }
+
+            if(comboState.NextHeavyAttack == comboState)
+            {
+                comboState.NextHeavyAttack = null;
+            }
+            if (comboState.NextLightAttack == comboState)
+            {
+                comboState.NextLightAttack = null;
+            }
+            if (comboState.StartState == comboState)
+            {
+                comboState.StartState = null;
             }
         }
     }
