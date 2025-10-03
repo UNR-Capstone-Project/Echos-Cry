@@ -15,6 +15,7 @@ public class PlayerHealthBar : MonoBehaviour
     void Awake()
     {
         totalFrames = spriteFrames.Length;
+        updateHealth(100, 100);
     }
 
     void Start()
