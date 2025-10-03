@@ -9,7 +9,7 @@ public class CanvasManager : MonoBehaviour
 {
     [SerializeField] private GameObject playerHealthPrefab;
     [SerializeField] private TextMeshProUGUI hitQualityText;
-    [SerializeField] private TextMeshProUGUI playerHealthText;
+    //[SerializeField] private TextMeshProUGUI playerHealthText;
     [SerializeField] private GameObject metronomeImage;
     [SerializeField] private float flashDuration = 0.1f;
 
