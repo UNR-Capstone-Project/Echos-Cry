@@ -7,7 +7,8 @@ public class InputTranslator : ScriptableObject, PlayerInputs.IGameplayActions
 {
     private PlayerInputs _playerInputs;
     public event Action<Vector2> OnMovementEvent;
-    public event Action OnMousePrimaryInteractionEvent;
+    public event Action OnLightAttackEvent;
+    public event Action OnHeavyAttackEvent;
 
     private void Awake()
     {
@@ -38,8 +39,12 @@ public class InputTranslator : ScriptableObject, PlayerInputs.IGameplayActions
         OnMovementEvent?.Invoke(context.ReadValue<Vector2>());
     }
 
-    public void OnMousePrimaryInteraction(InputAction.CallbackContext context)
+    public void OnLightAttack(InputAction.CallbackContext context)
     {
-        if (context.started) OnMousePrimaryInteractionEvent?.Invoke();
+        if (context.started) OnLightAttackEvent?.Invoke();
+    }
+    public void OnHeavyAttack(InputAction.CallbackContext context)
+    {
+        if (context.started) OnHeavyAttackEvent?.Invoke();
     }
 }
