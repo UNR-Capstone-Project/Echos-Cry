@@ -16,9 +16,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Mouse Primary Interaction",
+                    "name": "Light Attack",
                     "type": "Button",
                     "id": "c51c4d97-eb90-462f-a7bb-33ecd5216509",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Heavy Attack",
+                    "type": "Button",
+                    "id": "a07ff6c0-f002-48a1-9674-cd7b3fc17942",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -88,7 +97,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Mouse Primary Interaction",
+                    "action": "Light Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "090af2f6-6f02-43b8-8132-f2c8da747d40",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Heavy Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

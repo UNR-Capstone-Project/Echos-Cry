@@ -5,35 +5,24 @@ using Unity.VisualScripting;
 [CreateAssetMenu(menuName = "Combo System/Combo State")]
 public class ComboState : ScriptableObject
 {
-    void InitiateComboState()
+    //Where to act on Attack data
+    public void InitiateComboState()
     {
-        //Initiates AttackFunctions
+        Debug.Log(DebugText);
     }
-    //ComboState TransitionToNextComboState()
-    //{
-    //    ComboState newComboState;
-
-    //    return newComboState;
-    //}
     public enum AttackInput
     {
         UNASSIGNED = 0,
         LIGHT_ATTACK,
         HEAVY_ATTACK
     }
-    public enum StateType
-    {
-        UNASSIGNED = 0,
-        START_STATE,
-        COMBO_STATE
-    }
 
-    public AttackInput ComboAttackInput;
-    public StateType ComboStateType;
+    public AttackInput ComboAttackInput = AttackInput.UNASSIGNED;
 
-    [SerializeField] public ComboState StartState;
-    [SerializeField] public ComboState NextLightAttack;
-    [SerializeField] public ComboState NextHeavyAttack;
+    public ComboState StartState = null;
+    public ComboState NextLightAttack = null;
+    public ComboState NextHeavyAttack = null;
+    public string DebugText = "";
 }
 
 [CustomEditor(typeof(ComboState))]
@@ -51,6 +40,7 @@ public class ComboStateCustomInspector : Editor
                     comboState.NextHeavyAttack = null;
                     Debug.LogError("Only ComboState with a ComboAttackInput of HEAVY_ATTACK can be assigned!");
                 }
+                else comboState.NextHeavyAttack.StartState = comboState.StartState;
             }
             if (comboState.NextLightAttack != null)
             {
@@ -59,15 +49,7 @@ public class ComboStateCustomInspector : Editor
                     comboState.NextLightAttack = null;
                     Debug.LogError("Only ComboState with a ComboAttackInput of LIGHT_ATTACK can be assigned!");
                 }
-            }
-
-            if (comboState.StartState != null)
-            {
-                if(comboState.StartState.ComboStateType != ComboState.StateType.START_STATE)
-                {
-                    comboState.StartState = null;
-                    Debug.LogError("Only a ComboState registered as a START_STATE in ComboStateType can be assigned!");
-                }
+                else comboState.NextLightAttack.StartState = comboState.StartState;
             }
 
             if(comboState.NextHeavyAttack == comboState)
@@ -77,10 +59,6 @@ public class ComboStateCustomInspector : Editor
             if (comboState.NextLightAttack == comboState)
             {
                 comboState.NextLightAttack = null;
-            }
-            if (comboState.StartState == comboState)
-            {
-                comboState.StartState = null;
             }
         }
     }

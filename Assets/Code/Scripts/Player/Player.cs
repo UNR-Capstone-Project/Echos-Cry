@@ -65,13 +65,13 @@ public class Player : MonoBehaviour
 
         //Hook up input events
         inputTranslator.OnMovementEvent += HandleMovement;
-        inputTranslator.OnMousePrimaryInteractionEvent += HandleMousePrimaryInteraction;
+        inputTranslator.OnLightAttackEvent += HandleMousePrimaryInteraction;
     }
     private void OnDestroy()
     {
         //Event cleanup
         inputTranslator.OnMovementEvent -= HandleMovement;
-        inputTranslator.OnMousePrimaryInteractionEvent -= HandleMousePrimaryInteraction;
+        inputTranslator.OnLightAttackEvent -= HandleMousePrimaryInteraction;
     }
 
     private void FixedUpdate()

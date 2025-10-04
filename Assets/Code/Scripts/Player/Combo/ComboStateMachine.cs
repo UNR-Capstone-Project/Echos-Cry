@@ -3,13 +3,19 @@ using UnityEngine;
 
 public class ComboStateMachine : MonoBehaviour
 {
-    void EnterNewComboState()
-    {
-        //CurrentState = 
-    }
     void HandleLightAttack()
     {
         if (!_readyForAttackInput) return;
+
+        if (CurrentState.NextLightAttack == null) CurrentState = CurrentState.StartState.NextLightAttack;
+        else CurrentState = CurrentState.NextLightAttack;
+
+        if (CurrentState == null)
+        {
+            CurrentState = CurrentState.StartState; 
+            return;
+        }
+        else CurrentState.InitiateComboState();
 
         _readyForAttackInput = false;
         StartCoroutine(InputCooldown());
@@ -17,6 +23,16 @@ public class ComboStateMachine : MonoBehaviour
     void HandleHeavyAttack()
     {
         if(!_readyForAttackInput) return;
+
+        if (CurrentState.NextHeavyAttack == null) CurrentState = CurrentState.StartState.NextHeavyAttack;
+        else CurrentState = CurrentState.NextHeavyAttack;
+
+        if (CurrentState == null)
+        {
+            CurrentState = CurrentState.StartState;
+            return;
+        }
+        else CurrentState.InitiateComboState();
 
         _readyForAttackInput = false;
         StartCoroutine(InputCooldown());
@@ -30,18 +46,16 @@ public class ComboStateMachine : MonoBehaviour
 
     private void Start()
     {
-        if (CurrentState == null)
-        {
-            Debug.LogError("ComboStateMachine's CurrentState is unset and the ComboSystem will be disabled!");
-            this.enabled = false;
-        }
-        if (_inputTranslator == null)
-        {
-            Debug.LogError("Player inputs not registered to ComboSystem. ComboSystem will be disbaled!");
-            this.enabled = false;
-        }
+        if(CurrentState == null || _inputTranslator == null) return;
+        _inputTranslator.OnLightAttackEvent += HandleLightAttack;
+        _inputTranslator.OnHeavyAttackEvent += HandleHeavyAttack;
     }
-
+    private void OnDestroy()
+    {
+        if (_inputTranslator == null || CurrentState == null) return;
+        _inputTranslator.OnLightAttackEvent -= HandleLightAttack;
+        _inputTranslator.OnHeavyAttackEvent -= HandleHeavyAttack;
+    }
 
     public ComboState CurrentState = null;
     private bool _readyForAttackInput = true;
