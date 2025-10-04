@@ -45,8 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::initiateGame
   mainManager: {fileID: 46817583308809830, guid: 6b19c5ead35d86943b3d3a62222f9f80, type: 3}
-  mainCanvas: {fileID: 7943711229740518397, guid: ec85ee49ffab69949a04f77d025411e9, type: 3}
-  mainCamera: {fileID: 4997433167098505313, guid: 0f0c3af5a09ca4f4cb01b94a1b47b2e6, type: 3}
+  mainCanvas: {fileID: 3370885231753440509, guid: 42f411ff78ea6ef4f9d4785b36fbf7c0, type: 3}
   mainGlobalVolume: {fileID: 213624934122716989, guid: e1e6bb7fa3fd6344d9d00133e307bfb1, type: 3}
   mainDirectionalLight: {fileID: 5206062246351571867, guid: 378ba6a01bd5f254395df119dd7d55c7, type: 3}
-  mainPlayer: {fileID: 2428720641269041060, guid: 460d7e2c9db7d7a4bbfa6f670218ddde, type: 3}

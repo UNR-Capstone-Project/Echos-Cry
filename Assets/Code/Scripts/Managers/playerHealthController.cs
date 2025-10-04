@@ -17,10 +17,7 @@ public class playerHealthController : MonoBehaviour
         currentHealth = MAX_HEALTH;
     }
 
-    private void Start()
-    {
-        onPlayerHealthChange?.Invoke(currentHealth, MAX_HEALTH);
-    }
+    
 
     public float getCurrentPlayerHealth()
     {

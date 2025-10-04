@@ -21,11 +21,11 @@ public class initiateGame : MonoBehaviour
     private void bindObjects()
     {
         //Bind objects to prefabs
-
-        Instantiate(mainManager);
-        Instantiate(mainCanvas);
         Instantiate(mainGlobalVolume);
         Instantiate(mainDirectionalLight);
+        Instantiate(mainManager);
+        Instantiate(mainCanvas);
+        
     }
 
     private void createObjects()
