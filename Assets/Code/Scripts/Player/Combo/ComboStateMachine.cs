@@ -10,14 +10,14 @@ public class ComboStateMachine : MonoBehaviour
     void HandleLightAttack()
     {
         if (!_readyForAttackInput) return;
-        _currentPlayerInputType = PlayerInputType.LIGHT_ATTACK;
+
         _readyForAttackInput = false;
         StartCoroutine(InputCooldown());
     }
     void HandleHeavyAttack()
     {
         if(!_readyForAttackInput) return;
-        _currentPlayerInputType = PlayerInputType.HEAVY_ATTACK;
+
         _readyForAttackInput = false;
         StartCoroutine(InputCooldown());
     }
@@ -42,13 +42,8 @@ public class ComboStateMachine : MonoBehaviour
         }
     }
 
-    public enum PlayerInputType{
-        NONE = 0,
-        LIGHT_ATTACK,
-        HEAVY_ATTACK
-    }
+
     public ComboState CurrentState = null;
-    private PlayerInputType _currentPlayerInputType = PlayerInputType.NONE;
     private bool _readyForAttackInput = true;
     [SerializeField] private float _inputCooldownTimer = 0.5f;
     [SerializeField] private InputTranslator _inputTranslator;
