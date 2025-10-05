@@ -10,10 +10,10 @@ public class InputTranslator : ScriptableObject, PlayerInputs.IGameplayActions, 
     public event Action<Vector2> OnMovementEvent;
     public event Action OnLightAttackEvent;
     public event Action OnHeavyAttackEvent;
-    public event Action OnPauseEvent;
-    public event Action OnResumeEvent;
-    public event Action OnMapEvent;
-    public event Action OnExitMapEvent;
+    public static event Action OnPauseEvent;
+    public static event Action OnResumeEvent;
+    public static event Action OnMapEvent;
+    public static event Action OnExitMapEvent;
 
     private void Awake()
     {
