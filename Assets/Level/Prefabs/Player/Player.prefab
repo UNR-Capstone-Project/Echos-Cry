@@ -191,7 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   inputTranslator: {fileID: 11400000, guid: bd0b59b436d5d904ba88ae6b7e661116, type: 2}
   playerGravity: 9.8
-  playerSpeed: 4
+  playerSpeed: 4.5
   groundCheckBoxDimensions: {x: 0.2, y: 0.1, z: 0.2}
   groundCheckBoxHeight: 0.75
   playerHealth: 100

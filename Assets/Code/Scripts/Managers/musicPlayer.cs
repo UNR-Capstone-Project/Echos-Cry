@@ -3,38 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using SoundSystem;
-public class musicPlayer : MonoBehaviour
+public class MusicPlayer : MonoBehaviour
 {
-    [SerializeField] private double startTime = AudioSettings.dspTime;
-    [SerializeField] private float playerVolume = 1.0f;
-    [SerializeField] private musicEvent song;
-    [SerializeField] private List<AudioSource> songLayers = new List<AudioSource>();
+    private double startTime = AudioSettings.dspTime;
+    private float playerVolume = 1.0f;
+    private MusicEvent song;
+    private List<AudioSource> songLayers = new List<AudioSource>();
     private Coroutine volumeFadingRoutine = null;
-    public List<float> startingSongLayerVolumes = new List<float>();
-    public musicEvent publicSong => song;
 
-    public void setupSong(musicEvent givenSong)
+    public List<float> startingSongLayerVolumes = new List<float>();
+
+    public void SetupSong(MusicEvent givenSong)
     {
         //Debug.Log("setupSong called with: " + (givenSong == null ? "NULL" : givenSong.name));
         song = givenSong;
-        setupLayers();
+        SetupLayers();
     }
 
-    public void setupLayers()
+    public void SetupLayers()
     {
         songLayers.Clear();
 
-        for (int i = 0; i < musicManager.maxLayerCount; i++)
+        for (int i = 0; i < MusicManager.MAX_LAYER_COUNT; i++)
         {
             songLayers.Add(gameObject.AddComponent<AudioSource>());
             Debug.Log("added Audio Source to a music player");
             songLayers[i].playOnAwake = false;
             songLayers[i].loop = true;
-
         }
     }
 
-    public void setVolume(float newVolume)
+    public void SetVolume(float newVolume)
     {
         //validation
         newVolume = Mathf.Clamp(newVolume, 0, 1);
@@ -47,11 +46,11 @@ public class musicPlayer : MonoBehaviour
         playerVolume = newVolume;
     }
 
-    public void setVolume(int musicLayerIndex, float newVolume)
+    public void SetVolume(int musicLayerIndex, float newVolume)
     {
         //validation
         newVolume = Mathf.Clamp(newVolume, 0, 1);
-        if (musicLayerIndex < 0 || musicLayerIndex > song.publicMusicLayers.Length)
+        if (musicLayerIndex < 0 || musicLayerIndex > song.Layers.Length)
         {
             Debug.Log("Music Layer selected for changing volume exceeds layers available or is a negative value");
             return;
@@ -59,10 +58,9 @@ public class musicPlayer : MonoBehaviour
 
         AudioSource layer = songLayers[musicLayerIndex];
         layer.volume = newVolume;
-        
     }
 
-    public void play()
+    public void Play()
     {
         //Debug.Log("play() called with song: " + (song == null ? "NULL" : song.name));
 
@@ -73,18 +71,17 @@ public class musicPlayer : MonoBehaviour
         }
 
         //iterate through existing layers with audio 
-        for (int i = 0; i < song.publicMusicLayers.Length; i++)
+        for (int i = 0; i < song.Layers.Length; i++)
         {
             Debug.Log(i);
-            songLayers[i].clip = song.publicMusicLayers[i];
-            songLayers[i].volume = song.publicMusicVolume;
+            songLayers[i].clip = song.Layers[i];
+            songLayers[i].volume = song.Volume;
             songLayers[i].loop = true;
             songLayers[i].PlayScheduled(startTime);
         }
-
     }
 
-    public void stop()
+    public void Stop()
     {
         if (song == null) return;
 
@@ -96,7 +93,7 @@ public class musicPlayer : MonoBehaviour
         }
     }
 
-    public void pause()
+    public void Pause()
     {
         if (song == null) return;
         
@@ -109,7 +106,7 @@ public class musicPlayer : MonoBehaviour
         }
     }
 
-    public void unpause()
+    public void Resume()
     {
         
         if (song == null) return;
@@ -123,7 +120,7 @@ public class musicPlayer : MonoBehaviour
         }
     }
 
-    public void fadeVolume(float destinationVolume, float fadeTime)
+    public void FadeVolume(float destinationVolume, float fadeTime)
     {
         //validation 
         if (fadeTime < 0)
@@ -137,10 +134,10 @@ public class musicPlayer : MonoBehaviour
             StopCoroutine(volumeFadingRoutine);
         }
 
-        volumeFadingRoutine = StartCoroutine(fadeVolumeCoroutine(destinationVolume, fadeTime));
+        volumeFadingRoutine = StartCoroutine(FadeVolumeCoroutine(destinationVolume, fadeTime));
     }
 
-    public IEnumerator fadeVolumeCoroutine(float targetVolume, float fadeTime)
+    public IEnumerator FadeVolumeCoroutine(float targetVolume, float fadeTime)
     {
         float startVolume;
         float newVolume;
@@ -171,8 +168,5 @@ public class musicPlayer : MonoBehaviour
         {
             songLayers[i].volume = targetVolume;
         }
-
     }
-
-    
 }

@@ -3,22 +3,18 @@ using UnityEngine.Audio;
 
 namespace SoundSystem
 {
-    [CreateAssetMenu(fileName = "musicEvent", menuName = "Scriptable Objects/musicEvent")]
-    public class musicEvent : ScriptableObject
+    [CreateAssetMenu(fileName = "MusicEvent", menuName = "Scriptable Objects/Music Event")]
+    public class MusicEvent : ScriptableObject
     {
-        [SerializeField] float musicVolume = 1.0f;
-        [SerializeField] AudioClip[] musicLayers;
-        [SerializeField] AudioMixerGroup musicMixerGroup;
-        [SerializeField] int musicTempo;
+        [Range(0f, 1f), SerializeField] private float musicVolume = .1f;
+        [SerializeField] private AudioClip[] musicLayers;
+        [SerializeField] private AudioMixerGroup musicMixerGroup;
+        public int musicTempo;
 
-        public float publicMusicVolume => musicVolume;
-        public AudioClip[] publicMusicLayers => musicLayers;
-        public AudioMixerGroup publicMusicMixerGroup => musicMixerGroup;
-
-        /*public void Play()
-        {
-            musicManager.Instance.playSong(this);
-        }*/
+        //Public Getters
+        public float Volume => musicVolume;
+        public AudioClip[] Layers => musicLayers;
+        public AudioMixerGroup MixerGroup => musicMixerGroup;
     }
 }
 
