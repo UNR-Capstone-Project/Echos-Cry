@@ -32,7 +32,7 @@ public class TempoManagerV2 : MonoBehaviour
 
     private void BeatTick()
     {
-        _tickSound.Play();
+        //_tickSound.Play();
         BeatTickEvent?.Invoke();
     }
 
