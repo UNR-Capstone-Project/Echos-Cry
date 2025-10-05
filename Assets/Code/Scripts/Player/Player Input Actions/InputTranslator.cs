@@ -1,19 +1,26 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 [CreateAssetMenu(menuName = "Player Input Translator")]
-public class InputTranslator : ScriptableObject, PlayerInputs.IGameplayActions
+public class InputTranslator : ScriptableObject, PlayerInputs.IGameplayActions, PlayerInputs.IPauseMenuActions, PlayerInputs.IPlayerMenuActions
 {
     private PlayerInputs _playerInputs;
     public event Action<Vector2> OnMovementEvent;
     public event Action OnLightAttackEvent;
     public event Action OnHeavyAttackEvent;
+    public event Action OnPauseEvent;
+    public event Action OnResumeEvent;
+    public event Action OnMapEvent;
+    public event Action OnExitMapEvent;
 
     private void Awake()
     {
         _playerInputs = new PlayerInputs();
         _playerInputs.Gameplay.SetCallbacks(this);
+        _playerInputs.PauseMenu.SetCallbacks(this);
+        _playerInputs.PlayerMenu.SetCallbacks(this);
     }
     private void OnEnable()
     {
@@ -21,16 +28,24 @@ public class InputTranslator : ScriptableObject, PlayerInputs.IGameplayActions
         {
             _playerInputs = new PlayerInputs();
             _playerInputs.Gameplay.SetCallbacks(this);
+            _playerInputs.PauseMenu.SetCallbacks(this);
+            _playerInputs.PlayerMenu.SetCallbacks(this);
         }
+        _playerInputs.PauseMenu.Disable();
+        _playerInputs.PlayerMenu.Disable();
         _playerInputs.Gameplay.Enable();
     }
     private void OnDisable()
     {
         _playerInputs.Gameplay.Disable();
+        _playerInputs.PauseMenu.Disable();
+        _playerInputs.PlayerMenu.Disable();
     }
     private void OnDestroy()
     {
         _playerInputs.Gameplay.RemoveCallbacks(this);
+        _playerInputs.PlayerMenu.RemoveCallbacks(this);
+        _playerInputs.PauseMenu.RemoveCallbacks(this);
         _playerInputs = null;
     }
 
@@ -46,5 +61,45 @@ public class InputTranslator : ScriptableObject, PlayerInputs.IGameplayActions
     public void OnHeavyAttack(InputAction.CallbackContext context)
     {
         if (context.started) OnHeavyAttackEvent?.Invoke();
+    }
+
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            OnPauseEvent?.Invoke();
+            _playerInputs.PauseMenu.Enable();
+            _playerInputs.Gameplay.Disable();
+        }
+    }
+
+    public void OnMap(InputAction.CallbackContext context)
+    {
+        if (context.started) 
+        {
+            OnMapEvent?.Invoke();
+            _playerInputs.Gameplay.Disable();
+            _playerInputs.PlayerMenu.Enable();
+        }
+    }
+
+    public void OnResume(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            OnResumeEvent?.Invoke();
+            _playerInputs.Gameplay.Enable();
+            _playerInputs.PauseMenu.Disable();
+        }
+    }
+
+    public void OnExitMenuMap(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            OnExitMapEvent?.Invoke();
+            _playerInputs.Gameplay.Enable();
+            _playerInputs.PlayerMenu.Disable();
+        }
     }
 }

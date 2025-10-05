@@ -32,6 +32,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "a1a286a4-d41c-4476-af6c-1766a4fea0c8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Map",
+                    "type": "Button",
+                    "id": "f46bc9ee-cdc3-4d3c-b8ec-58ce0a31ab47",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -111,17 +129,39 @@
                     "action": "Heavy Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c77dbb45-1b6d-4fec-a016-0d52440e234d",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c21393f9-8b7a-4a88-9d0b-10e987c35f02",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Map",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
         {
-            "name": "Pause",
-            "id": "14ec1afe-adc2-481c-a5dd-8a55d5989266",
+            "name": "Pause Menu",
+            "id": "5abbe66e-dfc5-4254-a8d1-3aa647fb57e0",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Resume",
                     "type": "Button",
-                    "id": "51a696f4-e678-45e7-aa56-dc7d05871ba4",
+                    "id": "fa9a0aa6-b17d-4558-bca3-8f193c10ae35",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -131,12 +171,40 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "6889a81f-d1c0-4339-8a37-df4fa269f3d6",
-                    "path": "",
+                    "id": "3e5c84ff-b88c-4ed5-b71d-fe02b3e2337e",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Resume",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Player Menu",
+            "id": "fd1a1f88-87a2-413f-a6ff-e46a237de1c6",
+            "actions": [
+                {
+                    "name": "ExitMenuMap",
+                    "type": "Button",
+                    "id": "3356f71e-5f60-424d-bff5-358ed0e14b78",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2610430f-a3c1-4ce3-b54a-611c86a37967",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ExitMenuMap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
