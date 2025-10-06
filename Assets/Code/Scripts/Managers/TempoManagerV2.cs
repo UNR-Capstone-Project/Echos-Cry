@@ -12,12 +12,10 @@ public class TempoManagerV2 : MonoBehaviour
         EXCELLENT
     }
 
-    public void SetTempo(float new_tempo)
+    public void UpdateTempo()
     {
-        _tempo = new_tempo;
-
         //The time between each beat(60 seconds / BPM)
-        _timeBetweenBeats = 60 / _tempo; //Seconds per beat
+        _timeBetweenBeats = 60f / (float)MusicManager.Instance.GetTempo(); //Seconds per beat
 
         _excellentHitTimeStart = _timeBetweenBeats * _excellentPercent;
         _goodHitTimeStart = _timeBetweenBeats * _goodPercent;
@@ -26,18 +24,12 @@ public class TempoManagerV2 : MonoBehaviour
         _excellentHitTimeEnd = _timeBetweenBeats - _excellentHitTimeStart;
         _goodHitTimeEnd = _timeBetweenBeats - _goodHitTimeStart;
         _badHitTimeEnd = _timeBetweenBeats - _badHitTimeStart;
-
-        UpdateTempoEvent?.Invoke(_timeBetweenBeats);
-    }
-
-    private void BeatTick()
-    {
-        _tickSound.Play();
-        BeatTickEvent?.Invoke();
     }
 
     public void UpdateHitQuality()
     {
+        Debug.Log(_currentBeatTime);
+        Debug.Log("Start" + _goodHitTimeStart + " End " + _goodHitTimeEnd);
         if (_currentBeatTime < _excellentHitTimeStart || _currentBeatTime > _excellentHitTimeEnd) { currentHitQuality = HIT_QUALITY.EXCELLENT; }
         else if (_currentBeatTime < _goodHitTimeStart || _currentBeatTime > _goodHitTimeEnd) { currentHitQuality = HIT_QUALITY.GOOD; }
         else if (_currentBeatTime < _badHitTimeStart || _currentBeatTime > _badHitTimeEnd) { currentHitQuality = HIT_QUALITY.BAD; }
@@ -46,30 +38,26 @@ public class TempoManagerV2 : MonoBehaviour
         UpdateHitQualityEvent?.Invoke(currentHitQuality);
     }
 
-    private void Awake()
-    {
-        _tickSound = GetComponent<AudioSource>();
-    }
-
     void Start()
     {
-        SetTempo(_tempo);
+        MusicManager.Instance.UpdateMusicPlayer += UpdateTempo;
     }
 
     void Update()
     {
-        _currentBeatTime += Time.deltaTime;
-        while (_currentBeatTime > _timeBetweenBeats)
+        _currentBeatTime = MusicManager.Instance.GetSampleTime();
+
+        if (_currentBeatTime < _lastBeatTime)
         {
-            _currentBeatTime -= _timeBetweenBeats;
-            BeatTick();
+            BeatTickEvent?.Invoke(); //Less precise beat tick than from music manager
         }
+        _lastBeatTime = _currentBeatTime;
     }
 
-    //Tempo/Beat Values
-    [SerializeField] private float _tempo = 85f;
+    //Beat Values
     private float _timeBetweenBeats = 0;
     private float _currentBeatTime = 0;
+    private float _lastBeatTime = 0f;
 
     public HIT_QUALITY currentHitQuality = HIT_QUALITY.MISS;
 
@@ -94,12 +82,8 @@ public class TempoManagerV2 : MonoBehaviour
     private float _excellentHitTimeEnd = 0;
     private float _goodHitTimeEnd = 0;
     private float _badHitTimeEnd = 0;
-    
-    //Audio
-    private AudioSource _tickSound;
 
     // Events
-    public event Action BeatTickEvent;
-    public event Action<float> UpdateTempoEvent;
     public event Action<HIT_QUALITY> UpdateHitQualityEvent;
+    public event Action BeatTickEvent;
 }

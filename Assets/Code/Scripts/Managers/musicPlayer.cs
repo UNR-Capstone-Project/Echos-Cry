@@ -3,15 +3,77 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using SoundSystem;
+using static Unity.Burst.Intrinsics.X86.Avx;
+
 public class MusicPlayer : MonoBehaviour
 {
-    private double startTime = AudioSettings.dspTime;
     private float playerVolume = 1.0f;
     private MusicEvent song;
     private List<AudioSource> songLayers = new List<AudioSource>();
     private Coroutine volumeFadingRoutine = null;
 
     public List<float> startingSongLayerVolumes = new List<float>();
+
+    //Metronome Variables
+    private bool songRunning = false;
+    private volatile float sampleProgress;
+    private volatile float sampleTime;
+    public float SampleProgress => sampleProgress;
+    public float SampleTime => sampleTime;
+
+    private double startTime;
+    private double nextTime;
+
+    public float bpm = 84f;
+    public float gain = 0.5f;
+    public int signatureHi = 4;
+    public int signatureLo = 4;
+    private float amp = 0f;
+    private float phase = 0f;
+    private double sampleRate = 0f;
+    private int accent;
+
+    //This function was provided by Unity's documentation - https://docs.unity3d.com/6000.2/Documentation/ScriptReference/AudioSettings-dspTime.html
+    void OnAudioFilterRead(float[] data, int channels) //This callback is executed on the audio thread when an audio buffer is read from an AudioSource
+    {
+        if (!songRunning) { return; }
+
+        double samplesPerTick = sampleRate * 60.0F / bpm * 4.0F / signatureLo;
+        double sample = AudioSettings.dspTime * sampleRate;
+        int dataLen = data.Length / channels;
+        int n = 0;
+
+        while (n < dataLen)
+        {
+            float x = gain * amp * Mathf.Sin(phase);
+            int i = 0;
+
+            while (i < channels)
+            {
+                data[n * channels + i] += x;
+                i++;
+            }
+
+            while (sample + n >= nextTime)
+            {
+                nextTime += samplesPerTick;
+                amp = 1.0F;
+                if (++accent > signatureHi)
+                {
+                    accent = 1;
+                    amp *= 2.0F;
+                }
+                //Debug.Log("Tick: " + accent + "/" + signatureHi);
+            }
+
+            sampleProgress = Mathf.Clamp01((float)((nextTime - sample) / samplesPerTick));
+            sampleTime = (float)((samplesPerTick / sampleRate) - ((nextTime - (sample + n)) / sampleRate));
+
+            phase += amp * 0.3F;
+            amp *= 0.993F;
+            n++;
+        }
+    }
 
     public void SetupSong(MusicEvent givenSong)
     {
@@ -27,7 +89,7 @@ public class MusicPlayer : MonoBehaviour
         for (int i = 0; i < MusicManager.MAX_LAYER_COUNT; i++)
         {
             songLayers.Add(gameObject.AddComponent<AudioSource>());
-            Debug.Log("added Audio Source to a music player");
+            //Debug.Log("added Audio Source to a music player");
             songLayers[i].playOnAwake = false;
             songLayers[i].loop = true;
         }
@@ -50,7 +112,7 @@ public class MusicPlayer : MonoBehaviour
     {
         //validation
         newVolume = Mathf.Clamp(newVolume, 0, 1);
-        if (musicLayerIndex < 0 || musicLayerIndex > song.Layers.Length)
+        if (musicLayerIndex < 0 || musicLayerIndex >= song.Layers.Length)
         {
             Debug.Log("Music Layer selected for changing volume exceeds layers available or is a negative value");
             return;
@@ -62,7 +124,9 @@ public class MusicPlayer : MonoBehaviour
 
     public void Play()
     {
-        //Debug.Log("play() called with song: " + (song == null ? "NULL" : song.name));
+        startTime = AudioSettings.dspTime;
+        sampleRate = AudioSettings.outputSampleRate;
+        nextTime = startTime * sampleRate;
 
         if (song == null)
         {
@@ -79,6 +143,8 @@ public class MusicPlayer : MonoBehaviour
             songLayers[i].loop = true;
             songLayers[i].PlayScheduled(startTime);
         }
+
+        songRunning = true;
     }
 
     public void Stop()
@@ -91,6 +157,8 @@ public class MusicPlayer : MonoBehaviour
 
             layer.Stop();
         }
+
+        songRunning = false;
     }
 
     public void Pause()
@@ -104,6 +172,8 @@ public class MusicPlayer : MonoBehaviour
                 layer.Pause();
             }
         }
+
+        songRunning = false;
     }
 
     public void Resume()
@@ -118,6 +188,8 @@ public class MusicPlayer : MonoBehaviour
                 layer.UnPause();
             }
         }
+
+        songRunning = true;
     }
 
     public void FadeVolume(float destinationVolume, float fadeTime)
