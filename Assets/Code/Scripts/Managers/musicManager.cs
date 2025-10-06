@@ -41,6 +41,15 @@ public class MusicManager : ScriptableObject
         if (musicPlayerPrefab == null) { Debug.Log("Music player was not found in resources!"); }
     }
 
+    public float GetSampleProgress()
+    {
+        if (currentMusicPlayer != null)
+        {
+            return currentMusicPlayer.SampleProgress;
+        }
+        else return -1;
+    }
+
     public void PlaySong(MusicEvent music)
     {
         if (music == null) { return; }

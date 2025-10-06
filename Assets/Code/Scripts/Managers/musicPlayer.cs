@@ -16,11 +16,13 @@ public class MusicPlayer : MonoBehaviour
 
     //Metronome Variables
     private bool songRunning = false;
-    
+    private volatile float sampleProgress;
+    public float SampleProgress => sampleProgress;
+
     private double startTime;
     private double nextTime;
 
-    public double bpm = 85f;
+    public double bpm = 84f;
     public float gain = 0.5f;
     public int signatureHi = 4;
     public int signatureLo = 4;
@@ -30,7 +32,7 @@ public class MusicPlayer : MonoBehaviour
     private int accent;
 
     //This function was provided by Unity's documentation - https://docs.unity3d.com/6000.2/Documentation/ScriptReference/AudioSettings-dspTime.html
-    void OnAudioFilterRead(float[] data, int channels) //This callback is executed when an audio buffer is read from an AudioSource
+    void OnAudioFilterRead(float[] data, int channels) //This callback is executed on the audio thread when an audio buffer is read from an AudioSource
     {
         if (!songRunning) { return; }
 
@@ -43,11 +45,13 @@ public class MusicPlayer : MonoBehaviour
         {
             float x = gain * amp * Mathf.Sin(phase);
             int i = 0;
+
             while (i < channels)
             {
                 data[n * channels + i] += x;
                 i++;
             }
+
             while (sample + n >= nextTime)
             {
                 nextTime += samplesPerTick;
@@ -59,6 +63,9 @@ public class MusicPlayer : MonoBehaviour
                 }
                 Debug.Log("Tick: " + accent + "/" + signatureHi);
             }
+
+            sampleProgress = Mathf.Clamp01((float)((nextTime - sample) / samplesPerTick));
+
             phase += amp * 0.3F;
             amp *= 0.993F;
             n++;
