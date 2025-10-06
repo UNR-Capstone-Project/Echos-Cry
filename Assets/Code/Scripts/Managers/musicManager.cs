@@ -36,6 +36,8 @@ public class MusicManager : ScriptableObject
     [SerializeField] private MusicPlayer currentMusicPlayer;
     [SerializeField] private List<MusicPlayer> inactiveMusicPlayers = new List<MusicPlayer>();
 
+    public event Action UpdateMusicPlayer;
+
     private void Initialize()
     {
         musicPlayerPrefab = Resources.Load<GameObject>("MusicPlayer");
@@ -60,7 +62,7 @@ public class MusicManager : ScriptableObject
         else return -1;
     }
 
-    public double GetTempo()
+    public float GetTempo()
     {
         if (currentMusicPlayer != null)
         {
@@ -96,6 +98,8 @@ public class MusicManager : ScriptableObject
         newMusicPlayer.Play();
         //ISSUE: add function in player -> newMusicPlayer.PlayWithCrossfade(crossfadeTime);
         currentMusicPlayer = newMusicPlayer;
+
+        UpdateMusicPlayer?.Invoke();
     }
 
     public void StopSong(MusicEvent music)

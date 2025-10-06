@@ -12,10 +12,10 @@ public class TempoManagerV2 : MonoBehaviour
         EXCELLENT
     }
 
-    public void SetTempo(float new_tempo)
+    public void UpdateTempo()
     {
         //The time between each beat(60 seconds / BPM)
-        _timeBetweenBeats = (float)(60 / MusicManager.Instance.GetTempo()); //Seconds per beat
+        _timeBetweenBeats = 60f / (float)MusicManager.Instance.GetTempo(); //Seconds per beat
 
         _excellentHitTimeStart = _timeBetweenBeats * _excellentPercent;
         _goodHitTimeStart = _timeBetweenBeats * _goodPercent;
@@ -28,6 +28,8 @@ public class TempoManagerV2 : MonoBehaviour
 
     public void UpdateHitQuality()
     {
+        Debug.Log(_currentBeatTime);
+        Debug.Log("Start" + _goodHitTimeStart + " End " + _goodHitTimeEnd);
         if (_currentBeatTime < _excellentHitTimeStart || _currentBeatTime > _excellentHitTimeEnd) { currentHitQuality = HIT_QUALITY.EXCELLENT; }
         else if (_currentBeatTime < _goodHitTimeStart || _currentBeatTime > _goodHitTimeEnd) { currentHitQuality = HIT_QUALITY.GOOD; }
         else if (_currentBeatTime < _badHitTimeStart || _currentBeatTime > _badHitTimeEnd) { currentHitQuality = HIT_QUALITY.BAD; }
@@ -36,20 +38,26 @@ public class TempoManagerV2 : MonoBehaviour
         UpdateHitQualityEvent?.Invoke(currentHitQuality);
     }
 
+    void Start()
+    {
+        MusicManager.Instance.UpdateMusicPlayer += UpdateTempo;
+    }
+
     void Update()
     {
         _currentBeatTime = MusicManager.Instance.GetSampleTime();
 
-        while (_currentBeatTime > _timeBetweenBeats)
+        if (_currentBeatTime < _lastBeatTime)
         {
-            _currentBeatTime -= _timeBetweenBeats;
-            BeatTickEvent?.Invoke(); //less precise beat tick
+            BeatTickEvent?.Invoke(); //Less precise beat tick than from music manager
         }
+        _lastBeatTime = _currentBeatTime;
     }
 
     //Beat Values
     private float _timeBetweenBeats = 0;
     private float _currentBeatTime = 0;
+    private float _lastBeatTime = 0f;
 
     public HIT_QUALITY currentHitQuality = HIT_QUALITY.MISS;
 

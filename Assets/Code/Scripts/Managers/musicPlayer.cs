@@ -24,7 +24,7 @@ public class MusicPlayer : MonoBehaviour
     private double startTime;
     private double nextTime;
 
-    public double bpm = 84f;
+    public float bpm = 84f;
     public float gain = 0.5f;
     public int signatureHi = 4;
     public int signatureLo = 4;
@@ -63,7 +63,7 @@ public class MusicPlayer : MonoBehaviour
                     accent = 1;
                     amp *= 2.0F;
                 }
-                Debug.Log("Tick: " + accent + "/" + signatureHi);
+                //Debug.Log("Tick: " + accent + "/" + signatureHi);
             }
 
             sampleProgress = Mathf.Clamp01((float)((nextTime - sample) / samplesPerTick));
