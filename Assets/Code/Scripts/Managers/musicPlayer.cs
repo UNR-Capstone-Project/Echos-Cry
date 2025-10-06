@@ -17,7 +17,9 @@ public class MusicPlayer : MonoBehaviour
     //Metronome Variables
     private bool songRunning = false;
     private volatile float sampleProgress;
+    private volatile float sampleTime;
     public float SampleProgress => sampleProgress;
+    public float SampleTime => sampleTime;
 
     private double startTime;
     private double nextTime;
@@ -65,6 +67,7 @@ public class MusicPlayer : MonoBehaviour
             }
 
             sampleProgress = Mathf.Clamp01((float)((nextTime - sample) / samplesPerTick));
+            sampleTime = (float)((samplesPerTick / sampleRate) - ((nextTime - (sample + n)) / sampleRate));
 
             phase += amp * 0.3F;
             amp *= 0.993F;

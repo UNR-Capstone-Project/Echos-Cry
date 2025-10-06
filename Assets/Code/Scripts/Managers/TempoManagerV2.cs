@@ -14,10 +14,8 @@ public class TempoManagerV2 : MonoBehaviour
 
     public void SetTempo(float new_tempo)
     {
-        _tempo = new_tempo;
-
         //The time between each beat(60 seconds / BPM)
-        _timeBetweenBeats = 60 / _tempo; //Seconds per beat
+        _timeBetweenBeats = (float)(60 / MusicManager.Instance.GetTempo()); //Seconds per beat
 
         _excellentHitTimeStart = _timeBetweenBeats * _excellentPercent;
         _goodHitTimeStart = _timeBetweenBeats * _goodPercent;
@@ -26,14 +24,6 @@ public class TempoManagerV2 : MonoBehaviour
         _excellentHitTimeEnd = _timeBetweenBeats - _excellentHitTimeStart;
         _goodHitTimeEnd = _timeBetweenBeats - _goodHitTimeStart;
         _badHitTimeEnd = _timeBetweenBeats - _badHitTimeStart;
-
-        UpdateTempoEvent?.Invoke(_timeBetweenBeats);
-    }
-
-    private void BeatTick()
-    {
-        //_tickSound.Play();
-        BeatTickEvent?.Invoke();
     }
 
     public void UpdateHitQuality()
@@ -46,28 +36,18 @@ public class TempoManagerV2 : MonoBehaviour
         UpdateHitQualityEvent?.Invoke(currentHitQuality);
     }
 
-    private void Awake()
-    {
-        _tickSound = GetComponent<AudioSource>();
-    }
-
-    void Start()
-    {
-        SetTempo(_tempo);
-    }
-
     void Update()
     {
-        _currentBeatTime += Time.deltaTime;
+        _currentBeatTime = MusicManager.Instance.GetSampleTime();
+
         while (_currentBeatTime > _timeBetweenBeats)
         {
             _currentBeatTime -= _timeBetweenBeats;
-            BeatTick();
+            BeatTickEvent?.Invoke(); //less precise beat tick
         }
     }
 
-    //Tempo/Beat Values
-    [SerializeField] private float _tempo = 85f;
+    //Beat Values
     private float _timeBetweenBeats = 0;
     private float _currentBeatTime = 0;
 
@@ -94,12 +74,8 @@ public class TempoManagerV2 : MonoBehaviour
     private float _excellentHitTimeEnd = 0;
     private float _goodHitTimeEnd = 0;
     private float _badHitTimeEnd = 0;
-    
-    //Audio
-    private AudioSource _tickSound;
 
     // Events
-    public event Action BeatTickEvent;
-    public event Action<float> UpdateTempoEvent;
     public event Action<HIT_QUALITY> UpdateHitQualityEvent;
+    public event Action BeatTickEvent;
 }

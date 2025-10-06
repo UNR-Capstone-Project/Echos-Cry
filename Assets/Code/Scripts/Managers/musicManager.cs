@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SoundSystem;
 using UnityEditor.PackageManager;
+using System;
 
 [CreateAssetMenu(fileName = "MusicManager", menuName = "Scriptable Objects/Music Manager")]
 public class MusicManager : ScriptableObject
@@ -48,6 +49,30 @@ public class MusicManager : ScriptableObject
             return currentMusicPlayer.SampleProgress;
         }
         else return -1;
+    }
+
+    public float GetSampleTime()
+    {
+        if (currentMusicPlayer != null)
+        {
+            return currentMusicPlayer.SampleTime;
+        }
+        else return -1;
+    }
+
+    public double GetTempo()
+    {
+        if (currentMusicPlayer != null)
+        {
+            return currentMusicPlayer.bpm;
+        }
+        else return -1;
+    }
+
+    public MusicPlayer GetMusicPlayer()
+    {
+        if (currentMusicPlayer != null) return currentMusicPlayer;
+        else return null;
     }
 
     public void PlaySong(MusicEvent music)
