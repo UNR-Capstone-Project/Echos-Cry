@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SoundSystem;
 using UnityEditor.PackageManager;
+using System;
 
 [CreateAssetMenu(fileName = "MusicManager", menuName = "Scriptable Objects/Music Manager")]
 public class MusicManager : ScriptableObject
@@ -35,10 +36,45 @@ public class MusicManager : ScriptableObject
     [SerializeField] private MusicPlayer currentMusicPlayer;
     [SerializeField] private List<MusicPlayer> inactiveMusicPlayers = new List<MusicPlayer>();
 
+    public event Action UpdateMusicPlayer;
+
     private void Initialize()
     {
         musicPlayerPrefab = Resources.Load<GameObject>("MusicPlayer");
         if (musicPlayerPrefab == null) { Debug.Log("Music player was not found in resources!"); }
+    }
+
+    public float GetSampleProgress()
+    {
+        if (currentMusicPlayer != null)
+        {
+            return currentMusicPlayer.SampleProgress;
+        }
+        else return -1;
+    }
+
+    public float GetSampleTime()
+    {
+        if (currentMusicPlayer != null)
+        {
+            return currentMusicPlayer.SampleTime;
+        }
+        else return -1;
+    }
+
+    public float GetTempo()
+    {
+        if (currentMusicPlayer != null)
+        {
+            return currentMusicPlayer.bpm;
+        }
+        else return -1;
+    }
+
+    public MusicPlayer GetMusicPlayer()
+    {
+        if (currentMusicPlayer != null) return currentMusicPlayer;
+        else return null;
     }
 
     public void PlaySong(MusicEvent music)
@@ -62,6 +98,8 @@ public class MusicManager : ScriptableObject
         newMusicPlayer.Play();
         //ISSUE: add function in player -> newMusicPlayer.PlayWithCrossfade(crossfadeTime);
         currentMusicPlayer = newMusicPlayer;
+
+        UpdateMusicPlayer?.Invoke();
     }
 
     public void StopSong(MusicEvent music)
