@@ -10,10 +10,10 @@ public class InputTranslator : ScriptableObject, PlayerInputs.IGameplayActions, 
     public event Action<Vector2> OnMovementEvent;
     public event Action OnLightAttackEvent;
     public event Action OnHeavyAttackEvent;
-    public static event Action OnPauseEvent;
+    public static event Action OnPauseEvent, OnPauseDownInput, OnPauseUpInput;
     public static event Action OnResumeEvent;
     public static event Action OnMapEvent;
-    public static event Action OnExitMapEvent;
+    public static event Action OnExitMapEvent, OnJournalLeftInput, OnJournalRightInput;
 
     private void Awake()
     {
@@ -75,7 +75,7 @@ public class InputTranslator : ScriptableObject, PlayerInputs.IGameplayActions, 
 
     public void OnMap(InputAction.CallbackContext context)
     {
-        if (context.started) 
+        if (context.started)
         {
             OnMapEvent?.Invoke();
             _playerInputs.Gameplay.Disable();
@@ -100,6 +100,38 @@ public class InputTranslator : ScriptableObject, PlayerInputs.IGameplayActions, 
             OnExitMapEvent?.Invoke();
             _playerInputs.Gameplay.Enable();
             _playerInputs.PlayerMenu.Disable();
+        }
+    }
+
+    public void OnNavUp(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            OnPauseUpInput?.Invoke();
+        }
+    }
+    
+    public void OnNavDown(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            OnPauseDownInput?.Invoke();
+        }
+    }
+
+    public void OnNavRight(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            OnJournalRightInput?.Invoke();
+        }
+    }
+
+    public void OnNavLeft(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            OnJournalLeftInput?.Invoke();
         }
     }
 }
