@@ -252,6 +252,24 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NavUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""a0ee324f-9195-4878-85c2-55fa00307598"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NavDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""728e57f8-5e2d-40b0-a723-880f4aee5166"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -263,6 +281,28 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Resume"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f85505c6-d848-4cfc-b46e-3a1e630ceeb5"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NavUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cc47273e-ca91-4e26-bf71-be4efea73415"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NavDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -280,6 +320,24 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NavLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""f5f2b720-1713-4c42-954c-e2a0c93296d2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NavRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""9823c3d8-6e67-40b4-b891-a54676d95a82"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -291,6 +349,28 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ExitMenuMap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e7ce65e5-3c64-4aa2-9776-f5e02b25fbce"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NavLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b255a66-5c83-402f-8e3b-d68bb26f1f41"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NavRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -309,9 +389,13 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         // Pause Menu
         m_PauseMenu = asset.FindActionMap("Pause Menu", throwIfNotFound: true);
         m_PauseMenu_Resume = m_PauseMenu.FindAction("Resume", throwIfNotFound: true);
+        m_PauseMenu_NavUp = m_PauseMenu.FindAction("NavUp", throwIfNotFound: true);
+        m_PauseMenu_NavDown = m_PauseMenu.FindAction("NavDown", throwIfNotFound: true);
         // Player Menu
         m_PlayerMenu = asset.FindActionMap("Player Menu", throwIfNotFound: true);
         m_PlayerMenu_ExitMenuMap = m_PlayerMenu.FindAction("ExitMenuMap", throwIfNotFound: true);
+        m_PlayerMenu_NavLeft = m_PlayerMenu.FindAction("NavLeft", throwIfNotFound: true);
+        m_PlayerMenu_NavRight = m_PlayerMenu.FindAction("NavRight", throwIfNotFound: true);
     }
 
     ~@PlayerInputs()
@@ -535,6 +619,8 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PauseMenu;
     private List<IPauseMenuActions> m_PauseMenuActionsCallbackInterfaces = new List<IPauseMenuActions>();
     private readonly InputAction m_PauseMenu_Resume;
+    private readonly InputAction m_PauseMenu_NavUp;
+    private readonly InputAction m_PauseMenu_NavDown;
     /// <summary>
     /// Provides access to input actions defined in input action map "Pause Menu".
     /// </summary>
@@ -550,6 +636,14 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "PauseMenu/Resume".
         /// </summary>
         public InputAction @Resume => m_Wrapper.m_PauseMenu_Resume;
+        /// <summary>
+        /// Provides access to the underlying input action "PauseMenu/NavUp".
+        /// </summary>
+        public InputAction @NavUp => m_Wrapper.m_PauseMenu_NavUp;
+        /// <summary>
+        /// Provides access to the underlying input action "PauseMenu/NavDown".
+        /// </summary>
+        public InputAction @NavDown => m_Wrapper.m_PauseMenu_NavDown;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -579,6 +673,12 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Resume.started += instance.OnResume;
             @Resume.performed += instance.OnResume;
             @Resume.canceled += instance.OnResume;
+            @NavUp.started += instance.OnNavUp;
+            @NavUp.performed += instance.OnNavUp;
+            @NavUp.canceled += instance.OnNavUp;
+            @NavDown.started += instance.OnNavDown;
+            @NavDown.performed += instance.OnNavDown;
+            @NavDown.canceled += instance.OnNavDown;
         }
 
         /// <summary>
@@ -593,6 +693,12 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Resume.started -= instance.OnResume;
             @Resume.performed -= instance.OnResume;
             @Resume.canceled -= instance.OnResume;
+            @NavUp.started -= instance.OnNavUp;
+            @NavUp.performed -= instance.OnNavUp;
+            @NavUp.canceled -= instance.OnNavUp;
+            @NavDown.started -= instance.OnNavDown;
+            @NavDown.performed -= instance.OnNavDown;
+            @NavDown.canceled -= instance.OnNavDown;
         }
 
         /// <summary>
@@ -631,6 +737,8 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerMenu;
     private List<IPlayerMenuActions> m_PlayerMenuActionsCallbackInterfaces = new List<IPlayerMenuActions>();
     private readonly InputAction m_PlayerMenu_ExitMenuMap;
+    private readonly InputAction m_PlayerMenu_NavLeft;
+    private readonly InputAction m_PlayerMenu_NavRight;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player Menu".
     /// </summary>
@@ -646,6 +754,14 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "PlayerMenu/ExitMenuMap".
         /// </summary>
         public InputAction @ExitMenuMap => m_Wrapper.m_PlayerMenu_ExitMenuMap;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerMenu/NavLeft".
+        /// </summary>
+        public InputAction @NavLeft => m_Wrapper.m_PlayerMenu_NavLeft;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerMenu/NavRight".
+        /// </summary>
+        public InputAction @NavRight => m_Wrapper.m_PlayerMenu_NavRight;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -675,6 +791,12 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @ExitMenuMap.started += instance.OnExitMenuMap;
             @ExitMenuMap.performed += instance.OnExitMenuMap;
             @ExitMenuMap.canceled += instance.OnExitMenuMap;
+            @NavLeft.started += instance.OnNavLeft;
+            @NavLeft.performed += instance.OnNavLeft;
+            @NavLeft.canceled += instance.OnNavLeft;
+            @NavRight.started += instance.OnNavRight;
+            @NavRight.performed += instance.OnNavRight;
+            @NavRight.canceled += instance.OnNavRight;
         }
 
         /// <summary>
@@ -689,6 +811,12 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @ExitMenuMap.started -= instance.OnExitMenuMap;
             @ExitMenuMap.performed -= instance.OnExitMenuMap;
             @ExitMenuMap.canceled -= instance.OnExitMenuMap;
+            @NavLeft.started -= instance.OnNavLeft;
+            @NavLeft.performed -= instance.OnNavLeft;
+            @NavLeft.canceled -= instance.OnNavLeft;
+            @NavRight.started -= instance.OnNavRight;
+            @NavRight.performed -= instance.OnNavRight;
+            @NavRight.canceled -= instance.OnNavRight;
         }
 
         /// <summary>
@@ -779,6 +907,20 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnResume(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "NavUp" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNavUp(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "NavDown" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNavDown(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player Menu" which allows adding and removing callbacks.
@@ -794,5 +936,19 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnExitMenuMap(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "NavLeft" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNavLeft(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "NavRight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNavRight(InputAction.CallbackContext context);
     }
 }

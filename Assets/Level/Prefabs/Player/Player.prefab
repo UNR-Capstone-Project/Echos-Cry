@@ -136,8 +136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 415338203038042998}
-  - component: {fileID: 8684078267991321208}
-  - component: {fileID: 2336914877269605693}
+  - component: {fileID: 7414890934435195871}
   - component: {fileID: 2019051602396369572}
   - component: {fileID: 6060951237239432870}
   m_Layer: 0
@@ -165,7 +164,7 @@ Transform:
   - {fileID: 4823206482798509212}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8684078267991321208
+--- !u!114 &7414890934435195871
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -174,31 +173,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2428720641269041060}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bb0d8d974a229a4ab05cb29a4d24eed, type: 3}
+  m_Script: {fileID: 11500000, guid: cbcf6b0c0055f89418334568b5e15077, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::playerHealthController
-  MAX_HEALTH: 100
---- !u!114 &2336914877269605693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2428720641269041060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a236f7a5bd2eeb4b82e735d32ae3ccf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   inputTranslator: {fileID: 11400000, guid: bd0b59b436d5d904ba88ae6b7e661116, type: 2}
   playerGravity: 9.8
   playerSpeed: 4.5
   groundCheckBoxDimensions: {x: 0.2, y: 0.1, z: 0.2}
   groundCheckBoxHeight: 0.75
-  playerHealth: 100
-  flashColor: {r: 1, g: 0, b: 0, a: 1}
-  playerSprite: {fileID: 4323622196322604754}
-  attackPrefab: {fileID: 2607949553819214744, guid: ec973f6f5bbe9ed4399b6611ce554980, type: 3}
 --- !u!54 &2019051602396369572
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -258,6 +240,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 738753259440279824}
+  - component: {fileID: 5557950961606099828}
   - component: {fileID: 6708799519748724713}
   - component: {fileID: 8800062765207849607}
   m_Layer: 0
@@ -282,6 +265,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 415338203038042998}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5557950961606099828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4323622196322604754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97eeacd70dc0f444cb9fd9df6e2799a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimator
+  inputTranslator: {fileID: 11400000, guid: bd0b59b436d5d904ba88ae6b7e661116, type: 2}
+  spriteDamageColor: {r: 1, g: 0, b: 0, a: 1}
+  flashDamageDuration: 0.2
+  _playerHealthController: {fileID: 11400000, guid: 219ccfb6d7164274f9a666e4c708cbf0, type: 2}
 --- !u!212 &6708799519748724713
 SpriteRenderer:
   m_ObjectHideFlags: 0

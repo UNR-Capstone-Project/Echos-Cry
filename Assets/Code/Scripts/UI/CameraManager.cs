@@ -1,5 +1,4 @@
 using Unity.Cinemachine;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
@@ -10,10 +9,5 @@ public class CameraManager : MonoBehaviour
     {
         mPlayer = GameObject.FindGameObjectWithTag("Player");
         gameObject.GetComponentInChildren<CinemachineCamera>().Target.TrackingTarget = mPlayer.transform;
-    }
-
-    void Update()
-    {
-        
     }
 }
