@@ -1,9 +1,5 @@
-using Mono.Cecil.Cil;
-using Unity.VisualScripting;
 using UnityEngine;
 using System.Collections;
-using UnityEngine.InputSystem.XR.Haptics;
-using UnityEngine.Windows;
 
 public class Enemy : MonoBehaviour
 {
