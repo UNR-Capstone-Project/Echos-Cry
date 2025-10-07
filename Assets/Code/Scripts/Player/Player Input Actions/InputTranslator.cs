@@ -31,9 +31,9 @@ public class InputTranslator : ScriptableObject, PlayerInputs.IGameplayActions, 
             _playerInputs.PauseMenu.SetCallbacks(this);
             _playerInputs.PlayerMenu.SetCallbacks(this);
         }
+        _playerInputs.Gameplay.Enable();
         _playerInputs.PauseMenu.Disable();
         _playerInputs.PlayerMenu.Disable();
-        _playerInputs.Gameplay.Enable();
     }
     private void OnDisable()
     {

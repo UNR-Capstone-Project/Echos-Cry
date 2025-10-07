@@ -1,15 +1,12 @@
-using System.Linq;
-using System.Security.Cryptography;
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerHealthBar : MonoBehaviour
 {
-    
     [SerializeField] private Sprite[] spriteFrames;
     [SerializeField] private UnityEngine.UI.Image mImage;
     [SerializeField] private TMPro.TextMeshProUGUI healthText;
+    [SerializeField] private playerHealthController _playerHealthController;
     private int totalFrames;
 
     void Awake()
@@ -20,14 +17,14 @@ public class PlayerHealthBar : MonoBehaviour
 
     void Start()
     {
-        playerHealthController.onPlayerHealthChange += updateHealth;
-        playerHealthController.onPlayerDeath += updateHealthOnDeath;
+        _playerHealthController.OnPlayerHealthChangeEvent += updateHealth;
+        _playerHealthController.OnPlayerDeathEvent += updateHealthOnDeath;
     }
 
     void OnDestroy()
     {
-        playerHealthController.onPlayerHealthChange -= updateHealth;
-        playerHealthController.onPlayerDeath -= updateHealthOnDeath;
+        _playerHealthController.OnPlayerHealthChangeEvent -= updateHealth;
+        _playerHealthController.OnPlayerDeathEvent -= updateHealthOnDeath;
     }
 
     private void updateHealth(float currentHealth, float maxHealth)

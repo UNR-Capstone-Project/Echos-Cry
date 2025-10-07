@@ -2,9 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.UI;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 //TODO: Determine how many notes player needs to consecutively hit to perform attack.
 //TODO: Adjust engine timescale outside of the scope of this function.
