@@ -1,6 +1,8 @@
 using UnityEngine;
+
+#if UNITY_EDITOR
 using UnityEditor;
-using Unity.VisualScripting;
+#endif
 
 [CreateAssetMenu(menuName = "Combo System/Combo State")]
 public class ComboState : ScriptableObject
@@ -25,6 +27,7 @@ public class ComboState : ScriptableObject
     public Attack ComboAttack = null;
 }
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(ComboState))]
 public class ComboStateCustomInspector : Editor
 {
@@ -63,3 +66,4 @@ public class ComboStateCustomInspector : Editor
         }
     }
 }
+#endif

@@ -1,8 +1,6 @@
 using System.Collections;
 using TMPro;
-using UnityEditor.Search;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 //This script is based on the Damage Popup tutorial from Christina Maraakis
 //https://www.youtube.com/watch?v=2Jzl-fU8B0A

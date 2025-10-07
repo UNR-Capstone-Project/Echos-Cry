@@ -197,7 +197,7 @@ public class Player : MonoBehaviour
 
     public void takeDamage(float damageAmount)
     {
-        healthController.onDamageTaken(damageAmount);
+        healthController.OnDamageTaken(damageAmount);
 
         StopCoroutine(flashPlayer());
         StartCoroutine(flashPlayer());
