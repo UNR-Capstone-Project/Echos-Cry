@@ -8,7 +8,7 @@ public class ComboState : ScriptableObject
     //Where to act on Attack data
     public void InitiateComboState()
     {
-        Debug.Log(DebugText);
+        
     }
     public enum AttackInput
     {
@@ -22,7 +22,7 @@ public class ComboState : ScriptableObject
     public ComboState StartState = null;
     public ComboState NextLightAttack = null;
     public ComboState NextHeavyAttack = null;
-    public string DebugText = "";
+    public Attack ComboAttack = null;
 }
 
 [CustomEditor(typeof(ComboState))]
