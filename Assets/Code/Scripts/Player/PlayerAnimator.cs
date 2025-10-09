@@ -11,6 +11,7 @@ public class PlayerAnimator : MonoBehaviour
 
     void UpdateSpriteDirection(Vector2 locomotion)
     {
+        if (locomotion == Vector2.zero) return;
         Vector3 currentScale = playerSpriteTransform.localScale;
         currentScale.x = Mathf.Sign(locomotion.x) * Mathf.Abs(currentScale.x);
         playerSpriteTransform.localScale = currentScale;
