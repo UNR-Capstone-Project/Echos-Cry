@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -8,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private void MovePlayer()
     {
+        dashDirection = playerLocomotion;
+
         Vector3 forwardVector = mainCameraRef.forward.normalized;
         forwardVector.y = 0f;
 
@@ -20,10 +23,46 @@ public class PlayerMovement : MonoBehaviour
 
         playerRigidbody.AddForce(targetVel - playerRigidbody.linearVelocity, ForceMode.VelocityChange);
     }
+    
+    private void DashPlayer()
+    {
+        Vector3 forwardVector = mainCameraRef.forward.normalized;
+        forwardVector.y = 0f;
+
+        Vector3 rightVector = mainCameraRef.right.normalized;
+        rightVector.y = 0f;
+
+        Vector3 targetVel = (dashDirection.y * dashSpeed * forwardVector)
+                          + (dashDirection.x * dashSpeed * rightVector)
+                          + (Vector3.up * playerRigidbody.linearVelocity.y);
+
+        playerRigidbody.AddForce(targetVel - playerRigidbody.linearVelocity, ForceMode.VelocityChange);
+
+        dashTimer += Time.deltaTime;
+        if (dashTimer >= dashDuration)
+        {
+            dashTimer = 0f;
+            StartCoroutine(DashCooldownTimer(dashCooldown));
+            currentMoveState = MOVE_STATE.NORMAL;
+        }
+    }
+    IEnumerator DashCooldownTimer(float duration)
+    {
+        canDash = false;
+        yield return new WaitForSeconds(duration);
+        canDash = true;
+    }
 
     public void HandleMovement(Vector2 locomotion)
     {
         playerLocomotion = locomotion;
+    }
+    public void HandleDash()
+    {
+        if (canDash)
+        {
+            currentMoveState = MOVE_STATE.DASH;
+        }
     }
 
     private void Awake()
@@ -35,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(inputTranslator == null) return;
         inputTranslator.OnMovementEvent += HandleMovement;
+        inputTranslator.OnDashEvent += HandleDash;
     }
     private void OnDestroy()
     {
@@ -43,8 +83,16 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        MovePlayer();
-        if (!IsGrounded()) playerRigidbody.AddForce(Vector3.down * playerGravity);
+        switch (currentMoveState)
+        {
+            case MOVE_STATE.NORMAL:
+                MovePlayer();
+                break;
+
+            case MOVE_STATE.DASH:
+                DashPlayer();
+                break;
+        }
     }
 
     private void OnDrawGizmos()
@@ -57,9 +105,27 @@ public class PlayerMovement : MonoBehaviour
     private Transform mainCameraRef;
     private Rigidbody playerRigidbody;
 
+    //Player Dashing
+    private Vector2 dashDirection = Vector2.zero;
+    private float dashTimer = 0f;
+    private bool canDash = true;
+    [SerializeField] private float dashSpeed = 20f;
+    [SerializeField] private float dashDuration = 3f;
+    [SerializeField] private float dashCooldown = 5f;
+
+
     [SerializeField] private InputTranslator inputTranslator;
-    [SerializeField] private float playerGravity = 9.8f;
+    //[SerializeField] private float playerGravity = 9.8f; Rigidbody has implementation for gravity and mass
     [SerializeField] private float playerSpeed = 10f;
+    
     [SerializeField] private Vector3 groundCheckBoxDimensions;
     [SerializeField] private float groundCheckBoxHeight;
+
+    private enum MOVE_STATE
+    {
+        NORMAL,
+        DASH
+    }
+
+    private MOVE_STATE currentMoveState = MOVE_STATE.NORMAL;
 }
