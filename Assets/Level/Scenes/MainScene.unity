@@ -777,7 +777,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 383236094}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27f497e532d73d448b21793aeebba287, type: 3}
   m_Name: 
@@ -1838,6 +1838,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 7910366510353022445, guid: 0f0c3af5a09ca4f4cb01b94a1b47b2e6, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1955,6 +1959,10 @@ PrefabInstance:
     - target: {fileID: 6587462203573440916, guid: 6b19c5ead35d86943b3d3a62222f9f80, type: 3}
       propertyPath: m_LocalPosition.y
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7268934246999311627, guid: 6b19c5ead35d86943b3d3a62222f9f80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8754886704230939695, guid: 6b19c5ead35d86943b3d3a62222f9f80, type: 3}
       propertyPath: m_IsActive
