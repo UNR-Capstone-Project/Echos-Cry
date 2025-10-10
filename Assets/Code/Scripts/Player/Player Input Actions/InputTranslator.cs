@@ -8,6 +8,7 @@ public class InputTranslator : ScriptableObject, PlayerInputs.IGameplayActions, 
 {
     private PlayerInputs _playerInputs;
     public event Action<Vector2> OnMovementEvent;
+    public event Action OnDashEvent;
     public event Action OnLightAttackEvent;
     public event Action OnHeavyAttackEvent;
     public static event Action OnPauseEvent, OnPauseDownInput, OnPauseUpInput;
@@ -52,6 +53,10 @@ public class InputTranslator : ScriptableObject, PlayerInputs.IGameplayActions, 
     public void OnMovement(InputAction.CallbackContext context)
     {
         OnMovementEvent?.Invoke(context.ReadValue<Vector2>());
+    }
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        OnDashEvent?.Invoke();
     }
 
     public void OnLightAttack(InputAction.CallbackContext context)
