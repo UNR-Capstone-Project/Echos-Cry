@@ -61,7 +61,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canDash)
         {
-            currentMoveState = MOVE_STATE.DASH;
+            if (Mathf.Abs(playerLocomotion.x) > 0 || Mathf.Abs(playerLocomotion.y) > 0)
+            {
+                currentMoveState = MOVE_STATE.DASH;
+            }
         }
     }
 
@@ -93,6 +96,8 @@ public class PlayerMovement : MonoBehaviour
                 DashPlayer();
                 break;
         }
+
+        mTrail.emitting = currentMoveState == MOVE_STATE.DASH;
     }
 
     private void OnDrawGizmos()
@@ -112,6 +117,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashSpeed = 20f;
     [SerializeField] private float dashDuration = 3f;
     [SerializeField] private float dashCooldown = 5f;
+    [SerializeField] private TrailRenderer mTrail;
 
 
     [SerializeField] private InputTranslator inputTranslator;
