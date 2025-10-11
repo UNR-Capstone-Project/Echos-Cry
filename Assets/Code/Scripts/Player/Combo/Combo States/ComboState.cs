@@ -1,69 +1,23 @@
 using UnityEngine;
 
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
-
-[CreateAssetMenu(menuName = "Combo System/Combo State")]
-public class ComboState : ScriptableObject
+public abstract class ComboState
 {
-    //Where to act on Attack data
-    public void InitiateComboState()
+    public ComboState(ComboStateCache comboCache)
     {
-        
+        _comboCache = comboCache;
+
     }
-    public enum AttackInput
+    ~ComboState()
     {
-        UNASSIGNED = 0,
-        LIGHT_ATTACK,
-        HEAVY_ATTACK
+
     }
+    public abstract void InitComboState();
+    public abstract void ComboStateStart();
+    public abstract void ComboStateExit();
+    public abstract ComboState HandleLightAttackTransition();
+    public abstract ComboState HandleHeavyAttackTransition();
 
-    public AttackInput ComboAttackInput = AttackInput.UNASSIGNED;
+    private ComboStateCache _comboCache;
 
-    public ComboState StartState = null;
-    public ComboState NextLightAttack = null;
-    public ComboState NextHeavyAttack = null;
-    public Attack ComboAttack = null;
+    public Attack ComboAttack;
 }
-
-#if UNITY_EDITOR
-[CustomEditor(typeof(ComboState))]
-public class ComboStateCustomInspector : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
-        ComboState comboState = (ComboState)target;
-        if (GUI.changed) {
-            if (comboState.NextHeavyAttack != null)
-            {
-                if (comboState.NextHeavyAttack.ComboAttackInput != ComboState.AttackInput.HEAVY_ATTACK)
-                {
-                    comboState.NextHeavyAttack = null;
-                    Debug.LogError("Only ComboState with a ComboAttackInput of HEAVY_ATTACK can be assigned!");
-                }
-                else comboState.NextHeavyAttack.StartState = comboState.StartState;
-            }
-            if (comboState.NextLightAttack != null)
-            {
-                if (comboState.NextLightAttack.ComboAttackInput != ComboState.AttackInput.LIGHT_ATTACK)
-                {
-                    comboState.NextLightAttack = null;
-                    Debug.LogError("Only ComboState with a ComboAttackInput of LIGHT_ATTACK can be assigned!");
-                }
-                else comboState.NextLightAttack.StartState = comboState.StartState;
-            }
-
-            if(comboState.NextHeavyAttack == comboState)
-            {
-                comboState.NextHeavyAttack = null;
-            }
-            if (comboState.NextLightAttack == comboState)
-            {
-                comboState.NextLightAttack = null;
-            }
-        }
-    }
-}
-#endif
