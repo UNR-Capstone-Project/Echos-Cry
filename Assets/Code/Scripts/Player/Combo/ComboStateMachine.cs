@@ -13,7 +13,6 @@ public class ComboStateMachine : MonoBehaviour
         StopAllCoroutines();
         CurrentState.InitiateComboState(_attackAnimator);
 
-
         _readyForAttackInput = false;
     }
     void HandleHeavyAttack()
