@@ -10,8 +10,9 @@ public class ComboState : ScriptableObject
     //Where to act on Attack data
     public void InitiateComboState(Animator comboStateMachineAnimator)
     {
-        comboStateMachineAnimator.runtimeAnimatorController = ComboAttack.OverrideAnimation;
-        comboStateMachineAnimator.Play("Attack");
+        Debug.Log("Combo State:" + this.name);
+        //comboStateMachineAnimator.runtimeAnimatorController = ComboAttack.OverrideAnimation;
+        //comboStateMachineAnimator.Play("Attack");
     }
 
     public enum AttackInput

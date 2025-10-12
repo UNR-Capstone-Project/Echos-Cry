@@ -10,7 +10,7 @@ public class ComboStateMachine : MonoBehaviour
         if (CurrentState.NextLightAttack == null) CurrentState = CurrentState.StartState.NextLightAttack;
         else CurrentState = CurrentState.NextLightAttack;
 
-        InitiateAttack();
+        TryInitiateAttack();
 
         _readyForAttackInput = false;
         StartCoroutine(TempInputReset());
@@ -22,46 +22,51 @@ public class ComboStateMachine : MonoBehaviour
         if (CurrentState.NextHeavyAttack == null) CurrentState = CurrentState.StartState.NextHeavyAttack;
         else CurrentState = CurrentState.NextHeavyAttack;
 
-        InitiateAttack();
+        TryInitiateAttack();
 
         _readyForAttackInput = false;
         StartCoroutine(TempInputReset());
     }
-
-    void InitiateAttack()
+    void TryInitiateAttack()
     {
         if (CurrentState == null)
         {
             CurrentState = CurrentState.StartState;
             return;
         }
-        else CurrentState.InitiateComboState(_attackAnimator);
-    }
-    public void ReadyForNewInput()
-    {
-        _readyForAttackInput = true;
-        StartCoroutine(ComboResetTimer());
-    }
-    void WeaponChange(ComboState newStart)
-    {
-        _startState = newStart;
-        CurrentState = newStart;
+        else
+        {
+            StopAllCoroutines();
+            CurrentState.InitiateComboState(_attackAnimator);
+        }
     }
 
     private IEnumerator ComboResetTimer()
     {
         yield return new WaitForSeconds(_comboResetTime);
         CurrentState = _startState;
+        Debug.Log("Combo Reset");
     }
     private IEnumerator TempInputReset()
     {
         yield return new WaitForSeconds(_tempInputResetTime);
-        ReadyForNewInput();
+        _readyForAttackInput = true;
+        StartCoroutine(ComboResetTimer());
     }
 
+    //public void ResetInput()
+    //{
+    //    _readyForAttackInput = true;
+    //    StartCoroutine(ComboResetTimer());
+    //}
+    //void WeaponChange(ComboState newStart)
+    //{
+    //    _startState = newStart;
+    //    CurrentState = newStart;
+    //}
     private void Awake()
     {
-        _attackAnimator = GetComponent<Animator>(); 
+        if(TryGetComponent<Animator>(out Animator animator)) _attackAnimator = animator;
     }
     private void Start()
     {

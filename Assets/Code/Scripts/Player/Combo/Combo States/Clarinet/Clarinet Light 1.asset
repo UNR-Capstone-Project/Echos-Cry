@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8520c243069f4c14e9942f5663598fa1, type: 3}
-  m_Name: Clarinet Start
+  m_Name: Clarinet Light 1
   m_EditorClassIdentifier: Assembly-CSharp::ComboState
-  ComboAttackInput: 0
-  StartState: {fileID: 11400000}
-  NextLightAttack: {fileID: 11400000, guid: e6a1aa69b9453d44fb241a3ce0495212, type: 2}
-  NextHeavyAttack: {fileID: 11400000, guid: 9c53d55213846794b9b664c3992a6eea, type: 2}
+  ComboAttackInput: 1
+  StartState: {fileID: 11400000, guid: 95875ac07ce73724bb2d5440df25b0c1, type: 2}
+  NextLightAttack: {fileID: 11400000, guid: 23b99b1fbf704e449a6040e2296fa5af, type: 2}
+  NextHeavyAttack: {fileID: 0}
   ComboAttack: {fileID: 0}
