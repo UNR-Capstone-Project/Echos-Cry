@@ -7,25 +7,25 @@ public class ComboStateMachine : MonoBehaviour
     {
         if (!_readyForAttackInput) return;
 
-        if (CurrentState.NextLightAttack == null) CurrentState = CurrentState.StartState.NextLightAttack;
+        _readyForAttackInput = false;
+        StopAllCoroutines();
+
+        if (CurrentState.NextLightAttack == null) CurrentState = _startState.NextLightAttack;
         else CurrentState = CurrentState.NextLightAttack;
 
-        StopAllCoroutines();
         CurrentState.InitiateComboState(_attackAnimator);
-
-        _readyForAttackInput = false;
     }
     void HandleHeavyAttack()
     {
         if(!_readyForAttackInput) return;
+        
+        _readyForAttackInput = false;
+        StopAllCoroutines();
 
-        if (CurrentState.NextHeavyAttack == null) CurrentState = CurrentState.StartState.NextHeavyAttack;
+        if (CurrentState.NextHeavyAttack == null) CurrentState = _startState.NextHeavyAttack;
         else CurrentState = CurrentState.NextHeavyAttack;
 
-        StopAllCoroutines();
         CurrentState.InitiateComboState(_attackAnimator);
-
-        _readyForAttackInput = false;
     }
     public void ResetInput()
     {

@@ -11,7 +11,6 @@ public class ComboState : ScriptableObject
     public void InitiateComboState(Animator comboStateMachineAnimator)
     {
         Debug.Log("Combo State:" + this.name);
-        if (ComboAttack == null) return;
         comboStateMachineAnimator.runtimeAnimatorController = ComboAttack.OverrideAnimation;
         comboStateMachineAnimator.Play(Animator.StringToHash("Attack"));
     }
@@ -25,7 +24,6 @@ public class ComboState : ScriptableObject
 
     public AttackInput ComboAttackInput = AttackInput.UNASSIGNED;
 
-    public ComboState StartState = null;
     public ComboState NextLightAttack = null;
     public ComboState NextHeavyAttack = null;
     public Attack ComboAttack = null;
@@ -47,7 +45,7 @@ public class ComboStateCustomInspector : Editor
                     comboState.NextHeavyAttack = null;
                     Debug.LogError("Only ComboState with a ComboAttackInput of HEAVY_ATTACK can be assigned!");
                 }
-                else comboState.NextHeavyAttack.StartState = comboState.StartState;
+
             }
             if (comboState.NextLightAttack != null)
             {
@@ -56,7 +54,7 @@ public class ComboStateCustomInspector : Editor
                     comboState.NextLightAttack = null;
                     Debug.LogError("Only ComboState with a ComboAttackInput of LIGHT_ATTACK can be assigned!");
                 }
-                else comboState.NextLightAttack.StartState = comboState.StartState;
+
             }
 
             if(comboState.NextHeavyAttack == comboState)

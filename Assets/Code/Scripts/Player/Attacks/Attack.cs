@@ -9,6 +9,7 @@ public class Attack : ScriptableObject
         PROJECTILE
     }
     public AnimatorOverrideController OverrideAnimation;
+    public AnimationClip AnimationClip;
     public float BaseDamage;
     public AttackType TypeOfAttack;
 }
