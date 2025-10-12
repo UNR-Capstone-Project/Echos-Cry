@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Combo System/Attack Data")]
 public class Attack : ScriptableObject
 {
     public enum AttackType

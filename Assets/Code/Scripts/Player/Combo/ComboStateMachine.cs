@@ -10,10 +10,11 @@ public class ComboStateMachine : MonoBehaviour
         if (CurrentState.NextLightAttack == null) CurrentState = CurrentState.StartState.NextLightAttack;
         else CurrentState = CurrentState.NextLightAttack;
 
-        TryInitiateAttack();
+        StopAllCoroutines();
+        CurrentState.InitiateComboState(_attackAnimator);
+
 
         _readyForAttackInput = false;
-        StartCoroutine(TempInputReset());
     }
     void HandleHeavyAttack()
     {
@@ -22,51 +23,34 @@ public class ComboStateMachine : MonoBehaviour
         if (CurrentState.NextHeavyAttack == null) CurrentState = CurrentState.StartState.NextHeavyAttack;
         else CurrentState = CurrentState.NextHeavyAttack;
 
-        TryInitiateAttack();
+        StopAllCoroutines();
+        CurrentState.InitiateComboState(_attackAnimator);
 
         _readyForAttackInput = false;
-        StartCoroutine(TempInputReset());
     }
-    void TryInitiateAttack()
+    public void ResetInput()
     {
-        if (CurrentState == null)
-        {
-            CurrentState = CurrentState.StartState;
-            return;
-        }
-        else
-        {
-            StopAllCoroutines();
-            CurrentState.InitiateComboState(_attackAnimator);
-        }
+        Debug.Log("Reset Input Call");
+        _attackAnimator.Play(Animator.StringToHash("Idle"));
+        _readyForAttackInput = true;
+        StartCoroutine(ComboResetTimer());
     }
-
     private IEnumerator ComboResetTimer()
     {
         yield return new WaitForSeconds(_comboResetTime);
         CurrentState = _startState;
+        _attackAnimator.runtimeAnimatorController = _defaultRuntimeController;
         Debug.Log("Combo Reset");
     }
-    private IEnumerator TempInputReset()
-    {
-        yield return new WaitForSeconds(_tempInputResetTime);
-        _readyForAttackInput = true;
-        StartCoroutine(ComboResetTimer());
-    }
+    //private IEnumerator AnimationLengthWait()
+    //{
+    //    yield return WaitForSeconds();
+    //}
 
-    //public void ResetInput()
-    //{
-    //    _readyForAttackInput = true;
-    //    StartCoroutine(ComboResetTimer());
-    //}
-    //void WeaponChange(ComboState newStart)
-    //{
-    //    _startState = newStart;
-    //    CurrentState = newStart;
-    //}
     private void Awake()
     {
-        if(TryGetComponent<Animator>(out Animator animator)) _attackAnimator = animator;
+        _attackAnimator = GetComponentInChildren<Animator>();
+        _defaultRuntimeController = _attackAnimator.runtimeAnimatorController;
     }
     private void Start()
     {
@@ -74,7 +58,6 @@ public class ComboStateMachine : MonoBehaviour
 
         _startState = CurrentState;
 
-        CurrentState.InitiateComboState(_attackAnimator);
         _inputTranslator.OnLightAttackEvent += HandleLightAttack;
         _inputTranslator.OnHeavyAttackEvent += HandleHeavyAttack;
     }
@@ -89,7 +72,8 @@ public class ComboStateMachine : MonoBehaviour
     private ComboState _startState = null;
     private bool _readyForAttackInput = true;
     [SerializeField] private float _comboResetTime = 0.5f;
-    [SerializeField] private float _tempInputResetTime = 0.5f;
     [SerializeField] private InputTranslator _inputTranslator;
     private Animator _attackAnimator;
+    private RuntimeAnimatorController _defaultRuntimeController;
+    private AnimationClip _animationClip;
 }

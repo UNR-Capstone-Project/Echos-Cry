@@ -16,4 +16,4 @@ MonoBehaviour:
   StartState: {fileID: 11400000, guid: 95875ac07ce73724bb2d5440df25b0c1, type: 2}
   NextLightAttack: {fileID: 11400000, guid: 23b99b1fbf704e449a6040e2296fa5af, type: 2}
   NextHeavyAttack: {fileID: 0}
-  ComboAttack: {fileID: 0}
+  ComboAttack: {fileID: 11400000, guid: e0aeec050dfa3a243b1d69bf8a2dcfed, type: 2}
