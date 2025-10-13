@@ -1064,7 +1064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ComboStateMachine
   _inputTranslator: {fileID: 11400000, guid: bd0b59b436d5d904ba88ae6b7e661116, type: 2}
-  _comboResetTime: 1
+  _comboResetTime: 0.5
   _tempAttackArray:
   - {fileID: 11400000, guid: e0aeec050dfa3a243b1d69bf8a2dcfed, type: 2}
   - {fileID: 11400000, guid: 9bee12bb448b3ce4184250f833c136ab, type: 2}
