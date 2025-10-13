@@ -645,7 +645,7 @@ GameObject:
   m_Component:
   - component: {fileID: 310897501}
   - component: {fileID: 310897503}
-  - component: {fileID: 310897502}
+  - component: {fileID: 310897504}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -668,28 +668,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 608960442}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &310897502
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 310897500}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 214fe6129a4ca684a8d2c05f7ae6611c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &310897503
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -748,6 +726,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &310897504
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310897500}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 214fe6129a4ca684a8d2c05f7ae6611c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &348090973
 GameObject:
   m_ObjectHideFlags: 0
@@ -1063,9 +1063,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d98572dab44c2374784863bc0115301d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ComboStateMachine
-  CurrentState: {fileID: 11400000, guid: 95875ac07ce73724bb2d5440df25b0c1, type: 2}
-  _comboResetTime: 1
   _inputTranslator: {fileID: 11400000, guid: bd0b59b436d5d904ba88ae6b7e661116, type: 2}
+  _comboResetTime: 1
+  _tempAttackArray:
+  - {fileID: 11400000, guid: e0aeec050dfa3a243b1d69bf8a2dcfed, type: 2}
+  - {fileID: 11400000, guid: 9bee12bb448b3ce4184250f833c136ab, type: 2}
+  - {fileID: 11400000, guid: f3506d4bad7bb874fa3b605a65a37b21, type: 2}
+  - {fileID: 11400000, guid: 092c1058aec5e9d4dab20883adbd4e1e, type: 2}
+  - {fileID: 11400000, guid: 4cd1100127fe2ac4bb140abc0f3c8a84, type: 2}
+  - {fileID: 11400000, guid: 5953f8a768bb34545b3ba86177973a29, type: 2}
+  - {fileID: 11400000, guid: 9bd910b84b4f85749a16dadb92a02c61, type: 2}
+  - {fileID: 11400000, guid: ce20ad35b9132194bb9f637fee4854c1, type: 2}
 --- !u!1001 &653342186
 PrefabInstance:
   m_ObjectHideFlags: 0

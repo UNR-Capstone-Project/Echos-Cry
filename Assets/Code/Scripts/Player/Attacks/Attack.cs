@@ -8,7 +8,8 @@ public class Attack : ScriptableObject
         MELEE = 0,
         PROJECTILE
     }
-    public AnimatorOverrideController OverrideAnimation;
+
+    public AnimatorOverrideController OverrideController;
     public AnimationClip AnimationClip;
     public float BaseDamage;
     public AttackType TypeOfAttack;
