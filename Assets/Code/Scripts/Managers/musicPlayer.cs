@@ -91,13 +91,18 @@ public class MusicPlayer : MonoBehaviour
         songLayers[0].playOnAwake = false;
         songLayers[0].loop = true;
 
-        for (int i = 1; i < MusicManager.MAX_LAYER_COUNT; i++)
+        //Create copy of main gameObject for subsequent objects to copy
+        GameObject childObject = Instantiate(gameObject, transform.position, Quaternion.identity, transform);
+        Destroy(childObject.GetComponent<MusicPlayer>());
+        songLayers.Add(childObject.GetComponent<AudioSource>());
+        songLayers[1].playOnAwake = false;
+        songLayers[1].loop = true;
+
+        for (int i = 2; i < MusicManager.MAX_LAYER_COUNT; i++)
         {
             //Copy base gameObject into a child gameObject that will have individual AudioSources
-            GameObject childObject = Instantiate(gameObject, transform.position, Quaternion.identity, transform);
+            GameObject newObject = Instantiate(childObject, transform.position, Quaternion.identity, transform);
             songLayers.Add(childObject.GetComponent<AudioSource>());
-            Destroy(childObject.GetComponent<MusicPlayer>());
-            //Debug.Log("added Audio Source to a music player");
             songLayers[i].playOnAwake = false;
             songLayers[i].loop = true;
         }
