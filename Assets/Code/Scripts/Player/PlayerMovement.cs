@@ -1,4 +1,6 @@
 using System.Collections;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -9,8 +11,6 @@ public class PlayerMovement : MonoBehaviour
     }
     private void MovePlayer()
     {
-        dashDirection = playerLocomotion;
-
         Vector3 forwardVector = mainCameraRef.forward.normalized;
         forwardVector.y = 0f;
 
@@ -23,35 +23,6 @@ public class PlayerMovement : MonoBehaviour
 
         playerRigidbody.AddForce(targetVel - playerRigidbody.linearVelocity, ForceMode.VelocityChange);
     }
-    
-    private void DashPlayer()
-    {
-        Vector3 forwardVector = mainCameraRef.forward.normalized;
-        forwardVector.y = 0f;
-
-        Vector3 rightVector = mainCameraRef.right.normalized;
-        rightVector.y = 0f;
-
-        Vector3 targetVel = (dashDirection.y * dashSpeed * forwardVector)
-                          + (dashDirection.x * dashSpeed * rightVector)
-                          + (Vector3.up * playerRigidbody.linearVelocity.y);
-
-        playerRigidbody.AddForce(targetVel - playerRigidbody.linearVelocity, ForceMode.VelocityChange);
-
-        dashTimer += Time.deltaTime;
-        if (dashTimer >= dashDuration)
-        {
-            dashTimer = 0f;
-            StartCoroutine(DashCooldownTimer(dashCooldown));
-            currentMoveState = MOVE_STATE.NORMAL;
-        }
-    }
-    IEnumerator DashCooldownTimer(float duration)
-    {
-        canDash = false;
-        yield return new WaitForSeconds(duration);
-        canDash = true;
-    }
 
     public void HandleMovement(Vector2 locomotion)
     {
@@ -59,18 +30,31 @@ public class PlayerMovement : MonoBehaviour
     }
     public void HandleDash()
     {
-        if (canDash)
-        {
-            if (Mathf.Abs(playerLocomotion.x) > 0 || Mathf.Abs(playerLocomotion.y) > 0)
-            {
-                currentMoveState = MOVE_STATE.DASH;
-            }
-        }
+        if (!canDash) return;
+        playerRigidbody.AddForce(playerRigidbody.linearVelocity.normalized * dashSpeed, ForceMode.Impulse);
+        StartCoroutine(DashDurationTimer(dashDuration));
+        StartCoroutine(DashCooldownTimer(dashCooldown));
+    }
+
+    IEnumerator DashCooldownTimer(float duration)
+    {
+        canDash = false;
+        yield return new WaitForSeconds(duration);
+        canDash = true;
+    }
+    IEnumerator DashDurationTimer(float duration)
+    {
+        isDashing = true;
+        mTrail.emitting = true;
+        yield return new WaitForSeconds(duration);
+        isDashing = false;
+        mTrail.emitting = false;
     }
 
     private void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
+        mTrail = GetComponent<TrailRenderer>();
         mainCameraRef = Camera.main.transform;
     }
     void Start()
@@ -83,21 +67,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (inputTranslator == null) return;
         inputTranslator.OnMovementEvent -= HandleMovement;
+        inputTranslator.OnDashEvent -= HandleDash;
     }
+
     private void FixedUpdate()
     {
-        switch (currentMoveState)
-        {
-            case MOVE_STATE.NORMAL:
-                MovePlayer();
-                break;
-
-            case MOVE_STATE.DASH:
-                DashPlayer();
-                break;
-        }
-
-        mTrail.emitting = currentMoveState == MOVE_STATE.DASH;
+        if (isDashing) return;
+        MovePlayer();
     }
 
     private void OnDrawGizmos()
@@ -111,14 +87,15 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody playerRigidbody;
 
     //Player Dashing
-    private Vector2 dashDirection = Vector2.zero;
-    private float dashTimer = 0f;
     private bool canDash = true;
+    private bool isDashing = false;
+    private TrailRenderer mTrail = null;
+    [Header("Determines how quickly dash reaches destination.")]
     [SerializeField] private float dashSpeed = 20f;
+    [Header("Determines the distance of the dash.")]
     [SerializeField] private float dashDuration = 3f;
-    [SerializeField] private float dashCooldown = 5f;
-    [SerializeField] private TrailRenderer mTrail;
-
+    [Header("")]
+    [SerializeField] private float dashCooldown = 1f;
 
     [SerializeField] private InputTranslator inputTranslator;
     //[SerializeField] private float playerGravity = 9.8f; Rigidbody has implementation for gravity and mass
@@ -126,12 +103,4 @@ public class PlayerMovement : MonoBehaviour
     
     [SerializeField] private Vector3 groundCheckBoxDimensions;
     [SerializeField] private float groundCheckBoxHeight;
-
-    private enum MOVE_STATE
-    {
-        NORMAL,
-        DASH
-    }
-
-    private MOVE_STATE currentMoveState = MOVE_STATE.NORMAL;
 }

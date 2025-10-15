@@ -56,7 +56,7 @@ public class InputTranslator : ScriptableObject, PlayerInputs.IGameplayActions, 
     }
     public void OnDash(InputAction.CallbackContext context)
     {
-        OnDashEvent?.Invoke();
+        if(context.started) OnDashEvent?.Invoke();
     }
 
     public void OnLightAttack(InputAction.CallbackContext context)
