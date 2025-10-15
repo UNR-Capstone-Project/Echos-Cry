@@ -102,7 +102,7 @@ public class MusicPlayer : MonoBehaviour
         {
             //Copy base gameObject into a child gameObject that will have individual AudioSources
             GameObject newObject = Instantiate(childObject, transform.position, Quaternion.identity, transform);
-            songLayers.Add(childObject.GetComponent<AudioSource>());
+            songLayers.Add(newObject.GetComponent<AudioSource>());
             songLayers[i].playOnAwake = false;
             songLayers[i].loop = true;
         }
