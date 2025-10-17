@@ -611,7 +611,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6698232584449221764, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5692982542498406466}
   m_SourcePrefab: {fileID: 100100000, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
 --- !u!4 &2127575191814039986 stripped
 Transform:
@@ -623,3 +626,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6698232584449221764, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
   m_PrefabInstance: {fileID: 506091730931972670}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5692982542498406466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6625103690610810554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c07aa28893659042a19638d95a98689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeAttack
+  attackDamage: 1
+  destroyTime: 0
+  attackWait: 1
+  knockForce: 1

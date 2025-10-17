@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using UnityEngine;
 using static TempoManagerV2;
@@ -9,10 +10,9 @@ public class ComboStateMachine : MonoBehaviour
     {
         if (!_readyForAttackInput) return;
 
-        if (IsAttackMissed()) return;
+        if (!HandleWeaponAttack()) return;
 
         StopAllCoroutines();
-        equippedWeapon.SetActive(true);
         _readyForAttackInput = false;
 
         if (_currentState.NextLightAttack == null) _currentState = _startState.NextLightAttack;
@@ -26,10 +26,9 @@ public class ComboStateMachine : MonoBehaviour
     {
         if (!_readyForAttackInput) return;
 
-        if (IsAttackMissed()) return;
+        if (!HandleWeaponAttack()) return;
 
         StopAllCoroutines();
-        equippedWeapon.SetActive(true);
         _readyForAttackInput = false;
 
         if (_currentState.NextHeavyAttack == null) _currentState = _startState.NextHeavyAttack;
@@ -40,10 +39,32 @@ public class ComboStateMachine : MonoBehaviour
         StartCoroutine(AnimationLengthWait());
     }
 
-    private bool IsAttackMissed()
+    private bool HandleWeaponAttack()
     {
         TempoManagerV2.HIT_QUALITY hitQuality = tempoManager.UpdateHitQuality();
-        return (hitQuality == HIT_QUALITY.MISS);
+        if (hitQuality == HIT_QUALITY.MISS) { return false; }
+
+        equippedWeapon.SetActive(true);
+
+        switch (hitQuality)
+        {
+            case HIT_QUALITY.EXCELLENT:
+                damageMultiplier = 1.5f;
+                break;
+            case HIT_QUALITY.GOOD:
+                damageMultiplier = 1.2f;
+                break;
+            case HIT_QUALITY.BAD:
+                damageMultiplier = 1.1f;
+                break;
+            default: //Miss
+                damageMultiplier = 1.0f;
+                break;
+        }
+
+        equippedWeapon.GetComponent<BaseAttack>().StartAttack(damageMultiplier);
+
+        return true;
     }
 
     public void ResetInputState()
@@ -154,5 +175,8 @@ public class ComboStateMachine : MonoBehaviour
     private ComboState[] _comboStates = null;
     private Animator _attackAnimator;
     private RuntimeAnimatorController _defaultRuntimeController;
+
     private TempoManagerV2 tempoManager;
+    public event Action AttackStartedEvent;
+    private float damageMultiplier;
 }
