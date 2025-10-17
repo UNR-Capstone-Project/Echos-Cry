@@ -1,12 +1,15 @@
 using JetBrains.Annotations;
 using System.Collections;
 using UnityEngine;
+using static TempoManagerV2;
 
 public class ComboStateMachine : MonoBehaviour
 {
     void HandleLightAttack()
     {
         if (!_readyForAttackInput) return;
+
+        if (IsAttackMissed()) return;
 
         StopAllCoroutines();
         _readyForAttackInput = false;
@@ -22,6 +25,8 @@ public class ComboStateMachine : MonoBehaviour
     {
         if (!_readyForAttackInput) return;
 
+        if (IsAttackMissed()) return;
+
         StopAllCoroutines();
         _readyForAttackInput = false;
 
@@ -31,6 +36,12 @@ public class ComboStateMachine : MonoBehaviour
         _currentState.InitiateComboState(_attackAnimator);
 
         StartCoroutine(AnimationLengthWait());
+    }
+
+    private bool IsAttackMissed()
+    {
+        TempoManagerV2.HIT_QUALITY hitQuality = tempoManager.UpdateHitQuality();
+        return (hitQuality == HIT_QUALITY.MISS);
     }
 
     public void ResetInputState()
@@ -100,6 +111,7 @@ public class ComboStateMachine : MonoBehaviour
     private void Awake()
     {
         _attackAnimator = GetComponentInChildren<Animator>();
+        tempoManager = GameObject.Find("TempoManager").GetComponent<TempoManagerV2>();
         _defaultRuntimeController = _attackAnimator.runtimeAnimatorController;
         InitializeComboTree();
     }
@@ -134,4 +146,6 @@ public class ComboStateMachine : MonoBehaviour
     private Animator _attackAnimator;
     private RuntimeAnimatorController _defaultRuntimeController;
     private bool _readyForAttackInput = true;
+
+    private TempoManagerV2 tempoManager;
 }
