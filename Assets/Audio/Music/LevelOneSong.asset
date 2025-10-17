@@ -12,12 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ccea74a23758ff48beebc6abc27ac51, type: 3}
   m_Name: LevelOneSong
   m_EditorClassIdentifier: Assembly-CSharp::SoundSystem.MusicEvent
-  musicVolume: 0.2
+  musicVolume: 0.5
   musicLayers:
-  - {fileID: 8300000, guid: 5d1e7bd842b3b13429560726811a6a2f, type: 3}
-  - {fileID: 8300000, guid: 61e629c3a2b7eaf42a7552b2692f61f8, type: 3}
-  - {fileID: 8300000, guid: 8f9fb8afcccee0f47b2111a4646123b4, type: 3}
-  - {fileID: 8300000, guid: 040c27eb37cb0d94f9c37137a78e4e5b, type: 3}
-  - {fileID: 8300000, guid: 4aac878902a3fcf4cbe4b903f437e7f5, type: 3}
+  - {fileID: 8300000, guid: fa5ac7196b9917f448c452a373cef33f, type: 3}
   musicMixerGroup: {fileID: 0}
   musicTempo: 85

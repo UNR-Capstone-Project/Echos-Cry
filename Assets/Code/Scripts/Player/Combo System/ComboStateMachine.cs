@@ -12,6 +12,7 @@ public class ComboStateMachine : MonoBehaviour
         if (IsAttackMissed()) return;
 
         StopAllCoroutines();
+        equippedWeapon.SetActive(true);
         _readyForAttackInput = false;
 
         if (_currentState.NextLightAttack == null) _currentState = _startState.NextLightAttack;
@@ -28,6 +29,7 @@ public class ComboStateMachine : MonoBehaviour
         if (IsAttackMissed()) return;
 
         StopAllCoroutines();
+        equippedWeapon.SetActive(true);
         _readyForAttackInput = false;
 
         if (_currentState.NextHeavyAttack == null) _currentState = _startState.NextHeavyAttack;
@@ -48,6 +50,7 @@ public class ComboStateMachine : MonoBehaviour
     {
         _attackAnimator.runtimeAnimatorController = _defaultRuntimeController;
         _attackAnimator.Play("Idle");
+        equippedWeapon.SetActive(false);
         _readyForAttackInput = true;
         StartCoroutine(ComboResetTimer());
     }
@@ -110,8 +113,10 @@ public class ComboStateMachine : MonoBehaviour
 
     private void Awake()
     {
-        _attackAnimator = GetComponentInChildren<Animator>();
+        _attackAnimator = equippedWeapon.GetComponent<Animator>();
         tempoManager = GameObject.Find("TempoManager").GetComponent<TempoManagerV2>();
+        equippedWeapon.SetActive(false);
+
         _defaultRuntimeController = _attackAnimator.runtimeAnimatorController;
         InitializeComboTree();
     }
@@ -137,15 +142,17 @@ public class ComboStateMachine : MonoBehaviour
         LIGHT1, LIGHT2, LIGHT3, LIGHT4, LIGHT5,
         HEAVY1, HEAVY2, HEAVY3
     }
+
+    [SerializeField] private GameObject equippedWeapon;
     [SerializeField] private InputTranslator _inputTranslator;
     [SerializeField] private float _comboResetTime = 0.5f;
+
     public Attack[] _tempAttackArray;
+    private bool _readyForAttackInput = true;
     private ComboState _currentState = null;
     private ComboState _startState = null;
     private ComboState[] _comboStates = null;
     private Animator _attackAnimator;
     private RuntimeAnimatorController _defaultRuntimeController;
-    private bool _readyForAttackInput = true;
-
     private TempoManagerV2 tempoManager;
 }
