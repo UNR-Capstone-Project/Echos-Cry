@@ -551,6 +551,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7650535618051860671}
   - component: {fileID: 7627159243289282129}
+  - component: {fileID: 5248978508471718561}
   m_Layer: 0
   m_Name: Marker
   m_TagString: Untagged
@@ -598,9 +599,22 @@ MonoBehaviour:
   m_ScaleMode: 0
   m_Offset: {x: 0, y: 0, z: 0}
   m_Size: {x: 2, y: 2, z: 0.1}
-  m_FadeFactor: 1
+  m_FadeFactor: 0.5
   version: 1
   m_DecalLayerMask: 1
+--- !u!114 &5248978508471718561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7860510388739070033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bc8a2e38051414479dc8806d51be6a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  playerAimMarker: {fileID: 7627159243289282129}
 --- !u!1001 &506091730931972670
 PrefabInstance:
   m_ObjectHideFlags: 0
