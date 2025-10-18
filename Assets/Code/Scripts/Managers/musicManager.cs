@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SoundSystem;
 using System;
+using UnityEditor.ShaderGraph.Internal;
 
 [CreateAssetMenu(fileName = "MusicManager", menuName = "Scriptable Objects/Music Manager")]
 public class MusicManager : ScriptableObject
@@ -119,5 +120,15 @@ public class MusicManager : ScriptableObject
     public void ResumeSong()
     {
         if (currentMusicPlayer != null) { currentMusicPlayer.Resume(); }
+    }
+
+    public void fadeVolumeToZero(float fadeTime)
+    {
+        if (currentMusicPlayer != null)
+        {
+            currentMusicPlayer.FadeVolume(fadeTime);
+            inactiveMusicPlayers.Add(currentMusicPlayer);
+            currentMusicPlayer = null;
+        }
     }
 }
