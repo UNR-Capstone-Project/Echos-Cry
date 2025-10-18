@@ -18,7 +18,7 @@ public class PlayerDirection : MonoBehaviour
         {
             Vector3 hitPoint = hit.point;
 
-            aimDirection = (hitPoint - transform.position).normalized;
+            aimDirection = (hitPoint - transform.parent.position).normalized; //Calculates the direction between the mouse mapped to world space and the players position.
             aimDirection.y = 0;
 
             aimingRotation = Quaternion.LookRotation(aimDirection);
