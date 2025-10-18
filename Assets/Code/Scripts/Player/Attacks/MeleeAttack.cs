@@ -12,12 +12,13 @@ public class MeleeAttack :BaseAttack
         if (Physics.Raycast(ray, out hit))
         {
             Vector3 hitPoint = hit.point;
-            swingDirection = hitPoint - transform.position;
+
+            swingDirection = -(hitPoint - transform.position).normalized;
+            swingDirection.y = 0;
+
             Quaternion updatedRotation = Quaternion.LookRotation(swingDirection);
             transform.rotation = updatedRotation;
         }
-
-        //ISSUE: Need to change animation to update model position not main gameobject, that way we can rotate towards mouse without animation interference.
     }
 
     private void OnTriggerEnter(Collider other)
