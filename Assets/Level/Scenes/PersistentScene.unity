@@ -194,7 +194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 104355509}
   - component: {fileID: 104355508}
-  - component: {fileID: 104355507}
+  - component: {fileID: 104355510}
   m_Layer: 0
   m_Name: townTrigger
   m_TagString: Untagged
@@ -202,26 +202,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &104355507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 104355506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e43d19a69c45324aaffe513f6018e3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SceneTriggerManager
-  player: {fileID: 751451938}
-  playerTargetSpawn: {x: 0, y: 1, z: 0}
-  sceneTarget:
-    m_SceneAsset: {fileID: 102900000, guid: 7b0faddb61c47924fa4e055b3b1bfd09, type: 3}
-    m_SceneName: SceneManager-Victor-Town
-  sceneOrigin:
-    m_SceneAsset: {fileID: 102900000, guid: c785959c4dc298c4197b106e6fd91f62, type: 3}
-    m_SceneName: SceneManager-Victor-LevelOne
 --- !u!65 &104355508
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -258,6 +238,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &104355510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104355506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e43d19a69c45324aaffe513f6018e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneTriggerManager
+  player: {fileID: 751451938}
+  playerTargetSpawn: {x: 0, y: 1, z: 0}
+  sceneTarget:
+    m_SceneAsset: {fileID: 102900000, guid: 7b0faddb61c47924fa4e055b3b1bfd09, type: 3}
+    m_SceneName: TownScene
+  sceneOrigin:
+    m_SceneAsset: {fileID: 102900000, guid: c785959c4dc298c4197b106e6fd91f62, type: 3}
+    m_SceneName: LevelOne
+  doesPersistInScene: 1
 --- !u!1 &140308895
 GameObject:
   m_ObjectHideFlags: 0
@@ -1341,7 +1342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 954471845}
   - component: {fileID: 954471844}
-  - component: {fileID: 954471843}
+  - component: {fileID: 954471846}
   m_Layer: 0
   m_Name: levelOneTrigger
   m_TagString: Untagged
@@ -1349,26 +1350,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &954471843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 954471842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e43d19a69c45324aaffe513f6018e3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SceneTriggerManager
-  player: {fileID: 751451938}
-  playerTargetSpawn: {x: 0, y: 1, z: 0}
-  sceneTarget:
-    m_SceneAsset: {fileID: 102900000, guid: c785959c4dc298c4197b106e6fd91f62, type: 3}
-    m_SceneName: SceneManager-Victor-LevelOne
-  sceneOrigin:
-    m_SceneAsset: {fileID: 102900000, guid: 7c344c9ebf8102246bccdaef1e6725fd, type: 3}
-    m_SceneName: SceneManager-Victor-Persistent
 --- !u!65 &954471844
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1405,6 +1386,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &954471846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954471842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e43d19a69c45324aaffe513f6018e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneTriggerManager
+  player: {fileID: 751451938}
+  playerTargetSpawn: {x: 0, y: 1, z: 0}
+  sceneTarget:
+    m_SceneAsset: {fileID: 102900000, guid: c785959c4dc298c4197b106e6fd91f62, type: 3}
+    m_SceneName: LevelOne
+  sceneOrigin:
+    m_SceneAsset: {fileID: 102900000, guid: 7c344c9ebf8102246bccdaef1e6725fd, type: 3}
+    m_SceneName: PersistentScene
+  doesPersistInScene: 0
 --- !u!1 &1036650875
 GameObject:
   m_ObjectHideFlags: 0
