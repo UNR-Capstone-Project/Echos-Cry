@@ -13,6 +13,7 @@ public class SceneTriggerManager : MonoBehaviour
     [SerializeField] private Vector3 playerTargetSpawn;
     [SerializeField] private SceneField sceneTarget;
     [SerializeField] private SceneField sceneOrigin;
+    [SerializeField] private bool doesPersistInScene;
     
     private void updatePlayerPosition()
     {
@@ -32,8 +33,7 @@ public class SceneTriggerManager : MonoBehaviour
     {
         if (other.gameObject == player)
         {
-            //destroy trigger for loading level 1 again to prevent errors/bugs
-            if (sceneTarget.SceneName == "SceneManager-Victor-LevelOne" && sceneOrigin.SceneName == "SceneManager-Victor-Persistent")
+            if (!doesPersistInScene)
             {
                 Destroy(gameObject);
             }
@@ -77,7 +77,7 @@ public class SceneTriggerManager : MonoBehaviour
         }
         else
         {
-            if (sceneOrigin.SceneName == "SceneManager-Victor-Persistent")
+            if (sceneOrigin.SceneName == "PersistentScene")
             {
                 return;
             }
