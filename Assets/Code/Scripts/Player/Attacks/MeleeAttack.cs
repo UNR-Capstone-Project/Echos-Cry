@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class MeleeAttack :BaseAttack
 {
@@ -13,11 +14,13 @@ public class MeleeAttack :BaseAttack
         {
             Vector3 hitPoint = hit.point;
 
-            swingDirection = -(hitPoint - transform.position).normalized;
+            swingDirection = -(hitPoint - transform.parent.position).normalized; //Calculates the direction between the mouse mapped to world space and the players position.
             swingDirection.y = 0;
 
-            Quaternion updatedRotation = Quaternion.LookRotation(swingDirection);
-            transform.rotation = updatedRotation;
+            Quaternion aimingRotation = Quaternion.LookRotation(swingDirection);
+
+            Quaternion decalRotation = Quaternion.Euler(new Vector3(90, aimingRotation.eulerAngles.y, 0));
+            transform.rotation = decalRotation;
         }
     }
 
