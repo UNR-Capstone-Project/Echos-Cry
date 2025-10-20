@@ -1,16 +1,17 @@
 using UnityEngine;
 
-public class EnemyStats 
+public class EnemyStats : MonoBehaviour
 {
     private float _health;
-    private float _maxHealth;
-    public EnemyStats(float health, float maxHealth)
+    public float MaxHealth = 100f;
+
+    private void Start()
     {
-        _health = health;
-        _maxHealth = maxHealth;
+        _health = MaxHealth;
     }
+
     public void UpdateHealth(float numChange)
     {
-        _health = Mathf.Clamp(_health += numChange, 0, _maxHealth);
+        _health = Mathf.Clamp(_health += numChange, 0, MaxHealth);
     }
 }
