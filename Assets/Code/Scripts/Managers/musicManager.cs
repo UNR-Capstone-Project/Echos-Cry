@@ -120,4 +120,14 @@ public class MusicManager : ScriptableObject
     {
         if (currentMusicPlayer != null) { currentMusicPlayer.Resume(); }
     }
+
+    public void fadeVolumeToZero(float fadeTime)
+    {
+        if (currentMusicPlayer != null)
+        {
+            currentMusicPlayer.FadeVolume(fadeTime);
+            inactiveMusicPlayers.Add(currentMusicPlayer);
+            currentMusicPlayer = null;
+        }
+    }
 }

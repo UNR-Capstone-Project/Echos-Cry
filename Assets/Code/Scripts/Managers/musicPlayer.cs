@@ -204,7 +204,33 @@ public class MusicPlayer : MonoBehaviour
 
         songRunning = true;
     }
+    
+    /// <summary>
+    /// fades the volume of a player to a volume of 0 over a period of given seconds (float fadeTime)
+    /// </summary>
+    /// <param name="fadeTime">the amount of the time, in seconds, to reach a destination volume of zero</param>
+    public void FadeVolume(float fadeTime)
+    {
+        //validation 
+        if (fadeTime < 0)
+        {
+            fadeTime = 0.5f;
+        }
 
+        if (volumeFadingRoutine != null)
+        {
+            StopCoroutine(volumeFadingRoutine);
+        }
+
+        volumeFadingRoutine = StartCoroutine(FadeVolumeCoroutine(0, fadeTime));
+
+    }
+
+    /// <summary>
+    /// changes the volume of a player to the destinationVolume (float) over a period of seconds (float fadeTime)
+    /// </summary>
+    /// <param name="destinationVolume">the desired end volume for a musicPLayer of a song to hit</param>
+    /// <param name="fadeTime">the amount of the time, in seconds, to reach the destination volume</param>
     public void FadeVolume(float destinationVolume, float fadeTime)
     {
         //validation 

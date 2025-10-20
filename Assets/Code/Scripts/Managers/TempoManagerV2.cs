@@ -26,7 +26,7 @@ public class TempoManagerV2 : MonoBehaviour
         _badHitTimeEnd = _timeBetweenBeats - _badHitTimeStart;
     }
 
-    public void UpdateHitQuality()
+    public HIT_QUALITY UpdateHitQuality()
     {
         Debug.Log(_currentBeatTime);
         Debug.Log("Start" + _goodHitTimeStart + " End " + _goodHitTimeEnd);
@@ -36,6 +36,7 @@ public class TempoManagerV2 : MonoBehaviour
         else currentHitQuality = HIT_QUALITY.MISS;
 
         UpdateHitQualityEvent?.Invoke(currentHitQuality);
+        return currentHitQuality;
     }
 
     void Start()
