@@ -1,12 +1,16 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using UnityEngine;
+using static TempoManagerV2;
 
 public class ComboStateMachine : MonoBehaviour
 {
     void HandleLightAttack()
     {
         if (!_readyForAttackInput) return;
+
+        if (!HandleWeaponAttack()) return;
 
         StopAllCoroutines();
         _readyForAttackInput = false;
@@ -22,6 +26,8 @@ public class ComboStateMachine : MonoBehaviour
     {
         if (!_readyForAttackInput) return;
 
+        if (!HandleWeaponAttack()) return;
+
         StopAllCoroutines();
         _readyForAttackInput = false;
 
@@ -33,10 +39,39 @@ public class ComboStateMachine : MonoBehaviour
         StartCoroutine(AnimationLengthWait());
     }
 
+    private bool HandleWeaponAttack()
+    {
+        TempoManagerV2.HIT_QUALITY hitQuality = tempoManager.UpdateHitQuality();
+        if (hitQuality == HIT_QUALITY.MISS) { return false; }
+
+        equippedWeapon.SetActive(true);
+
+        switch (hitQuality)
+        {
+            case HIT_QUALITY.EXCELLENT:
+                damageMultiplier = 1.5f;
+                break;
+            case HIT_QUALITY.GOOD:
+                damageMultiplier = 1.2f;
+                break;
+            case HIT_QUALITY.BAD:
+                damageMultiplier = 1.1f;
+                break;
+            default: //Miss
+                damageMultiplier = 1.0f;
+                break;
+        }
+
+        equippedWeapon.GetComponent<BaseAttack>().StartAttack(damageMultiplier);
+
+        return true;
+    }
+
     public void ResetInputState()
     {
         _attackAnimator.runtimeAnimatorController = _defaultRuntimeController;
         _attackAnimator.Play("Idle");
+        equippedWeapon.SetActive(false);
         _readyForAttackInput = true;
         StartCoroutine(ComboResetTimer());
     }
@@ -99,7 +134,10 @@ public class ComboStateMachine : MonoBehaviour
 
     private void Awake()
     {
-        _attackAnimator = GetComponentInChildren<Animator>();
+        _attackAnimator = equippedWeapon.GetComponent<Animator>();
+        tempoManager = GameObject.Find("TempoManager").GetComponent<TempoManagerV2>();
+        equippedWeapon.SetActive(false);
+
         _defaultRuntimeController = _attackAnimator.runtimeAnimatorController;
         InitializeComboTree();
     }
@@ -125,13 +163,20 @@ public class ComboStateMachine : MonoBehaviour
         LIGHT1, LIGHT2, LIGHT3, LIGHT4, LIGHT5,
         HEAVY1, HEAVY2, HEAVY3
     }
+
+    [SerializeField] private GameObject equippedWeapon;
     [SerializeField] private InputTranslator _inputTranslator;
     [SerializeField] private float _comboResetTime = 0.5f;
+
     public Attack[] _tempAttackArray;
+    private bool _readyForAttackInput = true;
     private ComboState _currentState = null;
     private ComboState _startState = null;
     private ComboState[] _comboStates = null;
     private Animator _attackAnimator;
     private RuntimeAnimatorController _defaultRuntimeController;
-    private bool _readyForAttackInput = true;
+
+    private TempoManagerV2 tempoManager;
+    public event Action AttackStartedEvent;
+    private float damageMultiplier;
 }
