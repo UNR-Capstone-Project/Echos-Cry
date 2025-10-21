@@ -7,14 +7,15 @@ public class SimpleEnemyStateCache
     }
     private const int ARRAY_SIZE = 5;
     private SimpleEnemyState[] _enemyStates;
-    public SimpleEnemyStateCache(SimpleEnemyStateMachine stateMachineContext)
+    public SimpleEnemyStateCache(SimpleEnemyBehavior enemyBehavior)
     {
         _enemyStates = new SimpleEnemyState[ARRAY_SIZE];
-        _enemyStates[(int)States.IDLE] = new BasicEnemy_Idle(stateMachineContext);
-        _enemyStates[(int)States.CHASE] = new BasicEnemy_Chase(stateMachineContext);
-        _enemyStates[(int)States.ATTACK] = new BasicEnemy_Attack(stateMachineContext);
-        _enemyStates[(int)States.SPAWN] = new BasicEnemy_Spawn(stateMachineContext);
-        _enemyStates[(int)States.STAGGER] = new BasicEnemy_Stagger(stateMachineContext);
+
+        _enemyStates[(int)States.IDLE]    = new SimpleEnemyIdleState(enemyBehavior);
+        _enemyStates[(int)States.CHASE]   = new SimpleEnemyChaseState(enemyBehavior);
+        _enemyStates[(int)States.ATTACK]  = new SimpleEnemyAttackState(enemyBehavior);
+        _enemyStates[(int)States.SPAWN]   = new SimpleEnemySpawnState(enemyBehavior);
+        _enemyStates[(int)States.STAGGER] = new SimpleEnemyStaggerState(enemyBehavior);
     }
     public SimpleEnemyState Idle()
     {
@@ -31,7 +32,6 @@ public class SimpleEnemyStateCache
     public SimpleEnemyState Spawn()
     {
         return _enemyStates[(int)States.SPAWN];
-
     }
     public SimpleEnemyState Stagger()
     {
