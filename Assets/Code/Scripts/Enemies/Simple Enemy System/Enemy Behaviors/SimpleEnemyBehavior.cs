@@ -1,5 +1,11 @@
-
 using System;
+
+//Simple Enemy Behavior is the main script that will handle enemy logic for simple enemies
+//
+//Enemies will be split between three categories:
+//  Simple Enemies: Simple enemy that has the selected states
+//  Complex Enemies:
+//  Bosses/Mini Bosses:
 
 public abstract class SimpleEnemyBehavior 
 {

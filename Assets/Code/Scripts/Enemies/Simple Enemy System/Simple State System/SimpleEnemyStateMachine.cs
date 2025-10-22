@@ -1,4 +1,3 @@
-
 public class SimpleEnemyStateMachine 
 {
     private SimpleEnemyState _currentState;

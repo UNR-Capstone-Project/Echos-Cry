@@ -5,17 +5,17 @@ public class SimpleEnemyManager : MonoBehaviour
 {
     private SimpleEnemyBehavior InitEnemyBehavior(EnemyType enemyType)
     {
-        SimpleEnemyBehavior returnBehavior = null;
+        SimpleEnemyBehavior initBehavior = null;
 
         switch ((int)enemyType)
         {
             case (int)EnemyType.BASIC:
-                _enemyBehavior = new BasicEnemyBehavior(this, _enemyStateCache, _enemyStateMachine);
+                initBehavior = new BasicEnemyBehavior(this, _enemyStateCache, _enemyStateMachine);
                 break;
             default:
                 break;
         }
-        return returnBehavior;
+        return initBehavior;
     }
 
     private void Awake()
@@ -42,7 +42,6 @@ public class SimpleEnemyManager : MonoBehaviour
     {
         UNASSIGNED = 0, BASIC
     }
-
     private SimpleEnemyBehavior     _enemyBehavior;
     private SimpleEnemyStateMachine _enemyStateMachine;
     private SimpleEnemyStateCache   _enemyStateCache;
