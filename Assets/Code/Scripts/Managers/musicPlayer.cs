@@ -7,7 +7,6 @@ using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class MusicPlayer : MonoBehaviour
 {
-    private float playerVolume = 1.0f;
     private MusicEvent song;
     private List<AudioSource> songLayers = new List<AudioSource>();
     private Coroutine volumeFadingRoutine = null;
@@ -24,7 +23,7 @@ public class MusicPlayer : MonoBehaviour
     private double startTime;
     private double nextTime;
 
-    public float bpm = 84f;
+    public float bpm = 100f;
     public float gain = 0.5f;
     public int signatureHi = 4;
     public int signatureLo = 4;
@@ -118,7 +117,6 @@ public class MusicPlayer : MonoBehaviour
 
             layer.volume = newVolume;
         }
-        playerVolume = newVolume;
     }
 
     public void SetVolume(int musicLayerIndex, float newVolume)
@@ -137,6 +135,8 @@ public class MusicPlayer : MonoBehaviour
 
     public void Play()
     {
+        songRunning = true;
+
         startTime = AudioSettings.dspTime;
         sampleRate = AudioSettings.outputSampleRate;
         nextTime = startTime * sampleRate;
@@ -156,8 +156,6 @@ public class MusicPlayer : MonoBehaviour
             songLayers[i].loop = true;
             songLayers[i].PlayScheduled(startTime);
         }
-
-        songRunning = true;
     }
 
     public void Stop()
