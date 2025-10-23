@@ -8,6 +8,11 @@ using UnityEngine;
 //NOTE: when inheriting from SimpleEnemyBehavior, you must override the Awake, Start and OnDestroy functions and use
 //base.Awake, base.Start and base.OnDestroy inside of the override functions of the inheritted script
 
+//Each state has 4 functions associated with it
+//When transitioning to a new state, an Enter function will be called
+//The Update function will be called while the current state is active
+//When transitioning to a new state, the Exit function will be called for the current state and then transitioned to the new one
+
 public abstract class SimpleEnemyBehavior : MonoBehaviour
 {
     protected SimpleEnemyManager _seManager;
