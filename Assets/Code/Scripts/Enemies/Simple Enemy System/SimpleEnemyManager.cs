@@ -4,11 +4,17 @@ using UnityEngine.AI;
 //Main Handler script for enemy behavior and data.
 //This script handles the instantiation of the State Machine and its logic
 
+
 public class SimpleEnemyManager : MonoBehaviour
 {
     private void Awake()
     {   
-        _enemyBehavior     = GetComponent<SimpleEnemyBehavior>();
+        _enemyBehavior = GetComponent<SimpleEnemyBehavior>();
+        if (_enemyBehavior == null)
+        {
+            Debug.LogError("Enemy does not have behavior component! Disabling GameObject: " + gameObject.name);
+            gameObject.SetActive(false);
+        }
 
         _enemyStateMachine = new SimpleEnemyStateMachine();
         _enemyStateCache   = new SimpleEnemyStateCache(_enemyBehavior);

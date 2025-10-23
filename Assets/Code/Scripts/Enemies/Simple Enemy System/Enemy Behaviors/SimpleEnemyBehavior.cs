@@ -30,6 +30,9 @@ using UnityEngine.AI;
 //When inheriting from this script, you can add extra variables and any necessary data for the enemy's behavior to the inherited script
 //The base class keeps a reference to the animator and navmesh agent by default
 
+//These will implement these components on the gameObject if they don't already exist
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(NavMeshAgent))]
 public abstract class SimpleEnemyBehavior : MonoBehaviour
 {
     protected     SimpleEnemyManager       _seManager;
