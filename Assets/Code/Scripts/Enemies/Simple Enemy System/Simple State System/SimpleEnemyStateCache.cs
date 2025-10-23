@@ -1,4 +1,4 @@
-
+//DO NOT ADJUST UNLESS STRICTLY NECESSARY
 public class SimpleEnemyStateCache 
 {
     enum States

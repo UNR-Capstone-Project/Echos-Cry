@@ -53,7 +53,7 @@ public class BasicEnemyBehavior : SimpleEnemyBehavior
 
     public override void UnengagedEnter()
     {
-    
+        Debug.Log("Entering Unengaged state");
     }
     public override void UnengagedExit()
     {
@@ -70,11 +70,12 @@ public class BasicEnemyBehavior : SimpleEnemyBehavior
 
     public override void SpawnEnter()
     {
-    
+        Debug.Log("Entering Spawn state");
+        SwitchState(_seManager.EnemyStateCache.Unengaged());
     }
     public override void SpawnExit()
     {
-     
+        Debug.Log("Exiting Spawn state");
     }
     public override void SpawnSwitchConditions()
     {

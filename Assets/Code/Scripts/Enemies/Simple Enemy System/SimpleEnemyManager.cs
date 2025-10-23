@@ -9,6 +9,7 @@ public class SimpleEnemyManager : MonoBehaviour
     private void Awake()
     {   
         _enemyBehavior     = GetComponent<SimpleEnemyBehavior>();
+
         _enemyStateMachine = new SimpleEnemyStateMachine();
         _enemyStateCache   = new SimpleEnemyStateCache(_enemyBehavior);
     }

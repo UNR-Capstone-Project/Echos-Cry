@@ -1,3 +1,4 @@
+//DO NOT ADJUST UNLESS STRICTLY NECESSARY
 public class SimpleEnemyStateMachine 
 {
     private SimpleEnemyState _currentState;
