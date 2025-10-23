@@ -1,16 +1,12 @@
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class soundEffectManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public const int DEFAULT_POOL_CAPACITY = 15;
+    public const int MAX_SFX_PLAYERS = 30;
+    public const int MAX_POOL_SIZE = 50;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    IObjectPool<soundEffectPlayer> sfxPlayersPool;
+
 }
