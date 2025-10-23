@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+//Main Handler script for enemy behavior and data.
+//This script handles the instantiation of the State Machine and its logic
+
 public class SimpleEnemyManager : MonoBehaviour
 {
     private void Awake()
-    {
-        EnemyAnimator      = GetComponent<Animator>();
-        EnemyNMAgent       = GetComponent<NavMeshAgent>();
-        
+    {   
         _enemyBehavior     = GetComponent<SimpleEnemyBehavior>();
         _enemyStateMachine = new SimpleEnemyStateMachine();
         _enemyStateCache   = new SimpleEnemyStateCache(_enemyBehavior);
@@ -27,7 +27,4 @@ public class SimpleEnemyManager : MonoBehaviour
     private SimpleEnemyStateCache   _enemyStateCache;
     public SimpleEnemyStateCache   EnemyStateCache { get { return _enemyStateCache; } }
     public SimpleEnemyStateMachine EnemyStateMachine { get { return _enemyStateMachine; } }
-
-    public Animator     EnemyAnimator;
-    public NavMeshAgent EnemyNMAgent;
 }
