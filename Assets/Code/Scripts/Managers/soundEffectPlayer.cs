@@ -4,17 +4,8 @@ using UnityEngine;
 
 public class soundEffectPlayer : MonoBehaviour
 {
-    private soundEffect soundData;
+    public soundEffect soundData;
     private List<AudioSource> sfxAudioSource = new List<AudioSource>();
-    
-    private void Start()
-    {
-        if (sfxAudioSource == null)
-        {
-            gameObject.AddComponent<AudioSource>();
-        }
-    }
-
 
     public void setupSoundEffect(soundEffect sound)
     {
@@ -23,7 +14,7 @@ public class soundEffectPlayer : MonoBehaviour
         {
             for (int i = 0; i < sound.soundClips.Length; i++)
             {
-                gameObject.AddComponent<AudioSource>();
+                sfxAudioSource.Add(gameObject.AddComponent<AudioSource>());
                 sfxAudioSource[i].clip = sound.soundClips[i];
                 sfxAudioSource[i].outputAudioMixerGroup = sound.soundMixerGroup;
                 sfxAudioSource[i].loop = true;
@@ -32,6 +23,7 @@ public class soundEffectPlayer : MonoBehaviour
         }
         else
         {
+            sfxAudioSource.Add(gameObject.AddComponent<AudioSource>());
             sfxAudioSource[0].clip = sound.soundClips[0];
             sfxAudioSource[0].outputAudioMixerGroup = sound.soundMixerGroup;
             sfxAudioSource[0].loop = true;
@@ -44,7 +36,7 @@ public class soundEffectPlayer : MonoBehaviour
         int random;
         if (sfxAudioSource.Count > 0 && soundData.clipsAreRandomized)
         {
-            random = Random.Range(0, sfxAudioSource.Count);
+            random = Random.Range(0, sfxAudioSource.Count-1);
             sfxAudioSource[random].Play();
         } else
         {

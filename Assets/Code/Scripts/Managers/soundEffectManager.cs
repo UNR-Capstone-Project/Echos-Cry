@@ -55,4 +55,10 @@ public class soundEffectManager : MonoBehaviour
         soundPlayer.gameObject.SetActive(false);
         return soundPlayer;
     }
+
+    public soundEffectPlayer getPlayer()
+    {
+        return sfxPlayersPool.Get();
+    }
+
 }
