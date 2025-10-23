@@ -1,61 +1,69 @@
 using UnityEngine;
 
+//This is an example inherited SimpleEnemyBehavior script to show what the implementation should look like
+
 public class BasicEnemyBehavior : SimpleEnemyBehavior
 {
-    public BasicEnemyBehavior(SimpleEnemyManager seManager, SimpleEnemyStateCache stateCache, SimpleEnemyStateMachine stateMachine)
-        : base(seManager, stateCache, stateMachine) { }
-    ~BasicEnemyBehavior()
+    public override void Awake()
     {
-        SwitchStateEvent -= _stateMachine.HandleSwitchState;
+        base.Awake();
+    }
+    public override void Start()
+    {
+        base.Start();
+    }
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
     }
 
-    public override void AttackEnter()
+    public override void InitiateEnter()
     {
       
     }
-    public override void AttackExit()
+    public override void InitiateExit()
     {
     
     }
-    public override void AttackSwitchConditions()
+    public override void InitiateSwitchConditions()
     {
         
     }
-    public override void AttackUpdate()
+    public override void InitiateUpdate()
     {
        
     }
 
-    public override void ChaseEnter()
+    public override void EngagedEnter()
     {
     
     }
-    public override void ChaseExit()
+    public override void EngagedExit()
     {
      
     }
-    public override void ChaseSwitchConditions()
+    public override void EngagedSwitchConditions()
     {
      
     }
-    public override void ChaseUpdate()
+    public override void EngagedUpdate()
     {
      
     }
 
-    public override void IdleEnter()
+    public override void UnengagedEnter()
     {
     
     }
-    public override void IdleExit()
+    public override void UnengagedExit()
     {
      
     }
-    public override void IdleSwitchConditions()
+    public override void UnengagedSwitchConditions()
     {
      
     }
-    public override void IdleUpdate()
+    public override void UnengagedUpdate()
     {
     
     }

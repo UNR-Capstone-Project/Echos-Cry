@@ -1,37 +1,40 @@
 using System;
+using UnityEngine;
 
 //Simple Enemy Behavior is the main script that will handle enemy logic for simple enemies
-//
-//Enemies will be split between three categories:
-//  Simple Enemies: Simple enemy that has the selected states
-//  Complex Enemies:
-//  Bosses/Mini Bosses:
 
-public abstract class SimpleEnemyBehavior 
+//It is a MonoBehavior script that will be attached to the enemy with the SimpleEnemyManager
+
+//NOTE: when inheriting from SimpleEnemyBehavior, you must override the Awake, Start and OnDestroy functions and use
+//base.Awake, base.Start and base.OnDestroy inside of the override functions of the inheritted script
+
+public abstract class SimpleEnemyBehavior : MonoBehaviour
 {
     protected SimpleEnemyManager _seManager;
-    protected SimpleEnemyStateCache _stateCache;
-    protected SimpleEnemyStateMachine _stateMachine;
     protected event Action<SimpleEnemyState> SwitchStateEvent;
 
-    public SimpleEnemyBehavior(SimpleEnemyManager seManager, SimpleEnemyStateCache stateCache, SimpleEnemyStateMachine stateMachine)
+    public virtual void Awake()
     {
-        _seManager = seManager;
-        _stateCache = stateCache;
-        _stateMachine = stateMachine;
-
-        SwitchStateEvent += _stateMachine.HandleSwitchState;
+        _seManager = GetComponent<SimpleEnemyManager>();
+    }
+    public virtual void Start()
+    {
+        SwitchStateEvent += _seManager.EnemyStateMachine.HandleSwitchState;
+    }
+    public virtual void OnDestroy()
+    {
+        SwitchStateEvent -= _seManager.EnemyStateMachine.HandleSwitchState;
     }
 
-    public abstract void ChaseUpdate();
-    public abstract void ChaseEnter();
-    public abstract void ChaseExit();
-    public abstract void ChaseSwitchConditions();
+    public abstract void EngagedUpdate();
+    public abstract void EngagedEnter();
+    public abstract void EngagedExit();
+    public abstract void EngagedSwitchConditions();
 
-    public abstract void AttackUpdate();
-    public abstract void AttackEnter();
-    public abstract void AttackExit();
-    public abstract void AttackSwitchConditions();
+    public abstract void InitiateUpdate();
+    public abstract void InitiateEnter();
+    public abstract void InitiateExit();
+    public abstract void InitiateSwitchConditions();
 
     public abstract void SpawnUpdate();
     public abstract void SpawnEnter();
@@ -43,8 +46,8 @@ public abstract class SimpleEnemyBehavior
     public abstract void StaggerExit();
     public abstract void StaggerSwitchConditions();
 
-    public abstract void IdleUpdate();
-    public abstract void IdleEnter();
-    public abstract void IdleExit();
-    public abstract void IdleSwitchConditions();
+    public abstract void UnengagedUpdate();
+    public abstract void UnengagedEnter();
+    public abstract void UnengagedExit();
+    public abstract void UnengagedSwitchConditions();
 }
