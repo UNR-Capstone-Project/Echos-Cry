@@ -1,13 +1,12 @@
 using System.Collections.Generic;
+using AudioSystem;
 using UnityEngine;
 
 public class soundEffectPlayer : MonoBehaviour
 {
     private soundEffect soundData;
     private List<AudioSource> sfxAudioSource = new List<AudioSource>();
-    private Coroutine playingCoroutine = null;
-
-
+    
     private void Start()
     {
         if (sfxAudioSource == null)
