@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
                           + (playerLocomotion.x * playerSpeed * rightVector)
                           + (Vector3.up * playerRigidbody.linearVelocity.y);
 
-        playerRigidbody.AddForce(targetVel - playerRigidbody.linearVelocity, ForceMode.VelocityChange);
+        playerRigidbody.AddForce(targetVel, ForceMode.Force);
     }
 
     public void HandleMovement(Vector2 locomotion)
