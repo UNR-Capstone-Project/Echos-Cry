@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4420189026119222349}
   - component: {fileID: 7340525315438119175}
   m_Layer: 0
-  m_Name: SFXPrefabForManager
+  m_Name: SFXPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
