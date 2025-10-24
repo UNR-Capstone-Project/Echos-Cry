@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-//Structure to store the index of the enemy being damaged and the amount of damage being done.
+//Main handler for damage to enemies.
+//Stream-lined way of handling damage to enemies for large volumes of enemies through queue
 
 public class DamageHandler : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class DamageHandler : MonoBehaviour
     //Handles any enemy index placed in queue and does damage to enemy
     public void HandleDamageQueue(int numHandles)
     {
-        if (_indexQueue.Count <= 0) return;
+        if (_indexQueue.Count <= 0 || _enemyStatsPool == null) return;
 
         int handleAmount = numHandles;
         if(_indexQueue.Count < numHandles) handleAmount = _indexQueue.Count; 
@@ -47,6 +48,7 @@ public class DamageHandler : MonoBehaviour
         HandleDamageQueue(MAX_HANDLES);
     }
 
+    //Structure to store the index of the enemy being damaged and the amount of damage being done.
     private struct DamageInfo
     {
         public int index;
