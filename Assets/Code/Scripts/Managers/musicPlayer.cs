@@ -154,7 +154,6 @@ public class MusicPlayer : MonoBehaviour
         //iterate through existing layers with audio 
         for (int i = 0; i < song.Layers.Length; i++)
         {
-            Debug.Log(i);
             songLayers[i].clip = song.Layers[i];
             songLayers[i].volume = song.Volume;
             songLayers[i].loop = true;

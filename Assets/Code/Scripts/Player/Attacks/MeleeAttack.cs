@@ -10,6 +10,8 @@ public class MeleeAttack :BaseAttack
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
 
+        //ISSUE: Use ground layer here to prevent other gameObjects from obstructing the ray.
+
         if (Physics.Raycast(ray, out hit))
         {
             Vector3 hitPoint = hit.point;
