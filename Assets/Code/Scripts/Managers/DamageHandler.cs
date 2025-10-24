@@ -4,6 +4,8 @@ using System.Collections.Generic;
 //Main handler for damage to enemies.
 //Stream-lined way of handling damage to enemies for large volumes of enemies through queue
 
+//NOTE: This may be unnecessary depending on performance of just using HandleDamageCollision script
+
 public class DamageHandler : MonoBehaviour
 {
     //Call this after instantiating EnemyPool
@@ -32,7 +34,7 @@ public class DamageHandler : MonoBehaviour
         for(int i = 0;i < handleAmount; i++)
         {
             DamageInfo currentInfo = _indexQueue.Dequeue();
-            _enemyStatsPool[currentInfo.index].UpdateHealth(currentInfo.damage);
+            _enemyStatsPool[currentInfo.index].DamageEnemy(currentInfo.damage);
         } 
     }
 

@@ -16,16 +16,25 @@ public class EnemyStats : MonoBehaviour
     public event Action OnEnemyDamagedEvent;
     public event Action OnEnemyHealedEvent;
 
+    public void HealEnemy(float heal)
+    {
+        _health += Mathf.Abs(heal);
+        if (_health > MaxHealth) _health = MaxHealth;
+        OnEnemyHealedEvent?.Invoke();
+    }
+    public void DamageEnemy(float damage)
+    {
+        _health -= Mathf.Abs(damage);
+        if (_health < 0)
+        {
+            //do something
+        }
+        OnEnemyDamagedEvent?.Invoke();
+        Debug.Log("Health: " + _health);
+    }
+
     private void Start()
     {
         _health = MaxHealth;
-    }
-
-    public void UpdateHealth(float numChange)
-    {
-        _health = Mathf.Clamp(_health += numChange, 0, MaxHealth);
-
-        if (numChange >= 0) OnEnemyHealedEvent?.Invoke();
-        else OnEnemyDamagedEvent?.Invoke();
     }
 }
