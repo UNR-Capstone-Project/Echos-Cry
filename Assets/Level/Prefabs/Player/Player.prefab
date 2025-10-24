@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   dashSpeed: 30
-  dashDuration: 0.2
+  dashDuration: 0.22
   dashCooldown: 1
   inputTranslator: {fileID: 11400000, guid: bd0b59b436d5d904ba88ae6b7e661116, type: 2}
   playerSpeed: 28
@@ -423,6 +423,7 @@ GameObject:
   - component: {fileID: 5557950961606099828}
   - component: {fileID: 6708799519748724713}
   - component: {fileID: 8800062765207849607}
+  - component: {fileID: 9130599691073952778}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Billboard
@@ -541,6 +542,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &9130599691073952778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4323622196322604754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 971a2c0256099cb4683bd85d1c810450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Billboard
+  lockZRotation: 1
 --- !u!1 &7860510388739070033
 GameObject:
   m_ObjectHideFlags: 0
