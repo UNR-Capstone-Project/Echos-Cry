@@ -9,14 +9,9 @@ public class HandleDamageCollision : MonoBehaviour
     private EnemyInfo _enemyInfo;
     private Collider _enemyCollider;
 
-    private void Awake()
+    //This ensures that the PlayerAttack layer will be the only collider that can trigger enemy damage
+    void SetupColliderLayers()
     {
-        _enemyInfo = GetComponent<EnemyInfo>();
-        _enemyCollider = GetComponent<Collider>();
-    }
-    private void Start()
-    {
-        //This ensures that the PlayerAttack layer will be the only collider that can trigger enemy damage
         LayerMask includeThisLayer = 1 << LayerMask.NameToLayer("PlayerAttack");
         LayerMask excludeAllLayers = ~0;
         LayerMask excludeThisLayer = excludeAllLayers ^ includeThisLayer;
@@ -24,6 +19,15 @@ public class HandleDamageCollision : MonoBehaviour
         _enemyCollider.excludeLayers |= excludeAllLayers;
         _enemyCollider.excludeLayers &= excludeThisLayer;
         _enemyCollider.isTrigger = true;
+    }
+    private void Awake()
+    {
+        _enemyInfo = GetComponent<EnemyInfo>();
+        _enemyCollider = GetComponent<Collider>();
+    }
+    private void Start()
+    {
+        SetupColliderLayers();
     }
     private void OnTriggerEnter(Collider other)
     {
