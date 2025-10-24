@@ -1,26 +1,62 @@
 using System;
+using System.Collections.Generic;
+using AudioSystem;
 using UnityEngine;
 using UnityEngine.Pool;
 
 public class soundEffectManager : MonoBehaviour
 {
+    public static soundEffectManager Instance { get; private set; }
+
     [SerializeField] private soundEffectPlayer sfxPlayerPrefab;
-    private bool collectionCheck = true;
-    public const int DEFAULT_POOL_CAPACITY = 15;
-    public const int MAX_SFX_PLAYERS = 30;
-    public const int MAX_POOL_SIZE = 50;
+    [SerializeField] private bool collectionCheck = true;
+    [SerializeField] int DEFAULT_POOL_CAPACITY = 15;
+    [SerializeField] int MAX_SFX_PLAYERS = 30;
+    [SerializeField] int MAX_POOL_SIZE = 50;
     IObjectPool<soundEffectPlayer> sfxPlayersPool;
+    public readonly Queue<soundEffectPlayer> frequentSfxPlayers = new();
+
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        } else
+        {
+            Instance = this;
+        }
+    }
 
     private void Start()
     {
         initializeSoundPool();
     }
-
-    public soundEffectPlayer getSoundPlayer()
-    {
-        return sfxPlayersPool.Get();
-    }
     
+    public bool canPlaySound(soundEffect sound)
+    {
+        if (!sound.frequentlyPlayed)
+        {
+            return true;
+        }
+
+        if (frequentSfxPlayers.Count > MAX_SFX_PLAYERS && frequentSfxPlayers.TryDequeue(out var player))
+        {
+            try
+            {
+                player.Stop();
+                return true;
+            }
+            catch
+            {
+                Debug.Log("SFXPlayer already has been released");
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public soundBuilder createSound() => new soundBuilder(this);
+
     public void initializeSoundPool()
     {
         sfxPlayersPool = new ObjectPool<soundEffectPlayer>(
