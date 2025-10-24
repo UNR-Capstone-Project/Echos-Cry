@@ -7,7 +7,7 @@ using UnityEngine.Pool;
 public class soundEffectManager : MonoBehaviour
 {
     public static soundEffectManager Instance { get; private set; }
-
+    private soundBuilder builder;
     [SerializeField] private soundEffectPlayer sfxPlayerPrefab;
     [SerializeField] private bool collectionCheck = true;
     [SerializeField] int DEFAULT_POOL_CAPACITY = 15;
@@ -21,15 +21,20 @@ public class soundEffectManager : MonoBehaviour
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
-        } else
+        }
+        else
         {
             Instance = this;
         }
+        
+        
     }
 
     private void Start()
     {
-        initializeSoundPool();
+        //builder = ScriptableObject.CreateInstance<soundBuilder>();
+        //builder.Initialize(this);
+        //initializeSoundPool();
     }
     
     public bool canPlaySound(soundEffect sound)
@@ -55,7 +60,15 @@ public class soundEffectManager : MonoBehaviour
         return true;
     }
 
-    public soundBuilder createSound() => new soundBuilder(this);
+    public soundBuilder createSound() {
+        /*
+        if (builder == null)
+        {
+            builder = ScriptableObject.CreateInstance<soundBuilder>();
+            builder.Initialize(this);
+        }*/
+        return builder;
+    }
 
     public void initializeSoundPool()
     {

@@ -4,11 +4,11 @@ using AudioSystem;
 [CreateAssetMenu(fileName = "soundBuilder", menuName = "Scriptable Objects/soundBuilder")]
 public class soundBuilder : ScriptableObject
 {
-    readonly soundEffectManager soundManager;
+    soundEffectManager soundManager;
     soundEffect soundForBuild;
     Vector3 soundPosition = Vector3.zero;
 
-    public soundBuilder(soundEffectManager soundManager)
+    public void Initialize(soundEffectManager soundManager)
     {
         this.soundManager = soundManager;
     }
@@ -29,9 +29,9 @@ public class soundBuilder : ScriptableObject
     {
         if (!soundEffectManager.Instance.canPlaySound(soundForBuild)) return;
 
-        soundEffectPlayer player = soundManager.getPlayer();
-        player.setupSoundEffect(soundForBuild);
-        player.transform.position = soundPosition;
-        player.transform.parent = soundManager.transform;
+        //soundEffectPlayer player = soundManager.getPlayer();
+        //player.setupSoundEffect(soundForBuild);
+        //player.transform.position = soundPosition;
+        //player.transform.parent = soundManager.transform;
     }
 }

@@ -1,15 +1,18 @@
+using System;
 using System.Collections.Generic;
 using AudioSystem;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class soundEffectPlayer : MonoBehaviour
 {
-    [SerializeField] public soundEffect soundData;
-    private List<AudioSource> sfxAudioSource = new List<AudioSource>();
+    public soundEffect soundData;
+    [NonSerialized] private List<AudioSource> sfxAudioSource = new List<AudioSource>();
 
     public void setupSoundEffect(soundEffect sound)
     {
         soundData = sound;
+
         if (sound.soundClips.Length > 0)
         {
             for (int i = 0; i < sound.soundClips.Length; i++)
@@ -20,21 +23,26 @@ public class soundEffectPlayer : MonoBehaviour
                 sfxAudioSource[i].loop = true;
                 sfxAudioSource[i].playOnAwake = false;
             }
-        }
+        } 
     }
 
     public void Play()
     {
         int random;
-        if (sfxAudioSource.Count > 0 && soundData.clipsAreRandomized)
+
+        if (sfxAudioSource != null)
         {
-            random = Random.Range(0, sfxAudioSource.Count - 1);
-            sfxAudioSource[random].Play();
+            if (sfxAudioSource.Count > 0 && soundData.clipsAreRandomized)
+            {
+                random = Random.Range(0, sfxAudioSource.Count - 1);
+                sfxAudioSource[random].Play();
+            }
+            else
+            {
+                sfxAudioSource[0].Play();
+            }
         }
-        else
-        {
-            sfxAudioSource[0].Play();
-        }
+        
     }
     
     public void Stop()
