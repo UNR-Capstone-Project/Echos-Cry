@@ -25,7 +25,7 @@ public class EnemyStats : MonoBehaviour
     {
         _health = Mathf.Clamp(_health += numChange, 0, MaxHealth);
 
-        if (numChange > 0) OnEnemyHealedEvent?.Invoke();
+        if (numChange >= 0) OnEnemyHealedEvent?.Invoke();
         else OnEnemyDamagedEvent?.Invoke();
     }
 }
