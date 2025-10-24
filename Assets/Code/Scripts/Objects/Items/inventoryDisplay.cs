@@ -8,14 +8,15 @@ public class inventoryDisplay : MonoBehaviour
     public slotScript slotTwo;
     public slotScript slotThree;
     public slotScript slotFour;
+    public inventoryManager currentInventory;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        inventoryManager.current.onInventoryChangedEvent += OnUpdateInventory;
+        
     }
     private void OnUpdateInventory(){
         int i = 1;
-        foreach(inventoryItem item in inventoryManager.current.inventory){
+        foreach(inventoryItem item in currentInventory.inventory){
             if(i == 1){
                 slotOne.Set(item);
                 i++;
