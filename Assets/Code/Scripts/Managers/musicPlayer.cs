@@ -7,7 +7,6 @@ using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class MusicPlayer : MonoBehaviour
 {
-    private float playerVolume = 1.0f;
     private MusicEvent song;
     private List<AudioSource> songLayers = new List<AudioSource>();
     private Coroutine volumeFadingRoutine = null;
@@ -24,7 +23,7 @@ public class MusicPlayer : MonoBehaviour
     private double startTime;
     private double nextTime;
 
-    public float bpm = 84f;
+    public float bpm = 100f;
     public float gain = 0.5f;
     public int signatureHi = 4;
     public int signatureLo = 4;
@@ -34,6 +33,10 @@ public class MusicPlayer : MonoBehaviour
     private int accent;
 
     //This function was provided by Unity's documentation - https://docs.unity3d.com/6000.2/Documentation/ScriptReference/AudioSettings-dspTime.html
+    //Addressables - Control when assets are loaded in
+    //Thread sleeping to create a "lag" effect to test
+    //Know when audio is actually played from Audio source for synchronization.
+    
     void OnAudioFilterRead(float[] data, int channels) //This callback is executed on the audio thread when an audio buffer is read from an AudioSource
     {
         if (!songRunning) { return; }
@@ -118,7 +121,6 @@ public class MusicPlayer : MonoBehaviour
 
             layer.volume = newVolume;
         }
-        playerVolume = newVolume;
     }
 
     public void SetVolume(int musicLayerIndex, float newVolume)
@@ -137,6 +139,8 @@ public class MusicPlayer : MonoBehaviour
 
     public void Play()
     {
+        songRunning = true;
+
         startTime = AudioSettings.dspTime;
         sampleRate = AudioSettings.outputSampleRate;
         nextTime = startTime * sampleRate;
@@ -150,14 +154,11 @@ public class MusicPlayer : MonoBehaviour
         //iterate through existing layers with audio 
         for (int i = 0; i < song.Layers.Length; i++)
         {
-            Debug.Log(i);
             songLayers[i].clip = song.Layers[i];
             songLayers[i].volume = song.Volume;
             songLayers[i].loop = true;
             songLayers[i].PlayScheduled(startTime);
         }
-
-        songRunning = true;
     }
 
     public void Stop()

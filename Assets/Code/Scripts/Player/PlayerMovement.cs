@@ -2,6 +2,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using static TempoManagerV2;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
                           + (playerLocomotion.x * playerSpeed * rightVector)
                           + (Vector3.up * playerRigidbody.linearVelocity.y);
 
-        playerRigidbody.AddForce(targetVel - playerRigidbody.linearVelocity, ForceMode.VelocityChange);
+        playerRigidbody.AddForce(targetVel, ForceMode.Force);
     }
 
     public void HandleMovement(Vector2 locomotion)
@@ -31,6 +32,10 @@ public class PlayerMovement : MonoBehaviour
     public void HandleDash()
     {
         if (!canDash) return;
+
+        TempoManagerV2.HIT_QUALITY hitQuality = tempoManager.UpdateHitQuality();
+        if (hitQuality == HIT_QUALITY.MISS) { return; }
+
         playerRigidbody.AddForce(playerRigidbody.linearVelocity.normalized * dashSpeed, ForceMode.Impulse);
         StartCoroutine(DashDurationTimer(dashDuration));
         StartCoroutine(DashCooldownTimer(dashCooldown));
@@ -59,7 +64,9 @@ public class PlayerMovement : MonoBehaviour
     }
     void Start()
     {
-        if(inputTranslator == null) return;
+        tempoManager = GameObject.Find("TempoManager").GetComponent<TempoManagerV2>();
+
+        if (inputTranslator == null) return;
         inputTranslator.OnMovementEvent += HandleMovement;
         inputTranslator.OnDashEvent += HandleDash;
     }
@@ -103,4 +110,6 @@ public class PlayerMovement : MonoBehaviour
     
     [SerializeField] private Vector3 groundCheckBoxDimensions;
     [SerializeField] private float groundCheckBoxHeight;
+
+    private TempoManagerV2 tempoManager;
 }

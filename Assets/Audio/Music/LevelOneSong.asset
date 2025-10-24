@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ccea74a23758ff48beebc6abc27ac51, type: 3}
   m_Name: LevelOneSong
   m_EditorClassIdentifier: Assembly-CSharp::SoundSystem.MusicEvent
-  musicVolume: 0.5
+  musicVolume: 0.1
+  bpm: 85
   musicLayers:
-  - {fileID: 8300000, guid: fa5ac7196b9917f448c452a373cef33f, type: 3}
+  - {fileID: 8300000, guid: f58cfaae767ca9843b1960156d8f3a28, type: 3}
   musicMixerGroup: {fileID: 0}
-  musicTempo: 85

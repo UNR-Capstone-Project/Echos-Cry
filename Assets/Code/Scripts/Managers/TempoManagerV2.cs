@@ -15,24 +15,18 @@ public class TempoManagerV2 : MonoBehaviour
     public void UpdateTempo()
     {
         //The time between each beat(60 seconds / BPM)
-        _timeBetweenBeats = 60f / (float)MusicManager.Instance.GetTempo(); //Seconds per beat
+        _timeBetweenBeats = 60f / (float)MusicManager.Instance.GetTempo();
 
-        _excellentHitTimeStart = _timeBetweenBeats * _excellentPercent;
-        _goodHitTimeStart = _timeBetweenBeats * _goodPercent;
-        _badHitTimeStart = _timeBetweenBeats * _badPercent;
-
-        _excellentHitTimeEnd = _timeBetweenBeats - _excellentHitTimeStart;
-        _goodHitTimeEnd = _timeBetweenBeats - _goodHitTimeStart;
-        _badHitTimeEnd = _timeBetweenBeats - _badHitTimeStart;
+        _excellentHitTime = _timeBetweenBeats * _excellentPercent;
+        _goodHitTime = _timeBetweenBeats * _goodPercent;
+        _badHitTime = _timeBetweenBeats * _badPercent;
     }
 
     public HIT_QUALITY UpdateHitQuality()
     {
-        Debug.Log(_currentBeatTime);
-        Debug.Log("Start" + _goodHitTimeStart + " End " + _goodHitTimeEnd);
-        if (_currentBeatTime < _excellentHitTimeStart || _currentBeatTime > _excellentHitTimeEnd) { currentHitQuality = HIT_QUALITY.EXCELLENT; }
-        else if (_currentBeatTime < _goodHitTimeStart || _currentBeatTime > _goodHitTimeEnd) { currentHitQuality = HIT_QUALITY.GOOD; }
-        else if (_currentBeatTime < _badHitTimeStart || _currentBeatTime > _badHitTimeEnd) { currentHitQuality = HIT_QUALITY.BAD; }
+        if (_currentBeatTime > _timeBetweenBeats - _excellentHitTime || _currentBeatTime < _excellentHitTime) { currentHitQuality = HIT_QUALITY.EXCELLENT; }
+        else if (_currentBeatTime > _timeBetweenBeats - _goodHitTime || _currentBeatTime < _goodHitTime) { currentHitQuality = HIT_QUALITY.GOOD; }
+        else if (_currentBeatTime > _timeBetweenBeats - _badHitTime || _currentBeatTime < _badHitTime) { currentHitQuality = HIT_QUALITY.BAD; }
         else currentHitQuality = HIT_QUALITY.MISS;
 
         UpdateHitQualityEvent?.Invoke(currentHitQuality);
@@ -63,9 +57,9 @@ public class TempoManagerV2 : MonoBehaviour
     public HIT_QUALITY currentHitQuality = HIT_QUALITY.MISS;
 
     //Hit Time
-    private float _excellentPercent = 0.07f;
+    private float _excellentPercent = 0.1f;
     private float _goodPercent = 0.15f;
-    private float _badPercent = 0.30f;
+    private float _badPercent = 0.20f;
 
     //            Tempo Threshold
     // Start                           End
@@ -77,12 +71,9 @@ public class TempoManagerV2 : MonoBehaviour
     //   ***HitTimeStart represents the time value that is compared to the currentBeatTime at the start of the tempo threshold
     //   ***HitTimeEnd represents the time value that is compared to the currentBeatTime at the end of the tempo threshold
 
-    private float _excellentHitTimeStart = 0;
-    private float _goodHitTimeStart = 0;
-    private float _badHitTimeStart = 0;
-    private float _excellentHitTimeEnd = 0;
-    private float _goodHitTimeEnd = 0;
-    private float _badHitTimeEnd = 0;
+    private float _excellentHitTime = 0;
+    private float _goodHitTime = 0;
+    private float _badHitTime= 0;
 
     // Events
     public event Action<HIT_QUALITY> UpdateHitQualityEvent;
