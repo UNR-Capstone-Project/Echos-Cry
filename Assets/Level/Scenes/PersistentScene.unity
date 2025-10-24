@@ -832,10 +832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10925beca963ce8499362dfd2484d264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::sfxTestingScript
-  _playerHealthController: {fileID: 0}
-  testSoundA: {fileID: 0}
-  testSoundB: {fileID: 11400000, guid: 181dbd49dc07c424eb3a3b09e027e0c7, type: 2}
-  testSoundPlayer: {fileID: 0}
+  testSoundA: {fileID: 11400000, guid: 181dbd49dc07c424eb3a3b09e027e0c7, type: 2}
 --- !u!4 &460498443
 Transform:
   m_ObjectHideFlags: 0
@@ -3142,6 +3139,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::soundEffectManager
   sfxPlayerPrefab: {fileID: 7340525315438119175, guid: a415df7757020aa459c03857586c21be, type: 3}
+  collectionCheck: 1
+  DEFAULT_POOL_CAPACITY: 15
+  MAX_SFX_PLAYERS: 30
+  MAX_POOL_SIZE: 50
 --- !u!4 &2067279702
 Transform:
   m_ObjectHideFlags: 0
