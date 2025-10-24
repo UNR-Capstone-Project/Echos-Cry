@@ -33,6 +33,10 @@ public class MusicPlayer : MonoBehaviour
     private int accent;
 
     //This function was provided by Unity's documentation - https://docs.unity3d.com/6000.2/Documentation/ScriptReference/AudioSettings-dspTime.html
+    //Addressables - Control when assets are loaded in
+    //Thread sleeping to create a "lag" effect to test
+    //Know when audio is actually played from Audio source for synchronization.
+    
     void OnAudioFilterRead(float[] data, int channels) //This callback is executed on the audio thread when an audio buffer is read from an AudioSource
     {
         if (!songRunning) { return; }

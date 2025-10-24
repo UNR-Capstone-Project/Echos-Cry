@@ -2705,6 +2705,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1646183975}
   m_CullTransparentMesh: 1
+--- !u!1001 &1670791924
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3910726851097389380, guid: 378ba6a01bd5f254395df119dd7d55c7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910726851097389380, guid: 378ba6a01bd5f254395df119dd7d55c7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910726851097389380, guid: 378ba6a01bd5f254395df119dd7d55c7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910726851097389380, guid: 378ba6a01bd5f254395df119dd7d55c7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9271486
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910726851097389380, guid: 378ba6a01bd5f254395df119dd7d55c7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.2579887
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910726851097389380, guid: 378ba6a01bd5f254395df119dd7d55c7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.24248825
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910726851097389380, guid: 378ba6a01bd5f254395df119dd7d55c7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.12262518
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910726851097389380, guid: 378ba6a01bd5f254395df119dd7d55c7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 32.538
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910726851097389380, guid: 378ba6a01bd5f254395df119dd7d55c7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 27.278
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910726851097389380, guid: 378ba6a01bd5f254395df119dd7d55c7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -6.967
+      objectReference: {fileID: 0}
+    - target: {fileID: 5206062246351571867, guid: 378ba6a01bd5f254395df119dd7d55c7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5206062246351571867, guid: 378ba6a01bd5f254395df119dd7d55c7, type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8127797317833193659, guid: 378ba6a01bd5f254395df119dd7d55c7, type: 3}
+      propertyPath: m_Name
+      value: Directional Light (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8127797317833193659, guid: 378ba6a01bd5f254395df119dd7d55c7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8127797317833193659, guid: 378ba6a01bd5f254395df119dd7d55c7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 378ba6a01bd5f254395df119dd7d55c7, type: 3}
 --- !u!1 &1723479479
 GameObject:
   m_ObjectHideFlags: 0
@@ -3680,9 +3753,17 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5206062246351571867, guid: 378ba6a01bd5f254395df119dd7d55c7, type: 3}
+      propertyPath: m_Intensity
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8127797317833193659, guid: 378ba6a01bd5f254395df119dd7d55c7, type: 3}
       propertyPath: m_Name
       value: Directional Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 8127797317833193659, guid: 378ba6a01bd5f254395df119dd7d55c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3956,6 +4037,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 2097565311}
+  - {fileID: 1670791924}
   - {fileID: 1485859741}
   - {fileID: 1972404813}
   - {fileID: 1890463993}
