@@ -8,10 +8,12 @@ using UnityEngine;
 public class BasicEnemyBehavior : SimpleEnemyBehavior
 {
     private Transform playerTarget;
-    [SerializeField] private float interestTimeCooldown = 2f;
+    [SerializeField] private float interestTimerWait = 2f;
+    [SerializeField] private float attackTimerWait = 3f;
     [SerializeField] private float attackWithinDistance = 1f; //Magnitude of vector distance till enemy can attack.
     private bool playerWithinFollowRange = false;
     private bool interestTimerStarted = false;
+    private bool attackHasStarted = false;
 
     public override void Awake()
     {
@@ -36,6 +38,8 @@ public class BasicEnemyBehavior : SimpleEnemyBehavior
     {
         Debug.Log("Entering Initiate state!");
         //TODO: Use pooling to instance a enemy attack gameObject.
+        attackHasStarted = true;
+        StartCoroutine(attackCooldownTimer(attackTimerWait));
     }
     public override void InitiateExit()
     {
@@ -43,7 +47,10 @@ public class BasicEnemyBehavior : SimpleEnemyBehavior
     }
     public override void InitiateSwitchConditions()
     {
-    
+        if (!attackHasStarted)
+        {
+            SwitchState(_seManager.EnemyStateCache.Engaged());
+        }
     }
     public override void InitiateUpdate()
     {
@@ -52,7 +59,7 @@ public class BasicEnemyBehavior : SimpleEnemyBehavior
 
     public override void EngagedEnter()
     {
-    
+        Debug.Log("Entering Engaged state!");
     }
     public override void EngagedExit()
     {
@@ -147,7 +154,7 @@ public class BasicEnemyBehavior : SimpleEnemyBehavior
     {
         if (other.CompareTag("Player") && !interestTimerStarted)
         {
-            StartCoroutine(loseTargetInterestTimer(interestTimeCooldown));
+            StartCoroutine(loseTargetInterestTimer(interestTimerWait));
             interestTimerStarted = true;
         }
     }
@@ -160,5 +167,11 @@ public class BasicEnemyBehavior : SimpleEnemyBehavior
             playerWithinFollowRange = false;
             interestTimerStarted = false;
         }
+    }
+
+    IEnumerator attackCooldownTimer(float cooldownTime)
+    {
+        yield return new WaitForSeconds(cooldownTime);
+        attackHasStarted = false;
     }
 }
