@@ -14,15 +14,17 @@ public class sfxTestingScript : MonoBehaviour
         
         for (int i = 0; i < 2; i++)
         {
-            int randomSound;
+            int randomSound = 2;
 
+            /*
             if (i == 0)
             {
                 randomSound = 1;
-            } else
+            }
+            else
             {
                 randomSound = 2;
-            }
+            }*/
 
             if (randomSound == 1)
             {
@@ -30,7 +32,7 @@ public class sfxTestingScript : MonoBehaviour
                     .setSound(singleSound)
                     .setSoundPosition(posA)
                     .ValidateAndPlaySound();
-                Debug.Log("SOUND A PLAYED");
+                //Debug.Log("SOUND A PLAYED");
             }
             else
             {
@@ -38,7 +40,7 @@ public class sfxTestingScript : MonoBehaviour
                     .setSound(multiClipSound)
                     .setSoundPosition(posA)
                     .ValidateAndPlaySound();
-                Debug.Log("====SECOND SOUND PLAYED====");
+                //Debug.Log("====SECOND SOUND PLAYED====");
             }
 
             yield return new WaitForSeconds(3);
