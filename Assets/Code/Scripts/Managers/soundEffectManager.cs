@@ -28,22 +28,13 @@ public class soundEffectManager : MonoBehaviour
             Instance = this;
         }
 
-
-    }
-
-    void Start()
-    {
-        if (!Application.isPlaying) return;
-
-        initializeSoundPool();
+        if (Application.isPlaying) initializeSoundPool();
     }
 
     public bool canPlaySound(soundEffect sound)
     {
-        if (!sound.isFrequent)
-        {
-            return true;
-        }
+        if (sound == null) return false;
+        if (!sound.isFrequent) return true;
 
         if (frequentSfxPlayers.Count > MAX_SFX_PLAYERS && frequentSfxPlayers.TryDequeue(out var player))
         {
@@ -65,16 +56,10 @@ public class soundEffectManager : MonoBehaviour
     {
         if (builder == null)
         {
-            StartCoroutine(WaitOneFrame());
+            builder = ScriptableObject.CreateInstance<soundBuilder>();
+            builder.Initialize(this);
         }
         return builder;
-    }
-    
-    private IEnumerator WaitOneFrame()
-    {
-        yield return null;
-        builder = ScriptableObject.CreateInstance<soundBuilder>();
-        builder.Initialize(this);
     }
 
     public void initializeSoundPool()
@@ -107,6 +92,11 @@ public class soundEffectManager : MonoBehaviour
 
     public soundEffectPlayer createSoundPlayer()
     {
+        if (sfxPlayerPrefab == null)
+        {
+            GameObject temporary = new GameObject("SFXPlayer");
+            return temporary.AddComponent<soundEffectPlayer>();
+        }
         var soundPlayer = Instantiate(sfxPlayerPrefab);
         soundPlayer.gameObject.SetActive(false);
         return soundPlayer;
@@ -114,6 +104,11 @@ public class soundEffectManager : MonoBehaviour
 
     public soundEffectPlayer getPlayer()
     {
+        if (sfxPlayersPool == null)
+        {
+            initializeSoundPool();
+        }
+        
         return sfxPlayersPool.Get();
     }
 

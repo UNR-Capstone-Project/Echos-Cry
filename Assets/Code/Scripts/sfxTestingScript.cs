@@ -10,12 +10,12 @@ public class sfxTestingScript : MonoBehaviour
 
     void Start()
     {
-        /*
         soundEffectManager.Instance.createSound()
-            .setSound(singleSound)
+            .setSound(multiClipSound)
             .setSoundPosition(posA)
             .ValidateAndPlaySound();
-        */
+
+        
     }
 
     
