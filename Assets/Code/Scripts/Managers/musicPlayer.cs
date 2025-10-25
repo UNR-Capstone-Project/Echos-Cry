@@ -90,7 +90,7 @@ public class MusicPlayer : MonoBehaviour
         songLayers.Clear();
 
         //Setup initial gameobject with AudioSource
-        songLayers.Add(gameObject.AddComponent<AudioSource>());
+        songLayers.Add(gameObject.GetComponent<AudioSource>());
         songLayers[0].playOnAwake = false;
         songLayers[0].loop = true;
 
