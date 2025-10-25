@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using AudioSystem;
 using UnityEngine;
@@ -8,13 +9,13 @@ public class soundEffectManager : MonoBehaviour
 {
     public static soundEffectManager Instance { get; private set; }
     private soundBuilder builder;
-    [SerializeField] private soundEffectPlayer sfxPlayerPrefab;
-    [SerializeField] private bool collectionCheck = true;
-    [SerializeField] int DEFAULT_POOL_CAPACITY = 15;
-    [SerializeField] int MAX_SFX_PLAYERS = 30;
-    [SerializeField] int MAX_POOL_SIZE = 50;
+    [SerializeField, HideInInspector] private soundEffectPlayer sfxPlayerPrefab;
+    private bool collectionCheck = true;
+    private int DEFAULT_POOL_CAPACITY = 30;
+    private int MAX_SFX_PLAYERS = 30;
+    private int MAX_POOL_SIZE = 50;
     IObjectPool<soundEffectPlayer> sfxPlayersPool;
-    public readonly Queue<soundEffectPlayer> frequentSfxPlayers = new();
+    private Queue<soundEffectPlayer> frequentSfxPlayers = new();
 
     void Awake()
     {
@@ -26,20 +27,20 @@ public class soundEffectManager : MonoBehaviour
         {
             Instance = this;
         }
-        
-        
+
+
     }
 
-    private void Start()
+    void Start()
     {
-        //builder = ScriptableObject.CreateInstance<soundBuilder>();
-        //builder.Initialize(this);
-        //initializeSoundPool();
+        if (!Application.isPlaying) return;
+
+        initializeSoundPool();
     }
-    
+
     public bool canPlaySound(soundEffect sound)
     {
-        if (!sound.frequentlyPlayed)
+        if (!sound.isFrequent)
         {
             return true;
         }
@@ -60,14 +61,20 @@ public class soundEffectManager : MonoBehaviour
         return true;
     }
 
-    public soundBuilder createSound() {
-        /*
+    public soundBuilder createSound()
+    {
         if (builder == null)
         {
-            builder = ScriptableObject.CreateInstance<soundBuilder>();
-            builder.Initialize(this);
-        }*/
+            StartCoroutine(WaitOneFrame());
+        }
         return builder;
+    }
+    
+    private IEnumerator WaitOneFrame()
+    {
+        yield return null;
+        builder = ScriptableObject.CreateInstance<soundBuilder>();
+        builder.Initialize(this);
     }
 
     public void initializeSoundPool()

@@ -7,7 +7,12 @@ using Random = UnityEngine.Random;
 public class soundEffectPlayer : MonoBehaviour
 {
     public soundEffect soundData;
-    [NonSerialized] private List<AudioSource> sfxAudioSource = new List<AudioSource>();
+    [NonSerialized] private List<AudioSource> sfxAudioSource;
+
+    private void Awake()
+    {
+        sfxAudioSource = new List<AudioSource>();
+    }
 
     public void setupSoundEffect(soundEffect sound)
     {
@@ -23,6 +28,7 @@ public class soundEffectPlayer : MonoBehaviour
                 sfxAudioSource[i].loop = true;
                 sfxAudioSource[i].playOnAwake = false;
             }
+            
         } 
     }
 
@@ -32,7 +38,7 @@ public class soundEffectPlayer : MonoBehaviour
 
         if (sfxAudioSource != null)
         {
-            if (sfxAudioSource.Count > 0 && soundData.clipsAreRandomized)
+            if (sfxAudioSource.Count > 0 && soundData.randomized)
             {
                 random = Random.Range(0, sfxAudioSource.Count - 1);
                 sfxAudioSource[random].Play();
@@ -44,7 +50,7 @@ public class soundEffectPlayer : MonoBehaviour
         }
         
     }
-    
+
     public void Stop()
     {
         if (sfxAudioSource != null)
@@ -54,6 +60,11 @@ public class soundEffectPlayer : MonoBehaviour
                 sfxAudioSource[i].Stop();
             }
         }
+    }
+    
+    public void setupName()
+    {
+        
     }
 
 }

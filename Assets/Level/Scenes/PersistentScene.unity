@@ -1281,11 +1281,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 791929450}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10925beca963ce8499362dfd2484d264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::sfxTestingScript
+  singleSound: {fileID: 11400000, guid: 181dbd49dc07c424eb3a3b09e027e0c7, type: 2}
+  multiClipSound: {fileID: 11400000, guid: 137cb7710ac2c5b4aa7dc1ed5cd45093, type: 2}
 --- !u!4 &791929452
 Transform:
   m_ObjectHideFlags: 0
@@ -2359,16 +2361,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1395202606}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ecfab09575973cc49882e18a8a3e09db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::soundEffectManager
   sfxPlayerPrefab: {fileID: 7340525315438119175, guid: a415df7757020aa459c03857586c21be, type: 3}
-  collectionCheck: 1
-  DEFAULT_POOL_CAPACITY: 15
-  MAX_SFX_PLAYERS: 30
-  MAX_POOL_SIZE: 50
 --- !u!4 &1395202608
 Transform:
   m_ObjectHideFlags: 0
@@ -3181,7 +3179,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2052049163}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af0c3c42ca0ea1e46905a053f603824f, type: 3}
   m_Name: 

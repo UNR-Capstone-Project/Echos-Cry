@@ -24,14 +24,14 @@ public class soundBuilder : ScriptableObject
         soundPosition = position;
         return this;
     }
-    
+
     public void ValidateAndPlaySound()
     {
         if (!soundEffectManager.Instance.canPlaySound(soundForBuild)) return;
 
-        //soundEffectPlayer player = soundManager.getPlayer();
-        //player.setupSoundEffect(soundForBuild);
-        //player.transform.position = soundPosition;
-        //player.transform.parent = soundManager.transform;
+        soundEffectPlayer player = soundManager.getPlayer();
+        player.setupSoundEffect(soundForBuild);
+        player.transform.position = soundPosition;
+        player.transform.parent = soundManager.transform;
     }
 }

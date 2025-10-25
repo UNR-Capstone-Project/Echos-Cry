@@ -1,15 +1,21 @@
+using System;
 using AudioSystem;
 using UnityEngine;
 
 public class sfxTestingScript : MonoBehaviour
 {
+    [SerializeField] soundEffect singleSound;
+    [SerializeField] soundEffect multiClipSound;
     private Vector3 posA = Vector3.zero;
 
     void Start()
     {
-        soundEffectManager.Instance.createSoundPlayer();
-        //soundEffectManager.Instance.createSoundPlayer()
-        
+        /*
+        soundEffectManager.Instance.createSound()
+            .setSound(singleSound)
+            .setSoundPosition(posA)
+            .ValidateAndPlaySound();
+        */
     }
 
     
