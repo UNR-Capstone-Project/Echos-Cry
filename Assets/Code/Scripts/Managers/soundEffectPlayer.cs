@@ -25,7 +25,7 @@ public class soundEffectPlayer : MonoBehaviour
                 sfxAudioSource.Add(gameObject.AddComponent<AudioSource>());
                 sfxAudioSource[i].clip = sound.soundClips[i];
                 sfxAudioSource[i].outputAudioMixerGroup = sound.soundMixerGroup;
-                sfxAudioSource[i].loop = false;
+                sfxAudioSource[i].loop = sound.ambience;
                 sfxAudioSource[i].playOnAwake = false;
             }
             
