@@ -108,8 +108,28 @@ public class soundEffectManager : MonoBehaviour
         {
             initializeSoundPool();
         }
-        
+
         return sfxPlayersPool.Get();
+    }
+
+    public void releasePlayer(soundEffectPlayer player)
+    {
+        sfxPlayersPool.Release(player);
+    }
+    
+    public void registerFrequentPlayer(soundEffectPlayer player)
+    {
+        frequentSfxPlayers.Enqueue(player);
+
+        if (frequentSfxPlayers.Count > MAX_SFX_PLAYERS)
+        {
+            if (frequentSfxPlayers.TryDequeue(out var oldestPlayer))
+            {
+                oldestPlayer.Stop();
+                sfxPlayersPool.Release(oldestPlayer);        
+            }
+        
+        }
     }
 
 }

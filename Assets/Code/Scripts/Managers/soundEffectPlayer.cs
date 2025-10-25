@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using AudioSystem;
 using UnityEngine;
@@ -42,10 +43,20 @@ public class soundEffectPlayer : MonoBehaviour
             {
                 random = Random.Range(0, sfxAudioSource.Count - 1);
                 sfxAudioSource[random].Play();
+                if (!soundData.ambience)
+                {
+                    float clipLength = sfxAudioSource[random].clip.length;
+                    StartCoroutine(returnToPoolAfterTime(clipLength));
+                }
             }
             else
             {
                 sfxAudioSource[0].Play();
+                if (!soundData.ambience)
+                {
+                    float clipLength = sfxAudioSource[0].clip.length;
+                    StartCoroutine(returnToPoolAfterTime(clipLength));
+                }
             }
         }
         
@@ -61,10 +72,11 @@ public class soundEffectPlayer : MonoBehaviour
             }
         }
     }
-    
-    public void setupName()
+
+    private IEnumerator returnToPoolAfterTime(float seconds)
     {
-        
+        yield return new WaitForSeconds(seconds);
+        soundEffectManager.Instance.releasePlayer(this);
     }
 
 }

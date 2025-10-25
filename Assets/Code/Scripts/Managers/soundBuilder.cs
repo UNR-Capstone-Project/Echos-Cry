@@ -33,6 +33,9 @@ public class soundBuilder : ScriptableObject
         player.setupSoundEffect(soundForBuild);
         player.transform.position = soundPosition;
         player.transform.parent = soundManager.transform;
+
+        if (soundForBuild.isFrequent) soundManager.registerFrequentPlayer(player);
+
         player.Play();
     }
 }
