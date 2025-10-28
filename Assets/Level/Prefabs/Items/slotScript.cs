@@ -17,8 +17,10 @@ public void Set(inventoryItem item){
     if (item.stackSize <= 1){
         m_stackObj.SetActive(false);
         return;
+    }else{
+        m_stackObj = item.data.prefab;
     }
-
+    
     m_num.text = item.stackSize.ToString();
 }
 }

@@ -47,6 +47,6 @@ public class inventoryDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        OnUpdateInventory();
     }
 }

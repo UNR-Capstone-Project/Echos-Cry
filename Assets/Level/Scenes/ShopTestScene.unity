@@ -355,6 +355,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 145267326}
   m_CullTransparentMesh: 1
+--- !u!1 &182591195 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8109946571622884026, guid: 3956973db0bcb564daf7a7f41344cbc5, type: 3}
+  m_PrefabInstance: {fileID: 1864736637}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &237796170
 GameObject:
   m_ObjectHideFlags: 0
@@ -2328,7 +2333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::slotScript
   m_icon: {fileID: 0}
-  m_stackObj: {fileID: 0}
+  m_stackObj: {fileID: 182591195}
   m_num: {fileID: 0}
 --- !u!1001 &1194077994
 PrefabInstance:
