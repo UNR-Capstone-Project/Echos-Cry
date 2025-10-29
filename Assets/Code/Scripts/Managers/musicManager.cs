@@ -29,9 +29,7 @@ public class MusicManager : ScriptableObject
 
     public const int MAX_LAYER_COUNT = 5;
     private GameObject musicPlayerPrefab;
-    //[SerializeField] private float globalMusicVolume;
     [SerializeField] private float crossfadeTime = 0.5f;
-
     [SerializeField] private MusicPlayer currentMusicPlayer;
     [SerializeField] private List<MusicPlayer> inactiveMusicPlayers = new List<MusicPlayer>();
 
@@ -119,5 +117,15 @@ public class MusicManager : ScriptableObject
     public void ResumeSong()
     {
         if (currentMusicPlayer != null) { currentMusicPlayer.Resume(); }
+    }
+
+    public void fadeVolumeToZero(float fadeTime)
+    {
+        if (currentMusicPlayer != null)
+        {
+            currentMusicPlayer.FadeVolume(fadeTime);
+            inactiveMusicPlayers.Add(currentMusicPlayer);
+            currentMusicPlayer = null;
+        }
     }
 }

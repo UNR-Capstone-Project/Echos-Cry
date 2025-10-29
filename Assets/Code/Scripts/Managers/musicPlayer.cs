@@ -7,7 +7,6 @@ using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class MusicPlayer : MonoBehaviour
 {
-    private float playerVolume = 1.0f;
     private MusicEvent song;
     private List<AudioSource> songLayers = new List<AudioSource>();
     private Coroutine volumeFadingRoutine = null;
@@ -24,7 +23,7 @@ public class MusicPlayer : MonoBehaviour
     private double startTime;
     private double nextTime;
 
-    public float bpm = 84f;
+    public float bpm = 100f;
     public float gain = 0.5f;
     public int signatureHi = 4;
     public int signatureLo = 4;
@@ -34,6 +33,10 @@ public class MusicPlayer : MonoBehaviour
     private int accent;
 
     //This function was provided by Unity's documentation - https://docs.unity3d.com/6000.2/Documentation/ScriptReference/AudioSettings-dspTime.html
+    //Addressables - Control when assets are loaded in
+    //Thread sleeping to create a "lag" effect to test
+    //Know when audio is actually played from Audio source for synchronization.
+    
     void OnAudioFilterRead(float[] data, int channels) //This callback is executed on the audio thread when an audio buffer is read from an AudioSource
     {
         if (!songRunning) { return; }
@@ -87,17 +90,22 @@ public class MusicPlayer : MonoBehaviour
         songLayers.Clear();
 
         //Setup initial gameobject with AudioSource
-        songLayers.Add(gameObject.AddComponent<AudioSource>());
+        songLayers.Add(gameObject.GetComponent<AudioSource>());
         songLayers[0].playOnAwake = false;
         songLayers[0].loop = true;
 
-        for (int i = 1; i < MusicManager.MAX_LAYER_COUNT; i++)
+        //Create copy of main gameObject for subsequent objects to copy
+        GameObject childObject = Instantiate(gameObject, transform.position, Quaternion.identity, transform);
+        Destroy(childObject.GetComponent<MusicPlayer>());
+        songLayers.Add(childObject.GetComponent<AudioSource>());
+        songLayers[1].playOnAwake = false;
+        songLayers[1].loop = true;
+
+        for (int i = 2; i < MusicManager.MAX_LAYER_COUNT; i++)
         {
             //Copy base gameObject into a child gameObject that will have individual AudioSources
-            GameObject childObject = Instantiate(gameObject, transform.position, Quaternion.identity, transform);
-            songLayers.Add(childObject.GetComponent<AudioSource>());
-            Destroy(childObject.GetComponent<MusicPlayer>());
-            //Debug.Log("added Audio Source to a music player");
+            GameObject newObject = Instantiate(childObject, transform.position, Quaternion.identity, transform);
+            songLayers.Add(newObject.GetComponent<AudioSource>());
             songLayers[i].playOnAwake = false;
             songLayers[i].loop = true;
         }
@@ -113,7 +121,6 @@ public class MusicPlayer : MonoBehaviour
 
             layer.volume = newVolume;
         }
-        playerVolume = newVolume;
     }
 
     public void SetVolume(int musicLayerIndex, float newVolume)
@@ -132,6 +139,8 @@ public class MusicPlayer : MonoBehaviour
 
     public void Play()
     {
+        songRunning = true;
+
         startTime = AudioSettings.dspTime;
         sampleRate = AudioSettings.outputSampleRate;
         nextTime = startTime * sampleRate;
@@ -145,14 +154,11 @@ public class MusicPlayer : MonoBehaviour
         //iterate through existing layers with audio 
         for (int i = 0; i < song.Layers.Length; i++)
         {
-            Debug.Log(i);
             songLayers[i].clip = song.Layers[i];
             songLayers[i].volume = song.Volume;
             songLayers[i].loop = true;
             songLayers[i].PlayScheduled(startTime);
         }
-
-        songRunning = true;
     }
 
     public void Stop()
@@ -199,7 +205,33 @@ public class MusicPlayer : MonoBehaviour
 
         songRunning = true;
     }
+    
+    /// <summary>
+    /// fades the volume of a player to a volume of 0 over a period of given seconds (float fadeTime)
+    /// </summary>
+    /// <param name="fadeTime">the amount of the time, in seconds, to reach a destination volume of zero</param>
+    public void FadeVolume(float fadeTime)
+    {
+        //validation 
+        if (fadeTime < 0)
+        {
+            fadeTime = 0.5f;
+        }
 
+        if (volumeFadingRoutine != null)
+        {
+            StopCoroutine(volumeFadingRoutine);
+        }
+
+        volumeFadingRoutine = StartCoroutine(FadeVolumeCoroutine(0, fadeTime));
+
+    }
+
+    /// <summary>
+    /// changes the volume of a player to the destinationVolume (float) over a period of seconds (float fadeTime)
+    /// </summary>
+    /// <param name="destinationVolume">the desired end volume for a musicPLayer of a song to hit</param>
+    /// <param name="fadeTime">the amount of the time, in seconds, to reach the destination volume</param>
     public void FadeVolume(float destinationVolume, float fadeTime)
     {
         //validation 
