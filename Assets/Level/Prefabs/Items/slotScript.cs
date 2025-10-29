@@ -13,16 +13,11 @@ private GameObject m_stackObj;
 private TextMeshProUGUI m_num;
 
 public void Set(inventoryItem item){
-    Debug.Log(item.data.icon);
-    Debug.Log(m_icon.sprite);
     m_icon.sprite = item.data.icon;
-    Debug.Log("check 2");
     if (item.stackSize < 1){
-        Debug.Log("<1");
-        m_stackObj.SetActive(false);
+        m_stackObj = null;
         return;
     }else{
-        Debug.Log("else");
         m_stackObj = item.data.prefab;
     }
     
