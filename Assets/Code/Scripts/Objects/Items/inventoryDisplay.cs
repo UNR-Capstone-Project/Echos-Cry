@@ -18,7 +18,10 @@ public class inventoryDisplay : MonoBehaviour
         int i = 1;
         foreach(inventoryItem item in currentInventory.inventory){
             if(i == 1){
+                Debug.Log("check 1");
+                Debug.Log(item.data.id);
                 slotOne.Set(item);
+                Debug.Log("check 2");
                 i++;
             }else if(i == 2){
                 slotTwo.Set(item);
