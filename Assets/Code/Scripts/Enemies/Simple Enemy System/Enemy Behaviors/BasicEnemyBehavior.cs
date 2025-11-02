@@ -11,6 +11,7 @@ public class BasicEnemyBehavior : SimpleEnemyBehavior
     [SerializeField] private float interestTimerWait = 2f;
     [SerializeField] private float attackTimerWait = 3f;
     [SerializeField] private float attackWithinDistance = 1f; //Magnitude of vector distance till enemy can attack.
+    [SerializeField] private float followWithinDistance = 5f;
     private bool playerWithinFollowRange = false;
     private bool interestTimerStarted = false;
     private bool attackHasStarted = false;
@@ -78,6 +79,16 @@ public class BasicEnemyBehavior : SimpleEnemyBehavior
             {
                 SwitchState(_seManager.EnemyStateCache.Initiate());
             }
+            else if (playerDistance > followWithinDistance && !interestTimerStarted)
+            {
+                interestTimerStarted = true;
+                StartCoroutine(loseTargetInterestTimer(interestTimerWait));
+            }
+            else if (playerDistance <= followWithinDistance)
+            {
+                playerWithinFollowRange = true;
+                interestTimerStarted = false;
+            }
         }
     }
     public override void EngagedUpdate()
@@ -96,8 +107,11 @@ public class BasicEnemyBehavior : SimpleEnemyBehavior
     }
     public override void UnengagedSwitchConditions()
     {
-        if (playerWithinFollowRange)
+        float playerDistance = Math.Abs((gameObject.transform.position - playerTarget.position).magnitude);
+        if (playerDistance < followWithinDistance)
         {
+            playerWithinFollowRange = true;
+            interestTimerStarted = false;
             SwitchState(_seManager.EnemyStateCache.Engaged());
         }
     }
@@ -141,32 +155,13 @@ public class BasicEnemyBehavior : SimpleEnemyBehavior
     {
      
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerWithinFollowRange = true;
-            interestTimerStarted = false;
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player") && !interestTimerStarted)
-        {
-            StartCoroutine(loseTargetInterestTimer(interestTimerWait));
-            interestTimerStarted = true;
-        }
-    }
-
     IEnumerator loseTargetInterestTimer(float interestTime)
     {
+        if (!interestTimerStarted) yield break;
+
         yield return new WaitForSeconds(interestTime);
-        if (interestTimerStarted)
-        {
-            playerWithinFollowRange = false;
-            interestTimerStarted = false;
-        }
+        playerWithinFollowRange = false;
+        interestTimerStarted = false;
     }
 
     IEnumerator attackCooldownTimer(float cooldownTime)
