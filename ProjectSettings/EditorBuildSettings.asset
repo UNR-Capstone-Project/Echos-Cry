@@ -8,17 +8,17 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Level/Scenes/MainScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 0
+  - enabled: 1
     path: Assets/Level/Scenes/PersistentScene.unity
     guid: 7c344c9ebf8102246bccdaef1e6725fd
-  - enabled: 0
+  - enabled: 1
     path: Assets/Level/Scenes/TownScene.unity
     guid: 7b0faddb61c47924fa4e055b3b1bfd09
   - enabled: 0
     path: Assets/Level/Scenes/LevelOne.unity
     guid: c785959c4dc298c4197b106e6fd91f62
   - enabled: 1
-    path: Assets/Level/Scenes/Main Scene.unity
+    path: Assets/Level/Scenes/LevelOneScene.unity
     guid: 309e65707ca7d8643b4487cd0073f99c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 9d8fb2100d4c4f147b0db2c4c773e309, type: 3}
