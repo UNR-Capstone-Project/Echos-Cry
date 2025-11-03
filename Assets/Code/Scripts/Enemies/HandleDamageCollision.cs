@@ -39,10 +39,10 @@ public class HandleDamageCollision : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //TODO: Implement way to access player's current damage, possibly through static function that could access player's current damage amount?
-        float damageAmount = 15f;
+
+        float damageAmount = other.GetComponentInParent<BaseAttack>().GetAttackDamage();
         _enemyStats.DamageEnemy(damageAmount);
         OnCollisionEvent?.Invoke();
-        SpawnsDamagePopups.Instance.DamageDone(damageAmount, transform.position);
     }
 
     //TODO: Need way to grab whatever current damage player is doing

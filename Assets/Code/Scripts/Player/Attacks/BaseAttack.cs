@@ -17,6 +17,11 @@ public class BaseAttack : MonoBehaviour
         return attackWait;
     }
 
+    public float GetAttackDamage()
+    {
+        return totalAttackDamage;
+    }
+
     public void SetDamageMultiplier(float multiplier)
     {
         damageMultiplier = multiplier;
