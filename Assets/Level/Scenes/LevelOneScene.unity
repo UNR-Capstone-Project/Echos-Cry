@@ -3320,15 +3320,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e43d19a69c45324aaffe513f6018e3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneTriggerManager
-  player: {fileID: 0}
-  playerTargetSpawn: {x: 0, y: 0, z: 0}
   sceneTarget:
     m_SceneAsset: {fileID: 102900000, guid: 7b0faddb61c47924fa4e055b3b1bfd09, type: 3}
     m_SceneName: TownScene
   sceneOrigin:
-    m_SceneAsset: {fileID: 102900000, guid: 7c344c9ebf8102246bccdaef1e6725fd, type: 3}
-    m_SceneName: PersistentScene
-  doesPersistInScene: 0
+    m_SceneAsset: {fileID: 102900000, guid: 309e65707ca7d8643b4487cd0073f99c, type: 3}
+    m_SceneName: LevelOneScene
 --- !u!65 &2102998044
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3344,7 +3341,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
