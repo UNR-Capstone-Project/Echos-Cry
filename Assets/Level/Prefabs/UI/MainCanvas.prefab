@@ -665,6 +665,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthbarCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6331493228982411560, guid: b2f1aa273e46e09409d01d98b82f3086, type: 3}
+      propertyPath: _playerHealthController
+      value: 
+      objectReference: {fileID: 11400000, guid: 219ccfb6d7164274f9a666e4c708cbf0, type: 2}
     - target: {fileID: 8780458175035879410, guid: b2f1aa273e46e09409d01d98b82f3086, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

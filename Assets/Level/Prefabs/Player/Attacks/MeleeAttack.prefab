@@ -100,7 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4663246515495992762}
   - component: {fileID: 1584114766417235778}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,8 +141,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: -0.5, z: 0}
+  m_Size: {x: 2, y: 1.4, z: 1}
+  m_Center: {x: 0, y: -0.7, z: 0}
 --- !u!1 &6698232584449221764
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c07aa28893659042a19638d95a98689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeAttack
-  attackDamage: 1
+  attackDamage: 10
   destroyTime: 0
   attackWait: 1
   knockForce: 1

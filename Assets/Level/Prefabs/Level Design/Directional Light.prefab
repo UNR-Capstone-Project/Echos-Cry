@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3910726851097389380}
   - component: {fileID: 5206062246351571867}
   - component: {fileID: 2562313651250954316}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Directional Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ Light:
   serializedVersion: 11
   m_Type: 1
   m_Color: {r: 0.58272517, g: 0.73936176, b: 0.9150943, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.8
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -53,7 +53,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.8
+    m_Strength: 0.6
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2

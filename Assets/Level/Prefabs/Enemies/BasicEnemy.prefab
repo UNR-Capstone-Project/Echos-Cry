@@ -117,8 +117,10 @@ GameObject:
   - component: {fileID: 1592182489320676592}
   - component: {fileID: 1437238744054322045}
   - component: {fileID: 1049063511828312393}
-  - component: {fileID: 3630090785642533852}
-  - component: {fileID: 5940336252470390951}
+  - component: {fileID: 5942682254910724465}
+  - component: {fileID: 854592342237272632}
+  - component: {fileID: 940557371607528499}
+  - component: {fileID: 5963928643847565946}
   m_Layer: 0
   m_Name: BasicEnemy
   m_TagString: Untagged
@@ -201,6 +203,7 @@ MonoBehaviour:
   interestTimerWait: 2
   attackTimerWait: 3
   attackWithinDistance: 1
+  followWithinDistance: 5
 --- !u!114 &1049063511828312393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,29 +216,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c5002e34253d44893f57229bf05bd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SimpleEnemyManager
---- !u!65 &3630090785642533852
-BoxCollider:
+--- !u!114 &5942682254910724465
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6900823288402649937}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.5, y: 1, z: 0.5}
-  m_Center: {x: 0, y: 0.5, z: 0}
---- !u!135 &5940336252470390951
-SphereCollider:
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8eebbaea588f2c43b246abd4ee7472a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyInfo
+  EnemyID: 0
+--- !u!114 &854592342237272632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900823288402649937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0aaddc4d28899643bd0359fcca6bb6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
+  MaxHealth: 100
+--- !u!114 &940557371607528499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900823288402649937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c21213fba4b28a419cc6d18796993fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HandleDamageCollision
+  _enemyCollider: {fileID: 5963928643847565946}
+--- !u!136 &5963928643847565946
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -252,6 +273,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 5
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.4, z: 0}

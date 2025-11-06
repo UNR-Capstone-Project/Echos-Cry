@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
-public class MeleeAttack :BaseAttack
+public class MeleeAttack : BaseAttack
 {
     private Vector3 swingDirection;
     protected override void InitAttack()
@@ -22,15 +22,6 @@ public class MeleeAttack :BaseAttack
 
             Quaternion decalRotation = Quaternion.Euler(new Vector3(90, aimingRotation.eulerAngles.y, 0));
             transform.rotation = decalRotation;
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            other.gameObject.GetComponent<Enemy>().takeDamage(totalAttackDamage);
-            other.gameObject.GetComponent<Enemy>().takeKnockBack(swingDirection, knockForce);
         }
     }
 }

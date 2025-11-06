@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -16,6 +17,11 @@ public class EnemyStats : MonoBehaviour
     public event Action OnEnemyDamagedEvent;
     public event Action OnEnemyHealedEvent;
 
+    private Color flashColor = Color.red;
+    private Color originalColor;
+    private float flashDuration = 0.2f;
+    private SpriteRenderer enemySprite;
+
     public void HealEnemy(float heal)
     {
         _health += Mathf.Abs(heal);
@@ -30,11 +36,32 @@ public class EnemyStats : MonoBehaviour
             //do something
         }
         OnEnemyDamagedEvent?.Invoke();
-        Debug.Log("Health: " + _health);
+
+        StopCoroutine(flashEnemy());
+        StartCoroutine(flashEnemy());
+
+        SpawnsDamagePopups.Instance.DamageDone(damage, transform.position);
+    }
+
+    IEnumerator flashEnemy()
+    {
+        enemySprite.material.SetColor("_TintColor", flashColor);
+        yield return new WaitForSeconds(flashDuration);
+        enemySprite.material.SetColor("_TintColor", originalColor);
     }
 
     private void Start()
     {
         _health = MaxHealth;
+
+        enemySprite = GetComponentInChildren<SpriteRenderer>();
+        if (enemySprite != null)
+        {
+            originalColor = enemySprite.material.GetColor("_TintColor");
+        }
+        else
+        {
+            Debug.Log("Must have enemy sprite attached to apply tint.");
+        }
     }
 }
