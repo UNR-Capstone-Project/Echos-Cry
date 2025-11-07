@@ -241,7 +241,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0aaddc4d28899643bd0359fcca6bb6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
-  MaxHealth: 100
+  MaxHealth: 50
+  ItemDrops:
+  - prefab: {fileID: 651722200087660623, guid: 97046ff4e4a41054f9df101045151fb5, type: 3}
+    amount: 4
 --- !u!114 &940557371607528499
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -34,10 +34,8 @@ public class DroppedItem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Triggered by {other.name} (tag: {other.tag})");
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player Detected!");
             if (itemDestroyed == false) //Stops item from being able to be picked up twice!
             {
                 //Add finger count here!

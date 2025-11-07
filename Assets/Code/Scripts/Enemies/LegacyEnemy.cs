@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Enemy : MonoBehaviour
+public class LegacyEnemy : MonoBehaviour
 {
     public float enemyDamage = 10f;
     public float enemyAttackWait = 2f;
