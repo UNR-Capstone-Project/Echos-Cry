@@ -90,7 +90,7 @@ MonoBehaviour:
   active: 1
   postExposure:
     m_OverrideState: 1
-    m_Value: 1.2
+    m_Value: 1
   contrast:
     m_OverrideState: 1
     m_Value: -5
@@ -178,10 +178,10 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {r: 0.24476765, g: 0.2212531, b: 0.41509432, a: 1}
+    m_Value: {r: 0.3099893, g: 0.2956568, b: 0.41509432, a: 1}
   highlights:
     m_OverrideState: 1
-    m_Value: {r: 0.9245283, g: 0.615878, b: 0.29945397, a: 1}
+    m_Value: {r: 0.9150943, g: 0.812135, b: 0.60862404, a: 1}
   balance:
     m_OverrideState: 0
     m_Value: 0
