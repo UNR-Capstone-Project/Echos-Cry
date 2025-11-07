@@ -25,7 +25,6 @@ public class BaseAttack : MonoBehaviour
     public void SetDamageMultiplier(float multiplier)
     {
         damageMultiplier = multiplier;
-        Debug.Log(totalAttackDamage);
     }
 
     public void StartAttack(float damageMultiplier)
