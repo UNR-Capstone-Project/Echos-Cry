@@ -10,6 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bb0d8d974a229a4ab05cb29a4d24eed, type: 3}
-  m_Name: Player Health Controller
-  m_EditorClassIdentifier: Assembly-CSharp::playerHealthController
+  m_Name: PlayerStatsObj
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
   MAX_HEALTH: 100
+  currencyCount: 0

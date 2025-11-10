@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     private Rigidbody playerRigidbody;
     private SpriteRenderer playerSpriteRenderer;
     private Animator playerAnimator;
-    private playerHealthController healthController;
+    private PlayerStats healthController;
 
     //Player Attacking
     private float attackWait = 0f;
@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
         playerSpriteRenderer = playerSprite.GetComponent<SpriteRenderer>();
         playerRigidbody = GetComponent<Rigidbody>();
         originalColor = playerSpriteRenderer.material.GetColor("_TintColor");
-        healthController = GetComponent<playerHealthController>();
+        healthController = GetComponent<PlayerStats>();
 
         //Hook up input events
         inputTranslator.OnMovementEvent += HandleMovement;

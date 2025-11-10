@@ -461,7 +461,7 @@ MonoBehaviour:
   inputTranslator: {fileID: 11400000, guid: bd0b59b436d5d904ba88ae6b7e661116, type: 2}
   spriteDamageColor: {r: 1, g: 0, b: 0, a: 1}
   flashDamageDuration: 0.2
-  _playerHealthController: {fileID: 11400000, guid: 219ccfb6d7164274f9a666e4c708cbf0, type: 2}
+  _playerStats: {fileID: 11400000, guid: d89ccdc8fc2d3674ba2219cc08c6ccce, type: 2}
 --- !u!212 &6708799519748724713
 SpriteRenderer:
   m_ObjectHideFlags: 0
