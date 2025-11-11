@@ -9,6 +9,7 @@ public class soundEffectPlayer : MonoBehaviour
 {
     public soundEffect soundData;
     private bool hasReleased = false;
+    private bool soundPlaying = false;
     [NonSerialized] private List<AudioSource> sfxAudioSource;
 
     private void Awake()
@@ -40,10 +41,16 @@ public class soundEffectPlayer : MonoBehaviour
         } 
     }
 
+    public bool IsSoundPlaying()
+    {
+        return soundPlaying;
+    }
+
     public void Play()
     {
         if (sfxAudioSource != null)
         {
+            soundPlaying = true;
             if (sfxAudioSource.Count > 0 && soundData.randomized)
             {
                 int random = Random.Range(0, sfxAudioSource.Count);
@@ -77,6 +84,7 @@ public class soundEffectPlayer : MonoBehaviour
                 sfxAudioSource[i].Stop();
             }
         }
+        
         ReleaseToPool();
     }
 
@@ -90,6 +98,7 @@ public class soundEffectPlayer : MonoBehaviour
     {
         if (hasReleased) { return; }
         hasReleased = true;
+        soundPlaying = false;
 
         if (soundEffectManager.Instance != null)
         {
