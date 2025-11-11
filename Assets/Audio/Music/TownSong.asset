@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: TownSong
   m_EditorClassIdentifier: Assembly-CSharp::SoundSystem.MusicEvent
   musicVolume: 0.1
-  bpm: 85
+  bpm: 100
   musicLayers:
-  - {fileID: 8300000, guid: c415656094f12204baa803bbd886b532, type: 3}
+  - {fileID: 8300000, guid: b121855fcad1a574bbe944c01d6478d1, type: 3}
   musicMixerGroup: {fileID: 0}
-  trackBPM: 0
+  trackBPM: 1

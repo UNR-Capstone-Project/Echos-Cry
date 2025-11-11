@@ -24,7 +24,7 @@ public class MusicPlayer : MonoBehaviour
     private double nextTime;
 
     public float bpm = 100f;
-    public float gain = 0.5f; //Volume of tick!
+    public float gain = 0.1f; //Volume of tick!
     public int signatureHi = 4;
     public int signatureLo = 4;
     private float amp = 0f;
@@ -67,7 +67,7 @@ public class MusicPlayer : MonoBehaviour
                 if (++accent > signatureHi)
                 {
                     accent = 1;
-                    amp *= 2.0F;
+                    amp *= 1.0F;
                 }
                 //Debug.Log("Tick: " + accent + "/" + signatureHi);
             }

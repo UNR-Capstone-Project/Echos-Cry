@@ -13,8 +13,9 @@ public class PlayerDirection : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
+        int groundMask = LayerMask.GetMask("Ground");
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask))
         {
             Vector3 hitPoint = hit.point;
 
