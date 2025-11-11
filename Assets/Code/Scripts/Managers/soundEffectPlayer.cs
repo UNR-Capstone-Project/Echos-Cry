@@ -28,6 +28,7 @@ public class soundEffectPlayer : MonoBehaviour
                 sfxAudioSource[i].outputAudioMixerGroup = sound.soundMixerGroup;
                 sfxAudioSource[i].loop = sound.ambience;
                 sfxAudioSource[i].playOnAwake = false;
+                sfxAudioSource[i].volume = soundData.soundVolume;
             }
             
         } 

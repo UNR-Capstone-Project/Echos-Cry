@@ -1,10 +1,11 @@
+using AudioSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 public class MeleeAttack : BaseAttack
 {
     private Vector3 swingDirection;
+    [SerializeField] soundEffect swingSFX;
     protected override void InitAttack()
     {
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
@@ -23,5 +24,10 @@ public class MeleeAttack : BaseAttack
             Quaternion decalRotation = Quaternion.Euler(new Vector3(90, aimingRotation.eulerAngles.y, 0));
             transform.rotation = decalRotation;
         }
+
+        soundEffectManager.Instance.createSound()
+            .setSound(swingSFX)
+            .setSoundPosition(this.transform.position)
+            .ValidateAndPlaySound();
     }
 }

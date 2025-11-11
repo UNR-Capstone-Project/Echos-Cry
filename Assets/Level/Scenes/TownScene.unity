@@ -1253,6 +1253,7 @@ MonoBehaviour:
   sceneOrigin:
     m_SceneAsset: {fileID: 102900000, guid: 7b0faddb61c47924fa4e055b3b1bfd09, type: 3}
     m_SceneName: TownScene
+  portalSFX: {fileID: 11400000, guid: 3c2c25fd20eacfe4aaa9eeece1a7174c, type: 2}
 --- !u!65 &1102349920
 BoxCollider:
   m_ObjectHideFlags: 0

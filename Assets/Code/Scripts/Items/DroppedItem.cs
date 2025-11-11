@@ -1,3 +1,4 @@
+using AudioSystem;
 using System;
 using UnityEditor.UI;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class DroppedItem : MonoBehaviour
     [SerializeField] private float itemSpeed = 4f;
     [SerializeField] float itemDragDistance = 4f;
     [SerializeField] Rigidbody itemBody;
+    [SerializeField] soundEffect pickupSFX;
     private bool itemDestroyed = false;
 
     private void Start()
@@ -39,6 +41,10 @@ public class DroppedItem : MonoBehaviour
             if (itemDestroyed == false) //Stops item from being able to be picked up twice!
             {
                 //Add finger count here!
+                soundEffectManager.Instance.createSound()
+                    .setSound(pickupSFX)
+                    .setSoundPosition(this.transform.position)
+                    .ValidateAndPlaySound();
                 itemDestroyed = true;
                 Destroy(gameObject);
             }

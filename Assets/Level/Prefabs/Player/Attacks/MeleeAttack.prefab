@@ -216,6 +216,7 @@ MonoBehaviour:
   destroyTime: 0
   attackWait: 1
   knockForce: 1
+  swingSFX: {fileID: 11400000, guid: 39e12e82cb30de44c8403249851de156, type: 2}
 --- !u!1001 &8414175681177289556
 PrefabInstance:
   m_ObjectHideFlags: 0
