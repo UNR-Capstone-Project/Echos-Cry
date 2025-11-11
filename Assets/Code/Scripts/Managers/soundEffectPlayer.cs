@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 public class soundEffectPlayer : MonoBehaviour
 {
     public soundEffect soundData;
+    private bool hasReleased = false;
     [NonSerialized] private List<AudioSource> sfxAudioSource;
 
     private void Awake()
@@ -19,31 +20,35 @@ public class soundEffectPlayer : MonoBehaviour
     {
         soundData = sound;
 
+        foreach (var src in sfxAudioSource)
+        {
+            Destroy(src);
+        }
+        sfxAudioSource.Clear();
+
         if (sound.soundClips.Length > 0)
         {
-            for (int i = 0; i < sound.soundClips.Length; i++)
+            for (int i = 0; i < soundData.soundClips.Length; i++)
             {
                 sfxAudioSource.Add(gameObject.AddComponent<AudioSource>());
-                sfxAudioSource[i].clip = sound.soundClips[i];
-                sfxAudioSource[i].outputAudioMixerGroup = sound.soundMixerGroup;
-                sfxAudioSource[i].loop = sound.ambience;
+                sfxAudioSource[i].clip = soundData.soundClips[i];
+                sfxAudioSource[i].outputAudioMixerGroup = soundData.soundMixerGroup;
+                sfxAudioSource[i].loop = soundData.ambience;
                 sfxAudioSource[i].playOnAwake = false;
                 sfxAudioSource[i].volume = soundData.soundVolume;
             }
-            
         } 
     }
 
     public void Play()
     {
-        int random;
-
         if (sfxAudioSource != null)
         {
             if (sfxAudioSource.Count > 0 && soundData.randomized)
             {
-                random = Random.Range(0, sfxAudioSource.Count - 1);
+                int random = Random.Range(0, sfxAudioSource.Count);
                 sfxAudioSource[random].Play();
+
                 if (!soundData.ambience)
                 {
                     float clipLength = sfxAudioSource[random].clip.length;
@@ -72,12 +77,28 @@ public class soundEffectPlayer : MonoBehaviour
                 sfxAudioSource[i].Stop();
             }
         }
+        ReleaseToPool();
     }
 
     private IEnumerator returnToPoolAfterTime(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        soundEffectManager.Instance.releasePlayer(this);
+        ReleaseToPool();
     }
 
+    private void ReleaseToPool()
+    {
+        if (hasReleased) { return; }
+        hasReleased = true;
+
+        if (soundEffectManager.Instance != null)
+        {
+            soundEffectManager.Instance.releasePlayer(this);
+        }
+    }
+
+    private void OnEnable()
+    {
+        hasReleased = false;
+    }
 }

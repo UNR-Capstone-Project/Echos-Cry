@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0af6e37581d16d47aa4a2ce36e29f5c, type: 3}
-  m_Name: test
+  m_Name: GrassFootsteps
   m_EditorClassIdentifier: Assembly-CSharp::AudioSystem.soundEffect
-  sfxVolume: 0.813
+  sfxVolume: 0.1
   sfxClips:
-  - {fileID: 8300000, guid: 51d96a80ace9b8046bf30856ef89b914, type: 3}
+  - {fileID: 8300000, guid: 505af40d0c01e28408ae70e1d046b7fc, type: 3}
+  - {fileID: 8300000, guid: 470f1e25957057c41a40be08714d84da, type: 3}
+  - {fileID: 8300000, guid: 595629740fc64bb428fdceaf4423cb56, type: 3}
   sfxMixerGroup: {fileID: 0}
   frequentlyPlayed: 0
-  clipsAreRandomized: 0
+  clipsAreRandomized: 1
   isAmbience: 0

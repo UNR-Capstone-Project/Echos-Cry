@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Attack;
 
 public class BaseAttack : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class BaseAttack : MonoBehaviour
 
     private float damageMultiplier = 1f;
     protected float totalAttackDamage => attackDamage * damageMultiplier;
+    protected Attack.AttackType attackType;
 
     public float GetAttackWait()
     {
@@ -27,8 +29,9 @@ public class BaseAttack : MonoBehaviour
         damageMultiplier = multiplier;
     }
 
-    public void StartAttack(float damageMultiplier)
+    public void StartAttack(float damageMultiplier, Attack.AttackType type)
     {
+        attackType = type;
         SetDamageMultiplier(damageMultiplier);
         InitAttack();
     }

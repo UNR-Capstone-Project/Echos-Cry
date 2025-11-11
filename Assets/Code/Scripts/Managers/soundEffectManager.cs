@@ -36,19 +36,12 @@ public class soundEffectManager : MonoBehaviour
         if (sound == null) return false;
         if (!sound.isFrequent) return true;
 
-        if (frequentSfxPlayers.Count > MAX_SFX_PLAYERS && frequentSfxPlayers.TryDequeue(out var player))
+        if (frequentSfxPlayers.Count >= MAX_SFX_PLAYERS && frequentSfxPlayers.TryDequeue(out var oldest))
         {
-            try
-            {
-                player.Stop();
-                return true;
-            }
-            catch
-            {
-                Debug.Log("SFXPlayer already has been released");
-            }
-            return false;
+            oldest.Stop();
+            releasePlayer(oldest);
         }
+
         return true;
     }
 

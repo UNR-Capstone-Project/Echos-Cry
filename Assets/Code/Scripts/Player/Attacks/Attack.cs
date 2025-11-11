@@ -5,8 +5,8 @@ public class Attack : ScriptableObject
 {
     public enum AttackType
     {
-        MELEE = 0,
-        PROJECTILE
+        LIGHT,
+        HEAVY
     }
 
     public AnimatorOverrideController OverrideController;

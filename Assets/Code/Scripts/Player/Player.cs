@@ -163,7 +163,7 @@ public class Player : MonoBehaviour
         if (!isAttackCooldown)
         {
             GameObject attackInstance = Instantiate(attackPrefab, transform.position, Quaternion.identity);
-            attackInstance.GetComponent<BaseAttack>().StartAttack(damageMultiplier);
+            //attackInstance.GetComponent<BaseAttack>().StartAttack(damageMultiplier);
 
             //Init attack cooldown
             isAttackCooldown = true;
