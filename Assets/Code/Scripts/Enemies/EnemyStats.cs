@@ -1,3 +1,4 @@
+using AudioSystem;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -16,6 +17,8 @@ public class EnemyStats : MonoBehaviour
     public float MaxHealth = 100f;
     public event Action OnEnemyDamagedEvent;
     public event Action OnEnemyHealedEvent;
+
+    [SerializeField] soundEffect hitSFX;
 
     private Color flashColor = Color.red;
     private Color originalColor;
@@ -50,6 +53,10 @@ public class EnemyStats : MonoBehaviour
         StartCoroutine(flashEnemy());
 
         SpawnsDamagePopups.Instance.DamageDone(damage, transform.position);
+        soundEffectManager.Instance.createSound()
+                    .setSound(hitSFX)
+                    .setSoundPosition(this.transform.position)
+                    .ValidateAndPlaySound();
     }
 
     IEnumerator flashEnemy()
