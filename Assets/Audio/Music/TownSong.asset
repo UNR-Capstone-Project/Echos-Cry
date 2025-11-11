@@ -17,4 +17,4 @@ MonoBehaviour:
   musicLayers:
   - {fileID: 8300000, guid: b121855fcad1a574bbe944c01d6478d1, type: 3}
   musicMixerGroup: {fileID: 0}
-  trackBPM: 1
+  trackBPM: 0
