@@ -1,3 +1,4 @@
+using AudioSystem;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -23,6 +24,17 @@ public class PlayerMovement : MonoBehaviour
                           + (Vector3.up * playerRigidbody.linearVelocity.y);
 
         playerRigidbody.AddForce(targetVel, ForceMode.Force);
+
+        if (targetVel.magnitude > 0) //Not idle
+        {
+            if (!footstepSoundBuilder.GetSoundPlayer().IsSoundPlaying())
+            {
+                footstepSoundBuilder
+                .setSound(footstepsSFX)
+                .setSoundPosition(this.transform.position)
+                .ValidateAndPlaySound();
+            }
+        }
     }
 
     public void HandleMovement(Vector2 locomotion)
@@ -69,6 +81,8 @@ public class PlayerMovement : MonoBehaviour
         if (inputTranslator == null) return;
         inputTranslator.OnMovementEvent += HandleMovement;
         inputTranslator.OnDashEvent += HandleDash;
+
+        footstepSoundBuilder = soundEffectManager.Instance.createSound();
     }
     private void OnDestroy()
     {
@@ -110,6 +124,9 @@ public class PlayerMovement : MonoBehaviour
     
     [SerializeField] private Vector3 groundCheckBoxDimensions;
     [SerializeField] private float groundCheckBoxHeight;
+
+    [SerializeField] soundEffect footstepsSFX;
+    private soundBuilder footstepSoundBuilder;
 
     private TempoManagerV2 tempoManager;
 }

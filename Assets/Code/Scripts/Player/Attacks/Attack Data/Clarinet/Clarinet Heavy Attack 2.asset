@@ -15,4 +15,4 @@ MonoBehaviour:
   OverrideController: {fileID: 22100000, guid: 91a7d9dbfb801d249b1cf03f17421ceb, type: 2}
   AnimationClip: {fileID: 7400000, guid: 9220fa3fa40fc364496a19f14b47f85b, type: 2}
   BaseDamage: 5
-  TypeOfAttack: 0
+  TypeOfAttack: 1

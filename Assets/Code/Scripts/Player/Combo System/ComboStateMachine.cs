@@ -10,7 +10,8 @@ public class ComboStateMachine : MonoBehaviour
     {
         if (!_readyForAttackInput) return;
 
-        if (!HandleWeaponAttack()) return;
+        bool isOnBeat = GetHitQuality();
+        if (!isOnBeat) return;
 
         StopAllCoroutines();
         _readyForAttackInput = false;
@@ -19,6 +20,7 @@ public class ComboStateMachine : MonoBehaviour
         else _currentState = _currentState.NextLightAttack;
 
         _currentState.InitiateComboState(_attackAnimator);
+        equippedWeapon.GetComponent<BaseAttack>().StartAttack(damageMultiplier, _currentState.AttackData.TypeOfAttack);
 
         StartCoroutine(AnimationLengthWait());
     }
@@ -26,7 +28,8 @@ public class ComboStateMachine : MonoBehaviour
     {
         if (!_readyForAttackInput) return;
 
-        if (!HandleWeaponAttack()) return;
+        bool isOnBeat = GetHitQuality();
+        if (!isOnBeat) return;
 
         StopAllCoroutines();
         _readyForAttackInput = false;
@@ -35,11 +38,12 @@ public class ComboStateMachine : MonoBehaviour
         else _currentState = _currentState.NextHeavyAttack;
 
         _currentState.InitiateComboState(_attackAnimator);
+        equippedWeapon.GetComponent<BaseAttack>().StartAttack(damageMultiplier, _currentState.AttackData.TypeOfAttack);
 
         StartCoroutine(AnimationLengthWait());
     }
 
-    private bool HandleWeaponAttack()
+    private bool GetHitQuality()
     {
         TempoManagerV2.HIT_QUALITY hitQuality = tempoManager.UpdateHitQuality();
         if (hitQuality == HIT_QUALITY.MISS) { return false; }
@@ -61,9 +65,6 @@ public class ComboStateMachine : MonoBehaviour
                 damageMultiplier = 1.0f;
                 break;
         }
-
-        equippedWeapon.GetComponent<BaseAttack>().StartAttack(damageMultiplier);
-
         return true;
     }
 
@@ -79,8 +80,6 @@ public class ComboStateMachine : MonoBehaviour
     {
         yield return new WaitForSeconds(_comboResetTime);
         _currentState = _startState;
-        Debug.Log("Combo Reset");
-  
     }
     private IEnumerator AnimationLengthWait()
     {

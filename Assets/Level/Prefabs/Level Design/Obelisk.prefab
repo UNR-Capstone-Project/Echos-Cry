@@ -137,7 +137,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 917719431bdc4c941a0c0ffe37d23354, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.9889555
+      value: -10.53
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 917719431bdc4c941a0c0ffe37d23354, type: 3}
       propertyPath: m_LocalPosition.y
@@ -145,7 +145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 917719431bdc4c941a0c0ffe37d23354, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -19.101318
+      value: -16.98
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 917719431bdc4c941a0c0ffe37d23354, type: 3}
       propertyPath: m_LocalRotation.w
@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obelisk
       objectReference: {fileID: 0}
+    - target: {fileID: 2308304768528253286, guid: 917719431bdc4c941a0c0ffe37d23354, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6947f70c43978ca4187a638ef079f016, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

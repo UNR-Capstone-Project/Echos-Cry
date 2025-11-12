@@ -1,10 +1,12 @@
+using AudioSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 public class MeleeAttack : BaseAttack
 {
     private Vector3 swingDirection;
+    [SerializeField] soundEffect heavySwingSFX;
+    [SerializeField] soundEffect lightSwingSFX;
     protected override void InitAttack()
     {
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
@@ -22,6 +24,21 @@ public class MeleeAttack : BaseAttack
 
             Quaternion decalRotation = Quaternion.Euler(new Vector3(90, aimingRotation.eulerAngles.y, 0));
             transform.rotation = decalRotation;
+        }
+        
+        if (attackType == Attack.AttackType.LIGHT)
+        {
+            soundEffectManager.Instance.createSound()
+                .setSound(lightSwingSFX)
+                .setSoundPosition(this.transform.position)
+                .ValidateAndPlaySound();
+        }
+        else if (attackType == Attack.AttackType.HEAVY)
+        {
+            soundEffectManager.Instance.createSound()
+                .setSound(heavySwingSFX)
+                .setSoundPosition(this.transform.position)
+                .ValidateAndPlaySound();
         }
     }
 }

@@ -24,13 +24,14 @@ public class MusicPlayer : MonoBehaviour
     private double nextTime;
 
     public float bpm = 100f;
-    public float gain = 0.5f;
+    public float gain = 0.1f; //Volume of tick!
     public int signatureHi = 4;
     public int signatureLo = 4;
     private float amp = 0f;
     private float phase = 0f;
     private double sampleRate = 0f;
     private int accent;
+    private bool tickEnabled = true;
 
     //This function was provided by Unity's documentation - https://docs.unity3d.com/6000.2/Documentation/ScriptReference/AudioSettings-dspTime.html
     //Addressables - Control when assets are loaded in
@@ -39,6 +40,8 @@ public class MusicPlayer : MonoBehaviour
     
     void OnAudioFilterRead(float[] data, int channels) //This callback is executed on the audio thread when an audio buffer is read from an AudioSource
     {
+        //ISSUE: The tick sound is being written into the audio buffer that the music plays from, therefore it is added onto the music's sound wave. This means volume control of the tick sound is difficult to lower without lowering overall music volume.
+        if (!tickEnabled) { return; }
         if (!songRunning) { return; }
 
         double samplesPerTick = sampleRate * 60.0F / bpm * 4.0F / signatureLo;
@@ -64,7 +67,7 @@ public class MusicPlayer : MonoBehaviour
                 if (++accent > signatureHi)
                 {
                     accent = 1;
-                    amp *= 2.0F;
+                    amp *= 1.0F;
                 }
                 //Debug.Log("Tick: " + accent + "/" + signatureHi);
             }
@@ -76,6 +79,11 @@ public class MusicPlayer : MonoBehaviour
             amp *= 0.993F;
             n++;
         }
+    }
+
+    public void DisableTick()
+    {
+        tickEnabled = false;
     }
 
     public void SetupSong(MusicEvent givenSong)

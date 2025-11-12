@@ -59,7 +59,7 @@ public class TempoManagerV2 : MonoBehaviour
     //Hit Time
     private float _excellentPercent = 0.1f;
     private float _goodPercent = 0.15f;
-    private float _badPercent = 0.20f;
+    private float _badPercent = 0.25f;
 
     //            Tempo Threshold
     // Start                           End

@@ -297,7 +297,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &1633553762713238210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -423,3 +423,4 @@ MonoBehaviour:
   - {fileID: -1156200147, guid: 9777efb8b0b014745b94d0f9e775d332, type: 3}
   mImage: {fileID: 7701259811535074865}
   healthText: {fileID: 5973815383220684744}
+  _playerStats: {fileID: 11400000, guid: d89ccdc8fc2d3674ba2219cc08c6ccce, type: 2}

@@ -1,3 +1,4 @@
+using AudioSystem;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,6 +11,7 @@ public class SceneTriggerManager : MonoBehaviour
 {
     [SerializeField] private SceneField sceneTarget;
     [SerializeField] private SceneField sceneOrigin;
+    [SerializeField] soundEffect portalSFX;
 
     private bool sceneTransitioning = false;
 
@@ -36,5 +38,23 @@ public class SceneTriggerManager : MonoBehaviour
         }
 
         sceneTransitioning = false;
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        soundEffectManager.Instance.createSound()
+            .setSound(portalSFX)
+            .setSoundPosition(this.transform.position)
+            .ValidateAndPlaySound();
     }
 }
