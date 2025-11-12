@@ -259,7 +259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7657717087258578551, guid: ff81ea48de830c74aada803b11a5b87c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7657717087258578551, guid: ff81ea48de830c74aada803b11a5b87c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -309,6 +309,18 @@ PrefabInstance:
     - target: {fileID: 3844542316894031274, guid: 1bcd157e003df924787d45b55cc46fba, type: 3}
       propertyPath: m_Name
       value: Obelisk
+      objectReference: {fileID: 0}
+    - target: {fileID: 4472459751507973904, guid: 1bcd157e003df924787d45b55cc46fba, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.86742
+      objectReference: {fileID: 0}
+    - target: {fileID: 4472459751507973904, guid: 1bcd157e003df924787d45b55cc46fba, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.86742
+      objectReference: {fileID: 0}
+    - target: {fileID: 4472459751507973904, guid: 1bcd157e003df924787d45b55cc46fba, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.86742
       objectReference: {fileID: 0}
     - target: {fileID: 4472459751507973904, guid: 1bcd157e003df924787d45b55cc46fba, type: 3}
       propertyPath: m_LocalPosition.x

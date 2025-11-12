@@ -48,7 +48,7 @@ public class EnemySpawner : MonoBehaviour
         Vector3 spawnPoint = new Vector3(randomWorldPos.x, terrainHeight + 1f, randomWorldPos.z);
         Vector3 decalPoint = new Vector3(randomWorldPos.x, terrainHeight + 0.1f, randomWorldPos.z);
 
-        GameObject decalInstance = Instantiate(spawnDecal, decalPoint, Quaternion.Euler(90f, 0f, -45f));
+        GameObject decalInstance = Instantiate(spawnDecal, decalPoint, Quaternion.Euler(90f, 0f, 0f));
         decalInstance.GetComponent<timedDestroy>().setDestroy(decalDestroyTime);
         StartCoroutine(spawnEnemy(spawnPoint));
     }
