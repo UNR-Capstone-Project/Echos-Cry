@@ -87,6 +87,10 @@ public class MusicPlayer : MonoBehaviour
     {
         tickEnabled = false;
     }
+    public bool IsTickEnabled()
+    {
+        return tickEnabled;
+    }
 
     public void SetupSong(MusicEvent givenSong)
     {
