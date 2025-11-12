@@ -282,6 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandleDamageCollision
   _enemyCollider: {fileID: 5963928643847565946}
+  playerStats: {fileID: 11400000, guid: d89ccdc8fc2d3674ba2219cc08c6ccce, type: 2}
 --- !u!136 &5963928643847565946
 CapsuleCollider:
   m_ObjectHideFlags: 0

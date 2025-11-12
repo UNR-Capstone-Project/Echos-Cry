@@ -10,21 +10,33 @@ public class PlayerStats : ScriptableObject
     public event Action OnPlayerDeathEvent;
 
     [SerializeField] private float MAX_HEALTH = 100f;
-    [SerializeField] private int currencyCount = 0;
+    private int currencyCount = 0;
+    private int attacksHitCount = 0;
     public float MaxHealth { get { return MAX_HEALTH; } }
     public int CurrencyCount {  get { return currencyCount; } }
 
     private float currentHealth;
     public float CurrentHealth { get { return currentHealth; } }
 
-    private void Awake()
+    private void Initialize()
     {
         currentHealth = MAX_HEALTH;
+        currencyCount = 0;
+        attacksHitCount = 0;
     }
 
     public void AddCurrency(int amount)
     {
         currencyCount += amount;
+    }
+
+    public int GetCountAttacksHit()
+    {
+        return attacksHitCount;
+    }
+    public void AddCountAttacksHit(int amount)
+    {
+        attacksHitCount += amount;
     }
 
     public void OnDamageTaken(float damageAmount)
