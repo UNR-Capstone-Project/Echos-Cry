@@ -8,6 +8,7 @@ public class inventoryDisplay : MonoBehaviour
     public slotScript slotTwo;
     public slotScript slotThree;
     public slotScript slotFour;
+    public slotScript wallet;
     public inventoryManager currentInventory;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,7 +18,9 @@ public class inventoryDisplay : MonoBehaviour
     private void OnUpdateInventory(){
         int i = 1;
         foreach(inventoryItem item in currentInventory.inventory){
-            if(i == 1){
+            if(item.data.id == "finger"){
+                wallet.Set(item);
+            }else if(i == 1){
                 slotOne.Set(item);
                 i++;
             }else if(i == 2){
