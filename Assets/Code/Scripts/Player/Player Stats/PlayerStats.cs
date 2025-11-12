@@ -22,6 +22,11 @@ public class PlayerStats : ScriptableObject
         currentHealth = MAX_HEALTH;
     }
 
+    public void AddCurrency(int amount)
+    {
+        currencyCount += amount;
+    }
+
     public void OnDamageTaken(float damageAmount)
     {
         currentHealth -= damageAmount;

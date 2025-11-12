@@ -347,10 +347,9 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  points:
-  - {x: -480, y: -270}
-  - {x: 480, y: -270}
+  mRectTransform: {fileID: 0}
   thickness: 10
+  lineWidth: 10
 --- !u!222 &23599346478096842
 CanvasRenderer:
   m_ObjectHideFlags: 0

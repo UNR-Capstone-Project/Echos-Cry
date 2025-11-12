@@ -10,6 +10,7 @@ public class DroppedItem : MonoBehaviour
     [SerializeField] float itemDragDistance = 4f;
     [SerializeField] Rigidbody itemBody;
     [SerializeField] soundEffect pickupSFX;
+    [SerializeField] PlayerStats playerStats;
     private bool itemDestroyed = false;
 
     private void Start()
@@ -45,7 +46,9 @@ public class DroppedItem : MonoBehaviour
                     .setSound(pickupSFX)
                     .setSoundPosition(this.transform.position)
                     .ValidateAndPlaySound();
+                
                 itemDestroyed = true;
+                playerStats.AddCurrency(1);
                 Destroy(gameObject);
             }
         }

@@ -51,6 +51,7 @@ public class MusicPlayer : MonoBehaviour
 
         while (n < dataLen)
         {
+            /*
             float x = gain * amp * Mathf.Sin(phase);
             int i = 0;
 
@@ -59,6 +60,7 @@ public class MusicPlayer : MonoBehaviour
                 data[n * channels + i] += x;
                 i++;
             }
+            */
 
             while (sample + n >= nextTime)
             {
@@ -84,6 +86,10 @@ public class MusicPlayer : MonoBehaviour
     public void DisableTick()
     {
         tickEnabled = false;
+    }
+    public bool IsTickEnabled()
+    {
+        return tickEnabled;
     }
 
     public void SetupSong(MusicEvent givenSong)
