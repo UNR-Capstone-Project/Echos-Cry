@@ -18,7 +18,7 @@ public class PlayerStats : ScriptableObject
     private float currentHealth;
     public float CurrentHealth { get { return currentHealth; } }
 
-    private void Initialize()
+    public void Initialize()
     {
         currentHealth = MAX_HEALTH;
         currencyCount = 0;

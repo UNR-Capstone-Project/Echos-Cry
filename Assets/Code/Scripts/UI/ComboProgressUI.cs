@@ -4,13 +4,19 @@ using UnityEngine.UI;
 public class ComboProgressUI : MonoBehaviour
 {
     [SerializeField] private PlayerStats playerStats;
-    [SerializeField] private int ComboMeterMax = 30;
+    [SerializeField] private float ComboMeterMax = 30f;
     [SerializeField] private Image progressRingImage;
 
     void Update()
     {
         int currentAttacksHit = playerStats.GetCountAttacksHit();
-        Debug.Log(currentAttacksHit.ToString());
-        progressRingImage.fillAmount = currentAttacksHit / ComboMeterMax;
+        if (currentAttacksHit <= ComboMeterMax)
+        {
+            progressRingImage.fillAmount = currentAttacksHit / ComboMeterMax;
+        }
+        else
+        {
+            progressRingImage.fillAmount = 1;
+        }   
     }
 }
