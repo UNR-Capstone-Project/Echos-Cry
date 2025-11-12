@@ -1,19 +1,13 @@
+using TMPro;
 using UnityEngine;
 
 public class CurrencyCounterUI : MonoBehaviour
 {
     [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private TextMeshProUGUI currencyText;
 
-    void Start()
-    {
-        //playerStats.OnPlayerCurrencyChangeEvent += UpdateCurrency;
-    }
     void Update()
     {
-        
-    }
-    void UpdateCurrency()
-    {
-
+        currencyText.text = "Fingers: " + playerStats.CurrencyCount.ToString();
     }
 }
