@@ -100,6 +100,11 @@ public class soundEffectPlayer : MonoBehaviour
         hasReleased = true;
         soundPlaying = false;
 
+        if (soundEffectManager.Instance != null && soundData.isFrequent)
+        {
+            soundEffectManager.Instance.unregisterFrequentPlayer(this);
+        }
+        
         if (soundEffectManager.Instance != null)
         {
             soundEffectManager.Instance.releasePlayer(this);
