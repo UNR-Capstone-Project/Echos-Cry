@@ -5,6 +5,9 @@ using AudioSystem;
 using UnityEngine;
 using UnityEngine.Pool;
 
+/// <summary>
+/// Singleton to manage all the sound effects in the game
+/// </summary>
 public class soundEffectManager : MonoBehaviour
 {
     public static soundEffectManager Instance { get; private set; }
