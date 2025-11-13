@@ -5,6 +5,9 @@ using AudioSystem;
 using UnityEngine;
 using UnityEngine.Pool;
 
+/// <summary>
+/// Singleton to manage all the sound effects in the game
+/// </summary>
 public class soundEffectManager : MonoBehaviour
 {
     public static soundEffectManager Instance { get; private set; }
@@ -107,6 +110,7 @@ public class soundEffectManager : MonoBehaviour
 
     public void releasePlayer(soundEffectPlayer player)
     {
+        if (!player.gameObject.activeSelf) return;
         sfxPlayersPool.Release(player);
     }
     
@@ -123,5 +127,17 @@ public class soundEffectManager : MonoBehaviour
             }
         
         }
+    }
+
+    public void unregisterFrequentPlayer(soundEffectPlayer player)
+    {
+        var newQueue = new Queue<soundEffectPlayer>();
+        while (frequentSfxPlayers.Count > 0)
+        {
+            var p = frequentSfxPlayers.Dequeue();
+            if (p != player)
+                newQueue.Enqueue(p);
+        }
+        frequentSfxPlayers = newQueue;
     }
 }

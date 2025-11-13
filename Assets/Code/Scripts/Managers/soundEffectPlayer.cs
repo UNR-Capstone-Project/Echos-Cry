@@ -5,6 +5,9 @@ using AudioSystem;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+/// <summary>
+/// a object instantiated in by soundEffectManager to play sounds with list a of audioSources
+/// </summary>
 public class soundEffectPlayer : MonoBehaviour
 {
     public soundEffect soundData;
@@ -99,6 +102,11 @@ public class soundEffectPlayer : MonoBehaviour
         if (hasReleased) { return; }
         hasReleased = true;
         soundPlaying = false;
+
+        if (soundEffectManager.Instance != null && soundData.isFrequent)
+        {
+            soundEffectManager.Instance.unregisterFrequentPlayer(this);
+        }
 
         if (soundEffectManager.Instance != null)
         {

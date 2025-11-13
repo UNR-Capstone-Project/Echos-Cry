@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 namespace AudioSystem {
+    /// <summary>
+    /// a ScriptableObject to hold all the relevant data for a sound effect in the game
+    /// </summary>
     [CreateAssetMenu(fileName = "soundEffect", menuName = "Scriptable Objects/soundEffect")]
     public class soundEffect : ScriptableObject
     {
