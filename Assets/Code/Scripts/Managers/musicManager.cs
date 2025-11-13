@@ -91,6 +91,11 @@ public class MusicManager : ScriptableObject
             newMusicPlayer = musicPlayerInstance.GetComponent<MusicPlayer>();
         }
 
+        if (music.TrackBPM == false)
+        {
+            newMusicPlayer.DisableTick();
+        }
+
         newMusicPlayer.SetupSong(music);
         newMusicPlayer.Play();
         //ISSUE: add function in player -> newMusicPlayer.PlayWithCrossfade(crossfadeTime);

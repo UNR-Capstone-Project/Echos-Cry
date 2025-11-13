@@ -5,12 +5,18 @@ using AudioSystem;
 public class soundBuilder : ScriptableObject
 {
     soundEffectManager soundManager;
+    soundEffectPlayer currentSoundPlayer;
     soundEffect soundForBuild;
     Vector3 soundPosition = Vector3.zero;
 
     public void Initialize(soundEffectManager soundManager)
     {
         this.soundManager = soundManager;
+    }
+
+    public soundEffectPlayer GetSoundPlayer()
+    {
+        return currentSoundPlayer;
     }
 
     public soundBuilder setSound(soundEffect sound)
@@ -28,14 +34,13 @@ public class soundBuilder : ScriptableObject
     public void ValidateAndPlaySound()
     {
         if (!soundEffectManager.Instance.canPlaySound(soundForBuild)) return;
+        currentSoundPlayer = soundManager.getPlayer();
+        currentSoundPlayer.setupSoundEffect(soundForBuild);
+        currentSoundPlayer.transform.position = soundPosition;
+        currentSoundPlayer.transform.parent = soundManager.transform;
 
-        soundEffectPlayer player = soundManager.getPlayer();
-        player.setupSoundEffect(soundForBuild);
-        player.transform.position = soundPosition;
-        player.transform.parent = soundManager.transform;
+        if (soundForBuild.isFrequent) soundManager.registerFrequentPlayer(currentSoundPlayer);
 
-        if (soundForBuild.isFrequent) soundManager.registerFrequentPlayer(player);
-
-        player.Play();
+        currentSoundPlayer.Play();
     }
 }

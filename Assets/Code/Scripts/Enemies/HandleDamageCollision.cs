@@ -24,15 +24,12 @@ public class HandleDamageCollision : MonoBehaviour
     void SetupCollider()
     {
         _enemyCollider.isTrigger = true;
-        _enemyCollider.height = ColliderHeight;
-        _enemyCollider.radius = ColliderRadius;
     }
 
     private void Awake()
     {
-        _enemyInfo     = GetComponent<EnemyInfo>();
-        _enemyStats    = GetComponent<EnemyStats>();
-        _enemyCollider = gameObject.AddComponent<CapsuleCollider>();
+        _enemyInfo = GetComponent<EnemyInfo>();
+        _enemyStats = GetComponent<EnemyStats>();
     }
     private void Start()
     {
@@ -42,17 +39,21 @@ public class HandleDamageCollision : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //TODO: Implement way to access player's current damage, possibly through static function that could access player's current damage amount?
-        _enemyStats.DamageEnemy(15f);
+
+        float damageAmount = other.GetComponentInParent<BaseAttack>().GetAttackDamage();
+
+        _enemyStats.DamageEnemy(damageAmount);
+        playerStats.AddCountAttacksHit(1);
+
         OnCollisionEvent?.Invoke();
     }
 
     //TODO: Need way to grab whatever current damage player is doing
-    private EnemyInfo       _enemyInfo;
-    private CapsuleCollider _enemyCollider;
-    private EnemyStats      _enemyStats;
+    [SerializeField] private CapsuleCollider _enemyCollider;
+    [SerializeField] private PlayerStats playerStats;
 
-    public float ColliderRadius = 0.5f;
-    public float ColliderHeight = 2f;
+    private EnemyStats _enemyStats;
+    private EnemyInfo _enemyInfo;
 
     public event Action OnCollisionEvent;
 }

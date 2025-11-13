@@ -1,5 +1,5 @@
-using Unity.VisualScripting;
-using UnityEditor.SearchService;
+using AudioSystem;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,85 +9,52 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class SceneTriggerManager : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
-    [SerializeField] private Vector3 playerTargetSpawn;
     [SerializeField] private SceneField sceneTarget;
     [SerializeField] private SceneField sceneOrigin;
-    [SerializeField] private bool doesPersistInScene;
-    
-    private void updatePlayerPosition()
-    {
-        player.transform.position = new Vector3(playerTargetSpawn.x, playerTargetSpawn.y, playerTargetSpawn.z);
-    }
+    [SerializeField] soundEffect portalSFX;
+
+    private bool sceneTransitioning = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == player)
+        if (other.CompareTag("Player") && !sceneTransitioning)
         {
-            loadScene();
-            unloadScene();
+            StartCoroutine(HandleSceneTransition());
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    IEnumerator HandleSceneTransition()
     {
-        if (other.gameObject == player)
+        sceneTransitioning = true;
+        AsyncOperation newSceneLoad = SceneManager.LoadSceneAsync(sceneTarget.SceneName, LoadSceneMode.Additive);
+        newSceneLoad.allowSceneActivation = true; //When set to true, the player is able to see during scene loading.
+
+        while (!newSceneLoad.isDone) { yield return null; }
+
+        AsyncOperation oldSceneUnload = SceneManager.UnloadSceneAsync(sceneOrigin.SceneName);
+        while (oldSceneUnload != null && !oldSceneUnload.isDone)
         {
-            if (!doesPersistInScene)
-            {
-                Destroy(gameObject);
-            }
+            yield return null;
         }
+
+        sceneTransitioning = false;
     }
 
-    private void loadScene()
+    private void OnEnable()
     {
-        if (sceneOrigin == null || sceneTarget == null)
-        {
-            Debug.Log("Scene target or origin is not filled.");
-            return;
-        }
-        else
-        {
-            if (sceneTarget != sceneOrigin)
-            {
-                if (SceneManager.sceneCount > 0)
-                {
-                    for (int i = 0; i < SceneManager.sceneCount; ++i)
-                    {
-                        string nameCheck = SceneManager.GetSceneAt(i).name;
-                        if (nameCheck == sceneTarget.SceneName)
-                        {
-                            return; //prevents loading the same scene more than once
-                        }
-                    }
-                }
-                SceneManager.LoadSceneAsync(sceneTarget.SceneName, LoadSceneMode.Additive);
-                updatePlayerPosition();
-            }
-        }
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void unloadScene()
+    private void OnDisable()
     {
-        if (sceneOrigin == null || sceneTarget == null)
-        {
-            Debug.Log("Scene target or origin is not filled.");
-            return;
-        }
-        else
-        {
-            if (sceneOrigin.SceneName == "PersistentScene")
-            {
-                return;
-            }
-            else
-            {
-                SceneManager.UnloadSceneAsync(sceneOrigin.SceneName);
-            }
-        }
-
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-    
 
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        soundEffectManager.Instance.createSound()
+            .setSound(portalSFX)
+            .setSoundPosition(this.transform.position)
+            .ValidateAndPlaySound();
+    }
 }

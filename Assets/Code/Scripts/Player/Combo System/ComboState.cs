@@ -17,7 +17,7 @@ public class ComboState
     //Where to act on Attack data
     public void InitiateComboState(Animator attackAnimator)
     {
-        Debug.Log(AttackData.name);
+        //Debug.Log(AttackData.name);
         attackAnimator.runtimeAnimatorController = AttackData.OverrideController;
         attackAnimator.Play("Attack");
     }
