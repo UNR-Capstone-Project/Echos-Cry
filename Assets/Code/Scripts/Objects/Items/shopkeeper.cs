@@ -10,6 +10,7 @@ public class shopkeeper : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision){
         if(collision.gameObject.CompareTag("Player")){
+            Debug.Log("open shop");
             shopCanvas.SetActive(true);
         }
     }
