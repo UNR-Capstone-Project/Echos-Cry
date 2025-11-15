@@ -3,7 +3,6 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
-using static TempoManagerV2;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -41,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!canDash) return;
 
-        if (tempoManager.UpdateHitQuality() == HIT_QUALITY.MISS) { return; }
+        if (TempoManager.UpdateHitQuality() == TempoManager.HIT_QUALITY.MISS) { return; }
 
         playerRigidbody.AddForce(playerRigidbody.linearVelocity.normalized * dashSpeed, ForceMode.Impulse);
         StartCoroutine(DashDurationTimer(dashDuration));
@@ -73,8 +72,6 @@ public class PlayerMovement : MonoBehaviour
     {
         InputTranslator.OnMovementEvent += HandleMovement;
         InputTranslator.OnDashEvent += HandleDash;
-
-        tempoManager = GameObject.Find("TempoManager").GetComponent<TempoManagerV2>();
 
         footstepSoundBuilder = soundEffectManager.Instance.createSound();
     }
@@ -116,9 +113,6 @@ public class PlayerMovement : MonoBehaviour
     
     [SerializeField] soundEffect footstepsSFX;
     private soundBuilder footstepSoundBuilder;
-
-    private TempoManagerV2 tempoManager;
-
 
     //[SerializeField] private Vector3 groundCheckBoxDimensions;
     //[SerializeField] private float groundCheckBoxHeight;
