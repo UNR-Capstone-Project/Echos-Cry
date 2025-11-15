@@ -7,17 +7,26 @@ using UnityEngine.Rendering;
 public class InputTranslator : ScriptableObject, PlayerInputs.IGameplayActions, PlayerInputs.IPauseMenuActions, PlayerInputs.IPlayerMenuActions
 {
     private PlayerInputs _playerInputs;
-    public event Action<Vector2> OnMovementEvent;
-    public event Action OnDashEvent;
-    public event Action OnLightAttackEvent;
-    public event Action OnHeavyAttackEvent;
-    public static event Action OnPauseEvent, OnPauseDownInput, OnPauseUpInput;
-    public static event Action OnResumeEvent;
-    public static event Action OnMapEvent;
-    public static event Action OnExitMapEvent, OnJournalLeftInput, OnJournalRightInput;
+
+    private static InputTranslator _instance;
+
+    public static event Action<Vector2> OnMovementEvent;
+    public static event Action          OnDashEvent;
+    public static event Action          OnLightAttackEvent;
+    public static event Action          OnHeavyAttackEvent;
+    public static event Action          OnPauseEvent, OnPauseDownInput, OnPauseUpInput;
+    public static event Action          OnResumeEvent;
+    public static event Action          OnMapEvent;
+    public static event Action          OnExitMapEvent, OnJournalLeftInput, OnJournalRightInput;
 
     private void Awake()
     {
+        if (_instance != null)
+        {
+            Destroy(this);
+            return;
+        }
+        _instance = this;
         _playerInputs = new PlayerInputs();
         _playerInputs.Gameplay.SetCallbacks(this);
         _playerInputs.PauseMenu.SetCallbacks(this);
@@ -25,6 +34,8 @@ public class InputTranslator : ScriptableObject, PlayerInputs.IGameplayActions, 
     }
     private void OnEnable()
     {
+        if (_instance == null) _instance = this;
+
         if (_playerInputs == null)
         {
             _playerInputs = new PlayerInputs();
@@ -48,6 +59,7 @@ public class InputTranslator : ScriptableObject, PlayerInputs.IGameplayActions, 
         _playerInputs.PlayerMenu.RemoveCallbacks(this);
         _playerInputs.PauseMenu.RemoveCallbacks(this);
         _playerInputs = null;
+        _instance = null;
     }
 
     public void OnMovement(InputAction.CallbackContext context)

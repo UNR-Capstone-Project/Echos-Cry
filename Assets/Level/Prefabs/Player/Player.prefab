@@ -173,7 +173,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ComboStateMachine
   equippedWeapon: {fileID: 6625103690610810554}
-  _inputTranslator: {fileID: 11400000, guid: bd0b59b436d5d904ba88ae6b7e661116, type: 2}
   _comboResetTime: 0.5
   _tempAttackArray:
   - {fileID: 11400000, guid: e0aeec050dfa3a243b1d69bf8a2dcfed, type: 2}
@@ -236,13 +235,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbcf6b0c0055f89418334568b5e15077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  dashSpeed: 30
+  dashSpeed: 15
   dashDuration: 0.22
   dashCooldown: 1
-  inputTranslator: {fileID: 11400000, guid: bd0b59b436d5d904ba88ae6b7e661116, type: 2}
-  playerSpeed: 28
-  groundCheckBoxDimensions: {x: 0.2, y: 0.1, z: 0.2}
-  groundCheckBoxHeight: 0.75
+  playerSpeed: 7.5
   footstepsSFX: {fileID: 11400000, guid: 3028a632f21d41d4ebf89c457249cc0a, type: 2}
 --- !u!54 &2019051602396369572
 Rigidbody:
@@ -473,7 +469,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97eeacd70dc0f444cb9fd9df6e2799a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimator
-  inputTranslator: {fileID: 11400000, guid: bd0b59b436d5d904ba88ae6b7e661116, type: 2}
   spriteDamageColor: {r: 1, g: 0, b: 0, a: 1}
   flashDamageDuration: 0.2
   _playerStats: {fileID: 11400000, guid: d89ccdc8fc2d3674ba2219cc08c6ccce, type: 2}

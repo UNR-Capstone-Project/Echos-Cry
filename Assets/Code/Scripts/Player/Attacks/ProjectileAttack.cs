@@ -38,8 +38,8 @@ public class ProjectileAttack : BaseAttack
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<LegacyEnemy>().takeDamage(totalAttackDamage);
-            other.gameObject.GetComponent<LegacyEnemy>().takeKnockBack(projectileDirection, knockForce);
+            //other.gameObject.GetComponent<LegacyEnemy>().takeDamage(totalAttackDamage);
+            //other.gameObject.GetComponent<LegacyEnemy>().takeKnockBack(projectileDirection, knockForce);
             StartDestroy(0);
         }
         else if (!other.gameObject.CompareTag("Player"))

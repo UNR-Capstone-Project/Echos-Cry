@@ -7,10 +7,6 @@ using static TempoManagerV2;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public bool IsGrounded()
-    {
-        return Physics.BoxCast(transform.position, groundCheckBoxDimensions, Vector3.down, transform.rotation, groundCheckBoxHeight);
-    }
     private void MovePlayer()
     {
         Vector3 forwardVector = mainCameraRef.forward.normalized;
@@ -21,11 +17,11 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 targetVel = (playerLocomotion.y * playerSpeed * forwardVector)
                           + (playerLocomotion.x * playerSpeed * rightVector)
-                          + (Vector3.up * playerRigidbody.linearVelocity.y);
+                          + new Vector3(0f,playerRigidbody.linearVelocity.y,0f);
 
-        playerRigidbody.AddForce(targetVel, ForceMode.Force);
+        playerRigidbody.AddForce(targetVel - playerRigidbody.linearVelocity, ForceMode.VelocityChange);
 
-        if (targetVel.magnitude > 0) //Not idle
+        if (targetVel != Vector3.zero) //Not idle
         {
             if (!footstepSoundBuilder.GetSoundPlayer().IsSoundPlaying())
             {
@@ -45,8 +41,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!canDash) return;
 
-        TempoManagerV2.HIT_QUALITY hitQuality = tempoManager.UpdateHitQuality();
-        if (hitQuality == HIT_QUALITY.MISS) { return; }
+        if (tempoManager.UpdateHitQuality() == HIT_QUALITY.MISS) { return; }
 
         playerRigidbody.AddForce(playerRigidbody.linearVelocity.normalized * dashSpeed, ForceMode.Impulse);
         StartCoroutine(DashDurationTimer(dashDuration));
@@ -76,19 +71,17 @@ public class PlayerMovement : MonoBehaviour
     }
     void Start()
     {
-        tempoManager = GameObject.Find("TempoManager").GetComponent<TempoManagerV2>();
+        InputTranslator.OnMovementEvent += HandleMovement;
+        InputTranslator.OnDashEvent += HandleDash;
 
-        if (inputTranslator == null) return;
-        inputTranslator.OnMovementEvent += HandleMovement;
-        inputTranslator.OnDashEvent += HandleDash;
+        tempoManager = GameObject.Find("TempoManager").GetComponent<TempoManagerV2>();
 
         footstepSoundBuilder = soundEffectManager.Instance.createSound();
     }
     private void OnDestroy()
     {
-        if (inputTranslator == null) return;
-        inputTranslator.OnMovementEvent -= HandleMovement;
-        inputTranslator.OnDashEvent -= HandleDash;
+        InputTranslator.OnMovementEvent -= HandleMovement;
+        InputTranslator.OnDashEvent -= HandleDash;
     }
 
     private void FixedUpdate()
@@ -99,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(transform.position + (Vector3.down * groundCheckBoxHeight), groundCheckBoxDimensions);
+        //Gizmos.DrawWireCube(transform.position + (Vector3.down * groundCheckBoxHeight), groundCheckBoxDimensions);
     }
 
     //Player Movement
@@ -118,15 +111,19 @@ public class PlayerMovement : MonoBehaviour
     [Header("")]
     [SerializeField] private float dashCooldown = 1f;
 
-    [SerializeField] private InputTranslator inputTranslator;
     //[SerializeField] private float playerGravity = 9.8f; Rigidbody has implementation for gravity and mass
     [SerializeField] private float playerSpeed = 10f;
     
-    [SerializeField] private Vector3 groundCheckBoxDimensions;
-    [SerializeField] private float groundCheckBoxHeight;
-
     [SerializeField] soundEffect footstepsSFX;
     private soundBuilder footstepSoundBuilder;
 
     private TempoManagerV2 tempoManager;
+
+
+    //[SerializeField] private Vector3 groundCheckBoxDimensions;
+    //[SerializeField] private float groundCheckBoxHeight;
+    //public bool IsGrounded()
+    //{
+    //    return Physics.BoxCast(transform.position, groundCheckBoxDimensions, Vector3.down, transform.rotation, groundCheckBoxHeight);
+    //}
 }
