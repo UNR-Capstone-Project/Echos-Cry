@@ -7,10 +7,7 @@ public class ComboStateMachine : MonoBehaviour
 {
     void HandleLightAttack()
     {
-        if (!_readyForAttackInput) return;
-
-        bool isOnBeat = GetHitQuality();
-        if (!isOnBeat) return;
+        if (!_readyForAttackInput || !IsOnBeat()) return;
 
         StopAllCoroutines();
         _readyForAttackInput = false;
@@ -18,6 +15,7 @@ public class ComboStateMachine : MonoBehaviour
         if (_currentState.NextLightAttack == null) _currentState = _startState.NextLightAttack;
         else _currentState = _currentState.NextLightAttack;
 
+        equippedWeapon.SetActive(true);
         _currentState.InitiateComboState(_attackAnimator);
         equippedWeapon.GetComponent<BaseAttack>().StartAttack(damageMultiplier, _currentState.AttackData.TypeOfAttack);
 
@@ -25,10 +23,7 @@ public class ComboStateMachine : MonoBehaviour
     }
     void HandleHeavyAttack()
     {
-        if (!_readyForAttackInput) return;
-
-        bool isOnBeat = GetHitQuality();
-        if (!isOnBeat) return;
+        if (!_readyForAttackInput || !IsOnBeat()) return;
 
         StopAllCoroutines();
         _readyForAttackInput = false;
@@ -36,18 +31,18 @@ public class ComboStateMachine : MonoBehaviour
         if (_currentState.NextHeavyAttack == null) _currentState = _startState.NextHeavyAttack;
         else _currentState = _currentState.NextHeavyAttack;
 
+        equippedWeapon.SetActive(true);
         _currentState.InitiateComboState(_attackAnimator);
         equippedWeapon.GetComponent<BaseAttack>().StartAttack(damageMultiplier, _currentState.AttackData.TypeOfAttack);
 
         StartCoroutine(AnimationLengthWait());
     }
 
-    private bool GetHitQuality()
+    private bool IsOnBeat()
     {
         TempoManager.HIT_QUALITY hitQuality = TempoManager.UpdateHitQuality();
+        
         if ( hitQuality == TempoManager.HIT_QUALITY.MISS) { return false; }
-
-        equippedWeapon.SetActive(true);
 
         switch (hitQuality)
         {
@@ -60,8 +55,10 @@ public class ComboStateMachine : MonoBehaviour
             case TempoManager.HIT_QUALITY.BAD:
                 damageMultiplier = 1.1f;
                 break;
-            default: //Miss
+            case TempoManager.HIT_QUALITY.MISS:
                 damageMultiplier = 1.0f;
+                break;
+            default:
                 break;
         }
         return true;
@@ -172,6 +169,6 @@ public class ComboStateMachine : MonoBehaviour
     private Animator _attackAnimator;
     private RuntimeAnimatorController _defaultRuntimeController;
 
-    public event Action AttackStartedEvent;
+    //public event Action AttackStartedEvent;
     private float damageMultiplier;
 }
