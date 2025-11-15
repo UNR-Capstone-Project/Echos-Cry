@@ -146,13 +146,13 @@ public class ComboStateMachine : MonoBehaviour
 
         _currentState = _startState;
 
-        _inputTranslator.OnLightAttackEvent += HandleLightAttack;
-        _inputTranslator.OnHeavyAttackEvent += HandleHeavyAttack;
+        InputTranslator.OnLightAttackEvent += HandleLightAttack;
+        InputTranslator.OnHeavyAttackEvent += HandleHeavyAttack;
     }
     private void OnDestroy()
     {
-        _inputTranslator.OnLightAttackEvent -= HandleLightAttack;
-        _inputTranslator.OnHeavyAttackEvent -= HandleHeavyAttack;
+        InputTranslator.OnLightAttackEvent -= HandleLightAttack;
+        InputTranslator.OnHeavyAttackEvent -= HandleHeavyAttack;
     }
 
     //SN = StateName for easier reference
@@ -164,7 +164,6 @@ public class ComboStateMachine : MonoBehaviour
     }
 
     [SerializeField] private GameObject equippedWeapon;
-    [SerializeField] private InputTranslator _inputTranslator;
     [SerializeField] private float _comboResetTime = 0.5f;
 
     public Attack[] _tempAttackArray;
