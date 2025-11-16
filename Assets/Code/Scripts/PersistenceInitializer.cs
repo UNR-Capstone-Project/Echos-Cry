@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public static class PersistenceInitializer
 {
@@ -6,7 +7,13 @@ public static class PersistenceInitializer
 
     public static void Execute()
     {
-        Debug.Log("Loaded by the Persist Object from the PersistenceInitializer script");
-        Object.DontDestroyOnLoad(Object.Instantiate(Resources.Load("PERSISTOBJECTS")));
+        var currentScene = SceneManager.GetActiveScene();
+
+        if (currentScene.name != "MainMenu")
+        {
+            Debug.Log("Loaded by the Persist Object from the PersistenceInitializer script");
+            Object.DontDestroyOnLoad(Object.Instantiate(Resources.Load("PERSISTOBJECTS")));
+        }
+        
     }
 }
