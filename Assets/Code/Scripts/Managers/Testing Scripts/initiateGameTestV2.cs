@@ -8,26 +8,13 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class initiateGameTestV2 : MonoBehaviour
 {
-    //[SerializeField] private GameObject mainManager;
-    //[SerializeField] private GameObject mainCanvas;
-    //[SerializeField] private Volume mainGlobalVolume;
-    //[SerializeField] private Light mainDirectionalLight;
 
-    [Header("Scenes to load in")]
-    [SerializeField] private SceneField persistentScene;
-    [SerializeField] private SceneField firstLevel;
-
-    //private List<AsyncOperation> scenesLoaded = new List<AsyncOperation>();
 
     void Start()
     {
-        //bindObjects();
-
-        SceneManager.LoadSceneAsync(persistentScene); //load scene in bg
-        SceneManager.LoadScene(firstLevel, LoadSceneMode.Additive);
-        //ISSUE: Show loading screen!
 
 
+        
     }
 
     private void bindObjects()
