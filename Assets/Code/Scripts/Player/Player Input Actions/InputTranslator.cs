@@ -18,7 +18,6 @@ public class InputTranslator : ScriptableObject, PlayerInputs.IGameplayActions, 
     public static event Action          OnResumeEvent;
     public static event Action          OnMapEvent;
     public static event Action          OnExitMapEvent, OnJournalLeftInput, OnJournalRightInput;
-
     private void Awake()
     {
         if (_instance != null)
