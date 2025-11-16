@@ -2,58 +2,70 @@ using System;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Player/Player Stats")]
-public class PlayerStats : ScriptableObject
+public class PlayerStats : MonoBehaviour
 {
-    public event Action OnPlayerDamagedEvent;
-    public event Action OnPlayerHealedEvent;
-    public event Action<float, float> OnPlayerHealthChangeEvent;
-    public event Action OnPlayerDeathEvent;
-
-    [SerializeField] private float MAX_HEALTH = 100f;
-    private int currencyCount = 0;
-    private int attacksHitCount = 0;
-    public float MaxHealth { get { return MAX_HEALTH; } }
-    public int CurrencyCount {  get { return currencyCount; } }
-
-    private float currentHealth;
-    public float CurrentHealth { get { return currentHealth; } }
-
-    public void Initialize()
-    {
-        currentHealth = MAX_HEALTH;
-        currencyCount = 0;
-        attacksHitCount = 0;
-    }
-
     public void AddCurrency(int amount)
     {
-        currencyCount += amount;
+        _currencyCount += amount;
     }
 
     public int GetCountAttacksHit()
     {
-        return attacksHitCount;
+        return _attacksHitCount;
     }
     public void AddCountAttacksHit(int amount)
     {
-        attacksHitCount += amount;
+        _attacksHitCount += amount;
     }
 
     public void OnDamageTaken(float damageAmount)
     {
-        currentHealth -= damageAmount;
+        _currentHealth -= damageAmount;
         OnPlayerDamagedEvent?.Invoke();
-        OnPlayerHealthChangeEvent?.Invoke(currentHealth, MAX_HEALTH);
+        OnPlayerHealthChangeEvent?.Invoke(_currentHealth, _maxHealth);
 
-        if (currentHealth <= 0) OnPlayerDeathEvent?.Invoke();
+        if (_currentHealth <= 0) OnPlayerDeathEvent?.Invoke();
     }
-
     public void OnDamageHealed(float healAmount)
     {
-        currentHealth += healAmount;
-        if (currentHealth > MAX_HEALTH) currentHealth = MAX_HEALTH;
+        _currentHealth += healAmount;
+        if (_currentHealth > _maxHealth) _currentHealth = _maxHealth;
  
         OnPlayerHealedEvent?.Invoke();
-        OnPlayerHealthChangeEvent?.Invoke(currentHealth, MAX_HEALTH);
+        OnPlayerHealthChangeEvent?.Invoke(_currentHealth, _maxHealth);
     }
+
+    private void Awake()
+    {
+        if(_instance != null)
+        {
+            Destroy(this);
+            return;
+        }
+        _instance = this;
+    }
+    private void Start()
+    {
+        _instance = this;
+        _currentHealth = _maxHealth;
+        _currencyCount = 0;
+        _attacksHitCount = 0;
+    }
+
+    private static PlayerStats _instance;
+    public static PlayerStats Instance {  get { return _instance; } }   
+
+    public static event Action OnPlayerDamagedEvent;
+    public static event Action OnPlayerHealedEvent;
+    public static event Action OnPlayerDeathEvent;
+    public static event Action<float, float> OnPlayerHealthChangeEvent;
+
+    [SerializeField] private float _maxHealth = 100f;
+    private int _currencyCount = 0;
+    private int _attacksHitCount = 0;
+    public float MaxHealth { get { return _maxHealth; } }
+    public int CurrencyCount {  get { return _currencyCount; } }
+
+    private float _currentHealth;
+    public float CurrentHealth { get { return _currentHealth; } }
 }

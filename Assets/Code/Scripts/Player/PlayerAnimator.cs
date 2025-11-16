@@ -43,13 +43,13 @@ public class PlayerAnimator : MonoBehaviour
     private void Start()
     {
         defaultSpriteColor = playerSpriteRenderer.material.GetColor("_TintColor");
-        _playerStats.OnPlayerDamagedEvent += DamagePlayerFlash;
+        PlayerStats.OnPlayerDamagedEvent += DamagePlayerFlash;
 
         InputTranslator.OnMovementEvent += HandleMovement;
     }
     private void OnDestroy()
     {
-        _playerStats.OnPlayerDamagedEvent -= DamagePlayerFlash;
+        PlayerStats.OnPlayerDamagedEvent -= DamagePlayerFlash;
 
         InputTranslator.OnMovementEvent -= HandleMovement;
     }
@@ -58,9 +58,7 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] private Color spriteDamageColor = Color.red;
 
     [SerializeField] private float flashDamageDuration = 0.2f;
-    [SerializeField] private PlayerStats _playerStats;
 
-    private Vector2 locomotion;
     private Transform playerSpriteTransform;
     private SpriteRenderer playerSpriteRenderer;
     private Animator playerSpriteAnimator;
