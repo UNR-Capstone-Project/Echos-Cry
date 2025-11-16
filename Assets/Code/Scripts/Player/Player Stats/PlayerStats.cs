@@ -45,7 +45,7 @@ public class PlayerStats : MonoBehaviour
         _instance = this;
     }
     private void Start()
-    {
+    { //Start does not get called on scriptable objects!
         _instance = this;
         _currentHealth = _maxHealth;
         _currencyCount = 0;

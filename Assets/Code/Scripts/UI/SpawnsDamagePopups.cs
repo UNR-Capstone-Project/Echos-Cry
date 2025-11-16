@@ -33,18 +33,8 @@ public class SpawnsDamagePopups : MonoBehaviour
             damageLabel => damageLabel.gameObject.SetActive(true),
             damageLabel => damageLabel.gameObject.SetActive(false)
         );
-        
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
 
-    private void OnDestroy()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        mainCamera = Camera.main;
+        mainCamera = CameraManager.Instance.MainCamera;
     }
 
     public void DamageDone(float damage, Vector3 position)
