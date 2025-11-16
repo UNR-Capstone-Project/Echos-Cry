@@ -24,7 +24,7 @@ public class BasicEnemyBehavior : SimpleEnemyBehavior
     {
         base.Start();
 
-        playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
+        playerTarget = PlayerRef.PlayerTransform;
         if (playerTarget == null)
         {
             Debug.Log("Enemy could not find the Player Game Object.");

@@ -3,10 +3,22 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    private GameObject mPlayer;
+    private static CameraManager _instance;
+    public static CameraManager Instance { get { return _instance; } }
+
+    [SerializeField] private static Camera _mainCamera;
+    public static Camera MainCamera { get { return _mainCamera; } }
+
     private void Awake()
     {
-        mPlayer = GameObject.FindGameObjectWithTag("Player");
-        gameObject.GetComponentInChildren<CinemachineCamera>().Target.TrackingTarget = mPlayer.transform;
+        if (_instance != null)
+        {
+            Destroy(this);
+            return;
+        }
+        _instance = this;
+
+        gameObject.GetComponentInChildren<CinemachineCamera>().Target.TrackingTarget = PlayerRef.PlayerTransform;
+        _mainCamera = GetComponentInChildren<Camera>();
     }
 }
