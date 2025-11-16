@@ -3,11 +3,19 @@ using UnityEngine;
 
 public class CurrencyCounterUI : MonoBehaviour
 {
-    [SerializeField] private PlayerStats playerStats;
     [SerializeField] private TextMeshProUGUI currencyText;
 
-    void Update()
+    public void UpdateCurrencyText()
     {
-        currencyText.text = "Fingers: " + playerStats.CurrencyCount.ToString();
+        currencyText.text = "Fingers: " + PlayerStats.CurrencyCount.ToString();
+    }
+
+    private void Start()
+    {
+        PlayerStats.OnCurrencyChangeEvent += UpdateCurrencyText;
+    }
+    private void OnDestroy()
+    {
+        PlayerStats.OnCurrencyChangeEvent -= UpdateCurrencyText;
     }
 }

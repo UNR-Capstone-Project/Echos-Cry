@@ -9,7 +9,6 @@ public class SpawnsDamagePopups : MonoBehaviour
 
     [SerializeField] private DamageLabel damageLabelPrefab;
     [Range(0.2f, 1.5f), SerializeField] public float displayLength = 1f;
-    private Camera mainCamera;
 
     private void Awake()
     {
@@ -33,23 +32,12 @@ public class SpawnsDamagePopups : MonoBehaviour
             damageLabel => damageLabel.gameObject.SetActive(true),
             damageLabel => damageLabel.gameObject.SetActive(false)
         );
-        
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
 
-    private void OnDestroy()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        mainCamera = Camera.main;
     }
 
     public void DamageDone(float damage, Vector3 position)
     {
-        Vector3 screenPosition = mainCamera.WorldToScreenPoint(position);
+        Vector3 screenPosition = CameraManager.MainCamera.WorldToScreenPoint(position);
         screenPosition.z = 0;
         bool direction = screenPosition.x < Screen.width * 0.5f;
 

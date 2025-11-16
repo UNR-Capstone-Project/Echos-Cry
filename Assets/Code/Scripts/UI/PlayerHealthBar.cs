@@ -6,7 +6,6 @@ public class PlayerHealthBar : MonoBehaviour
     [SerializeField] private Sprite[] spriteFrames;
     [SerializeField] private UnityEngine.UI.Image mImage;
     [SerializeField] private TMPro.TextMeshProUGUI healthText;
-    [SerializeField] private PlayerStats _playerStats;
     private int totalFrames;
 
     void Awake()
@@ -17,14 +16,14 @@ public class PlayerHealthBar : MonoBehaviour
 
     void Start()
     {
-        _playerStats.OnPlayerHealthChangeEvent += updateHealth;
-        _playerStats.OnPlayerDeathEvent += updateHealthOnDeath;
+        PlayerStats.OnPlayerHealthChangeEvent += updateHealth;
+        PlayerStats.OnPlayerDeathEvent += updateHealthOnDeath;
     }
 
     void OnDestroy()
     {
-        _playerStats.OnPlayerHealthChangeEvent -= updateHealth;
-        _playerStats.OnPlayerDeathEvent -= updateHealthOnDeath;
+        PlayerStats.OnPlayerHealthChangeEvent -= updateHealth;
+        PlayerStats.OnPlayerDeathEvent -= updateHealthOnDeath;
     }
 
     private void updateHealth(float currentHealth, float maxHealth)

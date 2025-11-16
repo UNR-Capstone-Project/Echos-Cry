@@ -3,20 +3,20 @@ using UnityEngine.UI;
 
 public class ComboProgressUI : MonoBehaviour
 {
-    [SerializeField] private PlayerStats playerStats;
-    [SerializeField] private float ComboMeterMax = 30f;
     [SerializeField] private Image progressRingImage;
 
-    void Update()
+    public void UpdateComboMeterFill(float currentAmount, float maxAmount)
     {
-        int currentAttacksHit = playerStats.GetCountAttacksHit();
-        if (currentAttacksHit <= ComboMeterMax)
-        {
-            progressRingImage.fillAmount = currentAttacksHit / ComboMeterMax;
-        }
-        else
-        {
-            progressRingImage.fillAmount = 1;
-        }   
+        progressRingImage.fillAmount = currentAmount/maxAmount;
+    }
+
+    private void Start()
+    {
+        PlayerStats.OnComboMeterChangeEvent += UpdateComboMeterFill;
+        progressRingImage.fillAmount = 0;
+    }
+    private void OnDestroy()
+    {
+        PlayerStats.OnComboMeterChangeEvent -= UpdateComboMeterFill;
     }
 }

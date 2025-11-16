@@ -43,7 +43,7 @@ public class HandleDamageCollision : MonoBehaviour
         float damageAmount = other.GetComponentInParent<BaseAttack>().GetAttackDamage();
 
         _enemyStats.DamageEnemy(damageAmount);
-        playerStats.AddCountAttacksHit(1);
+        PlayerStats.UpdateComboMeter(1f);
 
         OnCollisionEvent?.Invoke();
     }

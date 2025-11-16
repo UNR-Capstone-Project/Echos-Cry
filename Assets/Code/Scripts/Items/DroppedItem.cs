@@ -48,7 +48,7 @@ public class DroppedItem : MonoBehaviour
                     .ValidateAndPlaySound();
                 
                 itemDestroyed = true;
-                playerStats.AddCurrency(1);
+                PlayerStats.UpdateCurrency(1);
                 Destroy(gameObject);
             }
         }

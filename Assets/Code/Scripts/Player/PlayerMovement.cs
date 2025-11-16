@@ -1,7 +1,5 @@
 using AudioSystem;
 using System.Collections;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
