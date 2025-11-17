@@ -6,12 +6,12 @@ public class shopButtons : MonoBehaviour
     public int cost;
     public inventoryItemData item;
     public inventoryManager currentInventory;
-    [SerializeField] private PlayerStats playerStats;
+    //[SerializeField] private PlayerStats playerStats;
     
     public void buy(){
-        if(playerStats.CurrencyCount >= cost){
+        if(PlayerStats.CurrencyCount >= cost){
             currentInventory.Add(item);
-            playerStats.subtractCurrency(cost);
+            PlayerStats.UpdateCurrency(-cost);
         }
     }
     
