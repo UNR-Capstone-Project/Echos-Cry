@@ -11,7 +11,6 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private GameObject metronomeImage;
     [SerializeField] private float flashDuration = 0.1f;
 
-    private TempoManagerV2 tempoManager;
     private Material metronomeMaterial;
 
     void Start()
@@ -26,19 +25,17 @@ public class CanvasManager : MonoBehaviour
         metronomeMaterial = Instantiate(image.material);
         image.material = metronomeMaterial;
 
-        //Setup Tempo Manager
-        tempoManager = GameObject.Find("TempoManager").GetComponent<TempoManagerV2>();
        
-        tempoManager.BeatTickEvent += FlashOutline;
-        tempoManager.UpdateHitQualityEvent += UpdateHitQualityText;
+        TempoManager.BeatTickEvent += FlashOutline;
+        TempoManager.UpdateHitQualityEvent += UpdateHitQualityText;
     }
     private void OnDestroy()
     {
-        tempoManager.BeatTickEvent -= FlashOutline;
-        tempoManager.UpdateHitQualityEvent -= UpdateHitQualityText;
+        TempoManager.BeatTickEvent -= FlashOutline;
+        TempoManager.UpdateHitQualityEvent -= UpdateHitQualityText;
     }
 
-    public void UpdateHitQualityText(TempoManagerV2.HIT_QUALITY quality)
+    public void UpdateHitQualityText(TempoManager.HIT_QUALITY quality)
     {
         hitQualityText.GetComponent<TextMeshProUGUI>().text = quality.ToString();
     }

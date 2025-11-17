@@ -2,7 +2,6 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using UnityEngine;
-using static TempoManagerV2;
 
 public class ComboStateMachine : MonoBehaviour
 {
@@ -45,20 +44,20 @@ public class ComboStateMachine : MonoBehaviour
 
     private bool GetHitQuality()
     {
-        TempoManagerV2.HIT_QUALITY hitQuality = tempoManager.UpdateHitQuality();
-        if (hitQuality == HIT_QUALITY.MISS) { return false; }
+        TempoManager.HIT_QUALITY hitQuality = TempoManager.UpdateHitQuality();
+        if ( hitQuality == TempoManager.HIT_QUALITY.MISS) { return false; }
 
         equippedWeapon.SetActive(true);
 
         switch (hitQuality)
         {
-            case HIT_QUALITY.EXCELLENT:
+            case TempoManager.HIT_QUALITY.EXCELLENT:
                 damageMultiplier = 1.5f;
                 break;
-            case HIT_QUALITY.GOOD:
+            case TempoManager.HIT_QUALITY.GOOD:
                 damageMultiplier = 1.2f;
                 break;
-            case HIT_QUALITY.BAD:
+            case TempoManager.HIT_QUALITY.BAD:
                 damageMultiplier = 1.1f;
                 break;
             default: //Miss
@@ -134,7 +133,6 @@ public class ComboStateMachine : MonoBehaviour
     private void Awake()
     {
         _attackAnimator = equippedWeapon.GetComponent<Animator>();
-        tempoManager = GameObject.Find("TempoManager").GetComponent<TempoManagerV2>();
         equippedWeapon.SetActive(false);
 
         _defaultRuntimeController = _attackAnimator.runtimeAnimatorController;
@@ -146,13 +144,13 @@ public class ComboStateMachine : MonoBehaviour
 
         _currentState = _startState;
 
-        _inputTranslator.OnLightAttackEvent += HandleLightAttack;
-        _inputTranslator.OnHeavyAttackEvent += HandleHeavyAttack;
+        InputTranslator.OnLightAttackEvent += HandleLightAttack;
+        InputTranslator.OnHeavyAttackEvent += HandleHeavyAttack;
     }
     private void OnDestroy()
     {
-        _inputTranslator.OnLightAttackEvent -= HandleLightAttack;
-        _inputTranslator.OnHeavyAttackEvent -= HandleHeavyAttack;
+        InputTranslator.OnLightAttackEvent -= HandleLightAttack;
+        InputTranslator.OnHeavyAttackEvent -= HandleHeavyAttack;
     }
 
     //SN = StateName for easier reference
@@ -164,7 +162,6 @@ public class ComboStateMachine : MonoBehaviour
     }
 
     [SerializeField] private GameObject equippedWeapon;
-    [SerializeField] private InputTranslator _inputTranslator;
     [SerializeField] private float _comboResetTime = 0.5f;
 
     public Attack[] _tempAttackArray;
@@ -175,7 +172,6 @@ public class ComboStateMachine : MonoBehaviour
     private Animator _attackAnimator;
     private RuntimeAnimatorController _defaultRuntimeController;
 
-    private TempoManagerV2 tempoManager;
     public event Action AttackStartedEvent;
     private float damageMultiplier;
 }

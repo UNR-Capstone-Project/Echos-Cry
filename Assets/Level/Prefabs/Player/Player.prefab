@@ -173,7 +173,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ComboStateMachine
   equippedWeapon: {fileID: 6625103690610810554}
-  _inputTranslator: {fileID: 11400000, guid: bd0b59b436d5d904ba88ae6b7e661116, type: 2}
   _comboResetTime: 0.5
   _tempAttackArray:
   - {fileID: 11400000, guid: e0aeec050dfa3a243b1d69bf8a2dcfed, type: 2}
@@ -193,11 +192,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 415338203038042998}
+  - component: {fileID: 1087463396999264668}
+  - component: {fileID: 1583115497800748523}
   - component: {fileID: 7414890934435195871}
   - component: {fileID: 2019051602396369572}
   - component: {fileID: 6060951237239432870}
   - component: {fileID: 4799680955579834891}
-  - component: {fileID: 1087463396999264668}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -224,6 +224,31 @@ Transform:
   - {fileID: 7650535618051860671}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1087463396999264668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2428720641269041060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2493662626dcfdc4a8367b9007efd85f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!114 &1583115497800748523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2428720641269041060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bb0d8d974a229a4ab05cb29a4d24eed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+  _maxHealth: 100
 --- !u!114 &7414890934435195871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,10 +264,7 @@ MonoBehaviour:
   dashSpeed: 30
   dashDuration: 0.22
   dashCooldown: 1
-  inputTranslator: {fileID: 11400000, guid: bd0b59b436d5d904ba88ae6b7e661116, type: 2}
   playerSpeed: 28
-  groundCheckBoxDimensions: {x: 0.2, y: 0.1, z: 0.2}
-  groundCheckBoxHeight: 0.75
   footstepsSFX: {fileID: 11400000, guid: 3028a632f21d41d4ebf89c457249cc0a, type: 2}
 --- !u!54 &2019051602396369572
 Rigidbody:
@@ -413,19 +435,6 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &1087463396999264668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2428720641269041060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2493662626dcfdc4a8367b9007efd85f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  playerStats: {fileID: 11400000, guid: d89ccdc8fc2d3674ba2219cc08c6ccce, type: 2}
 --- !u!1 &4323622196322604754
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,10 +482,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97eeacd70dc0f444cb9fd9df6e2799a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimator
-  inputTranslator: {fileID: 11400000, guid: bd0b59b436d5d904ba88ae6b7e661116, type: 2}
   spriteDamageColor: {r: 1, g: 0, b: 0, a: 1}
   flashDamageDuration: 0.2
-  _playerStats: {fileID: 11400000, guid: d89ccdc8fc2d3674ba2219cc08c6ccce, type: 2}
 --- !u!212 &6708799519748724713
 SpriteRenderer:
   m_ObjectHideFlags: 0

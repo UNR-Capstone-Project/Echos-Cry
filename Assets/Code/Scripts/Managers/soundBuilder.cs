@@ -1,6 +1,9 @@
 using UnityEngine;
 using AudioSystem;
 
+/// <summary>
+/// helper object that builds out the sound and player for soundEffectManager to use properly 
+/// </summary>
 [CreateAssetMenu(fileName = "soundBuilder", menuName = "Scriptable Objects/soundBuilder")]
 public class soundBuilder : ScriptableObject
 {

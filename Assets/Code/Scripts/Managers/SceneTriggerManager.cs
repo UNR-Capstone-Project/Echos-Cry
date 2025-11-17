@@ -25,18 +25,14 @@ public class SceneTriggerManager : MonoBehaviour
 
     IEnumerator HandleSceneTransition()
     {
+        //Scene Transition first 
         sceneTransitioning = true;
-        AsyncOperation newSceneLoad = SceneManager.LoadSceneAsync(sceneTarget.SceneName, LoadSceneMode.Additive);
-        newSceneLoad.allowSceneActivation = true; //When set to true, the player is able to see during scene loading.
 
-        while (!newSceneLoad.isDone) { yield return null; }
+        AsyncOperation newSceneLoad = SceneManager.LoadSceneAsync(sceneTarget.SceneName, LoadSceneMode.Single);
+        newSceneLoad.allowSceneActivation = true;
 
-        AsyncOperation oldSceneUnload = SceneManager.UnloadSceneAsync(sceneOrigin.SceneName);
-        while (oldSceneUnload != null && !oldSceneUnload.isDone)
-        {
-            yield return null;
-        }
-
+        while (!newSceneLoad.isDone) { yield return null;  }
+        
         sceneTransitioning = false;
     }
 
