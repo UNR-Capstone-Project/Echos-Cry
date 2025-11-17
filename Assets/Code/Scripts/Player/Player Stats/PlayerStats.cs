@@ -9,6 +9,10 @@ public class PlayerStats : MonoBehaviour
         _currencyCount += amount;
     }
 
+    public void subtractCurrency(int amount){
+        _currencyCount -= amount;
+    }
+
     public int GetCountAttacksHit()
     {
         return _attacksHitCount;
