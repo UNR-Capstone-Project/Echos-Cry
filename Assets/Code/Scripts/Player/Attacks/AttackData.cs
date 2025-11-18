@@ -5,7 +5,7 @@ using UnityEngine;
 public class AttackData : ScriptableObject
 {
     public AnimatorOverrideController OverrideController;
-    public AnimationClip AnimationClip;
-    public soundEffect AttackSound;
-    public float BaseDamage;
+    public AnimationClip              AnimationClip;
+    public soundEffect                AttackSound;
+    public float                      BaseDamage;
 }

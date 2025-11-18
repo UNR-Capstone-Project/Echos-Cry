@@ -3,6 +3,8 @@ using System.Collections;
 using UnityEngine;
 using static ComboStateMachine;
 
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(BaseAttack))]
 public class Weapon : MonoBehaviour
 {
     public void Attack(int attackIndex)
