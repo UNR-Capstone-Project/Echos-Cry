@@ -9,12 +9,6 @@ public class PlayerStats : MonoBehaviour
         OnCurrencyChangeEvent?.Invoke();
     }
 
-    public void subtractCurrency(int amount){
-        _currencyCount -= amount;
-        OnCurrencyChangeEvent?.Invoke();
-    }
-
-    //public int GetCountAttacksHit()
     public static void UpdateComboMeter(float amount)
     {
         _comboMeterAmount = Mathf.Clamp(_comboMeterAmount += amount, 0, _comboMeterMax);
