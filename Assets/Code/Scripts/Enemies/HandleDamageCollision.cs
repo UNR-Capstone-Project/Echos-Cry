@@ -40,7 +40,7 @@ public class HandleDamageCollision : MonoBehaviour
     {
         //TODO: Implement way to access player's current damage, possibly through static function that could access player's current damage amount?
 
-        float damageAmount = other.GetComponentInParent<BaseAttack>().GetAttackDamage();
+        float damageAmount = other.GetComponentInParent<BaseAttack>().TotalAttackDamage;
 
         _enemyStats.DamageEnemy(damageAmount);
         PlayerStats.UpdateComboMeter(1f);

@@ -7,10 +7,7 @@ public class ComboStateMachine : MonoBehaviour
 {
     void HandleLightAttack()
     {
-        if (!_readyForAttackInput) return;
-
-        bool isOnBeat = GetHitQuality();
-        if (!isOnBeat) return;
+        if (!_readyForAttackInput || !IsOnBeat()) return;
 
         StopAllCoroutines();
         _readyForAttackInput = false;
@@ -18,17 +15,12 @@ public class ComboStateMachine : MonoBehaviour
         if (_currentState.NextLightAttack == null) _currentState = _startState.NextLightAttack;
         else _currentState = _currentState.NextLightAttack;
 
-        _currentState.InitiateComboState(_attackAnimator);
-        equippedWeapon.GetComponent<BaseAttack>().StartAttack(damageMultiplier, _currentState.AttackData.TypeOfAttack);
-
-        StartCoroutine(AnimationLengthWait());
+        equippedWeapon.SetActive(true);
+        _currentState.InitiateComboState();
     }
     void HandleHeavyAttack()
     {
-        if (!_readyForAttackInput) return;
-
-        bool isOnBeat = GetHitQuality();
-        if (!isOnBeat) return;
+        if (!_readyForAttackInput || !IsOnBeat()) return;
 
         StopAllCoroutines();
         _readyForAttackInput = false;
@@ -36,54 +28,26 @@ public class ComboStateMachine : MonoBehaviour
         if (_currentState.NextHeavyAttack == null) _currentState = _startState.NextHeavyAttack;
         else _currentState = _currentState.NextHeavyAttack;
 
-        _currentState.InitiateComboState(_attackAnimator);
-        equippedWeapon.GetComponent<BaseAttack>().StartAttack(damageMultiplier, _currentState.AttackData.TypeOfAttack);
-
-        StartCoroutine(AnimationLengthWait());
-    }
-
-    private bool GetHitQuality()
-    {
-        TempoManager.HIT_QUALITY hitQuality = TempoManager.UpdateHitQuality();
-        if ( hitQuality == TempoManager.HIT_QUALITY.MISS) { return false; }
-
         equippedWeapon.SetActive(true);
-
-        switch (hitQuality)
-        {
-            case TempoManager.HIT_QUALITY.EXCELLENT:
-                damageMultiplier = 1.5f;
-                break;
-            case TempoManager.HIT_QUALITY.GOOD:
-                damageMultiplier = 1.2f;
-                break;
-            case TempoManager.HIT_QUALITY.BAD:
-                damageMultiplier = 1.1f;
-                break;
-            default: //Miss
-                damageMultiplier = 1.0f;
-                break;
-        }
-        return true;
+        _currentState.InitiateComboState();
     }
 
-    public void ResetInputState()
+    private bool IsOnBeat()
     {
-        _attackAnimator.runtimeAnimatorController = _defaultRuntimeController;
-        _attackAnimator.Play("Idle");
-        equippedWeapon.SetActive(false);
+        if ( TempoManager.UpdateHitQuality() == TempoManager.HIT_QUALITY.MISS) return false;
+        else return true;
+    }
+
+    public void StartComboResetTimer()
+    {
         _readyForAttackInput = true;
+        equippedWeapon.SetActive(false);
         StartCoroutine(ComboResetTimer());
     }
     private IEnumerator ComboResetTimer()
     {
         yield return new WaitForSeconds(_comboResetTime);
         _currentState = _startState;
-    }
-    private IEnumerator AnimationLengthWait()
-    {
-        yield return new WaitForSeconds(_currentState.AttackData.AnimationClip.length);
-        ResetInputState();
     }
 
     //Update this eventually to take in a Weapon as a parameter and the weapon will store the Attack data
@@ -92,69 +56,55 @@ public class ComboStateMachine : MonoBehaviour
     {
         ComboState[] comboArray =
         {
-            //Eventually these will take values
-            new ComboState(null, null, null), //Start state
-            new ComboState(null, null, null), //Beginning of light attacks
-            new ComboState(null, null, null),
-            new ComboState(null, null, null),
-            new ComboState(null, null, null),
-            new ComboState(null, null, null),
-            new ComboState(null, null, null), //Beginning of heavy attacks
-            new ComboState(null, null, null),
-            new ComboState(null, null, null)
+            new ComboState(StateName.START),
+            new ComboState(StateName.LIGHT1),
+            new ComboState(StateName.LIGHT2),
+            new ComboState(StateName.LIGHT3),
+            new ComboState(StateName.LIGHT4),
+            new ComboState(StateName.LIGHT5),
+            new ComboState(StateName.HEAVY1),
+            new ComboState(StateName.HEAVY2),
+            new ComboState(StateName.HEAVY3)
         };
-        _startState = comboArray[(int)SN.START];
-        _startState.NextLightAttack = comboArray[(int)SN.LIGHT1];
-        _startState.NextHeavyAttack = comboArray[(int)SN.HEAVY1];
+        _startState = comboArray[(int)StateName.START];
+        _startState.NextLightAttack = comboArray[(int)StateName.LIGHT1];
+        _startState.NextHeavyAttack = comboArray[(int)StateName.HEAVY1];
 
-        comboArray[(int)SN.LIGHT1].NextLightAttack = comboArray[(int)SN.LIGHT2];
+        comboArray[(int)StateName.LIGHT1].NextLightAttack = comboArray[(int)StateName.LIGHT2];
 
-        comboArray[(int)SN.LIGHT2].NextLightAttack = comboArray[(int)SN.LIGHT3];
-        comboArray[(int)SN.LIGHT2].NextHeavyAttack = comboArray[(int)SN.HEAVY3];
+        comboArray[(int)StateName.LIGHT2].NextLightAttack = comboArray[(int)StateName.LIGHT3];
+        comboArray[(int)StateName.LIGHT2].NextHeavyAttack = comboArray[(int)StateName.HEAVY3];
 
-        comboArray[(int)SN.HEAVY1].NextHeavyAttack = comboArray[(int)SN.HEAVY2];
-        comboArray[(int)SN.HEAVY1].NextLightAttack = comboArray[(int)SN.LIGHT4];
+        comboArray[(int)StateName.HEAVY1].NextHeavyAttack = comboArray[(int)StateName.HEAVY2];
+        comboArray[(int)StateName.HEAVY1].NextLightAttack = comboArray[(int)StateName.LIGHT4];
 
-        comboArray[(int)SN.LIGHT4].NextLightAttack = comboArray[(int)SN.LIGHT5];
+        comboArray[(int)StateName.LIGHT4].NextLightAttack = comboArray[(int)StateName.LIGHT5];
 
         _comboStates = comboArray;
-    }
-    //An Attack attackDataArray should have an animation clip for each ComboState, except the start state, so its array size should be 1 less than the _comboStates size
-    void InitializeComboAnimations(Attack[] attackDataArray)
-    {
-        if (_comboStates == null || attackDataArray == null || attackDataArray.Length != _comboStates.Length - 1) return;
-
-        for (int i = 1; i < _comboStates.Length; i++)
-        {
-            _comboStates[i].AttackData = attackDataArray[i - 1];
-        }
     }
 
     private void Awake()
     {
-        _attackAnimator = equippedWeapon.GetComponent<Animator>();
-        equippedWeapon.SetActive(false);
-
-        _defaultRuntimeController = _attackAnimator.runtimeAnimatorController;
         InitializeComboTree();
     }
     private void Start()
     {
-        InitializeComboAnimations(_tempAttackArray);
-
         _currentState = _startState;
 
         InputTranslator.OnLightAttackEvent += HandleLightAttack;
         InputTranslator.OnHeavyAttackEvent += HandleHeavyAttack;
+
+        Weapon.OnAttackEndedEvent += StartComboResetTimer;
     }
     private void OnDestroy()
     {
         InputTranslator.OnLightAttackEvent -= HandleLightAttack;
         InputTranslator.OnHeavyAttackEvent -= HandleHeavyAttack;
+
+        Weapon.OnAttackEndedEvent -= StartComboResetTimer;
     }
 
-    //SN = StateName for easier reference
-    enum SN
+    public enum StateName
     {
         START = 0,
         LIGHT1, LIGHT2, LIGHT3, LIGHT4, LIGHT5,
@@ -164,14 +114,8 @@ public class ComboStateMachine : MonoBehaviour
     [SerializeField] private GameObject equippedWeapon;
     [SerializeField] private float _comboResetTime = 0.5f;
 
-    public Attack[] _tempAttackArray;
     private bool _readyForAttackInput = true;
     private ComboState _currentState = null;
     private ComboState _startState = null;
     private ComboState[] _comboStates = null;
-    private Animator _attackAnimator;
-    private RuntimeAnimatorController _defaultRuntimeController;
-
-    public event Action AttackStartedEvent;
-    private float damageMultiplier;
 }

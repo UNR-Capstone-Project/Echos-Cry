@@ -1,46 +1,40 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using static Attack;
+using static ComboStateMachine;
 
 public class BaseAttack : MonoBehaviour
 {
-    public float attackDamage = 1f;
-    public float heavyAttackModifier = 1.5f;
     public float destroyTime = 1f;
     public float attackWait = 1f;
     public float knockForce = 1f;
 
     private float damageMultiplier = 1f;
-    protected float totalAttackDamage => attackDamage * damageMultiplier;
-    protected Attack.AttackType attackType;
+    private AttackData _currentAttack = null;
+    public float TotalAttackDamage => _currentAttack.BaseDamage * damageMultiplier;
 
-    public float GetAttackWait()
+    public void SetDamageMultiplier()
     {
-        return attackWait;
-    }
-
-    public float GetAttackDamage()
-    {
-        return totalAttackDamage;
-    }
-
-    public void SetDamageMultiplier(float multiplier)
-    {
-        if (attackType == Attack.AttackType.LIGHT)
+        TempoManager.HIT_QUALITY hitQuality = TempoManager.UpdateHitQuality();
+        switch (hitQuality)
         {
-            damageMultiplier = multiplier;
-        }
-        else if (attackType == Attack.AttackType.HEAVY)
-        {
-            damageMultiplier = multiplier * heavyAttackModifier;
+            case TempoManager.HIT_QUALITY.EXCELLENT:
+                damageMultiplier = 1.5f;
+                break;
+            case TempoManager.HIT_QUALITY.GOOD:
+                damageMultiplier = 1.25f;
+                break;
+            case TempoManager.HIT_QUALITY.BAD:
+                damageMultiplier = 1f;
+                break;
+            default:
+                break;
         }
     }
 
-    public void StartAttack(float damageMultiplier, Attack.AttackType type)
+    public void StartAttack(AttackData currentAttack)
     {
-        attackType = type;
-        SetDamageMultiplier(damageMultiplier);
+        _currentAttack = currentAttack;
+        SetDamageMultiplier();
         InitAttack();
     }
 
