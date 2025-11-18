@@ -251,10 +251,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbcf6b0c0055f89418334568b5e15077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  dashSpeed: 30
+  dashSpeed: 20
   dashDuration: 0.22
   dashCooldown: 1
-  playerSpeed: 28
+  playerSpeed: 7.5
   footstepsSFX: {fileID: 11400000, guid: 3028a632f21d41d4ebf89c457249cc0a, type: 2}
 --- !u!54 &2019051602396369572
 Rigidbody:

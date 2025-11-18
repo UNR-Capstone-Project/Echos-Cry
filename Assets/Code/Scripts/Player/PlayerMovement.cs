@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
                           + (playerLocomotion.x * playerSpeed * rightVector)
                           + new Vector3(0f,playerRigidbody.linearVelocity.y,0f);
 
-        playerRigidbody.AddForce(targetVel, ForceMode.Force);
+        playerRigidbody.AddForce(targetVel - playerRigidbody.linearVelocity, ForceMode.VelocityChange);
 
         if (targetVel != Vector3.zero) //Not idle
         {
