@@ -1,28 +1,25 @@
+using System;
 using UnityEngine;
 
 public class ComboState 
 {
-    public ComboState(ComboState lightAttack, ComboState heavyAttack, Attack attackData)
+    public ComboState(ComboStateMachine.StateName stateName)
     {
-        NextLightAttack = lightAttack;
-        NextHeavyAttack = heavyAttack;
-        AttackData = attackData;
+        StateName = stateName;
     }
     public ComboState()
     {
         NextLightAttack = null;
         NextHeavyAttack = null;
-        AttackData = null;
     }
     //Where to act on Attack data
-    public void InitiateComboState(Animator attackAnimator)
+    public void InitiateComboState()
     {
-        //Debug.Log(AttackData.name);
-        attackAnimator.runtimeAnimatorController = AttackData.OverrideController;
-        attackAnimator.Play("Attack");
+        //Subtract by one since any AttackData array will be 1 less than ComboState array
+        OnInitiateComboEvent?.Invoke(((int) StateName) - 1);  
     }
-
     public ComboState NextLightAttack;
     public ComboState NextHeavyAttack;
-    public Attack AttackData;
+    public ComboStateMachine.StateName StateName;
+    public static event Action<int> OnInitiateComboEvent;
 }
