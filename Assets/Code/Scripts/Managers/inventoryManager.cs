@@ -1,33 +1,61 @@
 using UnityEngine;
 using System.Collections.Generic;
-public class inventoryManager : MonoBehaviour
+
+public class InventoryManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private Dictionary<inventoryItemData, inventoryItem> m_itemDictionary;
-    public List<inventoryItem> inventory { get; private set; }
+    private static InventoryManager _instance;
+    public static InventoryManager Instance { get { return _instance; } }
+
+    private Dictionary<inventoryItemData, InventoryItem> m_itemDictionary;
+    public List<InventoryItem> inventory { get; private set; }
+
+    [SerializeField] private InventoryDisplay _inventoryDisplay;
+
+    private void Awake()
+    {
+        if (_instance != null)
+        {
+            Destroy(this);
+            return;
+        }
+        _instance = this;
+    }
+
+    public void AddInventorySlot(slotScript _slotScript)
+    {
+        for (int i = 0; i < _inventoryDisplay.slotScriptArray.Length; i++)
+        {
+            if (_inventoryDisplay.slotScriptArray[i] == null)
+            {
+                _inventoryDisplay.slotScriptArray[i] = _slotScript;
+                return;
+            }
+        }
+    }
+
     void Start()
     {
-        inventory = new List<inventoryItem>();
-        m_itemDictionary = new Dictionary<inventoryItemData, inventoryItem>();
+        inventory = new List<InventoryItem>();
+        m_itemDictionary = new Dictionary<inventoryItemData, InventoryItem>();
     }
-    public inventoryItem Get(inventoryItemData referenceData){
-        if(m_itemDictionary.TryGetValue(referenceData, out inventoryItem value)){
+    public InventoryItem Get(inventoryItemData referenceData){
+        if(m_itemDictionary.TryGetValue(referenceData, out InventoryItem value)){
             return value;
         }
         return null;
     }
     public void Add(inventoryItemData referenceData){
-        if(m_itemDictionary.TryGetValue(referenceData, out inventoryItem value)){
+        if(m_itemDictionary.TryGetValue(referenceData, out InventoryItem value)){
             value.AddToStack();
         }else{
-            inventoryItem newItem = new inventoryItem(referenceData);
+            InventoryItem newItem = new InventoryItem(referenceData);
             inventory.Add(newItem);
             m_itemDictionary.Add(referenceData, newItem);
         }
         Debug.Log("item added :3");
     }
     public void Remove(inventoryItemData referenceData){
-        if(m_itemDictionary.TryGetValue(referenceData, out inventoryItem value)){
+        if(m_itemDictionary.TryGetValue(referenceData, out InventoryItem value)){
             value.RemoveFromStack();
             if(value.stackSize == 0){
                 inventory.Remove(value);
@@ -35,17 +63,12 @@ public class inventoryManager : MonoBehaviour
             }
         }
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
-public class inventoryItem{
+public class InventoryItem{
     public inventoryItemData data {get; private set; }
     public int stackSize {get; private set;}
 
-    public inventoryItem(inventoryItemData source){
+    public InventoryItem(inventoryItemData source){
         data = source;
         AddToStack();
     }

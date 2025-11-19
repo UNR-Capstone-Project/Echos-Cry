@@ -2,35 +2,27 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class inventoryDisplay : MonoBehaviour
+public class InventoryDisplay : MonoBehaviour
 {
-    public slotScript slotOne;
-    public slotScript slotTwo;
-    public slotScript slotThree;
-    public slotScript slotFour;
+    public slotScript[] slotScriptArray = new slotScript[4];
     public slotScript wallet;
-    public inventoryManager currentInventory;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+
     private void OnUpdateInventory(){
         int i = 1;
-        foreach(inventoryItem item in currentInventory.inventory){
+        foreach(InventoryItem item in InventoryManager.Instance.inventory){
             if(item.data.id == "finger"){
                 wallet.Set(item);
             }else if(i == 1){
-                slotOne.Set(item);
+                slotScriptArray[i - 1].Set(item);
                 i++;
             }else if(i == 2){
-                slotTwo.Set(item);
+                slotScriptArray[i - 1].Set(item);
                 i++;
             }else if(i == 3){
-                slotThree.Set(item);
+                slotScriptArray[i - 1].Set(item);
                 i++;
             }else if(i == 4){
-                slotFour.Set(item);
+                slotScriptArray[i - 1].Set(item);
                 i++;
             }
         }
