@@ -3,8 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 
-[CreateAssetMenu(menuName = "Player Input Translator")]
-public class InputTranslator : ScriptableObject, PlayerInputs.IGameplayActions, PlayerInputs.IPauseMenuActions, PlayerInputs.IPlayerMenuActions
+public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, PlayerInputs.IPauseMenuActions, PlayerInputs.IPlayerMenuActions
 {
     private PlayerInputs _playerInputs;
 
@@ -31,10 +30,16 @@ public class InputTranslator : ScriptableObject, PlayerInputs.IGameplayActions, 
         _playerInputs.PauseMenu.SetCallbacks(this);
         _playerInputs.PlayerMenu.SetCallbacks(this);
     }
-    private void OnEnable()
+    private void Start()
     {
         if (_instance == null) _instance = this;
 
+        _playerInputs.Gameplay.Enable();
+        _playerInputs.PauseMenu.Disable();
+        _playerInputs.PlayerMenu.Disable();
+    }
+    private void OnEnable()
+    {
         if (_playerInputs == null)
         {
             _playerInputs = new PlayerInputs();
