@@ -17,6 +17,7 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
     public static event Action          OnResumeEvent;
     public static event Action          OnMapEvent;
     public static event Action          OnExitMapEvent, OnJournalLeftInput, OnJournalRightInput;
+    public static event Action          OnSkill1Event, OnSkill2Event, OnSkill3Event;
     private void Awake()
     {
         if (_instance != null)
@@ -154,5 +155,20 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
         {
             OnJournalLeftInput?.Invoke();
         }
+    }
+
+    public void OnSkill1(InputAction.CallbackContext context)
+    {
+        if(context.started) OnSkill1Event?.Invoke();
+    }
+
+    public void OnSkill2(InputAction.CallbackContext context)
+    {
+        if (context.started) OnSkill2Event?.Invoke();
+    }
+
+    public void OnSkill3(InputAction.CallbackContext context)
+    {
+        if (context.started) OnSkill3Event?.Invoke();
     }
 }
