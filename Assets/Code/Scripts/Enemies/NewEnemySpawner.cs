@@ -59,8 +59,4 @@ public class NewEnemySpawner : MonoBehaviour
         GameObject decalInstance = Instantiate(EnemyPrefabs[0], spawnPosition, Quaternion.identity);
     }
 
-    private void startNewWave()
-    {
-        
-    }
 }
