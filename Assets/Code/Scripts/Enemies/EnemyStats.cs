@@ -53,7 +53,7 @@ public class EnemyStats : MonoBehaviour
         StartCoroutine(flashEnemy());
 
         SpawnsDamagePopups.Instance.DamageDone(damage, transform.position);
-        soundEffectManager.Instance.createSound()
+        soundEffectManager.Instance.Builder
                     .setSound(hitSFX)
                     .setSoundPosition(this.transform.position)
                     .ValidateAndPlaySound();

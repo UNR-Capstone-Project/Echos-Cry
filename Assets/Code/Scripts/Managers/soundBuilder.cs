@@ -4,8 +4,8 @@ using AudioSystem;
 /// <summary>
 /// helper object that builds out the sound and player for soundEffectManager to use properly 
 /// </summary>
-[CreateAssetMenu(fileName = "soundBuilder", menuName = "Scriptable Objects/soundBuilder")]
-public class soundBuilder : ScriptableObject
+
+public class soundBuilder 
 {
     soundEffectManager soundManager;
     soundEffectPlayer currentSoundPlayer;
@@ -15,7 +15,7 @@ public class soundBuilder : ScriptableObject
     public void Initialize(soundEffectManager soundManager)
     {
         this.soundManager = soundManager;
-        currentSoundPlayer = this.soundManager.getPlayer();
+        currentSoundPlayer = soundManager.getPlayer();
     }
 
     public soundEffectPlayer GetSoundPlayer()

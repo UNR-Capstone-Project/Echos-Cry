@@ -28,7 +28,7 @@ public class sfxTestingScript : MonoBehaviour
 
             if (randomSound == 1)
             {
-                soundEffectManager.Instance.createSound()
+                soundEffectManager.Instance.Builder
                     .setSound(singleSound)
                     .setSoundPosition(posA)
                     .ValidateAndPlaySound();
@@ -36,7 +36,7 @@ public class sfxTestingScript : MonoBehaviour
             }
             else
             {
-                soundEffectManager.Instance.createSound()
+                soundEffectManager.Instance.Builder
                     .setSound(multiClipSound)
                     .setSoundPosition(posA)
                     .ValidateAndPlaySound();

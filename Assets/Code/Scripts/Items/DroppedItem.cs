@@ -42,7 +42,7 @@ public class DroppedItem : MonoBehaviour
             if (itemDestroyed == false) //Stops item from being able to be picked up twice!
             {
                 //Add finger count here!
-                soundEffectManager.Instance.createSound()
+                soundEffectManager.Instance.Builder
                     .setSound(pickupSFX)
                     .setSoundPosition(this.transform.position)
                     .ValidateAndPlaySound();
