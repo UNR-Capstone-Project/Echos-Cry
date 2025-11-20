@@ -2,26 +2,26 @@ using UnityEngine;
 
 public class WaveTrigger : MonoBehaviour
 {
-    private enum waveState
+    private enum waveTriggerState
     {
         Idle, 
         Active
     }
 
-    private waveState state;
+    private waveTriggerState state;
 
     private void Awake()
     {
-        state = waveState.Idle;
+        state = waveTriggerState.Idle;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform == PlayerRef.PlayerTransform)
         {
-            if (state == waveState.Idle)
+            if (state == waveTriggerState.Idle)
             {
-                state = waveState.Active;
+                state = waveTriggerState.Active;
             }
         }
     }

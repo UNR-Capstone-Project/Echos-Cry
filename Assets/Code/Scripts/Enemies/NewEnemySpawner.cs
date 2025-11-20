@@ -6,6 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class NewEnemySpawner : MonoBehaviour
 {
+    public GameObject spawnDecal;
+
+    void spawnEnemy()
+    {
+        
+    }
+
+    /* 
     public float spawnRadius = 10f;
     public float spawnWait = 10f;
     private Terrain terrain;
@@ -58,5 +66,5 @@ public class NewEnemySpawner : MonoBehaviour
         yield return new WaitForSeconds(decalDestroyTime);
         GameObject decalInstance = Instantiate(EnemyPrefabs[0], spawnPosition, Quaternion.identity);
     }
-
+    */
 }
