@@ -187,6 +187,7 @@ GameObject:
   - component: {fileID: 1583115497800748523}
   - component: {fileID: 7414890934435195871}
   - component: {fileID: 8506666208944667827}
+  - component: {fileID: 2002120213059147044}
   - component: {fileID: 62764194440910745}
   - component: {fileID: 2019051602396369572}
   - component: {fileID: 6060951237239432870}
@@ -257,7 +258,6 @@ MonoBehaviour:
   dashDuration: 0.22
   dashCooldown: 1
   playerSpeed: 25
-  footstepsSFX: {fileID: 11400000, guid: 3028a632f21d41d4ebf89c457249cc0a, type: 2}
 --- !u!114 &8506666208944667827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,6 +271,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSound
   _footstepEffect: {fileID: 11400000, guid: 3028a632f21d41d4ebf89c457249cc0a, type: 2}
+--- !u!114 &2002120213059147044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2428720641269041060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72dec4980866bef47b9774eb1f20e169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillManager
 --- !u!114 &62764194440910745
 MonoBehaviour:
   m_ObjectHideFlags: 0
