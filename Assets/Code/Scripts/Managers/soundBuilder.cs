@@ -15,6 +15,7 @@ public class soundBuilder : ScriptableObject
     public void Initialize(soundEffectManager soundManager)
     {
         this.soundManager = soundManager;
+        currentSoundPlayer = this.soundManager.getPlayer();
     }
 
     public soundEffectPlayer GetSoundPlayer()
