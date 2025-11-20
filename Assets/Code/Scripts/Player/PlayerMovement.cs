@@ -16,18 +16,7 @@ public class PlayerMovement : MonoBehaviour
                           + (playerLocomotion.x * playerSpeed * rightVector)
                           + new Vector3(0f,playerRigidbody.linearVelocity.y,0f);
 
-        playerRigidbody.AddForce(targetVel - playerRigidbody.linearVelocity, ForceMode.VelocityChange);
-
-        if (targetVel != Vector3.zero) //Not idle
-        {
-            if (!footstepSoundBuilder.GetSoundPlayer().IsSoundPlaying())
-            {
-                footstepSoundBuilder
-                .setSound(footstepsSFX)
-                .setSoundPosition(this.transform.position)
-                .ValidateAndPlaySound();
-            }
-        }
+        playerRigidbody.AddForce(targetVel);
     }
 
     public void HandleMovement(Vector2 locomotion)
@@ -70,8 +59,6 @@ public class PlayerMovement : MonoBehaviour
     {
         InputTranslator.OnMovementEvent += HandleMovement;
         InputTranslator.OnDashEvent += HandleDash;
-
-        footstepSoundBuilder = soundEffectManager.Instance.createSound();
     }
     private void OnDestroy()
     {
@@ -91,9 +78,13 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //Player Movement
-    private Vector2 playerLocomotion = Vector2.zero;
+    private static Vector2 playerLocomotion = Vector2.zero;
+    public static Vector2 PlayerLocomotion { get { return playerLocomotion; } }
+
+    private static Rigidbody playerRigidbody;
+    public static Rigidbody PlayerRigidbody { get { return playerRigidbody; } }
+
     private Transform mainCameraRef;
-    private Rigidbody playerRigidbody;
 
     //Player Dashing
     private bool canDash = true;
@@ -108,9 +99,6 @@ public class PlayerMovement : MonoBehaviour
 
     //[SerializeField] private float playerGravity = 9.8f; Rigidbody has implementation for gravity and mass
     [SerializeField] private float playerSpeed = 10f;
-    
-    [SerializeField] soundEffect footstepsSFX;
-    private soundBuilder footstepSoundBuilder;
 
     //[SerializeField] private Vector3 groundCheckBoxDimensions;
     //[SerializeField] private float groundCheckBoxHeight;

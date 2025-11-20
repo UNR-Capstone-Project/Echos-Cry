@@ -17,7 +17,7 @@ public class Weapon : MonoBehaviour
     }
     private void SetupAndUseSound(AttackData attackData)
     {
-        soundEffectManager.Instance.createSound()
+        soundEffectManager.Instance.Builder
             .setSound(attackData.AttackSound)
             .setSoundPosition(this.transform.position)
             .ValidateAndPlaySound();

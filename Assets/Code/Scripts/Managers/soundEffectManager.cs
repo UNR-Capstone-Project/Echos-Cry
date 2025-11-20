@@ -11,7 +11,8 @@ using UnityEngine.Pool;
 public class soundEffectManager : MonoBehaviour
 {
     public static soundEffectManager Instance { get; private set; }
-    private soundBuilder builder;
+    public soundBuilder Builder { get; private set; }
+
     [SerializeField, HideInInspector] private soundEffectPlayer sfxPlayerPrefab;
     private bool collectionCheck = true;
     private int DEFAULT_POOL_CAPACITY = 30;
@@ -32,6 +33,9 @@ public class soundEffectManager : MonoBehaviour
         }
 
         if (Application.isPlaying) initializeSoundPool();
+
+        Builder = new soundBuilder();
+        Builder.Initialize(this);
     }
 
     public bool canPlaySound(soundEffect sound)
@@ -48,15 +52,15 @@ public class soundEffectManager : MonoBehaviour
         return true;
     }
 
-    public soundBuilder createSound()
-    {
-        if (builder == null)
-        {
-            builder = ScriptableObject.CreateInstance<soundBuilder>();
-            builder.Initialize(this);
-        }
-        return builder;
-    }
+    //public soundBuilder createSound()
+    //{
+    //    if (Builder == null)
+    //    {
+    //        //Builder = ScriptableObject.CreateInstance<soundBuilder>();
+    //        //Builder.Initialize(this);
+    //    }
+    //    return Builder;
+    //}
 
     public void initializeSoundPool()
     {
@@ -128,7 +132,6 @@ public class soundEffectManager : MonoBehaviour
         
         }
     }
-
     public void unregisterFrequentPlayer(soundEffectPlayer player)
     {
         var newQueue = new Queue<soundEffectPlayer>();
