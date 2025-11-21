@@ -138,12 +138,12 @@ GameObject:
   - component: {fileID: 2434889112220353080}
   - component: {fileID: 4851412791574494250}
   - component: {fileID: 1592182489320676592}
-  - component: {fileID: 1437238744054322045}
   - component: {fileID: 1049063511828312393}
   - component: {fileID: 5942682254910724465}
   - component: {fileID: 854592342237272632}
   - component: {fileID: 940557371607528499}
   - component: {fileID: 5963928643847565946}
+  - component: {fileID: 6827338249854996756}
   m_Layer: 0
   m_Name: BasicEnemy
   m_TagString: Untagged
@@ -203,7 +203,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 1
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -211,22 +211,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1437238744054322045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6900823288402649937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b043a0a8371f33e45b95d8b61a7e3f10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BasicEnemyBehavior
-  interestTimerWait: 2
-  attackTimerWait: 3
-  attackWithinDistance: 1
-  followWithinDistance: 8
 --- !u!114 &1049063511828312393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,6 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c5002e34253d44893f57229bf05bd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SimpleEnemyManager
+  EnemyStartState: 1
 --- !u!114 &5942682254910724465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,7 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandleDamageCollision
   _enemyCollider: {fileID: 5963928643847565946}
-  playerStats: {fileID: 11400000, guid: d89ccdc8fc2d3674ba2219cc08c6ccce, type: 2}
+  _damageCooldown: 0.5
 --- !u!136 &5963928643847565946
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -306,3 +291,30 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.4, z: 0}
+--- !u!54 &6827338249854996756
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900823288402649937}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0

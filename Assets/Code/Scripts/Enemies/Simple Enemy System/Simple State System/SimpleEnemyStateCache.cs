@@ -1,40 +1,32 @@
 //DO NOT ADJUST UNLESS STRICTLY NECESSARY
+using System.Collections.Generic;
+
 public class SimpleEnemyStateCache 
 {
-    enum States
+    public SimpleEnemyStateCache()
     {
-        SPAWN = 0, ENGAGED, UNENGAGED, INITIATE, STAGGER
+        _stateCache = new Dictionary<States, SimpleEnemyState>
+        {
+            {States.BAT_SPAWN   , new BatSpawnState()        },
+            {States.BAT_STAGGER , new BatStaggerState()      },
+            {States.BAT_DEATH   , new BatDeathState()        },
+            {States.BAT_CHARGE  , new BatChargeAttackState() },
+            {States.BAT_ATTACK  , new BatAttackState()       },
+            {States.BAT_IDLE    , new BatIdleState()         },
+            {States.BAT_CHASE   , new BatChaseState()        }
+        };
     }
-    private const int ARRAY_SIZE = 5;
-    private SimpleEnemyState[] _enemyStates;
-    public SimpleEnemyStateCache(SimpleEnemyBehavior enemyBehavior)
+    public static SimpleEnemyState RequestState(States requestedState)
     {
-        _enemyStates = new SimpleEnemyState[ARRAY_SIZE];
+        if (!_stateCache.ContainsKey(requestedState)) return null;
+        else return _stateCache[requestedState];
+    }
 
-        _enemyStates[(int)States.UNENGAGED] = new SimpleEnemyUnengagedState(enemyBehavior);
-        _enemyStates[(int)States.ENGAGED]   = new SimpleEnemyEngagedState(enemyBehavior);
-        _enemyStates[(int)States.INITIATE]  = new SimpleEnemyInitiateState(enemyBehavior);
-        _enemyStates[(int)States.SPAWN]     = new SimpleEnemySpawnState(enemyBehavior);
-        _enemyStates[(int)States.STAGGER]   = new SimpleEnemyStaggerState(enemyBehavior);
-    }
-    public SimpleEnemyState Unengaged()
+    public enum States
     {
-        return _enemyStates[(int)States.UNENGAGED];
+        UNASSIGNED = 0,
+        //Bat Enemy
+        BAT_SPAWN, BAT_STAGGER, BAT_DEATH, BAT_CHARGE, BAT_ATTACK, BAT_IDLE, BAT_CHASE
     }
-    public SimpleEnemyState Engaged()
-    {
-        return _enemyStates[(int)States.ENGAGED];
-    }
-    public SimpleEnemyState Initiate()
-    {
-        return _enemyStates[(int)States.INITIATE];
-    }
-    public SimpleEnemyState Spawn()
-    {
-        return _enemyStates[(int)States.SPAWN];
-    }
-    public SimpleEnemyState Stagger()
-    {
-        return _enemyStates[(int)States.STAGGER];
-    }
+    private static Dictionary<States, SimpleEnemyState> _stateCache;
 }

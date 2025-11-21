@@ -32,6 +32,7 @@ public class PlayerHealthBar : MonoBehaviour
 
         float percentHealth = currentHealth / maxHealth;
         int healthBarFrame = (int)Mathf.Ceil(totalFrames * percentHealth) - 1;
+        if(healthBarFrame < 0) healthBarFrame = 0;
 
         mImage.sprite = spriteFrames[healthBarFrame];
     }

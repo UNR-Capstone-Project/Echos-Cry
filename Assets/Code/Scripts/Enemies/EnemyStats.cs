@@ -13,7 +13,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Animator))]
 public class EnemyStats : MonoBehaviour
 {
-    private float _health;
+    public float Health { get; private set; }
     public float MaxHealth = 100f;
     public event Action OnEnemyDamagedEvent;
     public event Action OnEnemyHealedEvent;
@@ -37,17 +37,13 @@ public class EnemyStats : MonoBehaviour
  
     public void HealEnemy(float heal)
     {
-        _health += Mathf.Abs(heal);
-        if (_health > MaxHealth) _health = MaxHealth;
+        Health += Mathf.Abs(heal);
+        if (Health > MaxHealth) Health = MaxHealth;
         OnEnemyHealedEvent?.Invoke();
     }
     public void DamageEnemy(float damage)
     {
-        _health -= Mathf.Abs(damage);
-        if (_health < 0)
-        {
-            KillEnemy();
-        }
+        Health -= Mathf.Abs(damage);
         OnEnemyDamagedEvent?.Invoke();
 
         StopCoroutine(flashEnemy());
@@ -56,7 +52,7 @@ public class EnemyStats : MonoBehaviour
         SpawnsDamagePopups.Instance.DamageDone(damage, transform.position);
         soundEffectManager.Instance.Builder
                     .setSound(hitSFX)
-                    .setSoundPosition(this.transform.position)
+                    .setSoundPosition(transform.position)
                     .ValidateAndPlaySound();
     }
 
@@ -69,7 +65,7 @@ public class EnemyStats : MonoBehaviour
 
     private void Start()
     {
-        _health = MaxHealth;
+        Health = MaxHealth;
 
         enemySprite = GetComponentInChildren<SpriteRenderer>();
         if (enemySprite != null)
@@ -82,7 +78,7 @@ public class EnemyStats : MonoBehaviour
         }
     }
 
-    private void KillEnemy()
+    public void KillEnemy()
     {
         foreach (var itemDrop in ItemDrops)
         {
