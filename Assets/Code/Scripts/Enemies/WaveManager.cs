@@ -67,6 +67,7 @@ public class WaveManager : MonoBehaviour
             Vector3 enemyPosition = spawner.GetRandomPoint(wave.spawnRadius);
             StartCoroutine(spawner.SpawnWithDecal(enemy, enemyPosition, wave.spawnRadius, (enemyInstance) =>
             {
+                enemyInstance.transform.SetParent(spawner.transform);
                 EnemyStats stats = enemyInstance.GetComponent<EnemyStats>();
                 if (stats != null) stats.OnEnemyDeathEvent += updateKillCount;
             }));
@@ -75,7 +76,7 @@ public class WaveManager : MonoBehaviour
 
         GameObject keyedEnemy = wave.keyedEnemy;
         Vector3 keyedEnemyPosition = spawner.GetRandomPoint(wave.spawnRadius);
-        GameObject keyedInstance = Instantiate(keyedEnemy, keyedEnemyPosition, Quaternion.identity);
+        GameObject keyedInstance = Instantiate(keyedEnemy, keyedEnemyPosition, Quaternion.identity, spawner.transform);
         var keyedStats = keyedInstance.GetComponent<EnemyStats>();
         if (keyedStats != null) keyedStats.OnEnemyDeathEvent += updateKillCount;
 
