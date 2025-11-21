@@ -1,17 +1,31 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
+using NUnit.Framework.Constraints;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 public class NewEnemySpawner : MonoBehaviour
 {
     public GameObject spawnDecal;
+    private float decalLifetime = 3f;
 
-    void spawnEnemy()
+    public IEnumerator SpawnWithDecal(GameObject prefab, Vector3 initialPos, float samplingDistance)
     {
-        
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(initialPos, out hit, samplingDistance, NavMesh.AllAreas)) initialPos = hit.position;
+
+        var decal = Instantiate(spawnDecal, initialPos, Quaternion.Euler(90f, 0f, 0f));
+        Destroy(decal, decalLifetime);
+        yield return new WaitForSeconds(decalLifetime);
+        Instantiate(prefab, initialPos, Quaternion.identity);
     }
+
+    public Vector3 GetRandomPoint(float radius)
+    {
+        return transform.position + UnityEngine.Random.insideUnitSphere * radius;
+    }
+
+    
 
     /* 
     public float spawnRadius = 10f;

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class WaveTrigger : MonoBehaviour
 {
+    public WaveManager _waveManager;
     private enum waveTriggerState
     {
         Idle, 
@@ -22,6 +23,7 @@ public class WaveTrigger : MonoBehaviour
             if (state == waveTriggerState.Idle)
             {
                 state = waveTriggerState.Active;
+                _waveManager.startNewWave();
             }
         }
     }
