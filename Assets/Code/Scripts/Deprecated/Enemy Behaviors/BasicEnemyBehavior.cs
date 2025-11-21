@@ -50,7 +50,7 @@ public class BasicEnemyBehavior : SimpleEnemyBehavior
     {
         if (!attackHasStarted)
         {
-            SwitchState(_seManager.EnemyStateCache.Engaged());
+            //SwitchState(_seManager.EnemyStateCache.Engaged());
         }
     }
     public override void InitiateUpdate()
@@ -70,14 +70,14 @@ public class BasicEnemyBehavior : SimpleEnemyBehavior
     {
         if (!playerWithinFollowRange)
         {
-            SwitchState(_seManager.EnemyStateCache.Unengaged());
+            //SwitchState(_seManager.EnemyStateCache.Unengaged());
         }
         else //Otherwise -> if player is within attacking radius then set state to Initiate attack.
         {
             float playerDistance = Math.Abs((gameObject.transform.position - playerTarget.position).magnitude);
             if (playerDistance < attackWithinDistance)
             {
-                SwitchState(_seManager.EnemyStateCache.Initiate());
+                //SwitchState(_seManager.EnemyStateCache.Initiate());
             }
             else if (playerDistance > followWithinDistance && !interestTimerStarted)
             {
@@ -112,7 +112,7 @@ public class BasicEnemyBehavior : SimpleEnemyBehavior
         {
             playerWithinFollowRange = true;
             interestTimerStarted = false;
-            SwitchState(_seManager.EnemyStateCache.Engaged());
+            //SwitchState(_seManager.EnemyStateCache.Engaged());
         }
     }
     public override void UnengagedUpdate()
@@ -123,7 +123,7 @@ public class BasicEnemyBehavior : SimpleEnemyBehavior
     public override void SpawnEnter()
     {
         Debug.Log("Entering Spawn state");
-        SwitchState(_seManager.EnemyStateCache.Unengaged());
+        //SwitchState(_seManager.EnemyStateCache.Unengaged());
     }
     public override void SpawnExit()
     {
@@ -132,7 +132,7 @@ public class BasicEnemyBehavior : SimpleEnemyBehavior
     public override void SpawnSwitchConditions()
     {
         //For now no conditions so just go to roaming.
-        SwitchState(_seManager.EnemyStateCache.Unengaged());
+        //SwitchState(_seManager.EnemyStateCache.Unengaged());
     }
     public override void SpawnUpdate()
     {

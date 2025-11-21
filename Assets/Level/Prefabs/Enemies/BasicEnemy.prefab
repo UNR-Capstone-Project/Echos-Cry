@@ -138,7 +138,6 @@ GameObject:
   - component: {fileID: 2434889112220353080}
   - component: {fileID: 4851412791574494250}
   - component: {fileID: 1592182489320676592}
-  - component: {fileID: 1437238744054322045}
   - component: {fileID: 1049063511828312393}
   - component: {fileID: 5942682254910724465}
   - component: {fileID: 854592342237272632}
@@ -203,7 +202,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 1
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -211,22 +210,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1437238744054322045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6900823288402649937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b043a0a8371f33e45b95d8b61a7e3f10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BasicEnemyBehavior
-  interestTimerWait: 2
-  attackTimerWait: 3
-  attackWithinDistance: 1
-  followWithinDistance: 8
 --- !u!114 &1049063511828312393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,6 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c5002e34253d44893f57229bf05bd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SimpleEnemyManager
+  EnemyStartState: 1
 --- !u!114 &5942682254910724465
 MonoBehaviour:
   m_ObjectHideFlags: 0
