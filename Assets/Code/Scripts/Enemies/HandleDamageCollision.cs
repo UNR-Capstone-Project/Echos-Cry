@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 //This will be placed on every enemy to handle collision with an attack from player
@@ -30,6 +31,7 @@ public class HandleDamageCollision : MonoBehaviour
     {
         _enemyInfo = GetComponent<EnemyInfo>();
         _enemyStats = GetComponent<EnemyStats>();
+        _enemyManager = GetComponent<SimpleEnemyManager>();
     }
     private void Start()
     {
@@ -38,22 +40,28 @@ public class HandleDamageCollision : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        //TODO: Implement way to access player's current damage, possibly through static function that could access player's current damage amount?
-
-        float damageAmount = other.GetComponentInParent<BaseAttack>().TotalAttackDamage;
-
-        _enemyStats.DamageEnemy(damageAmount);
+        if (!_canBeDamaged) return;
+        _canBeDamaged = false;
+        StartCoroutine(DamageCooldown());
+        _enemyStats.DamageEnemy(Weapon.CurrentDamage);
+        _enemyManager.EnemyStateMachine.HandleSwitchState(SimpleEnemyStateCache.RequestState(SimpleEnemyStateCache.States.BAT_STAGGER));
         PlayerStats.UpdateComboMeter(1f);
 
         OnCollisionEvent?.Invoke();
     }
+    private IEnumerator DamageCooldown()
+    {
+        yield return new WaitForSeconds(_damageCooldown);
+        _canBeDamaged = true;
+    }
 
-    //TODO: Need way to grab whatever current damage player is doing
     [SerializeField] private CapsuleCollider _enemyCollider;
-    [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private float _damageCooldown = 0.5f;
 
     private EnemyStats _enemyStats;
     private EnemyInfo _enemyInfo;
+    private SimpleEnemyManager _enemyManager;
+    private bool _canBeDamaged = true;
 
     public event Action OnCollisionEvent;
 }

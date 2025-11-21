@@ -17,8 +17,7 @@ public class PlayerStats : MonoBehaviour
 
     public static void OnDamageTaken(float damageAmount)
     {
-        _currentHealth -= damageAmount;
-        if(_currentHealth < 0 ) _currentHealth = 0;
+        _currentHealth = Mathf.Clamp(_currentHealth -= damageAmount, 0, _maxHealth);
 
         OnPlayerDamagedEvent?.Invoke();
         OnPlayerHealthChangeEvent?.Invoke(_currentHealth, _maxHealth);
@@ -27,7 +26,7 @@ public class PlayerStats : MonoBehaviour
     }
     public static void OnDamageHealed(float healAmount)
     {
-        _currentHealth += healAmount;
+        _currentHealth = Mathf.Clamp(_currentHealth += healAmount, 0, _maxHealth);
         if (_currentHealth > _maxHealth) _currentHealth = _maxHealth;
  
         OnPlayerHealedEvent?.Invoke();

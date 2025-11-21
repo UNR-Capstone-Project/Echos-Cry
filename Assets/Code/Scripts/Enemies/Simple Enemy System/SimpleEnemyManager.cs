@@ -12,9 +12,10 @@ public class SimpleEnemyManager : MonoBehaviour
         _enemyStateMachine = new(this);
         EnemyStateCache ??= new();
 
-        _enemyAnimator = GetComponent<Animator>();
-        _enemyNMA = GetComponent<NavMeshAgent>();
-        _enemyStats = GetComponent<EnemyStats>();
+        _enemyRigidbody = GetComponent<Rigidbody>();
+        _enemyAnimator  = GetComponent<Animator>();
+        _enemyNMA       = GetComponent<NavMeshAgent>();
+        _enemyStats     = GetComponent<EnemyStats>();
     }
     private void Start()
     {
@@ -34,10 +35,11 @@ public class SimpleEnemyManager : MonoBehaviour
     private NavMeshAgent            _enemyNMA;
     private EnemyStats              _enemyStats;
     private SimpleEnemyStateMachine _enemyStateMachine;
+    private Rigidbody               _enemyRigidbody;
 
-    public Animator                EnemyAnimator { get { return _enemyAnimator; } }
-    public NavMeshAgent            EnemyNMA { get { return _enemyNMA; } }  
-    public EnemyStats              EnemyStats { get { return _enemyStats; } }
+    public Animator                EnemyAnimator     { get { return _enemyAnimator;     } }
+    public NavMeshAgent            EnemyNMA          { get { return _enemyNMA;          } }  
+    public EnemyStats              EnemyStats        { get { return _enemyStats;        } }
     public SimpleEnemyStateMachine EnemyStateMachine { get { return _enemyStateMachine; } }
-
+    public Rigidbody               EnemyRigidbody    { get { return _enemyRigidbody;    } }
 }

@@ -10,8 +10,9 @@ public class Weapon : MonoBehaviour
     public void Attack(int attackIndex)
     {
         _attackAnimator.runtimeAnimatorController = _attackData[attackIndex].OverrideController;
-        _attackAnimator.Play("Attack");
         _attackMethod.StartAttack(_attackData[attackIndex]);
+        CurrentDamage = _attackMethod.TotalAttackDamage;
+        _attackAnimator.Play("Attack");
         SetupAndUseSound(_attackData[attackIndex]);
         StartCoroutine(WaitForAnimationLength(_attackData[attackIndex]));
     }
@@ -54,6 +55,8 @@ public class Weapon : MonoBehaviour
     }
 
     [SerializeField] private AttackData[] _attackData;
+
+    public static float CurrentDamage = 0;
 
     private Animator                  _attackAnimator;
     private RuntimeAnimatorController _defaultAnimatorController;
