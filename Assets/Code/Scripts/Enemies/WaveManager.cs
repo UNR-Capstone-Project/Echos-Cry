@@ -10,6 +10,7 @@ public class WaveManager : MonoBehaviour
     public event Action newWaveSpawned, AWaveEndedSpawning, allWavesCompleted;
     public NewEnemySpawner spawner;
     private int totalEnemiesKilled;
+    public float timeBetweenWaves = 10f;
 
     private void Awake()
     {
@@ -25,7 +26,7 @@ public class WaveManager : MonoBehaviour
         {
             currentWave++;
             if (currentWave >= allWaves.Length) return;
-            startNewWave();
+            StartCoroutine(spawnWaveAfterDelay(timeBetweenWaves));
         }
     }
 
@@ -40,7 +41,7 @@ public class WaveManager : MonoBehaviour
     private GameObject getRandomEnemy(WaveData inputWave)
     {
         int index;
-        if (inputWave.enemyTypesArray.Length > 0)
+        if (inputWave.enemyTypesArray.Length > 1)
         {
             index = UnityEngine.Random.Range(0, inputWave.enemyTypesArray.Length);
         } else
@@ -50,19 +51,18 @@ public class WaveManager : MonoBehaviour
         return inputWave.enemyTypesArray[index];
     }
 
+    private IEnumerator spawnWaveAfterDelay(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        startNewWave();
+    }
+
     private IEnumerator spawnWave(WaveData wave)
     {
-        int index;
         newWaveSpawned?.Invoke();
         for (int i = 0; i < wave.totalEnemies-1; i++)
         {
-            if (wave.enemyTypesArray.Length > 1)
-            {
-                index = UnityEngine.Random.Range(0, wave.enemyTypesArray.Length);
-            } else
-            {
-                index = 0;
-            }
+            
             GameObject enemy = getRandomEnemy(wave);
             Vector3 enemyPosition = spawner.GetRandomPoint(wave.spawnRadius);
             StartCoroutine(spawner.SpawnWithDecal(enemy, enemyPosition, wave.spawnRadius, (enemyInstance) =>
