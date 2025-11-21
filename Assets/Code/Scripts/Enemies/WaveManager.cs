@@ -19,30 +19,21 @@ public class WaveManager : MonoBehaviour
 
     public void updateKillCount()
     {
-        
+        totalEnemiesKilled++;
+
+        if (totalEnemiesKilled >= allWaves[currentWave].totalEnemies)
+        {
+            currentWave++;
+            if (currentWave >= allWaves.Length) return;
+            startNewWave();
+        }
     }
 
     public void startNewWave()
     {
-        if (currentWave > allWaves.Length)
-        {
-            allWavesCompleted?.Invoke();
-            return;
-        }
-
-        if (allWaves.Length == 1)
-        {
-            StartCoroutine(spawnWave(allWaves[currentWave]));
-        } else
-        {
-            if (currentWave >= 0 && currentWave <= allWaves.Length)
-            {
-                StartCoroutine(spawnWave(allWaves[currentWave]));
-            }
-            currentWave++;
-        }
-
-        
+        totalEnemiesKilled = 0;
+        if (currentWave >= allWaves.Length) return;
+        StartCoroutine(spawnWave(allWaves[currentWave]));
 
     }
 
@@ -74,13 +65,19 @@ public class WaveManager : MonoBehaviour
             }
             GameObject enemy = getRandomEnemy(wave);
             Vector3 enemyPosition = spawner.GetRandomPoint(wave.spawnRadius);
-            StartCoroutine(spawner.SpawnWithDecal(enemy, enemyPosition, wave.spawnRadius));
+            StartCoroutine(spawner.SpawnWithDecal(enemy, enemyPosition, wave.spawnRadius, (enemyInstance) =>
+            {
+                EnemyStats stats = enemyInstance.GetComponent<EnemyStats>();
+                if (stats != null) stats.OnEnemyDeathEvent += updateKillCount;
+            }));
             yield return new WaitForSeconds(wave.spawnInterval);
         }
 
         GameObject keyedEnemy = wave.keyedEnemy;
         Vector3 keyedEnemyPosition = spawner.GetRandomPoint(wave.spawnRadius);
         GameObject keyedInstance = Instantiate(keyedEnemy, keyedEnemyPosition, Quaternion.identity);
+        var keyedStats = keyedInstance.GetComponent<EnemyStats>();
+        if (keyedStats != null) keyedStats.OnEnemyDeathEvent += updateKillCount;
 
         AWaveEndedSpawning?.Invoke();
         yield return null;
