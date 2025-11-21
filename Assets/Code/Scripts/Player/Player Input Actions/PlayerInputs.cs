@@ -172,6 +172,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""a40389cc-e7d6-4701-9f3a-2f63e9491a5d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -315,6 +324,17 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Skill 3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2fbc416d-db8b-4a1a-9ded-345eab635c35"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -470,6 +490,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_Gameplay_Skill1 = m_Gameplay.FindAction("Skill 1", throwIfNotFound: true);
         m_Gameplay_Skill2 = m_Gameplay.FindAction("Skill 2", throwIfNotFound: true);
         m_Gameplay_Skill3 = m_Gameplay.FindAction("Skill 3", throwIfNotFound: true);
+        m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
         // Pause Menu
         m_PauseMenu = asset.FindActionMap("Pause Menu", throwIfNotFound: true);
         m_PauseMenu_Resume = m_PauseMenu.FindAction("Resume", throwIfNotFound: true);
@@ -571,6 +592,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Skill1;
     private readonly InputAction m_Gameplay_Skill2;
     private readonly InputAction m_Gameplay_Skill3;
+    private readonly InputAction m_Gameplay_Interact;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -618,6 +640,10 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Gameplay/Skill3".
         /// </summary>
         public InputAction @Skill3 => m_Wrapper.m_Gameplay_Skill3;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/Interact".
+        /// </summary>
+        public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -671,6 +697,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Skill3.started += instance.OnSkill3;
             @Skill3.performed += instance.OnSkill3;
             @Skill3.canceled += instance.OnSkill3;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         /// <summary>
@@ -709,6 +738,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Skill3.started -= instance.OnSkill3;
             @Skill3.performed -= instance.OnSkill3;
             @Skill3.canceled -= instance.OnSkill3;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         /// <summary>
@@ -1048,6 +1080,13 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSkill3(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInteract(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Pause Menu" which allows adding and removing callbacks.
