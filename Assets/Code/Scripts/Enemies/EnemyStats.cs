@@ -17,6 +17,7 @@ public class EnemyStats : MonoBehaviour
     public float MaxHealth = 100f;
     public event Action OnEnemyDamagedEvent;
     public event Action OnEnemyHealedEvent;
+    public event Action OnEnemyDeathEvent;
 
     [SerializeField] soundEffect hitSFX;
 
@@ -97,6 +98,7 @@ public class EnemyStats : MonoBehaviour
                 }
             }
         }
+        OnEnemyDeathEvent?.Invoke();
         Destroy(gameObject);
     }
 }
