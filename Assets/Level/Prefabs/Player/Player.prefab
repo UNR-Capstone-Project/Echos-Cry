@@ -254,8 +254,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbcf6b0c0055f89418334568b5e15077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  dashSpeed: 30
-  dashDuration: 0.22
+  dashSpeed: 15
+  dashDuration: 0.15
   dashCooldown: 1
   playerSpeed: 25
 --- !u!114 &8506666208944667827
@@ -679,7 +679,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bc8a2e38051414479dc8806d51be6a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  playerAimMarker: {fileID: 7627159243289282129}
 --- !u!1001 &506091730931972670
 PrefabInstance:
   m_ObjectHideFlags: 0

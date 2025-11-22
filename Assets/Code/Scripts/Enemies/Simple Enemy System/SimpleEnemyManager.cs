@@ -42,4 +42,5 @@ public class SimpleEnemyManager : MonoBehaviour
     public EnemyStats              EnemyStats        { get { return _enemyStats;        } }
     public SimpleEnemyStateMachine EnemyStateMachine { get { return _enemyStateMachine; } }
     public Rigidbody               EnemyRigidbody    { get { return _enemyRigidbody;    } }
+
 }
