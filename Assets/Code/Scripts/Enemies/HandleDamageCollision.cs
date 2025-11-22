@@ -41,13 +41,15 @@ public class HandleDamageCollision : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!_canBeDamaged) return;
+
         _canBeDamaged = false;
         StartCoroutine(DamageCooldown());
-        _enemyStats.DamageEnemy(Weapon.CurrentDamage);
-        _enemyManager.EnemyStateMachine.HandleSwitchState(SimpleEnemyStateCache.RequestState(SimpleEnemyStateCache.States.BAT_STAGGER));
-        PlayerStats.UpdateComboMeter(1f);
 
-        OnCollisionEvent?.Invoke();
+        _enemyStats.DamageEnemy(Weapon.CurrentDamage);
+
+        _enemyManager.EnemyStateMachine.HandleSwitchState(SimpleEnemyStateCache.RequestState(SimpleEnemyStateCache.States.BAT_STAGGER));
+
+        PlayerStats.UpdateComboMeter(1f);
     }
     private IEnumerator DamageCooldown()
     {
@@ -63,5 +65,4 @@ public class HandleDamageCollision : MonoBehaviour
     private SimpleEnemyManager _enemyManager;
     private bool _canBeDamaged = true;
 
-    public event Action OnCollisionEvent;
 }
