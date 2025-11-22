@@ -22,7 +22,7 @@ public class BatSpawnState : SimpleEnemyState
 
     public override void EnterState(SimpleEnemyManager enemyContext)
     {
-        Debug.Log("Enter Spawn State");
+        //Debug.Log("Enter Spawn State");
         enemyContext.EnemyStateMachine.HandleSwitchState(RequestState(States.BAT_IDLE));
     }
 }
@@ -40,8 +40,8 @@ public class BatIdleState : SimpleEnemyState
 
     public override void EnterState(SimpleEnemyManager enemyContext)
     {
+        //Debug.Log("Enter Idle State");
         timer = 0;
-        Debug.Log("Enter Idle State");
     }
     public override void CheckSwitchState(SimpleEnemyManager enemyContext)
     {
@@ -85,7 +85,7 @@ public class BatChaseState : SimpleEnemyState
     }
     public override void EnterState(SimpleEnemyManager enemyContext)
     {
-        Debug.Log("Enter Chase State");
+        //Debug.Log("Enter Chase State");
         timer = 0;
         enemyContext.EnemyNMA.SetDestination(PlayerRef.PlayerTransform.position);
     }
@@ -130,7 +130,7 @@ public class BatChargeAttackState : SimpleEnemyState
     }
     public override void EnterState(SimpleEnemyManager enemyContext)
     {
-        Debug.Log("Enter Charge Attack State");
+        //Debug.Log("Enter Charge Attack State");
         canAttack = false;
         enemyContext.StartCoroutine(ChargeAttack(enemyContext));
     }
@@ -181,7 +181,7 @@ public class BatAttackState : SimpleEnemyState
 
     public override void EnterState(SimpleEnemyManager enemyContext)
     {
-        Debug.Log("Enter Attack State");
+        //Debug.Log("Enter Attack State");
         isAttacking = true;
         attackDirection = (PlayerRef.PlayerTransform.position - enemyContext.transform.position).normalized;
         attackDirection.y = 0;
@@ -276,7 +276,7 @@ public class BatDeathState : SimpleEnemyState
 
     public override void EnterState(SimpleEnemyManager enemyContext)
     {
-        Debug.Log("Enter Death State");
+        //Debug.Log("Enter Death State");
         enemyContext.EnemyStats.HandleEnemyDeath();
     }
 }
