@@ -4,6 +4,18 @@ using UnityEngine;
 using UnityEngine.AI;
 using static SimpleEnemyStateCache;
 
+//New Implementation of enemy behaviors
+//Same as previous system but allows for more customizability for enemy states
+
+//Instead of implementing logic for enemies in hard-coded functions that already exist and prevent customizability for new states,
+//This system will just allow you to implement individual states yourself
+
+//Keep enemy states for one enemy in a single script file as shown below
+
+//USE THIS SCRIPT AS A REFERENCE AND GUIDE ON HOW IT WORKS
+
+//NOTE: CheckSwitchState is called automatically in the StateMachine so dont worry about calling it individually
+
 public class BatSpawnState : SimpleEnemyState
 {
     public BatSpawnState() { }
