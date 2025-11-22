@@ -46,7 +46,7 @@ public class HandleDamageCollision : MonoBehaviour
         StartCoroutine(DamageCooldown());
 
         _enemyStats.DamageEnemy(Weapon.CurrentDamage);
-
+        
         _enemyManager.EnemyStateMachine.HandleSwitchState(SimpleEnemyStateCache.RequestState(SimpleEnemyStateCache.States.BAT_STAGGER));
 
         PlayerStats.UpdateComboMeter(1f);
