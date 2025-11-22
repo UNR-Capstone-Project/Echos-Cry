@@ -22,7 +22,7 @@ public class BatSpawnState : SimpleEnemyState
 
     public override void EnterState(SimpleEnemyManager enemyContext)
     {
-        Debug.Log("Enter Spawn State");
+        //Debug.Log("Enter Spawn State");
         enemyContext.EnemyStateMachine.HandleSwitchState(RequestState(States.BAT_IDLE));
     }
 }
@@ -35,13 +35,13 @@ public class BatIdleState : SimpleEnemyState
     public BatIdleState() 
     {
         maxTime = 0.1f;
-        sqrMagDistance = Mathf.Pow(10f, 2);
+        sqrMagDistance = Mathf.Pow(10f, 2f);
     }
 
     public override void EnterState(SimpleEnemyManager enemyContext)
     {
+        //Debug.Log("Enter Idle State");
         timer = 0;
-        Debug.Log("Enter Idle State");
     }
     public override void CheckSwitchState(SimpleEnemyManager enemyContext)
     {
@@ -85,7 +85,7 @@ public class BatChaseState : SimpleEnemyState
     }
     public override void EnterState(SimpleEnemyManager enemyContext)
     {
-        Debug.Log("Enter Chase State");
+        //Debug.Log("Enter Chase State");
         timer = 0;
         enemyContext.EnemyNMA.SetDestination(PlayerRef.PlayerTransform.position);
     }
@@ -94,8 +94,8 @@ public class BatChaseState : SimpleEnemyState
         timer += Time.deltaTime;
         if (timer < maxTime) return;
 
-        enemyContext.EnemyNMA.SetDestination(PlayerRef.PlayerTransform.position);
         timer = 0;
+        enemyContext.EnemyNMA.SetDestination(PlayerRef.PlayerTransform.position);
     }
 
     private void CheckDeath(SimpleEnemyManager enemyContext)
@@ -116,47 +116,43 @@ public class BatChaseState : SimpleEnemyState
 public class BatChargeAttackState : SimpleEnemyState
 {
     private float chargeDuration;
-    private float sqrMagDistance;
+    private bool canAttack;
 
     public BatChargeAttackState() 
     {
         chargeDuration = 1f;
-        sqrMagDistance = Mathf.Pow(4f, 2);
+        canAttack = false;
     }
 
     public override void CheckSwitchState(SimpleEnemyManager enemyContext)
     {
         CheckDeath(enemyContext);
-
-        CheckPlayerDistance(enemyContext);
     }
     public override void EnterState(SimpleEnemyManager enemyContext)
     {
-        Debug.Log("Enter Charge Attack State");
+        //Debug.Log("Enter Charge Attack State");
+        canAttack = false;
         enemyContext.StartCoroutine(ChargeAttack(enemyContext));
     }
     public override void ExitState(SimpleEnemyManager enemyContext)
     {
         enemyContext.StopAllCoroutines();
     }
+    public override void UpdateState(SimpleEnemyManager enemyContext)
+    {
+        if(canAttack && TempoManager.CurrentHitQuality != TempoManager.HIT_QUALITY.MISS)
+            enemyContext.EnemyStateMachine.HandleSwitchState(RequestState(States.BAT_ATTACK));
+    }
 
     IEnumerator ChargeAttack(SimpleEnemyManager enemyContext)
     {
         yield return new WaitForSeconds(chargeDuration);
-        enemyContext.EnemyStateMachine.HandleSwitchState(RequestState(States.BAT_ATTACK));
+        canAttack = true;
     }
     private void CheckDeath(SimpleEnemyManager enemyContext)
     {
         if (enemyContext.EnemyStats.Health > 0f) return;
         enemyContext.EnemyStateMachine.HandleSwitchState(RequestState(States.BAT_DEATH));
-    }
-    private void CheckPlayerDistance(SimpleEnemyManager enemyContext)
-    {
-        float playerDistance = (enemyContext.transform.position - PlayerRef.PlayerTransform.position).sqrMagnitude;
-        if (playerDistance > sqrMagDistance)
-        {
-            enemyContext.EnemyStateMachine.HandleSwitchState(RequestState(States.BAT_CHASE));
-        }
     }
 }
 
@@ -172,10 +168,10 @@ public class BatAttackState : SimpleEnemyState
     public BatAttackState() 
     {
         mask           = LayerMask.GetMask("Player");
-        pushForce      = 5f;
+        pushForce      = 6f;
         damage         = 5f;
-        attackDuration = 0.15f;
-        attackCooldown = 0.35f;
+        attackDuration = 0.25f;
+        attackCooldown = 1f;
     }
 
     public override void CheckSwitchState(SimpleEnemyManager enemyContext)
@@ -185,7 +181,7 @@ public class BatAttackState : SimpleEnemyState
 
     public override void EnterState(SimpleEnemyManager enemyContext)
     {
-        Debug.Log("Enter Attack State");
+        //Debug.Log("Enter Attack State");
         isAttacking = true;
         attackDirection = (PlayerRef.PlayerTransform.position - enemyContext.transform.position).normalized;
         attackDirection.y = 0;
@@ -213,17 +209,18 @@ public class BatAttackState : SimpleEnemyState
     }
     private IEnumerator AttackCooldown(SimpleEnemyManager enemyContext)
     {
+        enemyContext.EnemyRigidbody.isKinematic = true;
         yield return new WaitForSeconds(attackCooldown);
         enemyContext.EnemyStateMachine.HandleSwitchState(RequestState(States.BAT_CHASE));
     }
     private void Attack(SimpleEnemyManager enemyContext)
     {
-        if (Physics.BoxCast(enemyContext.transform.position,
-                           new Vector3(0.5f, 0.5f, 0.5f),
-                           attackDirection,
-                           enemyContext.transform.rotation,
-                           2f,
-                           mask))
+        if (Physics.BoxCast(enemyContext.transform.position, //Where casting ray
+                           new Vector3(0.25f, 0.25f, 0.25f), // size of half of box side lengths
+                           attackDirection,                  //Direction of the ray
+                           enemyContext.transform.rotation,  //Current enemy rotation
+                           1f,                               //Distance ray is cast out
+                           mask))                            //Player's layer mask
         {
             PlayerStats.OnDamageTaken(damage);
             isAttacking = false;
@@ -242,7 +239,7 @@ public class BatStaggerState : SimpleEnemyState
     public BatStaggerState() 
     {
         staggerDuration = 1f;
-        knockbackForce = 2f;
+        knockbackForce = 0.5f;
     }
 
     public override void CheckSwitchState(SimpleEnemyManager enemyContext)
@@ -270,7 +267,7 @@ public class BatStaggerState : SimpleEnemyState
     private IEnumerator StaggerDuration(SimpleEnemyManager enemyContext)
     {
         yield return new WaitForSeconds(staggerDuration);
-        enemyContext.EnemyStateMachine.HandleSwitchState(RequestState((States)States.BAT_CHASE));
+        enemyContext.EnemyStateMachine.HandleSwitchState(RequestState(States.BAT_CHASE));
     }
 }
 public class BatDeathState : SimpleEnemyState
@@ -279,7 +276,7 @@ public class BatDeathState : SimpleEnemyState
 
     public override void EnterState(SimpleEnemyManager enemyContext)
     {
-        Debug.Log("Enter Death State");
+        //Debug.Log("Enter Death State");
         enemyContext.EnemyStats.HandleEnemyDeath();
     }
 }

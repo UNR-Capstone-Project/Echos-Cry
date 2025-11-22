@@ -33,30 +33,32 @@ public class PlayerMovement : MonoBehaviour
         OnDashStarted?.Invoke();
 
         StartCoroutine(DashDurationTimer(dashDuration));
-        StartCoroutine(DashCooldownTimer(dashCooldown));
     }
 
+    IEnumerator DashDurationTimer(float duration)
+    {
+        isDashing = true;
+        _playerCollider.enabled = false; 
+        yield return new WaitForSeconds(duration);
+        isDashing = false;
+        _playerCollider.enabled = true;
+        OnDashEnded?.Invoke();
+        StartCoroutine(DashCooldownTimer(dashCooldown));
+    }
     IEnumerator DashCooldownTimer(float duration)
     {
         yield return new WaitForSeconds(duration);
         canDash = true;
     }
-    IEnumerator DashDurationTimer(float duration)
-    {
-        isDashing = true;
-        yield return new WaitForSeconds(duration);
-        isDashing = false;
-
-        OnDashEnded?.Invoke();
-    }
 
     private void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
-        mainCameraRef = Camera.main.transform;
+        _playerCollider = GetComponent<Collider>();
     }
     void Start()
     {
+        mainCameraRef = Camera.main.transform;
         InputTranslator.OnMovementEvent += HandleMovement;
         InputTranslator.OnDashEvent += HandleDash;
     }
@@ -78,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
 
     private static Rigidbody playerRigidbody;
     public static Rigidbody PlayerRigidbody { get { return playerRigidbody; } }
+    private Collider _playerCollider = null;
 
     private Transform mainCameraRef;
 
