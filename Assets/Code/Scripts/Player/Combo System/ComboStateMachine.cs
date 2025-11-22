@@ -34,7 +34,7 @@ public class ComboStateMachine : MonoBehaviour
 
     private bool IsOnBeat()
     {
-        if ( TempoManager.UpdateHitQuality() == TempoManager.HIT_QUALITY.MISS) return false;
+        if ( TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.MISS) return false;
         else return true;
     }
 

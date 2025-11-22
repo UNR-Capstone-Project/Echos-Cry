@@ -1441,7 +1441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   hitQualityText: {fileID: 7966699270862996379}
-  metronomeImage: {fileID: 840251735800372354}
+  metronomeImageObject: {fileID: 840251735800372354}
   flashDuration: 0.2
 --- !u!1 &8567804599268709567
 GameObject:

@@ -14,16 +14,13 @@ public class TempoManager : MonoBehaviour
         _badHitTime = _timeBetweenBeats * _badPercent;
     }
 
-    public static HIT_QUALITY UpdateHitQuality()
+    private static void UpdateHitQuality()
     {
-        HIT_QUALITY currentHitQuality;
-        if (_currentBeatTime > _timeBetweenBeats - _excellentHitTime || _currentBeatTime < _excellentHitTime) { currentHitQuality = HIT_QUALITY.EXCELLENT; }
-        else if (_currentBeatTime > _timeBetweenBeats - _goodHitTime || _currentBeatTime < _goodHitTime) { currentHitQuality = HIT_QUALITY.GOOD; }
-        else if (_currentBeatTime > _timeBetweenBeats - _badHitTime || _currentBeatTime < _badHitTime) { currentHitQuality = HIT_QUALITY.BAD; }
-        else currentHitQuality = HIT_QUALITY.MISS;
-
-        UpdateHitQualityEvent?.Invoke(currentHitQuality);
-        return currentHitQuality;
+        //HIT_QUALITY currentHitQuality;
+        if (_currentBeatTime > _timeBetweenBeats - _excellentHitTime || _currentBeatTime < _excellentHitTime) { CurrentHitQuality = HIT_QUALITY.EXCELLENT; }
+        else if (_currentBeatTime > _timeBetweenBeats - _goodHitTime || _currentBeatTime < _goodHitTime) { CurrentHitQuality = HIT_QUALITY.GOOD; }
+        else if (_currentBeatTime > _timeBetweenBeats - _badHitTime || _currentBeatTime < _badHitTime) { CurrentHitQuality = HIT_QUALITY.BAD; }
+        else CurrentHitQuality = HIT_QUALITY.MISS;
     }
 
     private void Awake()
@@ -41,6 +38,7 @@ public class TempoManager : MonoBehaviour
     }
     private void OnDestroy()
     {
+        MusicManager.Instance.UpdateMusicPlayer -= UpdateTempo;
         _instance = null;
     }
 
@@ -53,6 +51,8 @@ public class TempoManager : MonoBehaviour
             BeatTickEvent?.Invoke(); //Less precise beat tick than from music manager
         }
         _lastBeatTime = _currentBeatTime;
+
+        UpdateHitQuality();
     }
 
     public enum HIT_QUALITY
@@ -65,6 +65,8 @@ public class TempoManager : MonoBehaviour
 
     private static TempoManager _instance;
     public static TempoManager  Instance {  get { return _instance; } }
+
+    public static HIT_QUALITY CurrentHitQuality;
 
     //Beat Values
     private static float _timeBetweenBeats = 0;
@@ -91,6 +93,6 @@ public class TempoManager : MonoBehaviour
     private static float _badHitTime= 0;
 
     // Events
-    public static event Action<HIT_QUALITY> UpdateHitQualityEvent;
+    //public static event Action<HIT_QUALITY> UpdateHitQualityEvent;
     public static event Action BeatTickEvent;
 }
