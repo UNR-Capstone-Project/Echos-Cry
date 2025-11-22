@@ -268,6 +268,6 @@ public class BatDeathState : SimpleEnemyState
     public override void EnterState(SimpleEnemyManager enemyContext)
     {
         Debug.Log("Enter Death State");
-        enemyContext.EnemyStats.KillEnemy();
+        enemyContext.EnemyStats.HandleEnemyDeath();
     }
 }
