@@ -1,6 +1,7 @@
 using AudioSystem;
 using System.Collections;
 using UnityEngine;
+using System;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -25,34 +26,33 @@ public class PlayerMovement : MonoBehaviour
     }
     public void HandleDash()
     {
-        if (!canDash) return;
+        if (!canDash || TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.MISS) return;
 
-        if (TempoManager.UpdateHitQuality() == TempoManager.HIT_QUALITY.MISS) { return; }
-
+        canDash = false;
         playerRigidbody.AddForce(playerRigidbody.linearVelocity.normalized * dashSpeed, ForceMode.Impulse);
+        OnDashStarted?.Invoke();
+
         StartCoroutine(DashDurationTimer(dashDuration));
         StartCoroutine(DashCooldownTimer(dashCooldown));
     }
 
     IEnumerator DashCooldownTimer(float duration)
     {
-        canDash = false;
         yield return new WaitForSeconds(duration);
         canDash = true;
     }
     IEnumerator DashDurationTimer(float duration)
     {
         isDashing = true;
-        mTrail.emitting = true;
         yield return new WaitForSeconds(duration);
         isDashing = false;
-        mTrail.emitting = false;
+
+        OnDashEnded?.Invoke();
     }
 
     private void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
-        mTrail = GetComponent<TrailRenderer>();
         mainCameraRef = Camera.main.transform;
     }
     void Start()
@@ -72,11 +72,6 @@ public class PlayerMovement : MonoBehaviour
         MovePlayer();
     }
 
-    private void OnDrawGizmos()
-    {
-        //Gizmos.DrawWireCube(transform.position + (Vector3.down * groundCheckBoxHeight), groundCheckBoxDimensions);
-    }
-
     //Player Movement
     private static Vector2 playerLocomotion = Vector2.zero;
     public static Vector2 PlayerLocomotion { get { return playerLocomotion; } }
@@ -87,9 +82,12 @@ public class PlayerMovement : MonoBehaviour
     private Transform mainCameraRef;
 
     //Player Dashing
+    public static event Action OnDashStarted;
+    public static event Action OnDashEnded;
+
     private bool canDash = true;
     private bool isDashing = false;
-    private TrailRenderer mTrail = null;
+
     [Header("Determines how quickly dash reaches destination.")]
     [SerializeField] private float dashSpeed = 20f;
     [Header("Determines the distance of the dash.")]
@@ -97,13 +95,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("")]
     [SerializeField] private float dashCooldown = 1f;
 
-    //[SerializeField] private float playerGravity = 9.8f; Rigidbody has implementation for gravity and mass
     [SerializeField] private float playerSpeed = 10f;
 
-    //[SerializeField] private Vector3 groundCheckBoxDimensions;
-    //[SerializeField] private float groundCheckBoxHeight;
-    //public bool IsGrounded()
-    //{
-    //    return Physics.BoxCast(transform.position, groundCheckBoxDimensions, Vector3.down, transform.rotation, groundCheckBoxHeight);
-    //}
 }
