@@ -12,15 +12,10 @@ public class MeleeAttack : BaseAttack
 
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
         {
-            Vector3 hitPoint = hit.point;
-
-            swingDirection = -(hitPoint - transform.parent.position).normalized; //Calculates the direction between the mouse mapped to world space and the players position.
+            swingDirection = -(hit.point - transform.parent.position).normalized; //Calculates the direction between the mouse mapped to world space and the players position.
             swingDirection.y = 0;
-
-            Quaternion aimingRotation = Quaternion.LookRotation(swingDirection);
-
-            Quaternion decalRotation = Quaternion.Euler(new Vector3(90, aimingRotation.eulerAngles.y, 0));
-            transform.rotation = decalRotation;
+            Quaternion aimingRotation = Quaternion.LookRotation(swingDirection) * Quaternion.AngleAxis(90f, Vector3.right);
+            transform.rotation = aimingRotation;
         }
     }
 }
