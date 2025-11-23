@@ -8,6 +8,7 @@ public class PlayerHealthBar : MonoBehaviour
     [SerializeField] private TMPro.TextMeshProUGUI healthText;
     private float lerpTimer;
     public float chipSpeed = 3f;
+    private float hFraction = 0f;
     [SerializeField] private UnityEngine.UI.Image frontHealthBar;
     [SerializeField] private UnityEngine.UI.Image backHealthBar;
 
@@ -30,10 +31,18 @@ public class PlayerHealthBar : MonoBehaviour
 
     private void updateHealth(float currentHealth, float maxHealth)
     {
+        healthText.text = currentHealth.ToString() + "/" + maxHealth.ToString();
+        hFraction = currentHealth / maxHealth;
+        lerpTimer = 0f;
+
+        
+        
+    }
+
+    private void Update()
+    {
         float fillF = frontHealthBar.fillAmount;
         float fillB = backHealthBar.fillAmount;
-        float hFraction = currentHealth / maxHealth;
-
         if (fillB > hFraction)
         {
             frontHealthBar.fillAmount = hFraction;
@@ -53,7 +62,6 @@ public class PlayerHealthBar : MonoBehaviour
             percentComplete = percentComplete * percentComplete;
             frontHealthBar.fillAmount = Mathf.Lerp(fillF, backHealthBar.fillAmount, percentComplete);
         }
-        healthText.text = currentHealth.ToString() + "/" + maxHealth.ToString();
     }
 
     private void updateHealthOnDeath() {
