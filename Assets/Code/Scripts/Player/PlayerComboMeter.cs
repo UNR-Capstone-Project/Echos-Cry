@@ -8,7 +8,7 @@ public class PlayerComboMeter : MonoBehaviour
     //  - Implement combo bar increase based on attack hit quality
     //  - Implement combo bar decrease at a certain rate that pauses based on attack hit quality
     //  - Implement combo multiplier increase based on attack hit quality
-    //  - Implement combo multiplier decrease based on time and attack hit quality
+    //  - Implement combo multiplier decrease based on time and attack hit quality (maybe just fully reset combo bar if they miss)
 
     public static void UpdateComboMeter(float amount)
     {
