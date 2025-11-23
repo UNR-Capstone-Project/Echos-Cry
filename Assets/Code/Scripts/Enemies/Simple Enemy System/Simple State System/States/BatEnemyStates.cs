@@ -1,3 +1,4 @@
+using NUnit.Framework.Constraints;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -85,7 +86,7 @@ public class BatChaseState : SimpleEnemyState
     }
     public override void EnterState(SimpleEnemyManager enemyContext)
     {
-        //Debug.Log("Enter Chase State");
+        Debug.Log("Enter Chase State");
         timer = 0;
         enemyContext.EnemyNMA.SetDestination(PlayerRef.PlayerTransform.position);
     }
@@ -116,12 +117,10 @@ public class BatChaseState : SimpleEnemyState
 public class BatChargeAttackState : SimpleEnemyState
 {
     private float chargeDuration;
-    private bool canAttack;
 
     public BatChargeAttackState() 
     {
         chargeDuration = 1f;
-        canAttack = false;
     }
 
     public override void CheckSwitchState(SimpleEnemyManager enemyContext)
@@ -130,25 +129,29 @@ public class BatChargeAttackState : SimpleEnemyState
     }
     public override void EnterState(SimpleEnemyManager enemyContext)
     {
-        //Debug.Log("Enter Charge Attack State");
-        canAttack = false;
+        Debug.Log("Enter Charge Attack State");
         enemyContext.StartCoroutine(ChargeAttack(enemyContext));
     }
     public override void ExitState(SimpleEnemyManager enemyContext)
     {
         enemyContext.StopAllCoroutines();
     }
-    public override void UpdateState(SimpleEnemyManager enemyContext)
-    {
-        if(canAttack && TempoManager.CurrentHitQuality != TempoManager.HIT_QUALITY.MISS)
-            enemyContext.EnemyStateMachine.HandleSwitchState(RequestState(States.BAT_ATTACK));
-    }
 
     IEnumerator ChargeAttack(SimpleEnemyManager enemyContext)
     {
         yield return new WaitForSeconds(chargeDuration);
-        canAttack = true;
+        if (TempoManager.CurrentHitQuality != TempoManager.HIT_QUALITY.MISS)
+            enemyContext.EnemyStateMachine.HandleSwitchState(RequestState(States.BAT_ATTACK));
+        else enemyContext.StartCoroutine(WaitUntilBeat(enemyContext));
     }
+    IEnumerator WaitUntilBeat(SimpleEnemyManager enemyContext)
+    {
+        yield return new WaitForEndOfFrame();
+        if (TempoManager.CurrentHitQuality != TempoManager.HIT_QUALITY.MISS)
+            enemyContext.EnemyStateMachine.HandleSwitchState(RequestState(States.BAT_ATTACK));
+        else enemyContext.StartCoroutine(WaitUntilBeat(enemyContext));
+    }
+
     private void CheckDeath(SimpleEnemyManager enemyContext)
     {
         if (enemyContext.EnemyStats.Health > 0f) return;
@@ -181,7 +184,7 @@ public class BatAttackState : SimpleEnemyState
 
     public override void EnterState(SimpleEnemyManager enemyContext)
     {
-        //Debug.Log("Enter Attack State");
+        Debug.Log("Enter Attack State");
         isAttacking = true;
         attackDirection = (PlayerRef.PlayerTransform.position - enemyContext.transform.position).normalized;
         attackDirection.y = 0;
@@ -248,6 +251,7 @@ public class BatStaggerState : SimpleEnemyState
     }
     public override void EnterState(SimpleEnemyManager enemyContext)
     {
+        Debug.Log("Enter Stagger State");
         enemyContext.EnemyRigidbody.isKinematic = false;
         Vector3 direction = (PlayerRef.PlayerTransform.position - enemyContext.transform.position).normalized;
         enemyContext.EnemyRigidbody.AddForce(-(knockbackForce * direction), ForceMode.Impulse);
