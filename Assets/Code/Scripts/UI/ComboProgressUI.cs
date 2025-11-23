@@ -12,11 +12,11 @@ public class ComboProgressUI : MonoBehaviour
 
     private void Start()
     {
-        PlayerStats.OnComboMeterChangeEvent += UpdateComboMeterFill;
+        PlayerComboMeter.OnComboMeterChangeEvent += UpdateComboMeterFill;
         progressRingImage.fillAmount = 0;
     }
     private void OnDestroy()
     {
-        PlayerStats.OnComboMeterChangeEvent -= UpdateComboMeterFill;
+        PlayerComboMeter.OnComboMeterChangeEvent -= UpdateComboMeterFill;
     }
 }
