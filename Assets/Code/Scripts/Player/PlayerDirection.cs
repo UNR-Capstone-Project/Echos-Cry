@@ -4,10 +4,10 @@ using UnityEngine.Rendering.Universal;
 
 public class PlayerDirection : MonoBehaviour
 {
-    //[SerializeField] DecalProjector playerAimMarker;
-
-    private Vector3 aimDirection;
-    private Quaternion aimingRotation;
+    private static Vector3 aimDirection;
+    private static Quaternion aimRotation;
+    public static Vector3 AimDirection { get { return aimDirection; } }
+    public static Quaternion AimRotation { get { return aimRotation; } }   
 
     void Update()
     {
@@ -17,11 +17,8 @@ public class PlayerDirection : MonoBehaviour
         {
             aimDirection = (hit.point - transform.parent.position).normalized; //Calculates the direction between the mouse mapped to world space and the players position.
             aimDirection.y = 0;
-            aimingRotation = Quaternion.LookRotation(aimDirection) * Quaternion.AngleAxis(90f, Vector3.right);
-            transform.rotation = aimingRotation;
+            aimRotation = Quaternion.LookRotation(aimDirection) * Quaternion.AngleAxis(90f, Vector3.right);
+            transform.rotation = aimRotation;
         }
     }
-
-    public Vector3 GetAimDirection() { return aimDirection; }
-    public Quaternion GetAimRotation() { return aimingRotation; }
 }

@@ -40,21 +40,19 @@ public class HandleDamageCollision : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (!_canBeDamaged) return;
-
-        _canBeDamaged = false;
         StartCoroutine(DamageCooldown());
 
         _enemyStats.DamageEnemy(Weapon.CurrentDamage);
-        PlayerComboMeter.UpdateComboMeter(Weapon.CurrentDamage);
+        PlayerComboMeter.AddToComboMeter(Weapon.CurrentDamage);
         
         _enemyManager.EnemyStateMachine.HandleSwitchState(SimpleEnemyStateCache.RequestState(SimpleEnemyStateCache.States.BAT_STAGGER));
 
     }
     private IEnumerator DamageCooldown()
     {
+        _enemyCollider.enabled = false;
         yield return new WaitForSeconds(_damageCooldown);
-        _canBeDamaged = true;
+        _enemyCollider.enabled = true;
     }
 
     [SerializeField] private CapsuleCollider _enemyCollider;
@@ -63,6 +61,4 @@ public class HandleDamageCollision : MonoBehaviour
     private EnemyStats _enemyStats;
     private EnemyInfo _enemyInfo;
     private SimpleEnemyManager _enemyManager;
-    private bool _canBeDamaged = true;
-
 }

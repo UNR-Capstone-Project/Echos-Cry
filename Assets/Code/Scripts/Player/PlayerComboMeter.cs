@@ -10,9 +10,14 @@ public class PlayerComboMeter : MonoBehaviour
     //  - Implement combo multiplier increase based on attack hit quality
     //  - Implement combo multiplier decrease based on time and attack hit quality (maybe just fully reset combo bar if they miss)
 
-    public static void UpdateComboMeter(float amount)
+    public static void AddToComboMeter(float amount)
     {
         _comboMeterAmount = Mathf.Clamp(_comboMeterAmount + (0.125f * _comboMultiplier) * amount, 0, _comboMeterMax);
+        OnComboMeterChangeEvent?.Invoke(_comboMeterAmount, _comboMeterMax);
+    }
+    public static void SubtractFromComboMeter(float amount)
+    {
+        _comboMeterAmount = Mathf.Clamp(_comboMeterAmount - amount, 0, _comboMeterMax);
         OnComboMeterChangeEvent?.Invoke(_comboMeterAmount, _comboMeterMax);
     }
     public static void UpdateComboMultiplier()
