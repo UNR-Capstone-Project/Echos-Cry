@@ -9,7 +9,7 @@ public class ComboStateMachine : MonoBehaviour
     {
         if (!_readyForAttackInput || !IsOnBeat()) return;
 
-        StopAllCoroutines();
+            StopAllCoroutines();
         _readyForAttackInput = false;
 
         if (_currentState.NextLightAttack == null) _currentState = _startState.NextLightAttack;
