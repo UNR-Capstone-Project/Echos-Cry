@@ -9,7 +9,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(EnemyStats))]
 [RequireComponent(typeof(EnemyInfo))]
-public class HandleDamageCollision : MonoBehaviour
+public class EnemyHandleDamageCollision : MonoBehaviour
 {
     //This ensures that the PlayerAttack layer will be the only collider that can trigger enemy damage
     void SetupColliderLayers()
@@ -44,6 +44,7 @@ public class HandleDamageCollision : MonoBehaviour
 
         _enemyStats.DamageEnemy(Weapon.CurrentDamage);
         PlayerComboMeter.AddToComboMeter(Weapon.CurrentDamage);
+        PlayerComboMeter.UpdateComboMultiplier();
         
         _enemyManager.EnemyStateMachine.HandleSwitchState(SimpleEnemyStateCache.RequestState(SimpleEnemyStateCache.States.BAT_STAGGER));
 

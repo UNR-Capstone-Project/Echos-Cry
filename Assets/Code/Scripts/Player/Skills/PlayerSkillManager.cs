@@ -12,7 +12,7 @@ public class PlayerSkillManager : MonoBehaviour
     {
         Debug.Log("Using Skill 1");
         Skill currentSkill = playerSkills[(int)SKILL_NUM.SKILL1];
-        if (currentSkill != null)
+        if (currentSkill != null && PlayerComboMeter.ComboMeterAmount >= currentSkill.SkillCost)
         {
             currentSkill.UseSkill();
             PlayerComboMeter.SubtractFromComboMeter(currentSkill.SkillCost);
@@ -22,7 +22,7 @@ public class PlayerSkillManager : MonoBehaviour
     {
         Debug.Log("Using Skill 2");
         Skill currentSkill = playerSkills[(int)SKILL_NUM.SKILL2];
-        if (currentSkill != null)
+        if (currentSkill != null && PlayerComboMeter.ComboMeterAmount >= currentSkill.SkillCost)
         {
             currentSkill.UseSkill();
             PlayerComboMeter.SubtractFromComboMeter(currentSkill.SkillCost);
@@ -32,7 +32,7 @@ public class PlayerSkillManager : MonoBehaviour
     {
         Debug.Log("Using Ultimate");
         Skill currentSkill = playerSkills[(int)SKILL_NUM.ULTIMATE];
-        if (currentSkill != null)
+        if (currentSkill != null && PlayerComboMeter.ComboMeterAmount >= currentSkill.SkillCost)
         {
             currentSkill.UseSkill();
             PlayerComboMeter.SubtractFromComboMeter(currentSkill.SkillCost);
@@ -41,13 +41,15 @@ public class PlayerSkillManager : MonoBehaviour
 
     private void Awake()
     {
-        playerSkills = new Skill[SKILL_AMOUNT];    
+        playerSkills = new Skill[SKILL_AMOUNT];
     }
     private void Start()
     {
         InputTranslator.OnSkill1Event += HandleSkill1;
         InputTranslator.OnSkill2Event += HandleSkill2;
         InputTranslator.OnSkill3Event += HandleSkill3;  
+
+        SetSkills(new TestProjectileSkill(40f, Resources.Load<GameObject>("Prefabs/Projectiles/Player Projectile"), 10), SKILL_NUM.SKILL1);
     }
     private void OnDestroy()
     {
