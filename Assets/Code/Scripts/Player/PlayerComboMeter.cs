@@ -12,12 +12,12 @@ public class PlayerComboMeter : MonoBehaviour
 
     public static void UpdateComboMeter(float amount)
     {
-        _comboMeterAmount = Mathf.Clamp(_comboMeterAmount + (1 * _comboMultiplier) * amount, 0, _comboMeterMax);
+        _comboMeterAmount = Mathf.Clamp(_comboMeterAmount + (0.125f * _comboMultiplier) * amount, 0, _comboMeterMax);
         OnComboMeterChangeEvent?.Invoke(_comboMeterAmount, _comboMeterMax);
     }
     public static void UpdateComboMultiplier()
     {
-        _comboMultiplier = Mathf.Clamp(_comboMultiplier + 1, 1, _comboMultiplierMax);
+        _comboMultiplier = Mathf.Clamp(_comboMultiplier * 2, 1, _comboMultiplierMax);
     }
     public static void UpdateHitQualityMultipliers(TempoManager.HIT_QUALITY hit)
     {
@@ -29,9 +29,9 @@ public class PlayerComboMeter : MonoBehaviour
             case TempoManager.HIT_QUALITY.GOOD:
                 _percentOfDamage = 0.175f;
                 break;
-            case TempoManager.HIT_QUALITY.BAD:
-                _percentOfDamage = 0.1f;
-                break;
+            //case TempoManager.HIT_QUALITY.BAD:
+            //    _percentOfDamage = 0.1f;
+            //    break;
         }
     }
 
@@ -47,7 +47,7 @@ public class PlayerComboMeter : MonoBehaviour
 
     void Update()
     {
-        if(_comboMeterAmount > 0 && _isDraining) DrainComboMeter();
+        //if(_comboMeterAmount > 0 && _isDraining) DrainComboMeter();
     }
     void Start()
     {
