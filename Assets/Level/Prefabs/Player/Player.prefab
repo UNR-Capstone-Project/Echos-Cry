@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: 415338203038042998}
   - component: {fileID: 1087463396999264668}
   - component: {fileID: 1583115497800748523}
+  - component: {fileID: 3994806833285819260}
   - component: {fileID: 7414890934435195871}
   - component: {fileID: 8506666208944667827}
   - component: {fileID: 2002120213059147044}
@@ -242,6 +243,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb0d8d974a229a4ab05cb29a4d24eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+--- !u!114 &3994806833285819260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2428720641269041060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: add17ce02c85fdc45aea35ad0bef13b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerComboMeter
+  _comboMeterDrainRate: 2.5
 --- !u!114 &7414890934435195871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,7 +271,8 @@ MonoBehaviour:
   dashSpeed: 15
   dashDuration: 0.15
   dashCooldown: 1
-  playerSpeed: 25
+  playerSpeed: 6
+  maxPlayerVelocityMag: 10
 --- !u!114 &8506666208944667827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,6 +310,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1451a3ff0f1df844ab16e8f1d98c1e2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputTranslator
+  _inputPaddingGrace: 4
+  _spamCooldown: 3.5
 --- !u!54 &2019051602396369572
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ public class ComboStateMachine : MonoBehaviour
         if (_currentState.NextLightAttack == null) _currentState = _startState.NextLightAttack;
         else _currentState = _currentState.NextLightAttack;
 
+        PlayerComboMeter.UpdateHitQualityMultipliers(TempoManager.CurrentHitQuality);
         equippedWeapon.SetActive(true);
         _currentState.InitiateComboState();
     }
@@ -28,6 +29,7 @@ public class ComboStateMachine : MonoBehaviour
         if (_currentState.NextHeavyAttack == null) _currentState = _startState.NextHeavyAttack;
         else _currentState = _currentState.NextHeavyAttack;
 
+        PlayerComboMeter.UpdateHitQualityMultipliers(TempoManager.CurrentHitQuality);
         equippedWeapon.SetActive(true);
         _currentState.InitiateComboState();
     }

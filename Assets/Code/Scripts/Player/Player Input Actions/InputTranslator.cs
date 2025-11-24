@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
@@ -18,6 +20,15 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
     public static event Action          OnMapEvent;
     public static event Action          OnExitMapEvent, OnJournalLeftInput, OnJournalRightInput;
     public static event Action          OnSkill1Event, OnSkill2Event, OnSkill3Event;
+
+    private int _inputCount = 0;
+    private int _maxInputCountPerSec = 1;
+    [SerializeField] int _inputPaddingGrace = 4;
+
+    private float _timer = 0;
+    private bool _pauseBeatInputs = false;
+    [SerializeField] private float _spamCooldown = 5f;
+
     private void Awake()
     {
         if (_instance != null)
@@ -35,9 +46,17 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
     {
         if (_instance == null) _instance = this;
 
+        _inputCount = 0;
+        _pauseBeatInputs= false;
+        UpdateBPMInputCount();
+
         _playerInputs.Gameplay.Enable();
         _playerInputs.PauseMenu.Disable();
         _playerInputs.PlayerMenu.Disable();
+
+        MusicManager.Instance.UpdateMusicPlayer += UpdateBPMInputCount;
+
+        StartCoroutine(WaitForSecond());
     }
     private void OnEnable()
     {
@@ -54,6 +73,8 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
     }
     private void OnDisable()
     {
+        MusicManager.Instance.UpdateMusicPlayer -= UpdateBPMInputCount;
+
         _playerInputs.Gameplay.Disable();
         _playerInputs.PauseMenu.Disable();
         _playerInputs.PlayerMenu.Disable();
@@ -66,6 +87,31 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
         _playerInputs = null;
         _instance = null;
     }
+    private void Update()
+    {
+        _timer += Time.deltaTime;
+        if (_timer < 0.2f) return;
+        _timer -= 0.2f;
+        if(_inputCount > _maxInputCountPerSec) StartCoroutine(SpamCooldown());
+    }
+
+    private IEnumerator WaitForSecond()
+    {
+        yield return new WaitForSeconds(1f);
+        _inputCount = 0;
+        StartCoroutine(WaitForSecond());
+    }
+    private IEnumerator SpamCooldown()
+    {
+        _pauseBeatInputs = true;
+        yield return new WaitForSeconds(_spamCooldown);
+        _pauseBeatInputs = false;
+    }
+    private void UpdateBPMInputCount()
+    {
+        float timeBetweenBeats = 60f / (float)MusicManager.Instance.GetTempo();
+        _maxInputCountPerSec = (int)(1f/timeBetweenBeats) + _inputPaddingGrace;
+    }
 
     public void OnMovement(InputAction.CallbackContext context)
     {
@@ -73,16 +119,28 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
     }
     public void OnDash(InputAction.CallbackContext context)
     {
-        if(context.started) OnDashEvent?.Invoke();
+        if (context.started && !_pauseBeatInputs)
+        {
+            OnDashEvent?.Invoke();
+            _inputCount++;
+        }
     }
 
     public void OnLightAttack(InputAction.CallbackContext context)
     {
-        if (context.started) OnLightAttackEvent?.Invoke();
+        if (context.started && !_pauseBeatInputs)
+        {
+            OnLightAttackEvent?.Invoke();
+            _inputCount++;
+        }
     }
     public void OnHeavyAttack(InputAction.CallbackContext context)
     {
-        if (context.started) OnHeavyAttackEvent?.Invoke();
+        if (context.started && !_pauseBeatInputs)
+        {
+            OnHeavyAttackEvent?.Invoke();
+            _inputCount++;
+        }
     }
 
     public void OnPause(InputAction.CallbackContext context)

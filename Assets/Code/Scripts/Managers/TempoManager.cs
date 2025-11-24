@@ -11,7 +11,7 @@ public class TempoManager : MonoBehaviour
 
         _excellentHitTime = _timeBetweenBeats * _excellentPercent;
         _goodHitTime = _timeBetweenBeats * _goodPercent;
-        _badHitTime = _timeBetweenBeats * _badPercent;
+        //_badHitTime = _timeBetweenBeats * _badPercent;
     }
 
     private static void UpdateHitQuality()
@@ -19,7 +19,7 @@ public class TempoManager : MonoBehaviour
         //HIT_QUALITY currentHitQuality;
         if (_currentBeatTime > _timeBetweenBeats - _excellentHitTime || _currentBeatTime < _excellentHitTime) { CurrentHitQuality = HIT_QUALITY.EXCELLENT; }
         else if (_currentBeatTime > _timeBetweenBeats - _goodHitTime || _currentBeatTime < _goodHitTime) { CurrentHitQuality = HIT_QUALITY.GOOD; }
-        else if (_currentBeatTime > _timeBetweenBeats - _badHitTime || _currentBeatTime < _badHitTime) { CurrentHitQuality = HIT_QUALITY.BAD; }
+        //else if (_currentBeatTime > _timeBetweenBeats - _badHitTime || _currentBeatTime < _badHitTime) { CurrentHitQuality = HIT_QUALITY.BAD; }
         else CurrentHitQuality = HIT_QUALITY.MISS;
     }
 
@@ -58,7 +58,7 @@ public class TempoManager : MonoBehaviour
     public enum HIT_QUALITY
     {
         MISS = 0,
-        BAD,
+        //BAD,
         GOOD,
         EXCELLENT
     }
@@ -70,13 +70,14 @@ public class TempoManager : MonoBehaviour
 
     //Beat Values
     private static float _timeBetweenBeats = 0;
+    public static float TimeBetweenBeats { get { return _timeBetweenBeats; } }
     private static float _currentBeatTime = 0;
     private static float _lastBeatTime = 0f;
 
     //Hit Time
-    private static float _excellentPercent = 0.1f;
-    private static float _goodPercent = 0.15f;
-    private static float _badPercent = 0.25f;
+    private static float _excellentPercent = 0.05f;
+    private static float _goodPercent = 0.125f;
+    //private static float _badPercent = 0.25f;
 
     //            Tempo Threshold
     // Start                           End
@@ -90,7 +91,7 @@ public class TempoManager : MonoBehaviour
 
     private static float _excellentHitTime = 0;
     private static float _goodHitTime = 0;
-    private static float _badHitTime= 0;
+    //private static float _badHitTime= 0;
 
     // Events
     //public static event Action<HIT_QUALITY> UpdateHitQualityEvent;
