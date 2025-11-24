@@ -17,13 +17,10 @@ public class PlayerMovement : MonoBehaviour
                           + (playerLocomotion.x * playerSpeed * rightVector)
                           + new Vector3(0f,playerRigidbody.linearVelocity.y,0f);
 
-        playerRigidbody.AddForce(targetVel);
+        if (playerLocomotion != Vector2.zero) playerRigidbody.AddForce(targetVel - playerRigidbody.linearVelocity, ForceMode.VelocityChange);
+        else playerRigidbody.AddForce(-(stoppingAcceleration * playerRigidbody.linearVelocity.normalized));
     }
 
-    public void HandleMovement(Vector2 locomotion)
-    {
-        playerLocomotion = locomotion;
-    }
     public void HandleDash()
     {
         if (!canDash || TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.MISS) return;
@@ -34,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
 
         StartCoroutine(DashDurationTimer(dashDuration));
     }
-
     IEnumerator DashDurationTimer(float duration)
     {
         isDashing = true;
@@ -51,6 +47,17 @@ public class PlayerMovement : MonoBehaviour
         canDash = true;
     }
 
+    public void HandleMovement(Vector2 locomotion)
+    {
+        playerLocomotion = locomotion;
+    }
+
+    private void FixedUpdate()
+    {
+        if (isDashing) return;
+        MovePlayer();
+    }
+
     private void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
@@ -61,17 +68,14 @@ public class PlayerMovement : MonoBehaviour
         mainCameraRef = Camera.main.transform;
         InputTranslator.OnMovementEvent += HandleMovement;
         InputTranslator.OnDashEvent += HandleDash;
+
+        stoppingAcceleration = playerSpeed * 2;
+        //maxPlayerVelocitySqrMag = maxPlayerVelocityMag * maxPlayerVelocityMag;
     }
     private void OnDestroy()
     {
         InputTranslator.OnMovementEvent -= HandleMovement;
         InputTranslator.OnDashEvent -= HandleDash;
-    }
-
-    private void FixedUpdate()
-    {
-        if (isDashing) return;
-        MovePlayer();
     }
 
     //Player Movement
@@ -99,5 +103,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashCooldown = 1f;
 
     [SerializeField] private float playerSpeed = 10f;
+    private float stoppingAcceleration;
+
+    //[SerializeField] private float maxPlayerVelocityMag = 5f;
+    //private float maxPlayerVelocitySqrMag;
 
 }

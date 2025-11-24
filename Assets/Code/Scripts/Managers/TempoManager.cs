@@ -70,6 +70,7 @@ public class TempoManager : MonoBehaviour
 
     //Beat Values
     private static float _timeBetweenBeats = 0;
+    public static float TimeBetweenBeats { get { return _timeBetweenBeats; } }
     private static float _currentBeatTime = 0;
     private static float _lastBeatTime = 0f;
 
