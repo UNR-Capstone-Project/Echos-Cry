@@ -153,7 +153,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1910465096639058828}
   - component: {fileID: 4409496962696009897}
-  - component: {fileID: 3035515144390159335}
   - component: {fileID: 3611273676873636004}
   m_Layer: 0
   m_Name: Weapon (Clarinet)
@@ -200,23 +199,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5953f8a768bb34545b3ba86177973a29, type: 2}
   - {fileID: 11400000, guid: 9bd910b84b4f85749a16dadb92a02c61, type: 2}
   - {fileID: 11400000, guid: ce20ad35b9132194bb9f637fee4854c1, type: 2}
---- !u!114 &3035515144390159335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6698232584449221764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c07aa28893659042a19638d95a98689, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MeleeAttack
-  attackDamage: 10
-  heavyAttackModifier: 1.5
-  destroyTime: 0
-  attackWait: 1
-  knockForce: 1
 --- !u!95 &3611273676873636004
 Animator:
   serializedVersion: 7

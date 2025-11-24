@@ -4,14 +4,12 @@ using UnityEngine;
 using static ComboStateMachine;
 
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(BaseAttack))]
 public class Weapon : MonoBehaviour
 {
     public void Attack(int attackIndex)
     {
+        CurrentDamage = _attackData[attackIndex].BaseDamage;
         _attackAnimator.runtimeAnimatorController = _attackData[attackIndex].OverrideController;
-        _attackMethod.StartAttack(_attackData[attackIndex]);
-        CurrentDamage = _attackMethod.TotalAttackDamage;
         _attackAnimator.Play("Attack");
         SetupAndUseSound(_attackData[attackIndex]);
         StartCoroutine(WaitForAnimationLength(_attackData[attackIndex]));
@@ -34,7 +32,6 @@ public class Weapon : MonoBehaviour
     private void Awake()
     {
         _attackAnimator = GetComponent<Animator>();
-        _attackMethod = GetComponent<BaseAttack>();
     }
     private void Start()
     {
@@ -60,7 +57,6 @@ public class Weapon : MonoBehaviour
 
     private Animator                  _attackAnimator;
     private RuntimeAnimatorController _defaultAnimatorController;
-    private BaseAttack                _attackMethod;
 
     public static event Action OnAttackEndedEvent;
 }
