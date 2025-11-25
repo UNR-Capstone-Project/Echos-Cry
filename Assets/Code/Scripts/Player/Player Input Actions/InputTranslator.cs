@@ -89,10 +89,17 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
     }
     private void Update()
     {
+
+        if (_inputCount > _maxInputCountPerSec && !_pauseBeatInputs)
+        {
+            StartCoroutine(SpamCooldown());
+        }
+
+        /* is adding is 200ms of delay to processing the input inadverdently 
         _timer += Time.deltaTime;
         if (_timer < 0.2f) return;
         _timer -= 0.2f;
-        if(_inputCount > _maxInputCountPerSec) StartCoroutine(SpamCooldown());
+        if(_inputCount > _maxInputCountPerSec) StartCoroutine(SpamCooldown());*/
     }
 
     private IEnumerator WaitForSecond()
