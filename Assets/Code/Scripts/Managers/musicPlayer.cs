@@ -76,7 +76,7 @@ public class MusicPlayer : MonoBehaviour
 
             //sample progress 0 = start of beat, 0.5 is middle, 1 is end of the beat now
             sampleProgress = 1f - Mathf.Clamp01((float)((nextTime - sample) / samplesPerTick));
-            //ensures sample time to be from 0 to the time between each beat
+            //ensures sample time to be from 0 to the time between each beat only
             sampleTime = sampleProgress * ((float)samplesPerTick / (float)sampleRate);
             //sampleTime = (float)((samplesPerTick / sampleRate) - ((nextTime - (sample + n)) / sampleRate));
 

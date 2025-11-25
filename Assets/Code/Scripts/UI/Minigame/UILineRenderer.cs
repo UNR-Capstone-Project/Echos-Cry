@@ -14,6 +14,7 @@ public class UILineRenderer : Graphic
     [SerializeField] private Color leftColor = Color.white;
     [SerializeField] private Color rightColor = Color.black;
 
+    //TODO: make the UI line render start from the end and move to the middle as before
     private void Update()
     {
         if (MusicManager.Instance == null || MusicManager.Instance.GetMusicPlayer() == null) { return; }
