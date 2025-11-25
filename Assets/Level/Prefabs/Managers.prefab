@@ -33,8 +33,53 @@ Transform:
   - {fileID: 9008395294179004849}
   - {fileID: 3323464753686540311}
   - {fileID: 5895429935286522183}
+  - {fileID: 6491277895832929760}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3883498033160655944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6491277895832929760}
+  - component: {fileID: 1943747995233935150}
+  m_Layer: 0
+  m_Name: TickManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6491277895832929760
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3883498033160655944}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1580324783960160912}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1943747995233935150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3883498033160655944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c7428e020514c945850573b4c6d43c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TickManager
 --- !u!1 &5099793167834656456
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,8 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27b935cf4de731f47ae8416bf0d3f114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TempoManagerV2
-  currentHitQuality: 0
-  tickSFX: {fileID: 11400000, guid: 22062295dae6dd44b81bfb39643f80da, type: 2}
 --- !u!1 &8351724481320854748
 GameObject:
   m_ObjectHideFlags: 0
