@@ -16,8 +16,9 @@ public class TempoManager : MonoBehaviour
 
     private static void UpdateHitQuality()
     {
-        float elapsedTimeBeatStart  = _currentBeatTime;
-        float distance = Mathf.Min(elapsedTimeBeatStart, _currentBeatTime - elapsedTimeBeatStart);
+        float distanceToStart = _currentBeatTime;                             // how far after beat start
+        float distanceToEnd   = _timeBetweenBeats - _currentBeatTime;  
+        float distance = Mathf.Min(distanceToStart, distanceToEnd);
 
         if (distance <= _excellentHitTime)
         {
@@ -92,8 +93,8 @@ public class TempoManager : MonoBehaviour
     private float _lastProgress = 0f;
 
     //Hit Time
-    private static float _excellentPercent = 0.05f; //means player must hit within 5% of the beat to be excellent
-    private static float _goodPercent = 0.125f; //means player must hit within 12.5% of the beat to be excellent
+    private static float _excellentPercent = 0.08f; 
+    private static float _goodPercent = 0.15f; 
     //private static float _lastBeatTime = 0f;
     /* ms timing windows calculation
 
