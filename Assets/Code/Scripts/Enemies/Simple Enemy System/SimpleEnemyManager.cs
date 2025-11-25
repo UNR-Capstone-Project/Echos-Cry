@@ -7,10 +7,21 @@ using static SimpleEnemyStateCache;
 
 public class SimpleEnemyManager : MonoBehaviour
 {
+    public void SelectStartState()
+    {
+        switch (TypeOfEnemy)
+        {
+            case EnemyType.BAT:
+                _enemyStateCache = new BatEnemyStateCache(this);
+                _enemyStateMachine.CurrentState = _enemyStateMachine.CurrentState = _enemyStateCache.RequestState(States.BAT_SPAWN);
+                break;
+            default:
+                break;
+        }
+    }
     private void Awake()
     {   
-        _enemyStateMachine = new(this);
-        EnemyStateCache ??= new();
+        _enemyStateMachine = new();
 
         _enemyRigidbody = GetComponent<Rigidbody>();
         _enemyAnimator  = GetComponent<Animator>();
@@ -19,24 +30,29 @@ public class SimpleEnemyManager : MonoBehaviour
     }
     private void Start()
     {
-        _enemyStateMachine.CurrentState = RequestState(EnemyStartState);
-        _enemyStateMachine.CurrentState.EnterState(this);
+        SelectStartState();
+        _enemyStateMachine.CurrentState.EnterState();
     }
     private void Update()
     {
         _enemyStateMachine.Update();
     }
 
-    public States EnemyStartState = States.UNASSIGNED;
-    
-    public static SimpleEnemyStateCache   EnemyStateCache { get; private set; }
+    public enum EnemyType
+    {
+        UNASSIGNED = 0, BAT
+    }
 
+    public EnemyType TypeOfEnemy = EnemyType.UNASSIGNED;
+    
+    private SimpleEnemyStateCache   _enemyStateCache;
     private Animator                _enemyAnimator;
     private NavMeshAgent            _enemyNMA;
     private EnemyStats              _enemyStats;
     private SimpleEnemyStateMachine _enemyStateMachine;
     private Rigidbody               _enemyRigidbody;
 
+    public SimpleEnemyStateCache   EnemyStateCache   { get { return _enemyStateCache;   } }
     public Animator                EnemyAnimator     { get { return _enemyAnimator;     } }
     public NavMeshAgent            EnemyNMA          { get { return _enemyNMA;          } }  
     public EnemyStats              EnemyStats        { get { return _enemyStats;        } }

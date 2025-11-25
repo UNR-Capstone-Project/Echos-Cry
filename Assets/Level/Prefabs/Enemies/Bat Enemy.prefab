@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c5002e34253d44893f57229bf05bd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SimpleEnemyManager
-  EnemyStartState: 1
+  TypeOfEnemy: 1
 --- !u!114 &5942682254910724465
 MonoBehaviour:
   m_ObjectHideFlags: 0
