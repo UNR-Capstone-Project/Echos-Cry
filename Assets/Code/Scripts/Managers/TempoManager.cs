@@ -16,28 +16,11 @@ public class TempoManager : MonoBehaviour
 
     private static void UpdateHitQuality()
     {
-        float distanceToStart = _currentBeatTime;
-        float distanceToEnd   = _timeBetweenBeats - _currentBeatTime;  
-        float distance = Mathf.Min(distanceToStart, distanceToEnd);
-
-        if (distance <= _excellentHitTime)
-        {
-            CurrentHitQuality = HIT_QUALITY.EXCELLENT;
-        } else if (distance <= _goodHitTime)
-        {
-            CurrentHitQuality = HIT_QUALITY.GOOD;
-        } else
-        {
-            CurrentHitQuality = HIT_QUALITY.MISS;
-        } 
-            
-        /*
         //HIT_QUALITY currentHitQuality;
         if (_currentBeatTime > _timeBetweenBeats - _excellentHitTime || _currentBeatTime < _excellentHitTime) { CurrentHitQuality = HIT_QUALITY.EXCELLENT; }
         else if (_currentBeatTime > _timeBetweenBeats - _goodHitTime || _currentBeatTime < _goodHitTime) { CurrentHitQuality = HIT_QUALITY.GOOD; }
         //else if (_currentBeatTime > _timeBetweenBeats - _badHitTime || _currentBeatTime < _badHitTime) { CurrentHitQuality = HIT_QUALITY.BAD; }
         else CurrentHitQuality = HIT_QUALITY.MISS;
-        */
     }
 
     private void Awake()
@@ -93,8 +76,8 @@ public class TempoManager : MonoBehaviour
     private float _lastProgress = 0f;
 
     //Hit Time
-    private static float _excellentPercent = 0.08f; 
-    private static float _goodPercent = 0.15f; 
+    private static float _excellentPercent = 0.05f; 
+    private static float _goodPercent = 0.125f; 
     //private static float _lastBeatTime = 0f;
     //private static float _badPercent = 0.25f;
 
