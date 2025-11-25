@@ -16,11 +16,27 @@ public class TempoManager : MonoBehaviour
 
     private static void UpdateHitQuality()
     {
+        float elapsedTimeBeatStart  = _currentBeatTime;
+        float distance = Mathf.Min(elapsedTimeBeatStart, _currentBeatTime - elapsedTimeBeatStart);
+
+        if (distance <= _excellentHitTime)
+        {
+            CurrentHitQuality = HIT_QUALITY.EXCELLENT;
+        } else if (distance <= _goodHitTime)
+        {
+            CurrentHitQuality = HIT_QUALITY.GOOD;
+        } else
+        {
+            CurrentHitQuality = HIT_QUALITY.MISS;
+        } 
+            
+        /*
         //HIT_QUALITY currentHitQuality;
         if (_currentBeatTime > _timeBetweenBeats - _excellentHitTime || _currentBeatTime < _excellentHitTime) { CurrentHitQuality = HIT_QUALITY.EXCELLENT; }
         else if (_currentBeatTime > _timeBetweenBeats - _goodHitTime || _currentBeatTime < _goodHitTime) { CurrentHitQuality = HIT_QUALITY.GOOD; }
         //else if (_currentBeatTime > _timeBetweenBeats - _badHitTime || _currentBeatTime < _badHitTime) { CurrentHitQuality = HIT_QUALITY.BAD; }
         else CurrentHitQuality = HIT_QUALITY.MISS;
+        */
     }
 
     private void Awake()
@@ -44,13 +60,14 @@ public class TempoManager : MonoBehaviour
 
     void Update()
     {
-        _currentBeatTime = MusicManager.Instance.GetSampleTime();
+        _currentBeatTime = MusicManager.Instance.GetSampleProgress() * _timeBetweenBeats;
 
-        if (_currentBeatTime < _lastBeatTime)
+        if (MusicManager.Instance.GetSampleProgress() < _lastProgress)
         {
             BeatTickEvent?.Invoke(); //Less precise beat tick than from music manager
         }
-        _lastBeatTime = _currentBeatTime;
+        _lastProgress = MusicManager.Instance.GetSampleProgress();
+        //_lastBeatTime = _currentBeatTime;
 
         UpdateHitQuality();
     }
@@ -68,15 +85,28 @@ public class TempoManager : MonoBehaviour
 
     public static HIT_QUALITY CurrentHitQuality;
 
-    //Beat Values
+    //Beat Timing Values
     private static float _timeBetweenBeats = 0;
     public static float TimeBetweenBeats { get { return _timeBetweenBeats; } }
     private static float _currentBeatTime = 0;
-    private static float _lastBeatTime = 0f;
+    private float _lastProgress = 0f;
 
     //Hit Time
-    private static float _excellentPercent = 0.05f;
-    private static float _goodPercent = 0.125f;
+    private static float _excellentPercent = 0.05f; //means player must hit within 5% of the beat to be excellent
+    private static float _goodPercent = 0.125f; //means player must hit within 12.5% of the beat to be excellent
+    //private static float _lastBeatTime = 0f;
+    /* ms timing windows calculation
+
+    for 100 beats per minute
+
+    60 seconds / 100 beats = 0.6 seconds * 1000 = 6000ms
+    percentage calculations
+    excellent 
+    6000 * 0.05 = 30ms allowed maximum window
+
+    good 
+    6000 * 0.125 = 75ms allowed maximum window 
+    */
     //private static float _badPercent = 0.25f;
 
     //            Tempo Threshold

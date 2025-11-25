@@ -74,8 +74,11 @@ public class MusicPlayer : MonoBehaviour
                 //Debug.Log("Tick: " + accent + "/" + signatureHi);
             }
 
-            sampleProgress = Mathf.Clamp01((float)((nextTime - sample) / samplesPerTick));
-            sampleTime = (float)((samplesPerTick / sampleRate) - ((nextTime - (sample + n)) / sampleRate));
+            //sample progress 0 = start of beat, 0.5 is middle, 1 is end of the beat now
+            sampleProgress = 1f - Mathf.Clamp01((float)((nextTime - sample) / samplesPerTick));
+            //ensures sample time to be from 0 to the time between each beat
+            sampleTime = sampleProgress * ((float)samplesPerTick / (float)sampleRate);
+            //sampleTime = (float)((samplesPerTick / sampleRate) - ((nextTime - (sample + n)) / sampleRate));
 
             phase += amp * 0.3F;
             amp *= 0.993F;
