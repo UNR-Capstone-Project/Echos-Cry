@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 
-public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, PlayerInputs.IPauseMenuActions, PlayerInputs.IPlayerMenuActions
+public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, PlayerInputs.IPauseMenuActions, PlayerInputs.IPlayerMenuActions, PlayerInputs.IShopMenuActions
 {
     private PlayerInputs _playerInputs;
 
@@ -18,6 +18,8 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
     public static event Action          OnMapEvent;
     public static event Action          OnExitMapEvent, OnJournalLeftInput, OnJournalRightInput;
     public static event Action          OnSkill1Event, OnSkill2Event, OnSkill3Event;
+    public static event Action          OnShopEvent;
+    public static event Action          OnCloseShopEvent;
     private void Awake()
     {
         if (_instance != null)
@@ -170,5 +172,21 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
     public void OnSkill3(InputAction.CallbackContext context)
     {
         if (context.started) OnSkill3Event?.Invoke();
+    }
+
+    public void OnShop(InputAction.CallbackContext context)
+    {
+        if (context.started){ 
+            OnShopEvent?.Invoke();
+            _playerInputs.Gameplay.Disable();
+        }
+    }
+
+    public void OnCloseShop(InputAction.CallbackContext context)
+    {
+        if (context.started){
+            OnCloseShopEvent?.Invoke();
+            _playerInputs.Gameplay.Enable();
+        }
     }
 }

@@ -86,6 +86,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Shop",
+                    "type": "Button",
+                    "id": "6ba241fd-3426-4ee2-9b6b-c3a8a9957159",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -231,6 +240,17 @@
                     "action": "Skill 3",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d28fd003-7e7e-48f1-bccd-68fd6c1c97ce",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -365,6 +385,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "NavRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Shop Menu",
+            "id": "e314a271-4179-4a6e-8407-27111bdba104",
+            "actions": [
+                {
+                    "name": "CloseShop",
+                    "type": "Button",
+                    "id": "53042b18-fcfb-431c-a6ea-bd04f1dae7f3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "80c7b28c-615a-438f-9b7f-0e098958a82d",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CloseShop",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

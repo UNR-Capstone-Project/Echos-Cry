@@ -2343,38 +2343,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5365701682069116544, guid: e1df6ecf5f146cd4ea241f3171b8ae54, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5365701682069116544, guid: e1df6ecf5f146cd4ea241f3171b8ae54, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5365701682069116544, guid: e1df6ecf5f146cd4ea241f3171b8ae54, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5365701682069116544, guid: e1df6ecf5f146cd4ea241f3171b8ae54, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5365701682069116544, guid: e1df6ecf5f146cd4ea241f3171b8ae54, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5365701682069116544, guid: e1df6ecf5f146cd4ea241f3171b8ae54, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5745196334735924322, guid: e1df6ecf5f146cd4ea241f3171b8ae54, type: 3}
-      propertyPath: playerStats
-      value: 
-      objectReference: {fileID: 11400000, guid: d89ccdc8fc2d3674ba2219cc08c6ccce, type: 2}
-    - target: {fileID: 5745196334735924322, guid: e1df6ecf5f146cd4ea241f3171b8ae54, type: 3}
-      propertyPath: currentInventory
-      value: 
-      objectReference: {fileID: 3542431999539309550, guid: bf4d7b646412a36438a5917eb5d3c604, type: 3}
     - target: {fileID: 8624400538190268421, guid: e1df6ecf5f146cd4ea241f3171b8ae54, type: 3}
       propertyPath: m_Name
       value: ShopKeeper

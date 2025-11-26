@@ -172,6 +172,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Shop"",
+                    ""type"": ""Button"",
+                    ""id"": ""6ba241fd-3426-4ee2-9b6b-c3a8a9957159"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -317,6 +326,17 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Skill 3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d28fd003-7e7e-48f1-bccd-68fd6c1c97ce"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -455,6 +475,34 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Shop Menu"",
+            ""id"": ""e314a271-4179-4a6e-8407-27111bdba104"",
+            ""actions"": [
+                {
+                    ""name"": ""CloseShop"",
+                    ""type"": ""Button"",
+                    ""id"": ""53042b18-fcfb-431c-a6ea-bd04f1dae7f3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""80c7b28c-615a-438f-9b7f-0e098958a82d"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CloseShop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -470,6 +518,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_Gameplay_Skill1 = m_Gameplay.FindAction("Skill 1", throwIfNotFound: true);
         m_Gameplay_Skill2 = m_Gameplay.FindAction("Skill 2", throwIfNotFound: true);
         m_Gameplay_Skill3 = m_Gameplay.FindAction("Skill 3", throwIfNotFound: true);
+        m_Gameplay_Shop = m_Gameplay.FindAction("Shop", throwIfNotFound: true);
         // Pause Menu
         m_PauseMenu = asset.FindActionMap("Pause Menu", throwIfNotFound: true);
         m_PauseMenu_Resume = m_PauseMenu.FindAction("Resume", throwIfNotFound: true);
@@ -480,6 +529,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_PlayerMenu_ExitMenuMap = m_PlayerMenu.FindAction("ExitMenuMap", throwIfNotFound: true);
         m_PlayerMenu_NavLeft = m_PlayerMenu.FindAction("NavLeft", throwIfNotFound: true);
         m_PlayerMenu_NavRight = m_PlayerMenu.FindAction("NavRight", throwIfNotFound: true);
+        // Shop Menu
+        m_ShopMenu = asset.FindActionMap("Shop Menu", throwIfNotFound: true);
+        m_ShopMenu_CloseShop = m_ShopMenu.FindAction("CloseShop", throwIfNotFound: true);
     }
 
     ~@PlayerInputs()
@@ -487,6 +539,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_Gameplay.enabled, "This will cause a leak and performance issues, PlayerInputs.Gameplay.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_PauseMenu.enabled, "This will cause a leak and performance issues, PlayerInputs.PauseMenu.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_PlayerMenu.enabled, "This will cause a leak and performance issues, PlayerInputs.PlayerMenu.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_ShopMenu.enabled, "This will cause a leak and performance issues, PlayerInputs.ShopMenu.Disable() has not been called.");
     }
 
     /// <summary>
@@ -571,6 +624,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Skill1;
     private readonly InputAction m_Gameplay_Skill2;
     private readonly InputAction m_Gameplay_Skill3;
+    private readonly InputAction m_Gameplay_Shop;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -618,6 +672,10 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Gameplay/Skill3".
         /// </summary>
         public InputAction @Skill3 => m_Wrapper.m_Gameplay_Skill3;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/Shop".
+        /// </summary>
+        public InputAction @Shop => m_Wrapper.m_Gameplay_Shop;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -671,6 +729,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Skill3.started += instance.OnSkill3;
             @Skill3.performed += instance.OnSkill3;
             @Skill3.canceled += instance.OnSkill3;
+            @Shop.started += instance.OnShop;
+            @Shop.performed += instance.OnShop;
+            @Shop.canceled += instance.OnShop;
         }
 
         /// <summary>
@@ -709,6 +770,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Skill3.started -= instance.OnSkill3;
             @Skill3.performed -= instance.OnSkill3;
             @Skill3.canceled -= instance.OnSkill3;
+            @Shop.started -= instance.OnShop;
+            @Shop.performed -= instance.OnShop;
+            @Shop.canceled -= instance.OnShop;
         }
 
         /// <summary>
@@ -978,6 +1042,102 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="PlayerMenuActions" /> instance referencing this action map.
     /// </summary>
     public PlayerMenuActions @PlayerMenu => new PlayerMenuActions(this);
+
+    // Shop Menu
+    private readonly InputActionMap m_ShopMenu;
+    private List<IShopMenuActions> m_ShopMenuActionsCallbackInterfaces = new List<IShopMenuActions>();
+    private readonly InputAction m_ShopMenu_CloseShop;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Shop Menu".
+    /// </summary>
+    public struct ShopMenuActions
+    {
+        private @PlayerInputs m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public ShopMenuActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "ShopMenu/CloseShop".
+        /// </summary>
+        public InputAction @CloseShop => m_Wrapper.m_ShopMenu_CloseShop;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_ShopMenu; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="ShopMenuActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(ShopMenuActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="ShopMenuActions" />
+        public void AddCallbacks(IShopMenuActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ShopMenuActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ShopMenuActionsCallbackInterfaces.Add(instance);
+            @CloseShop.started += instance.OnCloseShop;
+            @CloseShop.performed += instance.OnCloseShop;
+            @CloseShop.canceled += instance.OnCloseShop;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="ShopMenuActions" />
+        private void UnregisterCallbacks(IShopMenuActions instance)
+        {
+            @CloseShop.started -= instance.OnCloseShop;
+            @CloseShop.performed -= instance.OnCloseShop;
+            @CloseShop.canceled -= instance.OnCloseShop;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="ShopMenuActions.UnregisterCallbacks(IShopMenuActions)" />.
+        /// </summary>
+        /// <seealso cref="ShopMenuActions.UnregisterCallbacks(IShopMenuActions)" />
+        public void RemoveCallbacks(IShopMenuActions instance)
+        {
+            if (m_Wrapper.m_ShopMenuActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="ShopMenuActions.AddCallbacks(IShopMenuActions)" />
+        /// <seealso cref="ShopMenuActions.RemoveCallbacks(IShopMenuActions)" />
+        /// <seealso cref="ShopMenuActions.UnregisterCallbacks(IShopMenuActions)" />
+        public void SetCallbacks(IShopMenuActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ShopMenuActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ShopMenuActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="ShopMenuActions" /> instance referencing this action map.
+    /// </summary>
+    public ShopMenuActions @ShopMenu => new ShopMenuActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Gameplay" which allows adding and removing callbacks.
     /// </summary>
@@ -1048,6 +1208,13 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSkill3(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Shop" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnShop(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Pause Menu" which allows adding and removing callbacks.
@@ -1106,5 +1273,20 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnNavRight(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Shop Menu" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="ShopMenuActions.AddCallbacks(IShopMenuActions)" />
+    /// <seealso cref="ShopMenuActions.RemoveCallbacks(IShopMenuActions)" />
+    public interface IShopMenuActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "CloseShop" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCloseShop(InputAction.CallbackContext context);
     }
 }
