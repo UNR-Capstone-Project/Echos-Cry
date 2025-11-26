@@ -32,6 +32,7 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
         _playerInputs.Gameplay.SetCallbacks(this);
         _playerInputs.PauseMenu.SetCallbacks(this);
         _playerInputs.PlayerMenu.SetCallbacks(this);
+        _playerInputs.ShopMenu.SetCallbacks(this);
     }
     private void Start()
     {
@@ -40,6 +41,7 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
         _playerInputs.Gameplay.Enable();
         _playerInputs.PauseMenu.Disable();
         _playerInputs.PlayerMenu.Disable();
+        _playerInputs.ShopMenu.Disable();
     }
     private void OnEnable()
     {
@@ -49,22 +51,26 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
             _playerInputs.Gameplay.SetCallbacks(this);
             _playerInputs.PauseMenu.SetCallbacks(this);
             _playerInputs.PlayerMenu.SetCallbacks(this);
+            _playerInputs.ShopMenu.SetCallbacks(this);
         }
         _playerInputs.Gameplay.Enable();
         _playerInputs.PauseMenu.Disable();
         _playerInputs.PlayerMenu.Disable();
+        _playerInputs.ShopMenu.Disable();
     }
     private void OnDisable()
     {
         _playerInputs.Gameplay.Disable();
         _playerInputs.PauseMenu.Disable();
         _playerInputs.PlayerMenu.Disable();
+        _playerInputs.ShopMenu.Disable();
     }
     private void OnDestroy()
     {
         _playerInputs.Gameplay.RemoveCallbacks(this);
         _playerInputs.PlayerMenu.RemoveCallbacks(this);
         _playerInputs.PauseMenu.RemoveCallbacks(this);
+        _playerInputs.ShopMenu.RemoveCallbacks(this);
         _playerInputs = null;
         _instance = null;
     }
@@ -179,6 +185,7 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
         if (context.started){ 
             OnShopEvent?.Invoke();
             _playerInputs.Gameplay.Disable();
+            _playerInputs.ShopMenu.Enable();
         }
     }
 
@@ -187,6 +194,7 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
         if (context.started){
             OnCloseShopEvent?.Invoke();
             _playerInputs.Gameplay.Enable();
+            _playerInputs.ShopMenu.Disable();
         }
     }
 }
