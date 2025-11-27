@@ -20,6 +20,7 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
     public static event Action          OnSkill1Event, OnSkill2Event, OnSkill3Event;
     public static event Action          OnShopEvent;
     public static event Action          OnCloseShopEvent;
+    public static event Action          OnItem1Event, OnItem2Event, OnItem3Event, OnItem4Event;
     private void Awake()
     {
         if (_instance != null)
@@ -195,6 +196,30 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
             OnCloseShopEvent?.Invoke();
             _playerInputs.Gameplay.Enable();
             _playerInputs.ShopMenu.Disable();
+        }
+    }
+    public void OnItem1Event(InputAction.CallbackContext context)
+    {
+        if(context.started){
+            OnItem1Event?.Invoke();
+        }
+    }
+    public void OnItem2Event(InputAction.CallbackContext context)
+    {
+        if(context.started){
+            OnItem1Event?.Invoke();
+        }
+    }
+    public void OnItem3Event(InputAction.CallbackContext context)
+    {
+        if(context.started){
+            OnItem1Event?.Invoke();
+        }
+    }
+    public void OnItem4Event(InputAction.CallbackContext context)
+    {
+        if(context.started){
+            OnItem1Event?.Invoke();
         }
     }
 }
