@@ -198,25 +198,25 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
             _playerInputs.ShopMenu.Disable();
         }
     }
-    public void OnItem1Event(InputAction.CallbackContext context)
+    public void OnItem1(InputAction.CallbackContext context)
     {
         if(context.started){
             OnItem1Event?.Invoke();
         }
     }
-    public void OnItem2Event(InputAction.CallbackContext context)
+    public void OnItem2(InputAction.CallbackContext context)
     {
         if(context.started){
             OnItem1Event?.Invoke();
         }
     }
-    public void OnItem3Event(InputAction.CallbackContext context)
+    public void OnItem3(InputAction.CallbackContext context)
     {
         if(context.started){
             OnItem1Event?.Invoke();
         }
     }
-    public void OnItem4Event(InputAction.CallbackContext context)
+    public void OnItem4(InputAction.CallbackContext context)
     {
         if(context.started){
             OnItem1Event?.Invoke();

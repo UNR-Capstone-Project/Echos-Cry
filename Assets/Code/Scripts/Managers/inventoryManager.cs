@@ -37,6 +37,11 @@ public class InventoryManager : MonoBehaviour
     {
         inventory = new List<InventoryItem>();
         m_itemDictionary = new Dictionary<inventoryItemData, InventoryItem>();
+
+        InputTranslator.OnItem1 += UseItem1;
+        InputTranslator.OnItem2 += UseItem2;
+        InputTranslator.OnItem3 += UseItem3;
+        InputTranslator.OnItem4 += UseItem4;
     }
     public InventoryItem Get(inventoryItemData referenceData){
         if(m_itemDictionary.TryGetValue(referenceData, out InventoryItem value)){
