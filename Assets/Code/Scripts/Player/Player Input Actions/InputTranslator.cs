@@ -25,7 +25,6 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
     private int _maxInputCountPerSec = 1;
     [SerializeField] int _inputPaddingGrace = 4;
 
-    private float _timer = 0;
     private bool _pauseBeatInputs = false;
     [SerializeField] private float _spamCooldown = 5f;
 
@@ -46,13 +45,13 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
     {
         if (_instance == null) _instance = this;
 
-        _inputCount = 0;
-        _pauseBeatInputs= false;
-        UpdateBPMInputCount();
-
         _playerInputs.Gameplay.Enable();
         _playerInputs.PauseMenu.Disable();
         _playerInputs.PlayerMenu.Disable();
+        _inputCount = 0;
+        _pauseBeatInputs= false;
+
+        UpdateBPMInputCount();
 
         MusicManager.Instance.UpdateMusicPlayer += UpdateBPMInputCount;
 
@@ -89,17 +88,10 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
     }
     private void Update()
     {
-
         if (_inputCount > _maxInputCountPerSec && !_pauseBeatInputs)
         {
             StartCoroutine(SpamCooldown());
         }
-
-        /* is adding is 200ms of delay to processing the input inadverdently 
-        _timer += Time.deltaTime;
-        if (_timer < 0.2f) return;
-        _timer -= 0.2f;
-        if(_inputCount > _maxInputCountPerSec) StartCoroutine(SpamCooldown());*/
     }
 
     private IEnumerator WaitForSecond()
@@ -132,7 +124,6 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
             _inputCount++;
         }
     }
-
     public void OnLightAttack(InputAction.CallbackContext context)
     {
         if (context.started && !_pauseBeatInputs)
@@ -149,7 +140,6 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
             _inputCount++;
         }
     }
-
     public void OnPause(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -159,7 +149,6 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
             _playerInputs.Gameplay.Disable();
         }
     }
-
     public void OnMap(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -169,7 +158,6 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
             _playerInputs.PlayerMenu.Enable();
         }
     }
-
     public void OnResume(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -179,7 +167,6 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
             _playerInputs.PauseMenu.Disable();
         }
     }
-
     public void OnExitMenuMap(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -189,7 +176,6 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
             _playerInputs.PlayerMenu.Disable();
         }
     }
-
     public void OnNavUp(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -197,7 +183,6 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
             OnPauseUpInput?.Invoke();
         }
     }
-    
     public void OnNavDown(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -205,7 +190,6 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
             OnPauseDownInput?.Invoke();
         }
     }
-
     public void OnNavRight(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -213,7 +197,6 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
             OnJournalRightInput?.Invoke();
         }
     }
-
     public void OnNavLeft(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -221,17 +204,14 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
             OnJournalLeftInput?.Invoke();
         }
     }
-
     public void OnSkill1(InputAction.CallbackContext context)
     {
         if(context.started) OnSkill1Event?.Invoke();
     }
-
     public void OnSkill2(InputAction.CallbackContext context)
     {
         if (context.started) OnSkill2Event?.Invoke();
     }
-
     public void OnSkill3(InputAction.CallbackContext context)
     {
         if (context.started) OnSkill3Event?.Invoke();

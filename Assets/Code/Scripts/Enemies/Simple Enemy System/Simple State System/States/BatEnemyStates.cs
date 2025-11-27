@@ -124,7 +124,7 @@ public class BatChargeAttackState : SimpleEnemyState
     }
     public override void EnterState()
     {
-        Debug.Log("Enter Charge Attack State");
+        //Debug.Log("Enter Charge Attack State");
         enemyContext.StartCoroutine(ChargeAttack());
     }
     public override void ExitState()
@@ -179,7 +179,7 @@ public class BatAttackState : SimpleEnemyState
 
     public override void EnterState()
     {
-        Debug.Log("Enter Attack State");
+        //Debug.Log("Enter Attack State");
         isAttacking = true;
         attackDirection = (PlayerRef.PlayerTransform.position - enemyContext.transform.position).normalized;
         attackDirection.y = 0;
@@ -246,7 +246,7 @@ public class BatStaggerState : SimpleEnemyState
     }
     public override void EnterState()
     {
-        Debug.Log("Enter Stagger State");
+        //Debug.Log("Enter Stagger State");
         enemyContext.EnemyRigidbody.isKinematic = false;
         Vector3 direction = (PlayerRef.PlayerTransform.position - enemyContext.transform.position).normalized;
         enemyContext.EnemyRigidbody.AddForce(-(knockbackForce * direction), ForceMode.Impulse);
