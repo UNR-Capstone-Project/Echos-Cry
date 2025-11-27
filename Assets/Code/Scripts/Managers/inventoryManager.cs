@@ -38,10 +38,50 @@ public class InventoryManager : MonoBehaviour
         inventory = new List<InventoryItem>();
         m_itemDictionary = new Dictionary<inventoryItemData, InventoryItem>();
 
-        InputTranslator.OnItem1 += UseItem1;
-        InputTranslator.OnItem2 += UseItem2;
-        InputTranslator.OnItem3 += UseItem3;
-        InputTranslator.OnItem4 += UseItem4;
+        InputTranslator.OnItem1Event += UseItem1;
+        InputTranslator.OnItem2Event += UseItem2;
+        InputTranslator.OnItem3Event += UseItem3;
+        InputTranslator.OnItem4Event += UseItem4;
+    }
+    private void healthPotion(){
+        Debug.Log("Health");
+    }
+    private void shieldPotion(){
+        Debug.Log("Shield");
+    }
+    private void UseItem1(){
+        //at index 0
+        int i = 0;
+        foreach(InventoryItem item in InventoryManager.Instance.inventory){
+            if (i == 0){
+                if(item.data.id == "healthP"){
+                    healthPotion();
+                    Remove(item.data);
+                    //remove 1
+                }else if(item.data.id == "shieldP"){
+                    shieldPotion();
+                    Remove(item.data);
+                    //remove 1
+                }
+            }else{
+                i++;
+            }
+        }
+    }
+    private void UseItem2(){
+        //at index 1
+    }
+    private void UseItem3(){
+        //at index 2
+    }
+    private void UseItem4(){
+        //at index 3
+    }
+    void OnDestroy(){
+        InputTranslator.OnItem1Event -= UseItem1;
+        InputTranslator.OnItem2Event -= UseItem2;
+        InputTranslator.OnItem3Event -= UseItem3;
+        InputTranslator.OnItem4Event -= UseItem4;
     }
     public InventoryItem Get(inventoryItemData referenceData){
         if(m_itemDictionary.TryGetValue(referenceData, out InventoryItem value)){
