@@ -67,93 +67,84 @@ public class InventoryManager : MonoBehaviour
                 usedItem = new InventoryItem(item.data);
                 if(item.data.id == "healthP"){
                     healthPotion();
-                    //Remove(item.data);
-                    
                 }else if(item.data.id == "shieldP"){
                     shieldPotion();
-                    Remove(item.data);
                 }else if(item.data.id == "attackP"){
                     attackPotion();
-                    Remove(item.data);
                 }else if(item.data.id == "speedP"){
                     speedPotion();
-                    Remove(item.data);
                 }
             }else{
                 i++;
             }
         }
         Remove(usedItem.data);
-        Debug.Log("removed item");
     }
     private void UseItem2(){
         //at index 1
         int i = 0;
+        InventoryItem usedItem = null;
         foreach(InventoryItem item in InventoryManager.Instance.inventory){
             if (i == 1){
+                usedItem = new InventoryItem(item.data);
                 if(item.data.id == "healthP"){
                     healthPotion();
-                    Remove(item.data);
                 }else if(item.data.id == "shieldP"){
                     shieldPotion();
-                    Remove(item.data);
                 }else if(item.data.id == "attackP"){
                     attackPotion();
-                    Remove(item.data);
                 }else if(item.data.id == "speedP"){
                     speedPotion();
-                    Remove(item.data);
                 }
             }else{
                 i++;
             }
         }
+        Remove(usedItem.data);
     }
     private void UseItem3(){
         //at index 2
         int i = 0;
+        InventoryItem usedItem = null;
         foreach(InventoryItem item in InventoryManager.Instance.inventory){
             if (i == 2){
+                usedItem = new InventoryItem(item.data);
                 if(item.data.id == "healthP"){
                     healthPotion();
-                    Remove(item.data);
                 }else if(item.data.id == "shieldP"){
                     shieldPotion();
-                    Remove(item.data);
                 }else if(item.data.id == "attackP"){
                     attackPotion();
-                    Remove(item.data);
                 }else if(item.data.id == "speedP"){
                     speedPotion();
-                    Remove(item.data);
                 }
             }else{
                 i++;
             }
         }
+        Remove(usedItem.data);
     }
     private void UseItem4(){
         //at index 3
         int i = 0;
+        InventoryItem usedItem = null;
         foreach(InventoryItem item in InventoryManager.Instance.inventory){
             if (i == 3){
+                usedItem = new InventoryItem(item.data);
                 if(item.data.id == "healthP"){
                     healthPotion();
-                    Remove(item.data);
                 }else if(item.data.id == "shieldP"){
                     shieldPotion();
-                    Remove(item.data);
                 }else if(item.data.id == "attackP"){
                     attackPotion();
-                    Remove(item.data);
                 }else if(item.data.id == "speedP"){
                     speedPotion();
-                    Remove(item.data);
                 }
             }else{
                 i++;
             }
         }
+        Remove(usedItem.data);
     }
     void OnDestroy(){
         InputTranslator.OnItem1Event -= UseItem1;
