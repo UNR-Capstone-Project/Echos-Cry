@@ -97,6 +97,7 @@ public class BatChaseState : SimpleEnemyState
     private void CheckNavMeshDistance()
     {
         NavMeshAgent agent = enemyContext.EnemyNMA;
+        if (agent == null) return;
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) 
@@ -105,6 +106,7 @@ public class BatChaseState : SimpleEnemyState
     }
     private void SetEnemyTarget()
     {
+        if(enemyContext.EnemyNMA == null) return;
         enemyContext.EnemyNMA.SetDestination(PlayerRef.PlayerTransform.position);
     }
 }
