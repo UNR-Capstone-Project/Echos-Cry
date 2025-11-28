@@ -11,29 +11,23 @@ public class InputTranslator : MonoBehaviour,
     PlayerInputs.IPlayerMenuActions, 
     PlayerInputs.IShopMenuActions
 {
-    private PlayerInputs _playerInputs;
-
-    private static InputTranslator _instance;
-
-    public static event Action<Vector2> OnMovementEvent;
-    public static event Action          OnDashEvent;
-    public static event Action          OnLightAttackEvent;
-    public static event Action          OnHeavyAttackEvent;
-    public static event Action          OnPauseEvent, OnPauseDownInput, OnPauseUpInput;
-    public static event Action          OnResumeEvent;
-    public static event Action          OnMapEvent;
-    public static event Action          OnExitMapEvent, OnJournalLeftInput, OnJournalRightInput;
-    public static event Action          OnSkill1Event, OnSkill2Event, OnSkill3Event;
-    public static event Action          OnShopEvent;
-    public static event Action          OnCloseShopEvent;
-    public static event Action          OnItem1Event, OnItem2Event, OnItem3Event, OnItem4Event;
-
-    private int _inputCount = 0;
-    private int _maxInputCountPerSec = 1;
-    [SerializeField] int _inputPaddingGrace = 4;
-
-    private bool _pauseBeatInputs = false;
-    [SerializeField] private float _spamCooldown = 5f;
+    private IEnumerator WaitForSecond()
+    {
+        yield return new WaitForSeconds(1f);
+        _inputCount = 0;
+        StartCoroutine(WaitForSecond());
+    }
+    private IEnumerator SpamCooldown()
+    {
+        _pauseBeatInputs = true;
+        yield return new WaitForSeconds(_spamCooldown);
+        _pauseBeatInputs = false;
+    }
+    private void UpdateBPMInputCount()
+    {
+        float timeBetweenBeats = 60f / (float)MusicManager.Instance.GetTempo();
+        _maxInputCountPerSec = (int)(1f/timeBetweenBeats) + _inputPaddingGrace;
+    }
 
     private void Awake()
     {
@@ -108,24 +102,6 @@ public class InputTranslator : MonoBehaviour,
         {
             StartCoroutine(SpamCooldown());
         }
-    }
-
-    private IEnumerator WaitForSecond()
-    {
-        yield return new WaitForSeconds(1f);
-        _inputCount = 0;
-        StartCoroutine(WaitForSecond());
-    }
-    private IEnumerator SpamCooldown()
-    {
-        _pauseBeatInputs = true;
-        yield return new WaitForSeconds(_spamCooldown);
-        _pauseBeatInputs = false;
-    }
-    private void UpdateBPMInputCount()
-    {
-        float timeBetweenBeats = 60f / (float)MusicManager.Instance.GetTempo();
-        _maxInputCountPerSec = (int)(1f/timeBetweenBeats) + _inputPaddingGrace;
     }
 
     public void OnMovement(InputAction.CallbackContext context)
@@ -279,4 +255,30 @@ public class InputTranslator : MonoBehaviour,
             OnItem1Event?.Invoke();
         }
     }
+
+    private PlayerInputs _playerInputs;
+    public PlayerInputs PlayerInputs { get { return _playerInputs; } }  
+
+    private static InputTranslator _instance;
+    public static InputTranslator Instance {  get { return _instance; } }
+
+    public static event Action<Vector2> OnMovementEvent;
+    public static event Action          OnDashEvent;
+    public static event Action          OnLightAttackEvent;
+    public static event Action          OnHeavyAttackEvent;
+    public static event Action          OnPauseEvent, OnPauseDownInput, OnPauseUpInput;
+    public static event Action          OnResumeEvent;
+    public static event Action          OnMapEvent;
+    public static event Action          OnExitMapEvent, OnJournalLeftInput, OnJournalRightInput;
+    public static event Action          OnSkill1Event, OnSkill2Event, OnSkill3Event;
+    public static event Action          OnShopEvent;
+    public static event Action          OnCloseShopEvent;
+    public static event Action          OnItem1Event, OnItem2Event, OnItem3Event, OnItem4Event;
+
+    private int _inputCount = 0;
+    private int _maxInputCountPerSec = 1;
+    [SerializeField] int _inputPaddingGrace = 4;
+
+    private bool _pauseBeatInputs = false;
+    [SerializeField] private float _spamCooldown = 5f;
 }

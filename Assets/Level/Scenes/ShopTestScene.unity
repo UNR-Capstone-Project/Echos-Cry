@@ -2285,7 +2285,8 @@ Transform:
   m_LocalPosition: {x: 3.6, y: 0.95, z: 1.11297}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6563212002583395747}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &999442177
@@ -5910,7 +5911,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 940179588}
     m_Modifications:
     - target: {fileID: 1295559700405387806, guid: fd5ad3683e10af942a8a9cb220a24d05, type: 3}
       propertyPath: m_Pivot.x
@@ -6000,11 +6001,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: shopCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8512349213515385655, guid: fd5ad3683e10af942a8a9cb220a24d05, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd5ad3683e10af942a8a9cb220a24d05, type: 3}
+--- !u!224 &6563212002583395747 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1295559700405387806, guid: fd5ad3683e10af942a8a9cb220a24d05, type: 3}
+  m_PrefabInstance: {fileID: 6563212002583395746}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -6033,4 +6043,3 @@ SceneRoots:
   - {fileID: 1039443356}
   - {fileID: 4978321962362142934}
   - {fileID: 940179588}
-  - {fileID: 6563212002583395746}
