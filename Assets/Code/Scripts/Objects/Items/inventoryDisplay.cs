@@ -8,24 +8,25 @@ public class InventoryDisplay : MonoBehaviour
     public slotScript wallet;
 
     private void OnUpdateInventory(){
-        int i = 1;
+        int i = 0;
         foreach(InventoryItem item in InventoryManager.Instance.inventory){
             if(item.data.id == "finger"){
                 wallet.Set(item);
+            }else if(i == 0){
+                slotScriptArray[i].Set(item);
+                i++;
             }else if(i == 1){
-                slotScriptArray[i - 1].Set(item);
+                slotScriptArray[i].Set(item);
                 i++;
             }else if(i == 2){
-                slotScriptArray[i - 1].Set(item);
+                slotScriptArray[i].Set(item);
                 i++;
             }else if(i == 3){
-                slotScriptArray[i - 1].Set(item);
-                i++;
-            }else if(i == 4){
-                slotScriptArray[i - 1].Set(item);
-                i++;
+                slotScriptArray[i].Set(item);
             }
         }
+        Debug.Log("slot num "+i);
+        slotScriptArray[i].Set(null);
     }
     /*public void DrawInventory(){
         foreach(inventoryItem item in inventoryManager.current.inventory){

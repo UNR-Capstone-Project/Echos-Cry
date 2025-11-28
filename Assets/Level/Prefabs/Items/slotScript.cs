@@ -13,14 +13,22 @@ public class slotScript : MonoBehaviour{
     }
 
     public void Set(InventoryItem item){
+        if(item == null){
+            m_stackObj = null;
+            m_num.text = "0";
+            m_icon.sprite = null;
+            Debug.Log("empty inventory");
+            return;
+        }
         m_icon.sprite = item.data.icon;
         if (item.stackSize < 1){
             m_stackObj = null;
+            m_num.text = "0";
             return;
         }else{
             m_stackObj = item.data.prefab;
         }
-    
+        Debug.Log("stacksize:"+item.stackSize.ToString());
         m_num.text = item.stackSize.ToString();
     }
 }
