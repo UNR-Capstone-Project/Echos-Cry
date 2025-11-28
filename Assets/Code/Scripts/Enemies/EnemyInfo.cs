@@ -4,7 +4,6 @@ using UnityEngine.AI;
 //Stores information relevant to the enemy, specifically necessary ID's
 
 [RequireComponent(typeof(EnemyStats))]
-[RequireComponent(typeof(EnemyHandleDamageCollision))]
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
 public class EnemyInfo : MonoBehaviour

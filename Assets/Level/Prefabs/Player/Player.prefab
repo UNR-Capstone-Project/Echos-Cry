@@ -136,8 +136,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1242409098282706864}
-  - component: {fileID: 1657120405786765852}
   - component: {fileID: 7542225050759351050}
+  - component: {fileID: 8612288689125873651}
+  - component: {fileID: 5966105142730489167}
   m_Layer: 0
   m_Name: Weapon Holder
   m_TagString: Untagged
@@ -162,20 +163,6 @@ Transform:
   - {fileID: 7650535618051860671}
   m_Father: {fileID: 415338203038042998}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1657120405786765852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1324492916464091062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d98572dab44c2374784863bc0115301d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ComboStateMachine
-  equippedWeapon: {fileID: 6625103690610810554}
-  _comboResetTime: 0.5
 --- !u!114 &7542225050759351050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,6 +175,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bc8a2e38051414479dc8806d51be6a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDirection
+--- !u!114 &8612288689125873651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324492916464091062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d98572dab44c2374784863bc0115301d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ComboStateMachine
+  _comboResetTime: 0.5
+--- !u!114 &5966105142730489167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324492916464091062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32dd952c7bae76e4eadc94243a5e64e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttackHandler
 --- !u!1 &2428720641269041060
 GameObject:
   m_ObjectHideFlags: 0
@@ -743,16 +755,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3035515144390159335, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6698232584449221764, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
       propertyPath: m_Name
       value: Weapon (Clarinet)
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3035515144390159335, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -760,10 +767,5 @@ PrefabInstance:
 --- !u!4 &2127575191814039986 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1910465096639058828, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
-  m_PrefabInstance: {fileID: 506091730931972670}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6625103690610810554 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6698232584449221764, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
   m_PrefabInstance: {fileID: 506091730931972670}
   m_PrefabAsset: {fileID: 0}

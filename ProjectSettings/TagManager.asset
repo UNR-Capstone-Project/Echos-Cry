@@ -21,7 +21,7 @@ TagManager:
   - Ground
   - RenderTexture
   - 
-  - 
+  - Enemy
   - Player
   - PlayerAttack
   - 
