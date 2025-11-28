@@ -175,7 +175,6 @@ public class InventoryManager : MonoBehaviour
             inventory.Add(newItem);
             m_itemDictionary.Add(referenceData, newItem);
         }
-        Debug.Log("item added :3");
     }
     public void Remove(inventoryItemData referenceData){
         if(m_itemDictionary.TryGetValue(referenceData, out InventoryItem value)){

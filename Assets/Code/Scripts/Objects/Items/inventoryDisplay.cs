@@ -25,7 +25,6 @@ public class InventoryDisplay : MonoBehaviour
                 slotScriptArray[i].Set(item);
             }
         }
-        Debug.Log("slot num "+i);
         slotScriptArray[i].Set(null);
     }
     /*public void DrawInventory(){
