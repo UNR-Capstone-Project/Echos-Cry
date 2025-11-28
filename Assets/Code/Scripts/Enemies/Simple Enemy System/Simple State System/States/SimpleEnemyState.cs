@@ -1,8 +1,13 @@
 
 public abstract class SimpleEnemyState
 {
-    public virtual void UpdateState(SimpleEnemyManager enemyContext) { }
-    public virtual void EnterState(SimpleEnemyManager enemyContext) { }
-    public virtual void ExitState(SimpleEnemyManager enemyContext) { }
-    public virtual void CheckSwitchState(SimpleEnemyManager enemyContext) { }
+    protected SimpleEnemyManager enemyContext;
+    public SimpleEnemyState(SimpleEnemyManager enemyContext)
+    {
+        this.enemyContext = enemyContext;
+    }
+    public virtual void UpdateState() { }
+    public virtual void EnterState() { }
+    public virtual void ExitState() { }
+    public virtual void CheckSwitchState() { }
 }

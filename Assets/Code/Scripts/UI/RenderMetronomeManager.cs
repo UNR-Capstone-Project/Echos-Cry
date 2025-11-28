@@ -12,10 +12,10 @@ public class RenderMetronomeManager : MonoBehaviour
     {
         float progress = MusicManager.Instance.GetSampleProgress();
 
-        float angle = Mathf.Sin(progress * Mathf.PI * swingDirection) * 45f;
+        float angle = Mathf.Sin(progress * Mathf.PI) * 45f * swingDirection;
         pendulumObject.transform.localRotation = Quaternion.Euler(0f, 0f, angle);
 
-        if (previousProgress < progress)
+        if (progress < previousProgress)
         {
             swingDirection *= -1;
         }

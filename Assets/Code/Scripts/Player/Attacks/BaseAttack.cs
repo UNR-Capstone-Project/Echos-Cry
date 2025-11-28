@@ -22,9 +22,9 @@ public class BaseAttack : MonoBehaviour
             case TempoManager.HIT_QUALITY.GOOD:
                 damageMultiplier = 1.25f;
                 break;
-            case TempoManager.HIT_QUALITY.BAD:
-                damageMultiplier = 1f;
-                break;
+            //case TempoManager.HIT_QUALITY.BAD:
+            //    damageMultiplier = 1f;
+            //    break;
             default:
                 break;
         }
