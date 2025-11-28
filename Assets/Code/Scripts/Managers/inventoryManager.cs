@@ -9,6 +9,8 @@ public class InventoryManager : MonoBehaviour
     private Dictionary<inventoryItemData, InventoryItem> m_itemDictionary;
     public List<InventoryItem> inventory { get; private set; }
 
+    //public PlayerStats player;
+
     [SerializeField] private InventoryDisplay _inventoryDisplay;
 
     private void Awake()
@@ -44,6 +46,7 @@ public class InventoryManager : MonoBehaviour
         InputTranslator.OnItem4Event += UseItem4;
     }
     private void healthPotion(){
+        PlayerStats.OnDamageHealed(10f);
         Debug.Log("Health");
     }
     private void shieldPotion(){
@@ -58,11 +61,14 @@ public class InventoryManager : MonoBehaviour
     private void UseItem1(){
         //at index 0
         int i = 0;
+        InventoryItem usedItem = null;
         foreach(InventoryItem item in InventoryManager.Instance.inventory){
             if (i == 0){
+                usedItem = new InventoryItem(item.data);
                 if(item.data.id == "healthP"){
                     healthPotion();
-                    Remove(item.data);
+                    //Remove(item.data);
+                    
                 }else if(item.data.id == "shieldP"){
                     shieldPotion();
                     Remove(item.data);
@@ -77,6 +83,8 @@ public class InventoryManager : MonoBehaviour
                 i++;
             }
         }
+        Remove(usedItem.data);
+        Debug.Log("removed item");
     }
     private void UseItem2(){
         //at index 1
