@@ -5,7 +5,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 
-public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, PlayerInputs.IPauseMenuActions, PlayerInputs.IPlayerMenuActions
+public class InputTranslator : MonoBehaviour, 
+    PlayerInputs.IGameplayActions, 
+    PlayerInputs.IPauseMenuActions, 
+    PlayerInputs.IPlayerMenuActions, 
+    PlayerInputs.IShopMenuActions
 {
     private PlayerInputs _playerInputs;
 
@@ -20,6 +24,9 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
     public static event Action          OnMapEvent;
     public static event Action          OnExitMapEvent, OnJournalLeftInput, OnJournalRightInput;
     public static event Action          OnSkill1Event, OnSkill2Event, OnSkill3Event;
+    public static event Action          OnShopEvent;
+    public static event Action          OnCloseShopEvent;
+    public static event Action          OnItem1Event, OnItem2Event, OnItem3Event, OnItem4Event;
 
     private int _inputCount = 0;
     private int _maxInputCountPerSec = 1;
@@ -40,6 +47,7 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
         _playerInputs.Gameplay.SetCallbacks(this);
         _playerInputs.PauseMenu.SetCallbacks(this);
         _playerInputs.PlayerMenu.SetCallbacks(this);
+        _playerInputs.ShopMenu.SetCallbacks(this);
     }
     private void Start()
     {
@@ -48,6 +56,8 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
         _playerInputs.Gameplay.Enable();
         _playerInputs.PauseMenu.Disable();
         _playerInputs.PlayerMenu.Disable();
+        _playerInputs.ShopMenu.Disable();
+
         _inputCount = 0;
         _pauseBeatInputs= false;
 
@@ -65,27 +75,33 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
             _playerInputs.Gameplay.SetCallbacks(this);
             _playerInputs.PauseMenu.SetCallbacks(this);
             _playerInputs.PlayerMenu.SetCallbacks(this);
+            _playerInputs.ShopMenu.SetCallbacks(this);
         }
         _playerInputs.Gameplay.Enable();
         _playerInputs.PauseMenu.Disable();
         _playerInputs.PlayerMenu.Disable();
+        _playerInputs.ShopMenu.Disable();
     }
     private void OnDisable()
     {
-        MusicManager.Instance.UpdateMusicPlayer -= UpdateBPMInputCount;
 
         _playerInputs.Gameplay.Disable();
         _playerInputs.PauseMenu.Disable();
         _playerInputs.PlayerMenu.Disable();
+        _playerInputs.ShopMenu.Disable();
     }
     private void OnDestroy()
     {
+        MusicManager.Instance.UpdateMusicPlayer -= UpdateBPMInputCount;
+
         _playerInputs.Gameplay.RemoveCallbacks(this);
         _playerInputs.PlayerMenu.RemoveCallbacks(this);
         _playerInputs.PauseMenu.RemoveCallbacks(this);
+        _playerInputs.ShopMenu.RemoveCallbacks(this);
         _playerInputs = null;
         _instance = null;
     }
+
     private void Update()
     {
         if (_inputCount > _maxInputCountPerSec && !_pauseBeatInputs)
@@ -215,5 +231,52 @@ public class InputTranslator : MonoBehaviour, PlayerInputs.IGameplayActions, Pla
     public void OnSkill3(InputAction.CallbackContext context)
     {
         if (context.started) OnSkill3Event?.Invoke();
+    }
+    public void OnShop(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            OnShopEvent?.Invoke();
+            _playerInputs.Gameplay.Disable();
+            _playerInputs.ShopMenu.Enable();
+        }
+    }
+
+    public void OnCloseShop(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            OnCloseShopEvent?.Invoke();
+            _playerInputs.Gameplay.Enable();
+            _playerInputs.ShopMenu.Disable();
+        }
+    }
+    public void OnItem1(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            OnItem1Event?.Invoke();
+        }
+    }
+    public void OnItem2(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            OnItem1Event?.Invoke();
+        }
+    }
+    public void OnItem3(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            OnItem1Event?.Invoke();
+        }
+    }
+    public void OnItem4(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            OnItem1Event?.Invoke();
+        }
     }
 }
