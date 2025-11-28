@@ -1,6 +1,10 @@
 using System;
 using UnityEngine;
 
+//Handles PlayerAttacks
+//Manages players Heavy and Light attack inputs
+//Determines if we are ready for a new attack and if it is on beat
+
 public class PlayerAttackHandler : MonoBehaviour
 {
     void HandleLightInput()

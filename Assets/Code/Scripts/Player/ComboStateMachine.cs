@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
+//Provides Instance static variable that will allow it to be accessed so it can pass on necessary combo information
 public class ComboState
 {
     public ComboState(ComboStateMachine.StateName stateName)

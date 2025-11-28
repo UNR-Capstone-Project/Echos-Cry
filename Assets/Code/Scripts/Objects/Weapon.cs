@@ -4,6 +4,10 @@ using UnityEngine;
 using static ComboStateMachine;
 
 [RequireComponent(typeof(Animator))]
+
+//Updated so that the attack method will be tied to PlayerAttackHandler
+//Weapon will message the PlayerAttackHandler and ComboStateMachine when it is finished with its attack
+
 public class Weapon : MonoBehaviour
 {
     public void Attack(StateName attackState)
