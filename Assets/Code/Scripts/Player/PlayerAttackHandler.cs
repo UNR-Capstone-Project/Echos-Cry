@@ -31,14 +31,14 @@ public class PlayerAttackHandler : MonoBehaviour
         InputTranslator.OnLightAttackEvent += HandleLightInput;
         InputTranslator.OnHeavyAttackEvent += HandleHeavyInput;
 
-        Weapon.OnAttackEndedEvent += ResetAttackInput;
+        BaseWeapon.OnAttackEndedEvent += ResetAttackInput;
     }
     private void OnDestroy()
     {
         InputTranslator.OnLightAttackEvent -= HandleLightInput;
         InputTranslator.OnHeavyAttackEvent -= HandleHeavyInput;
 
-        Weapon.OnAttackEndedEvent -= ResetAttackInput;
+        BaseWeapon.OnAttackEndedEvent -= ResetAttackInput;
     }
 
     private bool _readyForAttackInput = true;

@@ -8,9 +8,9 @@ using static ComboStateMachine;
 //Updated so that the attack method will be tied to PlayerAttackHandler
 //Weapon will message the PlayerAttackHandler and ComboStateMachine when it is finished with its attack
 
-public class Weapon : MonoBehaviour
+public class ClarinetWeapon : BaseWeapon
 {
-    public void Attack(StateName attackState)
+    protected override void Attack(StateName attackState)
     {
         int attackIndex = (int)attackState;
 
@@ -28,7 +28,8 @@ public class Weapon : MonoBehaviour
         float multiplier;
         if (TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.EXCELLENT) multiplier = 1.25f;
         else multiplier = 1.15f;
-        CurrentDamage = attackData.BaseDamage * multiplier;
+        float damage = attackData.BaseDamage * multiplier;
+        _weaponCollisionHandler.UpdateAttackDamage(damage);
     }
 
     private void SetupAndUseSound(AttackData attackData)
@@ -53,16 +54,16 @@ public class Weapon : MonoBehaviour
         yield return new WaitForSeconds(attackData.AnimationClip.length);
         ResetAnimation();
         gameObject.SetActive(false);
-        OnAttackEndedEvent?.Invoke();
+        OnAttackEnded();
     }
 
-    private void Awake()
+    protected override void Awake()
     {
-        _attackAnimator = GetComponent<Animator>();
+        base.Awake();
+        _weaponCollisionHandler = GetComponentInChildren<AttackCollisionHandler>();
     }
     private void Start()
     {
-        _defaultAnimatorController = _attackAnimator.runtimeAnimatorController;
         PlayerAttackHandler.OnAttackEvent += Attack;
         gameObject.SetActive(false);
     }
@@ -79,13 +80,5 @@ public class Weapon : MonoBehaviour
         PlayerAttackHandler.OnAttackEvent -= Attack;
     }
 
-    //Must only be of the same length - 1 of the StateName enum
-    [SerializeField] private AttackData[] _attackData;
-
-    public static float CurrentDamage = 0;
-
-    private Animator                  _attackAnimator;
-    private RuntimeAnimatorController _defaultAnimatorController;
-
-    public static event Action OnAttackEndedEvent;
+    private AttackCollisionHandler _weaponCollisionHandler;
 }

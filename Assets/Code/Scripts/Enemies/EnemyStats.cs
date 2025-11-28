@@ -8,7 +8,6 @@ using UnityEngine.AI;
 //Contains relevant functions and events for each stat/event
 
 [RequireComponent(typeof(EnemyInfo))]
-[RequireComponent(typeof(EnemyHandleDamageCollision))]
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
 public class EnemyStats : MonoBehaviour

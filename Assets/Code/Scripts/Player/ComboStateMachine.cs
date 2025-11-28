@@ -90,11 +90,11 @@ public class ComboStateMachine : MonoBehaviour
     {
         _currentState = _startState;
 
-        Weapon.OnAttackEndedEvent += StartComboResetTimer;
+        BaseWeapon.OnAttackEndedEvent += StartComboResetTimer;
     }
     private void OnDestroy()
     {
-        Weapon.OnAttackEndedEvent -= StartComboResetTimer;
+        BaseWeapon.OnAttackEndedEvent -= StartComboResetTimer;
     }
 
     public static ComboStateMachine Instance { get; private set; }
