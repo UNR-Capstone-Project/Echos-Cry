@@ -49,6 +49,12 @@ public class InventoryManager : MonoBehaviour
     private void shieldPotion(){
         Debug.Log("Shield");
     }
+    private void attackPotion(){
+        Debug.Log("Attack");
+    }
+    private void speedPotion(){
+        Debug.Log("Speed");
+    }
     private void UseItem1(){
         //at index 0
         int i = 0;
@@ -57,11 +63,15 @@ public class InventoryManager : MonoBehaviour
                 if(item.data.id == "healthP"){
                     healthPotion();
                     Remove(item.data);
-                    //remove 1
                 }else if(item.data.id == "shieldP"){
                     shieldPotion();
                     Remove(item.data);
-                    //remove 1
+                }else if(item.data.id == "attackP"){
+                    attackPotion();
+                    Remove(item.data);
+                }else if(item.data.id == "speedP"){
+                    speedPotion();
+                    Remove(item.data);
                 }
             }else{
                 i++;
@@ -70,12 +80,72 @@ public class InventoryManager : MonoBehaviour
     }
     private void UseItem2(){
         //at index 1
+        int i = 0;
+        foreach(InventoryItem item in InventoryManager.Instance.inventory){
+            if (i == 1){
+                if(item.data.id == "healthP"){
+                    healthPotion();
+                    Remove(item.data);
+                }else if(item.data.id == "shieldP"){
+                    shieldPotion();
+                    Remove(item.data);
+                }else if(item.data.id == "attackP"){
+                    attackPotion();
+                    Remove(item.data);
+                }else if(item.data.id == "speedP"){
+                    speedPotion();
+                    Remove(item.data);
+                }
+            }else{
+                i++;
+            }
+        }
     }
     private void UseItem3(){
         //at index 2
+        int i = 0;
+        foreach(InventoryItem item in InventoryManager.Instance.inventory){
+            if (i == 2){
+                if(item.data.id == "healthP"){
+                    healthPotion();
+                    Remove(item.data);
+                }else if(item.data.id == "shieldP"){
+                    shieldPotion();
+                    Remove(item.data);
+                }else if(item.data.id == "attackP"){
+                    attackPotion();
+                    Remove(item.data);
+                }else if(item.data.id == "speedP"){
+                    speedPotion();
+                    Remove(item.data);
+                }
+            }else{
+                i++;
+            }
+        }
     }
     private void UseItem4(){
         //at index 3
+        int i = 0;
+        foreach(InventoryItem item in InventoryManager.Instance.inventory){
+            if (i == 3){
+                if(item.data.id == "healthP"){
+                    healthPotion();
+                    Remove(item.data);
+                }else if(item.data.id == "shieldP"){
+                    shieldPotion();
+                    Remove(item.data);
+                }else if(item.data.id == "attackP"){
+                    attackPotion();
+                    Remove(item.data);
+                }else if(item.data.id == "speedP"){
+                    speedPotion();
+                    Remove(item.data);
+                }
+            }else{
+                i++;
+            }
+        }
     }
     void OnDestroy(){
         InputTranslator.OnItem1Event -= UseItem1;
