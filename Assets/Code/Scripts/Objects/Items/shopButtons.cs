@@ -9,6 +9,7 @@ public class shopButtons : MonoBehaviour
     //[SerializeField] private PlayerStats playerStats;
     
     public void buy(){
+        Debug.Log("button pressed");
         if(PlayerStats.CurrencyCount >= cost){
             currentInventory.Add(item);
             PlayerStats.UpdateCurrency(-cost);

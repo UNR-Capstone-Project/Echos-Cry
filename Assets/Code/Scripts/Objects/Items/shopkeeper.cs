@@ -4,6 +4,10 @@ public class shopkeeper : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public GameObject shopCanvas;
+    void Start(){
+        InputTranslator.OnShopEvent += OpenShop;
+        InputTranslator.OnCloseShopEvent += CloseShop;
+    }
     private void OpenShop()
     {
         InputTranslator.Instance.PlayerInputs.ShopMenu.Enable();
@@ -15,5 +19,12 @@ public class shopkeeper : MonoBehaviour
             Debug.Log("open shop");
             OpenShop();
         }
+    }
+    private void CloseShop(){
+        shopCanvas.SetActive(false);
+    }
+    void OnDestroy(){
+        InputTranslator.OnShopEvent -= OpenShop;
+        InputTranslator.OnCloseShopEvent -= CloseShop;
     }
 }
