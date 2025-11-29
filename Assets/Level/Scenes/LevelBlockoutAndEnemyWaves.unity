@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 38909303}
   - component: {fileID: 38909302}
   - component: {fileID: 38909301}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: harderSpawnA (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1150,7 +1150,7 @@ GameObject:
   - component: {fileID: 160191593}
   - component: {fileID: 160191592}
   - component: {fileID: 160191591}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: starterSpawnA (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1430,7 +1430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 276460762}
   - component: {fileID: 276460761}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1580,7 +1580,7 @@ GameObject:
   - component: {fileID: 326087453}
   - component: {fileID: 326087452}
   - component: {fileID: 326087451}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: harderSpawnA (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2301,7 +2301,7 @@ GameObject:
   m_Component:
   - component: {fileID: 484430064}
   - component: {fileID: 484430065}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3538,7 +3538,7 @@ GameObject:
   m_Component:
   - component: {fileID: 825316312}
   - component: {fileID: 825316311}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3851,7 +3851,7 @@ GameObject:
   m_Component:
   - component: {fileID: 923626201}
   - component: {fileID: 923626200}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3901,7 +3901,7 @@ GameObject:
   - component: {fileID: 1001691146}
   - component: {fileID: 1001691145}
   - component: {fileID: 1001691144}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: harderSpawnA (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6040,7 +6040,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1357957405}
   - component: {fileID: 1357957404}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6811,7 +6811,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1561424979}
   - component: {fileID: 1561424978}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6993,7 +6993,7 @@ GameObject:
   - component: {fileID: 1681539260}
   - component: {fileID: 1681539262}
   - component: {fileID: 1681539263}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: starterSpawnA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7075,7 +7075,7 @@ GameObject:
   - component: {fileID: 1687274211}
   - component: {fileID: 1687274210}
   - component: {fileID: 1687274209}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: starterSpawnA (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7223,7 +7223,7 @@ GameObject:
   - component: {fileID: 1718806223}
   - component: {fileID: 1718806222}
   - component: {fileID: 1718806221}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: harderSpawnA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8352,7 +8352,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2030303258}
   - component: {fileID: 2030303257}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
