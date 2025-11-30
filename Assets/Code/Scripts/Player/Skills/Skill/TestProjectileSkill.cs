@@ -2,16 +2,15 @@ using UnityEngine;
 
 public class TestProjectileSkill : Skill
 {
-    GameObject m_Projectile;
+    BaseProjectileHandler handler;
     float m_speed;
-    public TestProjectileSkill(float skillCost, GameObject projectile, float speed) : base(skillCost)
+    public TestProjectileSkill(float skillCost, BaseProjectileHandler projectileHandler) : base(skillCost)
     {
-        m_Projectile = projectile;
-        m_speed = speed;
+        handler = projectileHandler;
     }
 
     public override void UseSkill()
     {
-        GameObject.Instantiate(m_Projectile, PlayerRef.PlayerTransform.position, m_Projectile.transform.rotation).GetComponent<Rigidbody>().AddForce(PlayerDirection.AimDirection * m_speed, ForceMode.Impulse);
+        handler.UseProjectile(PlayerRef.PlayerTransform.position, PlayerDirection.AimDirection);
     }
 }

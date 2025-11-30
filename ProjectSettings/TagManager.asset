@@ -23,10 +23,10 @@ TagManager:
   - 
   - Enemy
   - Player
-  - PlayerAttack
-  - 
-  - 
-  - 
+  - PlayerMeleeAttack
+  - PlayerPRBAttack
+  - PlayerPRCAttack
+  - PlayerPAAttack
   - 
   - 
   - 
