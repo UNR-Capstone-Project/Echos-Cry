@@ -14,8 +14,7 @@ public class BaseAttack : MonoBehaviour
 
     public void SetDamageMultiplier()
     {
-        TempoManager.HIT_QUALITY hitQuality = TempoManager.UpdateHitQuality();
-        switch (hitQuality)
+        switch (TempoManager.CurrentHitQuality)
         {
             case TempoManager.HIT_QUALITY.EXCELLENT:
                 damageMultiplier = 1.5f;
@@ -23,9 +22,9 @@ public class BaseAttack : MonoBehaviour
             case TempoManager.HIT_QUALITY.GOOD:
                 damageMultiplier = 1.25f;
                 break;
-            case TempoManager.HIT_QUALITY.BAD:
-                damageMultiplier = 1f;
-                break;
+            //case TempoManager.HIT_QUALITY.BAD:
+            //    damageMultiplier = 1f;
+            //    break;
             default:
                 break;
         }

@@ -10,7 +10,7 @@ public class PlayerSound : MonoBehaviour
 
     private void PlayFootstep()
     {
-        if (PlayerMovement.PlayerRigidbody.linearVelocity != Vector3.zero
+        if (PlayerMovement.PlayerLocomotion != Vector2.zero
             && !_builderRef.GetSoundPlayer().IsSoundPlaying())
         {
             _builderRef

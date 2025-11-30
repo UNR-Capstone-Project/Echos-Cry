@@ -137,6 +137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1281923376534781332}
   - component: {fileID: 2912883627511616977}
+  - component: {fileID: 3231676495413909350}
   m_Layer: 0
   m_Name: ShopKeeper 1
   m_TagString: Untagged
@@ -173,7 +174,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e030241b353f4e42ae2952dd5c58d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::shopkeeper
-  shopCanvas: {fileID: 8512349213515385655, guid: fd5ad3683e10af942a8a9cb220a24d05, type: 3}
+  shopCanvas: {fileID: 3291565546300153769}
+--- !u!136 &3231676495413909350
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8624400538190268421}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &6596662872821699742
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -224,7 +248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1295559700405387806, guid: fd5ad3683e10af942a8a9cb220a24d05, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.555
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1295559700405387806, guid: fd5ad3683e10af942a8a9cb220a24d05, type: 3}
       propertyPath: m_LocalRotation.w
@@ -232,23 +256,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1295559700405387806, guid: fd5ad3683e10af942a8a9cb220a24d05, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1295559700405387806, guid: fd5ad3683e10af942a8a9cb220a24d05, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1295559700405387806, guid: fd5ad3683e10af942a8a9cb220a24d05, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1295559700405387806, guid: fd5ad3683e10af942a8a9cb220a24d05, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.18153
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1295559700405387806, guid: fd5ad3683e10af942a8a9cb220a24d05, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.87
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1295559700405387806, guid: fd5ad3683e10af942a8a9cb220a24d05, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -262,6 +286,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1456637738291038460, guid: fd5ad3683e10af942a8a9cb220a24d05, type: 3}
+      propertyPath: currentInventory
+      value: 
+      objectReference: {fileID: 3542431999539309550, guid: bf4d7b646412a36438a5917eb5d3c604, type: 3}
     - target: {fileID: 8512349213515385655, guid: fd5ad3683e10af942a8a9cb220a24d05, type: 3}
       propertyPath: m_Name
       value: shopCanvas
@@ -275,6 +303,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd5ad3683e10af942a8a9cb220a24d05, type: 3}
+--- !u!1 &3291565546300153769 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8512349213515385655, guid: fd5ad3683e10af942a8a9cb220a24d05, type: 3}
+  m_PrefabInstance: {fileID: 6596662872821699742}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5365701682069116544 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1295559700405387806, guid: fd5ad3683e10af942a8a9cb220a24d05, type: 3}

@@ -1,6 +1,7 @@
 using AudioSystem;
 using System.Collections;
 using UnityEngine;
+using System;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,54 +17,39 @@ public class PlayerMovement : MonoBehaviour
                           + (playerLocomotion.x * playerSpeed * rightVector)
                           + new Vector3(0f,playerRigidbody.linearVelocity.y,0f);
 
-        playerRigidbody.AddForce(targetVel);
+        if (playerLocomotion != Vector2.zero) playerRigidbody.AddForce(targetVel - playerRigidbody.linearVelocity, ForceMode.VelocityChange);
+        else playerRigidbody.AddForce(-(stoppingAcceleration * playerRigidbody.linearVelocity.normalized));
+    }
+
+    public void HandleDash()
+    {
+        if (!canDash || TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.MISS) return;
+
+        canDash = false;
+        playerRigidbody.AddForce(playerRigidbody.linearVelocity.normalized * dashSpeed, ForceMode.Impulse);
+        OnDashStarted?.Invoke();
+
+        StartCoroutine(DashDurationTimer(dashDuration));
+    }
+    IEnumerator DashDurationTimer(float duration)
+    {
+        isDashing = true;
+        _playerCollider.enabled = false; 
+        yield return new WaitForSeconds(duration);
+        isDashing = false;
+        _playerCollider.enabled = true;
+        OnDashEnded?.Invoke();
+        StartCoroutine(DashCooldownTimer(dashCooldown));
+    }
+    IEnumerator DashCooldownTimer(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        canDash = true;
     }
 
     public void HandleMovement(Vector2 locomotion)
     {
         playerLocomotion = locomotion;
-    }
-    public void HandleDash()
-    {
-        if (!canDash) return;
-
-        if (TempoManager.UpdateHitQuality() == TempoManager.HIT_QUALITY.MISS) { return; }
-
-        playerRigidbody.AddForce(playerRigidbody.linearVelocity.normalized * dashSpeed, ForceMode.Impulse);
-        StartCoroutine(DashDurationTimer(dashDuration));
-        StartCoroutine(DashCooldownTimer(dashCooldown));
-    }
-
-    IEnumerator DashCooldownTimer(float duration)
-    {
-        canDash = false;
-        yield return new WaitForSeconds(duration);
-        canDash = true;
-    }
-    IEnumerator DashDurationTimer(float duration)
-    {
-        isDashing = true;
-        mTrail.emitting = true;
-        yield return new WaitForSeconds(duration);
-        isDashing = false;
-        mTrail.emitting = false;
-    }
-
-    private void Awake()
-    {
-        playerRigidbody = GetComponent<Rigidbody>();
-        mTrail = GetComponent<TrailRenderer>();
-        mainCameraRef = Camera.main.transform;
-    }
-    void Start()
-    {
-        InputTranslator.OnMovementEvent += HandleMovement;
-        InputTranslator.OnDashEvent += HandleDash;
-    }
-    private void OnDestroy()
-    {
-        InputTranslator.OnMovementEvent -= HandleMovement;
-        InputTranslator.OnDashEvent -= HandleDash;
     }
 
     private void FixedUpdate()
@@ -72,9 +58,24 @@ public class PlayerMovement : MonoBehaviour
         MovePlayer();
     }
 
-    private void OnDrawGizmos()
+    private void Awake()
     {
-        //Gizmos.DrawWireCube(transform.position + (Vector3.down * groundCheckBoxHeight), groundCheckBoxDimensions);
+        playerRigidbody = GetComponent<Rigidbody>();
+        _playerCollider = GetComponent<Collider>();
+    }
+    void Start()
+    {
+        mainCameraRef = Camera.main.transform;
+        InputTranslator.OnMovementEvent += HandleMovement;
+        InputTranslator.OnDashEvent += HandleDash;
+
+        stoppingAcceleration = playerSpeed * 2;
+        //maxPlayerVelocitySqrMag = maxPlayerVelocityMag * maxPlayerVelocityMag;
+    }
+    private void OnDestroy()
+    {
+        InputTranslator.OnMovementEvent -= HandleMovement;
+        InputTranslator.OnDashEvent -= HandleDash;
     }
 
     //Player Movement
@@ -83,13 +84,17 @@ public class PlayerMovement : MonoBehaviour
 
     private static Rigidbody playerRigidbody;
     public static Rigidbody PlayerRigidbody { get { return playerRigidbody; } }
+    private Collider _playerCollider = null;
 
     private Transform mainCameraRef;
 
     //Player Dashing
+    public static event Action OnDashStarted;
+    public static event Action OnDashEnded;
+
     private bool canDash = true;
     private bool isDashing = false;
-    private TrailRenderer mTrail = null;
+
     [Header("Determines how quickly dash reaches destination.")]
     [SerializeField] private float dashSpeed = 20f;
     [Header("Determines the distance of the dash.")]
@@ -97,13 +102,10 @@ public class PlayerMovement : MonoBehaviour
     [Header("")]
     [SerializeField] private float dashCooldown = 1f;
 
-    //[SerializeField] private float playerGravity = 9.8f; Rigidbody has implementation for gravity and mass
     [SerializeField] private float playerSpeed = 10f;
+    private float stoppingAcceleration;
 
-    //[SerializeField] private Vector3 groundCheckBoxDimensions;
-    //[SerializeField] private float groundCheckBoxHeight;
-    //public bool IsGrounded()
-    //{
-    //    return Physics.BoxCast(transform.position, groundCheckBoxDimensions, Vector3.down, transform.rotation, groundCheckBoxHeight);
-    //}
+    //[SerializeField] private float maxPlayerVelocityMag = 5f;
+    //private float maxPlayerVelocitySqrMag;
+
 }

@@ -34,16 +34,30 @@ public class PlayerAnimator : MonoBehaviour
         yield return new WaitForSeconds(flashDamageDuration);
         playerSpriteRenderer.material.SetColor("_TintColor", defaultSpriteColor);
     }
+
+    public void HandleDashStartedEmit()
+    {
+        _dashTrail.emitting = true;
+    }
+    public void HandleDashEndedEmit()
+    {
+        _dashTrail.emitting = false;
+    }
+
     private void Awake()
     {
-        playerSpriteAnimator = GetComponent<Animator>();
-        playerSpriteRenderer = GetComponent<SpriteRenderer>();
+        playerSpriteAnimator  = GetComponent<Animator>();
+        playerSpriteRenderer  = GetComponent<SpriteRenderer>();
         playerSpriteTransform = GetComponent<Transform>();
+        _dashTrail = GetComponentInParent<TrailRenderer>();
     }
     private void Start()
     {
         defaultSpriteColor = playerSpriteRenderer.material.GetColor("_TintColor");
         PlayerStats.OnPlayerDamagedEvent += DamagePlayerFlash;
+
+        PlayerMovement.OnDashStarted += HandleDashStartedEmit;
+        PlayerMovement.OnDashEnded += HandleDashEndedEmit;
 
         InputTranslator.OnMovementEvent += HandleMovement;
     }
@@ -51,15 +65,19 @@ public class PlayerAnimator : MonoBehaviour
     {
         PlayerStats.OnPlayerDamagedEvent -= DamagePlayerFlash;
 
+        PlayerMovement.OnDashStarted -= HandleDashStartedEmit;
+        PlayerMovement.OnDashEnded   -= HandleDashEndedEmit;
+
         InputTranslator.OnMovementEvent -= HandleMovement;
     }
     
-    private Color defaultSpriteColor;
     [SerializeField] private Color spriteDamageColor = Color.red;
-
     [SerializeField] private float flashDamageDuration = 0.2f;
+    private Color defaultSpriteColor;
 
-    private Transform playerSpriteTransform;
+    private TrailRenderer _dashTrail = null;
+
+    private Transform      playerSpriteTransform;
     private SpriteRenderer playerSpriteRenderer;
-    private Animator playerSpriteAnimator;
+    private Animator       playerSpriteAnimator;
 }

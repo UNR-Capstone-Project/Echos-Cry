@@ -8,41 +8,50 @@ using UnityEngine.UI;
 public class CanvasManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI hitQualityText;
-    [SerializeField] private GameObject metronomeImage;
-    [SerializeField] private float flashDuration = 0.1f;
-
+    [SerializeField] private GameObject      metronomeImageObject;
+    [SerializeField] private float           flashDuration = 0.1f;
+    
+    private RawImage _metronomeImage;
+    private Canvas   _mainCanvas;
     private Material metronomeMaterial;
 
+    private void Awake()
+    {
+        _mainCanvas = GetComponent<Canvas>();
+        _metronomeImage = metronomeImageObject.GetComponent<RawImage>();
+        metronomeMaterial = Instantiate(_metronomeImage.material);
+    }
     void Start()
     {
         //Setup UI with main camera.
-        Canvas mCanvas = GetComponent<Canvas>();
-        mCanvas.worldCamera = Camera.main;
-        mCanvas.planeDistance = 1;
+        _mainCanvas.worldCamera = Camera.main;
+        _mainCanvas.planeDistance = 1;
 
         //Setup metronome image
-        RawImage image = metronomeImage.GetComponent<RawImage>();
-        metronomeMaterial = Instantiate(image.material);
-        image.material = metronomeMaterial;
+        _metronomeImage.material = metronomeMaterial;
 
-       
         TempoManager.BeatTickEvent += FlashOutline;
-        TempoManager.UpdateHitQualityEvent += UpdateHitQualityText;
+
+        InputTranslator.OnDashEvent += UpdateHitQualityText;
+        InputTranslator.OnLightAttackEvent += UpdateHitQualityText;
+        InputTranslator.OnHeavyAttackEvent += UpdateHitQualityText;
     }
     private void OnDestroy()
     {
         TempoManager.BeatTickEvent -= FlashOutline;
-        TempoManager.UpdateHitQualityEvent -= UpdateHitQualityText;
+
+        InputTranslator.OnDashEvent -= UpdateHitQualityText;
+        InputTranslator.OnLightAttackEvent -= UpdateHitQualityText;
+        InputTranslator.OnHeavyAttackEvent -= UpdateHitQualityText;
     }
 
-    public void UpdateHitQualityText(TempoManager.HIT_QUALITY quality)
+    public void UpdateHitQualityText()
     {
-        hitQualityText.GetComponent<TextMeshProUGUI>().text = quality.ToString();
+        hitQualityText.text = TempoManager.CurrentHitQuality.ToString();
     }
 
     public void FlashOutline()
     {
-        //Debug.Log("Flash!");
         StartCoroutine(Flash(flashDuration));
     }
 

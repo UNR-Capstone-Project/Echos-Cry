@@ -1,19 +1,19 @@
 //DO NOT ADJUST UNLESS STRICTLY NECESSARY
 public class SimpleEnemyStateMachine 
 {
-    private SimpleEnemyState _currentState;
+    public SimpleEnemyState CurrentState { get; set; }
 
-    public SimpleEnemyState CurrentState { get { return _currentState; } set { _currentState = value; } }
+    public SimpleEnemyStateMachine() { }
 
     public void HandleSwitchState(SimpleEnemyState newState)
     {
-        _currentState.ExitState();
-        _currentState = newState;
-        _currentState.EnterState();
+        CurrentState.ExitState();
+        CurrentState = newState;
+        CurrentState.EnterState();
     }
     public void Update()
     {
-        _currentState.CheckSwitchState();
-        _currentState.UpdateState();
+        CurrentState.CheckSwitchState();
+        CurrentState.UpdateState();
     }
 }

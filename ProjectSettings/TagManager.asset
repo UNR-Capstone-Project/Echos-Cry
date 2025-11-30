@@ -10,6 +10,7 @@ TagManager:
   - MainCanvas
   - HealthCanvas
   - Item
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -20,12 +21,12 @@ TagManager:
   - Ground
   - RenderTexture
   - 
-  - 
-  - 
-  - PlayerAttack
-  - 
-  - 
-  - 
+  - Enemy
+  - Player
+  - PlayerMeleeAttack
+  - PlayerPRBAttack
+  - PlayerPRCAttack
+  - PlayerPAAttack
   - 
   - 
   - 

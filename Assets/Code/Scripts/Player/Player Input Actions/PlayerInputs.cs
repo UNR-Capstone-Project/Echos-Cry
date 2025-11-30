@@ -174,9 +174,54 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Shop"",
+                    ""type"": ""Button"",
+                    ""id"": ""6ba241fd-3426-4ee2-9b6b-c3a8a9957159"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Item 1"",
+                    ""type"": ""Button"",
+                    ""id"": ""1818352f-158f-42b3-9db2-2141ff9f6523"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Item 2"",
+                    ""type"": ""Button"",
+                    ""id"": ""20037aad-6157-4db6-a42d-14cc529c05d6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Item 3"",
+                    ""type"": ""Button"",
+                    ""id"": ""7c93b9ae-0baa-498b-99cf-9c40335942e6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Item 4"",
+                    ""type"": ""Button"",
+                    ""id"": ""504d9d67-3f55-4540-b6b1-686c9e31fc8f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
-                    ""id"": ""a40389cc-e7d6-4701-9f3a-2f63e9491a5d"",
+                    ""id"": ""66953180-c669-403c-a70c-326d528ceadf"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -329,7 +374,62 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2fbc416d-db8b-4a1a-9ded-345eab635c35"",
+                    ""id"": ""d28fd003-7e7e-48f1-bccd-68fd6c1c97ce"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0fc30a48-9442-4683-ac8e-451b3ae57e14"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Item 1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""975ff58d-f784-46cf-bbe0-71b77af6fca0"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Item 2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ae7bb000-9b2b-47be-a58d-38590d162c41"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Item 3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2be83182-ae9f-4b29-8081-8b483f6a181c"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Item 4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8d6d7b83-2bfd-48a8-9c33-1caac7b9f9c4"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -475,6 +575,34 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Shop Menu"",
+            ""id"": ""e314a271-4179-4a6e-8407-27111bdba104"",
+            ""actions"": [
+                {
+                    ""name"": ""CloseShop"",
+                    ""type"": ""Button"",
+                    ""id"": ""53042b18-fcfb-431c-a6ea-bd04f1dae7f3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""80c7b28c-615a-438f-9b7f-0e098958a82d"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CloseShop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -490,6 +618,11 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_Gameplay_Skill1 = m_Gameplay.FindAction("Skill 1", throwIfNotFound: true);
         m_Gameplay_Skill2 = m_Gameplay.FindAction("Skill 2", throwIfNotFound: true);
         m_Gameplay_Skill3 = m_Gameplay.FindAction("Skill 3", throwIfNotFound: true);
+        m_Gameplay_Shop = m_Gameplay.FindAction("Shop", throwIfNotFound: true);
+        m_Gameplay_Item1 = m_Gameplay.FindAction("Item 1", throwIfNotFound: true);
+        m_Gameplay_Item2 = m_Gameplay.FindAction("Item 2", throwIfNotFound: true);
+        m_Gameplay_Item3 = m_Gameplay.FindAction("Item 3", throwIfNotFound: true);
+        m_Gameplay_Item4 = m_Gameplay.FindAction("Item 4", throwIfNotFound: true);
         m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
         // Pause Menu
         m_PauseMenu = asset.FindActionMap("Pause Menu", throwIfNotFound: true);
@@ -501,6 +634,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_PlayerMenu_ExitMenuMap = m_PlayerMenu.FindAction("ExitMenuMap", throwIfNotFound: true);
         m_PlayerMenu_NavLeft = m_PlayerMenu.FindAction("NavLeft", throwIfNotFound: true);
         m_PlayerMenu_NavRight = m_PlayerMenu.FindAction("NavRight", throwIfNotFound: true);
+        // Shop Menu
+        m_ShopMenu = asset.FindActionMap("Shop Menu", throwIfNotFound: true);
+        m_ShopMenu_CloseShop = m_ShopMenu.FindAction("CloseShop", throwIfNotFound: true);
     }
 
     ~@PlayerInputs()
@@ -508,6 +644,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_Gameplay.enabled, "This will cause a leak and performance issues, PlayerInputs.Gameplay.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_PauseMenu.enabled, "This will cause a leak and performance issues, PlayerInputs.PauseMenu.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_PlayerMenu.enabled, "This will cause a leak and performance issues, PlayerInputs.PlayerMenu.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_ShopMenu.enabled, "This will cause a leak and performance issues, PlayerInputs.ShopMenu.Disable() has not been called.");
     }
 
     /// <summary>
@@ -592,6 +729,11 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Skill1;
     private readonly InputAction m_Gameplay_Skill2;
     private readonly InputAction m_Gameplay_Skill3;
+    private readonly InputAction m_Gameplay_Shop;
+    private readonly InputAction m_Gameplay_Item1;
+    private readonly InputAction m_Gameplay_Item2;
+    private readonly InputAction m_Gameplay_Item3;
+    private readonly InputAction m_Gameplay_Item4;
     private readonly InputAction m_Gameplay_Interact;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
@@ -640,6 +782,26 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Gameplay/Skill3".
         /// </summary>
         public InputAction @Skill3 => m_Wrapper.m_Gameplay_Skill3;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/Shop".
+        /// </summary>
+        public InputAction @Shop => m_Wrapper.m_Gameplay_Shop;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/Item1".
+        /// </summary>
+        public InputAction @Item1 => m_Wrapper.m_Gameplay_Item1;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/Item2".
+        /// </summary>
+        public InputAction @Item2 => m_Wrapper.m_Gameplay_Item2;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/Item3".
+        /// </summary>
+        public InputAction @Item3 => m_Wrapper.m_Gameplay_Item3;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/Item4".
+        /// </summary>
+        public InputAction @Item4 => m_Wrapper.m_Gameplay_Item4;
         /// <summary>
         /// Provides access to the underlying input action "Gameplay/Interact".
         /// </summary>
@@ -697,6 +859,21 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Skill3.started += instance.OnSkill3;
             @Skill3.performed += instance.OnSkill3;
             @Skill3.canceled += instance.OnSkill3;
+            @Shop.started += instance.OnShop;
+            @Shop.performed += instance.OnShop;
+            @Shop.canceled += instance.OnShop;
+            @Item1.started += instance.OnItem1;
+            @Item1.performed += instance.OnItem1;
+            @Item1.canceled += instance.OnItem1;
+            @Item2.started += instance.OnItem2;
+            @Item2.performed += instance.OnItem2;
+            @Item2.canceled += instance.OnItem2;
+            @Item3.started += instance.OnItem3;
+            @Item3.performed += instance.OnItem3;
+            @Item3.canceled += instance.OnItem3;
+            @Item4.started += instance.OnItem4;
+            @Item4.performed += instance.OnItem4;
+            @Item4.canceled += instance.OnItem4;
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
@@ -738,6 +915,21 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Skill3.started -= instance.OnSkill3;
             @Skill3.performed -= instance.OnSkill3;
             @Skill3.canceled -= instance.OnSkill3;
+            @Shop.started -= instance.OnShop;
+            @Shop.performed -= instance.OnShop;
+            @Shop.canceled -= instance.OnShop;
+            @Item1.started -= instance.OnItem1;
+            @Item1.performed -= instance.OnItem1;
+            @Item1.canceled -= instance.OnItem1;
+            @Item2.started -= instance.OnItem2;
+            @Item2.performed -= instance.OnItem2;
+            @Item2.canceled -= instance.OnItem2;
+            @Item3.started -= instance.OnItem3;
+            @Item3.performed -= instance.OnItem3;
+            @Item3.canceled -= instance.OnItem3;
+            @Item4.started -= instance.OnItem4;
+            @Item4.performed -= instance.OnItem4;
+            @Item4.canceled -= instance.OnItem4;
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
@@ -1010,6 +1202,102 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="PlayerMenuActions" /> instance referencing this action map.
     /// </summary>
     public PlayerMenuActions @PlayerMenu => new PlayerMenuActions(this);
+
+    // Shop Menu
+    private readonly InputActionMap m_ShopMenu;
+    private List<IShopMenuActions> m_ShopMenuActionsCallbackInterfaces = new List<IShopMenuActions>();
+    private readonly InputAction m_ShopMenu_CloseShop;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Shop Menu".
+    /// </summary>
+    public struct ShopMenuActions
+    {
+        private @PlayerInputs m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public ShopMenuActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "ShopMenu/CloseShop".
+        /// </summary>
+        public InputAction @CloseShop => m_Wrapper.m_ShopMenu_CloseShop;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_ShopMenu; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="ShopMenuActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(ShopMenuActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="ShopMenuActions" />
+        public void AddCallbacks(IShopMenuActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ShopMenuActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ShopMenuActionsCallbackInterfaces.Add(instance);
+            @CloseShop.started += instance.OnCloseShop;
+            @CloseShop.performed += instance.OnCloseShop;
+            @CloseShop.canceled += instance.OnCloseShop;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="ShopMenuActions" />
+        private void UnregisterCallbacks(IShopMenuActions instance)
+        {
+            @CloseShop.started -= instance.OnCloseShop;
+            @CloseShop.performed -= instance.OnCloseShop;
+            @CloseShop.canceled -= instance.OnCloseShop;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="ShopMenuActions.UnregisterCallbacks(IShopMenuActions)" />.
+        /// </summary>
+        /// <seealso cref="ShopMenuActions.UnregisterCallbacks(IShopMenuActions)" />
+        public void RemoveCallbacks(IShopMenuActions instance)
+        {
+            if (m_Wrapper.m_ShopMenuActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="ShopMenuActions.AddCallbacks(IShopMenuActions)" />
+        /// <seealso cref="ShopMenuActions.RemoveCallbacks(IShopMenuActions)" />
+        /// <seealso cref="ShopMenuActions.UnregisterCallbacks(IShopMenuActions)" />
+        public void SetCallbacks(IShopMenuActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ShopMenuActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ShopMenuActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="ShopMenuActions" /> instance referencing this action map.
+    /// </summary>
+    public ShopMenuActions @ShopMenu => new ShopMenuActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Gameplay" which allows adding and removing callbacks.
     /// </summary>
@@ -1081,6 +1369,41 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSkill3(InputAction.CallbackContext context);
         /// <summary>
+        /// Method invoked when associated input action "Shop" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnShop(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Item 1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnItem1(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Item 2" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnItem2(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Item 3" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnItem3(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Item 4" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnItem4(InputAction.CallbackContext context);
+        /// <summary>
         /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
@@ -1145,5 +1468,20 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnNavRight(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Shop Menu" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="ShopMenuActions.AddCallbacks(IShopMenuActions)" />
+    /// <seealso cref="ShopMenuActions.RemoveCallbacks(IShopMenuActions)" />
+    public interface IShopMenuActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "CloseShop" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCloseShop(InputAction.CallbackContext context);
     }
 }

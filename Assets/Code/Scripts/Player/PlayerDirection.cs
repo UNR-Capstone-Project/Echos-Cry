@@ -4,31 +4,21 @@ using UnityEngine.Rendering.Universal;
 
 public class PlayerDirection : MonoBehaviour
 {
-    [SerializeField] DecalProjector playerAimMarker;
-
-    private Vector3 aimDirection;
-    private Quaternion aimingRotation;
+    private static Vector3 aimDirection;
+    private static Quaternion aimRotation;
+    public static Vector3 AimDirection { get { return aimDirection; } }
+    public static Quaternion AimRotation { get { return aimRotation; } }   
 
     void Update()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-        RaycastHit hit;
-        int groundMask = LayerMask.GetMask("Ground");
+        Ray ray = CameraManager.MainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask))
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
         {
-            Vector3 hitPoint = hit.point;
-
-            aimDirection = (hitPoint - transform.parent.position).normalized; //Calculates the direction between the mouse mapped to world space and the players position.
+            aimDirection = (hit.point - transform.parent.position).normalized; //Calculates the direction between the mouse mapped to world space and the players position.
             aimDirection.y = 0;
-
-            aimingRotation = Quaternion.LookRotation(aimDirection);
-
-            Quaternion decalRotation = Quaternion.Euler(new Vector3(90, aimingRotation.eulerAngles.y, 0));
-            transform.rotation = decalRotation;
+            aimRotation = Quaternion.LookRotation(aimDirection); 
+            transform.rotation = aimRotation;
         }
     }
-
-    public Vector3 GetAimDirection() { return aimDirection; }
-    public Quaternion GetAimRotation() { return aimingRotation; }
 }
