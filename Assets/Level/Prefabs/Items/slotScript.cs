@@ -15,6 +15,13 @@ public class slotScript : MonoBehaviour
 
     public void Set(InventoryItem item)
     {
+        if (item == null)
+        {
+            m_stackObj = null;
+            m_num.text = "0";
+            m_icon.sprite = null;
+            return;
+        }
         if (item.stackSize < 1)
         {
             m_icon.enabled = false;
