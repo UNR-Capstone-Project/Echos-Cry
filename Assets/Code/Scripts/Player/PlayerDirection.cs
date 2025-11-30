@@ -11,13 +11,13 @@ public class PlayerDirection : MonoBehaviour
 
     void Update()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        Ray ray = CameraManager.MainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
         {
             aimDirection = (hit.point - transform.parent.position).normalized; //Calculates the direction between the mouse mapped to world space and the players position.
             aimDirection.y = 0;
-            aimRotation = Quaternion.LookRotation(aimDirection); //* Quaternion.AngleAxis(90f, Vector3.right);
+            aimRotation = Quaternion.LookRotation(aimDirection); 
             transform.rotation = aimRotation;
         }
     }

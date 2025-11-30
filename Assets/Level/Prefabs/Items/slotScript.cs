@@ -2,7 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class slotScript : MonoBehaviour{
+public class slotScript : MonoBehaviour
+{
     [SerializeField] private Image m_icon;
     [SerializeField] private GameObject m_stackObj;
     [SerializeField] private TextMeshProUGUI m_num;
@@ -12,21 +13,28 @@ public class slotScript : MonoBehaviour{
         InventoryManager.Instance.AddInventorySlot(this);
     }
 
-    public void Set(InventoryItem item){
-        if(item == null){
+    public void Set(InventoryItem item)
+    {
+        if (item == null)
+        {
             m_stackObj = null;
             m_num.text = "0";
             m_icon.sprite = null;
             return;
         }
-        m_icon.sprite = item.data.icon;
-        if (item.stackSize < 1){
+        if (item.stackSize < 1)
+        {
+            m_icon.enabled = false;
             m_stackObj = null;
-            m_num.text = "0";
             return;
-        }else{
+        }
+        else
+        {
+            m_icon.enabled = true;
+            m_icon.sprite = item.data.icon;
             m_stackObj = item.data.prefab;
         }
+    
         m_num.text = item.stackSize.ToString();
     }
 }
