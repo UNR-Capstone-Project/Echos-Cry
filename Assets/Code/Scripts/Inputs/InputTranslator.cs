@@ -210,15 +210,6 @@ public class InputTranslator : MonoBehaviour,
         if (context.started) OnSkill3Event?.Invoke();
     }
 
-    public void OnShop(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            OnShopEvent?.Invoke();
-            _playerInputs.Gameplay.Disable();
-            _playerInputs.ShopMenu.Enable();
-        }
-    }
     public void OnCloseShop(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -276,7 +267,6 @@ public class InputTranslator : MonoBehaviour,
     public static event Action          OnMapEvent;
     public static event Action          OnExitMapEvent, OnJournalLeftInput, OnJournalRightInput;
     public static event Action          OnSkill1Event, OnSkill2Event, OnSkill3Event;
-    public static event Action          OnShopEvent;
     public static event Action          OnCloseShopEvent;
     public static event Action          OnItem1Event, OnItem2Event, OnItem3Event, OnItem4Event;
     public static event Action          OnInteractEvent;
