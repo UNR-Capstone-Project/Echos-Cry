@@ -9,6 +9,8 @@ public class InventoryManager : MonoBehaviour
     private Dictionary<inventoryItemData, InventoryItem> m_itemDictionary;
     public List<InventoryItem> inventory { get; private set; }
 
+    //public PlayerStats player;
+
     [SerializeField] private InventoryDisplay _inventoryDisplay;
 
     private void Awake()
@@ -44,38 +46,105 @@ public class InventoryManager : MonoBehaviour
         InputTranslator.OnItem4Event += UseItem4;
     }
     private void healthPotion(){
+        PlayerStats.OnDamageHealed(10f);
         Debug.Log("Health");
     }
     private void shieldPotion(){
         Debug.Log("Shield");
     }
+    private void attackPotion(){
+        Debug.Log("Attack");
+    }
+    private void speedPotion(){
+        Debug.Log("Speed");
+    }
     private void UseItem1(){
         //at index 0
         int i = 0;
+        InventoryItem usedItem = null;
         foreach(InventoryItem item in InventoryManager.Instance.inventory){
             if (i == 0){
+                usedItem = new InventoryItem(item.data);
                 if(item.data.id == "healthP"){
                     healthPotion();
-                    Remove(item.data);
-                    //remove 1
                 }else if(item.data.id == "shieldP"){
                     shieldPotion();
-                    Remove(item.data);
-                    //remove 1
+                }else if(item.data.id == "attackP"){
+                    attackPotion();
+                }else if(item.data.id == "speedP"){
+                    speedPotion();
                 }
             }else{
                 i++;
             }
         }
+        Remove(usedItem.data);
     }
     private void UseItem2(){
         //at index 1
+        int i = 0;
+        InventoryItem usedItem = null;
+        foreach(InventoryItem item in InventoryManager.Instance.inventory){
+            if (i == 1){
+                usedItem = new InventoryItem(item.data);
+                if(item.data.id == "healthP"){
+                    healthPotion();
+                }else if(item.data.id == "shieldP"){
+                    shieldPotion();
+                }else if(item.data.id == "attackP"){
+                    attackPotion();
+                }else if(item.data.id == "speedP"){
+                    speedPotion();
+                }
+            }else{
+                i++;
+            }
+        }
+        Remove(usedItem.data);
     }
     private void UseItem3(){
         //at index 2
+        int i = 0;
+        InventoryItem usedItem = null;
+        foreach(InventoryItem item in InventoryManager.Instance.inventory){
+            if (i == 2){
+                usedItem = new InventoryItem(item.data);
+                if(item.data.id == "healthP"){
+                    healthPotion();
+                }else if(item.data.id == "shieldP"){
+                    shieldPotion();
+                }else if(item.data.id == "attackP"){
+                    attackPotion();
+                }else if(item.data.id == "speedP"){
+                    speedPotion();
+                }
+            }else{
+                i++;
+            }
+        }
+        Remove(usedItem.data);
     }
     private void UseItem4(){
         //at index 3
+        int i = 0;
+        InventoryItem usedItem = null;
+        foreach(InventoryItem item in InventoryManager.Instance.inventory){
+            if (i == 3){
+                usedItem = new InventoryItem(item.data);
+                if(item.data.id == "healthP"){
+                    healthPotion();
+                }else if(item.data.id == "shieldP"){
+                    shieldPotion();
+                }else if(item.data.id == "attackP"){
+                    attackPotion();
+                }else if(item.data.id == "speedP"){
+                    speedPotion();
+                }
+            }else{
+                i++;
+            }
+        }
+        Remove(usedItem.data);
     }
     void OnDestroy(){
         InputTranslator.OnItem1Event -= UseItem1;
@@ -97,7 +166,6 @@ public class InventoryManager : MonoBehaviour
             inventory.Add(newItem);
             m_itemDictionary.Add(referenceData, newItem);
         }
-        Debug.Log("item added :3");
     }
     public void Remove(inventoryItemData referenceData){
         if(m_itemDictionary.TryGetValue(referenceData, out InventoryItem value)){
