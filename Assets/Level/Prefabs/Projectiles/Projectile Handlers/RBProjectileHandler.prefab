@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7742393286234703057}
   - component: {fileID: 5230369832768549167}
   m_Layer: 0
-  m_Name: RigidbodyProjectileHandler
+  m_Name: RBProjectileHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RigidbodyProjectileHandler
   prefab: {fileID: 4017702522014423927, guid: 06f6e91932ee0a746924dfba69b527b5, type: 3}
+  parentTransform: {fileID: 0}
   initialPoolAmount: 5
   maxPoolAmount: 25
   projectileSpeed: 5

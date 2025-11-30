@@ -5,7 +5,7 @@ using UnityEngine.Pool;
 //Contains reference to prefab
 //Creates ObjectPool of prefab with an initial amount set by user
 
-public class RigidbodyProjectileHandler : BaseProjectileHandler
+public class RBProjectileHandler : BaseProjectileHandler
 {
     public override void UseProjectile(Vector3 position, Vector3 direction)
     {
@@ -17,7 +17,16 @@ public class RigidbodyProjectileHandler : BaseProjectileHandler
 
     private void Awake()
     {
-        parentTransform = GameObject.Find("ProjectileSceneHolder").transform;
+        GameObject holder = GameObject.Find(_projectileSceneHolderName);
+        if (holder != null) parentTransform = holder.transform;
+        else parentTransform = new GameObject(_projectileSceneHolderName).transform;
+
+        if(prefab.GetComponent<RBPRojectileCollisionHandler>() == null)
+        {
+            Destroy(gameObject);
+            Debug.LogError("Invalid prefab used with " + name + " WTFFFFFFFFFFFFF FIX IT");
+        }
+
         projectilePool = new ObjectPool<Rigidbody>(
             createFunc     : CreateProjectile,
             actionOnGet    : OnGetProjectile,
@@ -31,7 +40,7 @@ public class RigidbodyProjectileHandler : BaseProjectileHandler
     private Rigidbody CreateProjectile()
     {
         Rigidbody rb = Instantiate(prefab, parentTransform).GetComponent<Rigidbody>();
-        rb.gameObject.GetComponent<HandleRBProjectileCollision>().SetHandler(this);
+        rb.gameObject.GetComponent<RBPRojectileCollisionHandler>().SetHandler(this);
         return rb;
     }
     private void OnGetProjectile(Rigidbody prefab)
@@ -51,6 +60,8 @@ public class RigidbodyProjectileHandler : BaseProjectileHandler
     {
         projectilePool.Release(rb);
     }
+
+    private string _projectileSceneHolderName = "RBProjectileHolder";
 
     [Header("Prefab & Pool Attributes")]
     [SerializeField] private GameObject prefab;

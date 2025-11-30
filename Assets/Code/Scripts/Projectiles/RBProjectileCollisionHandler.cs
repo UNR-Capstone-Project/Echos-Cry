@@ -17,7 +17,7 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
         yield return new WaitForSeconds(timer);
         handler.ReleaseProjectile(rb);
     }
-    public void SetHandler(RigidbodyProjectileHandler handler)
+    public void SetHandler(RBProjectileHandler handler)
     {
         if (this.handler != null) return;
         this.handler = handler;
@@ -25,7 +25,7 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
 
     private void Awake()
     {
-        handler = GetComponentInParent<RigidbodyProjectileHandler>();
+        handler = GetComponentInParent<RBProjectileHandler>();
         rb = GetComponent<Rigidbody>();
     }
     private void OnEnable()
@@ -37,7 +37,7 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
         StopAllCoroutines();
     }
 
-    private RigidbodyProjectileHandler handler;
+    private RBProjectileHandler handler;
     private Rigidbody rb;
     [SerializeField] private float timer = 5;
 }
