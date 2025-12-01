@@ -219,6 +219,34 @@ public class InputTranslator : MonoBehaviour,
             _playerInputs.ShopMenu.Disable();
         }
     }
+    public void OnLeftArrow(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            OnShopLeftInput?.Invoke();
+        }
+    }
+    public void OnRightArrow(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            OnShopRightInput?.Invoke();
+        }
+    }
+    public void OnUpArrow(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            OnShopUpInput?.Invoke();
+        }
+    }
+    public void OnDownArrow(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            OnShopDownInput?.Invoke();
+        }
+    }
     public void OnItem1(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -267,7 +295,7 @@ public class InputTranslator : MonoBehaviour,
     public static event Action          OnMapEvent;
     public static event Action          OnExitMapEvent, OnJournalLeftInput, OnJournalRightInput;
     public static event Action          OnSkill1Event, OnSkill2Event, OnSkill3Event;
-    public static event Action          OnCloseShopEvent;
+    public static event Action          OnCloseShopEvent, OnShopLeftInput, OnShopRightInput, OnShopUpInput, OnShopDownInput;
     public static event Action          OnItem1Event, OnItem2Event, OnItem3Event, OnItem4Event;
     public static event Action          OnInteractEvent;
 
