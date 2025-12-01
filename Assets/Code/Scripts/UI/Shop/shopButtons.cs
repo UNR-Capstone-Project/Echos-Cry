@@ -5,9 +5,11 @@ public class shopButtons : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public int HealthPCost;
-    public Text HealthPCostText;
+    public TMP_Text HealthPCostText;
+    public TMP_Text HealthAmountText;
     public int ShieldPCost;
-    public Text ShieldPCostText;
+    public TMP_Text ShieldPCostText;
+    public TMP_Text ShieldAmountText;
     public inventoryItemData health;
     public inventoryItemData shield;
     public InventoryManager currentInventory;
@@ -17,6 +19,7 @@ public class shopButtons : MonoBehaviour
     private int shieldPAmount;
     private int currentRow = 1;
     private int cost;
+    private int tempCost;
     //[SerializeField] private PlayerStats playerStats;
     void Start()
     {
@@ -33,11 +36,34 @@ public class shopButtons : MonoBehaviour
 
     private void Left(){
         //adds one less item to "cart"
-        //updates price for all items of this type
+        if(currentRow == 1){
+            if(healthPAmount != 0) healthPAmount--;
+            cost -= HealthPCost;
+            tempCost = healthPAmount*HealthPCost;
+            HealthPCostText.text = tempCost.ToString();
+            HealthAmountText.text = healthPAmount.ToString();
+        }else if(currentRow == 2){
+            if(shieldPAmount != 0) shieldPAmount--;
+            cost -= ShieldPCost;
+            tempCost = shieldPAmount*ShieldPCost;
+            ShieldPCostText.text = tempCost.ToString();
+            ShieldAmountText.text = shieldPAmount.ToString();
+        }
     }
     private void Right(){
-        //adds one more item to "cart"
-        //updates price
+        if(currentRow == 1){
+            healthPAmount++;
+            cost += HealthPCost;
+            tempCost = healthPAmount*HealthPCost;
+            HealthPCostText.text = tempCost.ToString();
+            HealthAmountText.text = healthPAmount.ToString();
+        }else if(currentRow == 2){
+            shieldPAmount++;
+            cost += ShieldPCost;
+            tempCost = shieldPAmount*ShieldPCost;
+            ShieldPCostText.text = tempCost.ToString();
+            ShieldAmountText.text = shieldPAmount.ToString();
+        }
     }
     private void Up(){
         //switches current selected item

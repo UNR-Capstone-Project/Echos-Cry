@@ -2363,12 +2363,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1eb91530b7702c40aca519b608e25b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::shopButtons
-  HealthPCost: 0
-  HealthPCostText: {fileID: 0}
-  ShieldPCost: 0
-  ShieldPCostText: {fileID: 0}
-  health: {fileID: 0}
-  shield: {fileID: 0}
+  HealthPCost: 2
+  HealthPCostText: {fileID: 1669697172}
+  HealthAmountText: {fileID: 1697459806}
+  ShieldPCost: 1
+  ShieldPCostText: {fileID: 475424956}
+  ShieldAmountText: {fileID: 756076919}
+  health: {fileID: 11400000, guid: d2683ec3837954744bfe0d3ba5a82950, type: 2}
+  shield: {fileID: 11400000, guid: 794edfe54ef6562408623d485b20d6a9, type: 2}
   currentInventory: {fileID: 0}
   shieldHighlight: {fileID: 1920694525}
   healthHighlight: {fileID: 1308651762}
@@ -2486,6 +2488,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06e770712028cb4488d13af3c15d4e82, type: 3}
+--- !u!114 &1669697172 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1119369104850271915, guid: e1df6ecf5f146cd4ea241f3171b8ae54, type: 3}
+  m_PrefabInstance: {fileID: 3308574842752541331}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1697459804
 GameObject:
   m_ObjectHideFlags: 0
@@ -3306,7 +3319,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3291565546300153769, guid: e1df6ecf5f146cd4ea241f3171b8ae54, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4448692250002560102, guid: e1df6ecf5f146cd4ea241f3171b8ae54, type: 3}
       propertyPath: m_Name
