@@ -13,12 +13,23 @@ public class SimpleEnemyManager : MonoBehaviour
         {
             case EnemyType.BAT:
                 _enemyStateCache = new BatEnemyStateCache(this);
-                _enemyStateMachine.CurrentState = _enemyStateMachine.CurrentState = _enemyStateCache.RequestState(States.BAT_SPAWN);
+                _enemyStateMachine.CurrentState  = _enemyStateCache.RequestState(States.BAT_SPAWN);
+                break;
+            case EnemyType.RANGE:
+                _enemyStateCache = new RangeEnemyStateCache(this);
+                _enemyStateMachine.CurrentState = _enemyStateCache.RequestState(States.RANGE_SPAWN);
                 break;
             default:
                 break;
         }
     }
+    public void SwitchState(States newState)
+    {
+        SimpleEnemyState state = _enemyStateCache.RequestState(newState);
+        if (state != null) _enemyStateMachine.HandleSwitchState(state);
+        else Debug.LogError("Invalid state request");
+    }
+
     private void Awake()
     {   
         _enemyStateMachine = new();
@@ -41,7 +52,7 @@ public class SimpleEnemyManager : MonoBehaviour
 
     public enum EnemyType
     {
-        UNASSIGNED = 0, BAT
+        UNASSIGNED = 0, BAT, RANGE
     }
 
     public EnemyType TypeOfEnemy = EnemyType.UNASSIGNED;
