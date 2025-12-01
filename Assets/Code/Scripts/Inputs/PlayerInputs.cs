@@ -604,6 +604,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Purchase"",
+                    ""type"": ""Button"",
+                    ""id"": ""2f322e1a-2498-4127-b86f-5fbbe6a740c8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -661,6 +670,17 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""DownArrow"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b6908b1-cdbe-474d-ba9f-9f0e31f9f29c"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Purchase"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -700,6 +720,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_ShopMenu_RightArrow = m_ShopMenu.FindAction("RightArrow", throwIfNotFound: true);
         m_ShopMenu_LeftArrow = m_ShopMenu.FindAction("LeftArrow", throwIfNotFound: true);
         m_ShopMenu_DownArrow = m_ShopMenu.FindAction("DownArrow", throwIfNotFound: true);
+        m_ShopMenu_Purchase = m_ShopMenu.FindAction("Purchase", throwIfNotFound: true);
     }
 
     ~@PlayerInputs()
@@ -1263,6 +1284,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_ShopMenu_RightArrow;
     private readonly InputAction m_ShopMenu_LeftArrow;
     private readonly InputAction m_ShopMenu_DownArrow;
+    private readonly InputAction m_ShopMenu_Purchase;
     /// <summary>
     /// Provides access to input actions defined in input action map "Shop Menu".
     /// </summary>
@@ -1294,6 +1316,10 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "ShopMenu/DownArrow".
         /// </summary>
         public InputAction @DownArrow => m_Wrapper.m_ShopMenu_DownArrow;
+        /// <summary>
+        /// Provides access to the underlying input action "ShopMenu/Purchase".
+        /// </summary>
+        public InputAction @Purchase => m_Wrapper.m_ShopMenu_Purchase;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1335,6 +1361,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @DownArrow.started += instance.OnDownArrow;
             @DownArrow.performed += instance.OnDownArrow;
             @DownArrow.canceled += instance.OnDownArrow;
+            @Purchase.started += instance.OnPurchase;
+            @Purchase.performed += instance.OnPurchase;
+            @Purchase.canceled += instance.OnPurchase;
         }
 
         /// <summary>
@@ -1361,6 +1390,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @DownArrow.started -= instance.OnDownArrow;
             @DownArrow.performed -= instance.OnDownArrow;
             @DownArrow.canceled -= instance.OnDownArrow;
+            @Purchase.started -= instance.OnPurchase;
+            @Purchase.performed -= instance.OnPurchase;
+            @Purchase.canceled -= instance.OnPurchase;
         }
 
         /// <summary>
@@ -1600,5 +1632,12 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDownArrow(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Purchase" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPurchase(InputAction.CallbackContext context);
     }
 }

@@ -247,6 +247,12 @@ public class InputTranslator : MonoBehaviour,
             OnShopDownInput?.Invoke();
         }
     }
+    public void OnPurchase(InputAction.CallbackContext context)
+    {
+        if(context.started){
+            OnPurchaseEvent?.Invoke();
+        }
+    }
     public void OnItem1(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -295,7 +301,7 @@ public class InputTranslator : MonoBehaviour,
     public static event Action          OnMapEvent;
     public static event Action          OnExitMapEvent, OnJournalLeftInput, OnJournalRightInput;
     public static event Action          OnSkill1Event, OnSkill2Event, OnSkill3Event;
-    public static event Action          OnCloseShopEvent, OnShopLeftInput, OnShopRightInput, OnShopUpInput, OnShopDownInput;
+    public static event Action          OnCloseShopEvent, OnShopLeftInput, OnShopRightInput, OnShopUpInput, OnShopDownInput, OnPurchaseEvent;
     public static event Action          OnItem1Event, OnItem2Event, OnItem3Event, OnItem4Event;
     public static event Action          OnInteractEvent;
 
