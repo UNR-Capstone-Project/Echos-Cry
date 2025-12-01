@@ -1386,7 +1386,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8512349213515385655, guid: fd5ad3683e10af942a8a9cb220a24d05, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1457,9 +1457,8 @@ MonoBehaviour:
   ShieldPCost: 1
   ShieldPCostText: {fileID: 6928844679277754804}
   ShieldAmountText: {fileID: 6357946716483331953}
-  health: {fileID: 11400000, guid: d2683ec3837954744bfe0d3ba5a82950, type: 2}
-  shield: {fileID: 11400000, guid: 794edfe54ef6562408623d485b20d6a9, type: 2}
-  currentInventory: {fileID: 0}
+  health: {fileID: 8109946571622884026, guid: 3956973db0bcb564daf7a7f41344cbc5, type: 3}
+  shield: {fileID: 8109946571622884026, guid: 22269a7e5d2f3e1449a20451146ec498, type: 3}
   shieldHighlight: {fileID: 4426098674140419580}
   healthHighlight: {fileID: 6109006298219761497}
   totalText: {fileID: 5672718755749288413}

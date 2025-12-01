@@ -12,7 +12,7 @@ public class shopButtons : MonoBehaviour
     public TMP_Text ShieldAmountText;
     public GameObject health;
     public GameObject shield;
-    public InventoryManager currentInventory;
+    //public InventoryManager currentInventory;
     public GameObject shieldHighlight;
     public GameObject healthHighlight;
     public TMP_Text totalText;
@@ -33,6 +33,9 @@ public class shopButtons : MonoBehaviour
         healthHighlight.SetActive(true);
         shieldHighlight.SetActive(false);
         cost = 0;
+
+        //temp to test
+        PlayerStats.UpdateCurrency(5);
     }
 
     private void Left(){
@@ -104,6 +107,14 @@ public class shopButtons : MonoBehaviour
                 Instantiate(shield, GameObject.Find("Player").transform.position, Quaternion.identity);
             }
             PlayerStats.UpdateCurrency(-cost);
+            cost = 0;
+            shieldPAmount = 0;
+            healthPAmount = 0;
+            HealthPCostText.text = "0";
+            HealthAmountText.text = "0";
+            ShieldPCostText.text = "0";
+            ShieldAmountText.text = "0";
+            totalText.text = "0";
         }else{
             Debug.Log("not enough fingers");
             
