@@ -12,17 +12,19 @@ public class EnemyAnimator : MonoBehaviour
 
     private IEnumerator FlashEnemy()
     {
-        enemySprite.material.SetColor("_TintColor", flashColor);
+        enemySprite.material.SetColor(hashedTintColor, flashColor);
         yield return new WaitForSeconds(flashDuration);
-        enemySprite.material.SetColor("_TintColor", originalColor);
+        enemySprite.material.SetColor(hashedTintColor, originalColor);
     }
 
     void Start()
     {
+        hashedTintColor = Shader.PropertyToID("_TintColor");
+
         enemySprite = GetComponentInChildren<SpriteRenderer>();
         if (enemySprite != null)
         {
-            originalColor = enemySprite.material.GetColor("_TintColor");
+            originalColor = enemySprite.material.GetColor(hashedTintColor);
         }
         else
         {
@@ -39,4 +41,5 @@ public class EnemyAnimator : MonoBehaviour
     [SerializeField] private float flashDuration = 0.2f;
     private Color originalColor;
     private SpriteRenderer enemySprite;
+    private int hashedTintColor = Shader.PropertyToID("_TintColor");
 }

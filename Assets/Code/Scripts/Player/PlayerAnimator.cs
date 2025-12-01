@@ -19,8 +19,8 @@ public class PlayerAnimator : MonoBehaviour
     void UpdateSpriteAnimation(Vector2 locomotion)
     {
         //Animate player
-        if (locomotion != Vector2.zero) playerSpriteAnimator.SetBool("isRunning", true);
-        else playerSpriteAnimator.SetBool("isRunning", false);
+        if (locomotion != Vector2.zero) playerSpriteAnimator.SetBool(hashedIsRunning, true);
+        else playerSpriteAnimator.SetBool(hashedIsRunning, false);
     }
 
     public void DamagePlayerFlash()
@@ -30,9 +30,9 @@ public class PlayerAnimator : MonoBehaviour
     }
     private IEnumerator flashPlayerDamaged()
     {
-        playerSpriteRenderer.material.SetColor("_TintColor", spriteDamageColor);
+        playerSpriteRenderer.material.SetColor(hashedTintColor, spriteDamageColor);
         yield return new WaitForSeconds(flashDamageDuration);
-        playerSpriteRenderer.material.SetColor("_TintColor", defaultSpriteColor);
+        playerSpriteRenderer.material.SetColor(hashedTintColor, defaultSpriteColor);
     }
 
     public void HandleDashStartedEmit()
@@ -53,7 +53,7 @@ public class PlayerAnimator : MonoBehaviour
     }
     private void Start()
     {
-        defaultSpriteColor = playerSpriteRenderer.material.GetColor("_TintColor");
+        defaultSpriteColor = playerSpriteRenderer.material.GetColor(hashedTintColor);
         PlayerStats.OnPlayerDamagedEvent += DamagePlayerFlash;
 
         PlayerMovement.OnDashStarted += HandleDashStartedEmit;
@@ -80,4 +80,7 @@ public class PlayerAnimator : MonoBehaviour
     private Transform      playerSpriteTransform;
     private SpriteRenderer playerSpriteRenderer;
     private Animator       playerSpriteAnimator;
+
+    private int hashedTintColor = Shader.PropertyToID("_TintColor");
+    private int hashedIsRunning = Animator.StringToHash("isRunning");
 }
