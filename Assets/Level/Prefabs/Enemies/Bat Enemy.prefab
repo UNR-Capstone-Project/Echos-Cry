@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 4674027367824827364}
   - component: {fileID: 4267862705877107826}
   - component: {fileID: 3304758087494331346}
+  - component: {fileID: 1602136016763477614}
   - component: {fileID: 5023480817066990243}
   - component: {fileID: 8838160874129828706}
   - component: {fileID: 6827338249854996756}
@@ -296,6 +297,22 @@ MonoBehaviour:
   - prefab: {fileID: 651722200087660623, guid: 97046ff4e4a41054f9df101045151fb5, type: 3}
     minDropAmount: 3
     maxDropAmount: 7
+--- !u!114 &1602136016763477614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900823288402649937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 497edade093b3d14d99c238bb2fc9225, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyBatAttack
+  damageAmount: 10
+  attackDuration: 0.2
+  attackCooldown: 1
+  dashForce: 5
 --- !u!114 &5023480817066990243
 MonoBehaviour:
   m_ObjectHideFlags: 0

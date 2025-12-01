@@ -23,10 +23,11 @@ public class SimpleEnemyManager : MonoBehaviour
     {   
         _enemyStateMachine = new();
 
-        _enemyRigidbody = GetComponent<Rigidbody>();
-        _enemyAnimator  = GetComponent<Animator>();
-        _enemyNMA       = GetComponent<NavMeshAgent>();
-        _enemyStats     = GetComponent<EnemyStats>();
+        _enemyRigidbody  = GetComponent<Rigidbody>();
+        _enemyAnimator   = GetComponent<Animator>();
+        _enemyNMA        = GetComponent<NavMeshAgent>();
+        _enemyStats      = GetComponent<EnemyStats>();
+        _enemyBaseAttack = GetComponent<EnemyBaseAttack>();
     }
     private void Start()
     {
@@ -51,6 +52,7 @@ public class SimpleEnemyManager : MonoBehaviour
     private EnemyStats              _enemyStats;
     private SimpleEnemyStateMachine _enemyStateMachine;
     private Rigidbody               _enemyRigidbody;
+    private EnemyBaseAttack         _enemyBaseAttack;
 
     public SimpleEnemyStateCache   EnemyStateCache   { get { return _enemyStateCache;   } }
     public Animator                EnemyAnimator     { get { return _enemyAnimator;     } }
@@ -58,5 +60,5 @@ public class SimpleEnemyManager : MonoBehaviour
     public EnemyStats              EnemyStats        { get { return _enemyStats;        } }
     public SimpleEnemyStateMachine EnemyStateMachine { get { return _enemyStateMachine; } }
     public Rigidbody               EnemyRigidbody    { get { return _enemyRigidbody;    } }
-
+    public EnemyBaseAttack         EnemyBaseAttack   { get { return _enemyBaseAttack;   } }
 }

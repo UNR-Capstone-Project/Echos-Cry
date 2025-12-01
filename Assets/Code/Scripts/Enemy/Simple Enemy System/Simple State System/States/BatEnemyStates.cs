@@ -158,20 +158,9 @@ public class BatChargeAttackState : SimpleEnemyState
 
 public class BatAttackState : SimpleEnemyState
 {
-    private Vector3 attackDirection;
-    private LayerMask mask;
-    private float pushForce;
-    private float damage;
-    private float attackDuration;
-    private float attackCooldown;
-    private bool isAttacking;
+
     public BatAttackState(SimpleEnemyManager enemyContext) : base(enemyContext) 
     {
-        mask           = LayerMask.GetMask("Player");
-        pushForce      = 6f;
-        damage         = 5f;
-        attackDuration = 0.25f;
-        attackCooldown = 1f;
     }
 
     public override void CheckSwitchState()
@@ -181,51 +170,9 @@ public class BatAttackState : SimpleEnemyState
 
     public override void EnterState()
     {
-        //Debug.Log("Enter Attack State");
-        isAttacking = true;
-        attackDirection = (PlayerRef.PlayerTransform.position - enemyContext.transform.position).normalized;
-        attackDirection.y = 0;
-        enemyContext.EnemyRigidbody.isKinematic = false;
-        enemyContext.EnemyRigidbody.AddForce(pushForce * attackDirection, ForceMode.Impulse);
-        enemyContext.StartCoroutine(AttackDuration());
+        enemyContext.EnemyBaseAttack.UseAttack();
     }
 
-    public override void ExitState()
-    {
-        enemyContext.EnemyRigidbody.isKinematic = true;
-        enemyContext.StopAllCoroutines();
-    }
-
-    public override void UpdateState()
-    {
-        if (!isAttacking) return;
-        Attack(enemyContext);
-    }
-    private IEnumerator AttackDuration()
-    {
-        yield return new WaitForSeconds(attackDuration);
-        isAttacking = false;
-        enemyContext.StartCoroutine(AttackCooldown());
-    }
-    private IEnumerator AttackCooldown()
-    {
-        enemyContext.EnemyRigidbody.isKinematic = true;
-        yield return new WaitForSeconds(attackCooldown);
-        enemyContext.EnemyStateMachine.HandleSwitchState(enemyContext.EnemyStateCache.RequestState(States.BAT_CHASE));
-    }
-    private void Attack(SimpleEnemyManager enemyContext)
-    {
-        if (Physics.BoxCast(enemyContext.transform.position, //Where casting ray
-                           new Vector3(0.25f, 0.25f, 0.25f), // size of half of box side lengths
-                           attackDirection,                  //Direction of the ray
-                           enemyContext.transform.rotation,  //Current enemy rotation
-                           1f,                               //Distance ray is cast out
-                           mask))                            //Player's layer mask
-        {
-            PlayerStats.OnDamageTaken(damage);
-            isAttacking = false;
-        }
-    }
     private void CheckDeath()
     {
         if (enemyContext.EnemyStats.Health > 0f) return;
