@@ -15,6 +15,7 @@ public class shopButtons : MonoBehaviour
     public InventoryManager currentInventory;
     public GameObject shieldHighlight;
     public GameObject healthHighlight;
+    public TMP_Text totalText;
     private int healthPAmount;
     private int shieldPAmount;
     private int currentRow = 1;
@@ -37,18 +38,18 @@ public class shopButtons : MonoBehaviour
     private void Left(){
         //adds one less item to "cart"
         if(currentRow == 1){
-            if(healthPAmount != 0) healthPAmount--;
-            cost -= HealthPCost;
+            if(healthPAmount != 0) {healthPAmount--; cost -= HealthPCost;}
             tempCost = healthPAmount*HealthPCost;
             HealthPCostText.text = tempCost.ToString();
             HealthAmountText.text = healthPAmount.ToString();
         }else if(currentRow == 2){
-            if(shieldPAmount != 0) shieldPAmount--;
-            cost -= ShieldPCost;
+            if(shieldPAmount != 0) {shieldPAmount--; cost -= ShieldPCost;}
             tempCost = shieldPAmount*ShieldPCost;
             ShieldPCostText.text = tempCost.ToString();
             ShieldAmountText.text = shieldPAmount.ToString();
         }
+        totalText.text = "Total: " + cost.ToString();
+        if(cost <= PlayerStats.CurrencyCount){totalText.color = Color.white;}
     }
     private void Right(){
         if(currentRow == 1){
@@ -64,6 +65,8 @@ public class shopButtons : MonoBehaviour
             ShieldPCostText.text = tempCost.ToString();
             ShieldAmountText.text = shieldPAmount.ToString();
         }
+        totalText.text = "Total: " + cost.ToString();
+        if(cost > PlayerStats.CurrencyCount){totalText.color = Color.red;}
     }
     private void Up(){
         //switches current selected item
