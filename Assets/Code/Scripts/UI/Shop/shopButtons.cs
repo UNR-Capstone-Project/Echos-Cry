@@ -10,8 +10,8 @@ public class shopButtons : MonoBehaviour
     public int ShieldPCost;
     public TMP_Text ShieldPCostText;
     public TMP_Text ShieldAmountText;
-    public inventoryItemData health;
-    public inventoryItemData shield;
+    public GameObject health;
+    public GameObject shield;
     public InventoryManager currentInventory;
     public GameObject shieldHighlight;
     public GameObject healthHighlight;
@@ -98,10 +98,10 @@ public class shopButtons : MonoBehaviour
     private void Purchase(){
         if(PlayerStats.CurrencyCount >= cost){
             for(int i = 0; i < healthPAmount; i++){
-                currentInventory.Add(health); 
+                Instantiate(health, GameObject.Find("Player").transform.position, Quaternion.identity);
             }
             for(int i = 0; i < shieldPAmount; i++){
-                currentInventory.Add(shield);
+                Instantiate(shield, GameObject.Find("Player").transform.position, Quaternion.identity);
             }
             PlayerStats.UpdateCurrency(-cost);
         }else{
