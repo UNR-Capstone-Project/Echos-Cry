@@ -35,7 +35,7 @@ public class shopButtons : MonoBehaviour
         cost = 0;
 
         //temp to test
-        PlayerStats.UpdateCurrency(5);
+        //PlayerStats.UpdateCurrency(5);
     }
 
     private void Left(){
