@@ -105,6 +105,8 @@ public class shopButtons : MonoBehaviour
             }
             PlayerStats.UpdateCurrency(-cost);
         }else{
+            Debug.Log("not enough fingers");
+            
             //enable "not enough fingers" message for n seconds
         }
     }
