@@ -16,31 +16,21 @@ public class RangeIdleState : SimpleEnemyState
 }
 public class RangeRoamState : SimpleEnemyState
 {
-    public RangeRoamState()
-    {
-    }
+    public RangeRoamState(){}
 }
 public class RangeChargeAttackState : SimpleEnemyState
 {
-    public RangeChargeAttackState()
-    {
-    }
+    public RangeChargeAttackState(){}
 }
 public class RangeAttackState : SimpleEnemyState
 {
-    public RangeAttackState()
-    {
-    }
+    public RangeAttackState(){}
 }
 public class RangeStaggerState : SimpleEnemyState
 {
-    public RangeStaggerState()
-    {
-    }
+    public RangeStaggerState(){}
 }
 public class RangeDeathState : SimpleEnemyState
 {
-    public RangeDeathState()
-    {
-    }
+    public RangeDeathState(){}
 }
