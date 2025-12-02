@@ -14,8 +14,8 @@ public class EnemyDrops : MonoBehaviour
                 if (itemRB != null)
                 {
                     Vector3 randDirection = Random.onUnitSphere;
-                    float itemImpulseSpeed = 4f;
-                    itemRB.AddForce(randDirection * itemImpulseSpeed, ForceMode.Impulse);
+                    randDirection.y = 0;
+                    itemRB.AddForce(randDirection * itemExplosionSpeed, ForceMode.Impulse);
                 }
             }
         }
@@ -31,4 +31,5 @@ public class EnemyDrops : MonoBehaviour
     }
 
     [SerializeField] private ItemDrop[] ItemDrops;
+    [SerializeField] private float itemExplosionSpeed = 10f;
 }
