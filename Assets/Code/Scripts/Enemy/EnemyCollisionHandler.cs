@@ -10,17 +10,16 @@ using UnityEngine;
 //This is used to increase combo meter/multiplier and set enemy to stagger state
 
 [RequireComponent(typeof(Rigidbody))]
-public class EnemyCollisionHandler : MonoBehaviour
+public abstract class BaseEnemyCollisionHandler : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider collision)
+    protected virtual void OnTriggerEnter(Collider collision)
     {
         if(collision.TryGetComponent<AttackCollisionHandler>(out AttackCollisionHandler handler))
         {
             PlayerComboMeter.AddToComboMeter(handler.AttackDamage);
             PlayerComboMeter.UpdateComboMultiplier();
         }
-        _enemyManager.EnemyStateMachine
-            .HandleSwitchState(_enemyManager.EnemyStateCache.RequestState(SimpleEnemyStateCache.States.BAT_STAGGER));
+        //_enemyManager.SwitchState(SimpleEnemyStateCache.EnemyStates.BAT_STAGGER);
         _enemyCollider.enabled = false;
     }
     private void ResetColliderBool()

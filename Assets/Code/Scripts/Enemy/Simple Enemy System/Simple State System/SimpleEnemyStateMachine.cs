@@ -5,15 +5,15 @@ public class SimpleEnemyStateMachine
 
     public SimpleEnemyStateMachine() { }
 
-    public void HandleSwitchState(SimpleEnemyState newState)
+    public void HandleSwitchState(SimpleEnemyState newState, SimpleEnemyManager enemyContext)
     {
-        CurrentState.ExitState();
+        CurrentState.ExitState(enemyContext);
         CurrentState = newState;
-        CurrentState.EnterState();
+        CurrentState.EnterState(enemyContext);
     }
-    public void Update()
+    public void Update(SimpleEnemyManager enemyContext)
     {
-        CurrentState.CheckSwitchState();
-        CurrentState.UpdateState();
+        CurrentState.CheckSwitchState(enemyContext);
+        CurrentState.UpdateState(enemyContext);
     }
 }

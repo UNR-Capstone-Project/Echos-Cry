@@ -3,44 +3,44 @@ using static SimpleEnemyStateCache;
 
 public class RangeSpawnState : SimpleEnemyState
 {
-    public RangeSpawnState(SimpleEnemyManager enemyContext) : base(enemyContext){}
+    public RangeSpawnState() { }
 
-    public override void EnterState()
+    public override void EnterState(SimpleEnemyManager enemyContext)
     {
-        enemyContext.SwitchState(States.RANGE_IDLE);
+        enemyContext.SwitchState(EnemyStates.RANGE_IDLE);
     }
 }
 public class RangeIdleState : SimpleEnemyState
 {
-    public RangeIdleState(SimpleEnemyManager enemyContext) : base(enemyContext) {}
+    public RangeIdleState() {}
 }
 public class RangeRoamState : SimpleEnemyState
 {
-    public RangeRoamState(SimpleEnemyManager enemyContext) : base(enemyContext)
+    public RangeRoamState()
     {
     }
 }
 public class RangeChargeAttackState : SimpleEnemyState
 {
-    public RangeChargeAttackState(SimpleEnemyManager enemyContext) : base(enemyContext)
+    public RangeChargeAttackState()
     {
     }
 }
 public class RangeAttackState : SimpleEnemyState
 {
-    public RangeAttackState(SimpleEnemyManager enemyContext) : base(enemyContext)
+    public RangeAttackState()
     {
     }
 }
 public class RangeStaggerState : SimpleEnemyState
 {
-    public RangeStaggerState(SimpleEnemyManager enemyContext) : base(enemyContext)
+    public RangeStaggerState()
     {
     }
 }
 public class RangeDeathState : SimpleEnemyState
 {
-    public RangeDeathState(SimpleEnemyManager enemyContext) : base(enemyContext)
+    public RangeDeathState()
     {
     }
 }

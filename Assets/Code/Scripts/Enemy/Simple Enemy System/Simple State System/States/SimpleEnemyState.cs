@@ -2,19 +2,14 @@ using static SimpleEnemyStateCache;
 
 public abstract class SimpleEnemyState
 {
-    protected SimpleEnemyManager enemyContext;
-    public SimpleEnemyState(SimpleEnemyManager enemyContext)
-    {
-        this.enemyContext = enemyContext;
-    }
-    public virtual void UpdateState() { }
-    public virtual void EnterState() { }
-    public virtual void ExitState() { }
-    public virtual void CheckSwitchState() { }
+    public virtual void UpdateState(SimpleEnemyManager enemyContext) { }
+    public virtual void EnterState(SimpleEnemyManager enemyContext) { }
+    public virtual void ExitState(SimpleEnemyManager enemyContext) { }
+    public virtual void CheckSwitchState(SimpleEnemyManager enemyContext) { }
    
-    protected void CheckDeath()
+    protected void CheckDeath(SimpleEnemyManager enemyContext)
     {
         if (enemyContext.EnemyStats.Health > 0f) return;
-        enemyContext.SwitchState(States.BAT_DEATH);
+        enemyContext.SwitchState(EnemyStates.BAT_DEATH);
     }
 }
