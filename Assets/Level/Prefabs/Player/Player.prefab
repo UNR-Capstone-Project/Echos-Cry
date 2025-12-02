@@ -347,7 +347,7 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: 660fcdebd0472cd46852f807af7f3338, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32768
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 31744
@@ -771,8 +771,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72dec4980866bef47b9774eb1f20e169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSkillManager
-  tempPrefab: {fileID: 4017702522014423927, guid: 06f6e91932ee0a746924dfba69b527b5, type: 3}
-  tempPrefab2: {fileID: 4017702522014423927, guid: b203186e710270c49a24564a6dc78ea9, type: 3}
 --- !u!1001 &506091730931972670
 PrefabInstance:
   m_ObjectHideFlags: 0

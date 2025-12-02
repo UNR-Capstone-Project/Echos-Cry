@@ -5,6 +5,17 @@ using static SimpleEnemyStateCache;
 //Main Handler script for enemy behavior and data.
 //This script handles the instantiation of the State Machine and its logic
 
+[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(Animator))]
+[RequireComponent (typeof(Rigidbody))]
+[RequireComponent(typeof(BoxCollider))]
+[RequireComponent(typeof(EnemyBaseAttack))]
+[RequireComponent(typeof(EnemyDrops))]
+[RequireComponent(typeof(EnemyStats))]
+[RequireComponent(typeof(EnemySound))]
+[RequireComponent(typeof(EnemyAnimator))]
+[RequireComponent(typeof(EnemyCollisionHandler))]
+
 public class SimpleEnemyManager : MonoBehaviour
 {
     private void SelectStartState()

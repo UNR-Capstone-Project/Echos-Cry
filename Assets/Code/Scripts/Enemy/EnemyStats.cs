@@ -7,9 +7,6 @@ using UnityEngine.AI;
 //Handles enemy stats such as health, armor etc
 //Contains relevant functions and events for each stat/event
 
-[RequireComponent(typeof(EnemyInfo))]
-[RequireComponent(typeof(NavMeshAgent))]
-[RequireComponent(typeof(Animator))]
 public class EnemyStats : MonoBehaviour
 {
     public float Health { get; private set; }

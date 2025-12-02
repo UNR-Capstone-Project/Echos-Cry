@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using static SimpleEnemyManager;
+using static SimpleEnemyStateCache;
 
 //This will be placed on every enemy to handle collision with an attack from player
 
@@ -10,21 +12,37 @@ using UnityEngine;
 //This is used to increase combo meter/multiplier and set enemy to stagger state
 
 [RequireComponent(typeof(Rigidbody))]
-public abstract class BaseEnemyCollisionHandler : MonoBehaviour
+public class EnemyCollisionHandler : MonoBehaviour
 {
-    protected virtual void OnTriggerEnter(Collider collision)
+    protected void OnTriggerEnter(Collider collision)
     {
         if(collision.TryGetComponent<AttackCollisionHandler>(out AttackCollisionHandler handler))
         {
             PlayerComboMeter.AddToComboMeter(handler.AttackDamage);
             PlayerComboMeter.UpdateComboMultiplier();
         }
-
         _enemyCollider.enabled = false;
+        _enemyManager.SwitchState(enemyStaggerState);
     }
     private void ResetColliderBool()
     {
         _enemyCollider.enabled = true;
+    }
+
+    private void DetermineStaggerState()
+    {
+        switch (_enemyManager.TypeOfEnemy)
+        {
+            case EnemyType.BAT:
+                enemyStaggerState = EnemyStates.BAT_STAGGER;
+                break;
+            case EnemyType.RANGE:
+                enemyStaggerState = EnemyStates.RANGE_STAGGER;
+                break;
+            default:
+                enemyStaggerState = EnemyStates.UNASSIGNED;
+                break;
+        }
     }
 
     private void Awake()
@@ -34,6 +52,7 @@ public abstract class BaseEnemyCollisionHandler : MonoBehaviour
     }
     private void Start()
     {
+        DetermineStaggerState();
         BaseWeapon.OnAttackEndedEvent += ResetColliderBool;
     }
     private void OnDestroy()
@@ -42,5 +61,6 @@ public abstract class BaseEnemyCollisionHandler : MonoBehaviour
     }
     
     private Collider _enemyCollider;
+    EnemyStates enemyStaggerState;
     protected SimpleEnemyManager _enemyManager;
 }
