@@ -12,22 +12,24 @@ public class DroppedItem : MonoBehaviour
 
     private void Start()
     {
-        TickManager.OnTick01Event += MoveItemToPlayer;
+        TickManager.OnTick02Event += MoveItemToPlayer;
     }
     private void OnDestroy()
     {
-        TickManager.OnTick01Event -= MoveItemToPlayer;
+        TickManager.OnTick02Event -= MoveItemToPlayer;
     }
 
     private void MoveItemToPlayer()
     {
-        float playerDistance = (gameObject.transform.position - PlayerRef.PlayerTransform.position).magnitude;
+        Vector3 direction = (PlayerRef.PlayerTransform.position - transform.position);
+        direction.y = 0;
+        float playerDistance = direction.magnitude;
         if (playerDistance < itemDragDistance)
         {
             if (itemBody != null)
             {
-                Vector3 direction = (PlayerRef.PlayerTransform.position - this.transform.position).normalized;
-                itemBody.MovePosition(transform.position + direction * itemSpeed * Time.deltaTime);
+                direction.Normalize();
+                itemBody.AddForce(direction * itemSpeed, ForceMode.Impulse);
             }
         }
     }
@@ -41,6 +43,5 @@ public class DroppedItem : MonoBehaviour
         PlayerStats.UpdateCurrency(1);
         GetComponent<Collider>().enabled = false;   
         Destroy(gameObject);
-    
     }
 }
