@@ -1,13 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
-
 public class InventoryManager : MonoBehaviour
 {
     private static InventoryManager _instance;
     public static InventoryManager Instance { get { return _instance; } }
 
     private Dictionary<inventoryItemData, InventoryItem> m_itemDictionary;
-    public List<InventoryItem> inventory { get; private set; }
+    public List<InventoryItem> inventory { get; private set;}  
 
     //public PlayerStats player;
 
@@ -15,7 +14,7 @@ public class InventoryManager : MonoBehaviour
 
     private void Awake()
     {
-        if (_instance != null)
+        if(_instance != null)
         {
             Destroy(this);
             return;

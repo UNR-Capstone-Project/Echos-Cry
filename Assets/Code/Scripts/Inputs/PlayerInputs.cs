@@ -568,6 +568,51 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UpArrow"",
+                    ""type"": ""Button"",
+                    ""id"": ""406fa42e-9ac9-4a3d-8215-f0fd2f82bf85"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightArrow"",
+                    ""type"": ""Button"",
+                    ""id"": ""9181dafb-341c-46db-b8f0-a45d28d47819"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftArrow"",
+                    ""type"": ""Button"",
+                    ""id"": ""c146698b-138b-4ea6-addf-ddebe3297699"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DownArrow"",
+                    ""type"": ""Button"",
+                    ""id"": ""f6b45496-a24b-4491-965f-4964d32c9dab"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Purchase"",
+                    ""type"": ""Button"",
+                    ""id"": ""2f322e1a-2498-4127-b86f-5fbbe6a740c8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -579,6 +624,61 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""CloseShop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d8285a7e-82c5-43f5-b7ca-afd4a3e50429"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UpArrow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bdc2c5f9-82cb-4ca3-bb51-f3f6860a33dd"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightArrow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f180ac8e-e89e-4d7f-85f8-e9c5aa869afb"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftArrow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""87fbc967-cc5b-40d4-8cb9-4fecf8f10071"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DownArrow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b6908b1-cdbe-474d-ba9f-9f0e31f9f29c"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Purchase"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -616,6 +716,11 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         // Shop Menu
         m_ShopMenu = asset.FindActionMap("Shop Menu", throwIfNotFound: true);
         m_ShopMenu_CloseShop = m_ShopMenu.FindAction("CloseShop", throwIfNotFound: true);
+        m_ShopMenu_UpArrow = m_ShopMenu.FindAction("UpArrow", throwIfNotFound: true);
+        m_ShopMenu_RightArrow = m_ShopMenu.FindAction("RightArrow", throwIfNotFound: true);
+        m_ShopMenu_LeftArrow = m_ShopMenu.FindAction("LeftArrow", throwIfNotFound: true);
+        m_ShopMenu_DownArrow = m_ShopMenu.FindAction("DownArrow", throwIfNotFound: true);
+        m_ShopMenu_Purchase = m_ShopMenu.FindAction("Purchase", throwIfNotFound: true);
     }
 
     ~@PlayerInputs()
@@ -1175,6 +1280,11 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_ShopMenu;
     private List<IShopMenuActions> m_ShopMenuActionsCallbackInterfaces = new List<IShopMenuActions>();
     private readonly InputAction m_ShopMenu_CloseShop;
+    private readonly InputAction m_ShopMenu_UpArrow;
+    private readonly InputAction m_ShopMenu_RightArrow;
+    private readonly InputAction m_ShopMenu_LeftArrow;
+    private readonly InputAction m_ShopMenu_DownArrow;
+    private readonly InputAction m_ShopMenu_Purchase;
     /// <summary>
     /// Provides access to input actions defined in input action map "Shop Menu".
     /// </summary>
@@ -1190,6 +1300,26 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "ShopMenu/CloseShop".
         /// </summary>
         public InputAction @CloseShop => m_Wrapper.m_ShopMenu_CloseShop;
+        /// <summary>
+        /// Provides access to the underlying input action "ShopMenu/UpArrow".
+        /// </summary>
+        public InputAction @UpArrow => m_Wrapper.m_ShopMenu_UpArrow;
+        /// <summary>
+        /// Provides access to the underlying input action "ShopMenu/RightArrow".
+        /// </summary>
+        public InputAction @RightArrow => m_Wrapper.m_ShopMenu_RightArrow;
+        /// <summary>
+        /// Provides access to the underlying input action "ShopMenu/LeftArrow".
+        /// </summary>
+        public InputAction @LeftArrow => m_Wrapper.m_ShopMenu_LeftArrow;
+        /// <summary>
+        /// Provides access to the underlying input action "ShopMenu/DownArrow".
+        /// </summary>
+        public InputAction @DownArrow => m_Wrapper.m_ShopMenu_DownArrow;
+        /// <summary>
+        /// Provides access to the underlying input action "ShopMenu/Purchase".
+        /// </summary>
+        public InputAction @Purchase => m_Wrapper.m_ShopMenu_Purchase;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1219,6 +1349,21 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @CloseShop.started += instance.OnCloseShop;
             @CloseShop.performed += instance.OnCloseShop;
             @CloseShop.canceled += instance.OnCloseShop;
+            @UpArrow.started += instance.OnUpArrow;
+            @UpArrow.performed += instance.OnUpArrow;
+            @UpArrow.canceled += instance.OnUpArrow;
+            @RightArrow.started += instance.OnRightArrow;
+            @RightArrow.performed += instance.OnRightArrow;
+            @RightArrow.canceled += instance.OnRightArrow;
+            @LeftArrow.started += instance.OnLeftArrow;
+            @LeftArrow.performed += instance.OnLeftArrow;
+            @LeftArrow.canceled += instance.OnLeftArrow;
+            @DownArrow.started += instance.OnDownArrow;
+            @DownArrow.performed += instance.OnDownArrow;
+            @DownArrow.canceled += instance.OnDownArrow;
+            @Purchase.started += instance.OnPurchase;
+            @Purchase.performed += instance.OnPurchase;
+            @Purchase.canceled += instance.OnPurchase;
         }
 
         /// <summary>
@@ -1233,6 +1378,21 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @CloseShop.started -= instance.OnCloseShop;
             @CloseShop.performed -= instance.OnCloseShop;
             @CloseShop.canceled -= instance.OnCloseShop;
+            @UpArrow.started -= instance.OnUpArrow;
+            @UpArrow.performed -= instance.OnUpArrow;
+            @UpArrow.canceled -= instance.OnUpArrow;
+            @RightArrow.started -= instance.OnRightArrow;
+            @RightArrow.performed -= instance.OnRightArrow;
+            @RightArrow.canceled -= instance.OnRightArrow;
+            @LeftArrow.started -= instance.OnLeftArrow;
+            @LeftArrow.performed -= instance.OnLeftArrow;
+            @LeftArrow.canceled -= instance.OnLeftArrow;
+            @DownArrow.started -= instance.OnDownArrow;
+            @DownArrow.performed -= instance.OnDownArrow;
+            @DownArrow.canceled -= instance.OnDownArrow;
+            @Purchase.started -= instance.OnPurchase;
+            @Purchase.performed -= instance.OnPurchase;
+            @Purchase.canceled -= instance.OnPurchase;
         }
 
         /// <summary>
@@ -1444,5 +1604,40 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnCloseShop(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "UpArrow" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnUpArrow(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "RightArrow" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRightArrow(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "LeftArrow" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLeftArrow(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "DownArrow" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDownArrow(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Purchase" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPurchase(InputAction.CallbackContext context);
     }
 }
