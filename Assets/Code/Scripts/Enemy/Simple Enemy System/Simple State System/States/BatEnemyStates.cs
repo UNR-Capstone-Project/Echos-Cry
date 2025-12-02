@@ -35,17 +35,13 @@ public class BatIdleState : SimpleEnemyState
         sqrMagDistance = Mathf.Pow(10f, 2f);
     }
 
-    public override void EnterState(SimpleEnemyManager enemyContext)
-    {
-        enemyContext.StartCoroutine(CheckDistanceCoroutine(enemyContext));
-    }
-    public override void ExitState(SimpleEnemyManager enemyContext)
-    {
-        enemyContext.StopAllCoroutines();
-    }
     public override void CheckSwitchState(SimpleEnemyManager enemyContext)
     {
         CheckDeath(enemyContext);   
+    }
+    public override void UpdateState02ms(SimpleEnemyManager enemyContext)
+    {
+        CheckPlayerDistance(enemyContext);
     }
 
     public  void CheckPlayerDistance(SimpleEnemyManager enemyContext)
@@ -57,12 +53,6 @@ public class BatIdleState : SimpleEnemyState
             return;
         }
     }
-    private IEnumerator CheckDistanceCoroutine(SimpleEnemyManager enemyContext)
-    {
-        yield return new WaitForSeconds(0.2f);
-        CheckPlayerDistance(enemyContext);
-        enemyContext.StartCoroutine(CheckDistanceCoroutine(enemyContext));
-    }
 }
 
 public class BatChaseState : SimpleEnemyState
@@ -73,14 +63,16 @@ public class BatChaseState : SimpleEnemyState
     }
     public override void EnterState(SimpleEnemyManager enemyContext)
     {
-        enemyContext.EnemyNMA.SetDestination(PlayerRef.PlayerTransform.position);
-
-        enemyContext.StartCoroutine(CheckNavMeshCoroutine(enemyContext));
-        enemyContext.StartCoroutine(SetEnemyTargetCoroutine(enemyContext));
+        SetEnemyTarget(enemyContext);
     }
     public override void ExitState(SimpleEnemyManager enemyContext)
     {
         enemyContext.StopAllCoroutines();
+    }
+    public override void UpdateState02ms(SimpleEnemyManager enemyContext)
+    {
+        CheckNavMeshDistance(enemyContext);
+        SetEnemyTarget(enemyContext);
     }
 
     private void CheckNavMeshDistance(SimpleEnemyManager enemyContext)
@@ -96,19 +88,6 @@ public class BatChaseState : SimpleEnemyState
     {
         if(enemyContext.EnemyNMA == null) return;
         enemyContext.EnemyNMA.SetDestination(PlayerRef.PlayerTransform.position);
-    }
-
-    private IEnumerator CheckNavMeshCoroutine(SimpleEnemyManager enemyContext)
-    {
-        yield return new WaitForSeconds(0.2f);
-        CheckNavMeshDistance(enemyContext);
-        enemyContext.StartCoroutine(CheckNavMeshCoroutine(enemyContext));
-    }
-    private IEnumerator SetEnemyTargetCoroutine(SimpleEnemyManager enemyContext)
-    {
-        yield return new WaitForSeconds(0.2f);
-        SetEnemyTarget(enemyContext);
-        enemyContext.StartCoroutine(SetEnemyTargetCoroutine(enemyContext));
     }
 }
 
@@ -127,14 +106,15 @@ public class BatChargeAttackState : SimpleEnemyState
     public override void EnterState(SimpleEnemyManager enemyContext)
     {
         //Debug.Log("Enter Charge Attack State");
-        enemyContext.StartCoroutine(ChargeAttack(enemyContext));
+        enemyContext.StartCoroutine(ChargeAttackCoroutine(enemyContext));
     }
     public override void ExitState(SimpleEnemyManager enemyContext)
     {
+        //Debug.Log("Exit Charge Attack State");
         enemyContext.StopAllCoroutines();
     }
 
-    IEnumerator ChargeAttack(SimpleEnemyManager enemyContext)
+    IEnumerator ChargeAttackCoroutine(SimpleEnemyManager enemyContext)
     {
         yield return new WaitForSeconds(chargeDuration);
         if (TempoManager.CurrentHitQuality != TempoManager.HIT_QUALITY.MISS) enemyContext.SwitchState(EnemyStates.BAT_ATTACK);

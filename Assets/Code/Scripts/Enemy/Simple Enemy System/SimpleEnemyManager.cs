@@ -7,7 +7,7 @@ using static SimpleEnemyStateCache;
 
 public class SimpleEnemyManager : MonoBehaviour
 {
-    public void SelectStartState()
+    private void SelectStartState()
     {
         switch (TypeOfEnemy)
         {
@@ -22,6 +22,10 @@ public class SimpleEnemyManager : MonoBehaviour
             default:
                 break;
         }
+    }
+    private void UpdateState02ms()
+    {
+        EnemyStateMachine.CurrentState.UpdateState02ms(this);
     }
     public void SwitchState(EnemyStates newState)
     {
@@ -45,6 +49,12 @@ public class SimpleEnemyManager : MonoBehaviour
     {
         SelectStartState();
         _enemyStateMachine.CurrentState.EnterState(this);
+
+        TickManager.OnTick02Event += UpdateState02ms;
+    }
+    private void OnDestroy()
+    {
+        TickManager.OnTick02Event -= UpdateState02ms;
     }
     private void Update()
     {

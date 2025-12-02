@@ -19,7 +19,7 @@ public abstract class BaseEnemyCollisionHandler : MonoBehaviour
             PlayerComboMeter.AddToComboMeter(handler.AttackDamage);
             PlayerComboMeter.UpdateComboMultiplier();
         }
-        //_enemyManager.SwitchState(SimpleEnemyStateCache.EnemyStates.BAT_STAGGER);
+
         _enemyCollider.enabled = false;
     }
     private void ResetColliderBool()
@@ -42,5 +42,5 @@ public abstract class BaseEnemyCollisionHandler : MonoBehaviour
     }
     
     private Collider _enemyCollider;
-    private SimpleEnemyManager _enemyManager;
+    protected SimpleEnemyManager _enemyManager;
 }

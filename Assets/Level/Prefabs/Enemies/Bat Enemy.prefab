@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 4267862705877107826}
   - component: {fileID: 3304758087494331346}
   - component: {fileID: 1602136016763477614}
+  - component: {fileID: 7167253321211137929}
   - component: {fileID: 8838160874129828706}
   - component: {fileID: 6827338249854996756}
   m_Layer: 9
@@ -312,6 +313,18 @@ MonoBehaviour:
   attackDuration: 0.2
   attackCooldown: 1
   dashForce: 5
+--- !u!114 &7167253321211137929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900823288402649937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71b44042b09047f44a95d3d40eb7d268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BatCollisionHandler
 --- !u!65 &8838160874129828706
 BoxCollider:
   m_ObjectHideFlags: 0
