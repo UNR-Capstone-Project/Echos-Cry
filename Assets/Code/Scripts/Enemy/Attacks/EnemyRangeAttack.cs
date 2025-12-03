@@ -6,7 +6,7 @@ public class EnemyRangeAttack : EnemyBaseAttack
     {
         attackDirection = (PlayerRef.PlayerTransform.position - transform.position).normalized;
         attackDirection.y = 0;
-        handler.UseProjectile(transform.position, attackDirection);
+        if(handler != null) handler.UseProjectile(transform.position, attackDirection, damage);
         //Transition to whatever state here
     }
 
@@ -16,6 +16,7 @@ public class EnemyRangeAttack : EnemyBaseAttack
     }
 
     [SerializeField] private GameObject prefab;
+    [SerializeField] private float damage = 5f;
     private Vector3 attackDirection;
     private RBProjectileHandler handler;
 }

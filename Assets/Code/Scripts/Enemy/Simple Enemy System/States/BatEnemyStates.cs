@@ -22,7 +22,6 @@ public class BatSpawnState : SimpleEnemyState
 
     public override void EnterState(SimpleEnemyManager enemyContext)
     {
-        //Debug.Log("Enter Spawn State");
         enemyContext.SwitchState(EnemyStates.BAT_IDLE);
     }
 }
@@ -34,16 +33,10 @@ public class BatIdleState : SimpleEnemyState
     {
         sqrMagDistance = Mathf.Pow(10f, 2f);
     }
-
-    public override void CheckSwitchState(SimpleEnemyManager enemyContext)
-    {
-        CheckDeath(enemyContext);   
-    }
     public override void UpdateState02ms(SimpleEnemyManager enemyContext)
     {
         CheckPlayerDistance(enemyContext);
     }
-
     public  void CheckPlayerDistance(SimpleEnemyManager enemyContext)
     {
         float playerDistance = (enemyContext.transform.position - PlayerRef.PlayerTransform.position).sqrMagnitude;
@@ -57,10 +50,6 @@ public class BatIdleState : SimpleEnemyState
 
 public class BatChaseState : SimpleEnemyState
 {
-    public override void CheckSwitchState(SimpleEnemyManager enemyContext)
-    {
-        CheckDeath(enemyContext);
-    }
     public override void EnterState(SimpleEnemyManager enemyContext)
     {
         SetEnemyTarget(enemyContext);
@@ -99,10 +88,6 @@ public class BatChargeAttackState : SimpleEnemyState
         chargeDuration = 1f;
     }
 
-    public override void CheckSwitchState(SimpleEnemyManager enemyContext)
-    {
-        CheckDeath(enemyContext);
-    }
     public override void EnterState(SimpleEnemyManager enemyContext)
     {
         //Debug.Log("Enter Charge Attack State");
@@ -130,11 +115,6 @@ public class BatChargeAttackState : SimpleEnemyState
 
 public class BatAttackState : SimpleEnemyState
 {
-    public override void CheckSwitchState(SimpleEnemyManager enemyContext)
-    {
-        CheckDeath(enemyContext);
-    }
-
     public override void EnterState(SimpleEnemyManager enemyContext)
     {
         enemyContext.EnemyBaseAttack.UseAttack();
@@ -150,10 +130,6 @@ public class BatStaggerState : SimpleEnemyState
         knockbackForce = 0.5f;
     }
 
-    public override void CheckSwitchState(SimpleEnemyManager enemyContext)
-    {
-        CheckDeath(enemyContext);
-    }
     public override void EnterState(SimpleEnemyManager enemyContext)
     {
         //Debug.Log("Enter Stagger State");

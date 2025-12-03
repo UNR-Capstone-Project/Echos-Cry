@@ -7,9 +7,14 @@ using UnityEngine.Pool;
 
 public class RBProjectileHandler : MonoBehaviour
 {
-    public void UseProjectile(Vector3 position, Vector3 direction)
+    public void UseProjectile(Vector3 position, Vector3 direction, float damage)
     {
         Rigidbody projectileRB = projectilePool.Get();
+        if (projectileRB.gameObject
+            .TryGetComponent<RBPRojectileCollisionHandler>(out RBPRojectileCollisionHandler collisionHandler))
+        {
+            collisionHandler.SetDamage(damage);
+        }
         projectileRB.linearVelocity = Vector3.zero;
         projectileRB.gameObject.transform.position = position;
         projectileRB.AddForce(direction * ProjectileSpeed, ForceMode.Impulse);
@@ -54,6 +59,7 @@ public class RBProjectileHandler : MonoBehaviour
 
     public void ReleaseProjectile(Rigidbody rb)
     {
+        if(!rb.gameObject.activeSelf) return;
         projectilePool.Release(rb);
     }
 

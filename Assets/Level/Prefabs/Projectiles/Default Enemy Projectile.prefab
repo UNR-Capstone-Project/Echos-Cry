@@ -129,10 +129,10 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 31744
+    m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -152,5 +152,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67ea539fedd3c6d44b5d0c119b3a907e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandleProjectileCollision
-  timer: 5
+  timer: 3
   user: 2

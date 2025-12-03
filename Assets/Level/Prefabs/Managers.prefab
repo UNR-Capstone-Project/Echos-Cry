@@ -35,6 +35,7 @@ Transform:
   - {fileID: 3323464753686540311}
   - {fileID: 5895429935286522183}
   - {fileID: 6491277895832929760}
+  - {fileID: 5528799210215704500}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3883498033160655944
@@ -125,6 +126,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24fd209d674b5aa49aa83b09b5f9787f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BillboardManager
+--- !u!1 &7488804517245753447
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5528799210215704500}
+  - component: {fileID: 6403759906748547198}
+  m_Layer: 0
+  m_Name: RBProjectileManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5528799210215704500
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7488804517245753447}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1580324783960160912}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6403759906748547198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7488804517245753447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f0598ad0c102d94b8ea04a59f66c6cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RBProjectileManager
 --- !u!1 &8300620720928024827
 GameObject:
   m_ObjectHideFlags: 0
