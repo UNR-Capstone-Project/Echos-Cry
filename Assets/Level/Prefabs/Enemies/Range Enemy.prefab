@@ -211,7 +211,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0.65
+  m_BaseOffset: 0.6
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &1049063511828312393
@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0aaddc4d28899643bd0359fcca6bb6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
-  MaxHealth: 35
+  MaxHealth: 25
 --- !u!114 &4674027367824827364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,6 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyRangeAttack
   prefab: {fileID: 4017702522014423927, guid: 15beb2462e90afd4fbfd54c340142c59, type: 3}
+  damage: 5
 --- !u!114 &6926397710719334505
 MonoBehaviour:
   m_ObjectHideFlags: 0

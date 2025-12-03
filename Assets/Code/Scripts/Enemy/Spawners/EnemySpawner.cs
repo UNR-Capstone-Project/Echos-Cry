@@ -56,6 +56,7 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator spawnEnemy(Vector3 spawnPosition)
     {
         yield return new WaitForSeconds(decalDestroyTime);
-        GameObject decalInstance = Instantiate(EnemyPrefabs[0], spawnPosition, Quaternion.identity);
+        int randomIndex = UnityEngine.Random.Range(0, EnemyPrefabs.Length);
+        GameObject decalInstance = Instantiate(EnemyPrefabs[randomIndex], spawnPosition, Quaternion.identity);
     }
 }

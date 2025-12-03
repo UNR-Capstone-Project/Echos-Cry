@@ -20,6 +20,10 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
         if (this.handler != null) return;
         this.handler = handler;
     }
+    public void SetDamage(float damage)
+    {
+        projectileDamage = damage;
+    }
 
     private void DetermineUserAction()
     {
@@ -28,16 +32,15 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
             case ProjectileUser.ENEMY:
                 damageEnemyAction = (other) => 
                 { 
-                    if(other.TryGetComponent<PlayerStats>(out PlayerStats playerStats)) PlayerStats.OnDamageTaken(10f); 
+                    if(other.TryGetComponent<PlayerStats>(out PlayerStats playerStats)) 
+                        PlayerStats.OnDamageTaken(projectileDamage); 
                 };
                 break;
             case ProjectileUser.PLAYER:
                 damageEnemyAction = (other) =>
                 {
-                    if (other.TryGetComponent<SimpleEnemyManager>(out SimpleEnemyManager manager))
-                    {
-                        manager.EnemyStats.DamageEnemy(10f);
-                    }
+                    if (other.TryGetComponent<SimpleEnemyManager>(out SimpleEnemyManager manager)) 
+                        manager.EnemyStats.DamageEnemy(projectileDamage);
                 };
                 break;
             default:
@@ -71,6 +74,7 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
     private RBProjectileHandler handler;
     private Rigidbody rb;
     private Action<Collider> damageEnemyAction;
+    private float projectileDamage = 0;
     [SerializeField] private float timer = 5;
     [SerializeField] private ProjectileUser user;
 }
