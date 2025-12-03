@@ -2,7 +2,10 @@ using AudioSystem;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+/// Original Author: Victor
+/// All Contributors Since Creation: Victor, Andy
+/// Last Modified By: Andy
+/// 
 /// <summary>
 /// SceneTriggerManager is for loading scenes with a clear distinction between each other
 /// eg. loading from a level to a completely different level, or boss arena, etc 

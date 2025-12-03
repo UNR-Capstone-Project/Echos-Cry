@@ -1,5 +1,7 @@
 using UnityEngine;
-
+/// Original Author: Victor
+/// All Contributors Since Creation: Victor
+/// Last Modified By:
 public class WaveTrigger : MonoBehaviour
 {
     public WaveManager _waveManager;

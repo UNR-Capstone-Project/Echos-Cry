@@ -2,10 +2,14 @@ using UnityEditor.Rendering;
 using UnityEditor.Rendering.Universal.ShaderGUI;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// Original Author: Victor
+/// All Contributors Since Creation: Victor
+/// Last Modified By:
 public class PlayerHealthBar : MonoBehaviour
 {
     [SerializeField] private TMPro.TextMeshProUGUI healthText;
+
+    // Variables Provided from here: https://youtu.be/CFASjEuhyf4?si=ri_WpIV1OxgtQdgp at 5:00
     private float lerpTimer;
     public float chipSpeed = 3f;
     private float hFraction = 0f;
@@ -34,13 +38,12 @@ public class PlayerHealthBar : MonoBehaviour
         healthText.text = currentHealth.ToString() + "/" + maxHealth.ToString();
         hFraction = currentHealth / maxHealth;
         lerpTimer = 0f;
-
-        
         
     }
 
     private void Update()
     {
+        //Code Section Provided Here: https://youtu.be/CFASjEuhyf4?si=ri_WpIV1OxgtQdgp at 13:19
         float fillF = frontHealthBar.fillAmount;
         float fillB = backHealthBar.fillAmount;
         if (fillB > hFraction)

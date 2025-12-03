@@ -1,6 +1,8 @@
 using Unity.VisualScripting;
 using UnityEngine;
-
+/// Original Author: Victor
+/// All Contributors Since Creation: Victor
+/// Last Modified By:
 [CreateAssetMenu(fileName = "minigameStateManager", menuName = "Scriptable Objects/minigameStateManager")]
 public class minigameStateManager : ScriptableObject
 {

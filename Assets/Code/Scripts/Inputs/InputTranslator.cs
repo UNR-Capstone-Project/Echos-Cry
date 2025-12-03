@@ -132,6 +132,8 @@ public class InputTranslator : MonoBehaviour,
             _inputCount++;
         }
     }
+    
+    //Code Section Begins. Code Author: Victor
     public void OnPause(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -196,6 +198,7 @@ public class InputTranslator : MonoBehaviour,
             OnJournalLeftInput?.Invoke();
         }
     }
+    //Code Section Ends.
 
     public void OnSkill1(InputAction.CallbackContext context)
     {
