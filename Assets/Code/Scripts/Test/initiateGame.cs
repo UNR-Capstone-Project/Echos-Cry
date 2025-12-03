@@ -3,6 +3,9 @@ using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using SoundSystem;
 using Unity.Cinemachine;
+/// Original Author: Victor
+/// All Contributors Since Creation: Victor
+/// Last Modified By:
 public class initiateGame : MonoBehaviour
 {
     [SerializeField] private GameObject mainManager;

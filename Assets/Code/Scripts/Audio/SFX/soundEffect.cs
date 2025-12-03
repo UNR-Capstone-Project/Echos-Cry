@@ -1,6 +1,10 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
+/// Original Author: Victor
+/// All Contributors Since Creation: Victor
+/// Last Modified By: 
+
 namespace AudioSystem {
     /// <summary>
     /// a ScriptableObject to hold all the relevant data for a sound effect in the game

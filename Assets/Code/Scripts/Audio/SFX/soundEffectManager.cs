@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using AudioSystem;
 using UnityEngine;
 using UnityEngine.Pool;
-
+/// Original Author: Victor
+/// All Contributors Since Creation: Victor, Michael
+/// Last Modified By: Michael
+/// 
 /// <summary>
 /// Singleton to manage all the sound effects in the game
 /// </summary>

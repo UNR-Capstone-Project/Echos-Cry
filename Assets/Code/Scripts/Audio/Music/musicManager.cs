@@ -2,7 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using SoundSystem;
 using System;
-
+/// Original Author: Victor
+/// All Contributors Since Creation: Victor, Michael, Andy
+/// Last Modified By: 
 [CreateAssetMenu(fileName = "MusicManager", menuName = "Scriptable Objects/Music Manager")]
 public class MusicManager : ScriptableObject
 {

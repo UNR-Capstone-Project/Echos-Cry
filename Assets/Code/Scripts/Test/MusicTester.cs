@@ -2,7 +2,9 @@ using SoundSystem;
 using System.Collections;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
-
+/// Original Author: Victor
+/// All Contributors Since Creation: Victor
+/// Last Modified By:
 public class MusicTester : MonoBehaviour
 {
     [SerializeField] private MusicEvent testSong;

@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
-
+/// Original Author: Victor
+/// All Contributors Since Creation: Victor
+/// Last Modified By:
 public class WaveManager : MonoBehaviour
 {
     private int currentWave;
