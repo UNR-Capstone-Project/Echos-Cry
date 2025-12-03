@@ -3,6 +3,9 @@ using System.Collections;
 using AudioSystem;
 using UnityEngine;
 using Random = UnityEngine.Random;
+/// Original Author: Victor
+/// All Contributors Since Creation: Victor
+/// Last Modified By:
 public class sfxTestingScript : MonoBehaviour
 {
     [SerializeField] soundEffect singleSound;

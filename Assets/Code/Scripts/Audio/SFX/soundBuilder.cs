@@ -1,6 +1,9 @@
 using UnityEngine;
 using AudioSystem;
-
+/// Original Author: Victor
+/// All Contributors Since Creation: Victor, Michael
+/// Last Modified By: Michael
+/// 
 /// <summary>
 /// helper object that builds out the sound and player for soundEffectManager to use properly 
 /// </summary>

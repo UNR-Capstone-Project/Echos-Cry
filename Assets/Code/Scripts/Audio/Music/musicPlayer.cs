@@ -4,7 +4,9 @@ using System.Linq;
 using UnityEngine;
 using SoundSystem;
 using static Unity.Burst.Intrinsics.X86.Avx;
-
+/// Original Author: Victor
+/// All Contributors Since Creation: Victor, Michael, Andy
+/// Last Modified By: 
 public class MusicPlayer : MonoBehaviour
 {
     private MusicEvent song;

@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using AudioSystem;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
+/// Original Author: Victor
+/// All Contributors Since Creation: Victor, Michael, Andy
+/// Last Modified By: 
+/// 
 /// <summary>
 /// a object instantiated in by soundEffectManager to play sounds with list a of audioSources
 /// </summary>

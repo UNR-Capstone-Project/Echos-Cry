@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.Audio;
-
+/// Original Author: Victor
+/// All Contributors Since Creation: Victor, Michael, Andy
+/// Last Modified By: 
 namespace SoundSystem
 {
     [CreateAssetMenu(fileName = "MusicEvent", menuName = "Scriptable Objects/Music Event")]
