@@ -6,7 +6,7 @@ public class EnemyRangeAttack : EnemyBaseAttack
     {
         attackDirection = (PlayerRef.PlayerTransform.position - transform.position).normalized;
         attackDirection.y = 0;
-        handler.UseProjectile(transform.position, attackDirection);
+        if(handler != null) handler.UseProjectile(transform.position, attackDirection);
         //Transition to whatever state here
     }
 

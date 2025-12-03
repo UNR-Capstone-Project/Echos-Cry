@@ -26,7 +26,10 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
         switch (user)
         {
             case ProjectileUser.ENEMY:
-                damageEnemyAction = (other) => { PlayerStats.OnDamageTaken(10f); };
+                damageEnemyAction = (other) => 
+                { 
+                    if(other.TryGetComponent<PlayerStats>(out PlayerStats playerStats)) PlayerStats.OnDamageTaken(10f); 
+                };
                 break;
             case ProjectileUser.PLAYER:
                 damageEnemyAction = (other) =>
