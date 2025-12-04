@@ -17,11 +17,6 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
     }
     public void ResetProjectile()
     {
-        if (particles != null)
-        {
-            particles.Stop();
-            particles.Clear();
-        }
         if (handler != null) handler.ReleaseProjectile(rb);
     }
     public void SetHandler(RBProjectileHandler handler)
@@ -60,7 +55,6 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
     private void Awake()
     {
         handler = GetComponentInParent<RBProjectileHandler>();
-        particles = GetComponentInChildren<ParticleSystem>();
         rb = GetComponent<Rigidbody>();
     }
     private void Start()
@@ -85,7 +79,6 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
     private Rigidbody rb;
     private Action<Collider> damageEnemyAction;
     private float projectileDamage = 0;
-    private ParticleSystem particles;
     [SerializeField] private float timer = 5;
     [SerializeField] private ProjectileUser user;
 }

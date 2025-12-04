@@ -15,8 +15,6 @@ public class RBProjectileHandler : MonoBehaviour
         {
             collisionHandler.SetDamage(damage);
         }
-        ParticleSystem particles = projectileRB.gameObject.GetComponentInChildren<ParticleSystem>();
-        if (particles != null) particles.Play();
 
         projectileRB.linearVelocity = Vector3.zero;
         projectileRB.gameObject.transform.position = position;
