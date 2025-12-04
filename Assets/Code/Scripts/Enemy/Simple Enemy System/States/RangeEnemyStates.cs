@@ -39,7 +39,7 @@ public class RangeRoamState : SimpleEnemyState
     public override void UpdateState02ms(SimpleEnemyManager enemyContext)
     {
         NavMeshAgent agent = enemyContext.EnemyNMA;
-        if (agent == null) return;
+        if (agent == null || !agent.isOnNavMesh) return;
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) enemyContext.SwitchState(EnemyStates.RANGE_CHARGE);

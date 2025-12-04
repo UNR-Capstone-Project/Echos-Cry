@@ -10,6 +10,10 @@ public class DroppedItem : MonoBehaviour
     [SerializeField] Rigidbody itemBody;
     [SerializeField] soundEffect pickupSFX;
 
+    private void Awake()
+    {
+        itemBody = GetComponent<Rigidbody>();
+    }
     private void Start()
     {
         TickManager.OnTick02Event += MoveItemToPlayer;
