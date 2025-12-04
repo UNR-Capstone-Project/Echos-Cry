@@ -62,7 +62,7 @@ public class InventoryManager : MonoBehaviour
         int i = 0;
         InventoryItem usedItem = null;
         foreach(InventoryItem item in InventoryManager.Instance.inventory){
-            if (i == 0){
+            if (i == 0 && item.data != null){
                 usedItem = new InventoryItem(item.data);
                 if(item.data.id == "healthP"){
                     healthPotion();
@@ -77,14 +77,15 @@ public class InventoryManager : MonoBehaviour
                 i++;
             }
         }
-        Remove(usedItem.data);
+        if(usedItem != null) Remove(usedItem.data);
     }
     private void UseItem2(){
         //at index 1
         int i = 0;
         InventoryItem usedItem = null;
         foreach(InventoryItem item in InventoryManager.Instance.inventory){
-            if (i == 1){
+            if (i == 1 && item.data != null)
+            {
                 usedItem = new InventoryItem(item.data);
                 if(item.data.id == "healthP"){
                     healthPotion();
@@ -99,14 +100,15 @@ public class InventoryManager : MonoBehaviour
                 i++;
             }
         }
-        Remove(usedItem.data);
+        if (usedItem != null) Remove(usedItem.data);
     }
     private void UseItem3(){
         //at index 2
         int i = 0;
         InventoryItem usedItem = null;
         foreach(InventoryItem item in InventoryManager.Instance.inventory){
-            if (i == 2){
+            if (i == 2 && item.data != null)
+            {
                 usedItem = new InventoryItem(item.data);
                 if(item.data.id == "healthP"){
                     healthPotion();
@@ -121,14 +123,15 @@ public class InventoryManager : MonoBehaviour
                 i++;
             }
         }
-        Remove(usedItem.data);
+        if (usedItem != null) Remove(usedItem.data);
     }
     private void UseItem4(){
         //at index 3
         int i = 0;
         InventoryItem usedItem = null;
         foreach(InventoryItem item in InventoryManager.Instance.inventory){
-            if (i == 3){
+            if (i == 3 && item.data != null)
+            {
                 usedItem = new InventoryItem(item.data);
                 if(item.data.id == "healthP"){
                     healthPotion();
@@ -143,7 +146,7 @@ public class InventoryManager : MonoBehaviour
                 i++;
             }
         }
-        Remove(usedItem.data);
+        if (usedItem != null) Remove(usedItem.data);
     }
     void OnDestroy(){
         InputTranslator.OnItem1Event -= UseItem1;

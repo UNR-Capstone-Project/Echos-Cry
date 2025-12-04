@@ -57,7 +57,7 @@ public class InputTranslator : MonoBehaviour,
 
         UpdateBPMInputCount();
 
-        MusicManager.Instance.UpdateMusicPlayer += UpdateBPMInputCount;
+        MusicManager.Instance.SongPlayEvent += UpdateBPMInputCount;
 
         StartCoroutine(WaitForSecond());
     }
@@ -86,7 +86,7 @@ public class InputTranslator : MonoBehaviour,
     }
     private void OnDestroy()
     {
-        MusicManager.Instance.UpdateMusicPlayer -= UpdateBPMInputCount;
+        MusicManager.Instance.SongPlayEvent -= UpdateBPMInputCount;
 
         _playerInputs.Gameplay.RemoveCallbacks(this);
         _playerInputs.PlayerMenu.RemoveCallbacks(this);
