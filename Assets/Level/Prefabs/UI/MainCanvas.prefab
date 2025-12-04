@@ -659,7 +659,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278243071
-  m_fontColor: {r: 1, g: 0.80729437, b: 0, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1010,7 +1010,7 @@ MonoBehaviour:
   thickness: 64
   lineWidth: 6
   leftColor: {r: 0.9568628, g: 0.7803922, b: 0.09411766, a: 0}
-  rightColor: {r: 0.9568628, g: 0.7803922, b: 0.09411766, a: 0.29411766}
+  rightColor: {r: 0.9568628, g: 0.7803922, b: 0.09411766, a: 0.39215687}
 --- !u!114 &4473273664853023762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1090,7 +1090,7 @@ MonoBehaviour:
   thickness: 64
   lineWidth: 6
   leftColor: {r: 0.9568628, g: 0.7803922, b: 0.09411766, a: 0}
-  rightColor: {r: 0.9568628, g: 0.7803922, b: 0.09411766, a: 0.29411766}
+  rightColor: {r: 0.9568628, g: 0.7803922, b: 0.09411766, a: 0.39215687}
 --- !u!114 &2228744864275110973
 MonoBehaviour:
   m_ObjectHideFlags: 0
