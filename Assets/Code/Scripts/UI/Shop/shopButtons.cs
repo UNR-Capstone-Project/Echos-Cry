@@ -37,6 +37,14 @@ public class shopButtons : MonoBehaviour
         //temp to test
         //PlayerStats.UpdateCurrency(5);
     }
+    private void OnDestroy()
+    {
+        InputTranslator.OnShopLeftInput -= Left;
+        InputTranslator.OnShopRightInput -= Right;
+        InputTranslator.OnShopUpInput -= Up;
+        InputTranslator.OnShopDownInput -= Down;
+        InputTranslator.OnPurchaseEvent -= Purchase;
+    }
 
     private void Left(){
         //adds one less item to "cart"

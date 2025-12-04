@@ -1,4 +1,6 @@
+#if UNITY_EDITOR
 using UnityEditor.UI;
+#endif
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

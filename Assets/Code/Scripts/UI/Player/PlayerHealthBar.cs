@@ -1,5 +1,7 @@
+#if UNITY_EDITOR
 using UnityEditor.Rendering;
 using UnityEditor.Rendering.Universal.ShaderGUI;
+#endif
 using UnityEngine;
 using UnityEngine.UI;
 /// Original Author: Victor

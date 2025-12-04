@@ -1,6 +1,8 @@
 using AudioSystem;
 using System;
+#if UNITY_EDITOR
 using UnityEditor.UI;
+#endif
 using UnityEngine;
 
 public class DroppedItem : MonoBehaviour
