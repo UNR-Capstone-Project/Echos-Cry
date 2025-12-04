@@ -4,6 +4,7 @@ public class shopkeeper : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public GameObject shopCanvas;
+    private bool playerInRange = false;
 
     private void OpenShop()
     {
@@ -15,9 +16,20 @@ public class shopkeeper : MonoBehaviour
         shopCanvas.SetActive(false);
     }
 
-    void OnCollisionEnter(Collision collision){
-        if(collision.gameObject.CompareTag("Player")){
-            Debug.Log("open shop");
+    void OnTriggerEnter(Collider other)
+    {
+        playerInRange = true;
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        playerInRange = false;
+    }
+
+    void RequestOpenShop()
+    {
+        if (playerInRange)
+        {
             OpenShop();
         }
     }
@@ -25,9 +37,11 @@ public class shopkeeper : MonoBehaviour
     void Start(){
         //InputTranslator.OnShopEvent += OpenShop;
         InputTranslator.OnCloseShopEvent += CloseShop;
+        InputTranslator.OnInteractEvent += RequestOpenShop;
     }
     void OnDestroy(){
         //InputTranslator.OnShopEvent -= OpenShop;
         InputTranslator.OnCloseShopEvent -= CloseShop;
+        InputTranslator.OnInteractEvent -= RequestOpenShop;
     }
 }
