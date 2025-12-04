@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a411a3b9c0ac7d84abf6032c98cbffbc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 17a37dd7c99924f4fbc5f755da35afae, type: 3}
   m_Color: {r: 0.6792453, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -115,7 +115,7 @@ Animator:
   m_GameObject: {fileID: 1831394080825209204}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dee4c54133900da45b7993269a3e0b0d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1c7267d3fb0cb96479e39a609561b7f4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -227,6 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SimpleEnemyManager
   TypeOfEnemy: 2
+  _enemySprite: {fileID: 1831394080825209204}
 --- !u!114 &854592342237272632
 MonoBehaviour:
   m_ObjectHideFlags: 0
