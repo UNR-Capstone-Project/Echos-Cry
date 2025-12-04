@@ -60,7 +60,7 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
     private void Awake()
     {
         handler = GetComponentInParent<RBProjectileHandler>();
-        particles = GetComponent<ParticleSystem>();
+        particles = GetComponentInChildren<ParticleSystem>();
         rb = GetComponent<Rigidbody>();
     }
     private void Start()
