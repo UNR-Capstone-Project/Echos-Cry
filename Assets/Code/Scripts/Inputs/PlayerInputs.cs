@@ -450,6 +450,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""61e77bc9-7850-4734-b00e-393a41a4f61c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -483,6 +492,17 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""NavDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""706d35a6-ee63-4c52-9c3a-66aa32b58606"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -752,6 +772,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_PauseMenu_Resume = m_PauseMenu.FindAction("Resume", throwIfNotFound: true);
         m_PauseMenu_NavUp = m_PauseMenu.FindAction("NavUp", throwIfNotFound: true);
         m_PauseMenu_NavDown = m_PauseMenu.FindAction("NavDown", throwIfNotFound: true);
+        m_PauseMenu_Select = m_PauseMenu.FindAction("Select", throwIfNotFound: true);
         // Player Menu
         m_PlayerMenu = asset.FindActionMap("Player Menu", throwIfNotFound: true);
         m_PlayerMenu_ExitMenuMap = m_PlayerMenu.FindAction("ExitMenuMap", throwIfNotFound: true);
@@ -1090,6 +1111,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_PauseMenu_Resume;
     private readonly InputAction m_PauseMenu_NavUp;
     private readonly InputAction m_PauseMenu_NavDown;
+    private readonly InputAction m_PauseMenu_Select;
     /// <summary>
     /// Provides access to input actions defined in input action map "Pause Menu".
     /// </summary>
@@ -1113,6 +1135,10 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "PauseMenu/NavDown".
         /// </summary>
         public InputAction @NavDown => m_Wrapper.m_PauseMenu_NavDown;
+        /// <summary>
+        /// Provides access to the underlying input action "PauseMenu/Select".
+        /// </summary>
+        public InputAction @Select => m_Wrapper.m_PauseMenu_Select;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1148,6 +1174,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @NavDown.started += instance.OnNavDown;
             @NavDown.performed += instance.OnNavDown;
             @NavDown.canceled += instance.OnNavDown;
+            @Select.started += instance.OnSelect;
+            @Select.performed += instance.OnSelect;
+            @Select.canceled += instance.OnSelect;
         }
 
         /// <summary>
@@ -1168,6 +1197,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @NavDown.started -= instance.OnNavDown;
             @NavDown.performed -= instance.OnNavDown;
             @NavDown.canceled -= instance.OnNavDown;
+            @Select.started -= instance.OnSelect;
+            @Select.performed -= instance.OnSelect;
+            @Select.canceled -= instance.OnSelect;
         }
 
         /// <summary>
@@ -1604,6 +1636,13 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnNavDown(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Select" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelect(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player Menu" which allows adding and removing callbacks.
