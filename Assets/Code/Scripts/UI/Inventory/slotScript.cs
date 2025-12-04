@@ -20,6 +20,7 @@ public class slotScript : MonoBehaviour
             m_stackObj = null;
             m_num.text = "0";
             m_icon.sprite = null;
+            m_icon.enabled = false;
             return;
         }
         if (item.stackSize < 1)
