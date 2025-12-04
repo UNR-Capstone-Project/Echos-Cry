@@ -84,7 +84,7 @@ public class RangeAttackState : SimpleEnemyState
     }
     private IEnumerator BetweenAttackPauseCoroutine(SimpleEnemyManager enemyContext)
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(TempoManager.TimeBetweenBeats);
         if (count >= 2) enemyContext.StartCoroutine(AttackCooldownCoroutine(enemyContext));
         else
         {
