@@ -1,4 +1,5 @@
 using AudioSystem;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,6 +16,7 @@ public class SceneTriggerManager : MonoBehaviour
     [SerializeField] private SceneField sceneTarget;
     [SerializeField] private SceneField sceneOrigin;
     [SerializeField] soundEffect portalSFX;
+    public static event Action OnSceneTransitionEvent;
 
     private bool sceneTransitioning = false;
 
@@ -30,7 +32,7 @@ public class SceneTriggerManager : MonoBehaviour
     {
         //Scene Transition first 
         sceneTransitioning = true;
-
+        OnSceneTransitionEvent?.Invoke();
         AsyncOperation newSceneLoad = SceneManager.LoadSceneAsync(sceneTarget.SceneName, LoadSceneMode.Single);
         newSceneLoad.allowSceneActivation = true;
 

@@ -13,10 +13,24 @@ public class RBProjectileManager : MonoBehaviour
         _instance = this;
         projectileHandlers = new Dictionary<int, HandlerNode>();
     }
+    private void Start()
+    {
+        SceneTriggerManager.OnSceneTransitionEvent += OnSceneTransition;
+    }
+    private void OnDestroy()
+    {
+        SceneTriggerManager.OnSceneTransitionEvent -= OnSceneTransition;
+    }
+
+    private void OnSceneTransition()
+    {
+        projectileHandlers.Clear();
+    }
 
     public static RBProjectileHandler RequestHandler(GameObject prefab)
     {
         int id = prefab.GetInstanceID();
+
         if (projectileHandlers.TryGetValue(id, out HandlerNode node))
         {
             node._count++;

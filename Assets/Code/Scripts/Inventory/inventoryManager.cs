@@ -66,6 +66,7 @@ public class InventoryManager : MonoBehaviour
 
         if (usedItem.data.id == "healthP")
         {
+            if (PlayerStats.CurrentHealth == PlayerStats.MaxHealth) return;
             healthPotion();
         }
         else if (usedItem.data.id == "shieldP")

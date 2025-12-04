@@ -107,6 +107,7 @@ public class shopButtons : MonoBehaviour
         }
     }
     private void Purchase(){
+        if (cost <= 0) return;
         if(PlayerStats.CurrencyCount >= cost){
             for(int i = 0; i < healthPAmount; i++){
                 Instantiate(health, GameObject.Find("Player").transform.position, Quaternion.identity);
