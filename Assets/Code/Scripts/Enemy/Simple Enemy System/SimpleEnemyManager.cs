@@ -51,7 +51,7 @@ public class SimpleEnemyManager : MonoBehaviour
         if (_enemyStateCache == null) _enemyStateCache = new();
 
         _enemyRigidbody  = GetComponent<Rigidbody>();
-        _enemyAnimator   = GetComponent<Animator>();
+        _enemyAnimator   = _enemySprite.GetComponent<Animator>();
         _enemyNMA        = GetComponent<NavMeshAgent>();
         _enemyStats      = GetComponent<EnemyStats>();
         _enemyBaseAttack = GetComponent<EnemyBaseAttack>();
@@ -80,7 +80,7 @@ public class SimpleEnemyManager : MonoBehaviour
     public EnemyType TypeOfEnemy = EnemyType.UNASSIGNED;
     
     private static SimpleEnemyStateCache _enemyStateCache;
-
+    [SerializeField] private GameObject _enemySprite;
     private Animator                _enemyAnimator;
     private NavMeshAgent            _enemyNMA;
     private EnemyStats              _enemyStats;

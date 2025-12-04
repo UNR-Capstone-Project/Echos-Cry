@@ -11,6 +11,7 @@ public class EnemyBatAttack : EnemyBaseAttack
         attackDirection.y = 0;
         _enemyManager.EnemyRigidbody.isKinematic = false;
         _enemyManager.EnemyRigidbody.AddForce(dashForce * attackDirection, ForceMode.Impulse);
+        _enemyManager.EnemyAnimator.Play("Attack");
         _enemyManager.StartCoroutine(AttackDuration());
     }
 

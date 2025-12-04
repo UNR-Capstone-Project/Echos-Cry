@@ -227,6 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SimpleEnemyManager
   TypeOfEnemy: 2
+  _enemySprite: {fileID: 1831394080825209204}
 --- !u!114 &854592342237272632
 MonoBehaviour:
   m_ObjectHideFlags: 0
