@@ -29,7 +29,7 @@ public class UILineRenderer : Graphic
             new Vector2((rectWidth * progress) - rectWidth / 2 + lineWidth / 2, 0)
         };
 
-        alpha = 1 - progress;
+        alpha = progress;
 
 
         SetVerticesDirty();

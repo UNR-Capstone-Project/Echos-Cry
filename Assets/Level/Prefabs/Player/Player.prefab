@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4782297013487666229}
   - component: {fileID: 7125107117967364897}
   - component: {fileID: 5939815466919569766}
+  - component: {fileID: 5730837766125738668}
   m_Layer: 0
   m_Name: SpotLight
   m_TagString: Untagged
@@ -44,7 +45,7 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 0.5098096, g: 0.8671279, b: 0.93710685, a: 1}
-  m_Intensity: 2.2
+  m_Intensity: 2
   m_Range: 5
   m_SpotAngle: 112.39535
   m_InnerSpotAngle: 62.569534
@@ -127,6 +128,18 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!114 &5730837766125738668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884036521095030534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d0fc653778a24b489f16061702c0f59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &1324492916464091062
 GameObject:
   m_ObjectHideFlags: 0
