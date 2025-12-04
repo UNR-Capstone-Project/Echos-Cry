@@ -19,8 +19,8 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
     {
         if (particles != null)
         {
-            particles.Stop(true);
-            particles.Clear(true);
+            particles.Stop();
+            particles.Clear();
         }
         if (handler != null) handler.ReleaseProjectile(rb);
     }
