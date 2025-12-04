@@ -1,6 +1,8 @@
 using AudioSystem;
 using System;
+#if UNITY_EDITOR
 using UnityEditor.UI;
+#endif
 using UnityEngine;
 
 public class DroppedItem : MonoBehaviour
@@ -10,6 +12,10 @@ public class DroppedItem : MonoBehaviour
     [SerializeField] Rigidbody itemBody;
     [SerializeField] soundEffect pickupSFX;
 
+    private void Awake()
+    {
+        itemBody = GetComponent<Rigidbody>();
+    }
     private void Start()
     {
         TickManager.OnTick02Event += MoveItemToPlayer;

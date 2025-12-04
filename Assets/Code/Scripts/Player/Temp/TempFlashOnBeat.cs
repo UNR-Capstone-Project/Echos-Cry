@@ -1,34 +1,27 @@
 using UnityEngine;
 using System.Collections;
 using Unity.VisualScripting;
+using System;
 
 public class TempFlashOnBeat : MonoBehaviour
 {
-    Light lightIntensity = null;
-    float tempHold = 0;
-
-    private void Awake()
+    private void SetGameStartBool()
     {
-        lightIntensity = GetComponent<Light>();
+        gameStarted = true;
     }
-    void Start()
+    private void EnableLight()
     {
-        TempoManager.BeatTickEvent += FlashLight;
-        lightIntensity.intensity = 0;
+        if (!gameStarted) return;
+        gameObject.SetActive(true);
     }
-    private void OnDestroy()
+    private void DisableLight()
     {
-        TempoManager.BeatTickEvent -= FlashLight;
-    }
-
-    private void Update()
-    {
-        tempHold += Time.deltaTime;
-        lightIntensity.intensity = (tempHold / TempoManager.TimeBetweenBeats) * 3.5f;
+        gameObject.SetActive(false);
     }
 
     private void FlashLight()
     {
+        if (!gameObject.activeSelf) return;
         StartCoroutine(FlashLightCoroutine());
     }
     private IEnumerator FlashLightCoroutine()
@@ -38,4 +31,36 @@ public class TempFlashOnBeat : MonoBehaviour
         tempHold = 0;
     }
 
+    private void Awake()
+    {
+        lightIntensity = GetComponent<Light>();
+    }
+    void Start()
+    {
+        MusicManager.Instance.SongPlayEvent += EnableLight;
+        MusicManager.Instance.SongStopEvent += DisableLight;
+
+        TempoManager.BeatTickEvent += FlashLight;
+
+        lightIntensity.intensity = 0;
+
+        gameObject.SetActive(false);
+    }
+    private void OnDestroy()
+    {
+        MusicManager.Instance.SongPlayEvent -= EnableLight;
+        MusicManager.Instance.SongStopEvent -= DisableLight;
+        TempoManager.BeatTickEvent -= FlashLight;
+    }
+
+    private void Update()
+    {
+        if (!gameObject.activeSelf) return;
+        tempHold += Time.deltaTime;
+        lightIntensity.intensity = (tempHold / TempoManager.TimeBetweenBeats) * 3.5f;
+    }
+
+    Light lightIntensity = null;
+    float tempHold = 0;
+    bool gameStarted = false;
 }

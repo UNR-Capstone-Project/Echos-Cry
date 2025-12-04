@@ -39,7 +39,7 @@ public class RangeRoamState : SimpleEnemyState
     public override void UpdateState02ms(SimpleEnemyManager enemyContext)
     {
         NavMeshAgent agent = enemyContext.EnemyNMA;
-        if (agent == null) return;
+        if (agent == null || !agent.isOnNavMesh) return;
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) enemyContext.SwitchState(EnemyStates.RANGE_CHARGE);
@@ -84,7 +84,7 @@ public class RangeAttackState : SimpleEnemyState
     }
     private IEnumerator BetweenAttackPauseCoroutine(SimpleEnemyManager enemyContext)
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(TempoManager.TimeBetweenBeats);
         if (count >= 2) enemyContext.StartCoroutine(AttackCooldownCoroutine(enemyContext));
         else
         {

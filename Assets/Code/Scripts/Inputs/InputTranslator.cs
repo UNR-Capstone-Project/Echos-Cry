@@ -57,7 +57,7 @@ public class InputTranslator : MonoBehaviour,
 
         UpdateBPMInputCount();
 
-        MusicManager.Instance.UpdateMusicPlayer += UpdateBPMInputCount;
+        MusicManager.Instance.SongPlayEvent += UpdateBPMInputCount;
 
         StartCoroutine(WaitForSecond());
     }
@@ -86,7 +86,7 @@ public class InputTranslator : MonoBehaviour,
     }
     private void OnDestroy()
     {
-        MusicManager.Instance.UpdateMusicPlayer -= UpdateBPMInputCount;
+        MusicManager.Instance.SongPlayEvent -= UpdateBPMInputCount;
 
         _playerInputs.Gameplay.RemoveCallbacks(this);
         _playerInputs.PlayerMenu.RemoveCallbacks(this);
@@ -289,6 +289,11 @@ public class InputTranslator : MonoBehaviour,
         if(context.started) OnInteractEvent?.Invoke();
     }
 
+    public void OnSelect(InputAction.CallbackContext context)
+    {
+        if(context.started) OnSelectEvent?.Invoke();
+    }
+
     private PlayerInputs _playerInputs;
     public PlayerInputs PlayerInputs { get { return _playerInputs; } }  
 
@@ -299,7 +304,7 @@ public class InputTranslator : MonoBehaviour,
     public static event Action          OnDashEvent;
     public static event Action          OnLightAttackEvent;
     public static event Action          OnHeavyAttackEvent;
-    public static event Action          OnPauseEvent, OnPauseDownInput, OnPauseUpInput;
+    public static event Action          OnPauseEvent, OnPauseDownInput, OnPauseUpInput, OnSelectEvent;
     public static event Action          OnResumeEvent;
     public static event Action          OnMapEvent;
     public static event Action          OnExitMapEvent, OnJournalLeftInput, OnJournalRightInput;

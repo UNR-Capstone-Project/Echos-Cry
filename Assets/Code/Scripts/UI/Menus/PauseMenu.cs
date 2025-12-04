@@ -30,6 +30,7 @@ public class PauseMenu : MonoBehaviour
             InputTranslator.OnResumeEvent += hidePauseMenu;
             InputTranslator.OnPauseUpInput += switchOptionUp;
             InputTranslator.OnPauseDownInput += switchOptionDown;
+            InputTranslator.OnSelectEvent += ChooseOption;
         }
         else
         {
@@ -43,6 +44,24 @@ public class PauseMenu : MonoBehaviour
         InputTranslator.OnResumeEvent -= hidePauseMenu;
         InputTranslator.OnPauseUpInput -= switchOptionUp;
         InputTranslator.OnPauseDownInput -= switchOptionDown;
+        InputTranslator.OnSelectEvent -= ChooseOption;
+    }
+    private void ChooseOption()
+    {
+        if(!pauseMenuCanvas.enabled) return;
+        switch(currentPauseOption)
+        {
+            case pauseOptions.CONTINUE:
+                hidePauseMenu();
+                InputTranslator.Instance.PlayerInputs.Gameplay.Enable();
+                InputTranslator.Instance.PlayerInputs.PauseMenu.Disable();
+                break;
+            case pauseOptions.QUIT:
+                Application.Quit();
+                break;
+            default:
+                break;
+        }
     }
 
     private void showPauseMenu()

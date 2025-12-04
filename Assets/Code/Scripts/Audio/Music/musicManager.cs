@@ -35,7 +35,8 @@ public class MusicManager : ScriptableObject
     [SerializeField] private MusicPlayer currentMusicPlayer;
     [SerializeField] private List<MusicPlayer> inactiveMusicPlayers = new List<MusicPlayer>();
 
-    public event Action UpdateMusicPlayer;
+    public event Action SongPlayEvent;
+    public event Action SongStopEvent;
 
     private void Initialize()
     {
@@ -103,7 +104,7 @@ public class MusicManager : ScriptableObject
         //ISSUE: add function in player -> newMusicPlayer.PlayWithCrossfade(crossfadeTime);
         currentMusicPlayer = newMusicPlayer;
 
-        UpdateMusicPlayer?.Invoke();
+        SongPlayEvent?.Invoke();
     }
 
     public void StopSong(MusicEvent music)
@@ -113,17 +114,26 @@ public class MusicManager : ScriptableObject
             currentMusicPlayer.Stop();
             inactiveMusicPlayers.Add(currentMusicPlayer);
             currentMusicPlayer = null;
+            SongStopEvent?.Invoke();
         }
     }
 
     public void PauseSong()
     {
-        if (currentMusicPlayer != null) { currentMusicPlayer.Pause(); }
+        if (currentMusicPlayer != null) 
+        { 
+            currentMusicPlayer.Pause();
+            SongStopEvent?.Invoke();
+        }
     }
 
     public void ResumeSong()
     {
-        if (currentMusicPlayer != null) { currentMusicPlayer.Resume(); }
+        if (currentMusicPlayer != null) 
+        {
+            currentMusicPlayer.Resume(); 
+            SongPlayEvent?.Invoke();
+        }
     }
 
     public void fadeVolumeToZero(float fadeTime)

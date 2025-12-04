@@ -15,6 +15,7 @@ public class RBProjectileHandler : MonoBehaviour
         {
             collisionHandler.SetDamage(damage);
         }
+
         projectileRB.linearVelocity = Vector3.zero;
         projectileRB.gameObject.transform.position = position;
         projectileRB.AddForce(direction * ProjectileSpeed, ForceMode.Impulse);

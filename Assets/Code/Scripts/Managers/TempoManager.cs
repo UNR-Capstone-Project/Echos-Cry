@@ -34,12 +34,12 @@ public class TempoManager : MonoBehaviour
     }
     void Start()
     {
-        MusicManager.Instance.UpdateMusicPlayer += UpdateTempo;
+        MusicManager.Instance.SongPlayEvent += UpdateTempo;
         UpdateTempo();
     }
     private void OnDestroy()
     {
-        MusicManager.Instance.UpdateMusicPlayer -= UpdateTempo;
+        MusicManager.Instance.SongPlayEvent -= UpdateTempo;
         _instance = null;
     }
 

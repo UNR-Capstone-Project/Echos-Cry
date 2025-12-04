@@ -112,13 +112,13 @@ BoxCollider:
     m_Bits: 1024
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 31735
+    m_Bits: 64503
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.75, y: 0.75, z: 0.75}
+  m_Size: {x: 0.6, y: 0.6, z: 0.6}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5206124917355304881
 MonoBehaviour:
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c2cd325ed7a6e4cabe1745ec4db91b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  itemSpeed: 3
+  itemSpeed: 2
   itemDragDistance: 2
   itemBody: {fileID: 4594376071606678493}
   pickupSFX: {fileID: 11400000, guid: ae887be74a883064b9243d72a90da102, type: 2}

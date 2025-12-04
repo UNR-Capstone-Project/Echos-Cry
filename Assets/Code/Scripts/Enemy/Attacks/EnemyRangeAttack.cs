@@ -4,6 +4,7 @@ public class EnemyRangeAttack : EnemyBaseAttack
 {
     public override void UseAttack()
     {
+        handler = RBProjectileManager.RequestHandler(prefab);
         attackDirection = (PlayerRef.PlayerTransform.position - transform.position).normalized;
         attackDirection.y = 0;
         if(handler != null) handler.UseProjectile(transform.position, attackDirection, damage);
@@ -12,7 +13,7 @@ public class EnemyRangeAttack : EnemyBaseAttack
 
     private void Start()
     {
-        handler = RBProjectileManager.RequestHandler(prefab);
+
     }
 
     [SerializeField] private GameObject prefab;

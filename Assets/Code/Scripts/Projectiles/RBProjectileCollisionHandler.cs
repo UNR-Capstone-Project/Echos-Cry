@@ -8,11 +8,15 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
     {
         damageEnemyAction(other);
         StopAllCoroutines();
-        if(handler != null) handler.ReleaseProjectile(rb);
+        ResetProjectile();
     }
     IEnumerator WaitForTime()
     {
         yield return new WaitForSeconds(timer);
+        ResetProjectile();
+    }
+    public void ResetProjectile()
+    {
         if (handler != null) handler.ReleaseProjectile(rb);
     }
     public void SetHandler(RBProjectileHandler handler)
