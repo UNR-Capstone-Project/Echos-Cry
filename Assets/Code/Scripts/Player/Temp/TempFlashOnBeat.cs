@@ -4,16 +4,17 @@ using Unity.VisualScripting;
 
 public class TempFlashOnBeat : MonoBehaviour
 {
-    Light light = null;
+    Light lightIntensity = null;
     float tempHold = 0;
 
     private void Awake()
     {
-        light = GetComponent<Light>();
+        lightIntensity = GetComponent<Light>();
     }
     void Start()
     {
         TempoManager.BeatTickEvent += FlashLight;
+        lightIntensity.intensity = 0;
     }
     private void OnDestroy()
     {
@@ -23,7 +24,7 @@ public class TempFlashOnBeat : MonoBehaviour
     private void Update()
     {
         tempHold += Time.deltaTime;
-        light.intensity = (tempHold / TempoManager.TimeBetweenBeats) * 3.5f;
+        lightIntensity.intensity = (tempHold / TempoManager.TimeBetweenBeats) * 3.5f;
     }
 
     private void FlashLight()
@@ -33,7 +34,7 @@ public class TempFlashOnBeat : MonoBehaviour
     private IEnumerator FlashLightCoroutine()
     {
         yield return new WaitForSeconds(TempoManager.TimeBetweenBeats);
-        light.intensity = 0;
+        lightIntensity.intensity = 0;
         tempHold = 0;
     }
 

@@ -35,6 +35,7 @@ public class TempoManager : MonoBehaviour
     void Start()
     {
         MusicManager.Instance.UpdateMusicPlayer += UpdateTempo;
+        UpdateTempo();
     }
     private void OnDestroy()
     {
