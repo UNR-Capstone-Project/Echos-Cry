@@ -4,9 +4,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
-/// Original Author: 
-/// All Contributors Since Creation: Abby
-/// Last Modified By:
+
 public class InputTranslator : MonoBehaviour, 
     PlayerInputs.IGameplayActions, 
     PlayerInputs.IPauseMenuActions, 
