@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    public void Respawn()
+    {
+        _currentHealth = _maxHealth;
+        OnPlayerHealthChangeEvent?.Invoke(_currentHealth, _maxHealth);
+    }
+
     public static void UpdateCurrency(int amount)
     {
         _currencyCount += amount;
