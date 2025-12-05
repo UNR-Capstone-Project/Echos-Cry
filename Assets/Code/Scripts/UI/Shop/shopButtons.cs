@@ -1,6 +1,9 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+/// Original Author: Abby
+/// All Contributors Since Creation: Abby
+/// Last Modified By:
 public class shopButtons : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
