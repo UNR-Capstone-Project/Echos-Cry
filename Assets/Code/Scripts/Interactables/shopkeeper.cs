@@ -1,5 +1,7 @@
 using UnityEngine;
-
+/// Original Author: Abby
+/// All Contributors Since Creation: Abby
+/// Last Modified By:
 public class shopkeeper : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created

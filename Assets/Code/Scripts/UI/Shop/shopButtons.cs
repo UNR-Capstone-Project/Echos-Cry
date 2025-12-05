@@ -3,6 +3,9 @@ using TMPro;
 using UnityEngine.UI;
 public class shopButtons : MonoBehaviour
 {
+    /// Original Author: Abby
+/// All Contributors Since Creation: Abby
+/// Last Modified By:
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public int HealthPCost;
     public TMP_Text HealthPCostText;

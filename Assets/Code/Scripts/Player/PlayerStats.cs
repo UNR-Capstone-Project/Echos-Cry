@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
-
+/// Original Author: 
+/// All Contributors Since Creation: Abby
+/// Last Modified By:
 public class PlayerStats : MonoBehaviour
 {
     public static void UpdateCurrency(int amount)

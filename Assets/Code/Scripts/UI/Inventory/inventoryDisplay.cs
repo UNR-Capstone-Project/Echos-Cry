@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using UnityEngine;
-
+/// Original Author: Abby
+/// All Contributors Since Creation: Abby
+/// Last Modified By:
 public class InventoryDisplay : MonoBehaviour
 {
     public slotScript[] slotScriptArray = new slotScript[4];
