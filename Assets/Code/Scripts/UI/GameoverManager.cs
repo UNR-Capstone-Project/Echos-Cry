@@ -19,6 +19,7 @@ public class GameoverManager : MonoBehaviour
     {
         GetComponent<Canvas>().enabled = true;
         VolumeManager.Instance.SetDepthOfField(true);
+        VolumeManager.Instance.SetColorSaturationGrey();
         Time.timeScale = 0f;
     }
 
@@ -27,6 +28,7 @@ public class GameoverManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null); //Clear selected button
         GetComponent<Canvas>().enabled = false;
         VolumeManager.Instance.SetDepthOfField(false);
+        VolumeManager.Instance.ResetColorSaturation();
         Time.timeScale = 1f;
         
     }
