@@ -11,9 +11,11 @@ public class shopkeeper : MonoBehaviour
         InputTranslator.Instance.PlayerInputs.ShopMenu.Enable();
         InputTranslator.Instance.PlayerInputs.Gameplay.Disable();
         shopCanvas.SetActive(true);
+        VolumeManager.Instance.SetDepthOfField(true);
     }
     private void CloseShop(){
         shopCanvas.SetActive(false);
+        VolumeManager.Instance.SetDepthOfField(false);
     }
 
     void OnTriggerEnter(Collider other)

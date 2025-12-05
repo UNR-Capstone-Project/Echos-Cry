@@ -136,6 +136,11 @@ public class MusicManager : ScriptableObject
         }
     }
 
+    public void FadeVolumeToTarget(float volume, float fadeTime)
+    {
+        currentMusicPlayer.FadeVolume(volume, fadeTime);
+    }
+
     public void fadeVolumeToZero(float fadeTime)
     {
         if (currentMusicPlayer != null)

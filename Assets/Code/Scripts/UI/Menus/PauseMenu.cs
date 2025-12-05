@@ -67,11 +67,17 @@ public class PauseMenu : MonoBehaviour
     private void showPauseMenu()
     {
         pauseMenuCanvas.enabled = true;
+        VolumeManager.Instance.SetDepthOfField(true);
+        AudioManager.Instance.SetMasterVolume(0.4f);
+        Time.timeScale = 0f;
     }
 
     private void hidePauseMenu()
     {
         pauseMenuCanvas.enabled = false;
+        VolumeManager.Instance.SetDepthOfField(false);
+        AudioManager.Instance.SetMasterVolume(1f);
+        Time.timeScale = 1f;
     }
 
     private void switchOptionUp()
