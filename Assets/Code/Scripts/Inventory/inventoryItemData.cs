@@ -1,7 +1,5 @@
 using UnityEngine;
-/// Original Author: Abby
-/// All Contributors Since Creation: Abby
-/// Last Modified By:
+
 [CreateAssetMenu(fileName = "inventoryItemData", menuName = "Scriptable Objects/inventoryItemData")]
 public class inventoryItemData : ScriptableObject
 {

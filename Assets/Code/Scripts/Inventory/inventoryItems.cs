@@ -1,7 +1,5 @@
 using UnityEngine;
-/// Original Author: Abby
-/// All Contributors Since Creation: Abby
-/// Last Modified By:
+
 public class inventoryItems : MonoBehaviour
 {
     public inventoryItemData itemData;
