@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   doorAnimator: {fileID: 7047729017233982081}
+  ToolTipPrefab: {fileID: 5435326603873152583, guid: 2368d443f59e53f4dbdf1ce2d1423114, type: 3}
 --- !u!65 &1349252157542467394
 BoxCollider:
   m_ObjectHideFlags: 0

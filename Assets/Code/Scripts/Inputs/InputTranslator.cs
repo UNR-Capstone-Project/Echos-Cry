@@ -13,9 +13,11 @@ public class InputTranslator : MonoBehaviour,
 {
     private IEnumerator WaitForSecond()
     {
-        yield return new WaitForSeconds(1f);
-        _inputCount = 0;
-        StartCoroutine(WaitForSecond());
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            _inputCount = 0;
+        }
     }
     private IEnumerator SpamCooldown()
     {

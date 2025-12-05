@@ -1360,6 +1360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::shopkeeper
   shopCanvas: {fileID: 3291565546300153769}
+  ToolTipPrefab: {fileID: 5435326603873152583, guid: 2368d443f59e53f4dbdf1ce2d1423114, type: 3}
 --- !u!65 &934338328406865295
 BoxCollider:
   m_ObjectHideFlags: 0
