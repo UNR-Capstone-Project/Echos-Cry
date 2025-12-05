@@ -1,3 +1,4 @@
+using AudioSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,13 +8,20 @@ public class shopkeeper : MonoBehaviour
     public GameObject shopCanvas;
     private bool playerInRange = false;
     [SerializeField] private GameObject ToolTipPrefab;
+    [SerializeField] private soundEffect shopOpenSFX;
 
     private void OpenShop()
     {
         InputTranslator.Instance.PlayerInputs.ShopMenu.Enable();
         InputTranslator.Instance.PlayerInputs.Gameplay.Disable();
-        shopCanvas.SetActive(true);
+
         VolumeManager.Instance.SetDepthOfField(true);
+        soundEffectManager.Instance.Builder
+            .setSound(shopOpenSFX)
+            .setSoundPosition(this.transform.position)
+            .ValidateAndPlaySound();
+
+        shopCanvas.SetActive(true);
     }
     private void CloseShop(){
         shopCanvas.SetActive(false);
