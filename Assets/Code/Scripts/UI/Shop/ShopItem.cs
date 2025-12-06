@@ -1,0 +1,72 @@
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class ShopItem : MonoBehaviour
+{
+    [SerializeField] TextMeshProUGUI amountText;
+    [SerializeField] TextMeshProUGUI costText;
+    [SerializeField] GameObject highlightImage;
+    [SerializeField] GameObject purchasePrefab;
+    [SerializeField] private float initCost = 0f;
+    private int buyAmount;
+    private float actualCost = 0f;
+
+    public void ToggleHighlight()
+    {
+        highlightImage.GetComponent<Image>().enabled = !highlightImage.GetComponent<Image>().enabled;
+    }
+
+    public float GetCost()
+    {
+        UpdateCost();
+        return actualCost;
+    }
+    public float GetAmount()
+    {
+        return buyAmount;
+    }
+    public GameObject GetPrefab()
+    {
+        return purchasePrefab;
+    }
+    public void ResetAmount()
+    {
+        buyAmount = 0;
+        amountText.text = buyAmount.ToString();
+        UpdateCost();
+    }
+
+    private void Start()
+    {
+        costText.text = $"$ {initCost.ToString()}";
+    }
+
+    public void IncreaseAmount()
+    {
+        buyAmount++;
+        if (buyAmount >= 99) { buyAmount = 99; }
+        amountText.text = buyAmount.ToString();
+        UpdateCost();
+    }
+    public void DecreaseAmount()
+    {
+        buyAmount--;
+        if (buyAmount <= 0 ) { buyAmount = 0; }
+        amountText.text = buyAmount.ToString();
+        UpdateCost();
+    }
+
+    private void UpdateCost()
+    {
+        actualCost = initCost * buyAmount;
+        if (actualCost == 0)
+        {
+            costText.text = $"$ {initCost.ToString()}";
+        }
+        else
+        {
+            costText.text = $"$ {actualCost.ToString()}";
+        }
+    }
+}
