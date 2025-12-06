@@ -12,9 +12,9 @@ public class ShopItem : MonoBehaviour
     private int buyAmount;
     private float actualCost = 0f;
 
-    public void ToggleHighlight()
+    public void ToggleHighlight(bool state)
     {
-        highlightImage.GetComponent<Image>().enabled = !highlightImage.GetComponent<Image>().enabled;
+        highlightImage.GetComponent<Image>().enabled = state;
     }
 
     public float GetCost()
@@ -39,7 +39,7 @@ public class ShopItem : MonoBehaviour
 
     private void Start()
     {
-        costText.text = $"$ {initCost.ToString()}";
+        costText.text = $"${initCost.ToString()}";
     }
 
     public void IncreaseAmount()
@@ -62,11 +62,11 @@ public class ShopItem : MonoBehaviour
         actualCost = initCost * buyAmount;
         if (actualCost == 0)
         {
-            costText.text = $"$ {initCost.ToString()}";
+            costText.text = $"${initCost.ToString()}";
         }
         else
         {
-            costText.text = $"$ {actualCost.ToString()}";
+            costText.text = $"${actualCost.ToString()}";
         }
     }
 }
