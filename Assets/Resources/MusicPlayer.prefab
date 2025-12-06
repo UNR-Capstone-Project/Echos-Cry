@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4efdae19d9c9474c82bc8c77181b0d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::musicPlayer
-  songAudioSource: {fileID: 3246067157072692822}
+  startingSongLayerVolumes: []
   bpm: 100
   gain: 0.5
   signatureHi: 4
@@ -59,7 +59,7 @@ AudioSource:
   m_GameObject: {fileID: 7209961863866125393}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 1305037684583793307, guid: ac2ef84a7ad88f74fb5e10f3c7be54d1, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1

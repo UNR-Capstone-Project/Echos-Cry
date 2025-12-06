@@ -15,7 +15,7 @@ MonoBehaviour:
   sfxVolume: 0.2
   sfxClips:
   - {fileID: 8300000, guid: f0daa2baca71431419f5eacd78c64af8, type: 3}
-  sfxMixerGroup: {fileID: 0}
+  sfxMixerGroup: {fileID: 57649532358978260, guid: ac2ef84a7ad88f74fb5e10f3c7be54d1, type: 2}
   frequentlyPlayed: 0
   clipsAreRandomized: 0
   isAmbience: 0

@@ -14,7 +14,6 @@ using UnityEngine.SceneManagement;
 public class SceneTriggerManager : MonoBehaviour
 {
     [SerializeField] private SceneField sceneTarget;
-    [SerializeField] private SceneField sceneOrigin;
     [SerializeField] soundEffect portalSFX;
     public static event Action OnSceneTransitionEvent;
 
@@ -24,10 +23,14 @@ public class SceneTriggerManager : MonoBehaviour
     {
         if (other.CompareTag("Player") && !sceneTransitioning)
         {
-            StartCoroutine(HandleSceneTransition());
+            StartTransition();
         }
     }
 
+    public void StartTransition()
+    {
+        StartCoroutine(HandleSceneTransition());
+    }
     IEnumerator HandleSceneTransition()
     {
         //Scene Transition first 

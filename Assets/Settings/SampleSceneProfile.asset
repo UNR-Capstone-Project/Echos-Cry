@@ -21,7 +21,7 @@ MonoBehaviour:
     m_Value: 0.5
   intensity:
     m_OverrideState: 1
-    m_Value: 1.6
+    m_Value: 1.2
   scatter:
     m_OverrideState: 1
     m_Value: 0.5
@@ -90,7 +90,7 @@ MonoBehaviour:
   active: 1
   postExposure:
     m_OverrideState: 1
-    m_Value: 0.8
+    m_Value: 1
   contrast:
     m_OverrideState: 1
     m_Value: -5
@@ -102,7 +102,7 @@ MonoBehaviour:
     m_Value: -4
   saturation:
     m_OverrideState: 1
-    m_Value: -20
+    m_Value: -15
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,6 +123,7 @@ MonoBehaviour:
   - {fileID: -1552622618140804533}
   - {fileID: 5274650584217741827}
   - {fileID: 8591661659901258181}
+  - {fileID: 5950532083224867172}
 --- !u!114 &849379129802519247
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -181,8 +182,54 @@ MonoBehaviour:
     m_Value: {r: 0.3099893, g: 0.2956568, b: 0.41509432, a: 1}
   highlights:
     m_OverrideState: 1
-    m_Value: {r: 0.9150943, g: 0.812135, b: 0.60862404, a: 1}
+    m_Value: {r: 0.9433962, g: 0.8652743, b: 0.70903045, a: 1}
   balance:
+    m_OverrideState: 0
+    m_Value: 0
+--- !u!114 &5950532083224867172
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01700fd266d6914ababb731e09af2eb, type: 3}
+  m_Name: DepthOfField
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DepthOfField
+  active: 0
+  mode:
+    m_OverrideState: 1
+    m_Value: 2
+  gaussianStart:
+    m_OverrideState: 1
+    m_Value: 1
+  gaussianEnd:
+    m_OverrideState: 1
+    m_Value: 24.4
+  gaussianMaxRadius:
+    m_OverrideState: 1
+    m_Value: 1
+  highQualitySampling:
+    m_OverrideState: 0
+    m_Value: 0
+  focusDistance:
+    m_OverrideState: 0
+    m_Value: 10
+  aperture:
+    m_OverrideState: 0
+    m_Value: 5.6
+  focalLength:
+    m_OverrideState: 1
+    m_Value: 20
+  bladeCount:
+    m_OverrideState: 0
+    m_Value: 5
+  bladeCurvature:
+    m_OverrideState: 0
+    m_Value: 1
+  bladeRotation:
     m_OverrideState: 0
     m_Value: 0
 --- !u!114 &7391319092446245454
