@@ -873,6 +873,7 @@ MonoBehaviour:
   amountText: {fileID: 5580203083829468812}
   costText: {fileID: 7345498659110905195}
   highlightImage: {fileID: 7297995031649192295}
+  purchasePrefab: {fileID: 0}
   initCost: 10
 --- !u!1 &5542651252234910845
 GameObject:
@@ -1027,7 +1028,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3358637019652018928
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1062,7 +1063,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7297995031649192295}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 

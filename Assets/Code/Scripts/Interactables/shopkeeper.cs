@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 public class shopkeeper : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public GameObject shopCanvas;
     private bool playerInRange = false;
     [SerializeField] private GameObject ToolTipPrefab;
     [SerializeField] private soundEffect shopOpenSFX;
@@ -21,10 +20,10 @@ public class shopkeeper : MonoBehaviour
             .setSoundPosition(this.transform.position)
             .ValidateAndPlaySound();
 
-        shopCanvas.SetActive(true);
+        MenuManager.Instance.SetMenu("Shop");
     }
     private void CloseShop(){
-        shopCanvas.SetActive(false);
+        MenuManager.Instance.SetMenu("HUD");
         VolumeManager.Instance.SetDepthOfField(false);
     }
 

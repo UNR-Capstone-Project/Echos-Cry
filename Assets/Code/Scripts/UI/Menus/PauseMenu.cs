@@ -10,7 +10,6 @@ public enum pauseOptions
 }
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] private Canvas pauseMenuCanvas;
     [SerializeField] private pauseOptions currentPauseOption = pauseOptions.CONTINUE;
     [SerializeField] private Image selectedPauseOption;
     [SerializeField] private TextMeshProUGUI continueText;
@@ -21,38 +20,25 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
-        if (pauseMenuCanvas != null)
-        {
-            pauseMenuCanvas.enabled = false;
-            currentPos = selectedPauseOption.rectTransform.anchoredPosition;
-            originPos = currentPos;
-            InputTranslator.OnPauseEvent += showPauseMenu;
-            InputTranslator.OnResumeEvent += hidePauseMenu;
-            InputTranslator.OnPauseUpInput += switchOptionUp;
-            InputTranslator.OnPauseDownInput += switchOptionDown;
-            InputTranslator.OnSelectEvent += ChooseOption;
-        }
-        else
-        {
-            Debug.Log("Pause Menu Canvas is null!");
-        }
+        currentPos = selectedPauseOption.rectTransform.anchoredPosition;
+        originPos = currentPos;
+        InputTranslator.OnPauseUpInput += switchOptionUp;
+        InputTranslator.OnPauseDownInput += switchOptionDown;
+        InputTranslator.OnSelectEvent += ChooseOption;
     }
 
     void OnDestroy()
     {
-        InputTranslator.OnPauseEvent -= showPauseMenu;
-        InputTranslator.OnResumeEvent -= hidePauseMenu;
         InputTranslator.OnPauseUpInput -= switchOptionUp;
         InputTranslator.OnPauseDownInput -= switchOptionDown;
         InputTranslator.OnSelectEvent -= ChooseOption;
     }
     private void ChooseOption()
     {
-        if(!pauseMenuCanvas.enabled) return;
         switch(currentPauseOption)
         {
             case pauseOptions.CONTINUE:
-                hidePauseMenu();
+                MenuManager.Instance.SetMenu("HUD");
                 InputTranslator.Instance.PlayerInputs.Gameplay.Enable();
                 InputTranslator.Instance.PlayerInputs.PauseMenu.Disable();
                 break;
@@ -62,22 +48,6 @@ public class PauseMenu : MonoBehaviour
             default:
                 break;
         }
-    }
-
-    private void showPauseMenu()
-    {
-        pauseMenuCanvas.enabled = true;
-        VolumeManager.Instance.SetDepthOfField(true);
-        AudioManager.Instance.SetMasterVolume(0.4f);
-        Time.timeScale = 0f;
-    }
-
-    private void hidePauseMenu()
-    {
-        pauseMenuCanvas.enabled = false;
-        VolumeManager.Instance.SetDepthOfField(false);
-        AudioManager.Instance.SetMasterVolume(1f);
-        Time.timeScale = 1f;
     }
 
     private void switchOptionUp()

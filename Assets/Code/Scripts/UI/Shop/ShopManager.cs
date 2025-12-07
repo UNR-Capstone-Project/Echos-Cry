@@ -19,7 +19,7 @@ public class ShopManager : MonoBehaviour
         InputTranslator.OnShopDownInput += Down;
         InputTranslator.OnPurchaseEvent += Purchase;
 
-        ShopItemArray[currentItemIndex].GetComponent<ShopItem>().ToggleHighlight();
+        ShopItemArray[currentItemIndex].GetComponent<ShopItem>().ToggleHighlight(true);
     }
     private void OnDestroy()
     {
@@ -39,25 +39,25 @@ public class ShopManager : MonoBehaviour
         PlayerStats.UpdateCurrency(100);
         ShopItemArray[currentItemIndex].GetComponent<ShopItem>().IncreaseAmount();
     }
-    private void Up()
+    private void Down()
     {
-        ShopItemArray[currentItemIndex].GetComponent<ShopItem>().ToggleHighlight();
+        ShopItemArray[currentItemIndex].GetComponent<ShopItem>().ToggleHighlight(false);
         currentItemIndex++;
         if (currentItemIndex >= ShopItemArray.Length) 
         {
             currentItemIndex = 0;
         }
-        ShopItemArray[currentItemIndex].GetComponent<ShopItem>().ToggleHighlight();
+        ShopItemArray[currentItemIndex].GetComponent<ShopItem>().ToggleHighlight(true);
     }
-    private void Down()
+    private void Up()
     {
-        ShopItemArray[currentItemIndex].GetComponent<ShopItem>().ToggleHighlight();
+        ShopItemArray[currentItemIndex].GetComponent<ShopItem>().ToggleHighlight(false);
         currentItemIndex--;
         if (currentItemIndex < 0)
         {
             currentItemIndex = ShopItemArray.Length - 1;
         }
-        ShopItemArray[currentItemIndex].GetComponent<ShopItem>().ToggleHighlight();
+        ShopItemArray[currentItemIndex].GetComponent<ShopItem>().ToggleHighlight(true);
     }
 
     private void Update()
@@ -80,7 +80,7 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-    private void Purchase()
+    public void Purchase()
     {
         if (totalCost <= 0) return;
         if(PlayerStats.CurrencyCount >= totalCost)

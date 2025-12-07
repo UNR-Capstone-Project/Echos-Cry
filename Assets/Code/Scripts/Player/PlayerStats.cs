@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -7,6 +8,19 @@ public class PlayerStats : MonoBehaviour
     {
         _currentHealth = _maxHealth;
         OnPlayerHealthChangeEvent?.Invoke(_currentHealth, _maxHealth);
+        StartInvulnerability();
+    }
+
+    private void StartInvulnerability()
+    {
+        StartCoroutine(InvulnerabilityTimer());
+    }
+
+    private IEnumerator InvulnerabilityTimer()
+    {
+        invulnerability = true;
+        yield return new WaitForSeconds(2f);
+        invulnerability = false;
     }
 
     public static void UpdateCurrency(int amount)
@@ -15,8 +29,9 @@ public class PlayerStats : MonoBehaviour
         OnCurrencyChangeEvent?.Invoke();
     }
 
-    public static void OnDamageTaken(float damageAmount)
+    public void OnDamageTaken(float damageAmount)
     {
+        if (invulnerability) { return; }
         _currentHealth = Mathf.Clamp(_currentHealth - damageAmount, 0, _maxHealth);
 
         OnPlayerDamagedEvent?.Invoke();
@@ -61,6 +76,7 @@ public class PlayerStats : MonoBehaviour
     private static float _maxHealth = 100f;
     private static int   _currencyCount;
     private static float _currentHealth;
+    private bool invulnerability = false;
 
     public static float MaxHealth { get { return _maxHealth; } }
     public static int   CurrencyCount {  get { return _currencyCount; } }
