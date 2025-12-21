@@ -11,13 +11,13 @@ public class PlayerAttackHandler : MonoBehaviour
     {
         if (!_readyForAttackInput || TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.MISS) return;
         _readyForAttackInput = false;
-        OnAttackEvent?.Invoke(ComboStateMachine.Instance.HandleLightAttack());
+        OnAttackStartEvent?.Invoke(ComboStateMachine.Instance.HandleLightAttack());
     }
     void HandleHeavyInput()
     {
         if (!_readyForAttackInput || TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.MISS) return;
         _readyForAttackInput = false;
-        OnAttackEvent?.Invoke(ComboStateMachine.Instance.HandleHeavyAttack());
+        OnAttackStartEvent?.Invoke(ComboStateMachine.Instance.HandleHeavyAttack());
     }
     void ResetAttackInput()
     {
@@ -42,5 +42,5 @@ public class PlayerAttackHandler : MonoBehaviour
     }
 
     private bool _readyForAttackInput = true;
-    public static event Action<ComboStateMachine.StateName> OnAttackEvent;
+    public static event Action<ComboStateMachine.StateName> OnAttackStartEvent;
 }

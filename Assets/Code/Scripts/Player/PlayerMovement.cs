@@ -53,10 +53,18 @@ public class PlayerMovement : MonoBehaviour
     {
         playerLocomotion = locomotion;
     }
+    public void HandleAttackStart(ComboStateMachine.StateName state)
+    {
+        isAttacking = true;
+    }
+    public void HandleAttackEnd()
+    {
+        isAttacking = false;
+    }
 
     private void FixedUpdate()
     {
-        if (isDashing) return;
+        if (isDashing || isAttacking) return;
         MovePlayer();
     }
 
@@ -71,6 +79,9 @@ public class PlayerMovement : MonoBehaviour
         InputTranslator.OnMovementEvent += HandleMovement;
         InputTranslator.OnDashEvent += HandleDash;
 
+        PlayerAttackHandler.OnAttackStartEvent += HandleAttackStart;
+        BaseWeapon.OnAttackEndedEvent += HandleAttackEnd;
+
         stoppingAcceleration = playerSpeed * 2;
         //maxPlayerVelocitySqrMag = maxPlayerVelocityMag * maxPlayerVelocityMag;
     }
@@ -78,6 +89,8 @@ public class PlayerMovement : MonoBehaviour
     {
         InputTranslator.OnMovementEvent -= HandleMovement;
         InputTranslator.OnDashEvent -= HandleDash;
+        PlayerAttackHandler.OnAttackStartEvent -= HandleAttackStart;
+        BaseWeapon.OnAttackEndedEvent -= HandleAttackEnd;
     }
 
     //Player Movement
@@ -96,6 +109,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool canDash = true;
     private bool isDashing = false;
+    private bool isAttacking = false;
 
     [Header("Determines how quickly dash reaches destination.")]
     [SerializeField] private float dashSpeed = 20f;
