@@ -23,7 +23,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void HandleDash()
     {
-        if (!canDash || TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.MISS) return;
+        if (!canDash 
+            || TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.MISS 
+            || playerLocomotion == Vector2.zero) return;
 
         canDash = false;
         playerRigidbody.AddForce(playerRigidbody.linearVelocity.normalized * dashSpeed, ForceMode.Impulse);
