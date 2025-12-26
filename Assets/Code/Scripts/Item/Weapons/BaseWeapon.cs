@@ -9,10 +9,16 @@ public abstract class BaseWeapon : MonoBehaviour
     [SerializeField] protected AttackData[] _attackData;
     protected Animator _attackAnimator;
     protected RuntimeAnimatorController _defaultAnimatorController;
+
+    public static event Action<StateName> OnAttackStartEvent;
     public static event Action OnAttackEndedEvent;
+
     public static event Action<float> UpdateColliderAttackDamageEvent;
 
-    protected abstract void Attack(StateName attackState);
+    protected virtual void Attack(StateName attackState)
+    {
+        OnAttackStartEvent?.Invoke(attackState);
+    }
 
     protected void OnAttackEnded()
     {

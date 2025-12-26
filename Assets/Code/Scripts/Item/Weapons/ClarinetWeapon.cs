@@ -12,6 +12,8 @@ public class ClarinetWeapon : BaseWeapon
 {
     protected override void Attack(StateName attackState)
     {
+        base.Attack(attackState);
+        
         int attackIndex = (int)attackState;
 
         SetupCurrentDamage(_attackData[attackIndex]);
@@ -65,20 +67,20 @@ public class ClarinetWeapon : BaseWeapon
     }
     private void Start()
     {
-        PlayerAttackHandler.OnAttackStartEvent += Attack;
+        PlayerAttackHandler.OnInputRegisteredEvent += Attack;
         gameObject.SetActive(false);
     }
     private void OnDestroy()
     {
-        PlayerAttackHandler.OnAttackStartEvent -= Attack;
+        PlayerAttackHandler.OnInputRegisteredEvent -= Attack;
     }
     private void OnEnable()
     {
-        PlayerAttackHandler.OnAttackStartEvent += Attack;
+        PlayerAttackHandler.OnInputRegisteredEvent += Attack;
     }
     private void OnDisable()
     {
-        PlayerAttackHandler.OnAttackStartEvent -= Attack;
+        PlayerAttackHandler.OnInputRegisteredEvent -= Attack;
     }
 
     private AttackCollisionHandler _weaponCollisionHandler;

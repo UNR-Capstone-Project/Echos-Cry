@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
         InputTranslator.OnMovementEvent += HandleMovement;
         InputTranslator.OnDashEvent += HandleDash;
 
-        PlayerAttackHandler.OnAttackStartEvent += HandleAttackStart;
+        BaseWeapon.OnAttackStartEvent += HandleAttackStart;
         BaseWeapon.OnAttackEndedEvent += HandleAttackEnd;
 
         stoppingAcceleration = playerSpeed * 2;
@@ -89,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
     {
         InputTranslator.OnMovementEvent -= HandleMovement;
         InputTranslator.OnDashEvent -= HandleDash;
-        PlayerAttackHandler.OnAttackStartEvent -= HandleAttackStart;
+        BaseWeapon.OnAttackStartEvent -= HandleAttackStart;
         BaseWeapon.OnAttackEndedEvent -= HandleAttackEnd;
     }
 
