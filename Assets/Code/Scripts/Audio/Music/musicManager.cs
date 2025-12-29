@@ -5,7 +5,7 @@ using System;
 /// Original Author: Victor
 /// All Contributors Since Creation: Victor, Michael, Andy
 /// Last Modified By: 
-[CreateAssetMenu(fileName = "MusicManager", menuName = "Scriptable Objects/Music Manager")]
+[CreateAssetMenu(fileName = "MusicManager", menuName = "Echo's Cry/Music System/Music Manager")]
 public class MusicManager : ScriptableObject
 {
     private static MusicManager _instance;

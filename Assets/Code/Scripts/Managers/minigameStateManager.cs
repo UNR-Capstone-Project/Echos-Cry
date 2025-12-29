@@ -3,7 +3,7 @@ using UnityEngine;
 /// Original Author: Victor
 /// All Contributors Since Creation: Victor
 /// Last Modified By:
-[CreateAssetMenu(fileName = "minigameStateManager", menuName = "Scriptable Objects/minigameStateManager")]
+[CreateAssetMenu(fileName = "MinigameStateManager", menuName = "Echo's Cry/MiniGame System/MinigameStateManager")]
 public class minigameStateManager : ScriptableObject
 {
     public enum instruments

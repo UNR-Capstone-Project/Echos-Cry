@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 /// Last Modified By: 
 namespace SoundSystem
 {
-    [CreateAssetMenu(fileName = "MusicEvent", menuName = "Scriptable Objects/Music Event")]
+    [CreateAssetMenu(fileName = "MusicEvent", menuName = "Echo's Cry/Music System/Music Event")]
     public class MusicEvent : ScriptableObject
     {
         [Range(0f, 1f), SerializeField] private float musicVolume = .1f;

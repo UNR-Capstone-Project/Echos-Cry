@@ -9,7 +9,7 @@ namespace AudioSystem {
     /// <summary>
     /// a ScriptableObject to hold all the relevant data for a sound effect in the game
     /// </summary>
-    [CreateAssetMenu(fileName = "soundEffect", menuName = "Scriptable Objects/soundEffect")]
+    [CreateAssetMenu(fileName = "SoundEffect", menuName = "Echo's Cry/SFX System/SoundEffect")]
     public class soundEffect : ScriptableObject
     {
         [Range(0f, 1f), SerializeField] private float sfxVolume = .1f;
