@@ -199,6 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32dd952c7bae76e4eadc94243a5e64e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttackHandler
+  _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
 --- !u!1 &2428720641269041060
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,12 +209,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 415338203038042998}
-  - component: {fileID: 1087463396999264668}
+  - component: {fileID: 7615182944986677593}
   - component: {fileID: 1583115497800748523}
   - component: {fileID: 3994806833285819260}
   - component: {fileID: 7414890934435195871}
   - component: {fileID: 8506666208944667827}
-  - component: {fileID: 62764194440910745}
   - component: {fileID: 2019051602396369572}
   - component: {fileID: 6060951237239432870}
   - component: {fileID: 4799680955579834891}
@@ -243,7 +243,7 @@ Transform:
   - {fileID: 1876697883255032612}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1087463396999264668
+--- !u!114 &7615182944986677593
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2493662626dcfdc4a8367b9007efd85f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerRef
 --- !u!114 &1583115497800748523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,6 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: add17ce02c85fdc45aea35ad0bef13b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerComboMeter
+  _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
   _comboMeterDrainRate: 2.5
 --- !u!114 &7414890934435195871
 MonoBehaviour:
@@ -292,6 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbcf6b0c0055f89418334568b5e15077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  translator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
   dashSpeed: 30
   dashDuration: 0.25
   dashCooldown: 1
@@ -309,20 +311,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSound
   _footstepEffect: {fileID: 11400000, guid: 3028a632f21d41d4ebf89c457249cc0a, type: 2}
---- !u!114 &62764194440910745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2428720641269041060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1451a3ff0f1df844ab16e8f1d98c1e2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InputTranslator
-  _inputPaddingGrace: 4
-  _spamCooldown: 3.5
 --- !u!54 &2019051602396369572
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -539,6 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97eeacd70dc0f444cb9fd9df6e2799a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimator
+  _translator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
   spriteDamageColor: {r: 1, g: 0, b: 0, a: 1}
   flashDamageDuration: 0.2
 --- !u!114 &9130599691073952778
@@ -784,6 +773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72dec4980866bef47b9774eb1f20e169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSkillManager
+  _translator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
 --- !u!1001 &506091730931972670
 PrefabInstance:
   m_ObjectHideFlags: 0

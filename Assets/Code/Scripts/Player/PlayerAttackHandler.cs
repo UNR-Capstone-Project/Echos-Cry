@@ -28,19 +28,20 @@ public class PlayerAttackHandler : MonoBehaviour
     {
         _readyForAttackInput = true;
         
-        InputTranslator.OnLightAttackEvent += HandleLightInput;
-        InputTranslator.OnHeavyAttackEvent += HandleHeavyInput;
+        _inputTranslator.OnLightAttackEvent += HandleLightInput;
+        _inputTranslator.OnHeavyAttackEvent += HandleHeavyInput;
 
         BaseWeapon.OnAttackEndedEvent += ResetAttackInput;
     }
     private void OnDestroy()
     {
-        InputTranslator.OnLightAttackEvent -= HandleLightInput;
-        InputTranslator.OnHeavyAttackEvent -= HandleHeavyInput;
+        _inputTranslator.OnLightAttackEvent -= HandleLightInput;
+        _inputTranslator.OnHeavyAttackEvent -= HandleHeavyInput;
 
         BaseWeapon.OnAttackEndedEvent -= ResetAttackInput;
     }
 
+    [SerializeField] private InputTranslator _inputTranslator;
     private bool _readyForAttackInput = true;
     public static event Action<ComboStateMachine.StateName> OnInputRegisteredEvent;
     //public static event Action<ComboStateMachine.StateName> OnAttackEndedEvent;

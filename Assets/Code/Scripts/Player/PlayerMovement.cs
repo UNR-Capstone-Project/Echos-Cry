@@ -76,8 +76,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         mainCameraRef = Camera.main.transform;
-        InputTranslator.OnMovementEvent += HandleMovement;
-        InputTranslator.OnDashEvent += HandleDash;
+        translator.OnMovementEvent += HandleMovement;
+        translator.OnDashEvent += HandleDash;
 
         BaseWeapon.OnAttackStartEvent += HandleAttackStart;
         BaseWeapon.OnAttackEndedEvent += HandleAttackEnd;
@@ -87,11 +87,13 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnDestroy()
     {
-        InputTranslator.OnMovementEvent -= HandleMovement;
-        InputTranslator.OnDashEvent -= HandleDash;
+        translator.OnMovementEvent -= HandleMovement;
+        translator.OnDashEvent -= HandleDash;
         BaseWeapon.OnAttackStartEvent -= HandleAttackStart;
         BaseWeapon.OnAttackEndedEvent -= HandleAttackEnd;
     }
+
+    [SerializeField] private InputTranslator translator;
 
     //Player Movement
     private static Vector2 playerLocomotion = Vector2.zero;

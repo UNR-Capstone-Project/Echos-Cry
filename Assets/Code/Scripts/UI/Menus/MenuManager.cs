@@ -11,6 +11,7 @@ public class StringGameobjectPair
 
 public class MenuManager : MonoBehaviour
 {
+    [SerializeField] private InputTranslator _translator;
     public static MenuManager Instance { get; private set; }
     [SerializeField] private List<StringGameobjectPair> menuDictionary;
 
@@ -31,15 +32,15 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         PlayerStats.OnPlayerDeathEvent += EnableGameoverMenu;
-        InputTranslator.OnPauseEvent += EnablePauseMenu;
-        InputTranslator.OnResumeEvent += DisablePauseMenu;
+        _translator.OnPauseEvent += EnablePauseMenu;
+        _translator.OnResumeEvent += DisablePauseMenu;
     }
 
     void OnDestroy()
     {
         PlayerStats.OnPlayerDeathEvent -= EnableGameoverMenu;
-        InputTranslator.OnPauseEvent -= EnablePauseMenu;
-        InputTranslator.OnResumeEvent -= DisablePauseMenu;
+        _translator.OnPauseEvent -= EnablePauseMenu;
+        _translator.OnResumeEvent -= DisablePauseMenu;
     }
 
     public void EnableGameoverMenu()

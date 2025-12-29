@@ -59,7 +59,7 @@ public class PlayerAnimator : MonoBehaviour
         PlayerMovement.OnDashStarted += HandleDashStartedEmit;
         PlayerMovement.OnDashEnded += HandleDashEndedEmit;
 
-        InputTranslator.OnMovementEvent += HandleMovement;
+        _translator.OnMovementEvent += HandleMovement;
     }
     private void OnDestroy()
     {
@@ -68,9 +68,11 @@ public class PlayerAnimator : MonoBehaviour
         PlayerMovement.OnDashStarted -= HandleDashStartedEmit;
         PlayerMovement.OnDashEnded   -= HandleDashEndedEmit;
 
-        InputTranslator.OnMovementEvent -= HandleMovement;
+        _translator.OnMovementEvent -= HandleMovement;
     }
-    
+
+    [SerializeField] private InputTranslator _translator;
+
     [SerializeField] private Color spriteDamageColor = Color.red;
     [SerializeField] private float flashDamageDuration = 0.2f;
     private Color defaultSpriteColor;

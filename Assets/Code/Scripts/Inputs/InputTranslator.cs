@@ -1,67 +1,22 @@
 using System;
-using System.Collections;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 
-public class InputTranslator : MonoBehaviour, 
+[CreateAssetMenu(menuName = "Echo's Cry/Input System/Input Translator")]
+
+public class InputTranslator : ScriptableObject, 
     PlayerInputs.IGameplayActions, 
     PlayerInputs.IPauseMenuActions, 
     PlayerInputs.IPlayerMenuActions, 
     PlayerInputs.IShopMenuActions
 {
-    private IEnumerator WaitForSecond()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(1f);
-            _inputCount = 0;
-        }
-    }
-    private IEnumerator SpamCooldown()
-    {
-        _pauseBeatInputs = true;
-        yield return new WaitForSeconds(_spamCooldown);
-        _pauseBeatInputs = false;
-    }
-    private void UpdateBPMInputCount()
-    {
-        float timeBetweenBeats = 60f / (float)MusicManager.Instance.GetTempo();
-        _maxInputCountPerSec = (int)(1f/timeBetweenBeats) + _inputPaddingGrace;
-    }
-
     private void Awake()
     {
-        if (_instance != null)
-        {
-            Destroy(this);
-            return;
-        }
-        _instance = this;
         _playerInputs = new PlayerInputs();
         _playerInputs.Gameplay.SetCallbacks(this);
         _playerInputs.PauseMenu.SetCallbacks(this);
         _playerInputs.PlayerMenu.SetCallbacks(this);
         _playerInputs.ShopMenu.SetCallbacks(this);
-    }
-    private void Start()
-    {
-        if (_instance == null) _instance = this;
-
-        _playerInputs.Gameplay.Enable();
-        _playerInputs.PauseMenu.Disable();
-        _playerInputs.PlayerMenu.Disable();
-        _playerInputs.ShopMenu.Disable();
-
-        _inputCount = 0;
-        _pauseBeatInputs= false;
-
-        UpdateBPMInputCount();
-
-        MusicManager.Instance.SongPlayEvent += UpdateBPMInputCount;
-
-        StartCoroutine(WaitForSecond());
     }
     private void OnEnable()
     {
@@ -80,7 +35,6 @@ public class InputTranslator : MonoBehaviour,
     }
     private void OnDisable()
     {
-
         _playerInputs.Gameplay.Disable();
         _playerInputs.PauseMenu.Disable();
         _playerInputs.PlayerMenu.Disable();
@@ -88,22 +42,16 @@ public class InputTranslator : MonoBehaviour,
     }
     private void OnDestroy()
     {
-        MusicManager.Instance.SongPlayEvent -= UpdateBPMInputCount;
+        _playerInputs.Gameplay.Disable();
+        _playerInputs.PauseMenu.Disable();
+        _playerInputs.PlayerMenu.Disable();
+        _playerInputs.ShopMenu.Disable();
 
         _playerInputs.Gameplay.RemoveCallbacks(this);
         _playerInputs.PlayerMenu.RemoveCallbacks(this);
         _playerInputs.PauseMenu.RemoveCallbacks(this);
         _playerInputs.ShopMenu.RemoveCallbacks(this);
         _playerInputs = null;
-        _instance = null;
-    }
-
-    private void Update()
-    {
-        if (_inputCount > _maxInputCountPerSec && !_pauseBeatInputs)
-        {
-            StartCoroutine(SpamCooldown());
-        }
     }
 
     public void OnMovement(InputAction.CallbackContext context)
@@ -112,30 +60,20 @@ public class InputTranslator : MonoBehaviour,
     }
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.started && !_pauseBeatInputs)
+        if (context.started)
         {
             OnDashEvent?.Invoke();
-            _inputCount++;
         }
     }
     public void OnLightAttack(InputAction.CallbackContext context)
     {
-        if (context.started && !_pauseBeatInputs)
-        {
-            OnLightAttackEvent?.Invoke();
-            _inputCount++;
-        }
+        if (context.started) OnLightAttackEvent?.Invoke();
     }
     public void OnHeavyAttack(InputAction.CallbackContext context)
     {
-        if (context.started && !_pauseBeatInputs)
-        {
-            OnHeavyAttackEvent?.Invoke();
-            _inputCount++;
-        }
+        if (context.started) OnHeavyAttackEvent?.Invoke();
     }
     
-    //Code Section Begins. Code Author: Victor
     public void OnPause(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -200,7 +138,6 @@ public class InputTranslator : MonoBehaviour,
             OnJournalLeftInput?.Invoke();
         }
     }
-    //Code Section Ends.
 
     public void OnSkill1(InputAction.CallbackContext context)
     {
@@ -299,26 +236,16 @@ public class InputTranslator : MonoBehaviour,
     private PlayerInputs _playerInputs;
     public PlayerInputs PlayerInputs { get { return _playerInputs; } }  
 
-    private static InputTranslator _instance;
-    public static InputTranslator Instance {  get { return _instance; } }
-
-    public static event Action<Vector2> OnMovementEvent;
-    public static event Action          OnDashEvent;
-    public static event Action          OnLightAttackEvent;
-    public static event Action          OnHeavyAttackEvent;
-    public static event Action          OnPauseEvent, OnPauseDownInput, OnPauseUpInput, OnSelectEvent;
-    public static event Action          OnResumeEvent;
-    public static event Action          OnMapEvent;
-    public static event Action          OnExitMapEvent, OnJournalLeftInput, OnJournalRightInput;
-    public static event Action          OnSkill1Event, OnSkill2Event, OnSkill3Event;
-    public static event Action          OnCloseShopEvent, OnShopLeftInput, OnShopRightInput, OnShopUpInput, OnShopDownInput, OnPurchaseEvent;
-    public static event Action          OnItem1Event, OnItem2Event, OnItem3Event, OnItem4Event;
-    public static event Action          OnInteractEvent;
-
-    private int _inputCount = 0;
-    private int _maxInputCountPerSec = 1;
-    [SerializeField] int _inputPaddingGrace = 4;
-
-    private bool _pauseBeatInputs = false;
-    [SerializeField] private float _spamCooldown = 5f;
+    public event Action<Vector2> OnMovementEvent;
+    public event Action          OnDashEvent;
+    public event Action          OnLightAttackEvent;
+    public event Action          OnHeavyAttackEvent;
+    public event Action          OnPauseEvent, OnPauseDownInput, OnPauseUpInput, OnSelectEvent;
+    public event Action          OnResumeEvent;
+    public event Action          OnMapEvent;
+    public event Action          OnExitMapEvent, OnJournalLeftInput, OnJournalRightInput;
+    public event Action          OnSkill1Event, OnSkill2Event, OnSkill3Event;
+    public event Action          OnCloseShopEvent, OnShopLeftInput, OnShopRightInput, OnShopUpInput, OnShopDownInput, OnPurchaseEvent;
+    public event Action          OnItem1Event, OnItem2Event, OnItem3Event, OnItem4Event;
+    public event Action          OnInteractEvent;
 }

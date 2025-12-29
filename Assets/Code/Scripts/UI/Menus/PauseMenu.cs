@@ -10,6 +10,7 @@ public enum pauseOptions
 }
 public class PauseMenu : MonoBehaviour
 {
+    [SerializeField] private InputTranslator translator;
     [SerializeField] private pauseOptions currentPauseOption = pauseOptions.CONTINUE;
     [SerializeField] private Image selectedPauseOption;
     [SerializeField] private TextMeshProUGUI continueText;
@@ -22,16 +23,17 @@ public class PauseMenu : MonoBehaviour
     {
         currentPos = selectedPauseOption.rectTransform.anchoredPosition;
         originPos = currentPos;
-        InputTranslator.OnPauseUpInput += switchOptionUp;
-        InputTranslator.OnPauseDownInput += switchOptionDown;
-        InputTranslator.OnSelectEvent += ChooseOption;
+
+        translator.OnPauseUpInput += switchOptionUp;
+        translator.OnPauseDownInput += switchOptionDown;
+        translator.OnSelectEvent += ChooseOption;
     }
 
     void OnDestroy()
     {
-        InputTranslator.OnPauseUpInput -= switchOptionUp;
-        InputTranslator.OnPauseDownInput -= switchOptionDown;
-        InputTranslator.OnSelectEvent -= ChooseOption;
+        translator.OnPauseUpInput -= switchOptionUp;
+        translator.OnPauseDownInput -= switchOptionDown;
+        translator.OnSelectEvent -= ChooseOption;
     }
     private void ChooseOption()
     {
@@ -39,8 +41,8 @@ public class PauseMenu : MonoBehaviour
         {
             case pauseOptions.CONTINUE:
                 MenuManager.Instance.SetMenu("HUD");
-                InputTranslator.Instance.PlayerInputs.Gameplay.Enable();
-                InputTranslator.Instance.PlayerInputs.PauseMenu.Disable();
+                translator.PlayerInputs.Gameplay.Enable();
+                translator.PlayerInputs.PauseMenu.Disable();
                 break;
             case pauseOptions.QUIT:
                 Application.Quit();

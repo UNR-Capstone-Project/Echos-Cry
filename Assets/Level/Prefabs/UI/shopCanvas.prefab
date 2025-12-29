@@ -767,7 +767,7 @@ GameObject:
   - component: {fileID: 7045177062669959262}
   - component: {fileID: 4825304858372058321}
   m_Layer: 5
-  m_Name: ShopCanvas
+  m_Name: shopCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -875,6 +875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1eb91530b7702c40aca519b608e25b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::shopButtons
+  _translator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
   ShopItemArray:
   - {fileID: 1904983793415143733}
   - {fileID: 2462311201881421200}
