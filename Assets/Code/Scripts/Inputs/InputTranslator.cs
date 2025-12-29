@@ -206,21 +206,21 @@ public class InputTranslator : ScriptableObject,
     {
         if (context.started)
         {
-            OnItem1Event?.Invoke();
+            OnItem2Event?.Invoke();
         }
     }
     public void OnItem3(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            OnItem1Event?.Invoke();
+            OnItem3Event?.Invoke();
         }
     }
     public void OnItem4(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            OnItem1Event?.Invoke();
+            OnItem4Event?.Invoke();
         }
     }
     public void OnInteract(InputAction.CallbackContext context)

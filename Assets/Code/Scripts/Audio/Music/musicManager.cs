@@ -31,7 +31,7 @@ public class MusicManager : ScriptableObject
 
     public const int MAX_LAYER_COUNT = 5;
     private GameObject musicPlayerPrefab;
-    [SerializeField] private float crossfadeTime = 0.5f;
+    //[SerializeField] private float crossfadeTime = 0.5f;
     [SerializeField] private MusicPlayer currentMusicPlayer;
     [SerializeField] private List<MusicPlayer> inactiveMusicPlayers = new List<MusicPlayer>();
 
