@@ -17,8 +17,8 @@ public class ProjectileAttack : BaseAttack
     protected override void InitAttack()
     {
         base.InitAttack();
-        projectileDirection = PlayerDirection.AimDirection;
 
+        projectileDirection = PlayerDirection.AimDirection;
         projectileRB.AddForce(projectileDirection * projectileSpeed, ForceMode.Impulse);
     }
 

@@ -6,9 +6,27 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        damageEnemyAction(other);
-        StopAllCoroutines();
-        ResetProjectile();
+        if (other.gameObject.layer == LayerMask.NameToLayer("PlayerMeleeAttack"))
+        { //Parry attack
+            if (user == ProjectileUser.ENEMY)
+            {
+                StopAllCoroutines();
+                StartCoroutine(WaitForTime());
+
+                //Switch to attacking enemies
+                user = ProjectileUser.PLAYER;
+                ParryProjectileDirection();
+                DetermineUserAction();
+                return;
+            }
+        }
+
+        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
+        { //Only damage if colliding with valid target
+            damageEnemyAction(other);
+            StopAllCoroutines();
+            ResetProjectile();
+        }
     }
     IEnumerator WaitForTime()
     {
@@ -27,6 +45,13 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
     public void SetDamage(float damage)
     {
         projectileDamage = damage;
+    }
+
+    private void ParryProjectileDirection()
+    {
+        if (rb == null) return;
+        Vector3 projectileDirection = PlayerDirection.AimDirection;
+        rb.linearVelocity = projectileDirection * rb.linearVelocity.magnitude;
     }
 
     private void DetermineUserAction()
