@@ -6,27 +6,22 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("PlayerMeleeAttack"))
-        { //Parry attack
-            if (user == ProjectileUser.ENEMY)
-            {
-                StopAllCoroutines();
-                StartCoroutine(WaitForTime());
-
-                //Switch to attacking enemies
-                user = ProjectileUser.PLAYER;
-                ParryProjectileDirection();
-                DetermineUserAction();
-                return;
-            }
-        }
-
-        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
-        { //Only damage if colliding with valid target
-            damageEnemyAction(other);
+        if (other.gameObject.layer == LayerMask.NameToLayer("PlayerMeleeAttack")
+            && currentUser == ProjectileUser.ENEMY)
+        {
             StopAllCoroutines();
-            ResetProjectile();
+            StartCoroutine(WaitForTime());
+
+            //Switch to attacking enemies
+            ParryProjectile();
+                
+            return;
         }
+
+        //Only damage if colliding with valid target
+        damageEnemyAction(other);
+        StopAllCoroutines();
+        ResetProjectile();
     }
     IEnumerator WaitForTime()
     {
@@ -47,8 +42,11 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
         projectileDamage = damage;
     }
 
-    private void ParryProjectileDirection()
+    private void ParryProjectile()
     {
+        currentUser = ProjectileUser.PLAYER;
+        DetermineUserAction();
+
         if (rb == null) return;
         Vector3 projectileDirection = PlayerDirection.AimDirection;
         rb.linearVelocity = projectileDirection * rb.linearVelocity.magnitude;
@@ -56,12 +54,12 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
 
     private void DetermineUserAction()
     {
-        switch (user)
+        switch (currentUser)
         {
             case ProjectileUser.ENEMY:
                 damageEnemyAction = (other) => 
                 { 
-                    if(other.TryGetComponent<PlayerStats>(out PlayerStats playerStats)) 
+                    if (other.TryGetComponent<PlayerStats>(out PlayerStats playerStats)) 
                         PlayerStats.Instance.OnDamageTaken(projectileDamage); 
                 };
                 break;
@@ -88,6 +86,8 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
     }
     private void OnEnable()
     {
+        currentUser = startingUser;
+        DetermineUserAction();
         StartCoroutine(WaitForTime());
     }
     private void OnDisable()
@@ -105,5 +105,6 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
     private Action<Collider> damageEnemyAction;
     private float projectileDamage = 0;
     [SerializeField] private float timer = 5;
-    [SerializeField] private ProjectileUser user;
+    [SerializeField] private ProjectileUser startingUser;
+    private ProjectileUser currentUser;
 }

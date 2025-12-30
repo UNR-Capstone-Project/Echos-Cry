@@ -4932,8 +4932,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67ea539fedd3c6d44b5d0c119b3a907e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandleProjectileCollision
-  timer: 3
-  user: 2
+  timer: 4
+  startingUser: 2
 --- !u!1001 &1508362075513150165
 PrefabInstance:
   m_ObjectHideFlags: 0
