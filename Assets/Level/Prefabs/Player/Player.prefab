@@ -680,6 +680,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bc8a2e38051414479dc8806d51be6a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDirection
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &7860510388739070033
 GameObject:
   m_ObjectHideFlags: 0
