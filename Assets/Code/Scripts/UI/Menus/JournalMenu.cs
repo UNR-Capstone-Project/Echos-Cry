@@ -12,6 +12,7 @@ public enum journalTabs
 
 public class JournalMenu : MonoBehaviour
 {
+    [SerializeField] private InputTranslator _translator;
     [SerializeField] private Canvas journalCanvas;
     [SerializeField] private journalTabs currentJournalTab = journalTabs.MAP;
     [SerializeField] private Image selectedJournalTab;
@@ -29,10 +30,10 @@ public class JournalMenu : MonoBehaviour
             journalCanvas.enabled = false;
             currentPos = selectedJournalTab.rectTransform.anchoredPosition;
             originPos = currentPos;
-            InputTranslator.OnMapEvent += showJournal;
-            InputTranslator.OnExitMapEvent += hideJournal;
-            InputTranslator.OnJournalLeftInput += switchTabLeft;
-            InputTranslator.OnJournalRightInput += switchTabRight;
+            _translator.OnMapEvent += showJournal;
+            _translator.OnExitMapEvent += hideJournal;
+            _translator.OnJournalLeftInput += switchTabLeft;
+            _translator.OnJournalRightInput += switchTabRight;
         }
         else
         {
@@ -43,10 +44,10 @@ public class JournalMenu : MonoBehaviour
 
     void OnDestroy()
     {
-        InputTranslator.OnMapEvent -= showJournal;
-        InputTranslator.OnExitMapEvent -= hideJournal;
-        InputTranslator.OnJournalLeftInput -= switchTabLeft;
-        InputTranslator.OnJournalRightInput -= switchTabRight;
+        _translator.OnMapEvent -= showJournal;
+        _translator.OnExitMapEvent -= hideJournal;
+        _translator.OnJournalLeftInput -= switchTabLeft;
+        _translator.OnJournalRightInput -= switchTabRight;
     }
 
     private void showJournal()

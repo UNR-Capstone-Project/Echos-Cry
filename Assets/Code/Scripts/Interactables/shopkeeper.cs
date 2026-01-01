@@ -8,11 +8,12 @@ public class shopkeeper : MonoBehaviour
     private bool playerInRange = false;
     [SerializeField] private GameObject ToolTipPrefab;
     [SerializeField] private soundEffect shopOpenSFX;
+    [SerializeField] private InputTranslator translator;
 
     private void OpenShop()
     {
-        InputTranslator.Instance.PlayerInputs.ShopMenu.Enable();
-        InputTranslator.Instance.PlayerInputs.Gameplay.Disable();
+        translator.PlayerInputs.ShopMenu.Enable();
+        translator.PlayerInputs.Gameplay.Disable();
 
         VolumeManager.Instance.SetDepthOfField(true);
         soundEffectManager.Instance.Builder
@@ -29,7 +30,8 @@ public class shopkeeper : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        ToolTipPrefab.GetComponent<ToolTip>().text = $"Press '{InputTranslator.Instance.PlayerInputs.Gameplay.Interact.GetBindingDisplayString()}' to Shop";
+        ToolTipPrefab.GetComponent<ToolTip>().text = 
+            $"Press '{translator.PlayerInputs.Gameplay.Interact.GetBindingDisplayString()}' to Shop";
         Instantiate(ToolTipPrefab, this.transform.position + new Vector3(0, 1, -1), Quaternion.identity);
         playerInRange = true;
     }
@@ -48,13 +50,13 @@ public class shopkeeper : MonoBehaviour
     }
 
     void Start(){
-        //InputTranslator.OnShopEvent += OpenShop;
-        InputTranslator.OnCloseShopEvent += CloseShop;
-        InputTranslator.OnInteractEvent += RequestOpenShop;
+        //translator.OnShopEvent += OpenShop;
+        translator.OnCloseShopEvent += CloseShop;
+        translator.OnInteractEvent += RequestOpenShop;
     }
     void OnDestroy(){
-        //InputTranslator.OnShopEvent -= OpenShop;
-        InputTranslator.OnCloseShopEvent -= CloseShop;
-        InputTranslator.OnInteractEvent -= RequestOpenShop;
+        //translator.OnShopEvent -= OpenShop;
+        translator.OnCloseShopEvent -= CloseShop;
+        translator.OnInteractEvent -= RequestOpenShop;
     }
 }

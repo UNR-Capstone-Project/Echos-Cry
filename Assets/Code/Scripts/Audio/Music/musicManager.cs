@@ -5,7 +5,7 @@ using System;
 /// Original Author: Victor
 /// All Contributors Since Creation: Victor, Michael, Andy
 /// Last Modified By: 
-[CreateAssetMenu(fileName = "MusicManager", menuName = "Scriptable Objects/Music Manager")]
+[CreateAssetMenu(fileName = "MusicManager", menuName = "Echo's Cry/Music System/Music Manager")]
 public class MusicManager : ScriptableObject
 {
     private static MusicManager _instance;
@@ -31,7 +31,7 @@ public class MusicManager : ScriptableObject
 
     public const int MAX_LAYER_COUNT = 5;
     private GameObject musicPlayerPrefab;
-    [SerializeField] private float crossfadeTime = 0.5f;
+    //[SerializeField] private float crossfadeTime = 0.5f;
     [SerializeField] private MusicPlayer currentMusicPlayer;
     [SerializeField] private List<MusicPlayer> inactiveMusicPlayers = new List<MusicPlayer>();
 

@@ -9,7 +9,7 @@ public class WaveManager : MonoBehaviour
 {
     private int currentWave;
     public WaveData[] allWaves;
-    public event Action newWaveSpawned, AWaveEndedSpawning, allWavesCompleted;
+    public event Action newWaveSpawned, AWaveEndedSpawning; //allWavesCompleted;
     public NewEnemySpawner spawner;
     private int totalEnemiesKilled;
     public float timeBetweenWaves = 10f;

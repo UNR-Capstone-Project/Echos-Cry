@@ -12,12 +12,15 @@ public class ClarinetWeapon : BaseWeapon
 {
     protected override void Attack(StateName attackState)
     {
+        base.Attack(attackState);
+        
         int attackIndex = (int)attackState;
 
         SetupCurrentDamage(_attackData[attackIndex]);
 
         gameObject.SetActive(true);
         SetupAndStartAnimation(_attackData[attackIndex]);
+        PlayerMovement.PlayerRigidbody.AddForce(onAttackPushForce * PlayerDirection.AimDirection.normalized, ForceMode.Impulse);
         StartCoroutine(WaitForAnimationLength(_attackData[attackIndex]));
 
         SetupAndUseSound(_attackData[attackIndex]);
@@ -64,21 +67,24 @@ public class ClarinetWeapon : BaseWeapon
     }
     private void Start()
     {
-        PlayerAttackHandler.OnAttackEvent += Attack;
+        PlayerAttackHandler.OnInputRegisteredEvent += Attack;
         gameObject.SetActive(false);
     }
     private void OnDestroy()
     {
-        PlayerAttackHandler.OnAttackEvent -= Attack;
+        PlayerAttackHandler.OnInputRegisteredEvent -= Attack;
     }
     private void OnEnable()
     {
-        PlayerAttackHandler.OnAttackEvent += Attack;
+        PlayerAttackHandler.OnInputRegisteredEvent += Attack;
     }
     private void OnDisable()
     {
-        PlayerAttackHandler.OnAttackEvent -= Attack;
+        PlayerAttackHandler.OnInputRegisteredEvent -= Attack;
     }
 
     private AttackCollisionHandler _weaponCollisionHandler;
+
+    //Amount of force used to push player in direction of their attacks
+    [SerializeField] private float onAttackPushForce = 5f;
 }

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 /// Last Modified By:
 public class ShopManager : MonoBehaviour
 {
+    [SerializeField] private InputTranslator _translator;
     [SerializeField] private GameObject[] ShopItemArray;
     [SerializeField] private TextMeshProUGUI totalCostText;
     private int currentItemIndex = 0;
@@ -13,21 +14,21 @@ public class ShopManager : MonoBehaviour
 
     void Start()
     {
-        InputTranslator.OnShopLeftInput += Left;
-        InputTranslator.OnShopRightInput += Right;
-        InputTranslator.OnShopUpInput += Up;
-        InputTranslator.OnShopDownInput += Down;
-        InputTranslator.OnPurchaseEvent += Purchase;
+        _translator.OnShopLeftInput += Left;
+        _translator.OnShopRightInput += Right;
+        _translator.OnShopUpInput += Up;
+        _translator.OnShopDownInput += Down;
+        _translator.OnPurchaseEvent += Purchase;
 
         ShopItemArray[currentItemIndex].GetComponent<ShopItem>().ToggleHighlight(true);
     }
     private void OnDestroy()
     {
-        InputTranslator.OnShopLeftInput -= Left;
-        InputTranslator.OnShopRightInput -= Right;
-        InputTranslator.OnShopUpInput -= Up;
-        InputTranslator.OnShopDownInput -= Down;
-        InputTranslator.OnPurchaseEvent -= Purchase;
+        _translator.OnShopLeftInput -= Left;
+        _translator.OnShopRightInput -= Right;
+        _translator.OnShopUpInput -= Up;
+        _translator.OnShopDownInput -= Down;
+        _translator.OnPurchaseEvent -= Purchase;
     }
 
     private void Left()

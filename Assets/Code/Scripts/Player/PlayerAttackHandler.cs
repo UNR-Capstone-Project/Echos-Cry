@@ -11,13 +11,13 @@ public class PlayerAttackHandler : MonoBehaviour
     {
         if (!_readyForAttackInput || TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.MISS) return;
         _readyForAttackInput = false;
-        OnAttackEvent?.Invoke(ComboStateMachine.Instance.HandleLightAttack());
+        OnInputRegisteredEvent?.Invoke(ComboStateMachine.Instance.HandleLightAttack());
     }
     void HandleHeavyInput()
     {
         if (!_readyForAttackInput || TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.MISS) return;
         _readyForAttackInput = false;
-        OnAttackEvent?.Invoke(ComboStateMachine.Instance.HandleHeavyAttack());
+        OnInputRegisteredEvent?.Invoke(ComboStateMachine.Instance.HandleHeavyAttack());
     }
     void ResetAttackInput()
     {
@@ -28,19 +28,20 @@ public class PlayerAttackHandler : MonoBehaviour
     {
         _readyForAttackInput = true;
         
-        InputTranslator.OnLightAttackEvent += HandleLightInput;
-        InputTranslator.OnHeavyAttackEvent += HandleHeavyInput;
+        _inputTranslator.OnLightAttackEvent += HandleLightInput;
+        _inputTranslator.OnHeavyAttackEvent += HandleHeavyInput;
 
         BaseWeapon.OnAttackEndedEvent += ResetAttackInput;
     }
     private void OnDestroy()
     {
-        InputTranslator.OnLightAttackEvent -= HandleLightInput;
-        InputTranslator.OnHeavyAttackEvent -= HandleHeavyInput;
+        _inputTranslator.OnLightAttackEvent -= HandleLightInput;
+        _inputTranslator.OnHeavyAttackEvent -= HandleHeavyInput;
 
         BaseWeapon.OnAttackEndedEvent -= ResetAttackInput;
     }
 
+    [SerializeField] private InputTranslator _inputTranslator;
     private bool _readyForAttackInput = true;
-    public static event Action<ComboStateMachine.StateName> OnAttackEvent;
+    public static event Action<ComboStateMachine.StateName> OnInputRegisteredEvent;
 }

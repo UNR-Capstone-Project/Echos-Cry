@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343414a49d38e2f4bb5654d5df40242a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
-  pauseMenuCanvas: {fileID: 660896328893305440}
+  translator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
   currentPauseOption: 0
   selectedPauseOption: {fileID: 218700785040396542}
   continueText: {fileID: 509905833275992144}

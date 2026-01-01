@@ -5,6 +5,7 @@ public class DoorManager : MonoBehaviour
 {
     [SerializeField] private Animator doorAnimator;
     [SerializeField] private GameObject ToolTipPrefab;
+    [SerializeField] private InputTranslator translator;
 
     private bool playerInRange = false;
 
@@ -12,7 +13,8 @@ public class DoorManager : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            ToolTipPrefab.GetComponent<ToolTip>().text = $"Press '{InputTranslator.Instance.PlayerInputs.Gameplay.Interact.GetBindingDisplayString()}' to Open";
+            ToolTipPrefab.GetComponent<ToolTip>().text = 
+                $"Press '{translator.PlayerInputs.Gameplay.Interact.GetBindingDisplayString()}' to Open";
             Instantiate(ToolTipPrefab, this.transform.position + new Vector3(0, 2, -1), Quaternion.identity);
             playerInRange = true;
         }
@@ -36,10 +38,10 @@ public class DoorManager : MonoBehaviour
 
     void Start()
     {
-        InputTranslator.OnInteractEvent += OpenDoor;
+        translator.OnInteractEvent += OpenDoor;
     }
     private void OnDestroy()
     {
-        InputTranslator.OnInteractEvent -= OpenDoor;
+        translator.OnInteractEvent -= OpenDoor;
     }
 }

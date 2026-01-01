@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class MetronomeCanvas : MonoBehaviour
 {
+    [SerializeField] private InputTranslator _translator;
     [SerializeField] private TextMeshProUGUI hitQualityText;
     [SerializeField] private GameObject      metronomeImageObject;
     [SerializeField] private float           flashDuration = 0.1f;
@@ -32,17 +33,17 @@ public class MetronomeCanvas : MonoBehaviour
 
         TempoManager.BeatTickEvent += FlashOutline;
 
-        InputTranslator.OnDashEvent += UpdateHitQualityText;
-        InputTranslator.OnLightAttackEvent += UpdateHitQualityText;
-        InputTranslator.OnHeavyAttackEvent += UpdateHitQualityText;
+        _translator.OnDashEvent += UpdateHitQualityText;
+        _translator.OnLightAttackEvent += UpdateHitQualityText;
+        _translator.OnHeavyAttackEvent += UpdateHitQualityText;
     }
     private void OnDestroy()
     {
         TempoManager.BeatTickEvent -= FlashOutline;
 
-        InputTranslator.OnDashEvent -= UpdateHitQualityText;
-        InputTranslator.OnLightAttackEvent -= UpdateHitQualityText;
-        InputTranslator.OnHeavyAttackEvent -= UpdateHitQualityText;
+        _translator.OnDashEvent -= UpdateHitQualityText;
+        _translator.OnLightAttackEvent -= UpdateHitQualityText;
+        _translator.OnHeavyAttackEvent -= UpdateHitQualityText;
     }
 
     public void UpdateHitQualityText()

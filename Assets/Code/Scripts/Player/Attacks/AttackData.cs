@@ -1,7 +1,7 @@
 using AudioSystem;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Combo System/Attack Data")]
+[CreateAssetMenu(menuName = "Echo's Cry/Combo System/Attack Data")]
 public class AttackData : ScriptableObject
 {
     public AnimatorOverrideController OverrideController;

@@ -776,6 +776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdec6df5ad7484d4b99b76f2a3cbce56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JournalMenu
+  _translator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
   journalCanvas: {fileID: 2463204054447078950}
   currentJournalTab: 0
   selectedJournalTab: {fileID: 7729068176597791086}
