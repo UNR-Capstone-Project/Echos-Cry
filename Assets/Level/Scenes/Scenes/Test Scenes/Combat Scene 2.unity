@@ -812,6 +812,7 @@ Transform:
   - {fileID: 1069946708}
   - {fileID: 1412441742}
   - {fileID: 106558089}
+  - {fileID: 819572722}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &402054577
@@ -1710,12 +1711,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 819572719}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -50, y: 0, z: -50}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -43.4, y: -0.51156, z: -52.62333}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 397520808}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &819572723
 MonoBehaviour:
@@ -1747,7 +1748,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 7708ad55f54d6c04095474d6c34344a8, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: bd934a3ce33d15a418f33e0d968927c6, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1001 &859480468
 PrefabInstance:
@@ -3892,9 +3893,6 @@ MonoBehaviour:
   sceneTarget:
     m_SceneAsset: {fileID: 102900000, guid: 7b0faddb61c47924fa4e055b3b1bfd09, type: 3}
     m_SceneName: TownScene
-  sceneOrigin:
-    m_SceneAsset: {fileID: 102900000, guid: 309e65707ca7d8643b4487cd0073f99c, type: 3}
-    m_SceneName: LevelOneScene
   portalSFX: {fileID: 11400000, guid: 3c2c25fd20eacfe4aaa9eeece1a7174c, type: 2}
 --- !u!65 &2102998044
 BoxCollider:
@@ -4017,7 +4015,6 @@ SceneRoots:
   - {fileID: 383236096}
   - {fileID: 2102998045}
   - {fileID: 507071381}
-  - {fileID: 819572722}
   - {fileID: 597810212}
   - {fileID: 397520808}
   - {fileID: 117191314}
