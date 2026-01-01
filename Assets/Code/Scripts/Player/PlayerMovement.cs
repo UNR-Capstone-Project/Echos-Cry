@@ -5,6 +5,36 @@ using System;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private void Awake()
+    {
+        _playerRigidbody = GetComponent<Rigidbody>();
+        _playerCollider = GetComponent<Collider>();
+    }
+    void Start()
+    {
+        mainCameraRef = Camera.main.transform;
+        translator.OnMovementEvent += HandleMovement;
+        translator.OnDashEvent += HandleDash;
+
+        BaseWeapon.OnAttackStartEvent += HandleAttackStart;
+        BaseWeapon.OnAttackEndedEvent += HandleAttackEnd;
+
+        stoppingAcceleration = playerSpeed * 2;
+        //maxPlayerVelocitySqrMag = maxPlayerVelocityMag * maxPlayerVelocityMag;
+    }
+    private void OnDestroy()
+    {
+        translator.OnMovementEvent -= HandleMovement;
+        translator.OnDashEvent -= HandleDash;
+        BaseWeapon.OnAttackStartEvent -= HandleAttackStart;
+        BaseWeapon.OnAttackEndedEvent -= HandleAttackEnd;
+    }
+    private void FixedUpdate()
+    {
+        if (isDashing || isAttacking) return;
+        MovePlayer();
+    }
+
     private void MovePlayer()
     {
         Vector3 forwardVector = mainCameraRef.forward.normalized;
@@ -15,10 +45,10 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 targetVel = (playerLocomotion.y * playerSpeed * forwardVector)
                           + (playerLocomotion.x * playerSpeed * rightVector)
-                          + new Vector3(0f,playerRigidbody.linearVelocity.y,0f);
+                          + new Vector3(0f,_playerRigidbody.linearVelocity.y,0f);
 
-        if (playerLocomotion != Vector2.zero) playerRigidbody.AddForce(targetVel - playerRigidbody.linearVelocity, ForceMode.VelocityChange);
-        else playerRigidbody.AddForce(-(stoppingAcceleration * playerRigidbody.linearVelocity.normalized));
+        if (playerLocomotion != Vector2.zero) _playerRigidbody.AddForce(targetVel - _playerRigidbody.linearVelocity, ForceMode.VelocityChange);
+        else _playerRigidbody.AddForce(-(stoppingAcceleration * _playerRigidbody.linearVelocity.normalized));
     }
 
     public void HandleDash()
@@ -28,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
             || playerLocomotion == Vector2.zero) return;
 
         canDash = false;
-        playerRigidbody.AddForce(playerRigidbody.linearVelocity.normalized * dashSpeed, ForceMode.Impulse);
+        _playerRigidbody.AddForce(_playerRigidbody.linearVelocity.normalized * dashSpeed, ForceMode.Impulse);
         OnDashStarted?.Invoke();
 
         StartCoroutine(DashDurationTimer(dashDuration));
@@ -62,36 +92,6 @@ public class PlayerMovement : MonoBehaviour
         isAttacking = false;
     }
 
-    private void FixedUpdate()
-    {
-        if (isDashing || isAttacking) return;
-        MovePlayer();
-    }
-
-    private void Awake()
-    {
-        playerRigidbody = GetComponent<Rigidbody>();
-        _playerCollider = GetComponent<Collider>();
-    }
-    void Start()
-    {
-        mainCameraRef = Camera.main.transform;
-        translator.OnMovementEvent += HandleMovement;
-        translator.OnDashEvent += HandleDash;
-
-        BaseWeapon.OnAttackStartEvent += HandleAttackStart;
-        BaseWeapon.OnAttackEndedEvent += HandleAttackEnd;
-
-        stoppingAcceleration = playerSpeed * 2;
-        //maxPlayerVelocitySqrMag = maxPlayerVelocityMag * maxPlayerVelocityMag;
-    }
-    private void OnDestroy()
-    {
-        translator.OnMovementEvent -= HandleMovement;
-        translator.OnDashEvent -= HandleDash;
-        BaseWeapon.OnAttackStartEvent -= HandleAttackStart;
-        BaseWeapon.OnAttackEndedEvent -= HandleAttackEnd;
-    }
 
     [SerializeField] private InputTranslator translator;
 
@@ -99,8 +99,8 @@ public class PlayerMovement : MonoBehaviour
     private static Vector2 playerLocomotion = Vector2.zero;
     public static Vector2 PlayerLocomotion { get { return playerLocomotion; } }
 
-    private static Rigidbody playerRigidbody;
-    public static Rigidbody PlayerRigidbody { get { return playerRigidbody; } }
+    private static Rigidbody _playerRigidbody;
+    public static Rigidbody PlayerRigidbody { get { return _playerRigidbody; } }
     private Collider _playerCollider = null;
 
     private Transform mainCameraRef;
@@ -122,8 +122,4 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float playerSpeed = 10f;
     private float stoppingAcceleration;
-
-    //[SerializeField] private float maxPlayerVelocityMag = 5f;
-    //private float maxPlayerVelocitySqrMag;
-
 }

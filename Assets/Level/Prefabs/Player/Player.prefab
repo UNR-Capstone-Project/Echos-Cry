@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4782297013487666229}
   - component: {fileID: 7125107117967364897}
   - component: {fileID: 5939815466919569766}
-  - component: {fileID: 5730837766125738668}
   m_Layer: 0
   m_Name: SpotLight
   m_TagString: Untagged
@@ -128,18 +127,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!114 &5730837766125738668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 884036521095030534}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d0fc653778a24b489f16061702c0f59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!1 &1324492916464091062
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +139,7 @@ GameObject:
   - component: {fileID: 8612288689125873651}
   - component: {fileID: 5966105142730489167}
   m_Layer: 0
-  m_Name: Weapon Holder
+  m_Name: Weapon Handler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

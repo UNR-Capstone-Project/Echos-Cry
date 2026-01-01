@@ -44,5 +44,4 @@ public class PlayerAttackHandler : MonoBehaviour
     [SerializeField] private InputTranslator _inputTranslator;
     private bool _readyForAttackInput = true;
     public static event Action<ComboStateMachine.StateName> OnInputRegisteredEvent;
-    //public static event Action<ComboStateMachine.StateName> OnAttackEndedEvent;
 }
