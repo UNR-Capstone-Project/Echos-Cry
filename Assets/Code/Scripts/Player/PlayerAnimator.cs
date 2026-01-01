@@ -12,15 +12,15 @@ public class PlayerAnimator : MonoBehaviour
     void UpdateSpriteDirection(Vector2 locomotion)
     {
         if (locomotion.x == 0) return;
-        Vector3 currentScale = playerSpriteTransform.localScale;
+        Vector3 currentScale = _playerSpriteTransform.localScale;
         currentScale.x = Mathf.Sign(locomotion.x) * Mathf.Abs(currentScale.x);
-        playerSpriteTransform.localScale = currentScale;
+        _playerSpriteTransform.localScale = currentScale;
     }
     void UpdateSpriteAnimation(Vector2 locomotion)
     {
         //Animate player
-        if (locomotion != Vector2.zero) playerSpriteAnimator.SetBool(hashedIsRunning, true);
-        else playerSpriteAnimator.SetBool(hashedIsRunning, false);
+        if (locomotion != Vector2.zero) _playerSpriteAnimator.SetBool(hashedIsRunning, true);
+        else _playerSpriteAnimator.SetBool(hashedIsRunning, false);
     }
 
     public void DamagePlayerFlash()
@@ -30,9 +30,9 @@ public class PlayerAnimator : MonoBehaviour
     }
     private IEnumerator flashPlayerDamaged()
     {
-        playerSpriteRenderer.material.SetColor(hashedTintColor, spriteDamageColor);
+        _playerSpriteRenderer.material.SetColor(hashedTintColor, spriteDamageColor);
         yield return new WaitForSeconds(flashDamageDuration);
-        playerSpriteRenderer.material.SetColor(hashedTintColor, defaultSpriteColor);
+        _playerSpriteRenderer.material.SetColor(hashedTintColor, defaultSpriteColor);
     }
 
     public void HandleDashStartedEmit()
@@ -46,20 +46,21 @@ public class PlayerAnimator : MonoBehaviour
 
     private void Awake()
     {
-        playerSpriteAnimator  = GetComponent<Animator>();
-        playerSpriteRenderer  = GetComponent<SpriteRenderer>();
-        playerSpriteTransform = GetComponent<Transform>();
+        _playerSpriteAnimator  = GetComponent<Animator>();
+        _playerSpriteRenderer  = GetComponent<SpriteRenderer>();
+        _playerSpriteTransform = GetComponent<Transform>();
         _dashTrail = GetComponentInParent<TrailRenderer>();
     }
     private void Start()
     {
-        defaultSpriteColor = playerSpriteRenderer.material.GetColor(hashedTintColor);
+        defaultSpriteColor = _playerSpriteRenderer.material.GetColor(hashedTintColor);
+
         PlayerStats.OnPlayerDamagedEvent += DamagePlayerFlash;
 
         PlayerMovement.OnDashStarted += HandleDashStartedEmit;
         PlayerMovement.OnDashEnded += HandleDashEndedEmit;
 
-        InputTranslator.OnMovementEvent += HandleMovement;
+        _translator.OnMovementEvent += HandleMovement;
     }
     private void OnDestroy()
     {
@@ -68,18 +69,20 @@ public class PlayerAnimator : MonoBehaviour
         PlayerMovement.OnDashStarted -= HandleDashStartedEmit;
         PlayerMovement.OnDashEnded   -= HandleDashEndedEmit;
 
-        InputTranslator.OnMovementEvent -= HandleMovement;
+        _translator.OnMovementEvent -= HandleMovement;
     }
-    
+
+    [SerializeField] private InputTranslator _translator;
+
     [SerializeField] private Color spriteDamageColor = Color.red;
     [SerializeField] private float flashDamageDuration = 0.2f;
     private Color defaultSpriteColor;
 
     private TrailRenderer _dashTrail = null;
 
-    private Transform      playerSpriteTransform;
-    private SpriteRenderer playerSpriteRenderer;
-    private Animator       playerSpriteAnimator;
+    private Transform      _playerSpriteTransform;
+    private SpriteRenderer _playerSpriteRenderer;
+    private Animator       _playerSpriteAnimator;
 
     private int hashedTintColor = Shader.PropertyToID("_TintColor");
     private int hashedIsRunning = Animator.StringToHash("isRunning");

@@ -14,6 +14,7 @@ public class InventoryManager : MonoBehaviour
     //public PlayerStats player;
 
     [SerializeField] private InventoryDisplay _inventoryDisplay;
+    [SerializeField] private InputTranslator _inputTranslator;
 
     private void Awake()
     {
@@ -42,10 +43,10 @@ public class InventoryManager : MonoBehaviour
         inventory = new List<InventoryItem>();
         m_itemDictionary = new Dictionary<inventoryItemData, InventoryItem>();
 
-        InputTranslator.OnItem1Event += UseItem1;
-        InputTranslator.OnItem2Event += UseItem2;
-        InputTranslator.OnItem3Event += UseItem3;
-        InputTranslator.OnItem4Event += UseItem4;
+        _inputTranslator.OnItem1Event += UseItem1;
+        _inputTranslator.OnItem2Event += UseItem2;
+        _inputTranslator.OnItem3Event += UseItem3;
+        _inputTranslator.OnItem4Event += UseItem4;
     }
     private void healthPotion(){
         PlayerStats.OnDamageHealed(10f);
@@ -100,10 +101,10 @@ public class InventoryManager : MonoBehaviour
         UseItem(3);
     }
     void OnDestroy(){
-        InputTranslator.OnItem1Event -= UseItem1;
-        InputTranslator.OnItem2Event -= UseItem2;
-        InputTranslator.OnItem3Event -= UseItem3;
-        InputTranslator.OnItem4Event -= UseItem4;
+        _inputTranslator.OnItem1Event -= UseItem1;
+        _inputTranslator.OnItem2Event -= UseItem2;
+        _inputTranslator.OnItem3Event -= UseItem3;
+        _inputTranslator.OnItem4Event -= UseItem4;
     }
     public InventoryItem Get(inventoryItemData referenceData){
         if(m_itemDictionary.TryGetValue(referenceData, out InventoryItem value)){

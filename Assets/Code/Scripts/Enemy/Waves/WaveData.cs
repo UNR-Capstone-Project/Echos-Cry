@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// A ScriptableObject to hold all the data about enemy spawn waves to be used in an area of a level
 /// </summary>
-[CreateAssetMenu(fileName = "WaveData", menuName = "Scriptable Objects/WaveData")]
+[CreateAssetMenu(fileName = "WaveData", menuName = "Echo's Cry/Enemy Wave System/WaveData")]
 public class WaveData : ScriptableObject
 {
     public int totalEnemies;

@@ -9,6 +9,7 @@ public class PlayerRef : MonoBehaviour
     private static Transform _playerTransform;
     public static Transform PlayerTransform { get { return _playerTransform; } }
 
+
     private void Awake()
     {
         if(_instance != null)

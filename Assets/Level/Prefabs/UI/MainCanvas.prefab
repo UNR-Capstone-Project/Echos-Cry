@@ -1400,6 +1400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aea4dc729f4e95438b52c1d682eefad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetronomeCanvas
+  _translator: {fileID: 0}
   hitQualityText: {fileID: 7966699270862996379}
   metronomeImageObject: {fileID: 840251735800372354}
   flashDuration: 0.1
@@ -2100,6 +2101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48f43164309e3b143bdb5cf72aa9cb83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  _translator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
   menuDictionary:
   - key: HUD
     value: {fileID: 6057392422990054222}

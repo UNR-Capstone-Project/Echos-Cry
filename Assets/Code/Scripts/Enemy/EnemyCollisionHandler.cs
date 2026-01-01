@@ -20,9 +20,9 @@ public class EnemyCollisionHandler : MonoBehaviour
         {
             PlayerComboMeter.AddToComboMeter(handler.AttackDamage);
             PlayerComboMeter.UpdateComboMultiplier();
+            _enemyCollider.enabled = false;
+            _enemyManager.SwitchState(enemyStaggerState);
         }
-        _enemyCollider.enabled = false;
-        _enemyManager.SwitchState(enemyStaggerState);
     }
     private void ResetColliderBool()
     {
