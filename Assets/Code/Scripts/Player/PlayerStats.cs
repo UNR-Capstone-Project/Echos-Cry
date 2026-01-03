@@ -61,7 +61,6 @@ public class PlayerStats : MonoBehaviour
     {
         _currentHealth = _maxHealth;
         _currencyCount = 0;
-
     }
 
     private static PlayerStats _instance;
