@@ -5,37 +5,7 @@ using System;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private void Awake()
-    {
-        _playerRigidbody = GetComponent<Rigidbody>();
-        _playerCollider = GetComponent<Collider>();
-    }
-    void Start()
-    {
-        mainCameraRef = Camera.main.transform;
-        translator.OnMovementEvent += HandleMovement;
-        translator.OnDashEvent += HandleDash;
-
-        BaseWeapon.OnAttackStartEvent += HandleAttackStart;
-        BaseWeapon.OnAttackEndedEvent += HandleAttackEnd;
-
-        stoppingAcceleration = playerSpeed * 2;
-        //maxPlayerVelocitySqrMag = maxPlayerVelocityMag * maxPlayerVelocityMag;
-    }
-    private void OnDestroy()
-    {
-        translator.OnMovementEvent -= HandleMovement;
-        translator.OnDashEvent -= HandleDash;
-        BaseWeapon.OnAttackStartEvent -= HandleAttackStart;
-        BaseWeapon.OnAttackEndedEvent -= HandleAttackEnd;
-    }
-    private void FixedUpdate()
-    {
-        if (isDashing || isAttacking) return;
-        MovePlayer();
-    }
-
-    private void MovePlayer()
+    public void PlayerMove(Vector2 playerInputLocomotion)
     {
         Vector3 forwardVector = mainCameraRef.forward.normalized;
         forwardVector.y = 0f;
@@ -43,83 +13,31 @@ public class PlayerMovement : MonoBehaviour
         Vector3 rightVector = mainCameraRef.right.normalized;
         rightVector.y = 0f;
 
-        Vector3 targetVel = (playerLocomotion.y * playerSpeed * forwardVector)
-                          + (playerLocomotion.x * playerSpeed * rightVector)
+        Vector3 targetVel = (playerInputLocomotion.y * _playerMovementConfig.PlayerSpeed * forwardVector)
+                          + (playerInputLocomotion.x * _playerMovementConfig.PlayerSpeed * rightVector)
                           + new Vector3(0f,_playerRigidbody.linearVelocity.y,0f);
 
-        if (playerLocomotion != Vector2.zero) _playerRigidbody.AddForce(targetVel - _playerRigidbody.linearVelocity, ForceMode.VelocityChange);
+        if (playerInputLocomotion != Vector2.zero) _playerRigidbody.AddForce(targetVel - _playerRigidbody.linearVelocity, ForceMode.VelocityChange);
         else _playerRigidbody.AddForce(-(stoppingAcceleration * _playerRigidbody.linearVelocity.normalized));
     }
-
-    public void HandleDash()
+    public void PlayerDash()
     {
-        if (!canDash 
-            || TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.MISS 
-            || playerLocomotion == Vector2.zero) return;
-
-        canDash = false;
-        _playerRigidbody.AddForce(_playerRigidbody.linearVelocity.normalized * dashSpeed, ForceMode.Impulse);
-        OnDashStarted?.Invoke();
-
-        StartCoroutine(DashDurationTimer(dashDuration));
-    }
-    IEnumerator DashDurationTimer(float duration)
-    {
-        isDashing = true;
-        _playerCollider.enabled = false; 
-        yield return new WaitForSeconds(duration);
-        isDashing = false;
-        _playerCollider.enabled = true;
-        OnDashEnded?.Invoke();
-        StartCoroutine(DashCooldownTimer(dashCooldown));
-    }
-    IEnumerator DashCooldownTimer(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        canDash = true;
+        _playerRigidbody.AddForce(_playerRigidbody.linearVelocity.normalized * _playerMovementConfig.DashSpeed, ForceMode.Impulse);
     }
 
-    public void HandleMovement(Vector2 locomotion)
+    void Start()
     {
-        playerLocomotion = locomotion;
-    }
-    public void HandleAttackStart(ComboStateMachine.StateName state)
-    {
-        isAttacking = true;
-    }
-    public void HandleAttackEnd()
-    {
-        isAttacking = false;
+        mainCameraRef = Camera.main.transform;
+
+        stoppingAcceleration = _playerMovementConfig.PlayerSpeed * 2;
     }
 
-
-    [SerializeField] private InputTranslator translator;
-
-    //Player Movement
-    private static Vector2 playerLocomotion = Vector2.zero;
-    public static Vector2 PlayerLocomotion { get { return playerLocomotion; } }
-
-    private static Rigidbody _playerRigidbody;
-    public static Rigidbody PlayerRigidbody { get { return _playerRigidbody; } }
-    private Collider _playerCollider = null;
+    [Header("Configuration Object")]
+    [SerializeField] private PlayerMovementConfig _playerMovementConfig;
+    
+    [Header("Player Movement System Dependencies")]
+    [SerializeField] private Rigidbody _playerRigidbody;
 
     private Transform mainCameraRef;
-
-    //Player Dashing
-    public static event Action OnDashStarted;
-    public static event Action OnDashEnded;
-
-    private bool canDash = true;
-    private bool isDashing = false;
-    private bool isAttacking = false;
-
-    [Header("Determines how quickly dash reaches destination.")]
-    [SerializeField] private float dashSpeed = 20f;
-    [Header("Determines the distance of the dash.")]
-    [SerializeField] private float dashDuration = 3f;
-    [Header("")]
-    [SerializeField] private float dashCooldown = 1f;
-
-    [SerializeField] private float playerSpeed = 10f;
     private float stoppingAcceleration;
 }

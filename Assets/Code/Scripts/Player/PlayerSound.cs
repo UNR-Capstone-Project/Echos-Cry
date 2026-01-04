@@ -3,18 +3,12 @@ using UnityEngine;
 
 public class PlayerSound : MonoBehaviour
 {
-    private void LateUpdate()
+    public void PlayFootstep()
     {
-        PlayFootstep();
-    }
-
-    private void PlayFootstep()
-    {
-        if (PlayerMovement.PlayerLocomotion != Vector2.zero
-            && !_builderRef.GetSoundPlayer().IsSoundPlaying())
+        if (!_builderRef.GetSoundPlayer().IsSoundPlaying())
         {
             _builderRef
-            .setSound(_footstepEffect)
+            .setSound(_playerSoundConfig.FootstepSFX)
             .setSoundPosition(transform.position)
             .ValidateAndPlaySound();
         }
@@ -25,6 +19,8 @@ public class PlayerSound : MonoBehaviour
         _builderRef = soundEffectManager.Instance.Builder;
     }
 
+    [Header("Configuration Object")]
+    [SerializeField] private PlayerSoundConfig _playerSoundConfig;
+
     private soundBuilder _builderRef;
-    [SerializeField] soundEffect _footstepEffect;
 }

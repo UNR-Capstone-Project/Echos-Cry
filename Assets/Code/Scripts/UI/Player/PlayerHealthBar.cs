@@ -26,13 +26,13 @@ public class PlayerHealthBar : MonoBehaviour
     void Start()
     {
         PlayerStats.OnPlayerHealthChangeEvent += updateHealth;
-        PlayerStats.OnPlayerDeathEvent += updateHealthOnDeath;
+        //PlayerStats.OnPlayerDeathEvent += updateHealthOnDeath;
     }
 
     void OnDestroy()
     {
         PlayerStats.OnPlayerHealthChangeEvent -= updateHealth;
-        PlayerStats.OnPlayerDeathEvent -= updateHealthOnDeath;
+        //PlayerStats.OnPlayerDeathEvent -= updateHealthOnDeath;
     }
 
     private void updateHealth(float currentHealth, float maxHealth)

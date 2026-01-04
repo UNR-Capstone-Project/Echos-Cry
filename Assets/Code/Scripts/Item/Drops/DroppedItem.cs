@@ -46,7 +46,7 @@ public class DroppedItem : MonoBehaviour
             .setSound(pickupSFX)
             .setSoundPosition(this.transform.position)
             .ValidateAndPlaySound();
-        PlayerStats.UpdateCurrency(1);
+        //PlayerStats.UpdateCurrency(1);
         GetComponent<Collider>().enabled = false;   
         Destroy(gameObject);
     }

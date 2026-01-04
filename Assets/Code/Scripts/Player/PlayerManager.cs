@@ -11,5 +11,6 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private PlayerAttackHandler _playerAttackHandler;
     [SerializeField] private PlayerSkillManager _playerSkillManager;
     [SerializeField] private PlayerDirection _playerDirection;
+    [SerializeField] private PlayerCurrencySystem _playerCurrencySystem;
 
 }

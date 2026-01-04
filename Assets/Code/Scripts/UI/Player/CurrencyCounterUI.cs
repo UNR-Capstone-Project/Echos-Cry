@@ -7,15 +7,15 @@ public class CurrencyCounterUI : MonoBehaviour
 
     public void UpdateCurrencyText()
     {
-        currencyText.text = "Fingers: " + PlayerStats.CurrencyCount.ToString();
+        currencyText.text = "Fingers: 0";// + PlayerStats.CurrencyCount.ToString();
     }
 
     private void Start()
     {
-        PlayerStats.OnCurrencyChangeEvent += UpdateCurrencyText;
+       // PlayerStats.OnCurrencyChangeEvent += UpdateCurrencyText;
     }
     private void OnDestroy()
     {
-        PlayerStats.OnCurrencyChangeEvent -= UpdateCurrencyText;
+       // PlayerStats.OnCurrencyChangeEvent -= UpdateCurrencyText;
     }
 }

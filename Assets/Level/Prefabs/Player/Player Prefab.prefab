@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &343930898882040868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 391624207702511625}
+  - component: {fileID: 2347857121992901382}
+  m_Layer: 10
+  m_Name: Player Currency System
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &391624207702511625
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343930898882040868}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 415338203038042998}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2347857121992901382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343930898882040868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 027c99f45aac1e341b66a641f7ac4fbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCurrencySystem
+  _playerCurrencyConfig: {fileID: 0}
 --- !u!1 &348270999240321935
 GameObject:
   m_ObjectHideFlags: 0
@@ -55,7 +100,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4044307535273396445}
   - component: {fileID: 4955914926744265378}
-  - component: {fileID: 4699990313882456968}
   m_Layer: 10
   m_Name: Player Stats
   m_TagString: Untagged
@@ -90,20 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb0d8d974a229a4ab05cb29a4d24eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
---- !u!114 &4699990313882456968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 475222138870821773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: add17ce02c85fdc45aea35ad0bef13b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerComboMeter
-  _inputTranslator: {fileID: 0}
-  _comboMeterDrainRate: 2.5
+  _playerStatsConfig: {fileID: 0}
 --- !u!1 &884036521095030534
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,11 +306,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbcf6b0c0055f89418334568b5e15077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  _playerMovementConfig: {fileID: 0}
   translator: {fileID: 0}
-  dashSpeed: 20
-  dashDuration: 3
-  dashCooldown: 1
-  playerSpeed: 10
+  _playerRigidbody: {fileID: 2019051602396369572}
 --- !u!1 &1324492916464091062
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,8 +318,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1242409098282706864}
-  - component: {fileID: 8612288689125873651}
-  - component: {fileID: 5966105142730489167}
   m_Layer: 0
   m_Name: Weapon Handler
   m_TagString: Untagged
@@ -314,32 +341,6 @@ Transform:
   - {fileID: 2127575191814039986}
   m_Father: {fileID: 1876697883255032612}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8612288689125873651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1324492916464091062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d98572dab44c2374784863bc0115301d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ComboStateMachine
-  _comboResetTime: 0.5
---- !u!114 &5966105142730489167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1324492916464091062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32dd952c7bae76e4eadc94243a5e64e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttackHandler
-  _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
 --- !u!1 &2428720641269041060
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,6 +374,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4044307535273396445}
+  - {fileID: 391624207702511625}
+  - {fileID: 8109899283628625893}
   - {fileID: 8203918266017756090}
   - {fileID: 6774187308919859205}
   - {fileID: 2091355728142018776}
@@ -396,7 +399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
   _playerStats: {fileID: 4955914926744265378}
-  _playerComboMeter: {fileID: 4699990313882456968}
+  _playerComboMeter: {fileID: 6448038699777697774}
   _playerAnimator: {fileID: 6459526305365980964}
   _playerSound: {fileID: 2732405943756659283}
   _playerMovement: {fileID: 5127503919009400606}
@@ -404,6 +407,7 @@ MonoBehaviour:
   _playerAttackHandler: {fileID: 9059335884074608078}
   _playerSkillManager: {fileID: 6372820548089278461}
   _playerDirection: {fileID: 1248617291903597529}
+  _playerCurrencySystem: {fileID: 2347857121992901382}
 --- !u!54 &2019051602396369572
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -498,7 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c64d65797eacb64aaa52035713efda5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSound
-  _footstepEffect: {fileID: 11400000, guid: 3028a632f21d41d4ebf89c457249cc0a, type: 2}
+  _playerSoundConfig: {fileID: 0}
 --- !u!1 &4323622196322604754
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,6 +630,52 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &4349374921789276103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8109899283628625893}
+  - component: {fileID: 6448038699777697774}
+  m_Layer: 0
+  m_Name: Player Combo Meter System
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8109899283628625893
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4349374921789276103}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.35848, y: 0, z: 0.18812}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 415338203038042998}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6448038699777697774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4349374921789276103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: add17ce02c85fdc45aea35ad0bef13b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerComboMeter
+  _inputTranslator: {fileID: 0}
+  _comboMeterDrainRate: 2.5
 --- !u!1 &5710194311805252216
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,9 +754,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97eeacd70dc0f444cb9fd9df6e2799a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimator
-  _translator: {fileID: 0}
-  spriteDamageColor: {r: 1, g: 0, b: 0, a: 1}
-  flashDamageDuration: 0.2
+  _playerAnimatorConfig: {fileID: 0}
+  _dashTrail: {fileID: 7891788043630777140}
+  _playerMainSpriteTransform: {fileID: 738753259440279824}
+  _playerMainSpriteRenderer: {fileID: 6708799519748724713}
+  _playerMainSpriteAnimator: {fileID: 8800062765207849607}
 --- !u!96 &7891788043630777140
 TrailRenderer:
   serializedVersion: 3

@@ -31,14 +31,14 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
-        PlayerStats.OnPlayerDeathEvent += EnableGameoverMenu;
+        //PlayerStats.OnPlayerDeathEvent += EnableGameoverMenu;
         _translator.OnPauseEvent += EnablePauseMenu;
         _translator.OnResumeEvent += DisablePauseMenu;
     }
 
     void OnDestroy()
     {
-        PlayerStats.OnPlayerDeathEvent -= EnableGameoverMenu;
+        //PlayerStats.OnPlayerDeathEvent -= EnableGameoverMenu;
         _translator.OnPauseEvent -= EnablePauseMenu;
         _translator.OnResumeEvent -= DisablePauseMenu;
     }

@@ -49,7 +49,7 @@ public class InventoryManager : MonoBehaviour
         _inputTranslator.OnItem4Event += UseItem4;
     }
     private void healthPotion(){
-        PlayerStats.OnDamageHealed(10f);
+        //PlayerStats.OnDamageHealed(10f);
         Debug.Log("Health");
     }
     private void shieldPotion(){
@@ -70,7 +70,7 @@ public class InventoryManager : MonoBehaviour
 
         if (usedItem.data.id == "healthP")
         {
-            if (PlayerStats.CurrentHealth == PlayerStats.MaxHealth) return;
+            //if (PlayerStats.CurrentHealth == PlayerStats.MaxHealth) return;
             healthPotion();
         }
         else if (usedItem.data.id == "shieldP")
