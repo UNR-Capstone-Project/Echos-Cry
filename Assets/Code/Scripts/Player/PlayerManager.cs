@@ -13,4 +13,15 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private PlayerDirection _playerDirection;
     [SerializeField] private PlayerCurrencySystem _playerCurrencySystem;
 
+    private PlayerStateMachine _playerStateMachine;
+
+    private void Awake()
+    {
+        _playerStateMachine = new PlayerStateMachine(this);
+    }
+    private void Update()
+    {
+        _playerStateMachine.Update();
+    }
+
 }

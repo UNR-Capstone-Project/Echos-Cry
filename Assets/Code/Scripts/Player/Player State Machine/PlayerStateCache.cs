@@ -1,16 +1,19 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStateCache : MonoBehaviour
+public class PlayerStateCache
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private Dictionary<PlayerStateMachine.PlayerState, PlayerAbstractState> _stateCache;
+    public PlayerStateCache(PlayerManager playerContext)
     {
-        
+        _stateCache = new Dictionary<PlayerStateMachine.PlayerState, PlayerAbstractState>()
+        {
+            {PlayerStateMachine.PlayerState.NONE, null }
+        };
     }
-
-    // Update is called once per frame
-    void Update()
+    public PlayerAbstractState RequestState(PlayerStateMachine.PlayerState state)
     {
-        
+        if(_stateCache.ContainsKey(state)) return _stateCache[state];
+        else return null;
     }
 }
