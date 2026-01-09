@@ -2375,6 +2375,7 @@ MonoBehaviour:
   _playerAttackHandler: {fileID: 0}
   _playerSkillManager: {fileID: 0}
   _playerDirection: {fileID: 0}
+  _playerCurrencySystem: {fileID: 0}
 --- !u!4 &1267324452
 Transform:
   m_ObjectHideFlags: 0

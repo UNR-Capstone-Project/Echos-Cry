@@ -3,17 +3,25 @@ using UnityEngine;
 
 public class PlayerStateCache
 {
-    private Dictionary<PlayerStateMachine.PlayerState, PlayerAbstractState> _stateCache;
-    public PlayerStateCache(PlayerManager playerContext)
+    public PlayerStateCache(PlayerManager playerContext, PlayerStateMachine playerStateMachine)
     {
-        _stateCache = new Dictionary<PlayerStateMachine.PlayerState, PlayerAbstractState>()
+        _stateCache = new Dictionary<PlayerState, PlayerActionState>()
         {
-            {PlayerStateMachine.PlayerState.NONE, null }
+            {PlayerState.IDLE, new PlayerIdleState(playerStateMachine, this) }
         };
     }
-    public PlayerAbstractState RequestState(PlayerStateMachine.PlayerState state)
+
+    public PlayerActionState RequestState(PlayerState state)
     {
         if(_stateCache.ContainsKey(state)) return _stateCache[state];
         else return null;
     }
+
+    public enum PlayerState
+    {
+        NONE = 0,
+        IDLE
+    }
+
+    private Dictionary<PlayerState, PlayerActionState> _stateCache;
 }
