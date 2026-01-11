@@ -35,19 +35,19 @@ public class SpawnsDamagePopups : MonoBehaviour
 
     }
 
-    public void DamageDone(float damage, Vector3 position)
+    public void DamageDone(float damage, Vector3 position, Color color)
     {
         Vector3 screenPosition = CameraManager.MainCamera.WorldToScreenPoint(position);
         screenPosition.z = 0;
         bool direction = screenPosition.x < Screen.width * 0.5f;
 
-        SpawnDamagePopup(damage, screenPosition, direction);
+        SpawnDamagePopup(damage, screenPosition, direction, color);
     }
 
-    private void SpawnDamagePopup(float damage, Vector3 position, bool direction)
+    private void SpawnDamagePopup(float damage, Vector3 position, bool direction, Color color)
     {
         DamageLabel damageLabel = damageLabelPopupPool.Get();
-        damageLabel.Display(damage, position, direction);
+        damageLabel.Display(damage, position, direction, color);
     }
 
     public void ReturnDamageLabelToPool(DamageLabel damageLabel3d)

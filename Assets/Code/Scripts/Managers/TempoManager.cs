@@ -77,8 +77,8 @@ public class TempoManager : MonoBehaviour
     private float _lastProgress = 0f;
 
     //Hit Time
-    private static float _excellentPercent = 0.085f; 
-    private static float _goodPercent = 0.175f; 
+    private static float _excellentPercent = 0.1f; 
+    private static float _goodPercent = 0.2f; 
     //private static float _lastBeatTime = 0f;
     //private static float _badPercent = 0.25f;
 

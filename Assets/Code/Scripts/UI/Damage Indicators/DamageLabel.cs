@@ -56,14 +56,14 @@ public class DamageLabel : MonoBehaviour
         OrientCurveBasedOnDirection();
     }
 
-    public void Display(float damage, Vector3 objPosition, bool direction)
+    public void Display(float damage, Vector3 objPosition, bool direction, Color color)
     {
         transform.position = objPosition;
         this.direction = direction;
 
         damageText.SetText(damage.ToString());
 
-        damageText.color = normalFontColor;
+        damageText.color = color;
         //damageText.fontSize = isCrit ? critFontSize : normalFontSize;
 
         if (moveCoroutine != null)

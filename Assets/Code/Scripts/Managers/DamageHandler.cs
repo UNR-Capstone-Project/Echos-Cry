@@ -19,9 +19,9 @@ public class DamageHandler : MonoBehaviour
         }
     }
     //Adds enemy index and amount of damage to the queue
-    public void AddToDamageQueue(int index, float damage)
+    public void AddToDamageQueue(int index, float damage, Color color)
     {
-        _indexQueue.Enqueue(new DamageInfo(index, damage));
+        _indexQueue.Enqueue(new DamageInfo(index, damage, color));
     }
     //Handles any enemy index placed in queue and does damage to enemy
     public void HandleDamageQueue(int numHandles)
@@ -34,7 +34,7 @@ public class DamageHandler : MonoBehaviour
         for(int i = 0;i < handleAmount; i++)
         {
             DamageInfo currentInfo = _indexQueue.Dequeue();
-            _enemyStatsPool[currentInfo.index].DamageEnemy(currentInfo.damage);
+            _enemyStatsPool[currentInfo.index].DamageEnemy(currentInfo.damage, currentInfo.color);
         } 
     }
 
@@ -55,10 +55,12 @@ public class DamageHandler : MonoBehaviour
     {
         public int index;
         public float damage;
-        public DamageInfo(int index, float damage)
+        public Color color;
+        public DamageInfo(int index, float damage, Color color)
         {
             this.index = index;
             this.damage = damage;
+            this.color = color;
         }
     }
     public static DamageHandler Instance { get; private set; }

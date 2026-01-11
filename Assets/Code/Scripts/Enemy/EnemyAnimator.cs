@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class EnemyAnimator : MonoBehaviour
 {
-    public void HandleDamageEnemy(float damage)
+    public void HandleDamageEnemy(float damage, Color color)
     {
         StopCoroutine(FlashEnemy());
         StartCoroutine(FlashEnemy());
-        SpawnsDamagePopups.Instance.DamageDone(damage, transform.position);
+        SpawnsDamagePopups.Instance.DamageDone(damage, transform.position, color);
     }
 
     private IEnumerator FlashEnemy()

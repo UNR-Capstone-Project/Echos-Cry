@@ -73,7 +73,7 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
                 damageEnemyAction = (other) =>
                 {
                     if (other.TryGetComponent<SimpleEnemyManager>(out SimpleEnemyManager manager)) 
-                        manager.EnemyStats.DamageEnemy(projectileDamage);
+                        manager.EnemyStats.DamageEnemy(projectileDamage, Color.yellow);
                 };
                 break;
             default:

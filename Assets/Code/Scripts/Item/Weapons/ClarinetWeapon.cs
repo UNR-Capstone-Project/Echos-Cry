@@ -29,10 +29,20 @@ public class ClarinetWeapon : BaseWeapon
     private void SetupCurrentDamage(AttackData attackData)
     {
         float multiplier;
-        if (TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.EXCELLENT) multiplier = 1.25f;
-        else multiplier = 1.15f;
+        Color multiplierColor;
+        if (TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.EXCELLENT)
+        {
+            multiplier = 1.25f;
+            multiplierColor = Color.purple;
+        }
+        else
+        {
+            multiplier = 1.15f;
+            multiplierColor = Color.white;
+        }
         float damage = attackData.BaseDamage * multiplier;
-        _weaponCollisionHandler.UpdateAttackDamage(damage);
+
+        _weaponCollisionHandler.UpdateAttackDamage(damage, multiplierColor);
     }
 
     private void SetupAndUseSound(AttackData attackData)
