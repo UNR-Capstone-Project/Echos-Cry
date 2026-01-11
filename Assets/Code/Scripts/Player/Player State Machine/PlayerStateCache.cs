@@ -7,7 +7,7 @@ public class PlayerStateCache
     {
         _stateCache = new Dictionary<PlayerState, PlayerActionState>()
         {
-            {PlayerState.IDLE, new PlayerIdleState(playerStateMachine, this) }
+            {PlayerState.Idle, new PlayerIdleState(playerStateMachine, this) }
         };
     }
 
@@ -19,8 +19,8 @@ public class PlayerStateCache
 
     public enum PlayerState
     {
-        NONE = 0,
-        IDLE
+        None = 0,
+        Idle, Move, Attack, Dash
     }
 
     private Dictionary<PlayerState, PlayerActionState> _stateCache;

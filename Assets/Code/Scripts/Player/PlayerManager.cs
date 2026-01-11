@@ -12,18 +12,26 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private PlayerSkillManager _playerSkillManager;
     [SerializeField] private PlayerDirection _playerDirection;
     [SerializeField] private PlayerCurrencySystem _playerCurrencySystem;
+    [SerializeField] private InputTranslator _inputTranslator;
 
     private PlayerStateMachine _playerStateMachine;
     private PlayerStateCache _playerStateCache;
+    private PlayerInputHandler _playerInputHandler;
 
     private void Awake()
     {
         _playerStateMachine = new PlayerStateMachine();
         _playerStateCache = new PlayerStateCache(this, _playerStateMachine);
+        _playerInputHandler = new PlayerInputHandler(_inputTranslator, _playerStateMachine);
     }
     private void Start()
     {
-        _playerStateMachine.Init(_playerStateCache.RequestState(PlayerStateCache.PlayerState.IDLE));
+        _playerStateMachine.Init(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Idle));
+        _playerInputHandler.BindEvents();
+    }
+    private void OnDestroy()
+    {
+        _playerInputHandler.UnbindEvents();
     }
     private void Update()
     {
