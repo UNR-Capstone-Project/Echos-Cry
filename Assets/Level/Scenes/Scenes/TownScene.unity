@@ -3826,6 +3826,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5350839731573509473, guid: 1c5f5372fde806d4e87546032cd7d91f, type: 3}
+      propertyPath: translator
+      value: 
+      objectReference: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5804,6 +5808,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2912883627511616977, guid: e1df6ecf5f146cd4ea241f3171b8ae54, type: 3}
+      propertyPath: translator
+      value: 
+      objectReference: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
     - target: {fileID: 8624400538190268421, guid: e1df6ecf5f146cd4ea241f3171b8ae54, type: 3}
       propertyPath: m_Name
       value: ShopKeeper

@@ -15,7 +15,7 @@ public class PlayerDirection : MonoBehaviour
     {
         Ray ray = CameraManager.MainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
-        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, groundLayer))
         {
             aimDirection = (hit.point - transform.parent.position).normalized; //Calculates the direction between the mouse mapped to world space and the players position.
             aimDirection.y = 0;

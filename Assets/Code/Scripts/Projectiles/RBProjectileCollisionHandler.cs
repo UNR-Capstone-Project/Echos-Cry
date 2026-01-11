@@ -19,6 +19,12 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
         }
 
         //Only damage if colliding with valid target
+        if ((currentUser == ProjectileUser.ENEMY && other.gameObject.layer != LayerMask.NameToLayer("Player"))
+            || (currentUser == ProjectileUser.PLAYER && other.gameObject.layer != LayerMask.NameToLayer("Enemy")))
+        {
+            return;
+        }
+
         damageEnemyAction(other);
         StopAllCoroutines();
         ResetProjectile();
