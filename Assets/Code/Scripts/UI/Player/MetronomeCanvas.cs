@@ -33,17 +33,17 @@ public class MetronomeCanvas : MonoBehaviour
 
         TempoManager.BeatTickEvent += FlashOutline;
 
-        _translator.OnDashEvent += UpdateHitQualityText;
-        _translator.OnLightAttackEvent += UpdateHitQualityText;
-        _translator.OnHeavyAttackEvent += UpdateHitQualityText;
+        //_translator.OnDashEvent += UpdateHitQualityText;
+        //_translator.OnLightAttackEvent += UpdateHitQualityText;
+        //_translator.OnHeavyAttackEvent += UpdateHitQualityText;
     }
     private void OnDestroy()
     {
         TempoManager.BeatTickEvent -= FlashOutline;
 
-        _translator.OnDashEvent -= UpdateHitQualityText;
-        _translator.OnLightAttackEvent -= UpdateHitQualityText;
-        _translator.OnHeavyAttackEvent -= UpdateHitQualityText;
+        //_translator.OnDashEvent -= UpdateHitQualityText;
+        //_translator.OnLightAttackEvent -= UpdateHitQualityText;
+        //_translator.OnHeavyAttackEvent -= UpdateHitQualityText;
     }
 
     public void UpdateHitQualityText()

@@ -24,7 +24,7 @@ public class EnemyBatAttack : EnemyBaseAttack
                    1f,                                        //Distance ray is cast out
                    playerMask))                               //Player's layer mask
         {
-            //PlayerStats.Instance.OnDamageTaken(damageAmount);
+            InvokeEnemyAttackEvent(damageAmount);
             isAttacking = false;
         }
     }

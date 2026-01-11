@@ -45,6 +45,11 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
+        if (_playerStatsConfig == null)
+        {
+            Debug.LogWarning("Player Stats Configuration file is null!");
+            return;
+        }
         _currentHealth = _playerStatsConfig.MaxHealth.Value;
     }
 

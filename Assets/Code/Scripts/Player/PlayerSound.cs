@@ -16,6 +16,12 @@ public class PlayerSound : MonoBehaviour
 
     private void Start()
     {
+        if(soundEffectManager.Instance == null)
+        {
+            Debug.LogWarning("Sound Effect Manager builder is null");
+            this.enabled = false;
+            return;
+        }
         _builderRef = soundEffectManager.Instance.Builder;
     }
 

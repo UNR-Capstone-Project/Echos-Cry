@@ -17,6 +17,11 @@ public class PlayerCurrencySystem : MonoBehaviour
 
     private void Start()
     {
+        if(_playerCurrencyConfig == null)
+        {
+            Debug.LogWarning("Player Currency Configuration file is null");
+            return;
+        }
         _fingerCurrency = _playerCurrencyConfig.StartingFingerCurrency;
     }
 

@@ -5,9 +5,14 @@ public class PlayerAnimator : MonoBehaviour
 {
     private void Start()
     {
-        defaultSpriteColor = _playerMainSpriteRenderer.material.GetColor(hashedTintColor);
-
         PlayerStats.OnPlayerDamagedEvent += OnPlayerDamagedTintFlash;
+
+        if(_playerMainSpriteRenderer == null)
+        {
+            Debug.LogWarning("Main Player Sprite Renderer not assigned!");
+            return;
+        }
+        defaultSpriteColor = _playerMainSpriteRenderer.material.GetColor(hashedTintColor);
     }
     private void OnDestroy()
     {

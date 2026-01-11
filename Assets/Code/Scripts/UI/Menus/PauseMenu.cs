@@ -24,16 +24,16 @@ public class PauseMenu : MonoBehaviour
         currentPos = selectedPauseOption.rectTransform.anchoredPosition;
         originPos = currentPos;
 
-        translator.OnPauseUpInput += switchOptionUp;
-        translator.OnPauseDownInput += switchOptionDown;
-        translator.OnSelectEvent += ChooseOption;
+        //translator.OnPauseUpInput += switchOptionUp;
+        //translator.OnPauseDownInput += switchOptionDown;
+        //translator.OnSelectEvent += ChooseOption;
     }
 
     void OnDestroy()
     {
-        translator.OnPauseUpInput -= switchOptionUp;
-        translator.OnPauseDownInput -= switchOptionDown;
-        translator.OnSelectEvent -= ChooseOption;
+        //translator.OnPauseUpInput -= switchOptionUp;
+        //translator.OnPauseDownInput -= switchOptionDown;
+        //translator.OnSelectEvent -= ChooseOption;
     }
     private void ChooseOption()
     {

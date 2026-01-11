@@ -14,21 +14,21 @@ public class ShopManager : MonoBehaviour
 
     void Start()
     {
-        _translator.OnShopLeftInput += Left;
-        _translator.OnShopRightInput += Right;
-        _translator.OnShopUpInput += Up;
-        _translator.OnShopDownInput += Down;
-        _translator.OnPurchaseEvent += Purchase;
+        //_translator.OnShopLeftInput += Left;
+        //_translator.OnShopRightInput += Right;
+        //_translator.OnShopUpInput += Up;
+        //_translator.OnShopDownInput += Down;
+        //_translator.OnPurchaseEvent += Purchase;
 
         ShopItemArray[currentItemIndex].GetComponent<ShopItem>().ToggleHighlight(true);
     }
     private void OnDestroy()
     {
-        _translator.OnShopLeftInput -= Left;
-        _translator.OnShopRightInput -= Right;
-        _translator.OnShopUpInput -= Up;
-        _translator.OnShopDownInput -= Down;
-        _translator.OnPurchaseEvent -= Purchase;
+        //_translator.OnShopLeftInput -= Left;
+        //_translator.OnShopRightInput -= Right;
+        //_translator.OnShopUpInput -= Up;
+        //_translator.OnShopDownInput -= Down;
+        //_translator.OnPurchaseEvent -= Purchase;
     }
 
     private void Left()

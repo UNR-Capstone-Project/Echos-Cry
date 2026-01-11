@@ -29,6 +29,12 @@ public class PlayerMovement : MonoBehaviour
     {
         mainCameraRef = Camera.main.transform;
 
+        if(_playerMovementConfig == null)
+        {
+            Debug.LogWarning("Player Movement Configuration file is null!");
+            return;
+        }
+
         stoppingAcceleration = _playerMovementConfig.PlayerSpeed * 2;
     }
 

@@ -38,10 +38,10 @@ public class DoorManager : MonoBehaviour
 
     void Start()
     {
-        translator.OnInteractEvent += OpenDoor;
+        //translator.OnInteractEvent += OpenDoor;
     }
     private void OnDestroy()
     {
-        translator.OnInteractEvent -= OpenDoor;
+        //translator.OnInteractEvent -= OpenDoor;
     }
 }

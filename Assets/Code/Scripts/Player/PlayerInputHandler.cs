@@ -13,6 +13,7 @@ public class PlayerInputHandler
 
     public void BindEvents()
     {
+        if (_translator == null) return;
         _translator.OnMovementEvent += HandleMovement;
         _translator.OnHeavyAttackEvent += HandleHeavyAttack;
         _translator.OnLightAttackEvent += HandleLightAttack;
@@ -20,6 +21,7 @@ public class PlayerInputHandler
     }
     public void UnbindEvents()
     {
+        if (_translator == null) return;
         _translator.OnMovementEvent -= HandleMovement;
         _translator.OnHeavyAttackEvent -= HandleHeavyAttack;
         _translator.OnLightAttackEvent -= HandleLightAttack;

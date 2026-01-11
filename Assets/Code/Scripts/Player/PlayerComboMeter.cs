@@ -59,15 +59,15 @@ public class PlayerComboMeter : MonoBehaviour
         _comboMeterAmount = 0;
         _comboMultiplier = 1;
 
-        _inputTranslator.OnDashEvent += ResetComboMultiplier;
-        _inputTranslator.OnLightAttackEvent += ResetComboMultiplier;
-        _inputTranslator.OnHeavyAttackEvent += ResetComboMultiplier;
+        //_inputTranslator.OnDashEvent += ResetComboMultiplier;
+        //_inputTranslator.OnLightAttackEvent += ResetComboMultiplier;
+        //_inputTranslator.OnHeavyAttackEvent += ResetComboMultiplier;
     }
     private void OnDestroy()
     {
-        _inputTranslator.OnDashEvent -= ResetComboMultiplier;
-        _inputTranslator.OnLightAttackEvent -= ResetComboMultiplier;
-        _inputTranslator.OnHeavyAttackEvent -= ResetComboMultiplier;
+        //_inputTranslator.OnDashEvent -= ResetComboMultiplier;
+        //_inputTranslator.OnLightAttackEvent -= ResetComboMultiplier;
+        //_inputTranslator.OnHeavyAttackEvent -= ResetComboMultiplier;
     }
 
     [SerializeField] private InputTranslator _inputTranslator;
