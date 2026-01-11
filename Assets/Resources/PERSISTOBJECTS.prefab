@@ -203,26 +203,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4194066898316337815, guid: 460d7e2c9db7d7a4bbfa6f670218ddde, type: 3}
-      propertyPath: onAttackPushForce
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7414890934435195871, guid: 460d7e2c9db7d7a4bbfa6f670218ddde, type: 3}
-      propertyPath: dashSpeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 7414890934435195871, guid: 460d7e2c9db7d7a4bbfa6f670218ddde, type: 3}
-      propertyPath: playerSpeed
-      value: 4.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7414890934435195871, guid: 460d7e2c9db7d7a4bbfa6f670218ddde, type: 3}
-      propertyPath: dashCooldown
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7414890934435195871, guid: 460d7e2c9db7d7a4bbfa6f670218ddde, type: 3}
-      propertyPath: dashDuration
-      value: 0.1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
