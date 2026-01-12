@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3357431060865909954
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1008,6 +1008,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1295559700405387806}
     m_Modifications:
+    - target: {fileID: 2492757201938889734, guid: 29c69ff9515bac04586efe059ceb69bb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954546829289369762, guid: 29c69ff9515bac04586efe059ceb69bb, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4723474152651378996, guid: 29c69ff9515bac04586efe059ceb69bb, type: 3}
       propertyPath: m_Name
       value: ItemRowCanvas (1)
@@ -1018,7 +1026,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5895003334133126571, guid: 29c69ff9515bac04586efe059ceb69bb, type: 3}
       propertyPath: m_PresetInfoIsWorld
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7297995031649192295, guid: 29c69ff9515bac04586efe059ceb69bb, type: 3}
       propertyPath: m_IsActive
@@ -1112,6 +1120,10 @@ PrefabInstance:
       propertyPath: purchasePrefab
       value: 
       objectReference: {fileID: 8109946571622884026, guid: 22269a7e5d2f3e1449a20451146ec498, type: 3}
+    - target: {fileID: 8988648611467035198, guid: 29c69ff9515bac04586efe059ceb69bb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f0624d51aea120549b4ba1f6b3f47d35, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1145,7 +1157,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5895003334133126571, guid: 29c69ff9515bac04586efe059ceb69bb, type: 3}
       propertyPath: m_PresetInfoIsWorld
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7297995031649192295, guid: 29c69ff9515bac04586efe059ceb69bb, type: 3}
       propertyPath: m_IsActive

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnemySound : MonoBehaviour
 {
-    public void HandleDamageSound(float damage)
+    public void HandleDamageSound(float damage, Color color)
     {
         soundEffectManager.Instance.Builder
             .setSound(hitSFX)

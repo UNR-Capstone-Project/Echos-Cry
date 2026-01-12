@@ -48,7 +48,19 @@ public class MetronomeCanvas : MonoBehaviour
 
     public void UpdateHitQualityText()
     {
-        hitQualityText.text = TempoManager.CurrentHitQuality.ToString();
+        if (TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.EXCELLENT)
+        {
+            hitQualityText.color = new Color(110f / 255f, 44f / 255f, 222f / 255f, 1f); //purple
+        }
+        else if (TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.GOOD)
+        {
+            hitQualityText.color = new Color(47f / 255f, 235f / 255f, 81f / 255f, 1.0f);
+        }
+        else
+        {
+            hitQualityText.color = Color.red;
+        }
+            hitQualityText.text = TempoManager.CurrentHitQuality.ToString();
     }
 
     public void FlashOutline()
