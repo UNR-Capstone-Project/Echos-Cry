@@ -1975,61 +1975,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7416094871299018028, guid: 5cb246b51061f964da299e6b2808de4a, type: 3}
   m_PrefabInstance: {fileID: 1197186902}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1267324450
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1267324452}
-  - component: {fileID: 1267324451}
-  m_Layer: 0
-  m_Name: Test
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1267324451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267324450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43011b48505def344aa9b53f4bdbeaa3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
-  _playerStats: {fileID: 0}
-  _playerComboMeter: {fileID: 0}
-  _playerAnimator: {fileID: 0}
-  _playerSound: {fileID: 0}
-  _playerMovement: {fileID: 0}
-  _comboStateMachine: {fileID: 0}
-  _playerAttackHandler: {fileID: 0}
-  _playerSkillManager: {fileID: 0}
-  _playerDirection: {fileID: 0}
-  _playerCurrencySystem: {fileID: 0}
-  _inputTranslator: {fileID: 0}
---- !u!4 &1267324452
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267324450}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.12498, y: 1.82, z: 2.58822}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1313910248
 GameObject:
   m_ObjectHideFlags: 0
@@ -3245,7 +3190,6 @@ SceneRoots:
   - {fileID: 597810212}
   - {fileID: 397520808}
   - {fileID: 819572722}
-  - {fileID: 1267324452}
   - {fileID: 106558089}
   - {fileID: 28211847}
   - {fileID: 1107724440}
