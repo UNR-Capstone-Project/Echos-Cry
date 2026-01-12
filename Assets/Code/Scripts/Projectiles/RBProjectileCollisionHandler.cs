@@ -65,8 +65,8 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
             case ProjectileUser.ENEMY:
                 damageEnemyAction = (other) => 
                 { 
-                    if (other.TryGetComponent<PlayerStats>(out PlayerStats playerStats)) 
-                        PlayerStats.Instance.OnDamageTaken(projectileDamage); 
+                    //if (other.TryGetComponent<PlayerStats>(out PlayerStats playerStats)) 
+                    //    PlayerStats.Instance.OnDamageTaken(projectileDamage); 
                 };
                 break;
             case ProjectileUser.PLAYER:
