@@ -21,11 +21,11 @@ public class EnemyDrops : MonoBehaviour
         }
     }
 
-    void Start()
+    public virtual void Start()
     {
         GetComponent<EnemyStats>().OnEnemyDeathEvent += HandleEnemyDrops;
     }
-    private void OnDestroy()
+    public virtual void OnDestroy()
     {
         GetComponent<EnemyStats>().OnEnemyDeathEvent -= HandleEnemyDrops;
     }
