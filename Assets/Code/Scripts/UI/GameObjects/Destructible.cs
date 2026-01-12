@@ -1,13 +1,21 @@
+using AudioSystem;
 using UnityEngine;
 
 public class Destructible : EnemyDrops
 {
+    private soundBuilder _builderRef;
     [SerializeField] private GameObject destroyedVersion;
+    [SerializeField] soundEffect destroyEffect;
 
     protected void OnTriggerEnter(Collider collision)
     {
         if (collision.TryGetComponent<AttackCollisionHandler>(out AttackCollisionHandler handler))
         {
+            _builderRef
+            .setSound(destroyEffect)
+            .setSoundPosition(transform.position)
+            .ValidateAndPlaySound();
+
             Instantiate(destroyedVersion, transform.position, transform.rotation);
             HandleEnemyDrops();
             Destroy(gameObject);
@@ -16,6 +24,7 @@ public class Destructible : EnemyDrops
 
     public override void Start()
     {
+        _builderRef = soundEffectManager.Instance.Builder;
         //Override enemy behaviors
     }
     public override void OnDestroy()

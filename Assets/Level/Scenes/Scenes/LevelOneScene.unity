@@ -4892,6 +4892,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2610748848504449433, guid: 82956793c54a2ed488060a0062a94839, type: 3}
+      propertyPath: ItemDrops.Array.data[0].prefab
+      value: 
+      objectReference: {fileID: 8109946571622884026, guid: 3956973db0bcb564daf7a7f41344cbc5, type: 3}
+    - target: {fileID: 2610748848504449433, guid: 82956793c54a2ed488060a0062a94839, type: 3}
+      propertyPath: ItemDrops.Array.data[0].maxDropAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2610748848504449433, guid: 82956793c54a2ed488060a0062a94839, type: 3}
+      propertyPath: ItemDrops.Array.data[0].minDropAmount
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

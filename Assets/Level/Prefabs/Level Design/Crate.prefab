@@ -149,3 +149,4 @@ MonoBehaviour:
     maxDropAmount: 4
   itemExplosionSpeed: 8
   destroyedVersion: {fileID: 7559960175404138094, guid: d58d57a86839c2d40822e65e501ca646, type: 3}
+  destroyEffect: {fileID: 11400000, guid: 8e6fff67d6d1b4d46859475d8ddf7611, type: 2}

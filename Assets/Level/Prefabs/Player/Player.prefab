@@ -298,6 +298,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSound
   _footstepEffect: {fileID: 11400000, guid: 3028a632f21d41d4ebf89c457249cc0a, type: 2}
+  _dashEffect: {fileID: 11400000, guid: 0573f952fd3decf45b7c8a2db8f03998, type: 2}
+  _missEffect: {fileID: 11400000, guid: 244cc789554b807419aa853b0793edb3, type: 2}
+  _goodEffect: {fileID: 11400000, guid: 0c04344d140505046a375088c946717e, type: 2}
+  _excellentEffect: {fileID: 11400000, guid: 1bc36dd1aff413744ab35704623169a5, type: 2}
+  _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
 --- !u!54 &2019051602396369572
 Rigidbody:
   m_ObjectHideFlags: 0
