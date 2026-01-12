@@ -7,12 +7,14 @@ using UnityEngine;
 /// Last Modified By:
 public class WaveManager : MonoBehaviour
 {
-    private int currentWave;
-    public WaveData[] allWaves;
     public event Action newWaveSpawned, AWaveEndedSpawning; //allWavesCompleted;
-    public NewEnemySpawner spawner;
+
+    [SerializeField] private NewEnemySpawner enemySpawner;
+    [SerializeField] private float timeBetweenWaves = 10f;
+    [SerializeField] private WaveData[] allWaves;
+
+    private int currentWave;
     private int totalEnemiesKilled;
-    public float timeBetweenWaves = 10f;
 
     private void Awake()
     {
@@ -36,8 +38,9 @@ public class WaveManager : MonoBehaviour
     {
         totalEnemiesKilled = 0;
         if (currentWave >= allWaves.Length) return;
-        StartCoroutine(spawnWave(allWaves[currentWave]));
 
+        HUDMessage.Instance.UpdateMessage("Wave " + (currentWave + 1).ToString() + " Has Begun.", 2f);
+        StartCoroutine(spawnWave(allWaves[currentWave]));
     }
 
     private GameObject getRandomEnemy(WaveData inputWave)
@@ -55,6 +58,7 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator spawnWaveAfterDelay(float seconds)
     {
+        HUDMessage.Instance.UpdateMessage("New Wave In " + (seconds).ToString() + " Seconds.", 1.5f);
         yield return new WaitForSeconds(seconds);
         startNewWave();
     }
@@ -62,14 +66,14 @@ public class WaveManager : MonoBehaviour
     private IEnumerator spawnWave(WaveData wave)
     {
         newWaveSpawned?.Invoke();
-        for (int i = 0; i < wave.totalEnemies-1; i++)
+        for (int i = 0; i < wave.totalEnemies - 1; i++)
         {
             
             GameObject enemy = getRandomEnemy(wave);
-            Vector3 enemyPosition = spawner.GetRandomPoint(wave.spawnRadius);
-            StartCoroutine(spawner.SpawnWithDecal(enemy, enemyPosition, wave.spawnRadius, (enemyInstance) =>
+            Vector3 enemyPosition = enemySpawner.GetRandomPoint(wave.spawnRadius);
+            StartCoroutine(enemySpawner.SpawnWithDecal(enemy, enemyPosition, wave.spawnRadius, (enemyInstance) =>
             {
-                enemyInstance.transform.SetParent(spawner.transform);
+                enemyInstance.transform.SetParent(enemySpawner.transform);
                 EnemyStats stats = enemyInstance.GetComponent<EnemyStats>();
                 if (stats != null) stats.OnEnemyDeathEvent += updateKillCount;
             }));
@@ -77,8 +81,8 @@ public class WaveManager : MonoBehaviour
         }
 
         GameObject keyedEnemy = wave.keyedEnemy;
-        Vector3 keyedEnemyPosition = spawner.GetRandomPoint(wave.spawnRadius);
-        GameObject keyedInstance = Instantiate(keyedEnemy, keyedEnemyPosition, Quaternion.identity, spawner.transform);
+        Vector3 keyedEnemyPosition = enemySpawner.GetRandomPoint(wave.spawnRadius);
+        GameObject keyedInstance = Instantiate(keyedEnemy, keyedEnemyPosition, Quaternion.identity, enemySpawner.transform);
         var keyedStats = keyedInstance.GetComponent<EnemyStats>();
         if (keyedStats != null) keyedStats.OnEnemyDeathEvent += updateKillCount;
 

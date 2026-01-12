@@ -9,15 +9,15 @@ using UnityEngine.AI;
 public class NewEnemySpawner : MonoBehaviour
 {
     public GameObject spawnDecal;
-    private float decalLifetime = 3f;
+    private float spawnFromDecalWait = 3f;
 
     public IEnumerator SpawnWithDecal(GameObject prefab, Vector3 initialPos, float samplingDistance, Action<GameObject> callback)
     {
         NavMeshHit hit;
         if (NavMesh.SamplePosition(initialPos, out hit, samplingDistance, NavMesh.AllAreas)) initialPos = hit.position;
         var decal = Instantiate(spawnDecal, initialPos, Quaternion.Euler(90f, 0f, 0f));
-        Destroy(decal, decalLifetime);
-        yield return new WaitForSeconds(decalLifetime);
+
+        yield return new WaitForSeconds(spawnFromDecalWait);
         GameObject instance = Instantiate(prefab, initialPos, Quaternion.identity);
 
         callback?.Invoke(instance);

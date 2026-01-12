@@ -20,13 +20,10 @@ public class WaveTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform == PlayerRef.PlayerTransform)
+        if (state == waveTriggerState.Idle)
         {
-            if (state == waveTriggerState.Idle)
-            {
-                state = waveTriggerState.Active;
-                _waveManager.startNewWave();
-            }
+            state = waveTriggerState.Active;
+            _waveManager.startNewWave();
         }
     }
 }
