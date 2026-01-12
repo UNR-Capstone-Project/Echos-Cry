@@ -29,21 +29,24 @@ public class PlayerManager : MonoBehaviour
     public PlayerDirection PlayerDirection { get => _playerDirection; }
     public PlayerCurrencySystem PlayerCurrencySystem { get => _playerCurrencySystem; }
     public InputTranslator InputTranslator { get => _inputTranslator; }
+    public PlayerActionInputHandler PlayerInputHandler { get => _playerInputHandler; }
 
     private void Awake()
     {
         _playerStateMachine = new PlayerStateMachine();
-        _playerStateCache = new PlayerStateCache(this, _playerStateMachine);
-        _playerInputHandler = new PlayerActionInputHandler(_inputTranslator, _playerStateMachine);
+        _playerStateCache = new PlayerStateCache();
+        _playerInputHandler = new PlayerActionInputHandler(_playerStateMachine);
     }
     private void Start()
     {
+        _playerStateCache.Init(this, _playerStateMachine);
         _playerStateMachine.Init(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Idle));
-        _playerInputHandler.BindEvents();
+        
+        _playerInputHandler.BindEvents(_inputTranslator);
     }
     private void OnDestroy()
     {
-        _playerInputHandler.UnbindEvents();
+        _playerInputHandler.UnbindEvents(_inputTranslator);
     }
     private void Update()
     {

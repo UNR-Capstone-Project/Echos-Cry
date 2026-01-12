@@ -3,9 +3,22 @@ using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
 {
+    [Header("Configuration Object")]
+    [SerializeField] private PlayerAnimatorConfig _playerAnimatorConfig;
+    [Header("Animator System Dependencies")]
+    [SerializeField] private TrailRenderer  _dashTrail;
+    [SerializeField] private Transform      _playerMainSpriteTransform;
+    [SerializeField] private SpriteRenderer _playerMainSpriteRenderer;
+    [SerializeField] private Animator       _playerMainSpriteAnimator;
+
+    private Color defaultSpriteColor;
+
+    private readonly int hashedTintColor = Shader.PropertyToID("_TintColor");
+    private readonly int hashedIsRunning = Animator.StringToHash("isRunning");
+
     private void Start()
     {
-        PlayerStats.OnPlayerDamagedEvent += OnPlayerDamagedTintFlash;
+        PlayerStats.OnPlayerDamagedEvent += PlayerDamagedTintFlash;
 
         if(_playerMainSpriteRenderer == null)
         {
@@ -16,12 +29,12 @@ public class PlayerAnimator : MonoBehaviour
     }
     private void OnDestroy()
     {
-        PlayerStats.OnPlayerDamagedEvent -= OnPlayerDamagedTintFlash;
+        PlayerStats.OnPlayerDamagedEvent -= PlayerDamagedTintFlash;
     }
 
     public void UpdateMainSpriteDirection(Vector2 locomotion)
     {
-        if (locomotion.x == 0) return;
+        if (locomotion.x == 0 || _playerMainSpriteTransform == null) return;
         Vector3 currentScale = _playerMainSpriteTransform.localScale;
         currentScale.x = Mathf.Sign(locomotion.x) * Mathf.Abs(currentScale.x);
         _playerMainSpriteTransform.localScale = currentScale;
@@ -32,7 +45,7 @@ public class PlayerAnimator : MonoBehaviour
         _playerMainSpriteAnimator.SetBool(hashedIsRunning, isRunning);
     }
 
-    public void OnPlayerDamagedTintFlash()
+    public void PlayerDamagedTintFlash()
     {
         StopCoroutine(OnPlayerDamagedTintFlashCoroutine());
         StartCoroutine(OnPlayerDamagedTintFlashCoroutine());
@@ -52,17 +65,4 @@ public class PlayerAnimator : MonoBehaviour
     {
         _dashTrail.emitting = false;
     }
-
-    [Header("Configuration Object")]
-    [SerializeField] private PlayerAnimatorConfig _playerAnimatorConfig;
-    [Header("Animator System Dependencies")]
-    [SerializeField] private TrailRenderer  _dashTrail;
-    [SerializeField] private Transform      _playerMainSpriteTransform;
-    [SerializeField] private SpriteRenderer _playerMainSpriteRenderer;
-    [SerializeField] private Animator       _playerMainSpriteAnimator;
-
-    private Color defaultSpriteColor;
-
-    private readonly int hashedTintColor = Shader.PropertyToID("_TintColor");
-    private readonly int hashedIsRunning = Animator.StringToHash("isRunning");
 }

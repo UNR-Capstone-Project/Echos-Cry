@@ -11,15 +11,40 @@ public class PlayerStateCache
 
     private Dictionary<PlayerState, PlayerActionState> _stateCache;
     
-    public PlayerStateCache(PlayerManager playerContext, PlayerStateMachine playerStateMachine)
+    public PlayerStateCache()
     {
-        _stateCache = new Dictionary<PlayerState, PlayerActionState>()
-        {
-            {PlayerState.Idle, new PlayerIdleState(playerStateMachine, this) },
-            {PlayerState.Move, new PlayerMoveState(playerContext.PlayerMovement ,playerStateMachine, this) },
-            {PlayerState.Attack, new PlayerAttackState(playerStateMachine, this) },
-            {PlayerState.Dash, new PlayerDashState(playerStateMachine, this) }
-        };
+        _stateCache = new Dictionary<PlayerState, PlayerActionState>();
+    }
+
+    public void Init(PlayerManager playerContext, PlayerStateMachine playerStateMachine)
+    {
+        _stateCache.Add(
+            PlayerState.Idle,
+            new PlayerIdleState(
+                playerStateMachine, 
+                this)
+        );
+        _stateCache.Add(
+            PlayerState.Move,
+            new PlayerMoveState(
+                playerContext.PlayerMovement,
+                playerContext.PlayerInputHandler,
+                playerContext.PlayerAnimator,
+                playerStateMachine,
+                this)
+        );
+        _stateCache.Add(
+            PlayerState.Attack,
+            new PlayerAttackState(
+                playerStateMachine, 
+                this)
+        );
+        _stateCache.Add(
+            PlayerState.Dash,
+            new PlayerDashState(
+                playerStateMachine,
+                this)
+        );
     }
 
     public PlayerActionState RequestState(PlayerState state)

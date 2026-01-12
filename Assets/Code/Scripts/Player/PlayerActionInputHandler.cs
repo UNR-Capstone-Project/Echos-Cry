@@ -2,39 +2,41 @@ using UnityEngine;
 
 public class PlayerActionInputHandler 
 {
-    private InputTranslator _translator;
     private PlayerStateMachine _playerStateMachine;
 
     private bool _isLightAttacking, _isHeavyAttacking;
 
-    public PlayerActionInputHandler(InputTranslator translator, PlayerStateMachine playerStateMachine)
+    private Vector2 _locomotion;
+    public Vector2 Locomotion { get {  return _locomotion; } }
+
+    public PlayerActionInputHandler(PlayerStateMachine playerStateMachine)
     {
-        _translator = translator;
         _playerStateMachine = playerStateMachine;
 
         _isLightAttacking = false;
         _isHeavyAttacking = false;
     }
 
-    public void BindEvents()
+    public void BindEvents(InputTranslator translator)
     {
-        if (_translator == null) return;
-        _translator.OnMovementEvent += HandleMovement;
-        _translator.OnHeavyAttackEvent += HandleHeavyAttack;
-        _translator.OnLightAttackEvent += HandleLightAttack;
-        _translator.OnDashEvent += HandleDash;
+        if (translator == null) return;
+        translator.OnMovementEvent += HandleMovement;
+        translator.OnHeavyAttackEvent += HandleHeavyAttack;
+        translator.OnLightAttackEvent += HandleLightAttack;
+        translator.OnDashEvent += HandleDash;
     }
-    public void UnbindEvents()
+    public void UnbindEvents(InputTranslator translator)
     {
-        if (_translator == null) return;
-        _translator.OnMovementEvent -= HandleMovement;
-        _translator.OnHeavyAttackEvent -= HandleHeavyAttack;
-        _translator.OnLightAttackEvent -= HandleLightAttack;
-        _translator.OnDashEvent -= HandleDash;
+        if (translator == null) return;
+        translator.OnMovementEvent -= HandleMovement;
+        translator.OnHeavyAttackEvent -= HandleHeavyAttack;
+        translator.OnLightAttackEvent -= HandleLightAttack;
+        translator.OnDashEvent -= HandleDash;
     }
 
     private void HandleMovement(Vector2 locomotion)
     {
+        _locomotion = locomotion;
         if (locomotion != Vector2.zero) _playerStateMachine.isMoving = true;
         else _playerStateMachine.isMoving = false;
     }
