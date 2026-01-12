@@ -23,7 +23,8 @@ public class shopkeeper : MonoBehaviour
 
         MenuManager.Instance.SetMenu("Shop");
     }
-    private void CloseShop(){
+    private void CloseShop()
+    {
         MenuManager.Instance.SetMenu("HUD");
         VolumeManager.Instance.SetDepthOfField(false);
     }

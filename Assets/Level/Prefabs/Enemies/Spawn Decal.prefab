@@ -3819,7 +3819,7 @@ ParticleSystem:
       properties: 0
       emitProbability: 1
   LightsModule:
-    enabled: 1
+    enabled: 0
     ratio: 1
     light: {fileID: 3559783050484382141, guid: 3d9d2c8f0177c42498e4c0ae720b5028, type: 3}
     randomDistribution: 0
@@ -4868,6 +4868,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6570733109788842673}
+  - {fileID: 1297832899639637642}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &3858274526563457460
@@ -4910,3 +4911,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea07031b24d8a9f4ca7368458aaa6f07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!1001 &1290032623816181330
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8832688731739451796}
+    m_Modifications:
+    - target: {fileID: 280852598434525400, guid: 3d9d2c8f0177c42498e4c0ae720b5028, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 280852598434525400, guid: 3d9d2c8f0177c42498e4c0ae720b5028, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 280852598434525400, guid: 3d9d2c8f0177c42498e4c0ae720b5028, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 280852598434525400, guid: 3d9d2c8f0177c42498e4c0ae720b5028, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 280852598434525400, guid: 3d9d2c8f0177c42498e4c0ae720b5028, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 280852598434525400, guid: 3d9d2c8f0177c42498e4c0ae720b5028, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 280852598434525400, guid: 3d9d2c8f0177c42498e4c0ae720b5028, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 280852598434525400, guid: 3d9d2c8f0177c42498e4c0ae720b5028, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 280852598434525400, guid: 3d9d2c8f0177c42498e4c0ae720b5028, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 280852598434525400, guid: 3d9d2c8f0177c42498e4c0ae720b5028, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1146445200881937344, guid: 3d9d2c8f0177c42498e4c0ae720b5028, type: 3}
+      propertyPath: m_Name
+      value: Flame Light
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3d9d2c8f0177c42498e4c0ae720b5028, type: 3}
+--- !u!4 &1297832899639637642 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 280852598434525400, guid: 3d9d2c8f0177c42498e4c0ae720b5028, type: 3}
+  m_PrefabInstance: {fileID: 1290032623816181330}
+  m_PrefabAsset: {fileID: 0}

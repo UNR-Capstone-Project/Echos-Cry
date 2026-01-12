@@ -41,6 +41,12 @@ public class PlayerAnimator : MonoBehaviour
     }
     public void HandleDashEndedEmit()
     {
+        StartCoroutine(StopDashTrailEmit());
+    }
+
+    private IEnumerator StopDashTrailEmit()
+    {
+        yield return new WaitForSeconds(0.2f);
         _dashTrail.emitting = false;
     }
 
