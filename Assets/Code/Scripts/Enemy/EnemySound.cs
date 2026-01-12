@@ -11,14 +11,25 @@ public class EnemySound : MonoBehaviour
             .ValidateAndPlaySound();
     }
 
+    public void HandleAttackSound()
+    {
+        soundEffectManager.Instance.Builder
+            .setSound(attackSFX)
+            .setSoundPosition(transform.position)
+            .ValidateAndPlaySound();
+    }
+
     void Start()
     {
         GetComponent<EnemyStats>().OnEnemyDamagedEvent += HandleDamageSound;
+        GetComponent<EnemyBaseAttack>().OnEnemyUseAttackEvent += HandleAttackSound;
     }
     private void OnDestroy()
     {
         GetComponent<EnemyStats>().OnEnemyDamagedEvent -= HandleDamageSound;
+        GetComponent<EnemyBaseAttack>().OnEnemyUseAttackEvent -= HandleAttackSound;
     }
     
     [SerializeField] soundEffect hitSFX;
+    [SerializeField] soundEffect attackSFX;
 }

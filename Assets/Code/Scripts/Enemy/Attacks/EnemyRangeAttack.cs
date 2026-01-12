@@ -4,9 +4,13 @@ public class EnemyRangeAttack : EnemyBaseAttack
 {
     public override void UseAttack()
     {
+        RaiseEnemyUseAttack();
+
         handler = RBProjectileManager.RequestHandler(prefab);
+
         attackDirection = (PlayerRef.PlayerTransform.position - transform.position).normalized;
         attackDirection.y = 0;
+
         if(handler != null) handler.UseProjectile(transform.position, attackDirection, damage);
         //Transition to whatever state here
     }
