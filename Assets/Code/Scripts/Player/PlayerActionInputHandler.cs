@@ -1,8 +1,13 @@
 using UnityEngine;
 
-public class PlayerInputHandler 
+public class PlayerActionInputHandler 
 {
-    public PlayerInputHandler(InputTranslator translator, PlayerStateMachine playerStateMachine)
+    private InputTranslator _translator;
+    private PlayerStateMachine _playerStateMachine;
+
+    private bool _isLightAttacking, _isHeavyAttacking;
+
+    public PlayerActionInputHandler(InputTranslator translator, PlayerStateMachine playerStateMachine)
     {
         _translator = translator;
         _playerStateMachine = playerStateMachine;
@@ -64,9 +69,4 @@ public class PlayerInputHandler
         if (buttonPressed) _playerStateMachine.isDashing = true;
         else _playerStateMachine.isDashing = false;
     }
-
-    private InputTranslator _translator;
-    private PlayerStateMachine _playerStateMachine;
-
-    private bool _isLightAttacking, _isHeavyAttacking;
 }

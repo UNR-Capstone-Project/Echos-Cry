@@ -16,13 +16,25 @@ public class PlayerManager : MonoBehaviour
 
     private PlayerStateMachine _playerStateMachine;
     private PlayerStateCache _playerStateCache;
-    private PlayerInputHandler _playerInputHandler;
+    private PlayerActionInputHandler _playerInputHandler;
+
+    public PlayerStats PlayerStats { get => _playerStats; }
+    public PlayerComboMeter PlayerComboMeter { get => _playerComboMeter; }
+    public PlayerAnimator PlayerAnimator { get => _playerAnimator; }
+    public PlayerSound PlayerSound { get => _playerSound; }
+    public PlayerMovement PlayerMovement { get => _playerMovement; }
+    public ComboStateMachine ComboStateMachine { get => _comboStateMachine; }
+    public PlayerAttackHandler PlayerAttackHandler { get => _playerAttackHandler; }
+    public PlayerSkillManager PlayerSkillManager { get => _playerSkillManager; }
+    public PlayerDirection PlayerDirection { get => _playerDirection; }
+    public PlayerCurrencySystem PlayerCurrencySystem { get => _playerCurrencySystem; }
+    public InputTranslator InputTranslator { get => _inputTranslator; }
 
     private void Awake()
     {
         _playerStateMachine = new PlayerStateMachine();
         _playerStateCache = new PlayerStateCache(this, _playerStateMachine);
-        _playerInputHandler = new PlayerInputHandler(_inputTranslator, _playerStateMachine);
+        _playerInputHandler = new PlayerActionInputHandler(_inputTranslator, _playerStateMachine);
     }
     private void Start()
     {
@@ -36,5 +48,9 @@ public class PlayerManager : MonoBehaviour
     private void Update()
     {
         _playerStateMachine.Update();
+    }
+    private void FixedUpdate()
+    {
+        _playerStateMachine.FixedUpdate();
     }
 }

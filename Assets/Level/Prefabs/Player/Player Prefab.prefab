@@ -306,9 +306,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbcf6b0c0055f89418334568b5e15077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  _playerMovementConfig: {fileID: 0}
-  translator: {fileID: 0}
+  _playerMovementConfig: {fileID: 11400000, guid: 3fdfe0232546f0b4887a8fba5da363f1, type: 2}
   _playerRigidbody: {fileID: 2019051602396369572}
+  _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
 --- !u!1 &1324492916464091062
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,6 +408,7 @@ MonoBehaviour:
   _playerSkillManager: {fileID: 6372820548089278461}
   _playerDirection: {fileID: 1248617291903597529}
   _playerCurrencySystem: {fileID: 2347857121992901382}
+  _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
 --- !u!54 &2019051602396369572
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -674,7 +675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: add17ce02c85fdc45aea35ad0bef13b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerComboMeter
-  _inputTranslator: {fileID: 0}
+  _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
   _comboMeterDrainRate: 2.5
 --- !u!1 &5710194311805252216
 GameObject:
@@ -968,7 +969,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32dd952c7bae76e4eadc94243a5e64e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttackHandler
-  _inputTranslator: {fileID: 0}
+  _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
 --- !u!1 &7860510388739070033
 GameObject:
   m_ObjectHideFlags: 0

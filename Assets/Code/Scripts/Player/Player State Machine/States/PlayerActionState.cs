@@ -12,7 +12,14 @@ public abstract class PlayerActionState : IState
     }
 
     public virtual void UpdateState() { }
+    public virtual void FixedUpdateState(){ }
     public virtual void EnterState() { }
     public virtual void ExitState() { }
     public virtual void CheckSwitchState() { }
+
+    protected void RequestSwitchState(PlayerStateCache.PlayerState newState) 
+    {
+        _playerStateMachine.SwitchState(_playerStateCache.RequestState(newState));
+    }
+
 }

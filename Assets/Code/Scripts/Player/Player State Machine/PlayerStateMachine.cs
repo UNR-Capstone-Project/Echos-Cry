@@ -11,4 +11,6 @@ public class PlayerStateMachine : AbstractStateMachine<PlayerActionState>
     public bool isMoving;
     public bool isAttacking;
     public bool isDashing;
+
+    public Vector2 locomotion;
 }

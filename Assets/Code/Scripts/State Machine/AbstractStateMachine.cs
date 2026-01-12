@@ -15,6 +15,10 @@ public abstract class AbstractStateMachine<T> where T : IState
         _currentState.CheckSwitchState();
         _currentState.UpdateState();
     }
+    public virtual void FixedUpdate()
+    {
+        _currentState?.FixedUpdateState();
+    }
     public void SwitchState(T newState)
     {
         if(_currentState == null) return;   

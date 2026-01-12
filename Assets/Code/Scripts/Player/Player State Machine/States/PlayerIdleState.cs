@@ -8,9 +8,9 @@ public class PlayerIdleState : PlayerActionState
     public override void CheckSwitchState()
     {
         if (_playerStateMachine.isMoving)
-            _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Move));
-        else if (_playerStateMachine.isAttacking && TempoManager.CurrentHitQuality != TempoManager.HIT_QUALITY.MISS) 
-            _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Attack));
+            RequestSwitchState(PlayerStateCache.PlayerState.Move);
+        else if (_playerStateMachine.isAttacking && TempoManager.CurrentHitQuality != TempoManager.HIT_QUALITY.MISS)
+            RequestSwitchState(PlayerStateCache.PlayerState.Attack);
     }
 
     public override void EnterState()
