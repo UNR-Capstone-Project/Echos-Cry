@@ -53,7 +53,6 @@ public class PlayerAnimator : MonoBehaviour
     private void Awake()
     {
         _playerSpriteAnimator  = GetComponent<Animator>();
-        _playerSpriteRenderer  = GetComponent<SpriteRenderer>();
         _playerSpriteTransform = GetComponent<Transform>();
         _dashTrail = GetComponentInParent<TrailRenderer>();
     }
@@ -79,7 +78,7 @@ public class PlayerAnimator : MonoBehaviour
     }
 
     [SerializeField] private InputTranslator _translator;
-
+    [SerializeField] private SpriteRenderer _playerSpriteRenderer;
     [SerializeField] private Color spriteDamageColor = Color.red;
     [SerializeField] private float flashDamageDuration = 0.2f;
     private Color defaultSpriteColor;
@@ -87,7 +86,6 @@ public class PlayerAnimator : MonoBehaviour
     private TrailRenderer _dashTrail = null;
 
     private Transform      _playerSpriteTransform;
-    private SpriteRenderer _playerSpriteRenderer;
     private Animator       _playerSpriteAnimator;
 
     private int hashedTintColor = Shader.PropertyToID("_TintColor");
