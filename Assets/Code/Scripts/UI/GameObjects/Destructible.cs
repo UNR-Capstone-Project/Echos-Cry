@@ -4,6 +4,7 @@ using UnityEngine;
 public class Destructible : EnemyDrops
 {
     private soundBuilder _builderRef;
+    [SerializeField] private bool hasItemDrops = true;
     [SerializeField] private GameObject destroyedVersion;
     [SerializeField] soundEffect destroyEffect;
 
@@ -17,7 +18,7 @@ public class Destructible : EnemyDrops
             .ValidateAndPlaySound();
 
             Instantiate(destroyedVersion, transform.position, transform.rotation);
-            HandleEnemyDrops();
+            if (hasItemDrops) { HandleEnemyDrops(); }
             Destroy(gameObject);
         }
     }
