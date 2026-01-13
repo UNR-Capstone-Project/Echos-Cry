@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
+using System.Collections;
 
 [System.Serializable]
 public class StringGameobjectPair
@@ -12,8 +13,9 @@ public class StringGameobjectPair
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] private InputTranslator _translator;
-    public static MenuManager Instance { get; private set; }
+    [SerializeField] private GameObject screenFadeObject;
     [SerializeField] private List<StringGameobjectPair> menuDictionary;
+    public static MenuManager Instance { get; private set; }
 
     void Awake()
     {
@@ -80,5 +82,28 @@ public class MenuManager : MonoBehaviour
                 menu.value.SetActive(false);
             }
         }
+    }
+
+    public void ScreenFadeIn()
+    {
+        StartCoroutine(FadeInCoroutine());
+    }
+
+    private IEnumerator FadeInCoroutine()
+    {
+        float duration = 2f;
+        float elapsedTime = 0f;
+
+        CanvasGroup canvasGroup = screenFadeObject.GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 1f;
+        yield return new WaitForSeconds(1f);
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.unscaledDeltaTime;
+            canvasGroup.alpha = 1f - Mathf.Clamp01(elapsedTime / duration);
+            yield return null;
+        }
+        canvasGroup.alpha = 0f;
     }
 }
