@@ -12,9 +12,4 @@ public class PlayerIdleState : PlayerActionState
         else if (_playerStateMachine.isAttacking && TempoManager.CurrentHitQuality != TempoManager.HIT_QUALITY.MISS)
             RequestSwitchState(PlayerStateCache.PlayerState.Attack);
     }
-
-    public override void EnterState()
-    {
-        Debug.Log("Enter Idle State");
-    }
 }

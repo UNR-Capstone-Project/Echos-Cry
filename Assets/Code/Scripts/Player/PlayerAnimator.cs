@@ -20,11 +20,6 @@ public class PlayerAnimator : MonoBehaviour
     {
         PlayerStats.OnPlayerDamagedEvent += PlayerDamagedTintFlash;
 
-        if(_playerMainSpriteRenderer == null)
-        {
-            Debug.LogWarning("Main Player Sprite Renderer not assigned!");
-            return;
-        }
         defaultSpriteColor = _playerMainSpriteRenderer.material.GetColor(hashedTintColor);
     }
     private void OnDestroy()
@@ -34,7 +29,8 @@ public class PlayerAnimator : MonoBehaviour
 
     public void UpdateMainSpriteDirection(Vector2 locomotion)
     {
-        if (locomotion.x == 0 || _playerMainSpriteTransform == null) return;
+        if (locomotion.x == 0) return;
+
         Vector3 currentScale = _playerMainSpriteTransform.localScale;
         currentScale.x = Mathf.Sign(locomotion.x) * Mathf.Abs(currentScale.x);
         _playerMainSpriteTransform.localScale = currentScale;

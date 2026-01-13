@@ -31,7 +31,6 @@ public class PlayerMoveState : PlayerActionState
 
     public override void EnterState()
     {
-        Debug.Log("Enter Move State");
         _animator.SetIsMainSpriteRunningAnimation(true);
     }
 

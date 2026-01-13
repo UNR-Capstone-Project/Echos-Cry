@@ -9,11 +9,11 @@ public class PlayerStateCache
         Idle, Move, Attack, Dash
     }
 
-    private Dictionary<PlayerState, PlayerActionState> _stateCache;
+    private readonly Dictionary<PlayerState, PlayerActionState> _stateCache;
     
     public PlayerStateCache()
     {
-        _stateCache = new Dictionary<PlayerState, PlayerActionState>();
+        _stateCache = new();
     }
 
     public void Init(PlayerManager playerContext, PlayerStateMachine playerStateMachine)

@@ -13,7 +13,7 @@ public class PlayerAttackState : PlayerActionState
 
     public override void EnterState()
     {
-        Debug.Log("Enter Attack State");
+
     }
 
     public override void ExitState()

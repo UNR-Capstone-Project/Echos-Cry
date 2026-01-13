@@ -2,16 +2,20 @@ using UnityEngine;
 
 public class PlayerActionInputHandler 
 {
-    private PlayerStateMachine _playerStateMachine;
-
+    private readonly PlayerStateMachine _playerStateMachine;
     private bool _isLightAttacking, _isHeavyAttacking;
-
     private Vector2 _locomotion;
+   
     public Vector2 Locomotion { get {  return _locomotion; } }
 
     public PlayerActionInputHandler(PlayerStateMachine playerStateMachine)
     {
         _playerStateMachine = playerStateMachine;
+        
+        if(_playerStateMachine == null)
+        {
+            Debug.LogError("Invalid value passed: " + this.GetType().ToString() + " has invalid value passed to constructor");
+        }
 
         _isLightAttacking = false;
         _isHeavyAttacking = false;
@@ -37,11 +41,16 @@ public class PlayerActionInputHandler
     private void HandleMovement(Vector2 locomotion)
     {
         _locomotion = locomotion;
-        if (locomotion != Vector2.zero) _playerStateMachine.isMoving = true;
+
+        if (_playerStateMachine == null) return;
+
+        if (_locomotion != Vector2.zero) _playerStateMachine.isMoving = true;
         else _playerStateMachine.isMoving = false;
     }
     private void HandleLightAttack(bool buttonPressed)
     {
+        if (_playerStateMachine == null) return;
+        
         if (buttonPressed)
         {
             _isLightAttacking = true;
@@ -55,6 +64,8 @@ public class PlayerActionInputHandler
     }
     private void HandleHeavyAttack(bool buttonPressed)
     {
+        if (_playerStateMachine == null) return;
+
         if (buttonPressed)
         {
             _isHeavyAttacking = true;
@@ -68,6 +79,8 @@ public class PlayerActionInputHandler
     }
     private void HandleDash(bool buttonPressed)
     {
+        if (_playerStateMachine == null) return;
+
         if (buttonPressed) _playerStateMachine.isDashing = true;
         else _playerStateMachine.isDashing = false;
     }

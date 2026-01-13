@@ -9,6 +9,8 @@ public abstract class PlayerActionState : IState
     {
         _playerStateMachine = playerStateMachine;   
         _playerStateCache = playerStateCache;
+        if (_playerStateMachine == null) Debug.LogError("Invalid value passed: " + GetType().ToString() + "::_playerStateMachine");
+        if (_playerStateCache == null) Debug.LogError("Invalid value passed: " + GetType().ToString() + "::_playerStateCache");
     }
 
     public virtual void UpdateState() { }
@@ -19,6 +21,7 @@ public abstract class PlayerActionState : IState
 
     protected void RequestSwitchState(PlayerStateCache.PlayerState newState) 
     {
+        if (_playerStateCache == null || _playerStateMachine == null) return;
         _playerStateMachine.SwitchState(_playerStateCache.RequestState(newState));
     }
 

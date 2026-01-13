@@ -13,7 +13,6 @@ public class PlayerDashState : PlayerActionState
 
     public override void EnterState()
     {
-        Debug.Log("Enter Dash State");
     }
 
     public override void ExitState()
