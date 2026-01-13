@@ -12,22 +12,26 @@ public class DoorManager : MonoBehaviour
     [SerializeField] private WaveManager waveManager;
 
     private bool playerInRange = false;
+    private bool isOpen = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!isLocked)
+        if (!isOpen)
         {
-            ToolTipPrefab.GetComponent<ToolTip>().text =
-                $"Press '{translator.PlayerInputs.Gameplay.Interact.GetBindingDisplayString()}' to Open";
-            Instantiate(ToolTipPrefab, this.transform.position + new Vector3(0, 2, -1), Quaternion.identity);
-        }
-        else
-        {
-            ToolTipPrefab.GetComponent<ToolTip>().text = "This Door is Locked.";
-            Instantiate(ToolTipPrefab, this.transform.position + new Vector3(0, 2, -1), Quaternion.identity);
-        }
+            if (!isLocked)
+            {
+                ToolTipPrefab.GetComponent<ToolTip>().text =
+                    $"Press '{translator.PlayerInputs.Gameplay.Interact.GetBindingDisplayString()}' to Open";
+                Instantiate(ToolTipPrefab, this.transform.position + new Vector3(0, 2, -1), Quaternion.identity);
+            }
+            else
+            {
+                ToolTipPrefab.GetComponent<ToolTip>().text = "This Door is Locked.";
+                Instantiate(ToolTipPrefab, this.transform.position + new Vector3(0, 2, -1), Quaternion.identity);
+            }
 
-        playerInRange = true;
+            playerInRange = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -40,6 +44,7 @@ public class DoorManager : MonoBehaviour
         if (playerInRange && !isLocked)
         {
             doorAnimator.SetTrigger("Interact");
+            isOpen = true;
         }
     }
 
