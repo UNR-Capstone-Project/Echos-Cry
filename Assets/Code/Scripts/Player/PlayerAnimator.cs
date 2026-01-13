@@ -54,7 +54,7 @@ public class PlayerAnimator : MonoBehaviour
     {
         _playerSpriteAnimator  = GetComponent<Animator>();
         _playerSpriteTransform = GetComponent<Transform>();
-        _dashTrail = GetComponentInParent<TrailRenderer>();
+        _dashTrail = GetComponent<TrailRenderer>();
     }
     private void Start()
     {
