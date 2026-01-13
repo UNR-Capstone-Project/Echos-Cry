@@ -4,26 +4,15 @@ using UnityEngine;
 /// Last Modified By:
 public class WaveTrigger : MonoBehaviour
 {
-    public WaveManager _waveManager;
-    private enum waveTriggerState
-    {
-        Idle, 
-        Active
-    }
-
-    private waveTriggerState state;
-
-    private void Awake()
-    {
-        state = waveTriggerState.Idle;
-    }
+    [SerializeField] private WaveManager _waveManager;
+    bool waveHasStarted = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (state == waveTriggerState.Idle)
+        if (!waveHasStarted)
         {
-            state = waveTriggerState.Active;
             _waveManager.startNewWave();
+            waveHasStarted = true;
         }
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 /// Last Modified By:
 public class WaveManager : MonoBehaviour
 {
-    public event Action newWaveSpawned, AWaveEndedSpawning; //allWavesCompleted;
+    public event Action OnNewWaveSpawned, OnWaveSpawningEnded, OnAllWavesCompleted;
 
     [SerializeField] private NewEnemySpawner enemySpawner;
     [SerializeField] private float timeBetweenWaves = 10f;
@@ -29,8 +29,16 @@ public class WaveManager : MonoBehaviour
         if (totalEnemiesKilled >= allWaves[currentWave].totalEnemies)
         {
             currentWave++;
-            if (currentWave >= allWaves.Length) return;
-            StartCoroutine(spawnWaveAfterDelay(timeBetweenWaves));
+            if (currentWave >= allWaves.Length) //All waves completed
+            {
+                HUDMessage.Instance.UpdateMessage("Waves Completed!", 2f);
+                OnAllWavesCompleted?.Invoke();
+                return;
+            }
+            else //Start next wave
+            {
+                StartCoroutine(spawnWaveAfterDelay(timeBetweenWaves));
+            }
         }
     }
 
@@ -44,7 +52,7 @@ public class WaveManager : MonoBehaviour
     }
 
     private GameObject getRandomEnemy(WaveData inputWave)
-    {
+    { //ISSUE: This can potentially select the same enemy type multiple times in a wave. Fix later if needed.
         int index;
         if (inputWave.enemyTypesArray.Length > 1)
         {
@@ -65,18 +73,19 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator spawnWave(WaveData wave)
     {
-        newWaveSpawned?.Invoke();
+        OnNewWaveSpawned?.Invoke();
         for (int i = 0; i < wave.totalEnemies - 1; i++)
         {
-            
             GameObject enemy = getRandomEnemy(wave);
             Vector3 enemyPosition = enemySpawner.GetRandomPoint(wave.spawnRadius);
+
             StartCoroutine(enemySpawner.SpawnWithDecal(enemy, enemyPosition, wave.spawnRadius, (enemyInstance) =>
             {
                 enemyInstance.transform.SetParent(enemySpawner.transform);
                 EnemyStats stats = enemyInstance.GetComponent<EnemyStats>();
                 if (stats != null) stats.OnEnemyDeathEvent += updateKillCount;
             }));
+
             yield return new WaitForSeconds(wave.spawnInterval);
         }
 
@@ -86,8 +95,7 @@ public class WaveManager : MonoBehaviour
         var keyedStats = keyedInstance.GetComponent<EnemyStats>();
         if (keyedStats != null) keyedStats.OnEnemyDeathEvent += updateKillCount;
 
-        AWaveEndedSpawning?.Invoke();
+        OnWaveSpawningEnded?.Invoke();
         yield return null;
     }
-
 }
