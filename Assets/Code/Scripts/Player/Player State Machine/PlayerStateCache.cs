@@ -10,11 +10,8 @@ public class PlayerStateCache
     }
 
     private readonly Dictionary<PlayerState, PlayerActionState> _stateCache;
-    
-    public PlayerStateCache()
-    {
-        _stateCache = new();
-    }
+
+    public PlayerStateCache() => _stateCache = new();
 
     public void Init(PlayerManager playerContext, PlayerStateMachine playerStateMachine)
     {
