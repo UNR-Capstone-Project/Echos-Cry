@@ -37,8 +37,8 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         _playerStateCache.Init(this, _playerStateMachine);
-        _playerStateMachine.Init(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Idle));
         _playerStateMachine.BindInputs(_inputTranslator);
+        _playerStateMachine.Init(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Idle));
     }
     private void OnDestroy()
     {

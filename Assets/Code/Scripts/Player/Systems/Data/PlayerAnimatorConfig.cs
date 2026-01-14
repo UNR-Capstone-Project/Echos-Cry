@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerAnimatorConfig : ScriptableObject
 {
     [SerializeField] private Color _onPlayerDamagedTintColor;
-    [SerializeField] private float _onPlayerDamagedTintFlashDuration;
+    [SerializeField, Range(0, 1)] private float _tintFlashDuration;
     public Color OnPlayerDamagedTintColor { get {  return _onPlayerDamagedTintColor;} }
-    public float OnPlayerDamagedTintFlashDuration { get { return _onPlayerDamagedTintFlashDuration;} }
+    public float TintFlashDuration { get { return _tintFlashDuration;} }
 }

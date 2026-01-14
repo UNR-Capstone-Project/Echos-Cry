@@ -49,7 +49,7 @@ public class PlayerAnimator : MonoBehaviour
     private IEnumerator TintFlashCoroutine(Color tintColor)
     {
         _playerMainSpriteRenderer.material.SetColor(hashedTintColor, tintColor);
-        yield return new WaitForSeconds(_playerAnimatorConfig.OnPlayerDamagedTintFlashDuration);
+        yield return new WaitForSeconds(_playerAnimatorConfig.TintFlashDuration);
         _playerMainSpriteRenderer.material.SetColor(hashedTintColor, defaultSpriteColor);
     }
 
