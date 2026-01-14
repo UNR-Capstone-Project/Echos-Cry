@@ -20,28 +20,23 @@ public class PlayerStats : MonoBehaviour
             Debug.LogWarning("Player Stats Configuration file is null!");
             return;
         }
-        _currentHealth = _playerStatsConfig.MaxHealth.Value;
+        _currentHealth = _playerStatsConfig.maxHealth;
     }
 
-    public void OnPlayerDamaged(float damageAmount)
+    public void OnDamaged(float damageAmount)
     {
-        //if (invulnerability) { return; }
-        Debug.Assert(damageAmount >= 0);
-
         _currentHealth -= damageAmount;
         if (_currentHealth < 0) _currentHealth = 0;
 
         OnPlayerDamagedEvent?.Invoke();
-        OnPlayerHealthChangeEvent?.Invoke(_currentHealth, _playerStatsConfig.MaxHealth.Value);
+        OnPlayerHealthChangeEvent?.Invoke(_currentHealth, _playerStatsConfig.maxHealth);
     }
-    public void OnPlayerHealed(float healAmount)
+    public void OnHealed(float healAmount)
     {
-        Debug.Assert(healAmount >= 0);
-
         _currentHealth += healAmount;
-        if(_currentHealth > _playerStatsConfig.MaxHealth.Value) _currentHealth = _playerStatsConfig.MaxHealth.Value;
+        if(_currentHealth > _playerStatsConfig.maxHealth) _currentHealth = _playerStatsConfig.maxHealth;
 
         OnPlayerHealedEvent?.Invoke();
-        OnPlayerHealthChangeEvent?.Invoke(_currentHealth, _playerStatsConfig.MaxHealth.Value);
+        OnPlayerHealthChangeEvent?.Invoke(_currentHealth, _playerStatsConfig.maxHealth);
     }
 }

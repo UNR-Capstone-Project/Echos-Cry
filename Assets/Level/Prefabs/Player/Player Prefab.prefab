@@ -926,7 +926,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDirection
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!1 &7463496753888088841
 GameObject:
   m_ObjectHideFlags: 0
