@@ -28,7 +28,6 @@ public class PlayerStateCache
             PlayerState.Move,
             new PlayerMoveState(
                 playerContext.PlayerMovement,
-                playerContext.PlayerInputHandler,
                 playerContext.PlayerAnimator,
                 playerStateMachine,
                 this)

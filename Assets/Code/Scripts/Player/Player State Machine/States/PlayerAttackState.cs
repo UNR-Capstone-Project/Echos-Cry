@@ -6,14 +6,16 @@ public class PlayerAttackState : PlayerActionState
     {
     }
 
-    public override void CheckSwitchState()
-    {
-  
-    }
-
     public override void EnterState()
     {
+        if (_playerStateMachine.isLightAttacking)
+        {
 
+        }
+        else if (_playerStateMachine.isHeavyAttacking)
+        {
+
+        }
     }
 
     public override void ExitState()

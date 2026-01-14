@@ -3,10 +3,6 @@ using UnityEngine;
 public class PlayerActionInputHandler 
 {
     private readonly PlayerStateMachine _playerStateMachine;
-    private bool _isLightAttacking, _isHeavyAttacking;
-    private Vector2 _locomotion;
-   
-    public Vector2 Locomotion { get {  return _locomotion; } }
 
     public PlayerActionInputHandler(PlayerStateMachine playerStateMachine)
     {
@@ -16,9 +12,6 @@ public class PlayerActionInputHandler
         {
             Debug.LogError("Invalid value passed: " + this.GetType().ToString() + " has invalid value passed to constructor");
         }
-
-        _isLightAttacking = false;
-        _isHeavyAttacking = false;
     }
 
     public void BindEvents(InputTranslator translator)
@@ -40,11 +33,11 @@ public class PlayerActionInputHandler
 
     private void HandleMovement(Vector2 locomotion)
     {
-        _locomotion = locomotion;
+        _playerStateMachine.locomotion = locomotion;
 
         if (_playerStateMachine == null) return;
 
-        if (_locomotion != Vector2.zero) _playerStateMachine.isMoving = true;
+        if (_playerStateMachine.locomotion != Vector2.zero) _playerStateMachine.isMoving = true;
         else _playerStateMachine.isMoving = false;
     }
     private void HandleLightAttack(bool buttonPressed)
@@ -53,13 +46,13 @@ public class PlayerActionInputHandler
         
         if (buttonPressed)
         {
-            _isLightAttacking = true;
+            _playerStateMachine.isLightAttacking = true;
             _playerStateMachine.isAttacking = true;
         }
         else
         {
-            _isLightAttacking = false;
-            if(!_isHeavyAttacking) _playerStateMachine.isAttacking = false;
+            _playerStateMachine.isLightAttacking = false;
+            if(!_playerStateMachine.isHeavyAttacking) _playerStateMachine.isAttacking = false;
         }
     }
     private void HandleHeavyAttack(bool buttonPressed)
@@ -68,13 +61,13 @@ public class PlayerActionInputHandler
 
         if (buttonPressed)
         {
-            _isHeavyAttacking = true;
+            _playerStateMachine.isHeavyAttacking = true;
             _playerStateMachine.isAttacking = true;
         }
         else
         {
-            _isHeavyAttacking = false;
-            if(!_isLightAttacking) _playerStateMachine.isAttacking = false;
+            _playerStateMachine.isHeavyAttacking = false;
+            if(!_playerStateMachine.isLightAttacking) _playerStateMachine.isAttacking = false;
         }
     }
     private void HandleDash(bool buttonPressed)

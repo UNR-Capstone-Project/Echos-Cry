@@ -29,7 +29,6 @@ public class PlayerManager : MonoBehaviour
     public PlayerDirection PlayerDirection { get => _playerDirection; }
     public PlayerCurrencySystem PlayerCurrencySystem { get => _playerCurrencySystem; }
     public InputTranslator InputTranslator { get => _inputTranslator; }
-    public PlayerActionInputHandler PlayerInputHandler { get => _playerInputHandler; }
 
     private void Awake()
     {

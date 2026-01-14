@@ -4,18 +4,15 @@ using UnityEngine;
 public class PlayerMoveState : PlayerActionState
 {
     private readonly PlayerMovement _playerMovement;
-    private readonly PlayerActionInputHandler _inputHandler;
     private readonly PlayerAnimator _animator;
 
     public PlayerMoveState(PlayerMovement playerMovement,
-        PlayerActionInputHandler inputHandler,
         PlayerAnimator playerAnimator,
         PlayerStateMachine playerStateMachine, 
         PlayerStateCache playerStateCache) 
         : base(playerStateMachine, playerStateCache)
     {
         _playerMovement = playerMovement;
-        _inputHandler = inputHandler;
         _animator = playerAnimator;
     }
 
@@ -40,11 +37,11 @@ public class PlayerMoveState : PlayerActionState
     }
     public override void UpdateState()
     {
-        _animator.UpdateMainSpriteDirection(_inputHandler.Locomotion);
+        _animator.UpdateMainSpriteDirection(_playerStateMachine.locomotion);
     }
 
     public override void FixedUpdateState()
     {
-        _playerMovement.PlayerMove(_inputHandler.Locomotion);
+        _playerMovement.PlayerMove(_playerStateMachine.locomotion);
     }
 }
