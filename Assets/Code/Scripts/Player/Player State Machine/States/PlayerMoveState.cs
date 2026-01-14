@@ -42,6 +42,6 @@ public class PlayerMoveState : PlayerActionState
 
     public override void FixedUpdateState()
     {
-        _playerMovement.PlayerMove(_playerStateMachine.locomotion);
+        _playerMovement.Move(_playerStateMachine.locomotion);
     }
 }

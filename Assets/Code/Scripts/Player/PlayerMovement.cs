@@ -5,7 +5,7 @@ using System;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public void PlayerMove(Vector2 playerInputLocomotion)
+    public void Move(Vector2 playerInputLocomotion)
     {
         if (_playerMovementConfig == null) return;
 
@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
         _playerRigidbody.AddForce(targetVel - _playerRigidbody.linearVelocity, ForceMode.VelocityChange);
         //else _playerRigidbody.AddForce(-(_stoppingAcceleration * _playerRigidbody.linearVelocity.normalized));
     }
-    public void PlayerDash()
+    public void Dash()
     {
         _playerRigidbody.AddForce(_playerRigidbody.linearVelocity.normalized * _playerMovementConfig.DashSpeed, ForceMode.Impulse);
     }

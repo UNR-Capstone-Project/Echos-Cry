@@ -16,7 +16,6 @@ public class PlayerManager : MonoBehaviour
 
     private PlayerStateMachine _playerStateMachine;
     private PlayerStateCache _playerStateCache;
-    private PlayerActionInputHandler _playerInputHandler;
 
     public PlayerStats PlayerStats { get => _playerStats; }
     public PlayerComboMeter PlayerComboMeter { get => _playerComboMeter; }
@@ -34,18 +33,16 @@ public class PlayerManager : MonoBehaviour
     {
         _playerStateMachine = new PlayerStateMachine();
         _playerStateCache = new PlayerStateCache();
-        _playerInputHandler = new PlayerActionInputHandler(_playerStateMachine);
     }
     private void Start()
     {
         _playerStateCache.Init(this, _playerStateMachine);
         _playerStateMachine.Init(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Idle));
-        
-        _playerInputHandler.BindEvents(_inputTranslator);
+        _playerStateMachine.BindInputs(_inputTranslator);
     }
     private void OnDestroy()
     {
-        _playerInputHandler.UnbindEvents(_inputTranslator);
+        _playerStateMachine.UnbindInputs(_inputTranslator);
     }
     private void Update()
     {

@@ -18,13 +18,13 @@ public class PlayerAnimator : MonoBehaviour
 
     private void Start()
     {
-        PlayerStats.OnPlayerDamagedEvent += PlayerDamagedTintFlash;
+        //PlayerStats.OnPlayerDamagedEvent += TintFlash;
 
         defaultSpriteColor = _playerMainSpriteRenderer.material.GetColor(hashedTintColor);
     }
     private void OnDestroy()
     {
-        PlayerStats.OnPlayerDamagedEvent -= PlayerDamagedTintFlash;
+        //PlayerStats.OnPlayerDamagedEvent -= TintFlash;
     }
 
     public void UpdateMainSpriteDirection(Vector2 locomotion)
@@ -41,24 +41,20 @@ public class PlayerAnimator : MonoBehaviour
         _playerMainSpriteAnimator.SetBool(hashedIsRunning, isRunning);
     }
 
-    public void PlayerDamagedTintFlash()
+    public void TintFlash(Color tintColor)
     {
-        StopCoroutine(OnPlayerDamagedTintFlashCoroutine());
-        StartCoroutine(OnPlayerDamagedTintFlashCoroutine());
+        StopCoroutine(TintFlashCoroutine(tintColor));
+        StartCoroutine(TintFlashCoroutine(tintColor));
     }
-    private IEnumerator OnPlayerDamagedTintFlashCoroutine()
+    private IEnumerator TintFlashCoroutine(Color tintColor)
     {
-        _playerMainSpriteRenderer.material.SetColor(hashedTintColor, _playerAnimatorConfig.OnPlayerDamagedTintColor);
+        _playerMainSpriteRenderer.material.SetColor(hashedTintColor, tintColor);
         yield return new WaitForSeconds(_playerAnimatorConfig.OnPlayerDamagedTintFlashDuration);
         _playerMainSpriteRenderer.material.SetColor(hashedTintColor, defaultSpriteColor);
     }
 
-    public void StartDashTrailEmit()
+    public void SetIsTrailEmit(bool isEmitting)
     {
-        _dashTrail.emitting = true;
-    }
-    public void EndDashTrailEmit()
-    {
-        _dashTrail.emitting = false;
+        _dashTrail.emitting = isEmitting;
     }
 }
