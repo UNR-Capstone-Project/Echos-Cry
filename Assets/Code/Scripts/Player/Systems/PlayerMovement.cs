@@ -19,9 +19,7 @@ public class PlayerMovement : MonoBehaviour
                           + (playerInputLocomotion.x * _playerMovementConfig.PlayerSpeed * rightVector)
                           + new Vector3(0f,_playerRigidbody.linearVelocity.y,0f);
 
-        //if (_playerInputLocomotion != Vector2.zero) 
         _playerRigidbody.AddForce(targetVel - _playerRigidbody.linearVelocity, ForceMode.VelocityChange);
-        //else _playerRigidbody.AddForce(-(_stoppingAcceleration * _playerRigidbody.linearVelocity.normalized));
     }
     public void Dash()
     {

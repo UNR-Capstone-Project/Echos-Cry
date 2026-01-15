@@ -5,7 +5,7 @@ using UnityEngine.Pool;
 //Contains reference to prefab
 //Creates ObjectPool of prefab with an initial amount set by user
 
-public class RBProjectileHandler : MonoBehaviour
+public class RBProjectilePool : MonoBehaviour
 {
     public void UseProjectile(Vector3 position, Vector3 direction, float damage)
     {
@@ -20,7 +20,7 @@ public class RBProjectileHandler : MonoBehaviour
         projectileRB.gameObject.transform.position = position;
         projectileRB.AddForce(direction * ProjectileSpeed, ForceMode.Impulse);
     }
-    public RBProjectileHandler InitializeHandler(GameObject prefab, int initialPoolAmount, int maxPoolAmount)
+    public RBProjectilePool Init(GameObject prefab, int initialPoolAmount, int maxPoolAmount)
     {
         this.prefab = prefab;
         this.initialPoolAmount = initialPoolAmount;

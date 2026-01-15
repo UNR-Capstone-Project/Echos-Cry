@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class TestProjectileSkill : Skill
 {
-    RBProjectileHandler handler;
+    RBProjectilePool handler;
     float m_speed;
-    public TestProjectileSkill(float skillCost, RBProjectileHandler projectileHandler) : base(skillCost)
+    public TestProjectileSkill(float skillCost, RBProjectilePool projectileHandler) : base(skillCost)
     {
         handler = projectileHandler;
     }
