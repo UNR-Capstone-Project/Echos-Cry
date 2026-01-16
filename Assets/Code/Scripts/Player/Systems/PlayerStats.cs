@@ -23,7 +23,7 @@ public class PlayerStats : MonoBehaviour
         _currentHealth = _playerStatsConfig.maxHealth;
     }
 
-    public void OnDamaged(float damageAmount)
+    public void Damage(float damageAmount)
     {
         _currentHealth -= damageAmount;
         if (_currentHealth < 0) _currentHealth = 0;
@@ -31,7 +31,7 @@ public class PlayerStats : MonoBehaviour
         OnPlayerDamagedEvent?.Invoke();
         OnPlayerHealthChangeEvent?.Invoke(_currentHealth, _playerStatsConfig.maxHealth);
     }
-    public void OnHealed(float healAmount)
+    public void Heal(float healAmount)
     {
         _currentHealth += healAmount;
         if(_currentHealth > _playerStatsConfig.maxHealth) _currentHealth = _playerStatsConfig.maxHealth;
