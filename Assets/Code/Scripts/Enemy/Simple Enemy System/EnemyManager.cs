@@ -5,6 +5,8 @@ public abstract class EnemyManager : MonoBehaviour
     private EnemyStateCache   _enemyStateCache;
     private EnemyStateMachine _enemyStateMachine;
 
+    private EnemyStats _enemyStats;
+
     private AttackStrategy   _attackStrategy;
     private TargetStrategy   _targetStrategy;
     private MovementStrategy _movementStrategy;
