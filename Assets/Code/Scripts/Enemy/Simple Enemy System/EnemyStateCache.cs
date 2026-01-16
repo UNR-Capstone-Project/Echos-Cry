@@ -6,12 +6,11 @@ public class EnemyStateCache
     {
         UNASSIGNED = 0,
         //Bat Enemy
-        Bat_Spawn, BAT_STAGGER, BAT_DEATH, BAT_CHARGE, BAT_ATTACK, BAT_IDLE, BAT_CHASE,
+        Bat_Spawn, Bat_Stagger, Bat_Death, Bat_Charge, Bat_Attack, Bat_Idle, Bat_Chase,
         //Range Enemy
-        RANGE_SPAWN, RANGE_STAGGER, RANGE_DEATH, RANGE_CHARGE, RANGE_ATTACK, RANGE_IDLE, RANGE_ROAM
+        Range_Spawn, Range_Stagger, Range_Death, Range_Charge, Range_Attack, Range_Idle, Range_Roam
     }
-    private Dictionary<EnemyStates, EnemyState> _stateCache;
-    public Dictionary<EnemyStates, EnemyState> StateCache { get { return _stateCache; } }
+    private readonly Dictionary<EnemyStates, EnemyState> _stateCache;
 
     public EnemyStateCache()
     {
@@ -22,6 +21,10 @@ public class EnemyStateCache
     {
         if (!_stateCache.ContainsKey(requestedState)) return null;
         else return _stateCache[requestedState];
+    }
+    public void AddState(EnemyStates statesEnum, EnemyState state)
+    {
+        _stateCache.Add(statesEnum, state);
     }
 
 }

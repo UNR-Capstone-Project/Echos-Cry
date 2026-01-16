@@ -23,7 +23,7 @@ public class BatSpawnState : EnemyState
 
     public override void Enter()
     {
-        _enemyStateMachine.SwitchState(_enemyStateCache.RequestState(EnemyStates.BAT_IDLE));
+        _enemyStateMachine.SwitchState(_enemyStateCache.RequestState(EnemyStates.Bat_Idle));
     }
 }
 
@@ -36,16 +36,16 @@ public class BatIdleState : EnemyState
         sqrMagDistance = Mathf.Pow(10f, 2f);
     }
 
-    public override void UpdateState02ms(EnemyManager enemyContext)
+    public override void UpdateState02ms(Enemy enemyContext)
     {
         CheckPlayerDistance(enemyContext);
     }
-    public  void CheckPlayerDistance(EnemyManager enemyContext)
+    public  void CheckPlayerDistance(Enemy enemyContext)
     {
         float playerDistance = (enemyContext.transform.position - PlayerRef.PlayerTransform.position).sqrMagnitude;
         if (playerDistance < sqrMagDistance)
         {
-            _enemyStateMachine.SwitchState(_enemyStateCache.RequestState(EnemyStates.BAT_CHASE));
+            _enemyStateMachine.SwitchState(_enemyStateCache.RequestState(EnemyStates.Bat_Chase));
             return;
         }
     }
@@ -63,7 +63,7 @@ public class BatChaseState : EnemyState
     {
         _enemyContext.StopAllCoroutines();
     }
-    public override void UpdateState02ms(EnemyManager enemyContext)
+    public override void UpdateState02ms(Enemy enemyContext)
     {
         CheckNavMeshDistance();
         SetEnemyTarget();
@@ -76,7 +76,7 @@ public class BatChaseState : EnemyState
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) 
-                _enemyStateMachine.SwitchState(_enemyStateCache.RequestState(EnemyStates.BAT_CHARGE));
+                _enemyStateMachine.SwitchState(_enemyStateCache.RequestState(EnemyStates.Bat_Charge));
         }
     }
     private void SetEnemyTarget()
@@ -110,14 +110,14 @@ public class BatChargeAttackState : EnemyState
     {
         yield return new WaitForSeconds(chargeDuration);
         if (TempoManager.CurrentHitQuality != TempoManager.HIT_QUALITY.MISS) 
-            _enemyStateMachine.SwitchState(_enemyStateCache.RequestState(EnemyStates.BAT_ATTACK));
+            _enemyStateMachine.SwitchState(_enemyStateCache.RequestState(EnemyStates.Bat_Attack));
         else _enemyContext.StartCoroutine(WaitUntilBeat());
     }
     IEnumerator WaitUntilBeat()
     {
         yield return new WaitForEndOfFrame();
         if (TempoManager.CurrentHitQuality != TempoManager.HIT_QUALITY.MISS) 
-            _enemyStateMachine.SwitchState(_enemyStateCache.RequestState(EnemyStates.BAT_ATTACK));
+            _enemyStateMachine.SwitchState(_enemyStateCache.RequestState(EnemyStates.Bat_Attack));
         else _enemyContext.StartCoroutine(WaitUntilBeat());
     }
 }
@@ -159,7 +159,7 @@ public class BatStaggerState : EnemyState
     private IEnumerator StaggerDuration()
     {
         yield return new WaitForSeconds(staggerDuration);
-        _enemyStateMachine.SwitchState(_enemyStateCache.RequestState(EnemyStates.BAT_CHASE));
+        _enemyStateMachine.SwitchState(_enemyStateCache.RequestState(EnemyStates.Bat_Chase));
     }
 }
 public class BatDeathState : EnemyState

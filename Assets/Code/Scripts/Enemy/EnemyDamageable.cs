@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class EnemyDamageable : IDamageable
+public class EnemyDamageable : MonoBehaviour, IDamageable
 {
-    EnemyStats _enemyStats;
+    [SerializeField] EnemyStats _enemyStats;
     public virtual void Init(EnemyStats enemyStats)
     {
         _enemyStats = enemyStats;

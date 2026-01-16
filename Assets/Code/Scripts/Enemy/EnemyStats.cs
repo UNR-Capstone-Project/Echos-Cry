@@ -9,45 +9,50 @@ using UnityEngine.AI;
 
 public class EnemyStats : MonoBehaviour
 {
-    public float Health { get; private set; }
-    public float MaxHealth = 100f;
-    public float Armor {  get; private set; }
-    public float MaxArmor;
+    [Header("Stats Configuration File")]
+    [SerializeField] private StatsConfig _statsConfig;
+
+    private float _health;
+    private float _armor;
+    private float _maxHealth;
+    private float _maxArmor;
+
+    public float Health { get => _health; }
+    public float Armor { get => _armor; }
+    public float MaxHealth { get => _maxHealth; }
+    public float MaxArmor { get => _maxArmor; }
 
     public event Action<float, Color> OnEnemyDamagedEvent;
     public event Action OnEnemyHealedEvent;
-    public event Action OnEnemyDeathEvent;
 
     private void Start()
     {
-        Health = MaxHealth;
+        _health = _statsConfig.maxHealth;
+        _armor = _statsConfig.maxArmor;
+        _maxHealth = _statsConfig.maxHealth;
+        _maxArmor = _statsConfig.maxArmor;
     }
  
     public void HealHealth(float heal)
     {
-        Health += Mathf.Abs(heal);
-        if (Health > MaxHealth) Health = MaxHealth;
+        _health += Mathf.Abs(heal);
+        if (Health > MaxHealth) _health = MaxHealth;
         OnEnemyHealedEvent?.Invoke();
     }
     public void HealArmor(float heal)
     {
-        Armor += Mathf.Abs(heal);
-        if (Health > MaxHealth) Health = MaxHealth;
+        _armor += Mathf.Abs(heal);
+        if (Health > MaxHealth) _health = MaxHealth;
         OnEnemyHealedEvent?.Invoke();
     }
     public void DamageHealth(float damage, Color color)
     {
-        Health -= Mathf.Abs(damage);
+        _health -= Mathf.Abs(damage);
         OnEnemyDamagedEvent?.Invoke(damage, color);
     }
     public void DamageArmor(float damage, Color color)
     {
-        Armor -= Mathf.Abs(damage);
+        _armor -= Mathf.Abs(damage);
         OnEnemyDamagedEvent?.Invoke(damage, color);
-    }
-    public void HandleEnemyDeath()
-    {
-        OnEnemyDeathEvent?.Invoke();
-        Destroy(gameObject);
     }
 }

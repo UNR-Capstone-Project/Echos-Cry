@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     [Header("Configuration Object")]
-    [SerializeField] private PlayerStatsConfig _playerStatsConfig;
+    [SerializeField] private StatsConfig _playerStatsConfig;
 
     public static event Action OnPlayerDamagedEvent;
     public static event Action OnPlayerHealedEvent;

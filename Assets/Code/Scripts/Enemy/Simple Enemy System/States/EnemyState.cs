@@ -4,7 +4,7 @@ public abstract class EnemyState : IState
     protected EnemyStateMachine _enemyStateMachine;
     protected EnemyStateCache _enemyStateCache;
 
-    protected EnemyManager _enemyContext;
+    protected Enemy _enemyContext;
     
     protected EnemyState(EnemyStateMachine enemyStateMachine, EnemyStateCache enemyStateCache)
     {
@@ -12,7 +12,7 @@ public abstract class EnemyState : IState
         _enemyStateCache = enemyStateCache;
     }
 
-    public void InjectContext(EnemyManager enemyContext)
+    public void InjectContext(Enemy enemyContext)
     {
         _enemyContext = enemyContext;
     }
@@ -27,5 +27,5 @@ public abstract class EnemyState : IState
 
     public virtual void CheckSwitch() { }
 
-    public virtual void UpdateState02ms(EnemyManager enemyContext) { }
+    public virtual void UpdateState02ms(Enemy enemyContext) { }
 }

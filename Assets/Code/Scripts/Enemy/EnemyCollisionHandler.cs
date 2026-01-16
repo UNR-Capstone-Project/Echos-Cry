@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using static EnemyManager;
+using static Enemy;
 using static EnemyStateCache;
 
 //This will be placed on every enemy to handle collision with an attack from player
@@ -34,7 +34,7 @@ public class EnemyCollisionHandler : MonoBehaviour
         switch (_enemyManager.TypeOfEnemy)
         {
             case EnemyType.BAT:
-                enemyStaggerState = EnemyStates.BAT_STAGGER;
+                enemyStaggerState = EnemyStates.Bat_Stagger;
                 break;
             case EnemyType.RANGE:
                 enemyStaggerState = EnemyStates.RANGE_STAGGER;
@@ -47,7 +47,7 @@ public class EnemyCollisionHandler : MonoBehaviour
 
     private void Awake()
     {
-        _enemyManager = GetComponent<EnemyManager>();
+        _enemyManager = GetComponent<Enemy>();
         _enemyCollider = GetComponent<Collider>();
     }
     private void Start()
@@ -62,5 +62,5 @@ public class EnemyCollisionHandler : MonoBehaviour
     
     private Collider _enemyCollider;
     EnemyStates enemyStaggerState;
-    protected EnemyManager _enemyManager;
+    protected Enemy _enemyManager;
 }
