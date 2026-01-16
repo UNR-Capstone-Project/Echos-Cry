@@ -3,11 +3,11 @@ using UnityEngine.Pool;
 
 public class EnemyPool
 {
-    private ObjectPool<SimpleEnemyManager> _enemyPool;
+    private ObjectPool<EnemyManager> _enemyPool;
 
     public void Init()
     {
-        _enemyPool = new ObjectPool<SimpleEnemyManager>(
+        _enemyPool = new ObjectPool<EnemyManager>(
             createFunc: CreateEnemy,
             actionOnGet: OnGetEnemy,
             actionOnRelease: OnReleaseEnemy,
@@ -18,19 +18,19 @@ public class EnemyPool
             );
     }
 
-    private SimpleEnemyManager CreateEnemy()
+    private EnemyManager CreateEnemy()
     {
         return null;
     }
-    private void OnGetEnemy(SimpleEnemyManager context)
+    private void OnGetEnemy(EnemyManager context)
     {
 
     }
-    private void OnReleaseEnemy(SimpleEnemyManager context)
+    private void OnReleaseEnemy(EnemyManager context)
     {
 
     }
-    private void OnDestroyEnemy(SimpleEnemyManager context)
+    private void OnDestroyEnemy(EnemyManager context)
     {
 
     }

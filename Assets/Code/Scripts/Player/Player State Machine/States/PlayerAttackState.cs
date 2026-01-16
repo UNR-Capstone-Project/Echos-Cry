@@ -4,7 +4,7 @@ public class PlayerAttackState : PlayerActionState
 {
     public PlayerAttackState(PlayerStateMachine playerStateMachine, PlayerStateCache playerStateCache) : base(playerStateMachine, playerStateCache) {}
 
-    public override void EnterState()
+    public override void Enter()
     {
         if (_playerStateMachine.isLightAttacking)
         {
@@ -16,12 +16,12 @@ public class PlayerAttackState : PlayerActionState
         }
     }
 
-    public override void ExitState()
+    public override void Exit()
     {
         
     }
 
-    public override void UpdateState()
+    public override void Update()
     {
     
     }

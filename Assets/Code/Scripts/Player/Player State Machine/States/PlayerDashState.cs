@@ -6,21 +6,21 @@ public class PlayerDashState : PlayerActionState
     {
     }
 
-    public override void CheckSwitchState()
+    public override void CheckSwitch()
     {
 
     }
 
-    public override void EnterState()
+    public override void Enter()
     {
     }
 
-    public override void ExitState()
+    public override void Exit()
     {
      
     }
 
-    public override void UpdateState()
+    public override void Update()
     {
       
     }

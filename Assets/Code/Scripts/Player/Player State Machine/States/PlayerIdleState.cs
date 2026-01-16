@@ -5,7 +5,7 @@ public class PlayerIdleState : PlayerActionState
     public PlayerIdleState(PlayerStateMachine playerStateMachine, PlayerStateCache playerStateCache) 
         : base(playerStateMachine, playerStateCache) {}
 
-    public override void CheckSwitchState()
+    public override void CheckSwitch()
     {
         if (_playerStateMachine.isMoving)
             RequestSwitchState(PlayerStateCache.PlayerState.Move);

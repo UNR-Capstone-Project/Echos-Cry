@@ -8,7 +8,7 @@ public class AttackCollisionHandler : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent<SimpleEnemyManager>(out SimpleEnemyManager enemyManager))
+        if(other.TryGetComponent<EnemyManager>(out EnemyManager enemyManager))
         {
             enemyManager.EnemyStats.DamageEnemy(AttackDamage, AttackColor);
         }

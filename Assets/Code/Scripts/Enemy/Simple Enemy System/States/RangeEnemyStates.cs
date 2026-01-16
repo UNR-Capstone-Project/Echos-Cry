@@ -1,126 +1,135 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using static SimpleEnemyStateCache;
+using static EnemyStateCache;
 
-public class RangeSpawnState : SimpleEnemyState
+public class RangeSpawnState : EnemyState
 {
-    public RangeSpawnState() { }
+    public RangeSpawnState(EnemyStateMachine enemyStateMachine, EnemyStateCache enemyStateCache) : base(enemyStateMachine, enemyStateCache) { }
 
-    public override void EnterState(SimpleEnemyManager enemyContext)
+    public override void Enter()
     {
-        enemyContext.SwitchState(EnemyStates.RANGE_IDLE);
+        _enemyStateMachine.SwitchState(_enemyStateCache.RequestState(EnemyStates.RANGE_IDLE));
     }
 }
-public class RangeIdleState : SimpleEnemyState
+
+public class RangeIdleState : EnemyState
 {
     private float sqrMag;
-    public RangeIdleState() 
+
+    public RangeIdleState(EnemyStateMachine enemyStateMachine, EnemyStateCache enemyStateCache) : base(enemyStateMachine, enemyStateCache)
     {
         sqrMag = Mathf.Pow(10f, 2);
     }
-    public override void UpdateState02ms(SimpleEnemyManager enemyContext)
+
+    public override void UpdateState02ms(EnemyManager enemyContext)
     {
         float distance = (PlayerRef.PlayerTransform.position - enemyContext.transform.position).sqrMagnitude;
-        if (distance <= sqrMag) enemyContext.SwitchState(EnemyStates.RANGE_ROAM);
+        if (distance <= sqrMag) _enemyStateMachine.SwitchState(_enemyStateCache.RequestState(EnemyStates.RANGE_ROAM));
     }
 }
-public class RangeRoamState : SimpleEnemyState
+public class RangeRoamState : EnemyState
 {
-    public RangeRoamState(){}
-    public override void EnterState(SimpleEnemyManager enemyContext)
+    public RangeRoamState(EnemyStateMachine enemyStateMachine, EnemyStateCache enemyStateCache) : base(enemyStateMachine, enemyStateCache) { }
+
+    public override void Enter()
     {
         float range = 6f;
         Vector3 point = Random.onUnitSphere * range;
         point.y = 0;
         Vector3 destination = PlayerRef.PlayerTransform.position + point;
-        enemyContext.EnemyNMA.SetDestination(destination);
+        _enemyContext.EnemyNMA.SetDestination(destination);
     }
-    public override void UpdateState02ms(SimpleEnemyManager enemyContext)
+    public override void UpdateState02ms(EnemyManager enemyContext)
     {
         NavMeshAgent agent = enemyContext.EnemyNMA;
         if (agent == null || !agent.isOnNavMesh) return;
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
-            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) enemyContext.SwitchState(EnemyStates.RANGE_CHARGE);
+            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) _enemyStateMachine.SwitchState(_enemyStateCache.RequestState(EnemyStates.RANGE_CHARGE));
         }
     }
 }
-public class RangeChargeAttackState : SimpleEnemyState
+public class RangeChargeAttackState : EnemyState
 {
-    public RangeChargeAttackState(){}
-    public override void EnterState(SimpleEnemyManager enemyContext)
+    public RangeChargeAttackState(EnemyStateMachine enemyStateMachine, EnemyStateCache enemyStateCache) : base(enemyStateMachine, enemyStateCache) { }
+
+    public override void Enter()
     {
-        enemyContext.StartCoroutine(ChargeDurationCoroutine(enemyContext));
+        _enemyContext.StartCoroutine(ChargeDurationCoroutine());
     }
-    public override void ExitState(SimpleEnemyManager enemyContext)
+    public override void Exit()
     {
-        enemyContext.StopAllCoroutines();
+        _enemyContext.StopAllCoroutines();
     }
-    private IEnumerator ChargeDurationCoroutine(SimpleEnemyManager enemyContext)
+    private IEnumerator ChargeDurationCoroutine()
     {
         yield return new WaitForSeconds(0.5f);
-        enemyContext.SwitchState(EnemyStates.RANGE_ATTACK);
+        _enemyStateMachine.SwitchState(_enemyStateCache.RequestState(EnemyStates.RANGE_ATTACK));
     }
 }
-public class RangeAttackState : SimpleEnemyState
+public class RangeAttackState : EnemyState
 {
     int count;
-    public RangeAttackState(){}
-    public override void EnterState(SimpleEnemyManager enemyContext)
+
+    public RangeAttackState(EnemyStateMachine enemyStateMachine, EnemyStateCache enemyStateCache) : base(enemyStateMachine, enemyStateCache) { }
+
+    public override void Enter()
     {
         count = 0;
-        enemyContext.EnemyBaseAttack.UseAttack();
-        enemyContext.StartCoroutine(BetweenAttackPauseCoroutine(enemyContext));
+        _enemyContext.EnemyBaseAttack.UseAttack();
+        _enemyContext.StartCoroutine(BetweenAttackPauseCoroutine());
     }
-    public override void ExitState(SimpleEnemyManager enemyContext)
+    public override void Exit()
     {
-        enemyContext.StopAllCoroutines();
+        _enemyContext.StopAllCoroutines();
     }
-    private IEnumerator AttackCooldownCoroutine(SimpleEnemyManager enemyContext)
+    private IEnumerator AttackCooldownCoroutine()
     {
         yield return new WaitForSeconds(2f);
-        enemyContext.SwitchState(EnemyStates.RANGE_ROAM);
+        _enemyStateMachine.SwitchState(_enemyStateCache.RequestState(EnemyStates.RANGE_ROAM));
     }
-    private IEnumerator BetweenAttackPauseCoroutine(SimpleEnemyManager enemyContext)
+    private IEnumerator BetweenAttackPauseCoroutine()
     {
         yield return new WaitForSeconds(TempoManager.TimeBetweenBeats);
-        if (count >= 2) enemyContext.StartCoroutine(AttackCooldownCoroutine(enemyContext));
+        if (count >= 2) _enemyContext.StartCoroutine(AttackCooldownCoroutine());
         else
         {
-            enemyContext.EnemyBaseAttack.UseAttack();
+            _enemyContext.EnemyBaseAttack.UseAttack();
             count++;
-            enemyContext.StartCoroutine(BetweenAttackPauseCoroutine(enemyContext));
+            _enemyContext.StartCoroutine(BetweenAttackPauseCoroutine());
         }
     }
 }
-public class RangeStaggerState : SimpleEnemyState
+public class RangeStaggerState : EnemyState
 {
-    public RangeStaggerState(){}
-    public override void EnterState(SimpleEnemyManager enemyContext)
+    public RangeStaggerState(EnemyStateMachine enemyStateMachine, EnemyStateCache enemyStateCache) : base(enemyStateMachine, enemyStateCache) { }
+
+    public override void Enter()
     {
-        if(enemyContext.EnemyNMA.hasPath) enemyContext.EnemyNMA.ResetPath();
-        enemyContext.EnemyRigidbody.isKinematic = false;
-        Vector3 direction = (PlayerRef.PlayerTransform.position - enemyContext.transform.position).normalized;
-        enemyContext.EnemyRigidbody.AddForce(-(1f * direction), ForceMode.Impulse);
-        enemyContext.StartCoroutine(StaggerDurationCoroutine(enemyContext));
+        if(_enemyContext.EnemyNMA.hasPath) _enemyContext.EnemyNMA.ResetPath();
+        _enemyContext.EnemyRigidbody.isKinematic = false;
+        Vector3 direction = (PlayerRef.PlayerTransform.position - _enemyContext.transform.position).normalized;
+        _enemyContext.EnemyRigidbody.AddForce(-(1f * direction), ForceMode.Impulse);
+        _enemyContext.StartCoroutine(StaggerDurationCoroutine());
     }
-    public override void ExitState(SimpleEnemyManager enemyContext)
+    public override void Exit()
     {
-        enemyContext.EnemyRigidbody.isKinematic = true;
-        enemyContext.StopAllCoroutines();
+        _enemyContext.EnemyRigidbody.isKinematic = true;
+        _enemyContext.StopAllCoroutines();
     }
-    private IEnumerator StaggerDurationCoroutine(SimpleEnemyManager enemyContext)
+    private IEnumerator StaggerDurationCoroutine()
     {
         yield return new WaitForSeconds(1f);
-        enemyContext.SwitchState(EnemyStates.RANGE_ROAM);
+        _enemyStateMachine.SwitchState(_enemyStateCache.RequestState(EnemyStates.RANGE_ROAM));
     }
 }
-public class RangeDeathState : SimpleEnemyState
+public class RangeDeathState : EnemyState
 {
-    public RangeDeathState(){}
-    public override void EnterState(SimpleEnemyManager enemyContext)
+    public RangeDeathState(EnemyStateMachine enemyStateMachine, EnemyStateCache enemyStateCache) : base(enemyStateMachine, enemyStateCache) { }
+
+    public override void Enter()
     {
-        enemyContext.EnemyStats.HandleEnemyDeath();
+        _enemyContext.EnemyStats.HandleEnemyDeath();
     }
 }

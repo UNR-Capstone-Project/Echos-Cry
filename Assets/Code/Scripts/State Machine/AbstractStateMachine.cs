@@ -7,23 +7,23 @@ public abstract class AbstractStateMachine<T> where T : IState
     public virtual void Init(T initState)
     {
         _currentState = initState;
-        _currentState?.EnterState();
+        _currentState?.Enter();
     }
     public virtual void Update()
     {
         if (_currentState == null) return;
-        _currentState.CheckSwitchState();
-        _currentState.UpdateState();
+        _currentState.CheckSwitch();
+        _currentState.Update();
     }
     public virtual void FixedUpdate()
     {
-        _currentState?.FixedUpdateState();
+        _currentState?.FixedUpdate();
     }
-    public void SwitchState(T newState)
+    public virtual void SwitchState(T newState)
     {
         if(_currentState == null) return;   
-        _currentState.ExitState();
+        _currentState.Exit();
         _currentState = newState;
-        _currentState.EnterState();
+        _currentState.Enter();
     }
 }

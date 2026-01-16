@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using static SimpleEnemyManager;
-using static SimpleEnemyStateCache;
+using static EnemyManager;
+using static EnemyStateCache;
 
 //This will be placed on every enemy to handle collision with an attack from player
 
@@ -47,7 +47,7 @@ public class EnemyCollisionHandler : MonoBehaviour
 
     private void Awake()
     {
-        _enemyManager = GetComponent<SimpleEnemyManager>();
+        _enemyManager = GetComponent<EnemyManager>();
         _enemyCollider = GetComponent<Collider>();
     }
     private void Start()
@@ -62,5 +62,5 @@ public class EnemyCollisionHandler : MonoBehaviour
     
     private Collider _enemyCollider;
     EnemyStates enemyStaggerState;
-    protected SimpleEnemyManager _enemyManager;
+    protected EnemyManager _enemyManager;
 }

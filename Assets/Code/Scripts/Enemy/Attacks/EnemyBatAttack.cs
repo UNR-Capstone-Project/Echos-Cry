@@ -38,7 +38,7 @@ public class EnemyBatAttack : EnemyBaseAttack
     {
         _enemyManager.EnemyRigidbody.isKinematic = true;
         yield return new WaitForSeconds(attackCooldown);
-        _enemyManager.SwitchState(SimpleEnemyStateCache.EnemyStates.BAT_CHASE);
+        _enemyManager.SwitchState(EnemyStateCache.EnemyStates.BAT_CHASE);
     }
 
     private void Start()

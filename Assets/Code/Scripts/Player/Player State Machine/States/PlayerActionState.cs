@@ -13,11 +13,11 @@ public abstract class PlayerActionState : IState
         if (_playerStateCache == null) Debug.LogError("Invalid value passed: " + GetType().ToString() + "::_playerStateCache");
     }
 
-    public virtual void UpdateState() { }
-    public virtual void FixedUpdateState(){ }
-    public virtual void EnterState() { }
-    public virtual void ExitState() { }
-    public virtual void CheckSwitchState() { }
+    public virtual void Update() { }
+    public virtual void FixedUpdate(){ }
+    public virtual void Enter() { }
+    public virtual void Exit() { }
+    public virtual void CheckSwitch() { }
 
     protected void RequestSwitchState(PlayerStateCache.PlayerState newState) 
     {

@@ -14,7 +14,7 @@ public class PlayerMoveState : PlayerActionState
         _animator = playerAnimator;
     }
 
-    public override void CheckSwitchState()
+    public override void CheckSwitch()
     {
         if (!_playerStateMachine.isMoving)
             RequestSwitchState(PlayerStateCache.PlayerState.Idle);
@@ -24,21 +24,21 @@ public class PlayerMoveState : PlayerActionState
             RequestSwitchState(PlayerStateCache.PlayerState.Dash);
     }
 
-    public override void EnterState()
+    public override void Enter()
     {
         _animator.SetIsMainSpriteRunningAnimation(true);
     }
 
-    public override void ExitState()
+    public override void Exit()
     {
         _animator.SetIsMainSpriteRunningAnimation(false);
     }
-    public override void UpdateState()
+    public override void Update()
     {
         _animator.UpdateMainSpriteDirection(_playerStateMachine.locomotion);
     }
 
-    public override void FixedUpdateState()
+    public override void FixedUpdate()
     {
         _playerMovement.Move(_playerStateMachine.locomotion);
     }

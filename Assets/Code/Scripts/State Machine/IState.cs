@@ -2,9 +2,9 @@ using UnityEngine;
 
 public interface IState 
 {
-    public void UpdateState();
-    public void FixedUpdateState();
-    public void EnterState();
-    public void ExitState();
-    public void CheckSwitchState();
+    public void Update();
+    public void FixedUpdate();
+    public void Enter();
+    public void Exit();
+    public void CheckSwitch();
 }
