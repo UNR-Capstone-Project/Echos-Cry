@@ -10,7 +10,7 @@ public class AttackCollisionHandler : MonoBehaviour
     {
         if(other.TryGetComponent<Enemy>(out Enemy enemyManager))
         {
-            enemyManager.EnemyStats.DamageEnemy(AttackDamage, AttackColor);
+            enemyManager.Stats.DamageEnemy(AttackDamage, AttackColor);
         }
     }
 

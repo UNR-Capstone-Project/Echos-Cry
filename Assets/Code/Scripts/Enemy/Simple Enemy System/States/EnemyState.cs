@@ -1,15 +1,11 @@
 
 public abstract class EnemyState : IState
 {
-    protected EnemyStateMachine _enemyStateMachine;
-    protected EnemyStateCache _enemyStateCache;
-
     protected Enemy _enemyContext;
-    
-    protected EnemyState(EnemyStateMachine enemyStateMachine, EnemyStateCache enemyStateCache)
+
+    public EnemyState(Enemy enemyContext)
     {
-        _enemyStateMachine = enemyStateMachine;
-        _enemyStateCache = enemyStateCache;
+        _enemyContext = enemyContext;
     }
 
     public virtual void Update() { }

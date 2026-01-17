@@ -5,7 +5,7 @@ using static EnemyStateCache;
 
 public class RangeSpawnState : EnemyState
 {
-    public RangeSpawnState(EnemyStateMachine enemyStateMachine, EnemyStateCache enemyStateCache) : base(enemyStateMachine, enemyStateCache) { }
+    public RangeSpawnState(EnemyStateMachine enemyStateMachine, EnemyStateCache enemyStateCache) : base(null) { }
 
     public override void Enter()
     {
@@ -17,7 +17,7 @@ public class RangeIdleState : EnemyState
 {
     private float sqrMag;
 
-    public RangeIdleState(EnemyStateMachine enemyStateMachine, EnemyStateCache enemyStateCache) : base(enemyStateMachine, enemyStateCache)
+    public RangeIdleState(EnemyStateMachine enemyStateMachine, EnemyStateCache enemyStateCache) : base(null)
     {
         sqrMag = Mathf.Pow(10f, 2);
     }
@@ -30,7 +30,7 @@ public class RangeIdleState : EnemyState
 }
 public class RangeRoamState : EnemyState
 {
-    public RangeRoamState(EnemyStateMachine enemyStateMachine, EnemyStateCache enemyStateCache) : base(enemyStateMachine, enemyStateCache) { }
+    public RangeRoamState(EnemyStateMachine enemyStateMachine, EnemyStateCache enemyStateCache) : base(null) { }
 
     public override void Enter()
     {
@@ -52,7 +52,7 @@ public class RangeRoamState : EnemyState
 }
 public class RangeChargeAttackState : EnemyState
 {
-    public RangeChargeAttackState(EnemyStateMachine enemyStateMachine, EnemyStateCache enemyStateCache) : base(enemyStateMachine, enemyStateCache) { }
+    public RangeChargeAttackState(EnemyStateMachine enemyStateMachine, EnemyStateCache enemyStateCache) : base(null) { }
 
     public override void Enter()
     {
@@ -72,7 +72,7 @@ public class RangeAttackState : EnemyState
 {
     int count;
 
-    public RangeAttackState(EnemyStateMachine enemyStateMachine, EnemyStateCache enemyStateCache) : base(enemyStateMachine, enemyStateCache) { }
+    public RangeAttackState(EnemyStateMachine enemyStateMachine, EnemyStateCache enemyStateCache) : base(null) { }
 
     public override void Enter()
     {
@@ -103,19 +103,19 @@ public class RangeAttackState : EnemyState
 }
 public class RangeStaggerState : EnemyState
 {
-    public RangeStaggerState(EnemyStateMachine enemyStateMachine, EnemyStateCache enemyStateCache) : base(enemyStateMachine, enemyStateCache) { }
+    public RangeStaggerState(EnemyStateMachine enemyStateMachine, EnemyStateCache enemyStateCache) : base(null) { }
 
     public override void Enter()
     {
         if(_enemyContext.NavMeshAgent.hasPath) _enemyContext.NavMeshAgent.ResetPath();
-        _enemyContext.EnemyRigidbody.isKinematic = false;
+        _enemyContext.Rigidbody.isKinematic = false;
         Vector3 direction = (PlayerRef.PlayerTransform.position - _enemyContext.transform.position).normalized;
-        _enemyContext.EnemyRigidbody.AddForce(-(1f * direction), ForceMode.Impulse);
+        _enemyContext.Rigidbody.AddForce(-(1f * direction), ForceMode.Impulse);
         _enemyContext.StartCoroutine(StaggerDurationCoroutine());
     }
     public override void Exit()
     {
-        _enemyContext.EnemyRigidbody.isKinematic = true;
+        _enemyContext.Rigidbody.isKinematic = true;
         _enemyContext.StopAllCoroutines();
     }
     private IEnumerator StaggerDurationCoroutine()
@@ -126,10 +126,10 @@ public class RangeStaggerState : EnemyState
 }
 public class RangeDeathState : EnemyState
 {
-    public RangeDeathState(EnemyStateMachine enemyStateMachine, EnemyStateCache enemyStateCache) : base(enemyStateMachine, enemyStateCache) { }
+    public RangeDeathState(EnemyStateMachine enemyStateMachine, EnemyStateCache enemyStateCache) : base(null) { }
 
     public override void Enter()
     {
-        _enemyContext.EnemyStats.HandleEnemyDeath();
+        _enemyContext.Stats.HandleEnemyDeath();
     }
 }

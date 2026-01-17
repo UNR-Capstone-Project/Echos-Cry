@@ -9,9 +9,9 @@ public class EnemyBatAttack : EnemyBaseAttack
         isAttacking = true;
         attackDirection = (PlayerRef.PlayerTransform.position - transform.position).normalized;
         attackDirection.y = 0;
-        _enemyManager.EnemyRigidbody.isKinematic = false;
-        _enemyManager.EnemyRigidbody.AddForce(dashForce * attackDirection, ForceMode.Impulse);
-        _enemyManager.EnemyAnimator.Play("Attack");
+        _enemyManager.Rigidbody.isKinematic = false;
+        _enemyManager.Rigidbody.AddForce(dashForce * attackDirection, ForceMode.Impulse);
+        _enemyManager.Animator.Play("Attack");
         _enemyManager.StartCoroutine(AttackDuration());
     }
 
@@ -36,9 +36,9 @@ public class EnemyBatAttack : EnemyBaseAttack
     }
     private IEnumerator AttackCooldown()
     {
-        _enemyManager.EnemyRigidbody.isKinematic = true;
+        _enemyManager.Rigidbody.isKinematic = true;
         yield return new WaitForSeconds(attackCooldown);
-        _enemyManager.SwitchState(EnemyStateCache.EnemyStates.BAT_CHASE);
+        //_enemyManager.SwitchState(EnemyStateCache.EnemyStates.BAT_CHASE);
     }
 
     private void Start()
