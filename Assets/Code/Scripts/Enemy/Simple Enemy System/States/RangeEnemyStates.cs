@@ -22,9 +22,9 @@ public class RangeIdleState : EnemyState
         sqrMag = Mathf.Pow(10f, 2);
     }
 
-    public override void UpdateState02ms(Enemy enemyContext)
+    public override void Tick()
     {
-        float distance = (PlayerRef.PlayerTransform.position - enemyContext.transform.position).sqrMagnitude;
+        float distance = (PlayerRef.PlayerTransform.position - _enemyContext.transform.position).sqrMagnitude;
         if (distance <= sqrMag) _enemyStateMachine.SwitchState(_enemyStateCache.RequestState(EnemyStates.Range_Roam));
     }
 }
@@ -38,11 +38,11 @@ public class RangeRoamState : EnemyState
         Vector3 point = Random.onUnitSphere * range;
         point.y = 0;
         Vector3 destination = PlayerRef.PlayerTransform.position + point;
-        _enemyContext.EnemyNMA.SetDestination(destination);
+        _enemyContext.NavMeshAgent.SetDestination(destination);
     }
-    public override void UpdateState02ms(Enemy enemyContext)
+    public override void Tick()
     {
-        NavMeshAgent agent = enemyContext.EnemyNMA;
+        NavMeshAgent agent = _enemyContext.NavMeshAgent;
         if (agent == null || !agent.isOnNavMesh) return;
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
@@ -107,7 +107,7 @@ public class RangeStaggerState : EnemyState
 
     public override void Enter()
     {
-        if(_enemyContext.EnemyNMA.hasPath) _enemyContext.EnemyNMA.ResetPath();
+        if(_enemyContext.NavMeshAgent.hasPath) _enemyContext.NavMeshAgent.ResetPath();
         _enemyContext.EnemyRigidbody.isKinematic = false;
         Vector3 direction = (PlayerRef.PlayerTransform.position - _enemyContext.transform.position).normalized;
         _enemyContext.EnemyRigidbody.AddForce(-(1f * direction), ForceMode.Impulse);

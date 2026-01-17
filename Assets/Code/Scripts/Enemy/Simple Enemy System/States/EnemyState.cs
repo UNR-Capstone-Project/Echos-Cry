@@ -12,11 +12,6 @@ public abstract class EnemyState : IState
         _enemyStateCache = enemyStateCache;
     }
 
-    public void InjectContext(Enemy enemyContext)
-    {
-        _enemyContext = enemyContext;
-    }
-
     public virtual void Update() { }
 
     public virtual void FixedUpdate() { }
@@ -27,5 +22,6 @@ public abstract class EnemyState : IState
 
     public virtual void CheckSwitch() { }
 
-    public virtual void UpdateState02ms(Enemy enemyContext) { }
+    //New function added to EnemyState because enemies may have behavior/conditions that do not need to be checked every frame
+    public virtual void Tick() { }
 }

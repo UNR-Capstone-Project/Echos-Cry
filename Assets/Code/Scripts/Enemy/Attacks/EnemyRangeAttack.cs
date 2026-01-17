@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyRangeAttack : EnemyBaseAttack
 {
-    public override void UseAttack()
+    public override void Use()
     {
         handler = RBProjectileManager.RequestPool(prefab);
         attackDirection = (PlayerRef.PlayerTransform.position - transform.position).normalized;

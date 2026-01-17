@@ -21,6 +21,7 @@ public class EnemyStats : MonoBehaviour
     public float Armor { get => _armor; }
     public float MaxHealth { get => _maxHealth; }
     public float MaxArmor { get => _maxArmor; }
+    public bool HasArmor => _armor > 0;
 
     public event Action<float, Color> OnEnemyDamagedEvent;
     public event Action OnEnemyHealedEvent;
@@ -54,5 +55,12 @@ public class EnemyStats : MonoBehaviour
     {
         _armor -= Mathf.Abs(damage);
         OnEnemyDamagedEvent?.Invoke(damage, color);
+        
+        if(_armor < 0) //If the enemies armor is depleted to a negative amount,
+                       //the negative amount of armor will then be transferred to damage to their health
+        {
+            DamageHealth(_armor, color);
+            _armor = 0;
+        }
     }
 }

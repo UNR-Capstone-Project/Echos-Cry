@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class EnemyBatAttack : EnemyBaseAttack
 {
-    public override void UseAttack()
+    public override void Use(float damage)
     {
         isAttacking = true;
         attackDirection = (PlayerRef.PlayerTransform.position - transform.position).normalized;
@@ -24,7 +24,7 @@ public class EnemyBatAttack : EnemyBaseAttack
                    1f,                                        //Distance ray is cast out
                    playerMask))                               //Player's layer mask
         {
-            InvokeEnemyAttackEvent(damageAmount);
+            InvokeAttackEvent(damageAmount);
             isAttacking = false;
         }
     }

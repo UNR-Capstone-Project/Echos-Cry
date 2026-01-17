@@ -9,6 +9,13 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
     }
     public virtual void Execute(float amount)
     {
-        _enemyStats.DamageHealth(amount, Color.red);   
+        if (_enemyStats.HasArmor)
+        {
+            _enemyStats.DamageArmor(amount, Color.red);
+        }
+        else
+        {
+            _enemyStats.DamageHealth(amount, Color.red);   
+        }
     }
 }
