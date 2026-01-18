@@ -4,5 +4,5 @@ using UnityEngine;
 [Serializable]
 public abstract class MovementStrategy : ScriptableObject
 {
-    public abstract void Execute();
+    public virtual void Execute(Enemy enemyContext, Vector3 target) { }
 }
