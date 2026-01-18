@@ -7,7 +7,7 @@ public class EnemyBatAttack : EnemyBaseAttack
     public override void Use(float damage)
     {
         isAttacking = true;
-        attackDirection = (PlayerRef.PlayerTransform.position - transform.position).normalized;
+        attackDirection = (PlayerRef.Transform.position - transform.position).normalized;
         attackDirection.y = 0;
         _enemyManager.Rigidbody.isKinematic = false;
         _enemyManager.Rigidbody.AddForce(dashForce * attackDirection, ForceMode.Impulse);

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Destructible : EnemyDrops
+public class Destructible
 {
     [SerializeField] private GameObject destroyedVersion;
 
@@ -8,17 +8,17 @@ public class Destructible : EnemyDrops
     {
         if (collision.TryGetComponent<AttackCollisionHandler>(out AttackCollisionHandler handler))
         {
-            Instantiate(destroyedVersion, transform.position, transform.rotation);
-            HandleEnemyDrops();
-            Destroy(gameObject);
+            //Instantiate(destroyedVersion, transform.position, transform.rotation);
+            //Execute();
+            //Destroy(gameObject);
         }
     }
 
-    public override void Start()
+    public void Start()
     {
         //Override enemy behaviors
     }
-    public override void OnDestroy()
+    public void OnDestroy()
     {
         //Override enemy behaviors
     }

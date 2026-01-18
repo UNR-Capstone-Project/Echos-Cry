@@ -350,6 +350,7 @@ GameObject:
   m_Component:
   - component: {fileID: 415338203038042998}
   - component: {fileID: 7276679593537297703}
+  - component: {fileID: 3818315168867680251}
   - component: {fileID: 2019051602396369572}
   - component: {fileID: 6060951237239432870}
   m_Layer: 10
@@ -408,6 +409,18 @@ MonoBehaviour:
   _playerDirection: {fileID: 1248617291903597529}
   _playerCurrencySystem: {fileID: 2347857121992901382}
   _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
+--- !u!114 &3818315168867680251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2428720641269041060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2493662626dcfdc4a8367b9007efd85f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerRef
 --- !u!54 &2019051602396369572
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -9,14 +9,17 @@ public abstract class Enemy : MonoBehaviour
     protected EnemyStateCache _stateCache;
     protected EnemyStateMachine _stateMachine;
 
+    [Header("Enemy-Related Components")]
     [SerializeField] protected EnemyStats _stats;
     [SerializeField] protected NavMeshAgent _navMeshAgent;
     [SerializeField] protected Rigidbody _rigidbody;
     [SerializeField] protected Animator _animator;
 
-    protected List<IAttackStrategy> _attackStrategies;
-    protected TargetStrategy   _targetStrategy;
-    protected MovementStrategy _movementStrategy;
+    [Header("Strategies")]
+    [SerializeField] protected AttackStrategy[] _attackStrategies;
+    [SerializeField] protected TargetStrategy[]   _targetStrategy;
+    [SerializeField] protected MovementStrategy[] _movementStrategy;
+    [SerializeField] protected ItemDropStrategy _drops;
 
     public EnemyStats Stats { get => _stats; }
     public NavMeshAgent NavMeshAgent { get => _navMeshAgent; }
@@ -25,19 +28,12 @@ public abstract class Enemy : MonoBehaviour
 
     public EnemyStateCache StateCache { get => _stateCache; }
     public EnemyStateMachine StateMachine { get => _stateMachine; }
-    public List<IAttackStrategy> AttackStrategies { get => _attackStrategies; }
-    public TargetStrategy TargetStrategy { get => _targetStrategy; }
-    public MovementStrategy MovementStrategy { get => _movementStrategy; }
+    public AttackStrategy[] AttackStrategies { get => _attackStrategies; }
+    public TargetStrategy[] TargetStrategy { get => _targetStrategy; }
+    public MovementStrategy[] MovementStrategy { get => _movementStrategy; }
+    public ItemDropStrategy DropsStrategy { get => _drops; }
 
-    public virtual void Init(
-        IAttackStrategy[] atckStrats, 
-        TargetStrategy trgtStrat, 
-        MovementStrategy moveStrat)
-    {
-        _attackStrategies = atckStrats.ToList();
-        _targetStrategy = trgtStrat;
-        _movementStrategy = moveStrat;
-    }
+    public abstract void Init();
 
     protected virtual void Awake()
     {   
@@ -56,43 +52,5 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Update()
     {
         _stateMachine.Update();
-    }
-}
-public class BatEnemy : Enemy
-{
-    public override void Init(IAttackStrategy[] atckStrats, TargetStrategy trgtStrat, MovementStrategy moveStrat)
-    {
-        base.Init(atckStrats, trgtStrat, moveStrat);
-
-        _stateCache.AddState(
-            EnemyStateCache.EnemyStates.Bat_Spawn, 
-            new BatSpawnState(this)
-        );
-        _stateCache.AddState(
-            EnemyStateCache.EnemyStates.Bat_Stagger,
-            new BatStaggerState(this)
-        );
-        _stateCache.AddState(
-            EnemyStateCache.EnemyStates.Bat_Attack,
-            new BatAttackState(this)
-        );
-        _stateCache.AddState(
-            EnemyStateCache.EnemyStates.Bat_Chase,
-            new BatChaseState(this)
-        );
-        _stateCache.AddState(
-            EnemyStateCache.EnemyStates.Bat_Death,
-            new BatDeathState(this)
-        );
-        _stateCache.AddState(
-            EnemyStateCache.EnemyStates.Bat_Idle,
-            new BatIdleState(this)
-        );
-        _stateCache.AddState(
-            EnemyStateCache.EnemyStates.Bat_Charge,
-            new BatChargeState(this)
-        );
-
-        _stateMachine.Init(_stateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Spawn));
     }
 }

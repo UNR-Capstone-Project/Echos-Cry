@@ -5,7 +5,7 @@ public class EnemyRangeAttack : EnemyBaseAttack
     public override void Use(float damage)
     {
         handler = RBProjectileManager.RequestPool(prefab);
-        attackDirection = (PlayerRef.PlayerTransform.position - transform.position).normalized;
+        attackDirection = (PlayerRef.Transform.position - transform.position).normalized;
         attackDirection.y = 0;
         if(handler != null) handler.UseProjectile(transform.position, attackDirection, damage);
         //Transition to whatever state here

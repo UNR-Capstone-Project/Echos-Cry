@@ -11,6 +11,6 @@ public class TestProjectileSkill : Skill
 
     public override void UseSkill()
     {
-        handler.UseProjectile(PlayerRef.PlayerTransform.position, PlayerDirection.AimDirection, 5f);
+        handler.UseProjectile(PlayerRef.Transform.position, PlayerDirection.AimDirection, 5f);
     }
 }

@@ -27,7 +27,7 @@ public class DroppedItem : MonoBehaviour
 
     private void MoveItemToPlayer()
     {
-        Vector3 direction = (PlayerRef.PlayerTransform.position - transform.position);
+        Vector3 direction = (PlayerRef.Transform.position - transform.position);
         direction.y = 0;
         float playerDistance = direction.magnitude;
         if (playerDistance < itemDragDistance)

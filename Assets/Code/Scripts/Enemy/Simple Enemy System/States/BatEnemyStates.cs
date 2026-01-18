@@ -41,7 +41,8 @@ public class BatIdleState : EnemyState
     }
     public  void CheckPlayerDistance(Enemy enemyContext)
     {
-        float playerDistance = (enemyContext.transform.position - PlayerRef.PlayerTransform.position).sqrMagnitude;
+        if (PlayerRef.Transform == null) return;
+        float playerDistance = (enemyContext.transform.position - PlayerRef.Transform.position).sqrMagnitude;
         if (playerDistance < sqrMagDistance)
         {
             _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Chase));
@@ -80,8 +81,8 @@ public class BatChaseState : EnemyState
     }
     private void SetEnemyTarget()
     {
-        if(_enemyContext.NavMeshAgent == null) return;
-        _enemyContext.NavMeshAgent.SetDestination(PlayerRef.PlayerTransform.position);
+        if(_enemyContext.NavMeshAgent == null || PlayerRef.Transform == null) return;
+        _enemyContext.NavMeshAgent.SetDestination(PlayerRef.Transform.position);
     }
 }
 
@@ -129,6 +130,8 @@ public class BatAttackState : EnemyState
     }
     private bool isAttacking;
 
+    private int MeleeIndex => (int)AttackStrats.Melee;
+
     public BatAttackState(Enemy enemyContext) : base(enemyContext) { }
 
     public override void Enter()
@@ -136,33 +139,38 @@ public class BatAttackState : EnemyState
         isAttacking = true;
 
         _enemyContext.Rigidbody.isKinematic = false;
-        _enemyContext.Rigidbody.AddForce(dashForce * attackDirection, ForceMode.Impulse);
+        //_enemyContext.Rigidbody.AddForce(dashForce * attackDirection, ForceMode.Impulse);
         _enemyContext.Animator.Play("Attack");
-        _enemyContext.StartCoroutine(AttackDuration());
+        //_enemyContext.StartCoroutine(AttackDuration());
     }
     public override void Update()
     {
-        if (!isAttacking) return;
-        if (_enemyContext.AttackStrategies[(int)AttackStrats.Melee].Execute(10f)) isAttacking = false;
+        if (!isAttacking || _enemyContext.AttackStrategies[MeleeIndex] == null) return;
+        if (_enemyContext.AttackStrategies[MeleeIndex]
+            .Execute(
+                10f, 
+                _enemyContext.transform.forward, 
+                _enemyContext.transform)) 
+            isAttacking = false;
     }
     public override void Exit()
     {
         _enemyContext.Rigidbody.isKinematic = true;
     }
 
-    private IEnumerator AttackDuration()
-    {
-        isAttacking = true;
-        yield return new WaitForSeconds(attackDuration);
-        isAttacking = false;
-        _enemyContext.StartCoroutine(AttackCooldown());
-    }
-    private IEnumerator AttackCooldown()
-    {
+    //private IEnumerator AttackDuration()
+    //{
+    //    isAttacking = true;
+    //    yield return new WaitForSeconds(attackDuration);
+    //    isAttacking = false;
+    //    _enemyContext.StartCoroutine(AttackCooldown());
+    //}
+    //private IEnumerator AttackCooldown()
+    //{
 
-        yield return new WaitForSeconds(_attackCooldown);
-        _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Chase));
-    }
+    //    yield return new WaitForSeconds(_attackCooldown);
+    //    _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Chase));
+    //}
 }
 public class BatStaggerState : EnemyState
 {
@@ -179,7 +187,7 @@ public class BatStaggerState : EnemyState
     {
         //Debug.Log("Enter Stagger State");
         _enemyContext.Rigidbody.isKinematic = false;
-        Vector3 direction = (PlayerRef.PlayerTransform.position - _enemyContext.transform.position).normalized;
+        Vector3 direction = (PlayerRef.Transform.position - _enemyContext.transform.position).normalized;
         _enemyContext.Rigidbody.AddForce(-(knockbackForce * direction), ForceMode.Impulse);
         _enemyContext.StartCoroutine(StaggerDuration());
     }
@@ -202,6 +210,7 @@ public class BatDeathState : EnemyState
     public override void Enter()
     {
         //Debug.Log("Enter Death State");
-        _enemyContext.Stats.HandleEnemyDeath();
+        //_enemyContext.Stats.HandleEnemyDeath();
+        _enemyContext.DropsStrategy.Execute(_enemyContext.transform);
     }
 }

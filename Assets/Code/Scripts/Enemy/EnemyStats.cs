@@ -46,21 +46,40 @@ public class EnemyStats : MonoBehaviour
         if (Health > MaxHealth) _health = MaxHealth;
         OnEnemyHealedEvent?.Invoke();
     }
-    public void DamageHealth(float damage, Color color)
-    {
-        _health -= Mathf.Abs(damage);
-        OnEnemyDamagedEvent?.Invoke(damage, color);
-    }
-    public void DamageArmor(float damage, Color color)
-    {
-        _armor -= Mathf.Abs(damage);
-        OnEnemyDamagedEvent?.Invoke(damage, color);
+    //public void DamageHealth(float damage, Color color)
+    //{
+    //    _health -= Mathf.Abs(damage);
+    //    OnEnemyDamagedEvent?.Invoke(damage, color);
+    //}
+    //public void DamageArmor(float damage, Color color)
+    //{
+    //    _armor -= Mathf.Abs(damage);
+    //    OnEnemyDamagedEvent?.Invoke(damage, color);
         
-        if(_armor < 0) //If the enemies armor is depleted to a negative amount,
-                       //the negative amount of armor will then be transferred to damage to their health
+    //    if(_armor < 0) //If the enemies armor is depleted to a negative amount,
+    //                   //the negative amount of armor will then be transferred to damage to their health
+    //    {
+    //        DamageHealth(_armor, color);
+    //        _armor = 0;
+    //    }
+    //}
+    public void Damage(float damage, Color color)
+    {
+        if(HasArmor)
         {
-            DamageHealth(_armor, color);
-            _armor = 0;
+            _armor -= Mathf.Abs(damage);
+            OnEnemyDamagedEvent?.Invoke(damage, color);
+            if(_armor < 0)
+            {
+                _health -= Mathf.Abs(_armor);
+                OnEnemyDamagedEvent?.Invoke(damage, color);
+                _armor = 0;
+            }
+        }
+        else
+        {
+            _health -= Mathf.Abs(damage);
+            OnEnemyDamagedEvent?.Invoke(damage, color);
         }
     }
 }

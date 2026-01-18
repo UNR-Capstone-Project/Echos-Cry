@@ -34,7 +34,7 @@ public class DamageHandler : MonoBehaviour
         for(int i = 0;i < handleAmount; i++)
         {
             DamageInfo currentInfo = _indexQueue.Dequeue();
-            _enemyStatsPool[currentInfo.index].DamageHealth(currentInfo.damage, currentInfo.color);
+            _enemyStatsPool[currentInfo.index].Damage(currentInfo.damage, currentInfo.color);
         } 
     }
 

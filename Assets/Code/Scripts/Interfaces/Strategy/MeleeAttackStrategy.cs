@@ -1,11 +1,14 @@
+using System;
 using UnityEngine;
 
-public class MeleeAttackStrategy : MonoBehaviour, IAttackStrategy
+[CreateAssetMenu(menuName = "Echo's Cry/Scriptable Objects/Strategies/Attack/Melee")]
+public class MeleeAttackStrategy : AttackStrategy
 {
-    [SerializeField] private readonly Vector3 _boxExtents;
-    [SerializeField] private readonly LayerMask _playerMask;
+    [SerializeField] private Vector3 _boxExtents;
+    [SerializeField] private LayerMask _playerMask;
+    [SerializeField] private float _distance;
 
-    public bool Execute(float damage, Vector3 direction, float distance, Transform origin)
+    public override bool Execute(float damage, Vector3 direction, Transform origin)
     {
         if (Physics.BoxCast(
                    center: origin.position,
@@ -13,7 +16,7 @@ public class MeleeAttackStrategy : MonoBehaviour, IAttackStrategy
                    direction: direction,
                    hitInfo: out RaycastHit hitInfo,
                    orientation: origin.rotation,
-                   maxDistance: distance,
+                   maxDistance: _distance,
                    layerMask: _playerMask))
         {
             hitInfo.collider.gameObject.GetComponent<IDamageable>().Execute(damage);

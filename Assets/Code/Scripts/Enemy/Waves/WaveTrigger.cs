@@ -20,7 +20,7 @@ public class WaveTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform == PlayerRef.PlayerTransform)
+        if (other.transform == PlayerRef.Transform)
         {
             if (state == waveTriggerState.Idle)
             {

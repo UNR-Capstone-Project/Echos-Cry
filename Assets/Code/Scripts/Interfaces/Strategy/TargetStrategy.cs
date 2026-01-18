@@ -1,19 +1,16 @@
+using System;
 using UnityEngine;
 
-public abstract class TargetStrategy : IStrategy
+[Serializable]
+public abstract class TargetStrategy : ScriptableObject
 {
-    protected Transform target;
-    public virtual void Execute() { }
-    public virtual Transform Get()
-    {
-        return target;
-    }
+    public abstract Vector3 Execute(Transform origin);
 }
 
 public class PlayerTargetStrategy : TargetStrategy
 {
-    public PlayerTargetStrategy(Transform playerTransform)
+    public override Vector3 Execute(Transform origin)
     {
-        target = playerTransform;
+        return origin.position;
     }
 }

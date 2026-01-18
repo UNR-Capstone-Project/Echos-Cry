@@ -21,28 +21,12 @@ public class EnemyCollisionHandler : MonoBehaviour
             PlayerComboMeter.AddToComboMeter(handler.AttackDamage);
             PlayerComboMeter.UpdateComboMultiplier();
             _enemyCollider.enabled = false;
-            _enemyManager.SwitchState(enemyStaggerState);
+            //_enemyManager.SwitchState(enemyStaggerState);
         }
     }
     private void ResetColliderBool()
     {
         _enemyCollider.enabled = true;
-    }
-
-    private void DetermineStaggerState()
-    {
-        switch (_enemyManager.TypeOfEnemy)
-        {
-            case EnemyType.BAT:
-                enemyStaggerState = EnemyStates.Bat_Stagger;
-                break;
-            case EnemyType.RANGE:
-                enemyStaggerState = EnemyStates.RANGE_STAGGER;
-                break;
-            default:
-                enemyStaggerState = EnemyStates.UNASSIGNED;
-                break;
-        }
     }
 
     private void Awake()
@@ -52,7 +36,6 @@ public class EnemyCollisionHandler : MonoBehaviour
     }
     private void Start()
     {
-        DetermineStaggerState();
         BaseWeapon.OnAttackEndedEvent += ResetColliderBool;
     }
     private void OnDestroy()
@@ -61,6 +44,5 @@ public class EnemyCollisionHandler : MonoBehaviour
     }
     
     private Collider _enemyCollider;
-    EnemyStates enemyStaggerState;
     protected Enemy _enemyManager;
 }

@@ -71,7 +71,7 @@ public class WaveManager : MonoBehaviour
             {
                 enemyInstance.transform.SetParent(spawner.transform);
                 EnemyStats stats = enemyInstance.GetComponent<EnemyStats>();
-                if (stats != null) stats.OnEnemyDeathEvent += updateKillCount;
+                //if (stats != null) stats.OnEnemyDeathEvent += updateKillCount;
             }));
             yield return new WaitForSeconds(wave.spawnInterval);
         }
@@ -80,7 +80,7 @@ public class WaveManager : MonoBehaviour
         Vector3 keyedEnemyPosition = spawner.GetRandomPoint(wave.spawnRadius);
         GameObject keyedInstance = Instantiate(keyedEnemy, keyedEnemyPosition, Quaternion.identity, spawner.transform);
         var keyedStats = keyedInstance.GetComponent<EnemyStats>();
-        if (keyedStats != null) keyedStats.OnEnemyDeathEvent += updateKillCount;
+        //if (keyedStats != null) keyedStats.OnEnemyDeathEvent += updateKillCount;
 
         AWaveEndedSpawning?.Invoke();
         yield return null;
