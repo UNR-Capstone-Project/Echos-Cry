@@ -903,11 +903,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1584114766417235778, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
       propertyPath: m_Size.z
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1584114766417235778, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
       propertyPath: m_Center.z
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1910465096639058828, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
       propertyPath: m_LocalPosition.x
