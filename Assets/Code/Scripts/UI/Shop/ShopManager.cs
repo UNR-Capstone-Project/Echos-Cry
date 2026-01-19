@@ -9,6 +9,7 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private InputTranslator _translator;
     [SerializeField] private GameObject[] ShopItemArray;
     [SerializeField] private TextMeshProUGUI totalCostText;
+    [SerializeField] private TextMeshProUGUI currentFingersText;
     private int currentItemIndex = 0;
     private float totalCost = 0f;
 
@@ -79,6 +80,8 @@ public class ShopManager : MonoBehaviour
         {
             totalCostText.color = Color.red;
         }
+
+        currentFingersText.text = $"Current Fingers: ${PlayerStats.CurrencyCount.ToString()}";
     }
 
     public void Purchase()
