@@ -1,8 +1,4 @@
 using AudioSystem;
-using System;
-#if UNITY_EDITOR
-using UnityEditor.UI;
-#endif
 using UnityEngine;
 
 public class DroppedItem : MonoBehaviour
@@ -18,11 +14,11 @@ public class DroppedItem : MonoBehaviour
     }
     private void Start()
     {
-        TickManager.OnTick02Event += MoveItemToPlayer;
+        TickManager.Instance.GetTimer(0.2f).Tick += MoveItemToPlayer;
     }
     private void OnDestroy()
     {
-        TickManager.OnTick02Event -= MoveItemToPlayer;
+        TickManager.Instance.GetTimer(0.2f).Tick -= MoveItemToPlayer;
     }
 
     private void MoveItemToPlayer()

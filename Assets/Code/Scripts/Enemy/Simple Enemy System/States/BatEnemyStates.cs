@@ -22,30 +22,45 @@ public class BatSpawnState : EnemyState
 
     public override void Enter()
     {
+        base.Enter();
+        //Debug.Log("Enter Spawn");
         _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Idle));
     }
 }
 
 public class BatIdleState : EnemyState
 {
-    private float sqrMagDistance;
+    private readonly float sqrMagDistance;
 
     public BatIdleState(Enemy enemyContext) : base(enemyContext)
     {
         sqrMagDistance = Mathf.Pow(10f, 2f);
+        TickManager.Instance.GetTimer(0.2f).Tick += Tick;
+    }
+    ~BatIdleState()
+    {
+        TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
     }
 
+    public override void Enter()
+    {
+        base.Enter();
+        Debug.Log("Enter Idle");
+    }
     public override void Tick()
     {
-        CheckPlayerDistance(_enemyContext);
+        if (!_isActive) return;
+        CheckPlayerDistance();
     }
-    public  void CheckPlayerDistance(Enemy enemyContext)
+
+    private void CheckPlayerDistance()
     {
+        Debug.Log("Checking Player Distance: Idle");
         if (PlayerRef.Transform == null) return;
-        float playerDistance = (enemyContext.transform.position - PlayerRef.Transform.position).sqrMagnitude;
+        float playerDistance = (_enemyContext.transform.position - PlayerRef.Transform.position).sqrMagnitude;
         if (playerDistance < sqrMagDistance)
         {
-            _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Chase));
+            base._enemyContext.StateMachine.SwitchState(base._enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Chase));
             return;
         }
     }
@@ -53,18 +68,30 @@ public class BatIdleState : EnemyState
 
 public class BatChaseState : EnemyState
 {
-    public BatChaseState(Enemy enemyContext) : base(enemyContext) { }
+    public BatChaseState(Enemy enemyContext) : base(enemyContext) 
+    {
+        TickManager.Instance.GetTimer(0.2f).Tick += Tick;
+    }
+    ~BatChaseState()
+    {
+        TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
+    }
 
     public override void Enter()
     {
+        base.Enter();
+        Debug.Log("Enter Chase");
         SetEnemyTarget();
     }
     public override void Exit()
     {
+        base.Exit();
+        Debug.Log("Exit Chase");
         _enemyContext.StopAllCoroutines();
     }
     public override void Tick()
     {
+        if (!_isActive) return;
         CheckNavMeshDistance();
         SetEnemyTarget();
     }
@@ -97,11 +124,13 @@ public class BatChargeState : EnemyState
 
     public override void Enter()
     {
-        //Debug.Log("Enter Charge Attack State");
+        base.Enter();
+        Debug.Log("Enter Charge Attack State");
         _enemyContext.StartCoroutine(ChargeAttackCoroutine());
     }
     public override void Exit()
     {
+        base.Exit();
         //Debug.Log("Exit Charge Attack State");
         _enemyContext.StopAllCoroutines();
     }
@@ -136,6 +165,7 @@ public class BatAttackState : EnemyState
 
     public override void Enter()
     {
+        base.Enter();
         isAttacking = true;
 
         _enemyContext.Rigidbody.isKinematic = false;
@@ -155,6 +185,7 @@ public class BatAttackState : EnemyState
     }
     public override void Exit()
     {
+        base.Exit();
         _enemyContext.Rigidbody.isKinematic = true;
     }
 
@@ -185,6 +216,7 @@ public class BatStaggerState : EnemyState
 
     public override void Enter()
     {
+        base.Enter();
         //Debug.Log("Enter Stagger State");
         _enemyContext.Rigidbody.isKinematic = false;
         Vector3 direction = (PlayerRef.Transform.position - _enemyContext.transform.position).normalized;
@@ -193,6 +225,7 @@ public class BatStaggerState : EnemyState
     }
     public override void Exit()
     {
+        base.Exit();
         _enemyContext.Rigidbody.isKinematic = true;
         _enemyContext.StopAllCoroutines();
     }
@@ -209,6 +242,7 @@ public class BatDeathState : EnemyState
 
     public override void Enter()
     {
+        base.Enter();
         //Debug.Log("Enter Death State");
         //_enemyContext.Stats.HandleEnemyDeath();
         _enemyContext.DropsStrategy.Execute(_enemyContext.transform);

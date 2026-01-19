@@ -16,9 +16,9 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected Animator _animator;
 
     [Header("Strategies")]
-    [SerializeField] protected AttackStrategy[] _attackStrategies;
-    [SerializeField] protected TargetStrategy[]   _targetStrategy;
-    [SerializeField] protected MovementStrategy[] _movementStrategy;
+    [SerializeField] protected AttackStrategy[] _attackStrats;
+    [SerializeField] protected TargetStrategy[]   _targetStrats;
+    [SerializeField] protected MovementStrategy[] _movementStrats;
     [SerializeField] protected ItemDropStrategy _drops;
 
     public EnemyStats Stats { get => _stats; }
@@ -28,25 +28,21 @@ public abstract class Enemy : MonoBehaviour
 
     public EnemyStateCache StateCache { get => _stateCache; }
     public EnemyStateMachine StateMachine { get => _stateMachine; }
-    public AttackStrategy[] AttackStrategies { get => _attackStrategies; }
-    public TargetStrategy[] TargetStrategy { get => _targetStrategy; }
-    public MovementStrategy[] MovementStrategy { get => _movementStrategy; }
+    public AttackStrategy[] AttackStrategies { get => _attackStrats; }
+    public TargetStrategy[] TargetStrategy { get => _targetStrats; }
+    public MovementStrategy[] MovementStrategy { get => _movementStrats; }
     public ItemDropStrategy DropsStrategy { get => _drops; }
 
     public abstract void Init();
 
     protected virtual void Awake()
     {   
-        _stateMachine = new(this);
+        _stateMachine = new();
         _stateCache = new();
     }
     protected virtual void Start()
     {
-        TickManager.OnTick02Event += _stateMachine.TickState;
-    }
-    protected virtual void OnDestroy()
-    {
-        TickManager.OnTick02Event -= _stateMachine.TickState;
+        Init();
     }
 
     protected virtual void Update()

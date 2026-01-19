@@ -1,40 +1,77 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+
+public class TimerNode
+{
+    private float _timer;
+    private readonly float _tickTime;
+    public event Action Tick;
+
+    public TimerNode(float tickTime)
+    {
+        _timer = 0;
+        _tickTime = tickTime;
+    }
+    public void Update()
+    {
+        _timer += Time.deltaTime;
+        if(_timer >= _tickTime)
+        {
+            Tick?.Invoke();
+            _timer -= _tickTime;
+        }
+    }
+}
 
 public class TickManager : MonoBehaviour
 {
-    public static event Action OnTick01Event;
-    public static event Action OnTick02Event;
-    public static event Action OnTick05Event;
-    private float tick_timer01 = 0;
-    private float tick_timer02 = 0;
-    private float tick_timer05 = 0;
-
-    private void Start()
+    private static TickManager _instance;
+    public static TickManager Instance
     {
-        tick_timer01 = 0;
-        tick_timer02 = 0;
-        tick_timer05 = 0;
+        get
+        {
+            if( _instance == null)
+            {
+                TickManager newInstance = new GameObject("Tick Manager").AddComponent<TickManager>();
+                _instance = newInstance;
+            }
+            return _instance;
+        }
+    }
+
+    private Dictionary<float, TimerNode> _timers;
+
+    private TimerNode AddTimer(float tickTime)
+    {
+        TimerNode newTimer = new(tickTime);
+        _timers.Add(tickTime, newTimer);
+        return newTimer;
+    }
+    public TimerNode GetTimer(float key)
+    {
+        if(_timers.ContainsKey(key)) return _timers[key]; 
+        return AddTimer(key);
+    }
+    private void UpdateTimers()
+    {
+        foreach(var value in _timers.Values)
+        {
+            value.Update();
+        }
+    }
+
+    private void Awake()
+    {
+        if( _instance != null )
+        {
+            Destroy(this);
+            return;
+        }
+        _timers = new();
     }
     void Update()
     {
-        tick_timer01 += Time.deltaTime;
-        tick_timer02 += Time.deltaTime;
-        tick_timer05 += Time.deltaTime;
-        if(tick_timer01 >= 0.1f)
-        {
-            tick_timer01 -= 0.1f;
-            OnTick01Event?.Invoke();
-        }
-        if (tick_timer02 >= 0.2f)
-        {
-            tick_timer02 -= 0.2f;
-            OnTick02Event?.Invoke();
-        }
-        if (tick_timer05 >= 0.5f)
-        {
-            tick_timer05 -= 0.5f;
-            OnTick05Event?.Invoke();
-        }
+        UpdateTimers();
     }
 }
