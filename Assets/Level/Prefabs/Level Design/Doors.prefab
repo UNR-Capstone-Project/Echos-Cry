@@ -187,6 +187,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   doorAnimator: {fileID: 7047729017233982081}
   ToolTipPrefab: {fileID: 5435326603873152583, guid: 2368d443f59e53f4dbdf1ce2d1423114, type: 3}
+  translator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
+  isLocked: 0
 --- !u!65 &1349252157542467394
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -197,10 +199,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64503
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0

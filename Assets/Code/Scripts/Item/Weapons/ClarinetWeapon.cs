@@ -1,4 +1,4 @@
-using System;
+using AudioSystem;
 using System.Collections;
 using UnityEngine;
 using static ComboStateMachine;
@@ -23,7 +23,7 @@ public class ClarinetWeapon : BaseWeapon
         PlayerMovement.PlayerRigidbody.AddForce(onAttackPushForce * PlayerDirection.AimDirection.normalized, ForceMode.Impulse);
         StartCoroutine(WaitForAnimationLength(_attackData[attackIndex]));
 
-        SetupAndUseSound(_attackData[attackIndex]);
+        attackSFX = _attackData[attackIndex].AttackSound;
     }
 
     private void SetupCurrentDamage(AttackData attackData)
@@ -45,10 +45,10 @@ public class ClarinetWeapon : BaseWeapon
         _weaponCollisionHandler.UpdateAttackDamage(damage, multiplierColor);
     }
 
-    private void SetupAndUseSound(AttackData attackData)
+    private void SetupAndUseSound()
     {
         soundEffectManager.Instance.Builder
-            .setSound(attackData.AttackSound)
+            .setSound(attackSFX)
             .setSoundPosition(this.transform.position)
             .ValidateAndPlaySound();
     }
@@ -94,6 +94,7 @@ public class ClarinetWeapon : BaseWeapon
     }
 
     private AttackCollisionHandler _weaponCollisionHandler;
+    private soundEffect attackSFX;
 
     //Amount of force used to push player in direction of their attacks
     [SerializeField] private float onAttackPushForce = 5f;
