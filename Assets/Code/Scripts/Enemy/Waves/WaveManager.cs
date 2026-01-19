@@ -5,6 +5,9 @@ using UnityEngine;
 /// Original Author: Victor
 /// All Contributors Since Creation: Victor
 /// Last Modified By:
+/// 
+
+//ISSUE: Cannot spawn more than one enemy at once!
 public class WaveManager : MonoBehaviour
 {
     public event Action OnNewWaveSpawned, OnWaveSpawningEnded, OnAllWavesCompleted;

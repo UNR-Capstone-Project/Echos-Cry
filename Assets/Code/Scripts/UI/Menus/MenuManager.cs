@@ -61,7 +61,7 @@ public class MenuManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    private void DisablePauseMenu()
+    public void DisablePauseMenu()
     {
         SetMenu("HUD");
         VolumeManager.Instance.SetDepthOfField(false);

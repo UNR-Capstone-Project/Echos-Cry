@@ -10,37 +10,17 @@ public enum pauseOptions
 }
 public class PauseMenu : MonoBehaviour
 {
+    private pauseOptions currentPauseOption = pauseOptions.CONTINUE;
+    
     [SerializeField] private InputTranslator translator;
-    [SerializeField] private pauseOptions currentPauseOption = pauseOptions.CONTINUE;
-    [SerializeField] private Image selectedPauseOption;
-    [SerializeField] private TextMeshProUGUI continueText;
-    [SerializeField] private TextMeshProUGUI settingsText;
-    [SerializeField] private TextMeshProUGUI quitText;
-    private Vector2 currentPos;
-    private Vector2 originPos;
 
-    void Start()
-    {
-        currentPos = selectedPauseOption.rectTransform.anchoredPosition;
-        originPos = currentPos;
-
-        translator.OnPauseUpInput += switchOptionUp;
-        translator.OnPauseDownInput += switchOptionDown;
-        translator.OnSelectEvent += ChooseOption;
-    }
-
-    void OnDestroy()
-    {
-        translator.OnPauseUpInput -= switchOptionUp;
-        translator.OnPauseDownInput -= switchOptionDown;
-        translator.OnSelectEvent -= ChooseOption;
-    }
     private void ChooseOption()
     {
         switch(currentPauseOption)
         {
             case pauseOptions.CONTINUE:
                 MenuManager.Instance.SetMenu("HUD");
+                MenuManager.Instance.DisablePauseMenu();
                 translator.PlayerInputs.Gameplay.Enable();
                 translator.PlayerInputs.PauseMenu.Disable();
                 break;
@@ -52,49 +32,9 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    private void switchOptionUp()
+    public void SelectPauseOption(int option)
     {
-        if (currentPauseOption == pauseOptions.CONTINUE)
-        {
-            currentPauseOption = pauseOptions.QUIT;
-            selectedPauseOption.rectTransform.anchoredPosition = new Vector2(currentPos.x, currentPos.y - 180);
-            currentPos = selectedPauseOption.rectTransform.anchoredPosition;
-        }
-        else if (currentPauseOption == pauseOptions.SETTINGS)
-        {
-            currentPauseOption = pauseOptions.CONTINUE;
-            selectedPauseOption.rectTransform.anchoredPosition = new Vector2(currentPos.x, currentPos.y + 90);
-            currentPos = selectedPauseOption.rectTransform.anchoredPosition;
-        }
-        else if (currentPauseOption == pauseOptions.QUIT)
-        {
-            currentPauseOption = pauseOptions.SETTINGS;
-            selectedPauseOption.rectTransform.anchoredPosition = new Vector2(currentPos.x, currentPos.y + 90);
-            currentPos = selectedPauseOption.rectTransform.anchoredPosition;
-        }
-    }
-
-    private void switchOptionDown()
-    {
-        if (currentPauseOption == pauseOptions.CONTINUE)
-        {
-            currentPauseOption = pauseOptions.SETTINGS;
-            selectedPauseOption.rectTransform.anchoredPosition = new Vector2(currentPos.x, currentPos.y - 90);
-            currentPos = selectedPauseOption.rectTransform.anchoredPosition;
-
-        }
-        else if (currentPauseOption == pauseOptions.SETTINGS)
-        {
-            currentPauseOption = pauseOptions.QUIT;
-            selectedPauseOption.rectTransform.anchoredPosition = new Vector2(currentPos.x, currentPos.y - 90);
-            currentPos = selectedPauseOption.rectTransform.anchoredPosition;
-
-        }
-        else if (currentPauseOption == pauseOptions.QUIT)
-        {
-            currentPauseOption = pauseOptions.CONTINUE;
-            selectedPauseOption.rectTransform.anchoredPosition = new Vector2(originPos.x, originPos.y);
-            currentPos = selectedPauseOption.rectTransform.anchoredPosition;
-        }
+        currentPauseOption = (pauseOptions)option;
+        ChooseOption();
     }
 }
