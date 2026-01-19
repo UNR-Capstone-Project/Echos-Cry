@@ -868,7 +868,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
   translator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
-  selectedPauseOption: {fileID: 0}
 --- !u!1 &7296587029861158612
 GameObject:
   m_ObjectHideFlags: 0
