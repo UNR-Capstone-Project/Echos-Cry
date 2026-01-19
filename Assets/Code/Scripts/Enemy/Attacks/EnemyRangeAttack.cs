@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class EnemyRangeAttack : EnemyBaseAttack
 {
-    public override void UseAttack()
+    public override void Use(float damage)
     {
         RaiseEnemyUseAttack();
 
-        handler = RBProjectileManager.RequestHandler(prefab);
+        //handler = RBProjectileManager.RequestHandler(prefab);
 
-        attackDirection = (PlayerRef.PlayerTransform.position - transform.position).normalized;
+        //attackDirection = (PlayerRef.PlayerTransform.position - transform.position).normalized;
         attackDirection.y = 0;
 
-        if(handler != null) handler.UseProjectile(transform.position, attackDirection, damage);
+        //if(handler != null) handler.UseProjectile(transform.position, attackDirection, damage);
         //Transition to whatever state here
     }
 
@@ -23,5 +23,5 @@ public class EnemyRangeAttack : EnemyBaseAttack
     [SerializeField] private GameObject prefab;
     [SerializeField] private float damage = 5f;
     private Vector3 attackDirection;
-    private RBProjectileHandler handler;
+    //private RBProjectileHandler handler;
 }

@@ -78,7 +78,7 @@ public class InputTranslator : ScriptableObject,
     {
         if (context.started)
         {
-            OnPauseEvent?.Invoke(true);
+            OnPauseEvent?.Invoke();
             _playerInputs.PauseMenu.Enable();
             _playerInputs.Gameplay.Disable();
         }
@@ -87,7 +87,7 @@ public class InputTranslator : ScriptableObject,
     {
         if (context.started)
         {
-            OnMapEvent?.Invoke(true);
+            OnMapEvent?.Invoke();
             _playerInputs.Gameplay.Disable();
             _playerInputs.PlayerMenu.Enable();
         }
@@ -96,7 +96,7 @@ public class InputTranslator : ScriptableObject,
     {
         if (context.started)
         {
-            OnResumeEvent?.Invoke(true);
+            OnResumeEvent?.Invoke();
             _playerInputs.Gameplay.Enable();
             _playerInputs.PauseMenu.Disable();
         }
@@ -105,26 +105,26 @@ public class InputTranslator : ScriptableObject,
     {
         if (context.started)
         {
-            OnExitMapEvent?.Invoke(true);
+            OnExitMapEvent?.Invoke();
             _playerInputs.Gameplay.Enable();
             _playerInputs.PlayerMenu.Disable();
         }
     }
     public void OnNavUp(InputAction.CallbackContext context)
     {
-        if (context.started) OnPauseUpInput?.Invoke(true);
+        if (context.started) OnPauseUpInput?.Invoke();
     }
     public void OnNavDown(InputAction.CallbackContext context)
     {
-        if (context.started) OnPauseDownInput?.Invoke(true);
+        if (context.started) OnPauseDownInput?.Invoke();
     }
     public void OnNavRight(InputAction.CallbackContext context)
     {
-        if (context.started) OnJournalRightInput?.Invoke(true);
+        if (context.started) OnJournalRightInput?.Invoke();
     }
     public void OnNavLeft(InputAction.CallbackContext context)
     {
-        if (context.started) OnJournalLeftInput?.Invoke(true);
+        if (context.started) OnJournalLeftInput?.Invoke();
     }
 
     public void OnSkill1(InputAction.CallbackContext context)
@@ -147,60 +147,60 @@ public class InputTranslator : ScriptableObject,
     {
         if (context.started)
         {
-            OnCloseShopEvent?.Invoke(true);
+            OnCloseShopEvent?.Invoke();
             _playerInputs.Gameplay.Enable();
             _playerInputs.ShopMenu.Disable();
         }
     }
     public void OnLeftArrow(InputAction.CallbackContext context)
     {
-        if(context.started) OnShopLeftInput?.Invoke(true);
+        if(context.started) OnShopLeftInput?.Invoke();
     }
     public void OnRightArrow(InputAction.CallbackContext context)
     {
-        if(context.started) OnShopRightInput?.Invoke(true);
+        if(context.started) OnShopRightInput?.Invoke();
     }
     public void OnUpArrow(InputAction.CallbackContext context)
     {
-        if(context.started) OnShopUpInput?.Invoke(true);
+        if(context.started) OnShopUpInput?.Invoke();
     }
     public void OnDownArrow(InputAction.CallbackContext context)
     {
-        if(context.started) OnShopDownInput?.Invoke(true);
+        if(context.started) OnShopDownInput?.Invoke();
     }
     public void OnPurchase(InputAction.CallbackContext context)
     {
-        if(context.started) OnPurchaseEvent?.Invoke(true);
+        if(context.started) OnPurchaseEvent?.Invoke();
     }
     public void OnItem1(InputAction.CallbackContext context)
     {
-        if (context.started) OnItem1Event?.Invoke(true);
-        else if(context.canceled) OnItem1Event?.Invoke(false);
+        if (context.started) OnItem1Event?.Invoke();
+        else if(context.canceled) OnItem1Event?.Invoke();
     }
     public void OnItem2(InputAction.CallbackContext context)
     {
-        if (context.started) OnItem2Event?.Invoke(true);
-        else if (context.canceled) OnItem2Event?.Invoke(false);
+        if (context.started) OnItem2Event?.Invoke();
+        else if (context.canceled) OnItem2Event?.Invoke();
     }
     public void OnItem3(InputAction.CallbackContext context)
     {
-        if (context.started) OnItem3Event?.Invoke(true);
-        else if (context.canceled) OnItem3Event?.Invoke(false);
+        if (context.started) OnItem3Event?.Invoke();
+        else if (context.canceled) OnItem3Event?.Invoke();
     }
     public void OnItem4(InputAction.CallbackContext context)
     {
-        if (context.started) OnItem4Event?.Invoke(true);
-        else if (context.canceled) OnItem4Event?.Invoke(false);
+        if (context.started)OnItem4Event?.Invoke();
+        else if (context.canceled) OnItem4Event?.Invoke();
     }
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if(context.started) OnInteractEvent?.Invoke(true);
-        else if (context.canceled) OnInteractEvent?.Invoke(false);
+        if(context.started) OnInteractEvent?.Invoke();
+        else if (context.canceled) OnInteractEvent?.Invoke();
     }
 
     public void OnSelect(InputAction.CallbackContext context)
     {
-        if(context.started) OnSelectEvent?.Invoke(true);
+        if(context.started) OnSelectEvent?.Invoke();
     }
 
     private PlayerInputs _playerInputs;
@@ -211,11 +211,11 @@ public class InputTranslator : ScriptableObject,
     public event Action<bool>    OnLightAttackEvent;
     public event Action<bool>    OnHeavyAttackEvent;
     public event Action<bool>    OnSkill1Event, OnSkill2Event, OnSkill3Event;
-    public event Action<bool>    OnInteractEvent;
-    public event Action<bool>    OnPauseEvent, OnPauseDownInput, OnPauseUpInput, OnSelectEvent;
-    public event Action<bool>    OnResumeEvent;
-    public event Action<bool>    OnMapEvent;
-    public event Action<bool>    OnExitMapEvent, OnJournalLeftInput, OnJournalRightInput;
-    public event Action<bool>    OnCloseShopEvent, OnShopLeftInput, OnShopRightInput, OnShopUpInput, OnShopDownInput, OnPurchaseEvent;
-    public event Action<bool>    OnItem1Event, OnItem2Event, OnItem3Event, OnItem4Event;
+    public event Action    OnInteractEvent;
+    public event Action    OnPauseEvent, OnPauseDownInput, OnPauseUpInput, OnSelectEvent;
+    public event Action    OnResumeEvent;
+    public event Action    OnMapEvent;
+    public event Action    OnExitMapEvent, OnJournalLeftInput, OnJournalRightInput;
+    public event Action    OnCloseShopEvent, OnShopLeftInput, OnShopRightInput, OnShopUpInput, OnShopDownInput, OnPurchaseEvent;
+    public event Action    OnItem1Event, OnItem2Event, OnItem3Event, OnItem4Event;
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 public abstract class EnemyBaseAttack : MonoBehaviour
 {
-    protected SimpleEnemyManager _enemyManager;
+    protected Enemy _enemyManager;
     public event Action OnEnemyUseAttackEvent;
 
     protected virtual void Awake()
     {
-        _enemyManager = GetComponent<SimpleEnemyManager>();
+        _enemyManager = GetComponent<Enemy>();
     }
 
     protected void RaiseEnemyUseAttack()
@@ -16,5 +16,5 @@ public abstract class EnemyBaseAttack : MonoBehaviour
         OnEnemyUseAttackEvent?.Invoke();
     }
 
-    public abstract void UseAttack();
+    public abstract void Use(float damage);
 }

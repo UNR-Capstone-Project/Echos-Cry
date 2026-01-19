@@ -13,6 +13,32 @@ public class PlayerSound : MonoBehaviour
             .ValidateAndPlaySound();
         }
     }
+    public void PlayHitQuality()
+    {
+        if (TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.EXCELLENT)
+            _builderRef
+            .setSound(_playerSoundConfig.ExcellentHitSFX)
+            .setSoundPosition(transform.position)
+            .ValidateAndPlaySound();
+        else if (TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.GOOD)
+            _builderRef
+            .setSound(_playerSoundConfig.GoodHitSFX)
+            .setSoundPosition(transform.position)
+            .ValidateAndPlaySound();
+        else
+            _builderRef
+            .setSound(_playerSoundConfig.MissHitSFX)
+            .setSoundPosition(transform.position)
+            .ValidateAndPlaySound();
+    }
+
+    public void PlayDash()
+    {
+        _builderRef
+        .setSound(_playerSoundConfig.DashSFX)
+        .setSoundPosition(transform.position)
+        .ValidateAndPlaySound();
+    }
 
     private void Start()
     {
