@@ -29,6 +29,8 @@ public class SceneTriggerManager : MonoBehaviour
 
     public void StartTransition()
     {
+        MenuManager.Instance.ScreenFadeIn();
+        HUDMessage.Instance.UpdateMessage("Loading...", 1f);
         StartCoroutine(HandleSceneTransition());
     }
     IEnumerator HandleSceneTransition()

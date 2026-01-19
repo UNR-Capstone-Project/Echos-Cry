@@ -3,19 +3,18 @@ using UnityEngine;
 
 public abstract class EnemyBaseAttack : MonoBehaviour
 {
-    protected Enemy _enemyManager;
-    public static event Action<float> AttackEvent;
+    protected SimpleEnemyManager _enemyManager;
+    public event Action OnEnemyUseAttackEvent;
 
     protected virtual void Awake()
     {
-        _enemyManager = GetComponent<Enemy>();
+        _enemyManager = GetComponent<SimpleEnemyManager>();
     }
-    public virtual void Use(float damage)
+
+    protected void RaiseEnemyUseAttack()
     {
-        InvokeAttackEvent(damage);
+        OnEnemyUseAttackEvent?.Invoke();
     }
-    protected void InvokeAttackEvent(float damage)
-    {
-        AttackEvent?.Invoke(damage);
-    }
+
+    public abstract void UseAttack();
 }

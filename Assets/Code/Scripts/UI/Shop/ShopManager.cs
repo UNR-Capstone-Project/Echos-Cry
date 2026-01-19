@@ -9,26 +9,27 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private InputTranslator _translator;
     [SerializeField] private GameObject[] ShopItemArray;
     [SerializeField] private TextMeshProUGUI totalCostText;
+    [SerializeField] private TextMeshProUGUI currentFingersText;
     private int currentItemIndex = 0;
     private float totalCost = 0f;
 
     void Start()
     {
-        //_translator.OnShopLeftInput += Left;
-        //_translator.OnShopRightInput += Right;
-        //_translator.OnShopUpInput += Up;
-        //_translator.OnShopDownInput += Down;
-        //_translator.OnPurchaseEvent += Purchase;
+        _translator.OnShopLeftInput += Left;
+        _translator.OnShopRightInput += Right;
+        _translator.OnShopUpInput += Up;
+        _translator.OnShopDownInput += Down;
+        _translator.OnPurchaseEvent += Purchase;
 
         ShopItemArray[currentItemIndex].GetComponent<ShopItem>().ToggleHighlight(true);
     }
     private void OnDestroy()
     {
-        //_translator.OnShopLeftInput -= Left;
-        //_translator.OnShopRightInput -= Right;
-        //_translator.OnShopUpInput -= Up;
-        //_translator.OnShopDownInput -= Down;
-        //_translator.OnPurchaseEvent -= Purchase;
+        _translator.OnShopLeftInput -= Left;
+        _translator.OnShopRightInput -= Right;
+        _translator.OnShopUpInput -= Up;
+        _translator.OnShopDownInput -= Down;
+        _translator.OnPurchaseEvent -= Purchase;
     }
 
     private void Left()
@@ -37,7 +38,7 @@ public class ShopManager : MonoBehaviour
     }
     private void Right()
     {
-        //PlayerStats.UpdateCurrency(100);
+        PlayerStats.UpdateCurrency(100);
         ShopItemArray[currentItemIndex].GetComponent<ShopItem>().IncreaseAmount();
     }
     private void Down()
@@ -71,32 +72,34 @@ public class ShopManager : MonoBehaviour
         totalCost = tempCost;
         totalCostText.text = $"Total Cost: ${totalCost.ToString()}";
 
-        //if(totalCost <= PlayerStats.CurrencyCount)
-        //{
-        //    totalCostText.color = Color.white;
-        //}
-        //else
-        //{
-        //    totalCostText.color = Color.red;
-        //}
+        if(totalCost <= PlayerStats.CurrencyCount)
+        {
+            totalCostText.color = Color.white;
+        }
+        else
+        {
+            totalCostText.color = Color.red;
+        }
+
+        currentFingersText.text = $"Current Fingers: ${PlayerStats.CurrencyCount.ToString()}";
     }
 
     public void Purchase()
     {
         if (totalCost <= 0) return;
-        //if(PlayerStats.CurrencyCount >= totalCost)
-        //{
-        //    foreach (GameObject item in ShopItemArray)
-        //    {
-        //        ShopItem shopItemScript = item.GetComponent<ShopItem>();
-        //        for (int i = 0; i < shopItemScript.GetAmount(); i++)
-        //        {
-        //            Instantiate(shopItemScript.GetPrefab(), GameObject.Find("Player").transform.position, Quaternion.identity);
-        //        }
-        //        shopItemScript.ResetAmount();
-        //    }
+        if(PlayerStats.CurrencyCount >= totalCost)
+        {
+            foreach (GameObject item in ShopItemArray)
+            {
+                ShopItem shopItemScript = item.GetComponent<ShopItem>();
+                for (int i = 0; i < shopItemScript.GetAmount(); i++)
+                {
+                    Instantiate(shopItemScript.GetPrefab(), GameObject.Find("Player").transform.position, Quaternion.identity);
+                }
+                shopItemScript.ResetAmount();
+            }
 
-        //    PlayerStats.UpdateCurrency(-(int)totalCost);
-        //}
+            PlayerStats.UpdateCurrency(-(int)totalCost);
+        }
     }
 }
