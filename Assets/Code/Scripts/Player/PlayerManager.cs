@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private PlayerSound _playerSound;
     [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private ComboStateMachine _comboStateMachine;
-    [SerializeField] private PlayerAttackHandler _playerAttackHandler;
+    [SerializeField] private WeaponHandler _playerAttackHandler;
     [SerializeField] private PlayerSkillManager _playerSkillManager;
     [SerializeField] private PlayerDirection _playerDirection;
     [SerializeField] private PlayerCurrencySystem _playerCurrencySystem;
@@ -23,7 +23,7 @@ public class PlayerManager : MonoBehaviour
     public PlayerSound PlayerSound { get => _playerSound; }
     public PlayerMovement PlayerMovement { get => _playerMovement; }
     public ComboStateMachine ComboStateMachine { get => _comboStateMachine; }
-    public PlayerAttackHandler PlayerAttackHandler { get => _playerAttackHandler; }
+    public WeaponHandler PlayerAttackHandler { get => _playerAttackHandler; }
     public PlayerSkillManager PlayerSkillManager { get => _playerSkillManager; }
     public PlayerDirection PlayerDirection { get => _playerDirection; }
     public PlayerCurrencySystem PlayerCurrencySystem { get => _playerCurrencySystem; }

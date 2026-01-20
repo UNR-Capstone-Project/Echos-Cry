@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using static ComboStateMachine;
 
 [RequireComponent(typeof(Animator))]
 public abstract class BaseWeapon : MonoBehaviour
@@ -10,12 +9,12 @@ public abstract class BaseWeapon : MonoBehaviour
     protected Animator _attackAnimator;
     protected RuntimeAnimatorController _defaultAnimatorController;
 
-    public static event Action<StateName> OnAttackStartEvent;
+    public static event Action<ComboStateMachine.StateName> OnAttackStartEvent;
     public static event Action OnAttackEndedEvent;
 
     public static event Action<float> UpdateColliderAttackDamageEvent;
 
-    protected virtual void Attack(StateName attackState)
+    protected virtual void Attack(ComboStateMachine.StateName attackState)
     {
         OnAttackStartEvent?.Invoke(attackState);
     }

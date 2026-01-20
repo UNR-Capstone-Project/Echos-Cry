@@ -5,15 +5,16 @@ using UnityEngine;
 //Manages players Heavy and Light attack inputs
 //Determines if we are ready for a new attack and if it is on beat
 
-public class PlayerAttackHandler : MonoBehaviour
+public class WeaponHandler : MonoBehaviour
 {
-    void HandleLightInput()
+
+    public void HandleLightInput()
     {
         if (!_readyForAttackInput || !TempoConductor.Instance.IsOnBeat()) return;
         _readyForAttackInput = false;
         OnInputRegisteredEvent?.Invoke(ComboStateMachine.Instance.HandleLightAttack());
     }
-    void HandleHeavyInput()
+    public void HandleHeavyInput()
     {
         if (!_readyForAttackInput || !TempoConductor.Instance.IsOnBeat()) return;
         _readyForAttackInput = false;

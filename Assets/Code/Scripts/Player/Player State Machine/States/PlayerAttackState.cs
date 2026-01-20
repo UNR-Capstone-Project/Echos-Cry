@@ -7,13 +7,14 @@ public class PlayerAttackState : PlayerActionState
 
     public override void Enter()
     {
+        //Initialize whatever attack is happening
         if (_playerStateMachine.IsLightAttacking)
         {
-            //do light attakc
+            _playerContext.PlayerAttackHandler.HandleLightInput();
         }
         else if (_playerStateMachine.IsHeavyAttacking)
         {
-            //do heavy attack
+            _playerContext.PlayerAttackHandler.HandleHeavyInput();
         }
     }
 
@@ -24,6 +25,6 @@ public class PlayerAttackState : PlayerActionState
 
     public override void Update()
     {
-    
+        //check if current attack is done
     }
 }

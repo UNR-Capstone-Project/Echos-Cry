@@ -76,20 +76,20 @@ public class ClarinetWeapon : BaseWeapon
     }
     private void Start()
     {
-        PlayerAttackHandler.OnInputRegisteredEvent += Attack;
+        WeaponHandler.OnInputRegisteredEvent += Attack;
         gameObject.SetActive(false);
     }
     private void OnDestroy()
     {
-        PlayerAttackHandler.OnInputRegisteredEvent -= Attack;
+        WeaponHandler.OnInputRegisteredEvent -= Attack;
     }
     private void OnEnable()
     {
-        PlayerAttackHandler.OnInputRegisteredEvent += Attack;
+        WeaponHandler.OnInputRegisteredEvent += Attack;
     }
     private void OnDisable()
     {
-        PlayerAttackHandler.OnInputRegisteredEvent -= Attack;
+        WeaponHandler.OnInputRegisteredEvent -= Attack;
     }
 
     private AttackCollisionHandler _weaponCollisionHandler;
