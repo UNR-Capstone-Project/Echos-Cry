@@ -20,6 +20,7 @@ public class MeleeAttackStrategy : AttackStrategy
                    layerMask: _playerMask))
         {
             hitInfo.collider.gameObject.GetComponent<IDamageable>().Execute(damage);
+            Debug.Log("Melee Attack");
             return true;
         }
         else return false;

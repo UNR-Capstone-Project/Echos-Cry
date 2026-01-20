@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Configuration Object")]
     [SerializeField] private PlayerMovementConfig _playerMovementConfig;
+    public PlayerMovementConfig PlayerMovementConfig { get { return _playerMovementConfig; } }
     
     [Header("Player Movement System Dependencies")]
     [SerializeField] private Rigidbody _playerRigidbody;

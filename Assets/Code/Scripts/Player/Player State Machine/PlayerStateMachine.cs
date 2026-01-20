@@ -9,10 +9,10 @@ public class PlayerStateMachine : AbstractStateMachine<PlayerActionState>
     private Vector2 _locomotion;
 
     public bool IsMoving { get => _isMoving; }
-    public bool IsAttacking { get => _isAttacking; }
+    public bool IsAttacking { get => _isAttacking; set => _isAttacking = value; }
     public bool IsLightAttacking { get => _isLightAttacking; }
     public bool IsHeavyAttacking { get => _isHeavyAttacking; }
-    public bool IsDashing { get => _isDashing; }
+    public bool IsDashing { get => _isDashing; set => _isDashing = value; }
     public Vector2 Locomotion { get => _locomotion; }
 
     public void BindInputs(InputTranslator translator)

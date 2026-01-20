@@ -5,10 +5,13 @@ public abstract class PlayerActionState : IState
 {
     protected PlayerStateMachine _playerStateMachine;
     protected PlayerStateCache _playerStateCache;
-    protected PlayerActionState(PlayerStateMachine playerStateMachine, PlayerStateCache playerStateCache)
+    protected PlayerManager _playerContext;
+    protected PlayerActionState(PlayerManager playerContext, PlayerStateMachine playerStateMachine, PlayerStateCache playerStateCache)
     {
+        _playerContext = playerContext;
         _playerStateMachine = playerStateMachine;   
         _playerStateCache = playerStateCache;
+        if (_playerStateMachine == null) Debug.LogError("Invalid value passed: " + GetType().ToString() + "::_playerContext");
         if (_playerStateMachine == null) Debug.LogError("Invalid value passed: " + GetType().ToString() + "::_playerStateMachine");
         if (_playerStateCache == null) Debug.LogError("Invalid value passed: " + GetType().ToString() + "::_playerStateCache");
     }

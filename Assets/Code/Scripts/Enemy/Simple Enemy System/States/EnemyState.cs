@@ -23,4 +23,10 @@ public abstract class EnemyState : IState
 
     //New function added to EnemyState because enemies may have behavior/conditions that do not need to be checked every frame
     public virtual void Tick() { }
+
+    protected void CheckDeath(EnemyState deathState)
+    {
+        if(_enemyContext.Stats.Health <= 0) 
+            _enemyContext.StateMachine.SwitchState(deathState);
+    }
 }

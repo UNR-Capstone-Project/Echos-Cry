@@ -16,4 +16,4 @@ MonoBehaviour:
   _playerMask:
     serializedVersion: 2
     m_Bits: 1024
-  _distance: 3
+  _distance: 1.5

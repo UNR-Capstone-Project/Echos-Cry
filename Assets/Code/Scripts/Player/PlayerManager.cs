@@ -35,6 +35,7 @@ public class PlayerManager : MonoBehaviour
             PlayerStateCache.PlayerState.Idle,
             new PlayerIdleState
             (
+                this,
                 _playerStateMachine,
                 _playerStateCache
             )
@@ -43,8 +44,7 @@ public class PlayerManager : MonoBehaviour
             PlayerStateCache.PlayerState.Move,
             new PlayerMoveState
             (
-                _playerMovement,
-                _playerAnimator,
+                this,
                 _playerStateMachine,
                 _playerStateCache
             )
@@ -53,6 +53,7 @@ public class PlayerManager : MonoBehaviour
             PlayerStateCache.PlayerState.Attack,
             new PlayerAttackState
             (
+                this,
                 _playerStateMachine,
                 _playerStateCache
             )
@@ -61,6 +62,7 @@ public class PlayerManager : MonoBehaviour
             PlayerStateCache.PlayerState.Dash,
             new PlayerDashState
             (
+                this,
                 _playerStateMachine,
                 _playerStateCache
             )

@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class PlayerAttackState : PlayerActionState
 {
-    public PlayerAttackState(PlayerStateMachine playerStateMachine, PlayerStateCache playerStateCache) : base(playerStateMachine, playerStateCache) {}
+    public PlayerAttackState(PlayerManager playerContext, PlayerStateMachine playerStateMachine, PlayerStateCache playerStateCache) 
+        : base(playerContext, playerStateMachine, playerStateCache) { }
 
     public override void Enter()
     {

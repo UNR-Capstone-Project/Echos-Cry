@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class PlayerIdleState : PlayerActionState
 {
-    public PlayerIdleState(PlayerStateMachine playerStateMachine, PlayerStateCache playerStateCache) 
-        : base(playerStateMachine, playerStateCache) {}
+    public PlayerIdleState(PlayerManager playerContext, PlayerStateMachine playerStateMachine, PlayerStateCache playerStateCache)
+        : base(playerContext, playerStateMachine, playerStateCache) { }
 
     public override void CheckSwitch()
     {

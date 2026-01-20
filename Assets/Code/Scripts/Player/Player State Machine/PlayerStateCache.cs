@@ -17,35 +17,6 @@ public class PlayerStateCache
     {
         _stateCache.Add(state, actionState);
     }
-    public void Init(PlayerManager playerContext, PlayerStateMachine playerStateMachine)
-    {
-        _stateCache.Add(
-            PlayerState.Idle,
-            new PlayerIdleState(
-                playerStateMachine, 
-                this)
-        );
-        _stateCache.Add(
-            PlayerState.Move,
-            new PlayerMoveState(
-                playerContext.PlayerMovement,
-                playerContext.PlayerAnimator,
-                playerStateMachine,
-                this)
-        );
-        _stateCache.Add(
-            PlayerState.Attack,
-            new PlayerAttackState(
-                playerStateMachine, 
-                this)
-        );
-        _stateCache.Add(
-            PlayerState.Dash,
-            new PlayerDashState(
-                playerStateMachine,
-                this)
-        );
-    }
 
     public PlayerActionState RequestState(PlayerState state)
     {

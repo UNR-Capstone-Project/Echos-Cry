@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4c6c8e2e86c9242b7d186a864db7a9, type: 3}
   m_Name: Default Movement Config
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementConfig
-  _dashSpeed: 3
+  _dashSpeed: 10
   _dashDuration: 0.25
   _dashCooldown: 1
   _playerSpeed: 5

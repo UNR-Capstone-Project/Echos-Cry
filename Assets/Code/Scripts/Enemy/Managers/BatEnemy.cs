@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class BatEnemy : Enemy
 {
+    [Header("Config File")]
+    [SerializeField] protected BatEnemyConfigFile _enemyConfigFile;
+
     public override void Init()
     {
         _stateCache.AddState(
@@ -10,11 +13,11 @@ public class BatEnemy : Enemy
         );
         _stateCache.AddState(
             EnemyStateCache.EnemyStates.Bat_Stagger,
-            new BatStaggerState(this)
+            new BatStaggerState(_enemyConfigFile, this)
         );
         _stateCache.AddState(
             EnemyStateCache.EnemyStates.Bat_Attack,
-            new BatAttackState(this)
+            new BatAttackState(_enemyConfigFile, this)
         );
         _stateCache.AddState(
             EnemyStateCache.EnemyStates.Bat_Chase,
@@ -26,11 +29,11 @@ public class BatEnemy : Enemy
         );
         _stateCache.AddState(
             EnemyStateCache.EnemyStates.Bat_Idle,
-            new BatIdleState(this)
+            new BatIdleState(_enemyConfigFile, this)
         );
         _stateCache.AddState(
             EnemyStateCache.EnemyStates.Bat_Charge,
-            new BatChargeState(this)
+            new BatChargeState(_enemyConfigFile, this)
         );
 
         _stateMachine.Init(_stateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Spawn));
