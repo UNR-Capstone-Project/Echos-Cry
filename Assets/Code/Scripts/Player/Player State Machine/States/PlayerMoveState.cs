@@ -1,3 +1,4 @@
+using UnityEngine;
 
 public class PlayerMoveState : PlayerActionState
 {
@@ -16,12 +17,18 @@ public class PlayerMoveState : PlayerActionState
 
     public override void CheckSwitch()
     {
-        if (!_playerStateMachine.isMoving)
-            RequestSwitchState(PlayerStateCache.PlayerState.Idle);
-        else if (_playerStateMachine.isAttacking && TempoManager.CurrentHitQuality != TempoManager.HIT_QUALITY.MISS)
-            RequestSwitchState(PlayerStateCache.PlayerState.Attack);
-        else if (_playerStateMachine.isDashing)
-            RequestSwitchState(PlayerStateCache.PlayerState.Dash);
+        if (!_playerStateMachine.IsMoving)
+        {
+            _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Idle));
+        }
+        else if (_playerStateMachine.IsAttacking && TempoConductor.Instance.IsOnBeat())
+        {
+            //_playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Attack));
+        }
+        else if (_playerStateMachine.IsDashing)
+        {
+            //_playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Dash));
+        }
     }
 
     public override void Enter()
@@ -35,11 +42,11 @@ public class PlayerMoveState : PlayerActionState
     }
     public override void Update()
     {
-        _animator.UpdateMainSpriteDirection(_playerStateMachine.locomotion);
+        _animator.UpdateMainSpriteDirection(_playerStateMachine.Locomotion);
     }
 
     public override void FixedUpdate()
     {
-        _playerMovement.Move(_playerStateMachine.locomotion);
+        _playerMovement.Move(_playerStateMachine.Locomotion);
     }
 }

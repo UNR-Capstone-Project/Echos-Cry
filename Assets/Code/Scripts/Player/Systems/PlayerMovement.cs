@@ -35,9 +35,6 @@ public class PlayerMovement : MonoBehaviour
             Debug.LogWarning("Player Movement Configuration file is null!");
             return;
         }
-
-        _stoppingAcceleration = _playerMovementConfig.PlayerSpeed * 2;
-
     }
 
     [Header("Configuration Object")]
@@ -47,5 +44,4 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody _playerRigidbody;
 
     private Transform _mainCameraTransform;
-    private float _stoppingAcceleration;
 }

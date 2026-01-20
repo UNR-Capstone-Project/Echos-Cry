@@ -13,6 +13,10 @@ public class PlayerStateCache
 
     public PlayerStateCache() => _stateCache = new();
 
+    public void AddState(PlayerState state, PlayerActionState actionState)
+    {
+        _stateCache.Add(state, actionState);
+    }
     public void Init(PlayerManager playerContext, PlayerStateMachine playerStateMachine)
     {
         _stateCache.Add(
@@ -45,7 +49,7 @@ public class PlayerStateCache
 
     public PlayerActionState RequestState(PlayerState state)
     {
-        if(_stateCache.ContainsKey(state)) return _stateCache[state];
+        if (_stateCache.ContainsKey(state)) return _stateCache[state];
         else return null;
     }
 

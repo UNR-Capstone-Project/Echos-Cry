@@ -6,11 +6,11 @@ public class PlayerAttackState : PlayerActionState
 
     public override void Enter()
     {
-        if (_playerStateMachine.isLightAttacking)
+        if (_playerStateMachine.IsLightAttacking)
         {
             //do light attakc
         }
-        else if (_playerStateMachine.isHeavyAttacking)
+        else if (_playerStateMachine.IsHeavyAttacking)
         {
             //do heavy attack
         }

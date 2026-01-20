@@ -2,12 +2,18 @@ using UnityEngine;
 
 public class PlayerStateMachine : AbstractStateMachine<PlayerActionState>
 {
-    public bool isMoving;
-    public bool isAttacking;
-    public bool isLightAttacking, isHeavyAttacking;
-    public bool isDashing;
+    private bool _isMoving;
+    private bool _isAttacking;
+    private bool _isLightAttacking, _isHeavyAttacking;
+    private bool _isDashing;
+    private Vector2 _locomotion;
 
-    public Vector2 locomotion;
+    public bool IsMoving { get => _isMoving; }
+    public bool IsAttacking { get => _isAttacking; }
+    public bool IsLightAttacking { get => _isLightAttacking; }
+    public bool IsHeavyAttacking { get => _isHeavyAttacking; }
+    public bool IsDashing { get => _isDashing; }
+    public Vector2 Locomotion { get => _locomotion; }
 
     public void BindInputs(InputTranslator translator)
     {
@@ -28,40 +34,46 @@ public class PlayerStateMachine : AbstractStateMachine<PlayerActionState>
 
     private void HandleMovement(Vector2 locomotion)
     {
-        this.locomotion = locomotion;
+        _locomotion = locomotion;
 
-        if (locomotion != Vector2.zero) isMoving = true;
-        else isMoving = false;
+        if (_locomotion != Vector2.zero)
+        {
+            _isMoving = true;
+        }
+        else
+        {
+            _isMoving = false;
+        }
     }
     private void HandleLightAttack(bool buttonPressed)
     {
         if (buttonPressed)
         {
-            isLightAttacking = true;
-            isAttacking = true;
+            _isLightAttacking = true;
+            _isAttacking = true;
         }
         else
         {
-            isLightAttacking = false;
-            if (!isHeavyAttacking) isAttacking = false;
+            _isLightAttacking = false;
+            if (!_isHeavyAttacking) _isAttacking = false;
         }
     }
     private void HandleHeavyAttack(bool buttonPressed)
     {
         if (buttonPressed)
         {
-            isHeavyAttacking = true;
-            isAttacking = true;
+            _isHeavyAttacking = true;
+            _isAttacking = true;
         }
         else
         {
-            isHeavyAttacking = false;
-            if (!isLightAttacking) isAttacking = false;
+            _isHeavyAttacking = false;
+            if (!_isLightAttacking) _isAttacking = false;
         }
     }
     private void HandleDash(bool buttonPressed)
     {
-        if (buttonPressed) isDashing = true;
-        else isDashing = false;
+        if (buttonPressed) _isDashing = true;
+        else _isDashing = false;
     }
 }

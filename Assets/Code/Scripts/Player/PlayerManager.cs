@@ -29,14 +29,52 @@ public class PlayerManager : MonoBehaviour
     public PlayerCurrencySystem PlayerCurrencySystem { get => _playerCurrencySystem; }
     public InputTranslator InputTranslator { get => _inputTranslator; }
 
+    private void InitStateCache()
+    {
+        _playerStateCache.AddState(
+            PlayerStateCache.PlayerState.Idle,
+            new PlayerIdleState
+            (
+                _playerStateMachine,
+                _playerStateCache
+            )
+        );
+        _playerStateCache.AddState(
+            PlayerStateCache.PlayerState.Move,
+            new PlayerMoveState
+            (
+                _playerMovement,
+                _playerAnimator,
+                _playerStateMachine,
+                _playerStateCache
+            )
+        );
+        _playerStateCache.AddState(
+            PlayerStateCache.PlayerState.Attack,
+            new PlayerAttackState
+            (
+                _playerStateMachine,
+                _playerStateCache
+            )
+        );
+        _playerStateCache.AddState(
+            PlayerStateCache.PlayerState.Dash,
+            new PlayerDashState
+            (
+                _playerStateMachine,
+                _playerStateCache
+            )
+        );
+    }
+
     private void Awake()
     {
-        _playerStateMachine = new PlayerStateMachine();
-        _playerStateCache = new PlayerStateCache();
+        _playerStateMachine = new();
+        _playerStateCache = new();
     }
     private void Start()
     {
-        _playerStateCache.Init(this, _playerStateMachine);
+        InitStateCache();
         _playerStateMachine.BindInputs(_inputTranslator);
         _playerStateMachine.Init(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Idle));
     }
@@ -46,10 +84,10 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
-        _playerStateMachine.Update();
+        _playerStateMachine.UpdateState();
     }
     private void FixedUpdate()
     {
-        _playerStateMachine.FixedUpdate();
+        _playerStateMachine.FixedUpdateState();
     }
 }

@@ -18,11 +18,4 @@ public abstract class PlayerActionState : IState
     public virtual void Enter() { }
     public virtual void Exit() { }
     public virtual void CheckSwitch() { }
-
-    protected void RequestSwitchState(PlayerStateCache.PlayerState newState) 
-    {
-        if (_playerStateCache == null || _playerStateMachine == null) return;
-        _playerStateMachine.SwitchState(_playerStateCache.RequestState(newState));
-    }
-
 }

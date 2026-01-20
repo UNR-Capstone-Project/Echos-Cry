@@ -28,21 +28,21 @@ public class PlayerComboMeter : MonoBehaviour
     }
     public void ResetComboMultiplier()
     {
-        if (TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.MISS)
+        if (TempoConductor.Instance.CurrentHitQuality == TempoConductor.HitQuality.Miss)
         {
             _comboMultiplier = 1;
             OnComboMultiplierChangeEvent?.Invoke(_comboMultiplier);
         }
     }
-    public static void UpdateHitQualityMultipliers(TempoManager.HIT_QUALITY hit)
+    public static void UpdateHitQualityMultipliers(TempoConductor.HitQuality hit)
     {
         switch (hit)
         {
-            case TempoManager.HIT_QUALITY.EXCELLENT:
+            case TempoConductor.HitQuality.Excellent:
                 _percentOfDamage = 0.03125f;
                 _comboMultiplierRate = 2;
                 break;
-            case TempoManager.HIT_QUALITY.GOOD:
+            case TempoConductor.HitQuality.Good:
                 _percentOfDamage = 0.03125f;
                 _comboMultiplierRate = 1;
                 break;

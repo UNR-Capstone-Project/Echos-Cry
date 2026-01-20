@@ -45,7 +45,7 @@ public class BatIdleState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Enter Idle");
+        //Debug.Log("Enter Idle");
     }
     public override void Tick()
     {
@@ -55,12 +55,11 @@ public class BatIdleState : EnemyState
 
     private void CheckPlayerDistance()
     {
-        Debug.Log("Checking Player Distance: Idle");
         if (PlayerRef.Transform == null) return;
         float playerDistance = (_enemyContext.transform.position - PlayerRef.Transform.position).sqrMagnitude;
         if (playerDistance < sqrMagDistance)
         {
-            base._enemyContext.StateMachine.SwitchState(base._enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Chase));
+            _enemyContext.StateMachine.SwitchState(base._enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Chase));
             return;
         }
     }
@@ -80,13 +79,13 @@ public class BatChaseState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Enter Chase");
+        //Debug.Log("Enter Chase");
         SetEnemyTarget();
     }
     public override void Exit()
     {
         base.Exit();
-        Debug.Log("Exit Chase");
+        //Debug.Log("Exit Chase");
         _enemyContext.StopAllCoroutines();
     }
     public override void Tick()
@@ -125,7 +124,7 @@ public class BatChargeState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Enter Charge Attack State");
+        //Debug.Log("Enter Charge Attack State");
         _enemyContext.StartCoroutine(ChargeAttackCoroutine());
     }
     public override void Exit()
@@ -138,14 +137,14 @@ public class BatChargeState : EnemyState
     IEnumerator ChargeAttackCoroutine()
     {
         yield return new WaitForSeconds(chargeDuration);
-        if (TempoManager.CurrentHitQuality != TempoManager.HIT_QUALITY.MISS) 
+        if (TempoConductor.Instance.IsOnBeat()) 
             _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Attack));
         else _enemyContext.StartCoroutine(WaitUntilBeat());
     }
     IEnumerator WaitUntilBeat()
     {
         yield return new WaitForEndOfFrame();
-        if (TempoManager.CurrentHitQuality != TempoManager.HIT_QUALITY.MISS) 
+        if (TempoConductor.Instance.IsOnBeat()) 
             _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Attack));
         else _enemyContext.StartCoroutine(WaitUntilBeat());
     }
@@ -175,7 +174,11 @@ public class BatAttackState : EnemyState
     }
     public override void Update()
     {
-        if (!isAttacking || _enemyContext.AttackStrategies[MeleeIndex] == null) return;
+        if (!isAttacking 
+            || _enemyContext.AttackStrategies.Length == 0 
+            || _enemyContext.AttackStrategies[MeleeIndex] == null) 
+            return;
+
         if (_enemyContext.AttackStrategies[MeleeIndex]
             .Execute(
                 10f, 

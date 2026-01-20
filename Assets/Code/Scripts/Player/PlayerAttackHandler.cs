@@ -9,13 +9,13 @@ public class PlayerAttackHandler : MonoBehaviour
 {
     void HandleLightInput()
     {
-        if (!_readyForAttackInput || TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.MISS) return;
+        if (!_readyForAttackInput || !TempoConductor.Instance.IsOnBeat()) return;
         _readyForAttackInput = false;
         OnInputRegisteredEvent?.Invoke(ComboStateMachine.Instance.HandleLightAttack());
     }
     void HandleHeavyInput()
     {
-        if (!_readyForAttackInput || TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.MISS) return;
+        if (!_readyForAttackInput || !TempoConductor.Instance.IsOnBeat()) return;
         _readyForAttackInput = false;
         OnInputRegisteredEvent?.Invoke(ComboStateMachine.Instance.HandleHeavyAttack());
     }

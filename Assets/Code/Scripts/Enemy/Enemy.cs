@@ -47,6 +47,6 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Update()
     {
-        _stateMachine.Update();
+        _stateMachine.UpdateState();
     }
 }

@@ -9,13 +9,13 @@ public abstract class AbstractStateMachine<T> where T : IState
         _currentState = initState;
         _currentState?.Enter();
     }
-    public virtual void Update()
+    public virtual void UpdateState()
     {
         if (_currentState == null) return;
         _currentState.CheckSwitch();
         _currentState.Update();
     }
-    public virtual void FixedUpdate()
+    public virtual void FixedUpdateState()
     {
         _currentState?.FixedUpdate();
     }

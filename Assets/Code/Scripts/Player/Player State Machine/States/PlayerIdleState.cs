@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerIdleState : PlayerActionState
@@ -7,9 +8,17 @@ public class PlayerIdleState : PlayerActionState
 
     public override void CheckSwitch()
     {
-        if (_playerStateMachine.isMoving)
-            RequestSwitchState(PlayerStateCache.PlayerState.Move);
-        else if (_playerStateMachine.isAttacking && TempoManager.CurrentHitQuality != TempoManager.HIT_QUALITY.MISS)
-            RequestSwitchState(PlayerStateCache.PlayerState.Attack);
+        if (_playerStateMachine.IsMoving)
+        {
+            _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Move));
+        }
+        else if (_playerStateMachine.IsAttacking && TempoConductor.Instance.IsOnBeat())
+        {
+            //_playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Attack));
+        }
+    }
+    public override void Enter()
+    {
+        Debug.Log("Player Idle");
     }
 }

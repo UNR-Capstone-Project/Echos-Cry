@@ -26,7 +26,7 @@ public class TempFlashOnBeat : MonoBehaviour
     }
     private IEnumerator FlashLightCoroutine()
     {
-        yield return new WaitForSeconds(TempoManager.TimeBetweenBeats);
+        yield return new WaitForSeconds(TempoConductor.Instance.TimeBetweenBeats);
         lightIntensity.intensity = 0;
         tempHold = 0;
     }
@@ -40,7 +40,7 @@ public class TempFlashOnBeat : MonoBehaviour
         MusicManager.Instance.SongPlayEvent += EnableLight;
         MusicManager.Instance.SongStopEvent += DisableLight;
 
-        TempoManager.BeatTickEvent += FlashLight;
+        TempoConductor.Instance.BeatTickEvent += FlashLight;
 
         lightIntensity.intensity = 0;
 
@@ -50,14 +50,14 @@ public class TempFlashOnBeat : MonoBehaviour
     {
         MusicManager.Instance.SongPlayEvent -= EnableLight;
         MusicManager.Instance.SongStopEvent -= DisableLight;
-        TempoManager.BeatTickEvent -= FlashLight;
+        TempoConductor.Instance.BeatTickEvent -= FlashLight;
     }
 
     private void Update()
     {
         if (!gameObject.activeSelf) return;
         tempHold += Time.deltaTime;
-        lightIntensity.intensity = (tempHold / TempoManager.TimeBetweenBeats) * 3.5f;
+        lightIntensity.intensity = (tempHold / TempoConductor.Instance.TimeBetweenBeats) * 3.5f;
     }
 
     Light lightIntensity = null;

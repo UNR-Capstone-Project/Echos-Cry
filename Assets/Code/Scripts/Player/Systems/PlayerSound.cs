@@ -15,12 +15,12 @@ public class PlayerSound : MonoBehaviour
     }
     public void PlayHitQuality()
     {
-        if (TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.EXCELLENT)
+        if (TempoConductor.Instance.CurrentHitQuality == TempoConductor.HitQuality.Excellent)
             _builderRef
             .setSound(_playerSoundConfig.ExcellentHitSFX)
             .setSoundPosition(transform.position)
             .ValidateAndPlaySound();
-        else if (TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.GOOD)
+        else if (TempoConductor.Instance.CurrentHitQuality == TempoConductor.HitQuality.Good)
             _builderRef
             .setSound(_playerSoundConfig.GoodHitSFX)
             .setSoundPosition(transform.position)
