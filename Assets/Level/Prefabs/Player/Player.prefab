@@ -280,7 +280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   translator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
-  dashSpeed: 26
+  dashSpeed: 28
   dashDuration: 0.18
   dashCooldown: 1
   playerSpeed: 4.5
@@ -310,8 +310,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2428720641269041060}
   serializedVersion: 5
-  m_Mass: 0.8
-  m_LinearDamping: 4.4
+  m_Mass: 10
+  m_LinearDamping: 1
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -327,7 +327,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &6060951237239432870
 CapsuleCollider:
@@ -708,6 +708,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8572200490464946170}
   - component: {fileID: 5943950412821345083}
+  - component: {fileID: 5044323019992389784}
   m_Layer: 0
   m_Name: SpriteOutline
   m_TagString: Untagged
@@ -788,6 +789,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5044323019992389784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7526026890652276918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac600b6e0f3ab204c9bb832ef02cd591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  outlineMaterial: {fileID: 2100000, guid: ae41a1466203a3e48935a521f9206df8, type: 2}
 --- !u!1 &7860510388739070033
 GameObject:
   m_ObjectHideFlags: 0
