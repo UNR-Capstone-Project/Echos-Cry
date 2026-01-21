@@ -557,13 +557,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainCanvas
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5480269914008866502, guid: 42f411ff78ea6ef4f9d4785b36fbf7c0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 399665455554144398, guid: 42f411ff78ea6ef4f9d4785b36fbf7c0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7738891974164831159}
   m_SourcePrefab: {fileID: 100100000, guid: 42f411ff78ea6ef4f9d4785b36fbf7c0, type: 3}
 --- !u!224 &5034085868764075964 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4590928467762864441, guid: 42f411ff78ea6ef4f9d4785b36fbf7c0, type: 3}
   m_PrefabInstance: {fileID: 8821121699685922437}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &9214662729368362507 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 399665455554144398, guid: 42f411ff78ea6ef4f9d4785b36fbf7c0, type: 3}
+  m_PrefabInstance: {fileID: 8821121699685922437}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7738891974164831159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9214662729368362507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1286c1973e55bb64cac135a2e202effd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageLabelManager
+  damageLabelPrefab: {fileID: 2115787942821154026, guid: b4f23445892cc694fa935f1a8ff6fbe9, type: 3}
+  _displayLength: 1

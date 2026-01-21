@@ -1,55 +1,42 @@
 using UnityEngine;
 using UnityEngine.Pool;
-using UnityEngine.SceneManagement;
 
-public class SpawnsDamagePopups : MonoBehaviour
+public class DamageLabelManager : Singleton<DamageLabelManager>
 {
-    public static SpawnsDamagePopups Instance { get; private set; }
     private ObjectPool<DamageLabel> damageLabelPopupPool;
 
+    //Find another way to pass damage label to manager
     [SerializeField] private DamageLabel damageLabelPrefab;
-    [Range(0.2f, 1.5f), SerializeField] public float displayLength = 1f;
+    [Range(0.2f, 1.5f), SerializeField] private float _displayLength = 1f;
 
-    private void Awake()
+    protected override void OnAwake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
         damageLabelPopupPool = new ObjectPool<DamageLabel>(
             () =>
             {
                 DamageLabel damageLabel = Instantiate(damageLabelPrefab, transform);
-                damageLabel.Initialize(displayLength, this);
+                damageLabel.Initialize(_displayLength, this);
                 return damageLabel;
             },
             damageLabel => damageLabel.gameObject.SetActive(true),
             damageLabel => damageLabel.gameObject.SetActive(false)
         );
-
     }
 
-    public void DamageDone(float damage, Vector3 position, Color color)
-    {
-        Vector3 screenPosition = CameraManager.MainCamera.WorldToScreenPoint(position);
-        screenPosition.z = 0;
-        bool direction = screenPosition.x < Screen.width * 0.5f;
-
-        SpawnDamagePopup(damage, screenPosition, direction, color);
-    }
-
-    private void SpawnDamagePopup(float damage, Vector3 position, bool direction, Color color)
+    private void GetAndDisplayPopup(float damage, Vector3 position, bool direction, Color color)
     {
         DamageLabel damageLabel = damageLabelPopupPool.Get();
         damageLabel.Display(damage, position, direction, color);
     }
 
+    public void SpawnPopup(float damage, Vector3 position, Color color)
+    {
+        Vector3 screenPosition = CameraManager.MainCamera.WorldToScreenPoint(position);
+        screenPosition.z = 0;
+        bool direction = screenPosition.x < Screen.width * 0.5f;
+
+        GetAndDisplayPopup(damage, screenPosition, direction, color);
+    }
     public void ReturnDamageLabelToPool(DamageLabel damageLabel3d)
     {
         damageLabelPopupPool.Release(damageLabel3d);

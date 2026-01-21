@@ -3,14 +3,13 @@ using UnityEngine;
 
 public class EnemyAnimator : MonoBehaviour
 {
-    public void HandleDamageEnemy(float damage, Color color)
+    public void FlashEnemy()
     {
-        StopCoroutine(FlashEnemy());
-        StartCoroutine(FlashEnemy());
-        SpawnsDamagePopups.Instance.DamageDone(damage, transform.position, color);
+        StopCoroutine(FlashEnemyCoroutine());
+        StartCoroutine(FlashEnemyCoroutine());
     }
 
-    private IEnumerator FlashEnemy()
+    private IEnumerator FlashEnemyCoroutine()
     {
         enemySprite.material.SetColor(hashedTintColor, flashColor);
         yield return new WaitForSeconds(flashDuration);
@@ -30,11 +29,6 @@ public class EnemyAnimator : MonoBehaviour
         {
             Debug.Log("Must have enemy sprite attached to apply tint.");
         }
-        GetComponent<EnemyStats>().OnEnemyDamagedEvent += HandleDamageEnemy;
-    }
-    private void OnDestroy()
-    {
-        GetComponent<EnemyStats>().OnEnemyDamagedEvent -= HandleDamageEnemy;
     }
 
     [SerializeField] private Color flashColor = Color.red;

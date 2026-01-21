@@ -23,7 +23,7 @@ public class DamageLabel : MonoBehaviour
     private Vector3 dropPointOffsetBasedOnDirection = Vector3.zero;
     private bool direction = true;
 
-    private SpawnsDamagePopups poolManager;
+    private DamageLabelManager poolManager;
     private Coroutine moveCoroutine;
 
     private void OrientCurveBasedOnDirection()
@@ -48,7 +48,7 @@ public class DamageLabel : MonoBehaviour
         return currentLocation;
     }
 
-    public void Initialize(float displayDuration, SpawnsDamagePopups poolManager)
+    public void Initialize(float displayDuration, DamageLabelManager poolManager)
     {
         this.poolManager = poolManager;
         this.displayDuration = displayDuration;
