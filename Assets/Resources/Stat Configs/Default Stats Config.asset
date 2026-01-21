@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a896efee18ca34d499e4b48ef78861a9, type: 3}
   m_Name: Default Stats Config
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStatsConfig
-  _currentHealth: {fileID: 0}
-  _maxHealth: {fileID: 0}
+  currentHealth: 100
+  maxHealth: 100
+  maxArmor: 50
+  currentArmor: 50

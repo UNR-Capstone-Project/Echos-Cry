@@ -24,22 +24,8 @@ public class TimerNode
     }
 }
 
-public class TickManager : MonoBehaviour
+public class TickManager : Singleton<TickManager>
 {
-    private static TickManager _instance;
-    public static TickManager Instance
-    {
-        get
-        {
-            if( _instance == null)
-            {
-                TickManager newInstance = new GameObject("Tick Manager").AddComponent<TickManager>();
-                _instance = newInstance;
-            }
-            return _instance;
-        }
-    }
-
     private Dictionary<float, TimerNode> _timers;
 
     private TimerNode AddTimer(float tickTime)
@@ -61,17 +47,16 @@ public class TickManager : MonoBehaviour
         }
     }
 
-    private void Awake()
+    protected override void OnAwake()
     {
-        if( _instance != null )
-        {
-            Destroy(this);
-            return;
-        }
         _timers = new();
     }
     void Update()
     {
         UpdateTimers();
+    }
+    private void OnDestroy()
+    {
+        _timers.Clear();
     }
 }

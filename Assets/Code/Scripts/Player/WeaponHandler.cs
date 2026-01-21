@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class WeaponHandler : MonoBehaviour
 {
-
     public void HandleLightInput()
     {
         if (!_readyForAttackInput || !TempoConductor.Instance.IsOnBeat()) return;

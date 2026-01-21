@@ -7,7 +7,7 @@ public class RangeSpawnState : EnemyState
 {
     public RangeSpawnState(Enemy enemyContext) : base(enemyContext) { }
 
-    public override void Enter()
+    protected override void OnEnter()
     {
         _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStates.Range_Idle));
     }
@@ -32,7 +32,7 @@ public class RangeRoamState : EnemyState
 {
     public RangeRoamState(Enemy enemyContext) : base(enemyContext) { }
 
-    public override void Enter()
+    protected override void OnEnter()
     {
         float range = 6f;
         Vector3 point = Random.onUnitSphere * range;
@@ -54,11 +54,11 @@ public class RangeChargeAttackState : EnemyState
 {
     public RangeChargeAttackState(Enemy enemyContext) : base(enemyContext) { }
 
-    public override void Enter()
+    protected override void OnEnter()
     {
         _enemyContext.StartCoroutine(ChargeDurationCoroutine());
     }
-    public override void Exit()
+    protected override void OnExit()
     {
         _enemyContext.StopAllCoroutines();
     }
@@ -74,13 +74,13 @@ public class RangeAttackState : EnemyState
 
     public RangeAttackState(Enemy enemyContext) : base(enemyContext) { }
 
-    public override void Enter()
+    protected override void OnEnter()
     {
         count = 0;
         //_enemyContext.EnemyBaseAttack.UseAttack();
         _enemyContext.StartCoroutine(BetweenAttackPauseCoroutine());
     }
-    public override void Exit()
+    protected override void OnExit()
     {
         _enemyContext.StopAllCoroutines();
     }
@@ -105,7 +105,7 @@ public class RangeStaggerState : EnemyState
 {
     public RangeStaggerState(Enemy enemyContext) : base(enemyContext) { }
 
-    public override void Enter()
+    protected override void OnEnter()
     {
         if(_enemyContext.NavMeshAgent.hasPath) _enemyContext.NavMeshAgent.ResetPath();
         _enemyContext.Rigidbody.isKinematic = false;
@@ -113,7 +113,7 @@ public class RangeStaggerState : EnemyState
         _enemyContext.Rigidbody.AddForce(-(1f * direction), ForceMode.Impulse);
         _enemyContext.StartCoroutine(StaggerDurationCoroutine());
     }
-    public override void Exit()
+    protected override void OnExit()
     {
         _enemyContext.Rigidbody.isKinematic = true;
         _enemyContext.StopAllCoroutines();
@@ -128,7 +128,7 @@ public class RangeDeathState : EnemyState
 {
     public RangeDeathState(Enemy enemyContext) : base(enemyContext) { }
 
-    public override void Enter()
+    protected override void OnEnter()
     {
         //_enemyContext.Stats.HandleEnemyDeath();
     }

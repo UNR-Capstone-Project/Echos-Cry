@@ -26,5 +26,6 @@ public class PlayerAttackState : PlayerActionState
     public override void Update()
     {
         //check if current attack is done
+        if (BaseWeapon.IsAttackEnded) _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Idle));
     }
 }

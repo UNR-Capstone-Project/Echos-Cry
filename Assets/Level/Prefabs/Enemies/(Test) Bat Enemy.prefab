@@ -234,7 +234,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17090424fb90a274eb5b2d0a745de949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDamageable
-  _enemyStats: {fileID: 854592342237272632}
+  _enemy: {fileID: 1478910265220508113}
+  _staggerState: 2
 --- !u!65 &8838160874129828706
 BoxCollider:
   m_ObjectHideFlags: 0

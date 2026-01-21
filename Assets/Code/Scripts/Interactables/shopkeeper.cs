@@ -16,7 +16,7 @@ public class shopkeeper : MonoBehaviour
         translator.PlayerInputs.Gameplay.Disable();
 
         VolumeManager.Instance.SetDepthOfField(true);
-        soundEffectManager.Instance.Builder
+        SoundEffectManager.Instance.Builder
             .setSound(shopOpenSFX)
             .setSoundPosition(this.transform.position)
             .ValidateAndPlaySound();

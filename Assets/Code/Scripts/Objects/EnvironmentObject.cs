@@ -20,7 +20,7 @@ public class EnvironmentObject : MonoBehaviour
     {
         Instantiate(_destroyedPrefab, transform.position, transform.rotation);
         if (_itemDropStrategy != null) _itemDropStrategy.Execute(transform);
-        soundEffectManager.Instance.Builder
+        SoundEffectManager.Instance.Builder
             .setSound(_destroySFX)
             .setSoundPosition(transform.position)
             .ValidateAndPlaySound();
@@ -38,7 +38,7 @@ public class EnvironmentObject : MonoBehaviour
     }
     private void OnDestroy()
     {
-        if (_isDestructable && _statsConfig != null)
+        if (_isDestructable && _statsConfig != null && TickManager.Instance != null)
         {
             TickManager.Instance.GetTimer(0.2f).Tick -= CheckHealth;
         }

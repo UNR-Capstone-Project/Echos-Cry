@@ -1,4 +1,5 @@
 using AudioSystem;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DroppedItem : MonoBehaviour
@@ -18,7 +19,7 @@ public class DroppedItem : MonoBehaviour
     }
     private void OnDestroy()
     {
-        TickManager.Instance.GetTimer(0.2f).Tick -= MoveItemToPlayer;
+        if (TickManager.Instance != null) TickManager.Instance.GetTimer(0.2f).Tick -= MoveItemToPlayer;
     }
 
     private void MoveItemToPlayer()
@@ -38,7 +39,7 @@ public class DroppedItem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        soundEffectManager.Instance.Builder
+        SoundEffectManager.Instance.Builder
             .setSound(pickupSFX)
             .setSoundPosition(this.transform.position)
             .ValidateAndPlaySound();

@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class EnemyDamageable : MonoBehaviour, IDamageable
 {
-    [SerializeField] EnemyStats _enemyStats;
-    public virtual void Init(EnemyStats enemyStats)
-    {
-        _enemyStats = enemyStats;
-    }
+    [SerializeField] Enemy _enemy;
+    [SerializeField] EnemyStateCache.EnemyStates _staggerState;
     public virtual void Execute(float amount)
     {
-        _enemyStats.Damage(amount, Color.red);
+        _enemy.Stats.Damage(amount, Color.red);
+        if(!_enemy.Stats.HasArmor) 
+            _enemy.StateMachine.SwitchState(_enemy.StateCache.RequestState(_staggerState));
     }
 }

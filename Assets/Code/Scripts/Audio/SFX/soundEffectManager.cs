@@ -11,9 +11,8 @@ using UnityEngine.Pool;
 /// <summary>
 /// Singleton to manage all the sound effects in the game
 /// </summary>
-public class soundEffectManager : MonoBehaviour
+public class SoundEffectManager : Singleton<SoundEffectManager>
 {
-    public static soundEffectManager Instance { get; private set; }
     public soundBuilder Builder { get; private set; }
 
     [SerializeField, HideInInspector] private soundEffectPlayer sfxPlayerPrefab;
@@ -24,24 +23,15 @@ public class soundEffectManager : MonoBehaviour
     IObjectPool<soundEffectPlayer> sfxPlayersPool;
     private Queue<soundEffectPlayer> frequentSfxPlayers = new();
 
-    void Awake()
+    protected override void OnAwake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
-
-        if (Application.isPlaying) initializeSoundPool();
+        if (Application.isPlaying) InitializeSoundPool();
 
         Builder = new soundBuilder();
         Builder.Initialize(this);
     }
 
-    public bool canPlaySound(soundEffect sound)
+    public bool CanPlaySound(soundEffect sound)
     {
         if (sound == null) return false;
         if (!sound.isFrequent) return true;
@@ -49,7 +39,7 @@ public class soundEffectManager : MonoBehaviour
         if (frequentSfxPlayers.Count >= MAX_SFX_PLAYERS && frequentSfxPlayers.TryDequeue(out var oldest))
         {
             oldest.Stop();
-            releasePlayer(oldest);
+            ReleasePlayer(oldest);
         }
 
         return true;
@@ -65,10 +55,10 @@ public class soundEffectManager : MonoBehaviour
     //    return Builder;
     //}
 
-    public void initializeSoundPool()
+    public void InitializeSoundPool()
     {
         sfxPlayersPool = new ObjectPool<soundEffectPlayer>(
-            createFunc: createSoundPlayer,
+            createFunc: CreateSoundPlayer,
             actionOnGet: OnTakeFromPool,
             actionOnRelease: OnReturnedToPool,
             actionOnDestroy: OnDestroyPoolObject,
@@ -93,7 +83,7 @@ public class soundEffectManager : MonoBehaviour
         player.gameObject.SetActive(true);
     }
 
-    public soundEffectPlayer createSoundPlayer()
+    public soundEffectPlayer CreateSoundPlayer()
     {
         if (sfxPlayerPrefab == null)
         {
@@ -105,23 +95,23 @@ public class soundEffectManager : MonoBehaviour
         return soundPlayer;
     }
 
-    public soundEffectPlayer getPlayer()
+    public soundEffectPlayer GetPlayer()
     {
         if (sfxPlayersPool == null)
         {
-            initializeSoundPool();
+            InitializeSoundPool();
         }
 
         return sfxPlayersPool.Get();
     }
 
-    public void releasePlayer(soundEffectPlayer player)
+    public void ReleasePlayer(soundEffectPlayer player)
     {
         if (!player.gameObject.activeSelf) return;
         sfxPlayersPool.Release(player);
     }
     
-    public void registerFrequentPlayer(soundEffectPlayer player)
+    public void RegisterFrequentPlayer(soundEffectPlayer player)
     {
         frequentSfxPlayers.Enqueue(player);
 
@@ -135,7 +125,7 @@ public class soundEffectManager : MonoBehaviour
         
         }
     }
-    public void unregisterFrequentPlayer(soundEffectPlayer player)
+    public void UnregisterFrequentPlayer(soundEffectPlayer player)
     {
         var newQueue = new Queue<soundEffectPlayer>();
         while (frequentSfxPlayers.Count > 0)

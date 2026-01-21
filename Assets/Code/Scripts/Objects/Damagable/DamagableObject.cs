@@ -9,7 +9,7 @@ public class DamagableObject : MonoBehaviour, IDamageable
     public void Execute(float amount)
     {
         environmentObject.Health -= amount;
-        soundEffectManager.Instance.Builder
+        SoundEffectManager.Instance.Builder
             .setSound(hitSFX)
             .setSoundPosition(environmentObject.transform.position)
             .ValidateAndPlaySound();

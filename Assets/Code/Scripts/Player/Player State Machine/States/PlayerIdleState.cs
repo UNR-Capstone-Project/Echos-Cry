@@ -14,11 +14,7 @@ public class PlayerIdleState : PlayerActionState
         }
         else if (_playerStateMachine.IsAttacking && TempoConductor.Instance.IsOnBeat())
         {
-            //_playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Attack));
+            _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Attack));
         }
-    }
-    public override void Enter()
-    {
-        Debug.Log("Player Idle");
     }
 }

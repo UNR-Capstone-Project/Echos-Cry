@@ -16,17 +16,21 @@ public abstract class BaseWeapon : MonoBehaviour
 
     protected virtual void Attack(ComboStateMachine.StateName attackState)
     {
+        IsAttackEnded = false;
         OnAttackStartEvent?.Invoke(attackState);
     }
 
     protected void OnAttackEnded()
     {
+        IsAttackEnded = true;
         OnAttackEndedEvent?.Invoke();
     }
     protected void UpdateColliderAttackDamage(float newDamage)
     {
         UpdateColliderAttackDamageEvent?.Invoke(newDamage);
     }
+
+    public static bool IsAttackEnded { get; private set; }
 
     protected virtual void Awake()
     {

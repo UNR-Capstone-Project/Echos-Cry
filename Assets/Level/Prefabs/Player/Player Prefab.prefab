@@ -405,7 +405,7 @@ MonoBehaviour:
   _playerSound: {fileID: 2732405943756659283}
   _playerMovement: {fileID: 5127503919009400606}
   _comboStateMachine: {fileID: 7195344971770754518}
-  _playerAttackHandler: {fileID: 9059335884074608078}
+  _playerAttackHandler: {fileID: 1962175097837388510}
   _playerSkillManager: {fileID: 6372820548089278461}
   _playerDirection: {fileID: 1248617291903597529}
   _playerCurrencySystem: {fileID: 2347857121992901382}
@@ -963,7 +963,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5895631720758795884}
-  - component: {fileID: 9059335884074608078}
+  - component: {fileID: 1962175097837388510}
   m_Layer: 10
   m_Name: Player Attack Handler
   m_TagString: Untagged
@@ -986,7 +986,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 415338203038042998}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9059335884074608078
+--- !u!114 &1962175097837388510
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -995,9 +995,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7463496753888088841}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32dd952c7bae76e4eadc94243a5e64e4, type: 3}
+  m_Script: {fileID: 11500000, guid: ada7d5cae71fe4b46bef0473ca827002, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttackHandler
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponHandler
   _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
 --- !u!1 &7860510388739070033
 GameObject:

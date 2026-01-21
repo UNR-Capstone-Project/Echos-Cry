@@ -20,9 +20,8 @@ public class BatSpawnState : EnemyState
 {
     public BatSpawnState(Enemy enemyContext) : base(enemyContext) { }
 
-    public override void Enter()
+    protected override void OnEnter()
     {
-        base.Enter();
         //Debug.Log("Enter Spawn");
         _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Idle));
     }
@@ -54,11 +53,6 @@ public class BatIdleState : EnemyState
         TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
     }
 
-    public override void Enter()
-    {
-        base.Enter();
-        //Debug.Log("Enter Idle");
-    }
     public override void Tick()
     {
         if (!_isActive) return;
@@ -97,15 +91,15 @@ public class BatChaseState : EnemyState
         TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
     }
 
-    public override void Enter()
+    protected override void OnEnter()
     {
-        base.Enter();
+        base.OnEnter();
         //Debug.Log("Enter Chase");
         SetEnemyTarget();
     }
-    public override void Exit()
+    protected override void OnExit()
     {
-        base.Exit();
+        base.OnExit();
         //Debug.Log("Exit Chase");
         _enemyContext.StopAllCoroutines();
     }
@@ -146,15 +140,13 @@ public class BatChargeState : EnemyState
         _configFile = configFile;
     }
 
-    public override void Enter()
+    protected override void OnEnter()
     {
-        base.Enter();
         //Debug.Log("Enter Charge Attack State");
         _enemyContext.StartCoroutine(ChargeAttackCoroutine());
     }
-    public override void Exit()
+    protected override void OnExit()
     {
-        base.Exit();
         //Debug.Log("Exit Charge Attack State");
         _enemyContext.StopAllCoroutines();
     }
@@ -194,9 +186,8 @@ public class BatAttackState : EnemyState
         _configFile = configFile;
     }
 
-    public override void Enter()
+    protected override void OnEnter()
     {
-        base.Enter();
         isAttacking = true;
 
         _enemyContext.Rigidbody.isKinematic = false;
@@ -219,9 +210,8 @@ public class BatAttackState : EnemyState
                 _enemyContext.transform)) 
             isAttacking = false;
     }
-    public override void Exit()
+    protected override void OnExit()
     {
-        base.Exit();
         _enemyContext.Rigidbody.isKinematic = true;
     }
     public override void CheckSwitch()
@@ -245,18 +235,16 @@ public class BatStaggerState : EnemyState
         _configFile = configFile;
     }
 
-    public override void Enter()
+    protected override void OnEnter()
     {
-        base.Enter();
         //Debug.Log("Enter Stagger State");
         _enemyContext.Rigidbody.isKinematic = false;
         Vector3 direction = (PlayerRef.Transform.position - _enemyContext.transform.position).normalized;
         _enemyContext.Rigidbody.AddForce(-(_configFile.KnockbackForce * direction), ForceMode.Impulse);
         _enemyContext.StartCoroutine(StaggerDuration());
     }
-    public override void Exit()
+    protected override void OnExit()
     {
-        base.Exit();
         _enemyContext.Rigidbody.isKinematic = true;
         _enemyContext.StopAllCoroutines();
     }
@@ -269,11 +257,12 @@ public class BatDeathState : EnemyState
 {
     public BatDeathState(Enemy enemyContext) : base(enemyContext) { }
 
-    public override void Enter()
+    protected override void OnEnter()
     {
-        base.Enter();
         //Debug.Log("Enter Death State");
         //_enemyContext.Stats.HandleEnemyDeath();
         _enemyContext.DropsStrategy.Execute(_enemyContext.transform);
+        //Temporary
+        Object.Destroy(_enemyContext.gameObject);
     }
 }

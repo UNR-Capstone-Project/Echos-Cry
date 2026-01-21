@@ -1,4 +1,6 @@
 
+using Unity.VisualScripting;
+
 public abstract class EnemyState : IState
 {
     protected Enemy _enemyContext;
@@ -15,9 +17,19 @@ public abstract class EnemyState : IState
 
     public virtual void FixedUpdate() { }
 
-    public virtual void Enter() => _isActive = true;
-
-    public virtual void Exit() => _isActive = false;
+    public void Enter()
+    {
+        _isActive = true;
+        OnEnter();
+    }
+    protected virtual void OnEnter() { } 
+    
+    public void Exit()
+    {
+        _isActive = false;
+        OnExit();
+    }
+    protected virtual void OnExit() { }
 
     public virtual void CheckSwitch() { }
 

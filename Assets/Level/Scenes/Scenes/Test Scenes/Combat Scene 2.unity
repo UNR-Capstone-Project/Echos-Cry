@@ -562,6 +562,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7416094871299018028, guid: 5cb246b51061f964da299e6b2808de4a, type: 3}
   m_PrefabInstance: {fileID: 176060334}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &201670781 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1478910265220508113, guid: fff2738080bbbeb498b63f2644888ddc, type: 3}
+  m_PrefabInstance: {fileID: 1734568534}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6208d6223ee49524a8f5dcffd256b753, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BatEnemy
 --- !u!1001 &254800219
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2767,6 +2778,14 @@ PrefabInstance:
     - target: {fileID: 6900823288402649937, guid: fff2738080bbbeb498b63f2644888ddc, type: 3}
       propertyPath: m_Name
       value: (Test) Bat Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7749909353955283923, guid: fff2738080bbbeb498b63f2644888ddc, type: 3}
+      propertyPath: _enemy
+      value: 
+      objectReference: {fileID: 201670781}
+    - target: {fileID: 7749909353955283923, guid: fff2738080bbbeb498b63f2644888ddc, type: 3}
+      propertyPath: _staggerState
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -2,25 +2,13 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class TempoConductor : MonoBehaviour
+public class TempoConductor : Singleton<TempoConductor>
 {
     public enum HitQuality
     {
         Miss = 0,
         Good,
         Excellent
-    }
-
-    private static TempoConductor _instance;
-    public static TempoConductor  Instance {  
-        get 
-        { 
-            if (_instance == null)
-            {
-                _instance = new GameObject("Tempo Manager").AddComponent<TempoConductor>();
-            }
-            return _instance; 
-        } 
     }
 
     private HitQuality _currentHitQuality;
@@ -78,14 +66,6 @@ public class TempoConductor : MonoBehaviour
             _currentHitQuality = HitQuality.Miss;
     }
 
-    private void Awake()
-    {
-        if(_instance != null)
-        {
-            Destroy(this);
-            return;
-        }
-    }
     void Start()
     {
         MusicManager.Instance.SongPlayEvent += UpdateTempo;
@@ -94,7 +74,6 @@ public class TempoConductor : MonoBehaviour
     private void OnDestroy()
     {
         MusicManager.Instance.SongPlayEvent -= UpdateTempo;
-        _instance = null;
     }
 
     void Update()

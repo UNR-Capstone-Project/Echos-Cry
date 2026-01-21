@@ -39,7 +39,7 @@ public class MetronomeCanvas : MonoBehaviour
     }
     private void OnDestroy()
     {
-        TempoConductor.Instance.BeatTickEvent -= FlashOutline;
+        if(TempoConductor.Instance != null) TempoConductor.Instance.BeatTickEvent -= FlashOutline;
 
         //_translator.OnDashEvent -= UpdateHitQualityText;
         //_translator.OnLightAttackEvent -= UpdateHitQualityText;

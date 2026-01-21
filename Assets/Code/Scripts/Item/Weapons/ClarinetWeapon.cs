@@ -46,7 +46,7 @@ public class ClarinetWeapon : BaseWeapon
 
     private void SetupAndUseSound()
     {
-        soundEffectManager.Instance.Builder
+        SoundEffectManager.Instance.Builder
             .setSound(attackSFX)
             .setSoundPosition(this.transform.position)
             .ValidateAndPlaySound();
