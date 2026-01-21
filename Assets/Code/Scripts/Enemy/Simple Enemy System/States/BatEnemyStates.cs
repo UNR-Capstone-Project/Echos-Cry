@@ -253,6 +253,7 @@ public class BatStaggerState : EnemyState
         CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Death));
     }
 }
+
 public class BatDeathState : EnemyState
 {
     public BatDeathState(Enemy enemyContext) : base(enemyContext) { }
@@ -260,7 +261,6 @@ public class BatDeathState : EnemyState
     protected override void OnEnter()
     {
         //Debug.Log("Enter Death State");
-        //_enemyContext.Stats.HandleEnemyDeath();
         _enemyContext.DropsStrategy.Execute(_enemyContext.transform);
         //Temporary
         Object.Destroy(_enemyContext.gameObject);
