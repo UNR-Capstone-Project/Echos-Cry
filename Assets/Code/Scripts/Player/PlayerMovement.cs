@@ -79,14 +79,16 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator DashDurationTimer(float duration)
     {
         isDashing = true;
-        _playerCollider.enabled = false; 
+
+        //Disabled for temporary testing purposes, you can escape the level too easily!
+        //_playerCollider.enabled = false; 
 
         yield return new WaitForSeconds(duration);
 
         _playerRigidbody.linearVelocity = Vector3.zero;
 
         isDashing = false;
-        _playerCollider.enabled = true;
+        //_playerCollider.enabled = true;
         OnDashEnded?.Invoke();
 
         StartCoroutine(DashCooldownTimer(dashCooldown));

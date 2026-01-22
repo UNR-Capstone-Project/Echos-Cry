@@ -30,6 +30,10 @@ public class SimpleEnemyManager : MonoBehaviour
                // _enemyStateCache = new RangeEnemyStateCache(this);
                 _enemyStateMachine.CurrentState = _enemyStateCache.RequestState(EnemyStates.RANGE_SPAWN);
                 break;
+            case EnemyType.WALKER:
+                // _enemyStateCache = new RangeEnemyStateCache(this);
+                _enemyStateMachine.CurrentState = _enemyStateCache.RequestState(EnemyStates.WALKER_SPAWN);
+                break;
             default:
                 break;
         }
@@ -52,6 +56,7 @@ public class SimpleEnemyManager : MonoBehaviour
 
         _enemyRigidbody  = GetComponent<Rigidbody>();
         _enemyAnimator   = _enemySprite.GetComponent<Animator>();
+        _enemySound = GetComponent<EnemySound>();
         _enemyNMA        = GetComponent<NavMeshAgent>();
         _enemyStats      = GetComponent<EnemyStats>();
         _enemyBaseAttack = GetComponent<EnemyBaseAttack>();
@@ -74,7 +79,7 @@ public class SimpleEnemyManager : MonoBehaviour
 
     public enum EnemyType
     {
-        UNASSIGNED = 0, BAT, RANGE
+        UNASSIGNED = 0, BAT, RANGE, WALKER
     }
 
     public EnemyType TypeOfEnemy = EnemyType.UNASSIGNED;
@@ -82,6 +87,7 @@ public class SimpleEnemyManager : MonoBehaviour
     private static SimpleEnemyStateCache _enemyStateCache;
     [SerializeField] private GameObject _enemySprite;
     private Animator                _enemyAnimator;
+    private EnemySound              _enemySound;
     private NavMeshAgent            _enemyNMA;
     private EnemyStats              _enemyStats;
     private SimpleEnemyStateMachine _enemyStateMachine;
@@ -91,6 +97,7 @@ public class SimpleEnemyManager : MonoBehaviour
     public static SimpleEnemyStateCache EnemyStateCache { get { return _enemyStateCache; } }
 
     public Animator                EnemyAnimator     { get { return _enemyAnimator;     } }
+    public EnemySound              EnemySound        { get { return _enemySound; } }
     public NavMeshAgent            EnemyNMA          { get { return _enemyNMA;          } }  
     public EnemyStats              EnemyStats        { get { return _enemyStats;        } }
     public SimpleEnemyStateMachine EnemyStateMachine { get { return _enemyStateMachine; } }

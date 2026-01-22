@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyAnimator : MonoBehaviour
 {
@@ -17,11 +18,13 @@ public class EnemyAnimator : MonoBehaviour
         enemySprite.material.SetColor(hashedTintColor, originalColor);
     }
 
-    void Start()
+    private void Start()
     {
         hashedTintColor = Shader.PropertyToID("_TintColor");
 
         enemySprite = GetComponentInChildren<SpriteRenderer>();
+        enemyAgent = GetComponent<NavMeshAgent>();
+
         if (enemySprite != null)
         {
             originalColor = enemySprite.material.GetColor(hashedTintColor);
@@ -32,6 +35,20 @@ public class EnemyAnimator : MonoBehaviour
         }
         GetComponent<EnemyStats>().OnEnemyDamagedEvent += HandleDamageEnemy;
     }
+
+    private void Update()
+    {
+        if (enemySprite != null)
+        {
+            if (Mathf.Abs(enemyAgent.velocity.x) > 0.01f)
+            {
+                Vector3 scale = transform.localScale;
+                scale.x = enemyAgent.velocity.x > 0 ? -1 : 1;
+                transform.localScale = scale;
+            }
+        }
+    }
+
     private void OnDestroy()
     {
         GetComponent<EnemyStats>().OnEnemyDamagedEvent -= HandleDamageEnemy;
@@ -39,7 +56,10 @@ public class EnemyAnimator : MonoBehaviour
 
     [SerializeField] private Color flashColor = Color.red;
     [SerializeField] private float flashDuration = 0.2f;
+    //[SerializeField] private 
+
     private Color originalColor;
     private SpriteRenderer enemySprite;
+    private NavMeshAgent enemyAgent;
     private int hashedTintColor = Shader.PropertyToID("_TintColor");
 }

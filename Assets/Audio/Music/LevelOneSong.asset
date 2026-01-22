@@ -16,5 +16,5 @@ MonoBehaviour:
   bpm: 100
   musicLayers:
   - {fileID: 8300000, guid: f58cfaae767ca9843b1960156d8f3a28, type: 3}
-  musicMixerGroup: {fileID: 0}
+  musicMixerGroup: {fileID: 1305037684583793307, guid: ac2ef84a7ad88f74fb5e10f3c7be54d1, type: 2}
   trackBPM: 1

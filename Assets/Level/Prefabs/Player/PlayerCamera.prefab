@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 464126563676605615}
   - component: {fileID: 9172088464604905213}
   - component: {fileID: 5066597179364037549}
+  - component: {fileID: 7878918431953246671}
   m_Layer: 0
   m_Name: CM Follow Camera
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2547441755569495284}
   serializedVersion: 2
   m_LocalRotation: {x: 0.30290222, y: 0, z: 0, w: 0.95302165}
-  m_LocalPosition: {x: -6.1740527, y: 7.0775027, z: -4.533113}
+  m_LocalPosition: {x: -6.1740527, y: 151.4137, z: -208.65825}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -107,6 +108,23 @@ MonoBehaviour:
     Time: 0
     Smoothing: 0
     IgnoreY: 0
+--- !u!114 &7878918431953246671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2547441755569495284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
+  NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 0
+  FrequencyGain: 5
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &4997433167098505313
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,7 +200,7 @@ Transform:
   m_GameObject: {fileID: 8073821831699856941}
   serializedVersion: 2
   m_LocalRotation: {x: 0.30290222, y: -0, z: -0, w: 0.95302165}
-  m_LocalPosition: {x: -6.1740527, y: 7.0775027, z: -4.533113}
+  m_LocalPosition: {x: -6.1740527, y: 151.4137, z: -208.65825}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
