@@ -49,7 +49,7 @@ public class InventoryManager : MonoBehaviour
         _inputTranslator.OnItem4Event += UseItem4;
     }
     private void healthPotion(){
-        PlayerStats.OnDamageHealed(10f);
+        PlayerStats.OnDamageHealed(30f);
         Debug.Log("Health");
     }
     private void shieldPotion(){
