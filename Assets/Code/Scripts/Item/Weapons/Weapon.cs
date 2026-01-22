@@ -13,9 +13,6 @@ public abstract class Weapon : MonoBehaviour
     public static event Action OnAttackEndedEvent;
 
     public static event Action<float> UpdateColliderAttackDamageEvent;
-    public abstract void PrimaryAction();
-
-    public abstract void SecondaryAction();
 
     protected virtual void Attack(ComboStateMachine.StateName attackState)
     {
