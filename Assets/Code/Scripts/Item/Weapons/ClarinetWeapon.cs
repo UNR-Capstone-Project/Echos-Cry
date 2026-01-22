@@ -8,7 +8,7 @@ using static ComboStateMachine;
 //Updated so that the attack method will be tied to PlayerAttackHandler
 //Weapon will message the PlayerAttackHandler and ComboStateMachine when it is finished with its attack
 
-public class ClarinetWeapon : BaseWeapon
+public class ClarinetWeapon : Weapon
 {
     protected override void Attack(StateName attackState)
     {

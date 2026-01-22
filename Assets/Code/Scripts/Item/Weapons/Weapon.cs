@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-public abstract class BaseWeapon : MonoBehaviour
+public abstract class Weapon : MonoBehaviour
 {
     //Must only be of the same length - 1 of the StateName enum
     [SerializeField] protected AttackData[] _attackData;
@@ -13,6 +13,9 @@ public abstract class BaseWeapon : MonoBehaviour
     public static event Action OnAttackEndedEvent;
 
     public static event Action<float> UpdateColliderAttackDamageEvent;
+    public abstract void PrimaryAction();
+
+    public abstract void SecondaryAction();
 
     protected virtual void Attack(ComboStateMachine.StateName attackState)
     {

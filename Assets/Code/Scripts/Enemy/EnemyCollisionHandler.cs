@@ -36,11 +36,11 @@ public class EnemyCollisionHandler : MonoBehaviour
     }
     private void Start()
     {
-        BaseWeapon.OnAttackEndedEvent += ResetColliderBool;
+        Weapon.OnAttackEndedEvent += ResetColliderBool;
     }
     private void OnDestroy()
     {
-        BaseWeapon.OnAttackEndedEvent -= ResetColliderBool;
+        Weapon.OnAttackEndedEvent -= ResetColliderBool;
     }
     
     private Collider _enemyCollider;

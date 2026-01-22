@@ -28,11 +28,11 @@ public class WeaponHandler : MonoBehaviour
     {
         _readyForAttackInput = true;
         
-        BaseWeapon.OnAttackEndedEvent += ResetAttackInput;
+        Weapon.OnAttackEndedEvent += ResetAttackInput;
     }
     private void OnDestroy()
     {
-        BaseWeapon.OnAttackEndedEvent -= ResetAttackInput;
+        Weapon.OnAttackEndedEvent -= ResetAttackInput;
     }
 
     [SerializeField] private InputTranslator _inputTranslator;
