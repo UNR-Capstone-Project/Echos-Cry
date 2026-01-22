@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySound
   hitSFX: {fileID: 11400000, guid: c8c975e393c92cc4f8f6aa88905bcc9e, type: 2}
-  attackSFX: {fileID: 0}
+  attackSFX: {fileID: 11400000, guid: c7666da1df7e64647a69f91abaedda0f, type: 2}
 --- !u!114 &4267862705877107826
 MonoBehaviour:
   m_ObjectHideFlags: 0

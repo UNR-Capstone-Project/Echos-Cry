@@ -11,6 +11,7 @@ public class EnemyWalkerAttack : EnemyBaseAttack
         _enemyManager.EnemyRigidbody.isKinematic = false;
         _enemyManager.EnemyRigidbody.AddForce(dashForce * attackDirection, ForceMode.Impulse);
         _enemyManager.EnemyAnimator.Play("Attack");
+        _enemyManager.EnemySound.HandleAttackSound();
         _enemyManager.StartCoroutine(AttackDuration());
     }
 

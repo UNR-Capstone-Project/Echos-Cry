@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de3627f1a05e5e946830941c6060cb45, type: 3}
   m_Name: Level1Section2Wave1
   m_EditorClassIdentifier: Assembly-CSharp::WaveData
-  totalEnemies: 2
+  totalEnemies: 3
   enemyTypesArray:
   - {fileID: 6900823288402649937, guid: b6393c099ff99e547b82c84b1a483987, type: 3}
   keyedEnemy: {fileID: 6900823288402649937, guid: b6393c099ff99e547b82c84b1a483987, type: 3}
   spawnRadius: 10
-  spawnInterval: 4
+  spawnInterval: 8

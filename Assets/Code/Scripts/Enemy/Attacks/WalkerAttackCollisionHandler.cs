@@ -16,7 +16,7 @@ public class WalkerAttackCollisionHandler : MonoBehaviour
         if (fireRingParticles != null)
         {
             fireRingParticles.Play();
-            CameraManager.Instance.ScreenShake(0.8f, 0.5f);
+            CameraManager.Instance.ScreenShake(1f, 0.5f);
         }
 
         Destroy(gameObject, attackDuration);

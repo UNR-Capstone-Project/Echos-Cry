@@ -12,6 +12,7 @@ public class EnemyRangeAttack : EnemyBaseAttack
         attackDirection.y = 0;
 
         if(handler != null) handler.UseProjectile(transform.position, attackDirection, damage);
+        _enemyManager.EnemySound.HandleAttackSound();
         //Transition to whatever state here
     }
 
