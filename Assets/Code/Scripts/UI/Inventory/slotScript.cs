@@ -1,16 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class slotScript : MonoBehaviour
 {
     [SerializeField] private Image m_icon;
     [SerializeField] private GameObject m_stackObj;
     [SerializeField] private TextMeshProUGUI m_num;
+    [SerializeField] private TextMeshProUGUI keyTooltipText;
+    [SerializeField] private InputActionReference useItemInput;
 
     private void Start()
     {
         InventoryManager.Instance.AddInventorySlot(this);
+        keyTooltipText.text = useItemInput.action.GetBindingDisplayString();
     }
 
     public void Set(InventoryItem item)

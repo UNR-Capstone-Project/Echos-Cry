@@ -20,7 +20,7 @@ public class ClarinetWeapon : BaseWeapon
 
         gameObject.SetActive(true);
         SetupAndStartAnimation(_attackData[attackIndex]);
-        PlayerMovement.PlayerRigidbody.AddForce(onAttackPushForce * PlayerDirection.AimDirection.normalized, ForceMode.Impulse);
+        PlayerMovement.PlayerRigidbody.AddForce(onAttackPushForce * PlayerDirection.AimDirection.normalized, ForceMode.VelocityChange);
         StartCoroutine(WaitForAnimationLength(_attackData[attackIndex]));
 
         attackSFX = _attackData[attackIndex].AttackSound;

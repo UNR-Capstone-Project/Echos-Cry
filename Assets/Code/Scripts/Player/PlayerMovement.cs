@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
         BaseWeapon.OnAttackStartEvent += HandleAttackStart;
         BaseWeapon.OnAttackEndedEvent += HandleAttackEnd;
 
-        stoppingAcceleration = playerSpeed * 2;
+        stoppingAcceleration = playerSpeed * 1.5f;
         //maxPlayerVelocitySqrMag = maxPlayerVelocityMag * maxPlayerVelocityMag;
     }
     private void OnDestroy()
@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
                           + new Vector3(0f,_playerRigidbody.linearVelocity.y,0f);
 
         if (playerLocomotion != Vector2.zero) _playerRigidbody.AddForce(targetVel - _playerRigidbody.linearVelocity, ForceMode.VelocityChange);
-        else _playerRigidbody.AddForce(-(stoppingAcceleration * _playerRigidbody.linearVelocity.normalized));
+        else _playerRigidbody.AddForce(-_playerRigidbody.linearVelocity * stoppingAcceleration, ForceMode.Acceleration);
     }
 
     public void HandleDash()
@@ -58,7 +58,20 @@ public class PlayerMovement : MonoBehaviour
             || playerLocomotion == Vector2.zero) return;
 
         canDash = false;
-        _playerRigidbody.AddForce(_playerRigidbody.linearVelocity.normalized * dashSpeed, ForceMode.Impulse);
+
+        Vector3 forwardVector = mainCameraRef.forward.normalized;
+        forwardVector.y = 0f;
+
+        Vector3 rightVector = mainCameraRef.right.normalized;
+        rightVector.y = 0f;
+
+        Vector3 dashDirection =
+            (playerLocomotion.y * forwardVector +
+             playerLocomotion.x * rightVector).normalized;
+
+        _playerRigidbody.linearVelocity = Vector3.zero;
+        _playerRigidbody.AddForce(dashDirection * dashSpeed, ForceMode.VelocityChange);
+
         OnDashStarted?.Invoke();
 
         StartCoroutine(DashDurationTimer(dashDuration));
@@ -67,10 +80,15 @@ public class PlayerMovement : MonoBehaviour
     {
         isDashing = true;
         _playerCollider.enabled = false; 
+
         yield return new WaitForSeconds(duration);
+
+        _playerRigidbody.linearVelocity = Vector3.zero;
+
         isDashing = false;
         _playerCollider.enabled = true;
         OnDashEnded?.Invoke();
+
         StartCoroutine(DashCooldownTimer(dashCooldown));
     }
     IEnumerator DashCooldownTimer(float duration)

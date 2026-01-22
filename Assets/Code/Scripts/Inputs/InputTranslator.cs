@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 [CreateAssetMenu(menuName = "Echo's Cry/Input System/Input Translator")]
 
+//ISSUE: This system needs to handle updating and sending invoke for when bindings are changed in settings menu, this updates supporting tool tips to know what the current binding is.
+
 public class InputTranslator : ScriptableObject, 
     PlayerInputs.IGameplayActions, 
     PlayerInputs.IPauseMenuActions, 
