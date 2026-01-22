@@ -254,6 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySound
   hitSFX: {fileID: 11400000, guid: c8c975e393c92cc4f8f6aa88905bcc9e, type: 2}
+  attackSFX: {fileID: 0}
 --- !u!114 &4267862705877107826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,8 +283,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDrops
   ItemDrops:
   - prefab: {fileID: 651722200087660623, guid: 97046ff4e4a41054f9df101045151fb5, type: 3}
-    minDropAmount: 3
-    maxDropAmount: 7
+    minDropAmount: 1
+    maxDropAmount: 2
   itemExplosionSpeed: 7
 --- !u!114 &1602136016763477614
 MonoBehaviour:
@@ -297,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 497edade093b3d14d99c238bb2fc9225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBatAttack
-  damageAmount: 7.5
+  damageAmount: 6
   attackDuration: 0.2
   attackCooldown: 1
   dashForce: 5

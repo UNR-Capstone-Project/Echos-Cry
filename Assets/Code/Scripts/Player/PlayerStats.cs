@@ -33,6 +33,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (invulnerability) { return; }
         _currentHealth = Mathf.Clamp(_currentHealth - damageAmount, 0, _maxHealth);
+        CameraManager.Instance.ScreenShake(0.6f, 0.2f);
 
         OnPlayerDamagedEvent?.Invoke();
         OnPlayerHealthChangeEvent?.Invoke(_currentHealth, _maxHealth);

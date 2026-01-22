@@ -4847,6 +4847,7 @@ GameObject:
   - component: {fileID: 8832688731739451796}
   - component: {fileID: 3858274526563457460}
   - component: {fileID: 827931473468016620}
+  - component: {fileID: 5336886913092917338}
   m_Layer: 0
   m_Name: Spawn Decal
   m_TagString: Untagged
@@ -4913,6 +4914,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   destroyTime: 3
   destroyOnStart: 1
+--- !u!114 &5336886913092917338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7591030504746827832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d0a81a193eed3439bedb667b4c8ebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  sound: {fileID: 11400000, guid: b47312c2f5c9c6e49997a858f7f99c8c, type: 2}
 --- !u!1001 &1290032623816181330
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -47,12 +47,29 @@ public class PlayerSound : MonoBehaviour
         .setSoundPosition(transform.position)
         .ValidateAndPlaySound();
     }
+    private void PlayHurt()
+    {
+        _builderRef
+        .setSound(_hurtEffect)
+        .setSoundPosition(transform.position)
+        .ValidateAndPlaySound();
+    }
+
+    private void PlayHeal()
+    {
+        _builderRef
+        .setSound(_healEffect)
+        .setSoundPosition(transform.position)
+        .ValidateAndPlaySound();
+    }
 
     private void Start()
     {
         _builderRef = soundEffectManager.Instance.Builder;
 
         PlayerMovement.OnDashStarted += PlayDash;
+        PlayerStats.OnPlayerDamagedEvent += PlayHurt;
+        PlayerStats.OnPlayerHealedEvent += PlayHeal;
         _inputTranslator.OnLightAttackEvent += PlayHitQuality;
         _inputTranslator.OnHeavyAttackEvent += PlayHitQuality;
     }
@@ -60,6 +77,8 @@ public class PlayerSound : MonoBehaviour
     private void OnDestroy()
     {
         PlayerMovement.OnDashStarted -= PlayDash;
+        PlayerStats.OnPlayerDamagedEvent -= PlayHurt;
+        PlayerStats.OnPlayerHealedEvent -= PlayHeal;
         _inputTranslator.OnLightAttackEvent -= PlayHitQuality;
         _inputTranslator.OnHeavyAttackEvent -= PlayHitQuality;
     }
@@ -71,5 +90,7 @@ public class PlayerSound : MonoBehaviour
     [SerializeField] soundEffect _missEffect;
     [SerializeField] soundEffect _goodEffect;
     [SerializeField] soundEffect _excellentEffect;
+    [SerializeField] soundEffect _hurtEffect;
+    [SerializeField] soundEffect _healEffect;
     [SerializeField] private InputTranslator _inputTranslator;
 }
