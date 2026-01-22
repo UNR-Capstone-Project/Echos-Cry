@@ -30,6 +30,10 @@ public class SimpleEnemyManager : MonoBehaviour
                // _enemyStateCache = new RangeEnemyStateCache(this);
                 _enemyStateMachine.CurrentState = _enemyStateCache.RequestState(EnemyStates.RANGE_SPAWN);
                 break;
+            case EnemyType.WALKER:
+                // _enemyStateCache = new RangeEnemyStateCache(this);
+                _enemyStateMachine.CurrentState = _enemyStateCache.RequestState(EnemyStates.WALKER_SPAWN);
+                break;
             default:
                 break;
         }
@@ -74,7 +78,7 @@ public class SimpleEnemyManager : MonoBehaviour
 
     public enum EnemyType
     {
-        UNASSIGNED = 0, BAT, RANGE
+        UNASSIGNED = 0, BAT, RANGE, WALKER
     }
 
     public EnemyType TypeOfEnemy = EnemyType.UNASSIGNED;

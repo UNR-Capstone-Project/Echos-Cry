@@ -22,6 +22,14 @@ public class SimpleEnemyStateCache
         _stateCache.Add(EnemyStates.RANGE_ATTACK  , new RangeAttackState());
         _stateCache.Add(EnemyStates.RANGE_IDLE    , new RangeIdleState());
         _stateCache.Add(EnemyStates.RANGE_ROAM    , new RangeRoamState());
+
+        _stateCache.Add(EnemyStates.WALKER_SPAWN, new WalkerSpawnState());
+        _stateCache.Add(EnemyStates.WALKER_STAGGER, new WalkerStaggerState());
+        _stateCache.Add(EnemyStates.WALKER_DEATH, new WalkerDeathState());
+        _stateCache.Add(EnemyStates.WALKER_CHARGE, new WalkerChargeAttackState());
+        _stateCache.Add(EnemyStates.WALKER_ATTACK, new WalkerAttackState());
+        _stateCache.Add(EnemyStates.WALKER_IDLE, new WalkerIdleState());
+        _stateCache.Add(EnemyStates.WALKER_CHASE, new WalkerChaseState());
     }
 
     public SimpleEnemyState RequestState(EnemyStates requestedState)
@@ -36,7 +44,9 @@ public class SimpleEnemyStateCache
         //Bat Enemy
         BAT_SPAWN, BAT_STAGGER, BAT_DEATH, BAT_CHARGE, BAT_ATTACK, BAT_IDLE, BAT_CHASE,
         //Range Enemy
-        RANGE_SPAWN, RANGE_STAGGER, RANGE_DEATH, RANGE_CHARGE, RANGE_ATTACK, RANGE_IDLE, RANGE_ROAM
+        RANGE_SPAWN, RANGE_STAGGER, RANGE_DEATH, RANGE_CHARGE, RANGE_ATTACK, RANGE_IDLE, RANGE_ROAM,
+        //Walker Enemy
+        WALKER_SPAWN, WALKER_STAGGER, WALKER_DEATH, WALKER_CHARGE, WALKER_ATTACK, WALKER_IDLE, WALKER_CHASE,
     }
 
     protected Dictionary<EnemyStates, SimpleEnemyState> _stateCache;
