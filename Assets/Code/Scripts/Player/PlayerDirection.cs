@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering.Universal;
 
 public class PlayerDirection : MonoBehaviour
 {
@@ -17,7 +16,9 @@ public class PlayerDirection : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, groundLayer))
         {
-            aimDirection = (hit.point - transform.parent.position).normalized; //Calculates the direction between the mouse mapped to world space and the players position.
+            //Calculates the direction between the mouse mapped to world space and the players position.
+            aimDirection = (hit.point - transform.parent.position).normalized; 
+            
             aimDirection.y = 0;
             aimRotation = Quaternion.LookRotation(aimDirection); 
             transform.rotation = aimRotation;

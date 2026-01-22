@@ -7,6 +7,7 @@ public class CameraManager : MonoBehaviour
     public static CameraManager Instance { get { return _instance; } }
 
     [SerializeField] private static Camera _mainCamera;
+    [SerializeField] private Transform _cameraTarget;
     public static Camera MainCamera { get { return _mainCamera; } }
 
     private void Awake()
@@ -18,7 +19,7 @@ public class CameraManager : MonoBehaviour
         }
         _instance = this;
 
-        gameObject.GetComponentInChildren<CinemachineCamera>().Target.TrackingTarget = PlayerRef.PlayerTransform;
+        gameObject.GetComponentInChildren<CinemachineCamera>().Target.TrackingTarget = _cameraTarget;
         _mainCamera = GetComponentInChildren<Camera>();
     }
 }

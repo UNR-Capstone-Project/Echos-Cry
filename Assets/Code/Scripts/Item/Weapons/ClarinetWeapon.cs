@@ -20,7 +20,6 @@ public class ClarinetWeapon : BaseWeapon
 
         gameObject.SetActive(true);
         SetupAndStartAnimation(_attackData[attackIndex]);
-        PlayerMovement.PlayerRigidbody.AddForce(onAttackPushForce * PlayerDirection.AimDirection.normalized, ForceMode.VelocityChange);
         StartCoroutine(WaitForAnimationLength(_attackData[attackIndex]));
 
         attackSFX = _attackData[attackIndex].AttackSound;
@@ -30,7 +29,7 @@ public class ClarinetWeapon : BaseWeapon
     {
         float multiplier;
         Color multiplierColor;
-        if (TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.EXCELLENT)
+        if (TempoConductor.Instance.CurrentHitQuality == TempoConductor.HitQuality.Excellent)
         {
             multiplier = 1.25f;
             multiplierColor = new Color(110f / 255f, 44f / 255f, 222f / 255f, 1f); //purple
@@ -47,7 +46,7 @@ public class ClarinetWeapon : BaseWeapon
 
     private void SetupAndUseSound()
     {
-        soundEffectManager.Instance.Builder
+        SoundEffectManager.Instance.Builder
             .setSound(attackSFX)
             .setSoundPosition(this.transform.position)
             .ValidateAndPlaySound();
@@ -77,20 +76,20 @@ public class ClarinetWeapon : BaseWeapon
     }
     private void Start()
     {
-        PlayerAttackHandler.OnInputRegisteredEvent += Attack;
+        WeaponHandler.OnInputRegisteredEvent += Attack;
         gameObject.SetActive(false);
     }
     private void OnDestroy()
     {
-        PlayerAttackHandler.OnInputRegisteredEvent -= Attack;
+        WeaponHandler.OnInputRegisteredEvent -= Attack;
     }
     private void OnEnable()
     {
-        PlayerAttackHandler.OnInputRegisteredEvent += Attack;
+        WeaponHandler.OnInputRegisteredEvent += Attack;
     }
     private void OnDisable()
     {
-        PlayerAttackHandler.OnInputRegisteredEvent -= Attack;
+        WeaponHandler.OnInputRegisteredEvent -= Attack;
     }
 
     private AttackCollisionHandler _weaponCollisionHandler;

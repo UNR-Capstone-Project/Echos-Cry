@@ -1,126 +1,135 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using static SimpleEnemyStateCache;
+using static EnemyStateCache;
 
-public class RangeSpawnState : SimpleEnemyState
+public class RangeSpawnState : EnemyState
 {
-    public RangeSpawnState() { }
+    public RangeSpawnState(Enemy enemyContext) : base(enemyContext) { }
 
-    public override void EnterState(SimpleEnemyManager enemyContext)
+    protected override void OnEnter()
     {
-        enemyContext.SwitchState(EnemyStates.RANGE_IDLE);
+        _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStates.Range_Idle));
     }
 }
-public class RangeIdleState : SimpleEnemyState
+
+public class RangeIdleState : EnemyState
 {
     private float sqrMag;
-    public RangeIdleState() 
+
+    public RangeIdleState(Enemy enemyContext) : base(enemyContext)
     {
         sqrMag = Mathf.Pow(10f, 2);
     }
-    public override void UpdateState02ms(SimpleEnemyManager enemyContext)
+
+    public override void Tick()
     {
-        float distance = (PlayerRef.PlayerTransform.position - enemyContext.transform.position).sqrMagnitude;
-        if (distance <= sqrMag) enemyContext.SwitchState(EnemyStates.RANGE_ROAM);
+        float distance = (PlayerRef.Transform.position - _enemyContext.transform.position).sqrMagnitude;
+        if (distance <= sqrMag) _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStates.Range_Roam));
     }
 }
-public class RangeRoamState : SimpleEnemyState
+public class RangeRoamState : EnemyState
 {
-    public RangeRoamState(){}
-    public override void EnterState(SimpleEnemyManager enemyContext)
+    public RangeRoamState(Enemy enemyContext) : base(enemyContext) { }
+
+    protected override void OnEnter()
     {
         float range = 6f;
         Vector3 point = Random.onUnitSphere * range;
         point.y = 0;
-        Vector3 destination = PlayerRef.PlayerTransform.position + point;
-        enemyContext.EnemyNMA.SetDestination(destination);
+        Vector3 destination = PlayerRef.Transform.position + point;
+        _enemyContext.NavMeshAgent.SetDestination(destination);
     }
-    public override void UpdateState02ms(SimpleEnemyManager enemyContext)
+    public override void Tick()
     {
-        NavMeshAgent agent = enemyContext.EnemyNMA;
+        NavMeshAgent agent = _enemyContext.NavMeshAgent;
         if (agent == null || !agent.isOnNavMesh) return;
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
-            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) enemyContext.SwitchState(EnemyStates.RANGE_CHARGE);
+            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStates.Range_Charge));
         }
     }
 }
-public class RangeChargeAttackState : SimpleEnemyState
+public class RangeChargeAttackState : EnemyState
 {
-    public RangeChargeAttackState(){}
-    public override void EnterState(SimpleEnemyManager enemyContext)
+    public RangeChargeAttackState(Enemy enemyContext) : base(enemyContext) { }
+
+    protected override void OnEnter()
     {
-        enemyContext.StartCoroutine(ChargeDurationCoroutine(enemyContext));
+        _enemyContext.StartCoroutine(ChargeDurationCoroutine());
     }
-    public override void ExitState(SimpleEnemyManager enemyContext)
+    protected override void OnExit()
     {
-        enemyContext.StopAllCoroutines();
+        _enemyContext.StopAllCoroutines();
     }
-    private IEnumerator ChargeDurationCoroutine(SimpleEnemyManager enemyContext)
+    private IEnumerator ChargeDurationCoroutine()
     {
         yield return new WaitForSeconds(0.5f);
-        enemyContext.SwitchState(EnemyStates.RANGE_ATTACK);
+        _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStates.Range_Attack));
     }
 }
-public class RangeAttackState : SimpleEnemyState
+public class RangeAttackState : EnemyState
 {
     int count;
-    public RangeAttackState(){}
-    public override void EnterState(SimpleEnemyManager enemyContext)
+
+    public RangeAttackState(Enemy enemyContext) : base(enemyContext) { }
+
+    protected override void OnEnter()
     {
         count = 0;
-        enemyContext.EnemyBaseAttack.UseAttack();
-        enemyContext.StartCoroutine(BetweenAttackPauseCoroutine(enemyContext));
+        //_enemyContext.EnemyBaseAttack.UseAttack();
+        _enemyContext.StartCoroutine(BetweenAttackPauseCoroutine());
     }
-    public override void ExitState(SimpleEnemyManager enemyContext)
+    protected override void OnExit()
     {
-        enemyContext.StopAllCoroutines();
+        _enemyContext.StopAllCoroutines();
     }
-    private IEnumerator AttackCooldownCoroutine(SimpleEnemyManager enemyContext)
+    private IEnumerator AttackCooldownCoroutine()
     {
         yield return new WaitForSeconds(2f);
-        enemyContext.SwitchState(EnemyStates.RANGE_ROAM);
+        _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStates.Range_Roam));
     }
-    private IEnumerator BetweenAttackPauseCoroutine(SimpleEnemyManager enemyContext)
+    private IEnumerator BetweenAttackPauseCoroutine()
     {
-        yield return new WaitForSeconds(TempoManager.TimeBetweenBeats);
-        if (count >= 2) enemyContext.StartCoroutine(AttackCooldownCoroutine(enemyContext));
+        yield return new WaitForSeconds(TempoConductor.Instance.TimeBetweenBeats);
+        if (count >= 2) _enemyContext.StartCoroutine(AttackCooldownCoroutine());
         else
         {
-            enemyContext.EnemyBaseAttack.UseAttack();
+            //_enemyContext.EnemyBaseAttack.UseAttack();
             count++;
-            enemyContext.StartCoroutine(BetweenAttackPauseCoroutine(enemyContext));
+            _enemyContext.StartCoroutine(BetweenAttackPauseCoroutine());
         }
     }
 }
-public class RangeStaggerState : SimpleEnemyState
+public class RangeStaggerState : EnemyState
 {
-    public RangeStaggerState(){}
-    public override void EnterState(SimpleEnemyManager enemyContext)
+    public RangeStaggerState(Enemy enemyContext) : base(enemyContext) { }
+
+    protected override void OnEnter()
     {
-        if(enemyContext.EnemyNMA.hasPath) enemyContext.EnemyNMA.ResetPath();
-        enemyContext.EnemyRigidbody.isKinematic = false;
-        Vector3 direction = (PlayerRef.PlayerTransform.position - enemyContext.transform.position).normalized;
-        enemyContext.EnemyRigidbody.AddForce(-(1f * direction), ForceMode.Impulse);
-        enemyContext.StartCoroutine(StaggerDurationCoroutine(enemyContext));
+        if(_enemyContext.NavMeshAgent.hasPath) _enemyContext.NavMeshAgent.ResetPath();
+        _enemyContext.Rigidbody.isKinematic = false;
+        Vector3 direction = (PlayerRef.Transform.position - _enemyContext.transform.position).normalized;
+        _enemyContext.Rigidbody.AddForce(-(1f * direction), ForceMode.Impulse);
+        _enemyContext.StartCoroutine(StaggerDurationCoroutine());
     }
-    public override void ExitState(SimpleEnemyManager enemyContext)
+    protected override void OnExit()
     {
-        enemyContext.EnemyRigidbody.isKinematic = true;
-        enemyContext.StopAllCoroutines();
+        _enemyContext.Rigidbody.isKinematic = true;
+        _enemyContext.StopAllCoroutines();
     }
-    private IEnumerator StaggerDurationCoroutine(SimpleEnemyManager enemyContext)
+    private IEnumerator StaggerDurationCoroutine()
     {
         yield return new WaitForSeconds(1f);
-        enemyContext.SwitchState(EnemyStates.RANGE_ROAM);
+        _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStates.Range_Roam));
     }
 }
-public class RangeDeathState : SimpleEnemyState
+public class RangeDeathState : EnemyState
 {
-    public RangeDeathState(){}
-    public override void EnterState(SimpleEnemyManager enemyContext)
+    public RangeDeathState(Enemy enemyContext) : base(enemyContext) { }
+
+    protected override void OnEnter()
     {
-        enemyContext.EnemyStats.HandleEnemyDeath();
+        //_enemyContext.Stats.HandleEnemyDeath();
     }
 }

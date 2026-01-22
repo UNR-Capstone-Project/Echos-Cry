@@ -38,7 +38,7 @@ public class ShopManager : MonoBehaviour
     }
     private void Right()
     {
-        PlayerStats.UpdateCurrency(100);
+        //PlayerStats.UpdateCurrency(100);
         ShopItemArray[currentItemIndex].GetComponent<ShopItem>().IncreaseAmount();
     }
     private void Down()
@@ -72,34 +72,34 @@ public class ShopManager : MonoBehaviour
         totalCost = tempCost;
         totalCostText.text = $"Total Cost: ${totalCost.ToString()}";
 
-        if(totalCost <= PlayerStats.CurrencyCount)
-        {
-            totalCostText.color = Color.white;
-        }
-        else
-        {
-            totalCostText.color = Color.red;
-        }
+        //if(totalCost <= PlayerStats.CurrencyCount)
+        //{
+        //    totalCostText.color = Color.white;
+        //}
+        //else
+        //{
+        //    totalCostText.color = Color.red;
+        //}
 
-        currentFingersText.text = $"Current Fingers: ${PlayerStats.CurrencyCount.ToString()}";
+        //currentFingersText.text = $"Current Fingers: ${PlayerStats.CurrencyCount.ToString()}";
     }
 
     public void Purchase()
     {
         if (totalCost <= 0) return;
-        if(PlayerStats.CurrencyCount >= totalCost)
-        {
-            foreach (GameObject item in ShopItemArray)
-            {
-                ShopItem shopItemScript = item.GetComponent<ShopItem>();
-                for (int i = 0; i < shopItemScript.GetAmount(); i++)
-                {
-                    Instantiate(shopItemScript.GetPrefab(), GameObject.Find("Player").transform.position, Quaternion.identity);
-                }
-                shopItemScript.ResetAmount();
-            }
+        //if(PlayerStats.CurrencyCount >= totalCost)
+        //{
+        //    foreach (GameObject item in ShopItemArray)
+        //    {
+        //        ShopItem shopItemScript = item.GetComponent<ShopItem>();
+        //        for (int i = 0; i < shopItemScript.GetAmount(); i++)
+        //        {
+        //            Instantiate(shopItemScript.GetPrefab(), GameObject.Find("Player").transform.position, Quaternion.identity);
+        //        }
+        //        shopItemScript.ResetAmount();
+        //    }
 
-            PlayerStats.UpdateCurrency(-(int)totalCost);
-        }
+        //    PlayerStats.UpdateCurrency(-(int)totalCost);
+        //}
     }
 }

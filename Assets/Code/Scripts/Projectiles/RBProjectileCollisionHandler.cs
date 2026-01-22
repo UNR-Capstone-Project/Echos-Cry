@@ -38,7 +38,7 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
     {
         if (handler != null) handler.ReleaseProjectile(rb);
     }
-    public void SetHandler(RBProjectileHandler handler)
+    public void SetHandler(RBProjectilePool handler)
     {
         if (this.handler != null) return;
         this.handler = handler;
@@ -65,15 +65,15 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
             case ProjectileUser.ENEMY:
                 damageEnemyAction = (other) => 
                 { 
-                    if (other.TryGetComponent<PlayerStats>(out PlayerStats playerStats)) 
-                        PlayerStats.Instance.OnDamageTaken(projectileDamage); 
+                    //if (other.TryGetComponent<PlayerStats>(out PlayerStats playerStats)) 
+                    //    PlayerStats.Instance.OnDamageTaken(projectileDamage); 
                 };
                 break;
             case ProjectileUser.PLAYER:
                 damageEnemyAction = (other) =>
                 {
-                    if (other.TryGetComponent<SimpleEnemyManager>(out SimpleEnemyManager manager)) 
-                        manager.EnemyStats.DamageEnemy(projectileDamage, Color.yellow);
+                    if (other.TryGetComponent<Enemy>(out Enemy manager)) 
+                        manager.Stats.Damage(projectileDamage, Color.yellow);
                 };
                 break;
             default:
@@ -83,7 +83,7 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
 
     private void Awake()
     {
-        handler = GetComponentInParent<RBProjectileHandler>();
+        handler = GetComponentInParent<RBProjectilePool>();
         rb = GetComponent<Rigidbody>();
     }
     private void Start()
@@ -106,7 +106,7 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
         UNASSIGNED = 0, PLAYER, ENEMY
     }
 
-    private RBProjectileHandler handler;
+    private RBProjectilePool handler;
     private Rigidbody rb;
     private Action<Collider> damageEnemyAction;
     private float projectileDamage = 0;

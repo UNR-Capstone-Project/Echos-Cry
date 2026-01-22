@@ -45,18 +45,18 @@ public class PlayerSkillManager : MonoBehaviour
     }
     private void Start()
     {
-        _translator.OnSkill1Event += HandleSkill1;
-        _translator.OnSkill2Event += HandleSkill2;
-        _translator.OnSkill3Event += HandleSkill3;  
+        //_translator.OnSkill1Event += HandleSkill1;
+        //_translator.OnSkill2Event += HandleSkill2;
+        //_translator.OnSkill3Event += HandleSkill3;  
 
         //SetSkills(new TestProjectileSkill(40f, RBProjectileManager.RequestHandler(tempPrefab)), SKILL_NUM.SKILL1);
         //SetSkills(new TestProjectileSkill(40f, RBProjectileManager.RequestHandler(tempPrefab2)), SKILL_NUM.SKILL2);
     }
     private void OnDestroy()
     {
-        _translator.OnSkill1Event -= HandleSkill1;
-        _translator.OnSkill2Event -= HandleSkill2;
-        _translator.OnSkill3Event -= HandleSkill3;
+        //_translator.OnSkill1Event -= HandleSkill1;
+        //_translator.OnSkill2Event -= HandleSkill2;
+        //_translator.OnSkill3Event -= HandleSkill3;
     }
 
     public enum SKILL_NUM{

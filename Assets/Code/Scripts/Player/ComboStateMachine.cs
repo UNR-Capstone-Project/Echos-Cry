@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -50,28 +49,28 @@ public class ComboStateMachine : MonoBehaviour
     {
         ComboState[] comboArray =
         {
-            new(StateName.LIGHT1),
-            new(StateName.LIGHT2),
-            new(StateName.LIGHT3),
-            new(StateName.LIGHT4),
-            new(StateName.LIGHT5),
-            new(StateName.HEAVY1),
-            new(StateName.HEAVY2),
-            new(StateName.HEAVY3)
+            new(StateName.Light1),
+            new(StateName.Light2),
+            new(StateName.Light3),
+            new(StateName.Light4),
+            new(StateName.Light5),
+            new(StateName.Heavy1),
+            new(StateName.Heavy2),
+            new(StateName.Heavy3)
         };
-        _startState = new(StateName.START);
-        _startState.NextLightAttack = comboArray[(int)StateName.LIGHT1];
-        _startState.NextHeavyAttack = comboArray[(int)StateName.HEAVY1];
+        _startState = new(StateName.Start);
+        _startState.NextLightAttack = comboArray[(int)StateName.Light1];
+        _startState.NextHeavyAttack = comboArray[(int)StateName.Heavy1];
 
-        comboArray[(int)StateName.LIGHT1].NextLightAttack = comboArray[(int)StateName.LIGHT2];
+        comboArray[(int)StateName.Light1].NextLightAttack = comboArray[(int)StateName.Light2];
 
-        comboArray[(int)StateName.LIGHT2].NextLightAttack = comboArray[(int)StateName.LIGHT3];
-        comboArray[(int)StateName.LIGHT2].NextHeavyAttack = comboArray[(int)StateName.HEAVY3];
+        comboArray[(int)StateName.Light2].NextLightAttack = comboArray[(int)StateName.Light3];
+        comboArray[(int)StateName.Light2].NextHeavyAttack = comboArray[(int)StateName.Heavy3];
 
-        comboArray[(int)StateName.HEAVY1].NextHeavyAttack = comboArray[(int)StateName.HEAVY2];
-        comboArray[(int)StateName.HEAVY1].NextLightAttack = comboArray[(int)StateName.LIGHT4];
+        comboArray[(int)StateName.Heavy1].NextHeavyAttack = comboArray[(int)StateName.Heavy2];
+        comboArray[(int)StateName.Heavy1].NextLightAttack = comboArray[(int)StateName.Light4];
 
-        comboArray[(int)StateName.LIGHT4].NextLightAttack = comboArray[(int)StateName.LIGHT5];
+        comboArray[(int)StateName.Light4].NextLightAttack = comboArray[(int)StateName.Light5];
 
         _comboStates = comboArray;
     }
@@ -101,9 +100,9 @@ public class ComboStateMachine : MonoBehaviour
 
     public enum StateName
     {
-        START = -1,
-        LIGHT1, LIGHT2, LIGHT3, LIGHT4, LIGHT5,
-        HEAVY1, HEAVY2, HEAVY3
+        Start = -1,
+        Light1, Light2, Light3, Light4, Light5,
+        Heavy1, Heavy2, Heavy3
     }
 
     [SerializeField] private float _comboResetTime = 0.5f;

@@ -10,15 +10,15 @@ using AudioSystem;
 
 public class soundBuilder 
 {
-    soundEffectManager soundManager;
+    SoundEffectManager soundManager;
     soundEffectPlayer currentSoundPlayer;
     soundEffect soundForBuild;
     Vector3 soundPosition = Vector3.zero;
 
-    public void Initialize(soundEffectManager soundManager)
+    public void Initialize(SoundEffectManager soundManager)
     {
         this.soundManager = soundManager;
-        currentSoundPlayer = soundManager.getPlayer();
+        currentSoundPlayer = soundManager.GetPlayer();
     }
 
     public soundEffectPlayer GetSoundPlayer()
@@ -40,13 +40,13 @@ public class soundBuilder
 
     public void ValidateAndPlaySound()
     {
-        if (!soundEffectManager.Instance.canPlaySound(soundForBuild)) return;
-        currentSoundPlayer = soundManager.getPlayer();
+        if (!SoundEffectManager.Instance.CanPlaySound(soundForBuild)) return;
+        currentSoundPlayer = soundManager.GetPlayer();
         currentSoundPlayer.setupSoundEffect(soundForBuild);
         currentSoundPlayer.transform.position = soundPosition;
         currentSoundPlayer.transform.parent = soundManager.transform;
 
-        if (soundForBuild.isFrequent) soundManager.registerFrequentPlayer(currentSoundPlayer);
+        if (soundForBuild.isFrequent) soundManager.RegisterFrequentPlayer(currentSoundPlayer);
 
         currentSoundPlayer.Play();
     }

@@ -1,8 +1,5 @@
 using AudioSystem;
-using System;
-#if UNITY_EDITOR
-using UnityEditor.UI;
-#endif
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DroppedItem : MonoBehaviour
@@ -18,16 +15,16 @@ public class DroppedItem : MonoBehaviour
     }
     private void Start()
     {
-        TickManager.OnTick02Event += MoveItemToPlayer;
+        TickManager.Instance.GetTimer(0.2f).Tick += MoveItemToPlayer;
     }
     private void OnDestroy()
     {
-        TickManager.OnTick02Event -= MoveItemToPlayer;
+        if (TickManager.Instance != null) TickManager.Instance.GetTimer(0.2f).Tick -= MoveItemToPlayer;
     }
 
     private void MoveItemToPlayer()
     {
-        Vector3 direction = (PlayerRef.PlayerTransform.position - transform.position);
+        Vector3 direction = (PlayerRef.Transform.position - transform.position);
         direction.y = 0;
         float playerDistance = direction.magnitude;
         if (playerDistance < itemDragDistance)
@@ -42,11 +39,11 @@ public class DroppedItem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        soundEffectManager.Instance.Builder
+        SoundEffectManager.Instance.Builder
             .setSound(pickupSFX)
             .setSoundPosition(this.transform.position)
             .ValidateAndPlaySound();
-        PlayerStats.UpdateCurrency(1);
+        //PlayerStats.UpdateCurrency(1);
         GetComponent<Collider>().enabled = false;   
         Destroy(gameObject);
     }

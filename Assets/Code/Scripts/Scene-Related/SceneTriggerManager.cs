@@ -58,7 +58,7 @@ public class SceneTriggerManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        soundEffectManager.Instance.Builder
+        SoundEffectManager.Instance.Builder
             .setSound(portalSFX)
             .setSoundPosition(this.transform.position)
             .ValidateAndPlaySound();

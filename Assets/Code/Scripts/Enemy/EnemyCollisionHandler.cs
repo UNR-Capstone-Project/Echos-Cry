@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using static SimpleEnemyManager;
-using static SimpleEnemyStateCache;
+using static Enemy;
+using static EnemyStateCache;
 
 //This will be placed on every enemy to handle collision with an attack from player
 
@@ -21,7 +21,7 @@ public class EnemyCollisionHandler : MonoBehaviour
             PlayerComboMeter.AddToComboMeter(handler.AttackDamage);
             PlayerComboMeter.UpdateComboMultiplier();
             _enemyCollider.enabled = false;
-            _enemyManager.SwitchState(enemyStaggerState);
+            //_enemyManager.SwitchState(enemyStaggerState);
         }
     }
     private void ResetColliderBool()
@@ -29,30 +29,13 @@ public class EnemyCollisionHandler : MonoBehaviour
         _enemyCollider.enabled = true;
     }
 
-    private void DetermineStaggerState()
-    {
-        switch (_enemyManager.TypeOfEnemy)
-        {
-            case EnemyType.BAT:
-                enemyStaggerState = EnemyStates.BAT_STAGGER;
-                break;
-            case EnemyType.RANGE:
-                enemyStaggerState = EnemyStates.RANGE_STAGGER;
-                break;
-            default:
-                enemyStaggerState = EnemyStates.UNASSIGNED;
-                break;
-        }
-    }
-
     private void Awake()
     {
-        _enemyManager = GetComponent<SimpleEnemyManager>();
+        _enemyManager = GetComponent<Enemy>();
         _enemyCollider = GetComponent<Collider>();
     }
     private void Start()
     {
-        DetermineStaggerState();
         BaseWeapon.OnAttackEndedEvent += ResetColliderBool;
     }
     private void OnDestroy()
@@ -61,6 +44,5 @@ public class EnemyCollisionHandler : MonoBehaviour
     }
     
     private Collider _enemyCollider;
-    EnemyStates enemyStaggerState;
-    protected SimpleEnemyManager _enemyManager;
+    protected Enemy _enemyManager;
 }

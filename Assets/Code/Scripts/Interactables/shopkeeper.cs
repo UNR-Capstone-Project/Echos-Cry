@@ -16,7 +16,7 @@ public class shopkeeper : MonoBehaviour
         translator.PlayerInputs.Gameplay.Disable();
 
         VolumeManager.Instance.SetDepthOfField(true);
-        soundEffectManager.Instance.Builder
+        SoundEffectManager.Instance.Builder
             .setSound(shopOpenSFX)
             .setSoundPosition(this.transform.position)
             .ValidateAndPlaySound();
@@ -52,12 +52,12 @@ public class shopkeeper : MonoBehaviour
 
     void Start(){
         //translator.OnShopEvent += OpenShop;
-        translator.OnCloseShopEvent += CloseShop;
-        translator.OnInteractEvent += RequestOpenShop;
+        //translator.OnCloseShopEvent += CloseShop;
+        //translator.OnInteractEvent += RequestOpenShop;
     }
     void OnDestroy(){
         //translator.OnShopEvent -= OpenShop;
-        translator.OnCloseShopEvent -= CloseShop;
-        translator.OnInteractEvent -= RequestOpenShop;
+        //translator.OnCloseShopEvent -= CloseShop;
+        //translator.OnInteractEvent -= RequestOpenShop;
     }
 }

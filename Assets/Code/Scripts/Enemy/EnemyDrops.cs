@@ -1,35 +1,27 @@
 using UnityEngine;
 
-public class EnemyDrops : MonoBehaviour
+[CreateAssetMenu(menuName = "Echo's Cry/Scriptable Objects/Strategies/Drops/Enemy")]
+public class EnemyDrops : ItemDropStrategy
 {
-    public void HandleEnemyDrops()
+    [SerializeField] private float itemExplosionSpeed = 10f;
+    public override void Execute(Transform origin)
     {
-        foreach (var itemDrop in ItemDrops)
         {
-            int itemCount = Random.Range(itemDrop.minDropAmount, itemDrop.maxDropAmount);
-            for (int i = 0; i < itemCount; i++)
+            foreach (var itemDrop in ItemDrops)
             {
-                GameObject itemInstance = Instantiate(itemDrop.prefab, transform.position, Quaternion.identity);
-                Rigidbody itemRB = itemInstance.GetComponent<Rigidbody>();
-                if (itemRB != null)
+                int itemCount = Random.Range(itemDrop.minDropAmount, itemDrop.maxDropAmount);
+                for (int i = 0; i < itemCount; i++)
                 {
-                    Vector3 randDirection = Random.onUnitSphere;
-                    randDirection.y = 0;
-                    itemRB.AddForce(randDirection * itemExplosionSpeed, ForceMode.Impulse);
+                    GameObject itemInstance = Instantiate(itemDrop.prefab, origin.position, Quaternion.identity);
+                    Rigidbody itemRB = itemInstance.GetComponent<Rigidbody>();
+                    if (itemRB != null)
+                    {
+                        Vector3 randDirection = Random.onUnitSphere;
+                        randDirection.y = 0;
+                        itemRB.AddForce(randDirection * itemExplosionSpeed, ForceMode.Impulse);
+                    }
                 }
             }
         }
     }
-
-    public virtual void Start()
-    {
-        GetComponent<EnemyStats>().OnEnemyDeathEvent += HandleEnemyDrops;
-    }
-    public virtual void OnDestroy()
-    {
-        GetComponent<EnemyStats>().OnEnemyDeathEvent -= HandleEnemyDrops;
-    }
-
-    [SerializeField] private ItemDrop[] ItemDrops;
-    [SerializeField] private float itemExplosionSpeed = 10f;
 }

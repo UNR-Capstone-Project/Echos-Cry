@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class TestProjectileSkill : Skill
 {
-    RBProjectileHandler handler;
+    RBProjectilePool handler;
     float m_speed;
-    public TestProjectileSkill(float skillCost, RBProjectileHandler projectileHandler) : base(skillCost)
+    public TestProjectileSkill(float skillCost, RBProjectilePool projectileHandler) : base(skillCost)
     {
         handler = projectileHandler;
     }
 
     public override void UseSkill()
     {
-        handler.UseProjectile(PlayerRef.PlayerTransform.position, PlayerDirection.AimDirection, 5f);
+        handler.UseProjectile(PlayerRef.Transform.position, PlayerDirection.AimDirection, 5f);
     }
 }

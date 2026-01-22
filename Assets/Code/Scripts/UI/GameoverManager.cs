@@ -15,7 +15,7 @@ public class GameoverManager : MonoBehaviour
 
     public void Respawn()
     {
-        PlayerStats.Instance.Respawn();
+        //PlayerStats.Instance.Respawn();
         sceneTriggerManager.StartTransition();
         DisableGameoverMenu();
     }

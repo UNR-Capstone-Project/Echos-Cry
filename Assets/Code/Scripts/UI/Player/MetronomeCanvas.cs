@@ -31,28 +31,28 @@ public class MetronomeCanvas : MonoBehaviour
         //Setup metronome image
         _metronomeImage.material = metronomeMaterial;
 
-        TempoManager.BeatTickEvent += FlashOutline;
+        TempoConductor.Instance.BeatTickEvent += FlashOutline;
 
-        _translator.OnDashEvent += UpdateHitQualityText;
-        _translator.OnLightAttackEvent += UpdateHitQualityText;
-        _translator.OnHeavyAttackEvent += UpdateHitQualityText;
+        //_translator.OnDashEvent += UpdateHitQualityText;
+        //_translator.OnLightAttackEvent += UpdateHitQualityText;
+        //_translator.OnHeavyAttackEvent += UpdateHitQualityText;
     }
     private void OnDestroy()
     {
-        TempoManager.BeatTickEvent -= FlashOutline;
+        if(TempoConductor.Instance != null) TempoConductor.Instance.BeatTickEvent -= FlashOutline;
 
-        _translator.OnDashEvent -= UpdateHitQualityText;
-        _translator.OnLightAttackEvent -= UpdateHitQualityText;
-        _translator.OnHeavyAttackEvent -= UpdateHitQualityText;
+        //_translator.OnDashEvent -= UpdateHitQualityText;
+        //_translator.OnLightAttackEvent -= UpdateHitQualityText;
+        //_translator.OnHeavyAttackEvent -= UpdateHitQualityText;
     }
 
     public void UpdateHitQualityText()
     {
-        if (TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.EXCELLENT)
+        if (TempoConductor.Instance.CurrentHitQuality == TempoConductor.HitQuality.Excellent)
         {
             hitQualityText.color = new Color(110f / 255f, 44f / 255f, 222f / 255f, 1f); //purple
         }
-        else if (TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.GOOD)
+        else if (TempoConductor.Instance.CurrentHitQuality == TempoConductor.HitQuality.Good)
         {
             hitQualityText.color = new Color(47f / 255f, 235f / 255f, 81f / 255f, 1.0f);
         }
@@ -60,7 +60,7 @@ public class MetronomeCanvas : MonoBehaviour
         {
             hitQualityText.color = Color.red;
         }
-            hitQualityText.text = TempoManager.CurrentHitQuality.ToString();
+            hitQualityText.text = TempoConductor.Instance.CurrentHitQuality.ToString();
     }
 
     public void FlashOutline()
