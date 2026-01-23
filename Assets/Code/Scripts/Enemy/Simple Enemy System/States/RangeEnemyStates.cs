@@ -15,17 +15,18 @@ public class RangeSpawnState : EnemyState
 
 public class RangeIdleState : EnemyState
 {
-    private float sqrMag;
+    private RangeEnemyConfigFile _config;
 
-    public RangeIdleState(Enemy enemyContext) : base(enemyContext)
+    public RangeIdleState(RangeEnemyConfigFile config, Enemy enemyContext) : base(enemyContext)
     {
-        sqrMag = Mathf.Pow(10f, 2);
+        _config = config;
     }
 
     public override void Tick()
     {
-        float distance = (PlayerRef.Transform.position - _enemyContext.transform.position).sqrMagnitude;
-        if (distance <= sqrMag) _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStates.RangeRoam));
+        float distance = Vector3.Distance(PlayerRef.Transform.position, _enemyContext.transform.position);
+        if (distance <= _config.DistanceCheck) 
+            _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStates.RangeRoam));
     }
 }
 public class RangeRoamState : EnemyState
@@ -46,13 +47,18 @@ public class RangeRoamState : EnemyState
         if (agent == null || !agent.isOnNavMesh) return;
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
-            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStates.RangeCharge));
+            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) 
+                _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStates.RangeCharge));
         }
     }
 }
 public class RangeChargeAttackState : EnemyState
 {
-    public RangeChargeAttackState(Enemy enemyContext) : base(enemyContext) { }
+    RangeEnemyConfigFile _config;
+    public RangeChargeAttackState(RangeEnemyConfigFile config, Enemy enemyContext) : base(enemyContext) 
+    { 
+        _config = config;
+    }
 
     protected override void OnEnter()
     {
@@ -64,15 +70,19 @@ public class RangeChargeAttackState : EnemyState
     }
     private IEnumerator ChargeDurationCoroutine()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(_config.AttackChargeTime);
         _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStates.RangeAttack));
     }
 }
 public class RangeAttackState : EnemyState
 {
     int count;
+    RangeEnemyConfigFile _config;
 
-    public RangeAttackState(Enemy enemyContext) : base(enemyContext) { }
+    public RangeAttackState(RangeEnemyConfigFile config, Enemy enemyContext) : base(enemyContext) 
+    { 
+        _config = config;
+    }
 
     protected override void OnEnter()
     {
@@ -86,13 +96,13 @@ public class RangeAttackState : EnemyState
     }
     private IEnumerator AttackCooldownCoroutine()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(_config.AttackCooldown);
         _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStates.RangeRoam));
     }
     private IEnumerator BetweenAttackPauseCoroutine()
     {
         yield return new WaitForSeconds(TempoConductor.Instance.TimeBetweenBeats);
-        if (count >= 2) _enemyContext.StartCoroutine(AttackCooldownCoroutine());
+        if (count >= _config.AttackAmount) _enemyContext.StartCoroutine(AttackCooldownCoroutine());
         else
         {
             //_enemyContext.EnemyBaseAttack.UseAttack();
@@ -103,14 +113,18 @@ public class RangeAttackState : EnemyState
 }
 public class RangeStaggerState : EnemyState
 {
-    public RangeStaggerState(Enemy enemyContext) : base(enemyContext) { }
+    RangeEnemyConfigFile _config;
+    public RangeStaggerState(RangeEnemyConfigFile config, Enemy enemyContext) : base(enemyContext) 
+    { 
+        _config = config;
+    }
 
     protected override void OnEnter()
     {
         if(_enemyContext.NavMeshAgent.hasPath) _enemyContext.NavMeshAgent.ResetPath();
         _enemyContext.Rigidbody.isKinematic = false;
         Vector3 direction = (PlayerRef.Transform.position - _enemyContext.transform.position).normalized;
-        _enemyContext.Rigidbody.AddForce(-(1f * direction), ForceMode.Impulse);
+        _enemyContext.Rigidbody.AddForce(-(_config.KnockbackForce * direction), ForceMode.Impulse);
         _enemyContext.StartCoroutine(StaggerDurationCoroutine());
     }
     protected override void OnExit()
@@ -120,7 +134,7 @@ public class RangeStaggerState : EnemyState
     }
     private IEnumerator StaggerDurationCoroutine()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(_config.StaggerDuration);
         _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStates.RangeRoam));
     }
 }
@@ -130,6 +144,7 @@ public class RangeDeathState : EnemyState
 
     protected override void OnEnter()
     {
-        //_enemyContext.Stats.HandleEnemyDeath();
+        _enemyContext.DropsStrategy.Execute(_enemyContext.transform);
+        Object.Destroy(_enemyContext.gameObject);
     }
 }
