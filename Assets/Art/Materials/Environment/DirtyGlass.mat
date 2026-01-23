@@ -36,7 +36,7 @@ Material:
     - _Glossiness: 0.9
     - _Metallic: 1
     - _ReceiveShadows: 1
-    - _Smoothness: 1
+    - _Smoothness: 0.95
     - _SmoothnessTextureChannel: 0
     - _Surface: 0
     - _ZWrite: 1

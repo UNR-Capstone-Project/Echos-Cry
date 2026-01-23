@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: e8cafe35d523d5041854df10ed49e873, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 39f6915210a9ba24b8602fb6b4a93544, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 77f63e9a444b58c4ab2c3083e3dbbf4b, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -11487,6 +11487,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1552160598}
     m_Modifications:
+    - target: {fileID: 1418210724921825802, guid: a98e1da78a3faf147a5a6507ad852be1, type: 3}
+      propertyPath: 'm_Materials.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e7ecb0dc5f72e742aa1a41ee0801ec3, type: 2}
     - target: {fileID: 8419321360687187274, guid: a98e1da78a3faf147a5a6507ad852be1, type: 3}
       propertyPath: m_Name
       value: TownHouse (2)
