@@ -6,9 +6,11 @@ public class EnemyStateCache
     {
         UNASSIGNED = 0,
         //Bat Enemy
-        Bat_Spawn, Bat_Stagger, Bat_Death, Bat_Charge, Bat_Attack, Bat_Idle, Bat_Chase,
+        BatSpawn, BatStagger, BatDeath, BatCharge, BatAttack, BatIdle, BatChase,
         //Range Enemy
-        Range_Spawn, Range_Stagger, Range_Death, Range_Charge, Range_Attack, Range_Idle, Range_Roam
+        RangeSpawn, RangeStagger, RangeDeath, RangeCharge, RangeAttack, RangeIdle, RangeRoam,
+
+        WalkerSpawn, WalkerStagger, WalkerDeath, WalkerCharge, WalkerAttack, WalkerIdle, WalkerChase
     }
     private readonly Dictionary<EnemyStates, EnemyState> _stateCache;
 

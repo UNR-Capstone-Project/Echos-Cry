@@ -3,7 +3,6 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using static SimpleEnemyStateCache;
 
 //New Implementation of enemy behaviors
 //Same as previous system but allows for more customizability for enemy states
@@ -17,153 +16,188 @@ using static SimpleEnemyStateCache;
 
 //NOTE: CheckSwitchState is called automatically in the StateMachine so dont worry about calling it individually
 
-public class WalkerSpawnState : SimpleEnemyState
+public class WalkerSpawnState : EnemyState
 {
+    public WalkerSpawnState(Enemy enemyContext) : base(enemyContext) { }
 
-    public override void EnterState(SimpleEnemyManager enemyContext)
+    protected override void OnEnter()
     {
-        enemyContext.SwitchState(EnemyStates.WALKER_IDLE);
+        _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerIdle));
     }
 }
 
-public class WalkerIdleState : SimpleEnemyState
+public class WalkerIdleState : EnemyState
 {
     private float sqrMagDistance;
-    public WalkerIdleState()
+
+    public WalkerIdleState(Enemy enemyContext) : base(enemyContext)
     {
         sqrMagDistance = Mathf.Pow(10f, 2f);
     }
-    public override void EnterState(SimpleEnemyManager enemyContext)
+
+    protected override void OnEnter()
     {
-        enemyContext.EnemyAnimator.SetBool("isWalking", false);
+        _enemyContext.Animator.SetBool("isWalking", false);
+    }
+    public override void CheckSwitch()
+    {
+        CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerDeath));
     }
 
-    public override void UpdateState02ms(SimpleEnemyManager enemyContext)
+    public override void Tick()
     {
-        CheckPlayerDistance(enemyContext);
+        CheckPlayerDistance();
     }
-    public  void CheckPlayerDistance(SimpleEnemyManager enemyContext)
+    public  void CheckPlayerDistance()
     {
-        float playerDistance = (enemyContext.transform.position - PlayerRef.PlayerTransform.position).sqrMagnitude;
+        float playerDistance = (_enemyContext.transform.position - PlayerRef.Transform.position).sqrMagnitude;
         if (playerDistance < sqrMagDistance)
         {
-            enemyContext.SwitchState(EnemyStates.WALKER_CHASE);
+            _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerChase));
             return;
         }
     }
 }
 
-public class WalkerChaseState : SimpleEnemyState
+public class WalkerChaseState : EnemyState
 {
-    public override void EnterState(SimpleEnemyManager enemyContext)
+    public WalkerChaseState(Enemy enemyContext) : base(enemyContext) { }
+
+    protected override void OnEnter()
     {
-        enemyContext.EnemyAnimator.SetBool("isWalking", true);
-        SetEnemyTarget(enemyContext);
+        _enemyContext.Animator.SetBool("isWalking", true);
+        SetEnemyTarget();
     }
-    public override void ExitState(SimpleEnemyManager enemyContext)
+    protected override void OnExit()
     {
-        enemyContext.StopAllCoroutines();
+        _enemyContext.StopAllCoroutines();
     }
-    public override void UpdateState02ms(SimpleEnemyManager enemyContext)
+    public override void CheckSwitch()
     {
-        CheckNavMeshDistance(enemyContext);
-        SetEnemyTarget(enemyContext);
+        CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerDeath));
+    }
+    public override void Tick()
+    {
+        CheckNavMeshDistance();
+        SetEnemyTarget();
     }
 
-    private void CheckNavMeshDistance(SimpleEnemyManager enemyContext)
+    private void CheckNavMeshDistance()
     {
-        NavMeshAgent agent = enemyContext.EnemyNMA;
+        NavMeshAgent agent = _enemyContext.NavMeshAgent;
         if (agent == null) return;
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
-            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) enemyContext.SwitchState(EnemyStates.WALKER_CHARGE);
+            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) 
+                _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerCharge));
         }
     }
-    private void SetEnemyTarget(SimpleEnemyManager enemyContext)
+    private void SetEnemyTarget()
     {
-        if(enemyContext.EnemyNMA == null) return;
-        enemyContext.EnemyNMA.SetDestination(PlayerRef.PlayerTransform.position);
+        if(_enemyContext.NavMeshAgent == null) return;
+        _enemyContext.NavMeshAgent.SetDestination(PlayerRef.Transform.position);
     }
 }
 
-public class WalkerChargeAttackState : SimpleEnemyState
+public class WalkerChargeAttackState : EnemyState
 {
     private float chargeDuration;
-    public WalkerChargeAttackState()
+
+    public WalkerChargeAttackState(Enemy enemyContext) : base(enemyContext)
     {
         chargeDuration = 0.8f;
     }
 
-    public override void EnterState(SimpleEnemyManager enemyContext)
+    protected override void OnEnter()
     {
         //Debug.Log("Enter Charge Attack State");
-        enemyContext.EnemyAnimator.SetBool("isWalking", false);
-        enemyContext.StartCoroutine(ChargeAttackCoroutine(enemyContext));
+        _enemyContext.Animator.SetBool("isWalking", false);
+        _enemyContext.StartCoroutine(ChargeAttackCoroutine());
     }
-    public override void ExitState(SimpleEnemyManager enemyContext)
+    protected override void OnExit()
     {
         //Debug.Log("Exit Charge Attack State");
-        enemyContext.StopAllCoroutines();
+        _enemyContext.StopAllCoroutines();
+    }
+    public override void CheckSwitch()
+    {
+        CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerDeath));
     }
 
-    IEnumerator ChargeAttackCoroutine(SimpleEnemyManager enemyContext)
+    IEnumerator ChargeAttackCoroutine()
     {
         yield return new WaitForSeconds(chargeDuration);
-        if (TempoManager.CurrentHitQuality != TempoManager.HIT_QUALITY.MISS) enemyContext.SwitchState(EnemyStates.WALKER_ATTACK);
-        else enemyContext.StartCoroutine(WaitUntilBeat(enemyContext));
+        if (TempoConductor.Instance.IsOnBeat()) 
+            _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerAttack));
+        else _enemyContext.StartCoroutine(WaitUntilBeat());
     }
-    IEnumerator WaitUntilBeat(SimpleEnemyManager enemyContext)
+    IEnumerator WaitUntilBeat()
     {
         yield return new WaitForEndOfFrame();
-        if (TempoManager.CurrentHitQuality != TempoManager.HIT_QUALITY.MISS) enemyContext.SwitchState(EnemyStates.WALKER_ATTACK);
-        else enemyContext.StartCoroutine(WaitUntilBeat(enemyContext));
+        if (TempoConductor.Instance.IsOnBeat()) 
+            _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerAttack));
+        else _enemyContext.StartCoroutine(WaitUntilBeat());
     }
 }
 
-public class WalkerAttackState : SimpleEnemyState
+public class WalkerAttackState : EnemyState
 {
-    public override void EnterState(SimpleEnemyManager enemyContext)
+    public WalkerAttackState(Enemy enemyContext) : base(enemyContext) { }
+
+    protected override void OnEnter()
     {
-        enemyContext.EnemyAnimator.SetBool("isWalking", false);
-        enemyContext.EnemyBaseAttack.UseAttack();
+        _enemyContext.Animator.SetBool("isWalking", false);
+        //_enemyContext.EnemyBaseAttack.UseAttack();
+    }
+    public override void CheckSwitch()
+    {
+        CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerDeath));
     }
 }
-public class WalkerStaggerState : SimpleEnemyState
+public class WalkerStaggerState : EnemyState
 {
     private float staggerDuration;
     private float knockbackForce;
-    public WalkerStaggerState()
+
+    public WalkerStaggerState(Enemy enemyContext) : base(enemyContext)
     {
         staggerDuration = 0.6f;
         knockbackForce = 0.5f;
     }
 
-    public override void EnterState(SimpleEnemyManager enemyContext)
+    protected override void OnEnter()
     {
         //Debug.Log("Enter Stagger State");
-        enemyContext.EnemyAnimator.SetBool("isWalking", false);
-        enemyContext.EnemyRigidbody.isKinematic = false;
-        Vector3 direction = (PlayerRef.PlayerTransform.position - enemyContext.transform.position).normalized;
-        enemyContext.EnemyRigidbody.AddForce(-(knockbackForce * direction), ForceMode.Impulse);
-        enemyContext.StartCoroutine(StaggerDuration(enemyContext));
+        _enemyContext.Animator.SetBool("isWalking", false);
+        _enemyContext.Rigidbody.isKinematic = false;
+        Vector3 direction = (PlayerRef.Transform.position - _enemyContext.transform.position).normalized;
+        _enemyContext.Rigidbody.AddForce(-(knockbackForce * direction), ForceMode.Impulse);
+        _enemyContext.StartCoroutine(StaggerDuration());
     }
-    public override void ExitState(SimpleEnemyManager enemyContext)
+    protected override void OnExit()
     {
-        enemyContext.EnemyRigidbody.isKinematic = true;
-        enemyContext.StopAllCoroutines();
+        _enemyContext.Rigidbody.isKinematic = true;
+        _enemyContext.StopAllCoroutines();
+    }
+    public override void CheckSwitch()
+    {
+        CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerDeath));
     }
 
-    private IEnumerator StaggerDuration(SimpleEnemyManager enemyContext)
+    private IEnumerator StaggerDuration()
     {
         yield return new WaitForSeconds(staggerDuration);
-        enemyContext.SwitchState(EnemyStates.WALKER_CHASE);
+        _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerChase));
     }
 }
-public class WalkerDeathState : SimpleEnemyState
+public class WalkerDeathState : EnemyState
 {
-    public override void EnterState(SimpleEnemyManager enemyContext)
+    public WalkerDeathState(Enemy enemyContext) : base(enemyContext) { }
+
+    protected override void OnEnter()
     {
         //Debug.Log("Enter Death State");
-        enemyContext.EnemyStats.HandleEnemyDeath();
+        _enemyContext.DropsStrategy.Execute(_enemyContext.transform);
+        Object.Destroy(_enemyContext.gameObject);       
     }
 }

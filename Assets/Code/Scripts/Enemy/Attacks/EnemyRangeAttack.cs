@@ -1,28 +1,28 @@
 using UnityEngine;
 
-public class EnemyRangeAttack : EnemyBaseAttack
-{
-    public override void UseAttack()
-    {
-        RaiseEnemyUseAttack();
+//public class EnemyRangeAttack : EnemyBaseAttack
+//{
+//    public override void UseAttack()
+//    {
+//        RaiseEnemyUseAttack();
 
-        handler = RBProjectileManager.RequestHandler(prefab);
+//        handler = RBProjectileManager.RequestHandler(prefab);
 
-        attackDirection = (PlayerRef.PlayerTransform.position - transform.position).normalized;
-        attackDirection.y = 0;
+//        attackDirection = (PlayerRef.PlayerTransform.position - transform.position).normalized;
+//        attackDirection.y = 0;
 
-        if(handler != null) handler.UseProjectile(transform.position, attackDirection, damage);
-        _enemyManager.EnemySound.HandleAttackSound();
-        //Transition to whatever state here
-    }
+//        if(handler != null) handler.UseProjectile(transform.position, attackDirection, damage);
+//        _enemyManager.EnemySound.HandleAttackSound();
+//        //Transition to whatever state here
+//    }
 
-    private void Start()
-    {
+//    private void Start()
+//    {
 
-    }
+//    }
 
-    [SerializeField] private GameObject prefab;
-    [SerializeField] private float damage = 5f;
-    private Vector3 attackDirection;
-    private RBProjectileHandler handler;
-}
+//    [SerializeField] private GameObject prefab;
+//    [SerializeField] private float damage = 5f;
+//    private Vector3 attackDirection;
+//    private RBProjectileHandler handler;
+//}

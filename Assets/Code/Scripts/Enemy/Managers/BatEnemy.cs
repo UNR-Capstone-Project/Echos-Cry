@@ -8,34 +8,34 @@ public class BatEnemy : Enemy
     public override void Init()
     {
         _stateCache.AddState(
-            EnemyStateCache.EnemyStates.Bat_Spawn, 
+            EnemyStateCache.EnemyStates.BatSpawn, 
             new BatSpawnState(this)
         );
         _stateCache.AddState(
-            EnemyStateCache.EnemyStates.Bat_Stagger,
+            EnemyStateCache.EnemyStates.BatStagger,
             new BatStaggerState(_enemyConfigFile, this)
         );
         _stateCache.AddState(
-            EnemyStateCache.EnemyStates.Bat_Attack,
+            EnemyStateCache.EnemyStates.BatAttack,
             new BatAttackState(_enemyConfigFile, this)
         );
         _stateCache.AddState(
-            EnemyStateCache.EnemyStates.Bat_Chase,
+            EnemyStateCache.EnemyStates.BatChase,
             new BatChaseState(this)
         );
         _stateCache.AddState(
-            EnemyStateCache.EnemyStates.Bat_Death,
+            EnemyStateCache.EnemyStates.BatDeath,
             new BatDeathState(this)
         );
         _stateCache.AddState(
-            EnemyStateCache.EnemyStates.Bat_Idle,
+            EnemyStateCache.EnemyStates.BatIdle,
             new BatIdleState(_enemyConfigFile, this)
         );
         _stateCache.AddState(
-            EnemyStateCache.EnemyStates.Bat_Charge,
+            EnemyStateCache.EnemyStates.BatCharge,
             new BatChargeState(_enemyConfigFile, this)
         );
 
-        _stateMachine.Init(_stateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Spawn));
+        _stateMachine.Init(_stateCache.RequestState(EnemyStateCache.EnemyStates.BatSpawn));
     }
 }

@@ -33,7 +33,7 @@ public class WalkerAttackCollisionHandler : MonoBehaviour
     {
         if (other.CompareTag("Player") && !hit)
         {
-            PlayerStats.Instance.OnDamageTaken(damageAmount);
+            //PlayerStats.Instance.OnDamageTaken(damageAmount);
             hit = true;
         }
     }

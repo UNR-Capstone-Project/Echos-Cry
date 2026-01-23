@@ -8,7 +8,7 @@ public class PlaySoundOnStart : MonoBehaviour
 
     private void Start()
     {
-        _builderRef = soundEffectManager.Instance.Builder;
+        _builderRef = SoundEffectManager.Instance.Builder;
         PlaySound(sound);
     }
 

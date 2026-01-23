@@ -40,6 +40,22 @@ public class PlayerSound : MonoBehaviour
         .ValidateAndPlaySound();
     }
 
+    private void PlayHurt()
+    {
+        _builderRef
+        .setSound(_playerSoundConfig.HurtEffect)
+        .setSoundPosition(transform.position)
+        .ValidateAndPlaySound();
+    }
+
+    private void PlayHeal()
+    {
+        _builderRef
+        .setSound(_playerSoundConfig.HealEffect)
+        .setSoundPosition(transform.position)
+        .ValidateAndPlaySound();
+    }
+
     private void Start()
     {
         if(SoundEffectManager.Instance == null)

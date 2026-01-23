@@ -373,7 +373,7 @@ MonoBehaviour:
   _movement: {fileID: 5127503919009400606}
   _weaponHolder: {fileID: 8451625182466559565}
   _skills: {fileID: 6372820548089278461}
-  _orientation: {fileID: 0}
+  _orientation: {fileID: 6103571335002571596}
   _currencySystem: {fileID: 2347857121992901382}
   _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
 --- !u!114 &3818315168867680251

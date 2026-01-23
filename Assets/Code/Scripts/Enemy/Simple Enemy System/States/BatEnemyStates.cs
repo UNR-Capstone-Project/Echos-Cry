@@ -23,7 +23,7 @@ public class BatSpawnState : EnemyState
     protected override void OnEnter()
     {
         //Debug.Log("Enter Spawn");
-        _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Idle));
+        _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.BatIdle));
     }
 }
 
@@ -37,7 +37,7 @@ public class BatIdleState : EnemyState
         float playerDistance = Vector3.Distance(_enemyContext.transform.position, PlayerRef.Transform.position);
         if (playerDistance < _configFile.DistanceCheck)
         {
-            _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Chase));
+            _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.BatChase));
             return;
         }
     }
@@ -60,7 +60,7 @@ public class BatIdleState : EnemyState
     }
     public override void CheckSwitch()
     {
-        CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Death));
+        CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.BatDeath));
     }
 }
 
@@ -73,7 +73,7 @@ public class BatChaseState : EnemyState
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-                _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Charge));
+                _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.BatCharge));
         }
     }
     private void SetEnemyTarget()
@@ -111,7 +111,7 @@ public class BatChaseState : EnemyState
     }
     public override void CheckSwitch()
     {
-        CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Death));
+        CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.BatDeath));
     }
 }
 
@@ -122,7 +122,7 @@ public class BatChargeState : EnemyState
     {
         yield return new WaitForSeconds(_configFile.AttackChargeTime);
         if (TempoConductor.Instance.IsOnBeat()) 
-            _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Attack));
+            _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.BatAttack));
         else 
             _enemyContext.StartCoroutine(WaitUntilBeat());
     }
@@ -130,7 +130,7 @@ public class BatChargeState : EnemyState
     {
         yield return new WaitForEndOfFrame();
         if (TempoConductor.Instance.IsOnBeat()) 
-            _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Attack));
+            _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.BatAttack));
         else 
             _enemyContext.StartCoroutine(WaitUntilBeat());
     }
@@ -152,7 +152,7 @@ public class BatChargeState : EnemyState
     }
     public override void CheckSwitch()
     {
-        CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Death));
+        CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.BatDeath));
     }
 }
 
@@ -178,7 +178,7 @@ public class BatAttackState : EnemyState
     {
 
         yield return new WaitForSeconds(_configFile.AttackCooldown);
-        _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Chase));
+        _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.BatChase));
     }
 
     public BatAttackState(BatEnemyConfigFile configFile, Enemy enemyContext) : base(enemyContext) 
@@ -216,7 +216,7 @@ public class BatAttackState : EnemyState
     }
     public override void CheckSwitch()
     {
-        CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Death));
+        CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.BatDeath));
     }
 
 }
@@ -227,7 +227,7 @@ public class BatStaggerState : EnemyState
     private IEnumerator StaggerDuration()
     {
         yield return new WaitForSeconds(_configFile.StaggerDuration);
-        _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Chase));
+        _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.BatChase));
     }
 
     public BatStaggerState(BatEnemyConfigFile configFile, Enemy enemyContext) : base(enemyContext)
@@ -250,7 +250,7 @@ public class BatStaggerState : EnemyState
     }
     public override void CheckSwitch()
     {
-        CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.Bat_Death));
+        CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.BatDeath));
     }
 }
 
