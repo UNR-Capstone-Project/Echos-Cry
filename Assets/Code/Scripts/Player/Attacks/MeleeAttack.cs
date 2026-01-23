@@ -7,7 +7,7 @@ public class MeleeAttack : BaseAttack
 {
     protected override void InitAttack()
     {
-        Quaternion aimingRotation = Quaternion.LookRotation(-PlayerDirection.AimDirection) * Quaternion.AngleAxis(90f, Vector3.right);
+        Quaternion aimingRotation = Quaternion.LookRotation(-PlayerOrientation.Direction) * Quaternion.AngleAxis(90f, Vector3.right);
         transform.rotation = aimingRotation;
     }
 }

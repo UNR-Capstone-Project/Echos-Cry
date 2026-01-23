@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerDirection : MonoBehaviour
+public class PlayerOrientation : MonoBehaviour
 {
     private static Vector3 aimDirection;
     private static Quaternion aimRotation;
-    public static Vector3 AimDirection { get { return aimDirection; } }
-    public static Quaternion AimRotation { get { return aimRotation; } }
+    public static Vector3 Direction { get { return aimDirection; } }
+    public static Quaternion Rotation { get { return aimRotation; } }
 
     [SerializeField] private LayerMask groundLayer;
 

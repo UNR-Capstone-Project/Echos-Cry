@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class PlayerAttackState : PlayerActionState
 {
-    public PlayerAttackState(PlayerManager playerContext, PlayerStateMachine playerStateMachine, PlayerStateCache playerStateCache) 
+    public PlayerAttackState(Player playerContext, PlayerStateMachine playerStateMachine, PlayerStateCache playerStateCache) 
         : base(playerContext, playerStateMachine, playerStateCache) { }
 
     public override void Enter()
     {
         //Initialize whatever attack is happening
-        if (_playerStateMachine.IsLightAttacking)
+        if (_playerStateMachine.UsingPrimaryAction)
         {
-            _playerContext.PlayerAttackHandler.HandleLightInput();
+            _playerContext.WeaponHolder.PrimaryAction();
         }
-        else if (_playerStateMachine.IsHeavyAttacking)
+        else if (_playerStateMachine.UsingSecondaryAction)
         {
-            _playerContext.PlayerAttackHandler.HandleHeavyInput();
+            _playerContext.WeaponHolder.SecondaryAction();
         }
     }
 
@@ -26,6 +26,7 @@ public class PlayerAttackState : PlayerActionState
     public override void Update()
     {
         //check if current attack is done
-        if (Weapon.IsAttackEnded) _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Idle));
+        if (Weapon.IsAttackEnded) 
+            _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Idle));
     }
 }

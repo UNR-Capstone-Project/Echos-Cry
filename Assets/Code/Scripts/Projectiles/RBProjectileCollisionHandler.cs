@@ -54,7 +54,7 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
         DetermineUserAction();
 
         if (rb == null) return;
-        Vector3 projectileDirection = PlayerDirection.AimDirection;
+        Vector3 projectileDirection = PlayerOrientation.Direction;
         rb.linearVelocity = projectileDirection * rb.linearVelocity.magnitude;
     }
 

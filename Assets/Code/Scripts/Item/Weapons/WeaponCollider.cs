@@ -4,7 +4,7 @@ using UnityEngine;
 //When either a melee trigger or projectile trigger collide with the enemy, they will do damage
 //Projectiles will be returned to pool/destroyed
 
-public class AttackCollisionHandler : MonoBehaviour
+public class WeaponCollider : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
@@ -14,12 +14,12 @@ public class AttackCollisionHandler : MonoBehaviour
         }
     }
 
-    public void UpdateAttackDamage(float attackDamage, Color attackColor)
+    public void UpdateAttackDamage(float attackDamage)
     {
         AttackDamage = attackDamage;
-        AttackColor = attackColor;
+        //AttackColor = attackColor;
     }
 
     public float AttackDamage { get; private set; }
-    public Color AttackColor { get; private set; }
+    //public Color AttackColor { get; private set; }
 }

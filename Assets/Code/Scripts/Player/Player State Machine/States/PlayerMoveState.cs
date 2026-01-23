@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerMoveState : PlayerActionState
 {
-    public PlayerMoveState(PlayerManager playerContext,
+    public PlayerMoveState(Player playerContext,
         PlayerStateMachine playerStateMachine, 
         PlayerStateCache playerStateCache)
         : base(playerContext, playerStateMachine, playerStateCache)
@@ -26,20 +26,20 @@ public class PlayerMoveState : PlayerActionState
 
     public override void Enter()
     {
-        _playerContext.PlayerAnimator.SetIsMainSpriteRunningAnimation(true);
+        _playerContext.Animator.SetIsMainSpriteRunningAnimation(true);
     }
 
     public override void Exit()
     {
-        _playerContext.PlayerAnimator.SetIsMainSpriteRunningAnimation(false);
+        _playerContext.Animator.SetIsMainSpriteRunningAnimation(false);
     }
     public override void Update()
     {
-        _playerContext.PlayerAnimator.UpdateMainSpriteDirection(_playerStateMachine.Locomotion);
+        _playerContext.Animator.UpdateMainSpriteDirection(_playerStateMachine.Locomotion);
     }
 
     public override void FixedUpdate()
     {
-        _playerContext.PlayerMovement.Move(_playerStateMachine.Locomotion);
+        _playerContext.Movement.Move(_playerStateMachine.Locomotion);
     }
 }

@@ -68,13 +68,13 @@ public class InputTranslator : ScriptableObject,
     }
     public void OnLightAttack(InputAction.CallbackContext context)
     {
-        if (context.started) OnLightAttackEvent?.Invoke(true);
-        else if(context.canceled) OnLightAttackEvent?.Invoke(false);
+        if (context.started) OnPrimaryActionEvent?.Invoke(true);
+        else if(context.canceled) OnPrimaryActionEvent?.Invoke(false);
     }
     public void OnHeavyAttack(InputAction.CallbackContext context)
     {
-        if (context.started) OnHeavyAttackEvent?.Invoke(true);
-        else if (context.canceled) OnHeavyAttackEvent?.Invoke(false);
+        if (context.started) OnSecondaryActionEvent?.Invoke(true);
+        else if (context.canceled) OnSecondaryActionEvent?.Invoke(false);
     }
     
     public void OnPause(InputAction.CallbackContext context)
@@ -211,8 +211,8 @@ public class InputTranslator : ScriptableObject,
 
     public event Action<Vector2> OnMovementEvent;
     public event Action<bool>    OnDashEvent;
-    public event Action<bool>    OnLightAttackEvent;
-    public event Action<bool>    OnHeavyAttackEvent;
+    public event Action<bool>    OnPrimaryActionEvent;
+    public event Action<bool>    OnSecondaryActionEvent;
     public event Action<bool>    OnSkill1Event, OnSkill2Event, OnSkill3Event;
     public event Action    OnInteractEvent;
     public event Action    OnPauseEvent, OnPauseDownInput, OnPauseUpInput, OnSelectEvent;

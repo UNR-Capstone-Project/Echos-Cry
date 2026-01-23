@@ -4,14 +4,14 @@ public class PlayerStateMachine : AbstractStateMachine<PlayerActionState>
 {
     private bool _isMoving;
     private bool _isAttacking;
-    private bool _isLightAttacking, _isHeavyAttacking;
+    private bool _usingPrimaryAction, _usingSecondaryAction;
     private bool _isDashing;
     private Vector2 _locomotion;
 
     public bool IsMoving { get => _isMoving; }
     public bool IsAttacking { get => _isAttacking; set => _isAttacking = value; }
-    public bool IsLightAttacking { get => _isLightAttacking; }
-    public bool IsHeavyAttacking { get => _isHeavyAttacking; }
+    public bool UsingPrimaryAction { get => _usingPrimaryAction; }
+    public bool UsingSecondaryAction { get => _usingSecondaryAction; }
     public bool IsDashing { get => _isDashing; set => _isDashing = value; }
     public Vector2 Locomotion { get => _locomotion; }
 
@@ -19,16 +19,16 @@ public class PlayerStateMachine : AbstractStateMachine<PlayerActionState>
     {
         if (translator == null) return;
         translator.OnMovementEvent += HandleMovement;
-        translator.OnHeavyAttackEvent += HandleHeavyAttack;
-        translator.OnLightAttackEvent += HandleLightAttack;
+        translator.OnSecondaryActionEvent += HandleSecondaryAction;
+        translator.OnPrimaryActionEvent += HandlePrimaryAction;
         translator.OnDashEvent += HandleDash;
     }
     public void UnbindInputs(InputTranslator translator)
     {
         if (translator == null) return;
         translator.OnMovementEvent -= HandleMovement;
-        translator.OnHeavyAttackEvent -= HandleHeavyAttack;
-        translator.OnLightAttackEvent -= HandleLightAttack;
+        translator.OnSecondaryActionEvent -= HandleSecondaryAction;
+        translator.OnPrimaryActionEvent -= HandlePrimaryAction;
         translator.OnDashEvent -= HandleDash;
     }
 
@@ -45,30 +45,30 @@ public class PlayerStateMachine : AbstractStateMachine<PlayerActionState>
             _isMoving = false;
         }
     }
-    private void HandleLightAttack(bool buttonPressed)
+    private void HandlePrimaryAction(bool buttonPressed)
     {
         if (buttonPressed)
         {
-            _isLightAttacking = true;
+            _usingPrimaryAction = true;
             _isAttacking = true;
         }
         else
         {
-            _isLightAttacking = false;
-            if (!_isHeavyAttacking) _isAttacking = false;
+            _usingPrimaryAction = false;
+            if (!_usingSecondaryAction) _isAttacking = false;
         }
     }
-    private void HandleHeavyAttack(bool buttonPressed)
+    private void HandleSecondaryAction(bool buttonPressed)
     {
         if (buttonPressed)
         {
-            _isHeavyAttacking = true;
+            _usingSecondaryAction = true;
             _isAttacking = true;
         }
         else
         {
-            _isHeavyAttacking = false;
-            if (!_isLightAttacking) _isAttacking = false;
+            _usingSecondaryAction = false;
+            if (!_usingPrimaryAction) _isAttacking = false;
         }
     }
     private void HandleDash(bool buttonPressed)

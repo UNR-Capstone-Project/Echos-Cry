@@ -5,56 +5,58 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
     [SerializeField] protected Animator _attackAnimator;
+    [SerializeField] protected WeaponCollider _weaponCollider;
+
     protected RuntimeAnimatorController _defaultAnimatorController;
+    protected AttackData _currentAttackData;
     
     public static bool IsAttackEnded { get; private set; }
-
-    private void Awake()
-    {
-        _defaultAnimatorController = _attackAnimator.runtimeAnimatorController;
-        OnAwake();
-    }
 
     protected virtual void OnAwake() { } 
     protected virtual void OnPrimaryAction() { }
     protected virtual void OnSecondaryAction() { }
-    protected IEnumerator AttackLengthCoroutine(float animationLength)
+    protected virtual void OnAttackEnded() { }
+
+    protected abstract void Attack();
+
+    private void Awake()
     {
-        yield return new WaitForSeconds(animationLength);
+        _defaultAnimatorController = _attackAnimator.runtimeAnimatorController;
+        SetChildrenActive(false);
+        OnAwake();
+    }
+    private void AttackEnded()
+    {
         _attackAnimator.runtimeAnimatorController = _defaultAnimatorController;
         IsAttackEnded = true;
+        OnAttackEnded();
+        SetChildrenActive(false);
     }
-
     public void PrimaryAction()
     {
+        SetChildrenActive(true);
         IsAttackEnded = false;
         OnPrimaryAction();
+        Attack();
     }
     public void SecondaryAction() 
     {
+        SetChildrenActive(true);
         IsAttackEnded = false;
         OnSecondaryAction();
-    }
-}
-
-public class ComboWeapon : Weapon
-{
-    private ComboTree _comboSystem;
-    [SerializeField] private AttackData[] _attackData;
-
-    protected override void OnAwake()
-    {
-        _comboSystem = new();
-        _comboSystem.InitTreeAttackData(_attackData);
+        Attack();
     }
 
-    protected override void OnPrimaryAction()
+    private void SetChildrenActive(bool active)
     {
-    
+        for(int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            gameObject.transform.GetChild(i).gameObject.SetActive(active);
+        }
     }
-
-    protected override void OnSecondaryAction()
+    protected IEnumerator AttackLengthCoroutine(float animationLength)
     {
-    
+        yield return new WaitForSeconds(animationLength);
+        AttackEnded();
     }
 }

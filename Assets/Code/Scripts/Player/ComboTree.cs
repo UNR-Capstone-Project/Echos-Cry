@@ -32,14 +32,14 @@ public class ComboTree
         InitTree();
     }
  
-    public ComboState ProcessLight()
+    public ComboState ProcessPrimaryAction()
     {
         if (_currentState == null) return null;
         if (_currentState.NextLightAttack == null) _currentState = _startState.NextLightAttack;
         else _currentState = _currentState.NextLightAttack;
         return _currentState;
     }
-    public ComboState ProcessHeavy()
+    public ComboState ProcessSecondaryAction()
     {
         if (_currentState == null) return null;
         if (_currentState.NextHeavyAttack == null) _currentState = _startState.NextHeavyAttack;
@@ -77,6 +77,8 @@ public class ComboTree
             NextHeavyAttack = _comboStates[(int)StateName.Heavy1],
             AttackData = null
         };
+
+        _currentState = _startState;
     }
     public void InitTreeAttackData(AttackData[] attackData)
     {

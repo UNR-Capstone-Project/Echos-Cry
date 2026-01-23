@@ -16,7 +16,7 @@ public class EnemyCollisionHandler : MonoBehaviour
 {
     protected void OnTriggerEnter(Collider collision)
     {
-        if(collision.TryGetComponent<AttackCollisionHandler>(out AttackCollisionHandler handler))
+        if(collision.TryGetComponent<WeaponCollider>(out WeaponCollider handler))
         {
             PlayerComboMeter.AddToComboMeter(handler.AttackDamage);
             PlayerComboMeter.UpdateComboMultiplier();
