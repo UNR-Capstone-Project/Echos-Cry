@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.VFX;
 
 public class EnemyAnimator : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class EnemyAnimator : MonoBehaviour
         StopCoroutine(FlashEnemy());
         StartCoroutine(FlashEnemy());
         SpawnsDamagePopups.Instance.DamageDone(damage, transform.position, color);
+        if (bloodEffect != null) { bloodEffect.Play(); }
     }
 
     private IEnumerator FlashEnemy()
@@ -23,6 +25,7 @@ public class EnemyAnimator : MonoBehaviour
         hashedTintColor = Shader.PropertyToID("_TintColor");
 
         enemySprite = GetComponentInChildren<SpriteRenderer>();
+        bloodEffect = GetComponentInChildren<VisualEffect>();
         enemyAgent = GetComponent<NavMeshAgent>();
 
         if (enemySprite != null)
@@ -56,8 +59,8 @@ public class EnemyAnimator : MonoBehaviour
 
     [SerializeField] private Color flashColor = Color.red;
     [SerializeField] private float flashDuration = 0.2f;
-    //[SerializeField] private 
 
+    private VisualEffect bloodEffect;
     private Color originalColor;
     private SpriteRenderer enemySprite;
     private NavMeshAgent enemyAgent;
