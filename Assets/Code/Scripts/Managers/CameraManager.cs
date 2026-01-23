@@ -7,7 +7,12 @@ public class CameraManager : MonoBehaviour
     public static CameraManager Instance { get { return _instance; } }
 
     [SerializeField] private static Camera _mainCamera;
-    [SerializeField] private Transform _cameraTarget;
+    private CinemachineCamera cameraBrain;
+    private CinemachineBasicMultiChannelPerlin cinemachinePerlin;
+
+    private float shakeTimer;
+    private float startingIntensity;
+    private float shakeTimerTotal;
     public static Camera MainCamera { get { return _mainCamera; } }
 
     private void Awake()
@@ -19,7 +24,32 @@ public class CameraManager : MonoBehaviour
         }
         _instance = this;
 
-        gameObject.GetComponentInChildren<CinemachineCamera>().Target.TrackingTarget = _cameraTarget;
+        cameraBrain = gameObject.GetComponentInChildren<CinemachineCamera>();
+        cinemachinePerlin = cameraBrain.GetComponent<CinemachineBasicMultiChannelPerlin>();
+
+        cameraBrain.Target.TrackingTarget = PlayerRef.PlayerTransform;
         _mainCamera = GetComponentInChildren<Camera>();
+    }
+
+    // This was provided from a tutorial by CodeMonkey on Youtube https://youtu.be/ACf1I27I6Tk?si=Ic2BCVnjAV80Pkvv
+    public void ScreenShake(float intensity, float time)
+    {
+        cinemachinePerlin.AmplitudeGain = intensity;
+        startingIntensity = intensity;
+        shakeTimer = time;
+        shakeTimerTotal = time;
+    }
+
+    private void Update()
+    {
+        if (shakeTimer > 0f)
+        {
+            shakeTimer -= Time.deltaTime;
+            cinemachinePerlin.AmplitudeGain = Mathf.Lerp(startingIntensity, 0f, shakeTimer / shakeTimerTotal);
+        }
+        else
+        {
+            cinemachinePerlin.AmplitudeGain = 0f;
+        }
     }
 }

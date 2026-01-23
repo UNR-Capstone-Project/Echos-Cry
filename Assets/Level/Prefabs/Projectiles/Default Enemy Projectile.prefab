@@ -4848,6 +4848,7 @@ GameObject:
   - component: {fileID: 1214124845473214711}
   - component: {fileID: 3557529395891732446}
   - component: {fileID: 5413393131719709252}
+  - component: {fileID: 2239671463730842952}
   m_Layer: 15
   m_Name: Default Enemy Projectile
   m_TagString: Untagged
@@ -4934,6 +4935,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HandleProjectileCollision
   timer: 4
   startingUser: 2
+--- !u!114 &2239671463730842952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4017702522014423927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d0a81a193eed3439bedb667b4c8ebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlaySoundOnStart
+  sound: {fileID: 11400000, guid: e20c9a5c30861824d897c64150b8327c, type: 2}
 --- !u!1001 &1508362075513150165
 PrefabInstance:
   m_ObjectHideFlags: 0

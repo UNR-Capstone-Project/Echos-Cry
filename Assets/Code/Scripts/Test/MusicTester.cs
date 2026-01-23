@@ -11,7 +11,7 @@ public class MusicTester : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(WaitToPlaySong(2f));
+        StartCoroutine(WaitToPlaySong(1f));
     }
 
     IEnumerator WaitToPlaySong(float waitTime)

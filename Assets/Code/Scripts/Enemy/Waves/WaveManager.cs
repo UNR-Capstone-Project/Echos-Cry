@@ -51,6 +51,7 @@ public class WaveManager : MonoBehaviour
         if (currentWave >= allWaves.Length) return;
 
         HUDMessage.Instance.UpdateMessage("Wave " + (currentWave + 1).ToString() + " Has Begun.", 2f);
+        CameraManager.Instance.ScreenShake(0.4f, 2.5f);
         StartCoroutine(spawnWave(allWaves[currentWave]));
     }
 

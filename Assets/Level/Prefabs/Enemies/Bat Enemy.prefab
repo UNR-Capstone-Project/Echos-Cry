@@ -138,9 +138,12 @@ GameObject:
   - component: {fileID: 2434889112220353080}
   - component: {fileID: 4851412791574494250}
   - component: {fileID: 1592182489320676592}
+  - component: {fileID: 1049063511828312393}
   - component: {fileID: 854592342237272632}
   - component: {fileID: 4674027367824827364}
   - component: {fileID: 4267862705877107826}
+  - component: {fileID: 3304758087494331346}
+  - component: {fileID: 1602136016763477614}
   - component: {fileID: 6926397710719334505}
   - component: {fileID: 8838160874129828706}
   - component: {fileID: 6827338249854996756}
@@ -211,6 +214,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1049063511828312393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900823288402649937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7c5002e34253d44893f57229bf05bd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleEnemyManager
+  TypeOfEnemy: 1
+  _enemySprite: {fileID: 1831394080825209204}
 --- !u!114 &854592342237272632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0aaddc4d28899643bd0359fcca6bb6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
-  _statsConfig: {fileID: 0}
+  MaxHealth: 30
 --- !u!114 &4674027367824827364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,6 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySound
   hitSFX: {fileID: 11400000, guid: c8c975e393c92cc4f8f6aa88905bcc9e, type: 2}
+  attackSFX: {fileID: 0}
 --- !u!114 &4267862705877107826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,6 +269,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimator
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.2
+--- !u!114 &3304758087494331346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900823288402649937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d26f71b623557242ab02f528f5b58d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDrops
+  ItemDrops:
+  - prefab: {fileID: 651722200087660623, guid: 97046ff4e4a41054f9df101045151fb5, type: 3}
+    minDropAmount: 1
+    maxDropAmount: 2
+  itemExplosionSpeed: 7
+--- !u!114 &1602136016763477614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900823288402649937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 497edade093b3d14d99c238bb2fc9225, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyBatAttack
+  damageAmount: 6
+  attackDuration: 0.2
+  attackCooldown: 1
+  dashForce: 5
 --- !u!114 &6926397710719334505
 MonoBehaviour:
   m_ObjectHideFlags: 0
