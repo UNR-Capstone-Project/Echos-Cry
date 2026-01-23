@@ -8,11 +8,11 @@ public class RangeEnemyConfigFile : ScriptableObject
     [SerializeField] private float _attackCooldown;
     [SerializeField] private float _staggerDuration;
     [SerializeField] private float _knockbackForce;
-    [SerializeField] private int _attackAmount;
+    [SerializeField] private int _projectileCount;
     public float DistanceCheck { get { return _distanceCheck; } }
     public float AttackChargeTime { get { return _attackChargeTime; } }
     public float AttackCooldown { get => _attackCooldown; }
     public float StaggerDuration { get => _staggerDuration; }
     public float KnockbackForce { get => _knockbackForce; }
-    public int AttackAmount { get => _attackAmount; }
+    public int ProjectileCount { get => _projectileCount; }
 }
