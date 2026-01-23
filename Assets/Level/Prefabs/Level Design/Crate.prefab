@@ -91,7 +91,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 833407691746095718}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 50
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -120,10 +120,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 32320
+    m_Bits: 32321
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 33207
+    m_Bits: 33206
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -148,5 +148,6 @@ MonoBehaviour:
     minDropAmount: 2
     maxDropAmount: 4
   itemExplosionSpeed: 8
+  hasItemDrops: 1
   destroyedVersion: {fileID: 7559960175404138094, guid: d58d57a86839c2d40822e65e501ca646, type: 3}
   destroyEffect: {fileID: 11400000, guid: 8e6fff67d6d1b4d46859475d8ddf7611, type: 2}
