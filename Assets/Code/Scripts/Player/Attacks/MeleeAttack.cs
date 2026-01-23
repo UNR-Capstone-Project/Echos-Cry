@@ -1,7 +1,7 @@
 using AudioSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static ComboStateMachine;
+using static ComboTree;
 
 public class MeleeAttack : BaseAttack
 {

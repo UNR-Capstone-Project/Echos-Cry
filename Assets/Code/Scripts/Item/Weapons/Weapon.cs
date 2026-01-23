@@ -1,40 +1,60 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
 public abstract class Weapon : MonoBehaviour
 {
-    //Must only be of the same length - 1 of the StateName enum
-    [SerializeField] protected AttackData[] _attackData;
-    protected Animator _attackAnimator;
+    [SerializeField] protected Animator _attackAnimator;
     protected RuntimeAnimatorController _defaultAnimatorController;
-
-    public static event Action<ComboStateMachine.StateName> OnAttackStartEvent;
-    public static event Action OnAttackEndedEvent;
-
-    public static event Action<float> UpdateColliderAttackDamageEvent;
-
-    protected virtual void Attack(ComboStateMachine.StateName attackState)
-    {
-        IsAttackEnded = false;
-        OnAttackStartEvent?.Invoke(attackState);
-    }
-
-    protected void OnAttackEnded()
-    {
-        IsAttackEnded = true;
-        OnAttackEndedEvent?.Invoke();
-    }
-    protected void UpdateColliderAttackDamage(float newDamage)
-    {
-        UpdateColliderAttackDamageEvent?.Invoke(newDamage);
-    }
-
+    
     public static bool IsAttackEnded { get; private set; }
 
-    protected virtual void Awake()
+    private void Awake()
     {
-        _attackAnimator = GetComponent<Animator>();
         _defaultAnimatorController = _attackAnimator.runtimeAnimatorController;
+        OnAwake();
+    }
+
+    protected virtual void OnAwake() { } 
+    protected virtual void OnPrimaryAction() { }
+    protected virtual void OnSecondaryAction() { }
+    protected IEnumerator AttackLengthCoroutine(float animationLength)
+    {
+        yield return new WaitForSeconds(animationLength);
+        _attackAnimator.runtimeAnimatorController = _defaultAnimatorController;
+        IsAttackEnded = true;
+    }
+
+    public void PrimaryAction()
+    {
+        IsAttackEnded = false;
+        OnPrimaryAction();
+    }
+    public void SecondaryAction() 
+    {
+        IsAttackEnded = false;
+        OnSecondaryAction();
+    }
+}
+
+public class ComboWeapon : Weapon
+{
+    private ComboTree _comboSystem;
+    [SerializeField] private AttackData[] _attackData;
+
+    protected override void OnAwake()
+    {
+        _comboSystem = new();
+        _comboSystem.InitTreeAttackData(_attackData);
+    }
+
+    protected override void OnPrimaryAction()
+    {
+    
+    }
+
+    protected override void OnSecondaryAction()
+    {
+    
     }
 }

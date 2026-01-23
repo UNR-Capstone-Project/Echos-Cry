@@ -12,17 +12,11 @@ public class WeaponHolder : MonoBehaviour
     public void PrimaryAction()
     {
         if (_currentlyEquippedWeapon == null) return;
-        if(_currentlyEquippedWeapon is IPrimaryAction action)
-        {
-            action.PrimaryAction();
-        }
+        _currentlyEquippedWeapon.PrimaryAction();
     }
     public void SecondaryAction() 
     {
         if (_currentlyEquippedWeapon == null) return;
-        if (_currentlyEquippedWeapon is ISecondaryAction action)
-        {
-            action.SecondaryAction();
-        }
+        _currentlyEquippedWeapon.SecondaryAction();
     }
 }

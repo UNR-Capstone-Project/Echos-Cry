@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using static ComboStateMachine;
+using static ComboTree;
 
 public class BaseAttack : MonoBehaviour
 {

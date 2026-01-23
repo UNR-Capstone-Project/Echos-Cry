@@ -1,7 +1,7 @@
 using AudioSystem;
 using System.Collections;
 using UnityEngine;
-using static ComboStateMachine;
+using static ComboTree;
 
 [RequireComponent(typeof(Animator))]
 
@@ -10,20 +10,20 @@ using static ComboStateMachine;
 
 public class ClarinetWeapon : Weapon
 {
-    protected override void Attack(StateName attackState)
-    {
-        base.Attack(attackState);
+    //protected override void Attack(StateName attackState)
+    //{
+    //    base.Attack(attackState);
         
-        int attackIndex = (int)attackState;
+    //    int attackIndex = (int)attackState;
 
-        SetupCurrentDamage(_attackData[attackIndex]);
+    //    SetupCurrentDamage(_attackData[attackIndex]);
 
-        gameObject.SetActive(true);
-        SetupAndStartAnimation(_attackData[attackIndex]);
-        StartCoroutine(WaitForAnimationLength(_attackData[attackIndex]));
+    //    gameObject.SetActive(true);
+    //    SetupAndStartAnimation(_attackData[attackIndex]);
+    //    StartCoroutine(WaitForAnimationLength(_attackData[attackIndex]));
 
-        attackSFX = _attackData[attackIndex].AttackSound;
-    }
+    //    attackSFX = _attackData[attackIndex].AttackSound;
+    //}
 
     private void SetupCurrentDamage(AttackData attackData)
     {
@@ -66,30 +66,16 @@ public class ClarinetWeapon : Weapon
         yield return new WaitForSeconds(attackData.AnimationClip.length);
         ResetAnimation();
         gameObject.SetActive(false);
-        OnAttackEnded();
+        
     }
 
-    protected override void Awake()
+    protected override void OnAwake()
     {
-        base.Awake();
         _weaponCollisionHandler = GetComponentInChildren<AttackCollisionHandler>();
     }
     private void Start()
     {
-        WeaponHandler.OnInputRegisteredEvent += Attack;
         gameObject.SetActive(false);
-    }
-    private void OnDestroy()
-    {
-        WeaponHandler.OnInputRegisteredEvent -= Attack;
-    }
-    private void OnEnable()
-    {
-        WeaponHandler.OnInputRegisteredEvent += Attack;
-    }
-    private void OnDisable()
-    {
-        WeaponHandler.OnInputRegisteredEvent -= Attack;
     }
 
     private AttackCollisionHandler _weaponCollisionHandler;

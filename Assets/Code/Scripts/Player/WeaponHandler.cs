@@ -11,13 +11,13 @@ public class WeaponHandler : MonoBehaviour
     {
         if (!_readyForAttackInput || !TempoConductor.Instance.IsOnBeat()) return;
         _readyForAttackInput = false;
-        OnInputRegisteredEvent?.Invoke(ComboStateMachine.Instance.HandleLightAttack());
+        
     }
     public void HandleHeavyInput()
     {
         if (!_readyForAttackInput || !TempoConductor.Instance.IsOnBeat()) return;
         _readyForAttackInput = false;
-        OnInputRegisteredEvent?.Invoke(ComboStateMachine.Instance.HandleHeavyAttack());
+        
     }
     void ResetAttackInput()
     {
@@ -28,14 +28,9 @@ public class WeaponHandler : MonoBehaviour
     {
         _readyForAttackInput = true;
         
-        Weapon.OnAttackEndedEvent += ResetAttackInput;
-    }
-    private void OnDestroy()
-    {
-        Weapon.OnAttackEndedEvent -= ResetAttackInput;
     }
 
     [SerializeField] private InputTranslator _inputTranslator;
     private bool _readyForAttackInput = true;
-    public static event Action<ComboStateMachine.StateName> OnInputRegisteredEvent;
+    public static event Action<ComboTree.StateName> OnInputRegisteredEvent;
 }

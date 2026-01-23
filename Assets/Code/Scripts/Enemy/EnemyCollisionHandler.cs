@@ -34,14 +34,6 @@ public class EnemyCollisionHandler : MonoBehaviour
         _enemyManager = GetComponent<Enemy>();
         _enemyCollider = GetComponent<Collider>();
     }
-    private void Start()
-    {
-        Weapon.OnAttackEndedEvent += ResetColliderBool;
-    }
-    private void OnDestroy()
-    {
-        Weapon.OnAttackEndedEvent -= ResetColliderBool;
-    }
     
     private Collider _enemyCollider;
     protected Enemy _enemyManager;
