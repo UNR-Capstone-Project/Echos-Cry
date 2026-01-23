@@ -21,7 +21,7 @@ public class RangeEnemy : Enemy
         );
         _stateCache.AddState(
             EnemyStateCache.EnemyStates.RangeRoam,
-            new RangeRoamState(this)
+            new RangeRoamState(_enemyConfigFile, this)
         );
         _stateCache.AddState(
             EnemyStateCache.EnemyStates.RangeDeath,

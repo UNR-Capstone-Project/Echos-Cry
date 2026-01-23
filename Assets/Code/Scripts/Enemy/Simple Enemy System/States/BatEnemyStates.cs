@@ -53,9 +53,8 @@ public class BatIdleState : EnemyState
         TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
     }
 
-    public override void Tick()
+    protected override void OnTick()
     {
-        if (!_isActive) return;
         CheckPlayerDistance();
     }
     public override void CheckSwitch()
@@ -103,9 +102,8 @@ public class BatChaseState : EnemyState
         //Debug.Log("Exit Chase");
         _enemyContext.StopAllCoroutines();
     }
-    public override void Tick()
+    protected override void OnTick()
     {
-        if (!_isActive) return;
         CheckNavMeshDistance();
         SetEnemyTarget();
     }

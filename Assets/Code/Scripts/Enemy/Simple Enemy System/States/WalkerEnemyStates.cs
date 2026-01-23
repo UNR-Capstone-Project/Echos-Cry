@@ -28,11 +28,16 @@ public class WalkerSpawnState : EnemyState
 
 public class WalkerIdleState : EnemyState
 {
-    private float sqrMagDistance;
+    WalkerEnemyConfigFile _config;
 
-    public WalkerIdleState(Enemy enemyContext) : base(enemyContext)
+    public WalkerIdleState(WalkerEnemyConfigFile config, Enemy enemyContext) : base(enemyContext)
     {
-        sqrMagDistance = Mathf.Pow(10f, 2f);
+        _config = config;
+        TickManager.Instance.GetTimer(0.2f).Tick += Tick;
+    }
+    ~WalkerIdleState() 
+    {
+        TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
     }
 
     protected override void OnEnter()
@@ -44,14 +49,14 @@ public class WalkerIdleState : EnemyState
         CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerDeath));
     }
 
-    public override void Tick()
+    protected override void OnTick()
     {
         CheckPlayerDistance();
     }
     public  void CheckPlayerDistance()
     {
-        float playerDistance = (_enemyContext.transform.position - PlayerRef.Transform.position).sqrMagnitude;
-        if (playerDistance < sqrMagDistance)
+        float playerDistance = Vector3.Distance(PlayerRef.Transform.position, _enemyContext.transform.position);
+        if (playerDistance < _config.DistanceCheck)
         {
             _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerChase));
             return;
@@ -61,7 +66,14 @@ public class WalkerIdleState : EnemyState
 
 public class WalkerChaseState : EnemyState
 {
-    public WalkerChaseState(Enemy enemyContext) : base(enemyContext) { }
+    public WalkerChaseState(Enemy enemyContext) : base(enemyContext) 
+    {
+        TickManager.Instance.GetTimer(0.2f).Tick += Tick;
+    }
+    ~WalkerChaseState()
+    {
+        TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
+    }
 
     protected override void OnEnter()
     {
@@ -76,7 +88,7 @@ public class WalkerChaseState : EnemyState
     {
         CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerDeath));
     }
-    public override void Tick()
+    protected override void OnTick()
     {
         CheckNavMeshDistance();
         SetEnemyTarget();
@@ -101,11 +113,11 @@ public class WalkerChaseState : EnemyState
 
 public class WalkerChargeAttackState : EnemyState
 {
-    private float chargeDuration;
+    WalkerEnemyConfigFile _config;
 
-    public WalkerChargeAttackState(Enemy enemyContext) : base(enemyContext)
+    public WalkerChargeAttackState(WalkerEnemyConfigFile config, Enemy enemyContext) : base(enemyContext)
     {
-        chargeDuration = 0.8f;
+        _config = config;
     }
 
     protected override void OnEnter()
@@ -126,7 +138,7 @@ public class WalkerChargeAttackState : EnemyState
 
     IEnumerator ChargeAttackCoroutine()
     {
-        yield return new WaitForSeconds(chargeDuration);
+        yield return new WaitForSeconds(_config.AttackChargeTime);
         if (TempoConductor.Instance.IsOnBeat()) 
             _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerAttack));
         else _enemyContext.StartCoroutine(WaitUntilBeat());
@@ -142,27 +154,65 @@ public class WalkerChargeAttackState : EnemyState
 
 public class WalkerAttackState : EnemyState
 {
-    public WalkerAttackState(Enemy enemyContext) : base(enemyContext) { }
+    WalkerEnemyConfigFile _config;
+    bool isAttacking;
+    Vector3 attackDirection;
+    public WalkerAttackState(WalkerEnemyConfigFile config, Enemy enemyContext) : base(enemyContext) 
+    { 
+        _config = config;
+    }
+
+    private IEnumerator AttackDuration()
+    {
+        yield return new WaitForSeconds(_config.AttackDuration);
+        isAttacking = false;
+        _enemyContext.StartCoroutine(AttackCooldown());
+    }
+    private IEnumerator AttackCooldown()
+    {
+        yield return new WaitForSeconds(_config.AttackCooldown);
+        _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerChase));
+    }
 
     protected override void OnEnter()
     {
+        isAttacking = true;
         _enemyContext.Animator.SetBool("isWalking", false);
-        //_enemyContext.EnemyBaseAttack.UseAttack();
+        _enemyContext.Rigidbody.isKinematic = false;
+        attackDirection = (PlayerRef.Transform.position - _enemyContext.transform.position).normalized;
+        _enemyContext.Rigidbody.AddForce(_config.AttackDashForce * attackDirection, ForceMode.Impulse);
+        _enemyContext.StartCoroutine(AttackDuration());
+    }
+    protected override void OnExit()
+    {
+        _enemyContext.Rigidbody.isKinematic = true;
     }
     public override void CheckSwitch()
     {
         CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerDeath));
     }
+    public override void Update()
+    {
+        if (!isAttacking
+            || _enemyContext.AttackStrategies.Length == 0
+            || _enemyContext.AttackStrategies[0] == null)
+            return;
+
+        if (_enemyContext.AttackStrategies[0]
+            .Execute(
+                10f,
+                attackDirection,
+                _enemyContext.transform))
+            isAttacking = false;
+    }
 }
 public class WalkerStaggerState : EnemyState
 {
-    private float staggerDuration;
-    private float knockbackForce;
+    WalkerEnemyConfigFile _config;
 
-    public WalkerStaggerState(Enemy enemyContext) : base(enemyContext)
+    public WalkerStaggerState(WalkerEnemyConfigFile config, Enemy enemyContext) : base(enemyContext)
     {
-        staggerDuration = 0.6f;
-        knockbackForce = 0.5f;
+        _config = config;
     }
 
     protected override void OnEnter()
@@ -171,7 +221,7 @@ public class WalkerStaggerState : EnemyState
         _enemyContext.Animator.SetBool("isWalking", false);
         _enemyContext.Rigidbody.isKinematic = false;
         Vector3 direction = (PlayerRef.Transform.position - _enemyContext.transform.position).normalized;
-        _enemyContext.Rigidbody.AddForce(-(knockbackForce * direction), ForceMode.Impulse);
+        _enemyContext.Rigidbody.AddForce(-(_config.KnockbackForce * direction), ForceMode.Impulse);
         _enemyContext.StartCoroutine(StaggerDuration());
     }
     protected override void OnExit()
@@ -186,7 +236,7 @@ public class WalkerStaggerState : EnemyState
 
     private IEnumerator StaggerDuration()
     {
-        yield return new WaitForSeconds(staggerDuration);
+        yield return new WaitForSeconds(_config.StaggerDuration);
         _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerChase));
     }
 }

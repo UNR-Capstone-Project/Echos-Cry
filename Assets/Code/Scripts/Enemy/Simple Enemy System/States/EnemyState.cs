@@ -34,7 +34,12 @@ public abstract class EnemyState : IState
     public virtual void CheckSwitch() { }
 
     //New function added to EnemyState because enemies may have behavior/conditions that do not need to be checked every frame
-    public virtual void Tick() { }
+    public void Tick() 
+    {
+        if (!_isActive) return;
+        OnTick();
+    }
+    protected virtual void OnTick() { }
 
     protected void CheckDeath(EnemyState deathState)
     {

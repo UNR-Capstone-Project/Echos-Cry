@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Echo's Cry/Scriptable Objects/Strategies/Attack/Melee")]
+[CreateAssetMenu(menuName = "Echo's Cry/Strategies/Attack/Melee")]
 public class MeleeAttackStrategy : AttackStrategy
 {
     [SerializeField] private Vector3 _boxExtents;

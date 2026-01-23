@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Echo's Cry/Scriptable Objects/Strategies/Drops/Enemy")]
+[CreateAssetMenu(menuName = "Echo's Cry/Strategies/Drops/Enemy")]
 public class EnemyDrops : ItemDropStrategy
 {
     [SerializeField] private float itemExplosionSpeed = 10f;

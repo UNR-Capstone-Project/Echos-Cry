@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RBProjectileManager : MonoBehaviour
+public class RBProjectileManager : Singleton<RBProjectileManager>
 {
     public struct PoolNode
     {
@@ -14,17 +14,10 @@ public class RBProjectileManager : MonoBehaviour
         }
     }
 
-    private static RBProjectileManager _instance;
-    private static Dictionary<int, PoolNode> projectilePools;
+    private Dictionary<int, PoolNode> projectilePools;
 
-    private void Awake()
+    protected override void OnAwake()
     {
-        if (_instance != null)
-        {
-            Destroy(this);
-            return;
-        }
-        _instance = this;
         projectilePools = new Dictionary<int, PoolNode>();
     }
     private void Start()
@@ -41,7 +34,7 @@ public class RBProjectileManager : MonoBehaviour
         projectilePools.Clear();
     }
 
-    public static RBProjectilePool RequestPool(GameObject prefab)
+    public RBProjectilePool RequestPool(GameObject prefab)
     {
         int id = prefab.GetInstanceID();
 

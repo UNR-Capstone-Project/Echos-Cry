@@ -21,13 +21,13 @@ public class EnemySound : MonoBehaviour
 
     void Start()
     {
-        GetComponent<EnemyStats>().OnEnemyDamagedEvent += HandleDamageSound;
-        GetComponent<EnemyBaseAttack>().OnEnemyUseAttackEvent += HandleAttackSound;
+        //GetComponent<EnemyStats>().OnEnemyDamagedEvent += HandleDamageSound;
+        //GetComponent<EnemyBaseAttack>().OnEnemyUseAttackEvent += HandleAttackSound;
     }
     private void OnDestroy()
     {
-        GetComponent<EnemyStats>().OnEnemyDamagedEvent -= HandleDamageSound;
-        GetComponent<EnemyBaseAttack>().OnEnemyUseAttackEvent -= HandleAttackSound;
+        //GetComponent<EnemyStats>().OnEnemyDamagedEvent -= HandleDamageSound;
+        //GetComponent<EnemyBaseAttack>().OnEnemyUseAttackEvent -= HandleAttackSound;
     }
     
     [SerializeField] soundEffect hitSFX;
