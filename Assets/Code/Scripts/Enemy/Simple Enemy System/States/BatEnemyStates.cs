@@ -85,7 +85,7 @@ public class BatChargeAttackState : SimpleEnemyState
     private float chargeDuration;
     public BatChargeAttackState()
     {
-        chargeDuration = 1f;
+        chargeDuration = 0.5f;
     }
 
     public override void EnterState(SimpleEnemyManager enemyContext)
