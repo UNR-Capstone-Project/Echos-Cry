@@ -4,11 +4,13 @@ public abstract class AbstractStateMachine<T> where T : IState
 {
     protected T _currentState;
 
-    public virtual void Init(T initState)
+    public void Init(T initState)
     {
         _currentState = initState;
         _currentState?.Enter();
+        OnInit();
     }
+    protected virtual void OnInit() { }
     public virtual void UpdateState()
     {
         if (_currentState == null) return;

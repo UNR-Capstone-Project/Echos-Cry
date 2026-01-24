@@ -7,7 +7,7 @@ public static class PersistenceInitializer
 {
     private static bool loaded = false;
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     public static void Execute()
     {
         SceneManager.sceneLoaded += LoadObjects;
