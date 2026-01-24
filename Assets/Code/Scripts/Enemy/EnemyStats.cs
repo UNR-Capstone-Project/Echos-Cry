@@ -1,6 +1,7 @@
 using AudioSystem;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -16,11 +17,33 @@ public class EnemyStats : MonoBehaviour
     public event Action OnEnemyHealedEvent;
     public event Action OnEnemyDeathEvent;
 
+    public HashSet<Type> passiveEffectSet; //Set used to avoid duplicate effects.
+
+    private void Awake()
+    {
+        passiveEffectSet = new HashSet<Type>();
+    }
     private void Start()
     {
         Health = MaxHealth;
     }
- 
+
+    public void UsePassiveEffect(PassiveEffect effect)
+    {
+        Type effectType = effect.GetType();
+
+        if (!passiveEffectSet.Add(effectType)) return; //Avoid duplicate effects.
+
+        PassiveEffect instance = Instantiate(effect);
+        instance.ApplyEffect(this);
+    }
+
+    public void RemovePassiveEffect(PassiveEffect effect)
+    {
+        Type effectType = effect.GetType();
+        passiveEffectSet.Remove(effectType);
+    }
+
     public void HealEnemy(float heal)
     {
         Health += Mathf.Abs(heal);

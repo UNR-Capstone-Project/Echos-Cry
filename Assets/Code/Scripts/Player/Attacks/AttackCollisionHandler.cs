@@ -11,6 +11,11 @@ public class AttackCollisionHandler : MonoBehaviour
         if(other.TryGetComponent<SimpleEnemyManager>(out SimpleEnemyManager enemyManager))
         {
             enemyManager.EnemyStats.DamageEnemy(AttackDamage, AttackColor);
+
+            foreach (PassiveEffect effect in _passiveEffects)
+            {
+                enemyManager.EnemyStats.UsePassiveEffect(effect);
+            }
         }
     }
 
@@ -22,4 +27,6 @@ public class AttackCollisionHandler : MonoBehaviour
 
     public float AttackDamage { get; private set; }
     public Color AttackColor { get; private set; }
+
+    [SerializeField] private PassiveEffect[] _passiveEffects;
 }

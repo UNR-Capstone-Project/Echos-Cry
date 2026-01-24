@@ -969,6 +969,14 @@ PrefabInstance:
       propertyPath: onAttackPushForce
       value: 3.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5428771555926968140, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
+      propertyPath: _passiveEffects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428771555926968140, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
+      propertyPath: '_passiveEffects.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 25e9fd5d2ef64b447905e84d09e57e47, type: 2}
     - target: {fileID: 6698232584449221764, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
       propertyPath: m_Name
       value: Weapon (Clarinet)
