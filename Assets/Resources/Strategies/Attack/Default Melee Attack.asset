@@ -17,3 +17,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   _distance: 1.5
+  _attackSound: {fileID: 11400000, guid: c7666da1df7e64647a69f91abaedda0f, type: 2}

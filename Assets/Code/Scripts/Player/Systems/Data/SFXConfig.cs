@@ -1,8 +1,8 @@
 using AudioSystem;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Echo's Cry/Player Data/Player Sound Config")]
-public class PlayerSoundConfig : ScriptableObject
+[CreateAssetMenu(menuName = "Echo's Cry/SFX/SFX Config")]
+public class SFXConfig : ScriptableObject
 {
     [SerializeField] private soundEffect _footstepSFX;
     [SerializeField] private soundEffect _dashSFX;

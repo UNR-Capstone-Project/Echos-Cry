@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WalkerEnemy : Enemy
 {
-    [SerializeField] private WalkerEnemyConfigFile _config;
+    [SerializeField] private WalkerConfig _config;
     public override void Init()
     {
         _stateCache.AddState(

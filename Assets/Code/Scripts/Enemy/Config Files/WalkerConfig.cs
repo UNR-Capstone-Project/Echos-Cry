@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Echo's Cry/Enemy/Enemy Config File/Walker")]
-public class WalkerEnemyConfigFile : ScriptableObject
+public class WalkerConfig : ScriptableObject
 {
     [SerializeField] private float _distanceCheck;
     [SerializeField] private float _attackChargeTime;
@@ -10,7 +10,7 @@ public class WalkerEnemyConfigFile : ScriptableObject
     [SerializeField] private float _attackDuration;
     [SerializeField] private float _attackDashForce;
     [SerializeField] private float _attackCooldown;
-    [SerializeField] private float _stoppingDistance;
+    [SerializeField] private float _stoppingDistance; 
 
     public float DistanceCheck { get => _distanceCheck; }
     public float AttackChargeTime { get => _attackChargeTime; }

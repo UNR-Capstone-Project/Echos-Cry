@@ -184,11 +184,13 @@ MonoBehaviour:
   _navMeshAgent: {fileID: 1592182489320676592}
   _rigidbody: {fileID: 6827338249854996756}
   _animator: {fileID: 1879680284868728812}
+  _soundConfig: {fileID: 11400000, guid: 61a08e0075f1f394ba85aefac97da91e, type: 2}
   _attackStrats:
   - {fileID: 11400000, guid: 3ef0d87b33e7b3f40ac4037d7fa15a53, type: 2}
   _targetStrats: []
   _movementStrats: []
   _drops: {fileID: 11400000, guid: 91505f07313de1e48a168c4fe728a893, type: 2}
+  _soundStrategy: {fileID: 11400000, guid: 5c5a55ebf2f337c4a80a8fcd0ffba53d, type: 2}
   _enemyConfigFile: {fileID: 11400000, guid: 587f76de4e0f22e4c92b175d29b45e38, type: 2}
 --- !u!114 &854592342237272632
 MonoBehaviour:

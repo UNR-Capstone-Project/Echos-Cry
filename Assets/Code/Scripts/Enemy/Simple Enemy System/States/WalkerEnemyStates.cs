@@ -1,6 +1,5 @@
 using NUnit.Framework.Constraints;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -28,9 +27,9 @@ public class WalkerSpawnState : EnemyState
 
 public class WalkerIdleState : EnemyState
 {
-    WalkerEnemyConfigFile _config;
+    WalkerConfig _config;
 
-    public WalkerIdleState(WalkerEnemyConfigFile config, Enemy enemyContext) : base(enemyContext)
+    public WalkerIdleState(WalkerConfig config, Enemy enemyContext) : base(enemyContext)
     {
         _config = config;
         TickManager.Instance.GetTimer(0.2f).Tick += Tick;
@@ -113,9 +112,9 @@ public class WalkerChaseState : EnemyState
 
 public class WalkerChargeAttackState : EnemyState
 {
-    WalkerEnemyConfigFile _config;
+    WalkerConfig _config;
 
-    public WalkerChargeAttackState(WalkerEnemyConfigFile config, Enemy enemyContext) : base(enemyContext)
+    public WalkerChargeAttackState(WalkerConfig config, Enemy enemyContext) : base(enemyContext)
     {
         _config = config;
     }
@@ -154,10 +153,10 @@ public class WalkerChargeAttackState : EnemyState
 
 public class WalkerAttackState : EnemyState
 {
-    WalkerEnemyConfigFile _config;
+    WalkerConfig _config;
     bool isAttacking;
     Vector3 attackDirection;
-    public WalkerAttackState(WalkerEnemyConfigFile config, Enemy enemyContext) : base(enemyContext) 
+    public WalkerAttackState(WalkerConfig config, Enemy enemyContext) : base(enemyContext) 
     { 
         _config = config;
     }
@@ -208,9 +207,9 @@ public class WalkerAttackState : EnemyState
 }
 public class WalkerStaggerState : EnemyState
 {
-    WalkerEnemyConfigFile _config;
+    WalkerConfig _config;
 
-    public WalkerStaggerState(WalkerEnemyConfigFile config, Enemy enemyContext) : base(enemyContext)
+    public WalkerStaggerState(WalkerConfig config, Enemy enemyContext) : base(enemyContext)
     {
         _config = config;
     }

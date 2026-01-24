@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Default Ranged Attack
   m_EditorClassIdentifier: Assembly-CSharp::RangedAttackStrategy
   _projectilePrefab: {fileID: 4017702522014423927, guid: 15beb2462e90afd4fbfd54c340142c59, type: 3}
+  _attackSound: {fileID: 11400000, guid: 4e5925ae9033bec43a52257a481aa4e7, type: 2}

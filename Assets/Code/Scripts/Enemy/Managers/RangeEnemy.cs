@@ -3,7 +3,7 @@ using UnityEngine;
 public class RangeEnemy : Enemy
 {
     [Header("Config File")]
-    [SerializeField] protected RangeEnemyConfigFile _enemyConfigFile;
+    [SerializeField] protected RangeConfig _enemyConfigFile;
 
     public override void Init()
     {

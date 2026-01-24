@@ -1,7 +1,8 @@
+using AudioSystem;
 using UnityEngine;
 
 [CreateAssetMenu(menuName ="Echo's Cry/Enemy/Enemy Config File/Bat")]
-public class BatEnemyConfigFile : ScriptableObject
+public class BatConfig : ScriptableObject
 {
     [SerializeField] private float _distanceCheck;
     [SerializeField] private float _attackChargeTime;

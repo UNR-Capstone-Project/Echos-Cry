@@ -29,7 +29,7 @@ public class BatSpawnState : EnemyState
 
 public class BatIdleState : EnemyState
 {
-    private readonly BatEnemyConfigFile _configFile;
+    private readonly BatConfig _configFile;
 
     private void CheckPlayerDistance()
     {
@@ -42,7 +42,7 @@ public class BatIdleState : EnemyState
         }
     }
 
-    public BatIdleState(BatEnemyConfigFile configFile, Enemy enemyContext) : base(enemyContext)
+    public BatIdleState(BatConfig configFile, Enemy enemyContext) : base(enemyContext)
     {
         TickManager.Instance.GetTimer(0.2f).Tick += Tick;
 
@@ -115,7 +115,7 @@ public class BatChaseState : EnemyState
 
 public class BatChargeState : EnemyState
 {
-    private readonly BatEnemyConfigFile _configFile;
+    private readonly BatConfig _configFile;
     private IEnumerator ChargeAttackCoroutine()
     {
         yield return new WaitForSeconds(_configFile.AttackChargeTime);
@@ -133,7 +133,7 @@ public class BatChargeState : EnemyState
             _enemyContext.StartCoroutine(WaitUntilBeat());
     }
 
-    public BatChargeState(BatEnemyConfigFile configFile,Enemy enemyContext) : base(enemyContext) 
+    public BatChargeState(BatConfig configFile,Enemy enemyContext) : base(enemyContext) 
     {
         _configFile = configFile;
     }
@@ -156,7 +156,7 @@ public class BatChargeState : EnemyState
 
 public class BatAttackState : EnemyState
 {
-    private readonly BatEnemyConfigFile _configFile;
+    private readonly BatConfig _configFile;
     private Vector3 attackDirection;
     private enum AttackStrats
     {
@@ -179,7 +179,7 @@ public class BatAttackState : EnemyState
         _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.BatChase));
     }
 
-    public BatAttackState(BatEnemyConfigFile configFile, Enemy enemyContext) : base(enemyContext) 
+    public BatAttackState(BatConfig configFile, Enemy enemyContext) : base(enemyContext) 
     {
         _configFile = configFile;
     }
@@ -221,14 +221,14 @@ public class BatAttackState : EnemyState
 
 public class BatStaggerState : EnemyState
 {
-    private readonly BatEnemyConfigFile _configFile;
+    private readonly BatConfig _configFile;
     private IEnumerator StaggerDuration()
     {
         yield return new WaitForSeconds(_configFile.StaggerDuration);
         _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.BatChase));
     }
 
-    public BatStaggerState(BatEnemyConfigFile configFile, Enemy enemyContext) : base(enemyContext)
+    public BatStaggerState(BatConfig configFile, Enemy enemyContext) : base(enemyContext)
     {
         _configFile = configFile;
     }

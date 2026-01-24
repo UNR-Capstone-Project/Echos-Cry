@@ -7,6 +7,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
     public virtual void Execute(float amount)
     {
         _enemy.Stats.Damage(amount, Color.red);
+        _enemy.SoundStrategy.Execute(_enemy.SoundConfig.HitSFX, _enemy.transform);
         DamageLabelManager.Instance.SpawnPopup(amount, _enemy.transform.position, Color.white);
         if(!_enemy.Stats.HasArmor) 
             _enemy.StateMachine.SwitchState(_enemy.StateCache.RequestState(_staggerState));

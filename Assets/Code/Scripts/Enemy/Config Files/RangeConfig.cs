@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Echo's Cry/Enemy/Enemy Config File/Range")]
-public class RangeEnemyConfigFile : ScriptableObject
+public class RangeConfig : ScriptableObject
 {
     [SerializeField] private float _distanceCheck;
     [SerializeField] private float _attackChargeTime;

@@ -1,3 +1,4 @@
+using AudioSystem;
 using System;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class MeleeAttackStrategy : AttackStrategy
     [SerializeField] private Vector3 _boxExtents;
     [SerializeField] private LayerMask _playerMask;
     [SerializeField] private float _distance;
+    [SerializeField] private soundEffect _attackSound;
 
     public override bool Execute(float damage, Vector3 direction, Transform origin)
     {
@@ -20,7 +22,13 @@ public class MeleeAttackStrategy : AttackStrategy
                    layerMask: _playerMask))
         {
             hitInfo.collider.gameObject.GetComponent<IDamageable>().Execute(damage);
-            //Debug.Log("Melee Attack");
+            if (!SoundEffectManager.Instance.Builder.GetSoundPlayer().IsSoundPlaying())
+            {
+                SoundEffectManager.Instance.Builder
+                    .setSound(_attackSound)
+                    .setSoundPosition(origin.position)
+                    .ValidateAndPlaySound();
+            }
             return true;
         }
         else return false;

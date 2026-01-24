@@ -11,17 +11,20 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected NavMeshAgent _navMeshAgent;
     [SerializeField] protected Rigidbody _rigidbody;
     [SerializeField] protected Animator _animator;
+    [SerializeField] protected EnemySoundConfig _soundConfig;
 
     [Header("Strategies")]
     [SerializeField] protected AttackStrategy[] _attackStrats;
     [SerializeField] protected TargetStrategy[]   _targetStrats;
     [SerializeField] protected MovementStrategy[] _movementStrats;
     [SerializeField] protected ItemDropStrategy _drops;
+    [SerializeField] protected SoundStrategy _soundStrategy;
 
     public EnemyStats Stats { get => _stats; }
     public NavMeshAgent NavMeshAgent { get => _navMeshAgent; }
     public Rigidbody Rigidbody { get => _rigidbody; }
     public Animator Animator { get => _animator; }
+    public EnemySoundConfig SoundConfig { get => _soundConfig; }
 
     public EnemyStateCache StateCache { get => _stateCache; }
     public EnemyStateMachine StateMachine { get => _stateMachine; }
@@ -29,6 +32,7 @@ public abstract class Enemy : MonoBehaviour
     public TargetStrategy[] TargetStrategy { get => _targetStrats; }
     public MovementStrategy[] MovementStrategy { get => _movementStrats; }
     public ItemDropStrategy DropsStrategy { get => _drops; }
+    public SoundStrategy SoundStrategy { get => _soundStrategy; }
 
     public abstract void Init();
 

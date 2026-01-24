@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class EnemyAnimator : MonoBehaviour
 {
+    [SerializeField] private Color flashColor = Color.red;
+    [SerializeField] private float flashDuration = 0.2f;
+    private Color originalColor;
+    private SpriteRenderer enemySprite;
+    private int hashedTintColor = Shader.PropertyToID("_TintColor");
+ 
     public void FlashEnemy()
     {
         StopCoroutine(FlashEnemyCoroutine());
@@ -30,10 +36,4 @@ public class EnemyAnimator : MonoBehaviour
             Debug.Log("Must have enemy sprite attached to apply tint.");
         }
     }
-
-    [SerializeField] private Color flashColor = Color.red;
-    [SerializeField] private float flashDuration = 0.2f;
-    private Color originalColor;
-    private SpriteRenderer enemySprite;
-    private int hashedTintColor = Shader.PropertyToID("_TintColor");
 }

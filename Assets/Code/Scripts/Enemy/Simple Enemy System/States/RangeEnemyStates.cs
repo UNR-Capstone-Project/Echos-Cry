@@ -14,9 +14,9 @@ public class RangeSpawnState : EnemyState
 }
 public class RangeIdleState : EnemyState
 {
-    private RangeEnemyConfigFile _config;
+    private RangeConfig _config;
 
-    public RangeIdleState(RangeEnemyConfigFile config, Enemy enemyContext) : base(enemyContext)
+    public RangeIdleState(RangeConfig config, Enemy enemyContext) : base(enemyContext)
     {
         TickManager.Instance.GetTimer(0.2f).Tick += Tick;
         _config = config;
@@ -43,8 +43,8 @@ public class RangeIdleState : EnemyState
 }
 public class RangeRoamState : EnemyState
 {
-    RangeEnemyConfigFile _config;
-    public RangeRoamState(RangeEnemyConfigFile config, Enemy enemyContext) : base(enemyContext) 
+    RangeConfig _config;
+    public RangeRoamState(RangeConfig config, Enemy enemyContext) : base(enemyContext) 
     {
         _config = config;
         TickManager.Instance.GetTimer(0.2f).Tick += Tick;
@@ -78,8 +78,8 @@ public class RangeRoamState : EnemyState
 }
 public class RangeChargeAttackState : EnemyState
 {
-    RangeEnemyConfigFile _config;
-    public RangeChargeAttackState(RangeEnemyConfigFile config, Enemy enemyContext) : base(enemyContext) 
+    RangeConfig _config;
+    public RangeChargeAttackState(RangeConfig config, Enemy enemyContext) : base(enemyContext) 
     { 
         _config = config;
     }
@@ -104,10 +104,10 @@ public class RangeChargeAttackState : EnemyState
 }
 public class RangeAttackState : EnemyState
 {
-    RangeEnemyConfigFile _config;
+    RangeConfig _config;
     int count;
 
-    public RangeAttackState(RangeEnemyConfigFile config, Enemy enemyContext) : base(enemyContext) 
+    public RangeAttackState(RangeConfig config, Enemy enemyContext) : base(enemyContext) 
     { 
         _config = config;
     }
@@ -149,8 +149,8 @@ public class RangeAttackState : EnemyState
 }
 public class RangeStaggerState : EnemyState
 {
-    RangeEnemyConfigFile _config;
-    public RangeStaggerState(RangeEnemyConfigFile config, Enemy enemyContext) : base(enemyContext) 
+    RangeConfig _config;
+    public RangeStaggerState(RangeConfig config, Enemy enemyContext) : base(enemyContext) 
     { 
         _config = config;
     }

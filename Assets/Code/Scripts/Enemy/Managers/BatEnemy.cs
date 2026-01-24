@@ -3,7 +3,7 @@ using UnityEngine;
 public class BatEnemy : Enemy
 {
     [Header("Config File")]
-    [SerializeField] protected BatEnemyConfigFile _enemyConfigFile;
+    [SerializeField] protected BatConfig _enemyConfigFile;
 
     public override void Init()
     {
