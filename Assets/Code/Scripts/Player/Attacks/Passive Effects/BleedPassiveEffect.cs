@@ -6,6 +6,6 @@ public class BleedPassiveEffect : PassiveEffect
     public float bleedDamage = 1f;
     public override void UseEffect()
     {
-        enemyReference.DamageEnemy(bleedDamage, Color.red);
+        enemyManager.EnemyStats.DamageEnemy(bleedDamage, Color.red);
     }
 }

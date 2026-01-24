@@ -4,12 +4,15 @@ using UnityEngine;
 public class MarkedForDeathPassive : PassiveEffect
 {
     private bool _markedForDeath = false;
+    [SerializeField] private GameObject _markedIcon;
     
     public override void UseEffect()
     {
         if (!_markedForDeath)
         {
-            enemyReference.SetDamageMultiplier(1.2f); //20% more damage is dealt on this enemy
+            enemyManager.EnemyStats.SetDamageMultiplier(1.2f); //20% more damage is dealt on this enemy
+            enemyManager.EnemyAnimatorManager.SetMarkedForDeath(true);
+            //enemyReference.Instant
             _markedForDeath = true;
         }
     }
@@ -19,7 +22,8 @@ public class MarkedForDeathPassive : PassiveEffect
         base.RemoveEffect();
         if (_markedForDeath)
         {
-            enemyReference.SetDamageMultiplier(1f); //Reset damage multiplier
+            enemyManager.EnemyStats.SetDamageMultiplier(1f); //Reset damage multiplier
+            enemyManager.EnemyAnimatorManager.SetMarkedForDeath(false);
             _markedForDeath = false;
         }
     }

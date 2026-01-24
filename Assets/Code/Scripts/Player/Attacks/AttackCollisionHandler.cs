@@ -17,7 +17,7 @@ public class AttackCollisionHandler : MonoBehaviour
             {
                 if (effect.requiredState == AttackStateName)
                 {
-                    enemyManager.EnemyStats.UsePassiveEffect(effect);
+                    enemyManager.EnemyStats.UsePassiveEffect(effect, enemyManager);
                 }  
             }
         }

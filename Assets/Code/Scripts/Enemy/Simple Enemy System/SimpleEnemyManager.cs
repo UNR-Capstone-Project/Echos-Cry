@@ -56,6 +56,7 @@ public class SimpleEnemyManager : MonoBehaviour
 
         _enemyRigidbody  = GetComponent<Rigidbody>();
         _enemyAnimator   = _enemySprite.GetComponent<Animator>();
+        _enemyAnimatorManager = GetComponent<EnemyAnimator>();
         _enemySound = GetComponent<EnemySound>();
         _enemyNMA        = GetComponent<NavMeshAgent>();
         _enemyStats      = GetComponent<EnemyStats>();
@@ -93,10 +94,12 @@ public class SimpleEnemyManager : MonoBehaviour
     private SimpleEnemyStateMachine _enemyStateMachine;
     private Rigidbody               _enemyRigidbody;
     private EnemyBaseAttack         _enemyBaseAttack;
+    private EnemyAnimator           _enemyAnimatorManager;
 
     public static SimpleEnemyStateCache EnemyStateCache { get { return _enemyStateCache; } }
 
     public Animator                EnemyAnimator     { get { return _enemyAnimator;     } }
+    public EnemyAnimator           EnemyAnimatorManager { get { return _enemyAnimatorManager; } }
     public EnemySound              EnemySound        { get { return _enemySound; } }
     public NavMeshAgent            EnemyNMA          { get { return _enemyNMA;          } }  
     public EnemyStats              EnemyStats        { get { return _enemyStats;        } }

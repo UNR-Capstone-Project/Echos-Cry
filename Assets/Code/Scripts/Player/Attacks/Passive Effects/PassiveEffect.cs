@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class PassiveEffect : ScriptableObject
 {
-    protected EnemyStats enemyReference;
+    protected SimpleEnemyManager enemyManager;
 
     public bool isEffectOneTime = false;
     public float effectUseInterval = 1f;
@@ -12,12 +12,12 @@ public abstract class PassiveEffect : ScriptableObject
 
     private bool isActive = false;
 
-    public virtual void ApplyEffect(EnemyStats parentEnemyRef)
+    public virtual void ApplyEffect(SimpleEnemyManager enemyRef)
     {
-        enemyReference = parentEnemyRef;
+        enemyManager = enemyRef;
 
         isActive = true;
-        enemyReference.StartCoroutine(EndRoutineEffect());
+        enemyManager.EnemyStats.StartCoroutine(EndRoutineEffect());
 
         if (isEffectOneTime)
         {
@@ -25,14 +25,14 @@ public abstract class PassiveEffect : ScriptableObject
         }
         else
         {
-            enemyReference.StartCoroutine(RoutineEffect());
+            enemyManager.EnemyStats.StartCoroutine(RoutineEffect());
         }
     }
 
     public virtual void RemoveEffect()
     {
         isActive = false;
-        enemyReference.RemovePassiveEffect(this);
+        enemyManager.EnemyStats.RemovePassiveEffect(this);
     }
 
     private IEnumerator EndRoutineEffect()

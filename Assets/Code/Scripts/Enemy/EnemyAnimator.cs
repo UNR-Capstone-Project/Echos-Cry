@@ -20,6 +20,12 @@ public class EnemyAnimator : MonoBehaviour
         enemySprite.material.SetColor(hashedTintColor, originalColor);
     }
 
+    public void SetMarkedForDeath(bool isMarked)
+    {
+        if (markedForDeathObject != null)
+            markedForDeathObject.SetActive(isMarked);
+    }
+
     private void Start()
     {
         hashedTintColor = Shader.PropertyToID("_TintColor");
@@ -59,6 +65,7 @@ public class EnemyAnimator : MonoBehaviour
 
     [SerializeField] private Color flashColor = Color.red;
     [SerializeField] private float flashDuration = 0.2f;
+    [SerializeField] private GameObject markedForDeathObject;
 
     private VisualEffect bloodEffect;
     private Color originalColor;

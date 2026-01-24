@@ -30,14 +30,14 @@ public class EnemyStats : MonoBehaviour
     }
 
     //-----Passive Effects Management-----//
-    public void UsePassiveEffect(PassiveEffect effect)
+    public void UsePassiveEffect(PassiveEffect effect, SimpleEnemyManager enemyRef)
     {
         Type effectType = effect.GetType();
 
         if (!passiveEffectSet.Add(effectType)) return; //Avoid duplicate effects.
 
         PassiveEffect instance = Instantiate(effect);
-        instance.ApplyEffect(this);
+        instance.ApplyEffect(enemyRef);
     }
     public void RemovePassiveEffect(PassiveEffect effect)
     {
