@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ba3313ca66156409d0944fe21625ed, type: 3}
   m_Name: Bleed Effect
   m_EditorClassIdentifier: Assembly-CSharp::BleedPassiveEffect
-  enemyReference: {fileID: 0}
-  isEffectConstant: 0
-  isEffectRecurrent: 1
-  effectInterval: 2
+  isEffectOneTime: 0
+  effectUseInterval: 1
+  effectDuration: 6
+  requiredState: 0
   bleedDamage: 2

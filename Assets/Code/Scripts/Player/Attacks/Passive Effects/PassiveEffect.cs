@@ -4,25 +4,28 @@ using UnityEngine;
 public abstract class PassiveEffect : ScriptableObject
 {
     protected EnemyStats enemyReference;
-    public bool isEffectConstant = false;
-    public bool isEffectRecurrent = false;
+
+    public bool isEffectOneTime = false;
     public float effectUseInterval = 1f;
     public float effectDuration = 5f;
+    public ComboStateMachine.StateName requiredState = ComboStateMachine.StateName.START;
+
     private bool isActive = false;
 
     public virtual void ApplyEffect(EnemyStats parentEnemyRef)
     {
         enemyReference = parentEnemyRef;
 
-        if (isEffectConstant)
+        isActive = true;
+        enemyReference.StartCoroutine(EndRoutineEffect());
+
+        if (isEffectOneTime)
         {
             UseEffect();
         }
         else
         {
-            isActive = true;
             enemyReference.StartCoroutine(RoutineEffect());
-            enemyReference.StartCoroutine(EndRoutineEffect());
         }
     }
 

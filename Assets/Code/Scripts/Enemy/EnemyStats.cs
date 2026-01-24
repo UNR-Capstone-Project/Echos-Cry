@@ -10,14 +10,15 @@ using UnityEngine.AI;
 
 public class EnemyStats : MonoBehaviour
 {
+    public HashSet<Type> passiveEffectSet; //Set used to avoid duplicate effects.
+    private float damageMultiplier = 1f;
+
     public float Health { get; private set; }
     public float MaxHealth = 100f;
 
     public event Action<float, Color> OnEnemyDamagedEvent;
     public event Action OnEnemyHealedEvent;
     public event Action OnEnemyDeathEvent;
-
-    public HashSet<Type> passiveEffectSet; //Set used to avoid duplicate effects.
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class EnemyStats : MonoBehaviour
         Health = MaxHealth;
     }
 
+    //-----Passive Effects Management-----//
     public void UsePassiveEffect(PassiveEffect effect)
     {
         Type effectType = effect.GetType();
@@ -37,13 +39,18 @@ public class EnemyStats : MonoBehaviour
         PassiveEffect instance = Instantiate(effect);
         instance.ApplyEffect(this);
     }
-
     public void RemovePassiveEffect(PassiveEffect effect)
     {
         Type effectType = effect.GetType();
         passiveEffectSet.Remove(effectType);
     }
 
+    public void SetDamageMultiplier(float multiplier)
+    {
+        damageMultiplier = multiplier;
+    }
+
+    //-----Health Management-----//
     public void HealEnemy(float heal)
     {
         Health += Mathf.Abs(heal);
@@ -52,6 +59,7 @@ public class EnemyStats : MonoBehaviour
     }
     public void DamageEnemy(float damage, Color color)
     {
+        damage = damage * damageMultiplier;
         Health -= Mathf.Abs(damage);
         OnEnemyDamagedEvent?.Invoke(damage, color);
     }
