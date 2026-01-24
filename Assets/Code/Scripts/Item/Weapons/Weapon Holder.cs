@@ -19,4 +19,9 @@ public class WeaponHolder : MonoBehaviour
         if (_currentlyEquippedWeapon == null) return;
         _currentlyEquippedWeapon.SecondaryAction();
     }
+
+    public bool IsActionEnded()
+    {
+        return _currentlyEquippedWeapon.IsAttackEnded;
+    }
 }

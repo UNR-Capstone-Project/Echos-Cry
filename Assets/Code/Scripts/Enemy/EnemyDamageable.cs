@@ -6,6 +6,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
     [SerializeField] private EnemyStateCache.EnemyStates _staggerState;
     public virtual void Execute(float amount)
     {
+        _enemy.Collider.enabled = false;
         _enemy.Stats.Damage(amount, Color.red);
         _enemy.SoundStrategy.Execute(_enemy.SoundConfig.HitSFX, _enemy.transform);
         DamageLabelManager.Instance.SpawnPopup(amount, _enemy.transform.position, Color.white);

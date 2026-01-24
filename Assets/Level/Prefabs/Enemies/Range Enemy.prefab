@@ -136,10 +136,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2434889112220353080}
-  - component: {fileID: 6979632927665481302}
+  - component: {fileID: 4360009675706835626}
   - component: {fileID: 854592342237272632}
   - component: {fileID: 393378646141688295}
-  - component: {fileID: 4674027367824827364}
   - component: {fileID: 4267862705877107826}
   - component: {fileID: 1592182489320676592}
   - component: {fileID: 8838160874129828706}
@@ -168,7 +167,7 @@ Transform:
   - {fileID: 4401807804551835707}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6979632927665481302
+--- !u!114 &4360009675706835626
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,21 +176,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 6900823288402649937}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9ccd0351f9342847844f14a068f4609, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a13bb9d731c3ce45a893640fcd98ebb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RangeEnemy
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
   _stats: {fileID: 854592342237272632}
   _navMeshAgent: {fileID: 1592182489320676592}
   _rigidbody: {fileID: 6827338249854996756}
   _animator: {fileID: 1879680284868728812}
   _soundConfig: {fileID: 11400000, guid: 61a08e0075f1f394ba85aefac97da91e, type: 2}
+  _collider: {fileID: 8838160874129828706}
   _attackStrats:
   - {fileID: 11400000, guid: 3ef0d87b33e7b3f40ac4037d7fa15a53, type: 2}
   _targetStrats: []
   _movementStrats: []
   _drops: {fileID: 11400000, guid: 91505f07313de1e48a168c4fe728a893, type: 2}
   _soundStrategy: {fileID: 11400000, guid: 5c5a55ebf2f337c4a80a8fcd0ffba53d, type: 2}
-  _enemyConfigFile: {fileID: 11400000, guid: 587f76de4e0f22e4c92b175d29b45e38, type: 2}
+  _enemyCacheStrategy: {fileID: 11400000, guid: 4907069f9458e6f4abf2ff64f9c7bfa1, type: 2}
 --- !u!114 &854592342237272632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,22 +217,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17090424fb90a274eb5b2d0a745de949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDamageable
-  _enemy: {fileID: 6979632927665481302}
+  _enemy: {fileID: 4360009675706835626}
   _staggerState: 9
---- !u!114 &4674027367824827364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6900823288402649937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf8fa5590ef79ca42b048f1fd64d37ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemySound
-  hitSFX: {fileID: 11400000, guid: c8c975e393c92cc4f8f6aa88905bcc9e, type: 2}
-  attackSFX: {fileID: 11400000, guid: 4e5925ae9033bec43a52257a481aa4e7, type: 2}
 --- !u!114 &4267862705877107826
 MonoBehaviour:
   m_ObjectHideFlags: 0

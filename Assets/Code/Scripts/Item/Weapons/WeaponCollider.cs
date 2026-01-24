@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class WeaponCollider : MonoBehaviour
 {
+    public float AttackDamage { get; private set; }
+    //public Color AttackColor { get; private set; }
     private void OnTriggerEnter(Collider other)
     {
         if(other.TryGetComponent<IDamageable>(out IDamageable damagable))
@@ -20,6 +22,4 @@ public class WeaponCollider : MonoBehaviour
         //AttackColor = attackColor;
     }
 
-    public float AttackDamage { get; private set; }
-    //public Color AttackColor { get; private set; }
 }

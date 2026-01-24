@@ -1,27 +1,11 @@
-
-using System.Collections;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Echo's Cry/State Machine/Enemy Machine")]
-public class EnemyStateMachine : AbstractStateMachine<EnemyState>
+[CreateAssetMenu(menuName = "Echo's Cry/Enemy/Cache Strategy/Bat")]
+public class BatCacheStrategy : EnemyCacheStrategy
 {
+    [SerializeField] private BatData _data;
 
-}
-
-public interface IEnemyCacheStrategy
-{
-    public void Execute(EnemyStateCache stateCache, Enemy enemyContext);
-}
-
-public class BatCacheStrategy : IEnemyCacheStrategy
-{
-    private readonly BatConfig _config;
-    public BatCacheStrategy(BatConfig config)
-    {
-        _config = config;
-    }
-
-    public void Execute(EnemyStateCache stateCache, Enemy enemyContext)
+    public override void Execute(EnemyStateCache stateCache, Enemy enemyContext)
     {
         stateCache.AddState(
             EnemyStateCache.EnemyStates.BatSpawn,
@@ -29,11 +13,11 @@ public class BatCacheStrategy : IEnemyCacheStrategy
         );
         stateCache.AddState(
             EnemyStateCache.EnemyStates.BatStagger,
-            new BatStaggerState(_config, enemyContext)
+            new BatStaggerState(_data, enemyContext)
         );
         stateCache.AddState(
             EnemyStateCache.EnemyStates.BatAttack,
-            new BatAttackState(_config, enemyContext)
+            new BatAttackState(_data, enemyContext)
         );
         stateCache.AddState(
             EnemyStateCache.EnemyStates.BatChase,
@@ -45,11 +29,12 @@ public class BatCacheStrategy : IEnemyCacheStrategy
         );
         stateCache.AddState(
             EnemyStateCache.EnemyStates.BatIdle,
-            new BatIdleState(_config, enemyContext)
+            new BatIdleState(_data, enemyContext)
         );
         stateCache.AddState(
             EnemyStateCache.EnemyStates.BatCharge,
-            new BatChargeState(_config, enemyContext)
+            new BatChargeState(_data, enemyContext)
         );
+        stateCache.StartState = stateCache.RequestState(EnemyStateCache.EnemyStates.BatSpawn);
     }
 }

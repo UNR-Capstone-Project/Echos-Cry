@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -15,6 +16,9 @@ public class Player : MonoBehaviour
 
     private PlayerStateMachine _playerStateMachine;
     private PlayerStateCache _playerStateCache;
+
+    public static event Action AttackEndedEvent;
+    public void InvokeAttackEnded() => AttackEndedEvent?.Invoke();
 
     public PlayerStats Stats { get => _stats; }
     public PlayerComboMeter ComboMeter { get => _comboMeter; }

@@ -14,9 +14,9 @@ public class RangeSpawnState : EnemyState
 }
 public class RangeIdleState : EnemyState
 {
-    private RangeConfig _config;
+    private RangeData _config;
 
-    public RangeIdleState(RangeConfig config, Enemy enemyContext) : base(enemyContext)
+    public RangeIdleState(RangeData config, Enemy enemyContext) : base(enemyContext)
     {
         TickManager.Instance.GetTimer(0.2f).Tick += Tick;
         _config = config;
@@ -24,10 +24,6 @@ public class RangeIdleState : EnemyState
     ~RangeIdleState()
     {
         TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
-    }
-    protected override void OnEnter()
-    {
-        Debug.Log("Enter Idle"); 
     }
     public override void CheckSwitch()
     {
@@ -43,8 +39,8 @@ public class RangeIdleState : EnemyState
 }
 public class RangeRoamState : EnemyState
 {
-    RangeConfig _config;
-    public RangeRoamState(RangeConfig config, Enemy enemyContext) : base(enemyContext) 
+    RangeData _config;
+    public RangeRoamState(RangeData config, Enemy enemyContext) : base(enemyContext) 
     {
         _config = config;
         TickManager.Instance.GetTimer(0.2f).Tick += Tick;
@@ -59,7 +55,7 @@ public class RangeRoamState : EnemyState
     }
     protected override void OnEnter()
     {
-        Debug.Log("Enter Roam");
+        //Debug.Log("Enter Roam");
         Vector3 point = Random.onUnitSphere * _config.DistanceFromPlayer;
         point.y = 0;
         Vector3 destination = PlayerRef.Transform.position + point;
@@ -78,8 +74,8 @@ public class RangeRoamState : EnemyState
 }
 public class RangeChargeAttackState : EnemyState
 {
-    RangeConfig _config;
-    public RangeChargeAttackState(RangeConfig config, Enemy enemyContext) : base(enemyContext) 
+    RangeData _config;
+    public RangeChargeAttackState(RangeData config, Enemy enemyContext) : base(enemyContext) 
     { 
         _config = config;
     }
@@ -89,7 +85,7 @@ public class RangeChargeAttackState : EnemyState
     }
     protected override void OnEnter()
     {
-        Debug.Log("Enter Charge");
+        //Debug.Log("Enter Charge");
         _enemyContext.StartCoroutine(ChargeDurationCoroutine());
     }
     protected override void OnExit()
@@ -104,10 +100,10 @@ public class RangeChargeAttackState : EnemyState
 }
 public class RangeAttackState : EnemyState
 {
-    RangeConfig _config;
+    RangeData _config;
     int count;
 
-    public RangeAttackState(RangeConfig config, Enemy enemyContext) : base(enemyContext) 
+    public RangeAttackState(RangeData config, Enemy enemyContext) : base(enemyContext) 
     { 
         _config = config;
     }
@@ -117,7 +113,7 @@ public class RangeAttackState : EnemyState
     }
     protected override void OnEnter()
     {
-        Debug.Log("Enter Attack");
+        //Debug.Log("Enter Attack");
         count = 0;
         _enemyContext.AttackStrategies[0].Execute(10f, GetDirection(), _enemyContext.transform);
         _enemyContext.StartCoroutine(BetweenAttackPauseCoroutine());
@@ -149,8 +145,8 @@ public class RangeAttackState : EnemyState
 }
 public class RangeStaggerState : EnemyState
 {
-    RangeConfig _config;
-    public RangeStaggerState(RangeConfig config, Enemy enemyContext) : base(enemyContext) 
+    RangeData _config;
+    public RangeStaggerState(RangeData config, Enemy enemyContext) : base(enemyContext) 
     { 
         _config = config;
     }
@@ -160,7 +156,7 @@ public class RangeStaggerState : EnemyState
     }
     protected override void OnEnter()
     {
-        Debug.Log("Enter Stagger");
+        //Debug.Log("Enter Stagger");
         if (_enemyContext.NavMeshAgent.hasPath) _enemyContext.NavMeshAgent.ResetPath();
         _enemyContext.Rigidbody.isKinematic = false;
         Vector3 direction = (PlayerRef.Transform.position - _enemyContext.transform.position).normalized;

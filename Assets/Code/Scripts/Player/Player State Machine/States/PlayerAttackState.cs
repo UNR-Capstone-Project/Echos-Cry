@@ -20,13 +20,16 @@ public class PlayerAttackState : PlayerActionState
 
     public override void Exit()
     {
-        
+        _playerStateMachine.IsAttacking = false;
     }
 
     public override void Update()
     {
         //check if current attack is done
-        if (Weapon.IsAttackEnded) 
+        if (_playerContext.WeaponHolder.IsActionEnded())
+        {
             _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Idle));
+            _playerContext.InvokeAttackEnded();
+        }
     }
 }

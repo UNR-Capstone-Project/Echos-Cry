@@ -137,7 +137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2434889112220353080}
   - component: {fileID: 1592182489320676592}
-  - component: {fileID: 1478910265220508113}
+  - component: {fileID: 6868070189410563050}
   - component: {fileID: 854592342237272632}
   - component: {fileID: 7749909353955283923}
   - component: {fileID: 8838160874129828706}
@@ -187,7 +187,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1478910265220508113
+--- !u!114 &6868070189410563050
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,21 +196,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 6900823288402649937}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6208d6223ee49524a8f5dcffd256b753, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a13bb9d731c3ce45a893640fcd98ebb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BatEnemy
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
   _stats: {fileID: 854592342237272632}
   _navMeshAgent: {fileID: 1592182489320676592}
   _rigidbody: {fileID: 6827338249854996756}
   _animator: {fileID: 1879680284868728812}
   _soundConfig: {fileID: 11400000, guid: 61a08e0075f1f394ba85aefac97da91e, type: 2}
+  _collider: {fileID: 8838160874129828706}
   _attackStrats:
   - {fileID: 11400000, guid: c11f0062706e890468589a16526ea3f2, type: 2}
   _targetStrats: []
   _movementStrats: []
   _drops: {fileID: 11400000, guid: 91505f07313de1e48a168c4fe728a893, type: 2}
   _soundStrategy: {fileID: 11400000, guid: 5c5a55ebf2f337c4a80a8fcd0ffba53d, type: 2}
-  _enemyConfigFile: {fileID: 11400000, guid: 35ff5d8e195f24d4198628c4fbccfa97, type: 2}
+  _enemyCacheStrategy: {fileID: 11400000, guid: c87f18d3f1a7e8e4da228329182fc1dd, type: 2}
 --- !u!114 &854592342237272632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17090424fb90a274eb5b2d0a745de949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDamageable
-  _enemy: {fileID: 1478910265220508113}
+  _enemy: {fileID: 6868070189410563050}
   _staggerState: 2
 --- !u!65 &8838160874129828706
 BoxCollider:

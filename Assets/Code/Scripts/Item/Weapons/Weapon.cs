@@ -10,7 +10,7 @@ public abstract class Weapon : MonoBehaviour
     protected RuntimeAnimatorController _defaultAnimatorController;
     protected AttackData _currentAttackData;
     
-    public static bool IsAttackEnded { get; private set; }
+    public bool IsAttackEnded { get; private set; }
 
     protected virtual void OnAwake() { } 
     protected virtual void OnPrimaryAction() { }

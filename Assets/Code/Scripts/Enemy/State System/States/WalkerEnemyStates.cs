@@ -27,9 +27,9 @@ public class WalkerSpawnState : EnemyState
 
 public class WalkerIdleState : EnemyState
 {
-    private WalkerConfig _config;
+    private WalkerData _config;
 
-    public WalkerIdleState(WalkerConfig config, Enemy enemyContext) : base(enemyContext)
+    public WalkerIdleState(WalkerData config, Enemy enemyContext) : base(enemyContext)
     {
         _config = config;
         TickManager.Instance.GetTimer(0.2f).Tick += Tick;
@@ -112,9 +112,9 @@ public class WalkerChaseState : EnemyState
 
 public class WalkerChargeAttackState : EnemyState
 {
-    WalkerConfig _config;
+    WalkerData _config;
 
-    public WalkerChargeAttackState(WalkerConfig config, Enemy enemyContext) : base(enemyContext)
+    public WalkerChargeAttackState(WalkerData config, Enemy enemyContext) : base(enemyContext)
     {
         _config = config;
     }
@@ -153,10 +153,10 @@ public class WalkerChargeAttackState : EnemyState
 
 public class WalkerAttackState : EnemyState
 {
-    WalkerConfig _config;
+    WalkerData _config;
     bool isAttacking;
     Vector3 attackDirection;
-    public WalkerAttackState(WalkerConfig config, Enemy enemyContext) : base(enemyContext) 
+    public WalkerAttackState(WalkerData config, Enemy enemyContext) : base(enemyContext) 
     { 
         _config = config;
     }
@@ -207,9 +207,9 @@ public class WalkerAttackState : EnemyState
 }
 public class WalkerStaggerState : EnemyState
 {
-    WalkerConfig _config;
+    WalkerData _config;
 
-    public WalkerStaggerState(WalkerConfig config, Enemy enemyContext) : base(enemyContext)
+    public WalkerStaggerState(WalkerData config, Enemy enemyContext) : base(enemyContext)
     {
         _config = config;
     }

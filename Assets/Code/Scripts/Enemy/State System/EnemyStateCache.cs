@@ -12,7 +12,10 @@ public class EnemyStateCache
 
         WalkerSpawn, WalkerStagger, WalkerDeath, WalkerCharge, WalkerAttack, WalkerIdle, WalkerChase
     }
+
     private readonly Dictionary<EnemyStates, EnemyState> _stateCache;
+    private EnemyState _startStart;
+    public EnemyState StartState { get => _startStart; set => _startStart = value; }
 
     public EnemyStateCache()
     {
@@ -28,5 +31,4 @@ public class EnemyStateCache
     {
         _stateCache.Add(statesEnum, state);
     }
-
 }
