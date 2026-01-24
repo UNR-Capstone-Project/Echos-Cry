@@ -29,8 +29,6 @@ public class SceneTriggerManager : MonoBehaviour
 
     public void StartTransition()
     {
-        MenuManager.Instance.ScreenFadeIn();
-        HUDMessage.Instance.UpdateMessage("Loading...", 1f);
         StartCoroutine(HandleSceneTransition());
     }
     IEnumerator HandleSceneTransition()
@@ -58,6 +56,9 @@ public class SceneTriggerManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        MenuManager.Instance.ScreenFadeIn();
+        HUDMessage.Instance.UpdateMessage("Loading...", 1f);
+
         soundEffectManager.Instance.Builder
             .setSound(portalSFX)
             .setSoundPosition(this.transform.position)
