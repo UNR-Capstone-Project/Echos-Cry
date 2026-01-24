@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Dash()
     {
-        _playerRigidbody.AddForce(_playerRigidbody.linearVelocity.normalized * _playerMovementConfig.DashSpeed, ForceMode.Impulse);
+        _playerRigidbody.AddForce(_playerRigidbody.linearVelocity.normalized * _playerMovementConfig.DashSpeed, ForceMode.VelocityChange);
     }
 
     void Start()

@@ -6,6 +6,7 @@ public class RangedAttackStrategy : AttackStrategy
 {
     [SerializeField] private GameObject _projectilePrefab;
     [SerializeField] private soundEffect _attackSound;
+
     public override bool Execute(float damage, Vector3 direction, Transform origin)
     {
         RBProjectilePool pool = RBProjectileManager.Instance.RequestPool(_projectilePrefab);

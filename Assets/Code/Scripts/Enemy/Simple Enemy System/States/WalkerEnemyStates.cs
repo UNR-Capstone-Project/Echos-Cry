@@ -27,7 +27,7 @@ public class WalkerSpawnState : EnemyState
 
 public class WalkerIdleState : EnemyState
 {
-    WalkerConfig _config;
+    private WalkerConfig _config;
 
     public WalkerIdleState(WalkerConfig config, Enemy enemyContext) : base(enemyContext)
     {
