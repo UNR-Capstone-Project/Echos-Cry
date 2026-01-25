@@ -183,7 +183,7 @@ MonoBehaviour:
   _navMeshAgent: {fileID: 1592182489320676592}
   _rigidbody: {fileID: 6827338249854996756}
   _animator: {fileID: 1879680284868728812}
-  _soundConfig: {fileID: 11400000, guid: 61a08e0075f1f394ba85aefac97da91e, type: 2}
+  _soundConfig: {fileID: 11400000, guid: 13653aed55342c348ab4d4d298f40b62, type: 2}
   _collider: {fileID: 8838160874129828706}
   _visualEffects: {fileID: 7566651568526738815}
   _attackStrats:

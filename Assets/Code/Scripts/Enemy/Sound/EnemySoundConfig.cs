@@ -1,7 +1,7 @@
 using AudioSystem;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Echo's Cry/Sound/Enemy/Sound Config")]
+[CreateAssetMenu(menuName = "Echo's Cry/Enemy/Sound/Sound Config")]
 public class EnemySoundConfig : ScriptableObject
 {
     public soundEffect HitSFX;
