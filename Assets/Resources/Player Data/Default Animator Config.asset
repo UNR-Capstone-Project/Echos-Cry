@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Default Animator Config
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimatorConfig
   _onPlayerDamagedTintColor: {r: 0, g: 0, b: 0, a: 0}
-  _tintFlashDuration: 1
+  _tintFlashDuration: 0.2

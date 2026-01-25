@@ -232,25 +232,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1520755955600332291, guid: 1fcae267f2b29f64091f684c98bfbfc1, type: 3}
-      propertyPath: _sfx
-      value: 
-      objectReference: {fileID: 11400000, guid: 5c5a55ebf2f337c4a80a8fcd0ffba53d, type: 2}
-    - target: {fileID: 1520755955600332291, guid: 1fcae267f2b29f64091f684c98bfbfc1, type: 3}
-      propertyPath: _sfxConfig
-      value: 
-      objectReference: {fileID: 11400000, guid: adc0363584558ca40b2ee6043daa5f4c, type: 2}
     - target: {fileID: 2428720641269041060, guid: 1fcae267f2b29f64091f684c98bfbfc1, type: 3}
       propertyPath: m_Name
       value: Player Prefab
       objectReference: {fileID: 0}
-    - target: {fileID: 5749001807359641443, guid: 1fcae267f2b29f64091f684c98bfbfc1, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 2040970379}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 2939557049066656866, guid: 1fcae267f2b29f64091f684c98bfbfc1, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fcae267f2b29f64091f684c98bfbfc1, type: 3}
@@ -3253,17 +3240,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 415338203038042998, guid: 1fcae267f2b29f64091f684c98bfbfc1, type: 3}
   m_PrefabInstance: {fileID: 28211847}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2040970379 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1520755955600332291, guid: 1fcae267f2b29f64091f684c98bfbfc1, type: 3}
-  m_PrefabInstance: {fileID: 28211847}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 201c69cd24c0a124c8f28d6d32ce7023, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player
 --- !u!1001 &2058192031
 PrefabInstance:
   m_ObjectHideFlags: 0
