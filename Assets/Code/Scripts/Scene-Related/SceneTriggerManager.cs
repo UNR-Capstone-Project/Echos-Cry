@@ -46,7 +46,7 @@ public class SceneTriggerManager : MonoBehaviour
 
         if (_isLevelExit)
         { //If it's a level exit, give the player back full health.
-            PlayerStats.Instance.Respawn();
+            //PlayerStats.Instance.Respawn();
         }
         
         sceneTransitioning = false;

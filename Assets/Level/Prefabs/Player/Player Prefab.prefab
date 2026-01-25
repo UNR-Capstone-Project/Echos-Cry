@@ -323,6 +323,7 @@ GameObject:
   - component: {fileID: 5749001807359641443}
   - component: {fileID: 2019051602396369572}
   - component: {fileID: 6060951237239432870}
+  - component: {fileID: 4484604223191530329}
   m_Layer: 10
   m_Name: Player Prefab
   m_TagString: Player
@@ -451,6 +452,23 @@ CapsuleCollider:
   m_Height: 1.4
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4484604223191530329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2428720641269041060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 436c7f10bdb5b7a458438c1c7188527e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Teleport
+  translator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
+  ground:
+    serializedVersion: 2
+    m_Bits: 64
+  playerTransform: {fileID: 415338203038042998}
 --- !u!1 &2939557049066656866
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,7 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c64d65797eacb64aaa52035713efda5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSound
-  _playerSoundConfig: {fileID: 11400000, guid: 691276c4a36beec4db035cacfdae9741, type: 2}
+  _playerSoundConfig: {fileID: 0}
 --- !u!1 &4323622196322604754
 GameObject:
   m_ObjectHideFlags: 0
