@@ -283,6 +283,7 @@ MonoBehaviour:
   dashSpeed: 28
   dashDuration: 0.18
   dashCooldown: 1
+  dashToBeat: 0
   playerSpeed: 4.5
 --- !u!114 &8506666208944667827
 MonoBehaviour:
@@ -999,7 +1000,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6991853144152505543, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

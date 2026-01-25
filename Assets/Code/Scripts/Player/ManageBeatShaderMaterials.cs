@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerOutline : MonoBehaviour
+public class ManageBeatShaderMaterials : MonoBehaviour
 {
     [SerializeField] private Material outlineMaterial;
 
