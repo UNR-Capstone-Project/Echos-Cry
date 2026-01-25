@@ -53,9 +53,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void HandleDash()
     {
-        if (!canDash 
-            || TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.MISS 
-            || playerLocomotion == Vector2.zero) return;
+        if (!canDash || playerLocomotion == Vector2.zero) return;
+        if (dashToBeat)
+        {
+            if (TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.MISS) return;
+        }
 
         canDash = false;
 
@@ -139,6 +141,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashDuration = 3f;
     [Header("")]
     [SerializeField] private float dashCooldown = 1f;
+    [SerializeField] private bool dashToBeat = true;
 
     [SerializeField] private float playerSpeed = 10f;
     private float stoppingAcceleration;
