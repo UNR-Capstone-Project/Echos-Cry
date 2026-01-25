@@ -32,7 +32,7 @@ public class WalkerCacheStrategy : EnemyCacheStrategy
             new WalkerIdleState(_data, enemyContext)
         );
         stateCache.AddState(
-            EnemyStateCache.EnemyStates.WalkerCharge,
+            EnemyStateCache.EnemyStates.WalkerJump,
             new WalkerJumpState(_data, enemyContext)
         );
         stateCache.StartState = stateCache.RequestState(EnemyStateCache.EnemyStates.WalkerSpawn);

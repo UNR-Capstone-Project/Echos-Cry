@@ -11,6 +11,10 @@ public class BatData : ScriptableObject
     [SerializeField] private float _attackCooldown;
     [SerializeField] private float _staggerDuration;
     [SerializeField] private float _knockbackForce;
+
+    public readonly int FlyHashCode = Animator.StringToHash("Fly");
+    public readonly int AttackHashCode = Animator.StringToHash("Attack");
+
     public float DistanceCheck { get { return _distanceCheck; } }
     public float AttackChargeTime { get { return _attackChargeTime; } }
     public float AttackDashForce { get { return _attackDashForce; } }

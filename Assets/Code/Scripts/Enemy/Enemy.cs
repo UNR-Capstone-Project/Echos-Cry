@@ -11,10 +11,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private EnemyStats _stats;
     [SerializeField] private NavMeshAgent _navMeshAgent;
     [SerializeField] private Rigidbody _rigidbody;
-    [SerializeField] private Animator _animator;
+    [SerializeField] private NPCAnimator _npcAnimator;
     [SerializeField] private EnemySoundConfig _soundConfig;
     [SerializeField] private Collider _collider;
-    [SerializeField] private VisualEffect _visualEffects;
 
     [Header("Strategies")]
     [SerializeField] private AttackStrategy[] _attackStrats;
@@ -30,7 +29,7 @@ public class Enemy : MonoBehaviour
     public EnemyStats Stats { get => _stats; }
     public NavMeshAgent NavMeshAgent { get => _navMeshAgent; }
     public Rigidbody Rigidbody { get => _rigidbody; }
-    public Animator Animator { get => _animator; }
+    public NPCAnimator NPCAnimator { get => _npcAnimator; }
     public EnemySoundConfig SoundConfig { get => _soundConfig; }
     public Collider Collider { get => _collider; }
 
@@ -39,7 +38,6 @@ public class Enemy : MonoBehaviour
     public MovementStrategy[] MovementStrategy { get => _movementStrats; }
     public ItemDropStrategy DropsStrategy { get => _drops; }
     public SoundStrategy SoundStrategy { get => _soundStrategy; }
-    public VisualEffect VisualEffects { get => _visualEffects; }
 
     protected virtual void Awake()
     {   

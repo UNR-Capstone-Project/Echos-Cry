@@ -138,8 +138,8 @@ GameObject:
   - component: {fileID: 2434889112220353080}
   - component: {fileID: 4360009675706835626}
   - component: {fileID: 854592342237272632}
-  - component: {fileID: 393378646141688295}
   - component: {fileID: 4267862705877107826}
+  - component: {fileID: 393378646141688295}
   - component: {fileID: 1592182489320676592}
   - component: {fileID: 8838160874129828706}
   - component: {fileID: 6827338249854996756}
@@ -182,10 +182,9 @@ MonoBehaviour:
   _stats: {fileID: 854592342237272632}
   _navMeshAgent: {fileID: 1592182489320676592}
   _rigidbody: {fileID: 6827338249854996756}
-  _animator: {fileID: 1879680284868728812}
+  _npcAnimator: {fileID: 4267862705877107826}
   _soundConfig: {fileID: 11400000, guid: 13653aed55342c348ab4d4d298f40b62, type: 2}
   _collider: {fileID: 8838160874129828706}
-  _visualEffects: {fileID: 7566651568526738815}
   _attackStrats:
   - {fileID: 11400000, guid: 3ef0d87b33e7b3f40ac4037d7fa15a53, type: 2}
   _targetStrats: []
@@ -206,20 +205,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   _statsConfig: {fileID: 11400000, guid: 756e2aac9ef16dd4f8b3d83060c174db, type: 2}
---- !u!114 &393378646141688295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6900823288402649937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17090424fb90a274eb5b2d0a745de949, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyDamageable
-  _enemy: {fileID: 4360009675706835626}
-  _staggerState: 9
 --- !u!114 &4267862705877107826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,8 +217,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d0eb3ab663eafd4f853f4be8ca4c96d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimator
-  flashColor: {r: 1, g: 0, b: 0, a: 1}
-  flashDuration: 0.2
+  _npcSprite: {fileID: 5765285837838741193}
+  _animator: {fileID: 1879680284868728812}
+  _visualEffect: {fileID: 7566651568526738815}
+--- !u!114 &393378646141688295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900823288402649937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17090424fb90a274eb5b2d0a745de949, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDamageable
+  _npc: {fileID: 4360009675706835626}
+  _staggerState: 9
 --- !u!195 &1592182489320676592
 NavMeshAgent:
   m_ObjectHideFlags: 0

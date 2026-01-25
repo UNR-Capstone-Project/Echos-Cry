@@ -10,6 +10,8 @@ public class RangeData : ScriptableObject
     [SerializeField] private float _knockbackForce;
     [SerializeField] private int _projectileCount;
     [SerializeField] private float _distanceFromPlayer;
+
+    public readonly int WalkHashCode = Animator.StringToHash("Walk");
     public float DistanceCheck { get { return _distanceCheck; } }
     public float AttackChargeTime { get { return _attackChargeTime; } }
     public float AttackCooldown { get => _attackCooldown; }

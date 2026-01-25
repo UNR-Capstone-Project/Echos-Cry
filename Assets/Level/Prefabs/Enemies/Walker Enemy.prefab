@@ -204,10 +204,9 @@ MonoBehaviour:
   _stats: {fileID: 854592342237272632}
   _navMeshAgent: {fileID: 1592182489320676592}
   _rigidbody: {fileID: 6827338249854996756}
-  _animator: {fileID: 1879680284868728812}
+  _npcAnimator: {fileID: 4267862705877107826}
   _soundConfig: {fileID: 11400000, guid: 61a08e0075f1f394ba85aefac97da91e, type: 2}
   _collider: {fileID: 8838160874129828706}
-  _visualEffects: {fileID: 7852701531712381561}
   _attackStrats:
   - {fileID: 11400000, guid: 922f6460c5d88124687907449599c73e, type: 2}
   _targetStrats: []
@@ -240,8 +239,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d0eb3ab663eafd4f853f4be8ca4c96d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimator
-  flashColor: {r: 1, g: 0, b: 0, a: 1}
-  flashDuration: 0.2
+  _npcSprite: {fileID: 5765285837838741193}
+  _animator: {fileID: 1879680284868728812}
+  _visualEffect: {fileID: 7852701531712381561}
 --- !u!114 &2813710605354840663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17090424fb90a274eb5b2d0a745de949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDamageable
-  _enemy: {fileID: 3180805991097293313}
+  _npc: {fileID: 3180805991097293313}
   _staggerState: 16
 --- !u!65 &8838160874129828706
 BoxCollider:

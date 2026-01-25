@@ -139,7 +139,6 @@ GameObject:
   - component: {fileID: 1592182489320676592}
   - component: {fileID: 8010943512667726129}
   - component: {fileID: 854592342237272632}
-  - component: {fileID: 4674027367824827364}
   - component: {fileID: 4267862705877107826}
   - component: {fileID: 530485584549624666}
   - component: {fileID: 8838160874129828706}
@@ -205,10 +204,9 @@ MonoBehaviour:
   _stats: {fileID: 854592342237272632}
   _navMeshAgent: {fileID: 1592182489320676592}
   _rigidbody: {fileID: 6827338249854996756}
-  _animator: {fileID: 1879680284868728812}
+  _npcAnimator: {fileID: 4267862705877107826}
   _soundConfig: {fileID: 11400000, guid: 61a08e0075f1f394ba85aefac97da91e, type: 2}
   _collider: {fileID: 8838160874129828706}
-  _visualEffects: {fileID: 6135991116511513266}
   _attackStrats:
   - {fileID: 11400000, guid: c11f0062706e890468589a16526ea3f2, type: 2}
   _targetStrats: []
@@ -228,21 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0aaddc4d28899643bd0359fcca6bb6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
-  _statsConfig: {fileID: 0}
---- !u!114 &4674027367824827364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6900823288402649937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf8fa5590ef79ca42b048f1fd64d37ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemySound
-  hitSFX: {fileID: 11400000, guid: c8c975e393c92cc4f8f6aa88905bcc9e, type: 2}
-  attackSFX: {fileID: 0}
+  _statsConfig: {fileID: 11400000, guid: 756e2aac9ef16dd4f8b3d83060c174db, type: 2}
 --- !u!114 &4267862705877107826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,8 +239,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d0eb3ab663eafd4f853f4be8ca4c96d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimator
-  flashColor: {r: 1, g: 0, b: 0, a: 1}
-  flashDuration: 0.2
+  _npcSprite: {fileID: 5765285837838741193}
+  _animator: {fileID: 1879680284868728812}
+  _visualEffect: {fileID: 6135991116511513266}
 --- !u!114 &530485584549624666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,7 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17090424fb90a274eb5b2d0a745de949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDamageable
-  _enemy: {fileID: 8010943512667726129}
+  _npc: {fileID: 8010943512667726129}
   _staggerState: 2
 --- !u!65 &8838160874129828706
 BoxCollider:

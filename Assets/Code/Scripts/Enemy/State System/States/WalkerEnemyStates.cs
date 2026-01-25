@@ -41,7 +41,7 @@ public class WalkerIdleState : EnemyState
 
     protected override void OnEnter()
     {
-        _enemyContext.Animator.SetBool("isWalking", false);
+        _enemyContext.NPCAnimator.PlayAnimation(_config.IdleHashCode);
     }
     public override void CheckSwitch()
     {
@@ -79,7 +79,7 @@ public class WalkerChaseState : EnemyState
     protected override void OnEnter()
     {
         _enemyContext.NavMeshAgent.stoppingDistance = _data.StoppingDistance;
-        _enemyContext.Animator.SetBool("isWalking", true);
+        _enemyContext.NPCAnimator.PlayAnimation(_data.WalkHashCode);
         SetEnemyTarget();
     }
     protected override void OnExit()
@@ -103,7 +103,7 @@ public class WalkerChaseState : EnemyState
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) 
-                _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerCharge));
+                _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerJump));
         }
     }
     private void SetEnemyTarget()
@@ -124,13 +124,11 @@ public class WalkerJumpState : EnemyState
 
     protected override void OnEnter()
     {
-        _enemyContext.Animator.SetBool("isWalking", false);
-        _enemyContext.StartCoroutine(ChargeAttackCoroutine());
         Vector3 attackDirection = (PlayerRef.Transform.position - _enemyContext.transform.position).normalized;
         attackDirection.y = 0;
         _enemyContext.Rigidbody.isKinematic = false;
         _enemyContext.Rigidbody.AddForce(_config.JumpDashForce * attackDirection, ForceMode.Impulse);
-        _enemyContext.Animator.Play("Attack");
+        _enemyContext.NPCAnimator.PlayAnimation(_config.AttackHashCode);
         _enemyContext.SoundStrategy.Execute(_enemyContext.SoundConfig.AttackSFX, _enemyContext.transform, 0);
         _enemyContext.StartCoroutine(JumpDuration());
     }
@@ -154,13 +152,6 @@ public class WalkerJumpState : EnemyState
             _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerAttack));
     }
 
-    IEnumerator ChargeAttackCoroutine()
-    {
-        yield return new WaitForSeconds(_config.AttackChargeTime);
-        if (TempoConductor.Instance.IsOnBeat()) 
-            _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerAttack));
-        else _enemyContext.StartCoroutine(WaitUntilBeat());
-    }
     IEnumerator WaitUntilBeat()
     {
         yield return new WaitForEndOfFrame();
@@ -222,7 +213,8 @@ public class WalkerStaggerState : EnemyState
     protected override void OnEnter()
     {
         //Debug.Log("Enter Stagger State");
-        _enemyContext.Animator.SetBool("isWalking", false);
+        _enemyContext.NPCAnimator.PlayAnimation(_config.IdleHashCode);
+        _enemyContext.NPCAnimator.PlayVisualEffect();
         _enemyContext.Rigidbody.isKinematic = false;
         Vector3 direction = (PlayerRef.Transform.position - _enemyContext.transform.position).normalized;
         _enemyContext.Rigidbody.AddForce(-(_config.KnockbackForce * direction), ForceMode.Impulse);

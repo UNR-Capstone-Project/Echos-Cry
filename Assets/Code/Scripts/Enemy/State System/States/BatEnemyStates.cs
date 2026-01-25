@@ -61,6 +61,10 @@ public class BatIdleState : EnemyState
     {
         CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.BatDeath));
     }
+    protected override void OnEnter()
+    {
+        _enemyContext.NPCAnimator.PlayAnimation(_configFile.FlyHashCode);
+    }
 }
 
 public class BatChaseState : EnemyState
@@ -92,13 +96,11 @@ public class BatChaseState : EnemyState
 
     protected override void OnEnter()
     {
-        base.OnEnter();
         //Debug.Log("Enter Chase");
         SetEnemyTarget();
     }
     protected override void OnExit()
     {
-        base.OnExit();
         //Debug.Log("Exit Chase");
         _enemyContext.StopAllCoroutines();
     }
@@ -174,7 +176,6 @@ public class BatAttackState : EnemyState
     }
     private IEnumerator AttackCooldown()
     {
-
         yield return new WaitForSeconds(_configFile.AttackCooldown);
         _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.BatChase));
     }
@@ -191,7 +192,7 @@ public class BatAttackState : EnemyState
         _enemyContext.Rigidbody.isKinematic = false;
         attackDirection = (PlayerRef.Transform.position - _enemyContext.transform.position).normalized;
         _enemyContext.Rigidbody.AddForce(_configFile.AttackDashForce * attackDirection, ForceMode.Impulse);
-        _enemyContext.Animator.Play("Attack");
+        _enemyContext.NPCAnimator.PlayAnimation(_configFile.AttackHashCode);
         _enemyContext.StartCoroutine(AttackDuration());
     }
     public override void Update()
@@ -211,6 +212,7 @@ public class BatAttackState : EnemyState
     protected override void OnExit()
     {
         _enemyContext.Rigidbody.isKinematic = true;
+        _enemyContext.NPCAnimator.PlayAnimation(_configFile.FlyHashCode);
     }
     public override void CheckSwitch()
     {

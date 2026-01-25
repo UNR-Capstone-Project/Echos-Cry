@@ -10,7 +10,7 @@ public class EnemyStateCache
         //Range Enemy
         RangeSpawn, RangeStagger, RangeDeath, RangeCharge, RangeAttack, RangeIdle, RangeRoam,
 
-        WalkerSpawn, WalkerStagger, WalkerDeath, WalkerCharge, WalkerAttack, WalkerIdle, WalkerChase
+        WalkerSpawn, WalkerStagger, WalkerDeath, WalkerJump, WalkerAttack, WalkerIdle, WalkerChase
     }
 
     private readonly Dictionary<EnemyStates, EnemyState> _stateCache;
