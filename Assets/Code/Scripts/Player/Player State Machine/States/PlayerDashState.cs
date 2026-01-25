@@ -13,6 +13,7 @@ public class PlayerDashState : PlayerActionState
     public override void Enter()
     {
         _playerContext.Animator.SetIsTrailEmit(true);
+        _playerContext.Animator.SpriteAnimator.Play("Dash");
         _playerContext.Movement.Dash();
         _playerContext.StartCoroutine(DashDuration());
     }

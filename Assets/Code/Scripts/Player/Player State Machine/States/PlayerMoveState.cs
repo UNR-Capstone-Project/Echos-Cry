@@ -26,12 +26,7 @@ public class PlayerMoveState : PlayerActionState
 
     public override void Enter()
     {
-        _playerContext.Animator.SetIsMainSpriteRunningAnimation(true);
-    }
-
-    public override void Exit()
-    {
-        _playerContext.Animator.SetIsMainSpriteRunningAnimation(false);
+        _playerContext.Animator.SpriteAnimator.Play("Run");
     }
     public override void Update()
     {

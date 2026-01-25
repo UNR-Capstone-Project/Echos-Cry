@@ -16,6 +16,11 @@ public class PlayerAttackState : PlayerActionState
         {
             _playerContext.WeaponHolder.SecondaryAction();
         }
+
+        if (_playerContext.WeaponHolder.HasWeapon)
+        {
+            _playerContext.Animator.SpriteAnimator.Play("Attack");
+        }
     }
 
     public override void Exit()

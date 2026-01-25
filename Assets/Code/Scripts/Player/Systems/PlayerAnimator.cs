@@ -10,21 +10,15 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] private Transform      _playerMainSpriteTransform;
     [SerializeField] private SpriteRenderer _playerMainSpriteRenderer;
     [SerializeField] private Animator       _playerMainSpriteAnimator;
+    public Animator SpriteAnimator { get => _playerMainSpriteAnimator; }
 
     private Color defaultSpriteColor;
 
     private readonly int hashedTintColor = Shader.PropertyToID("_TintColor");
-    private readonly int hashedIsRunning = Animator.StringToHash("isRunning");
 
     private void Start()
     {
-        //PlayerStats.OnPlayerDamagedEvent += TintFlash;
-
         defaultSpriteColor = _playerMainSpriteRenderer.material.GetColor(hashedTintColor);
-    }
-    private void OnDestroy()
-    {
-        //PlayerStats.OnPlayerDamagedEvent -= TintFlash;
     }
 
     public void UpdateMainSpriteDirection(Vector2 locomotion)
@@ -34,11 +28,6 @@ public class PlayerAnimator : MonoBehaviour
         Vector3 currentScale = _playerMainSpriteTransform.localScale;
         currentScale.x = Mathf.Sign(locomotion.x) * Mathf.Abs(currentScale.x);
         _playerMainSpriteTransform.localScale = currentScale;
-    }
-
-    public void SetIsMainSpriteRunningAnimation(bool isRunning)
-    {
-        _playerMainSpriteAnimator.SetBool(hashedIsRunning, isRunning);
     }
 
     public void TintFlash(Color tintColor)

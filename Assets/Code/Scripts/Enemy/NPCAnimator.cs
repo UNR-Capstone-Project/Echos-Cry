@@ -7,6 +7,7 @@ public class NPCAnimator : MonoBehaviour
     [SerializeField] private SpriteRenderer _npcSprite;
     [SerializeField] Animator _animator;
     [SerializeField] private VisualEffect _visualEffect;
+
     private Color _defaultTintColor;
     private readonly int hashedTintColor = Shader.PropertyToID("_TintColor");
  

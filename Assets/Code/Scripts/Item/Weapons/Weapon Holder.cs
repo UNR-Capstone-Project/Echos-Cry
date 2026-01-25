@@ -8,6 +8,7 @@ public class WeaponHolder : MonoBehaviour
         get => _currentlyEquippedWeapon;
         set => _currentlyEquippedWeapon = value; 
     }
+    public bool HasWeapon => _currentlyEquippedWeapon != null;
 
     public void PrimaryAction()
     {
