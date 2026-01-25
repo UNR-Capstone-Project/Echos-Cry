@@ -3,21 +3,21 @@ using UnityEngine;
 
 public abstract class PassiveEffect : ScriptableObject
 {
-    protected SimpleEnemyManager enemyManager;
+    protected Enemy enemyManager;
 
     public bool isEffectOneTime = false;
     public float effectUseInterval = 1f;
     public float effectDuration = 5f;
-    public ComboStateMachine.StateName requiredState = ComboStateMachine.StateName.START;
+    //public ComboStateMachine.StateName requiredState = ComboStateMachine.StateName.START;
 
     private bool isActive = false;
 
-    public virtual void ApplyEffect(SimpleEnemyManager enemyRef)
+    public virtual void ApplyEffect(Enemy enemyRef)
     {
         enemyManager = enemyRef;
 
         isActive = true;
-        enemyManager.EnemyStats.StartCoroutine(EndRoutineEffect());
+        enemyManager.Stats.StartCoroutine(EndRoutineEffect());
 
         if (isEffectOneTime)
         {
@@ -25,14 +25,14 @@ public abstract class PassiveEffect : ScriptableObject
         }
         else
         {
-            enemyManager.EnemyStats.StartCoroutine(RoutineEffect());
+            enemyManager.Stats.StartCoroutine(RoutineEffect());
         }
     }
 
     public virtual void RemoveEffect()
     {
         isActive = false;
-        enemyManager.EnemyStats.RemovePassiveEffect(this);
+        //enemyManager.Stats.RemovePassiveEffect(this);
     }
 
     private IEnumerator EndRoutineEffect()

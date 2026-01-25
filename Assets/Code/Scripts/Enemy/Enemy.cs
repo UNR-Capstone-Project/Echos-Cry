@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.VFX;
 
 public class Enemy : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private EnemySoundConfig _soundConfig;
     [SerializeField] private Collider _collider;
+    [SerializeField] private VisualEffect _visualEffects;
 
     [Header("Strategies")]
     [SerializeField] private AttackStrategy[] _attackStrats;
@@ -37,6 +39,7 @@ public class Enemy : MonoBehaviour
     public MovementStrategy[] MovementStrategy { get => _movementStrats; }
     public ItemDropStrategy DropsStrategy { get => _drops; }
     public SoundStrategy SoundStrategy { get => _soundStrategy; }
+    public VisualEffect VisualEffects { get => _visualEffects; }
 
     protected virtual void Awake()
     {   

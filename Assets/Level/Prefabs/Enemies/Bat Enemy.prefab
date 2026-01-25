@@ -137,12 +137,13 @@ GameObject:
   m_Component:
   - component: {fileID: 2434889112220353080}
   - component: {fileID: 1592182489320676592}
+  - component: {fileID: 8010943512667726129}
   - component: {fileID: 854592342237272632}
   - component: {fileID: 4674027367824827364}
   - component: {fileID: 4267862705877107826}
+  - component: {fileID: 530485584549624666}
   - component: {fileID: 8838160874129828706}
   - component: {fileID: 6827338249854996756}
-  - component: {fileID: 8010943512667726129}
   m_Layer: 9
   m_Name: Bat Enemy
   m_TagString: Enemy
@@ -189,6 +190,32 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8010943512667726129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900823288402649937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a13bb9d731c3ce45a893640fcd98ebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  _stats: {fileID: 854592342237272632}
+  _navMeshAgent: {fileID: 1592182489320676592}
+  _rigidbody: {fileID: 6827338249854996756}
+  _animator: {fileID: 1879680284868728812}
+  _soundConfig: {fileID: 11400000, guid: 61a08e0075f1f394ba85aefac97da91e, type: 2}
+  _collider: {fileID: 8838160874129828706}
+  _visualEffects: {fileID: 6135991116511513266}
+  _attackStrats:
+  - {fileID: 11400000, guid: c11f0062706e890468589a16526ea3f2, type: 2}
+  _targetStrats: []
+  _movementStrats: []
+  _drops: {fileID: 11400000, guid: 91505f07313de1e48a168c4fe728a893, type: 2}
+  _soundStrategy: {fileID: 11400000, guid: 5c5a55ebf2f337c4a80a8fcd0ffba53d, type: 2}
+  _enemyCacheStrategy: {fileID: 11400000, guid: c87f18d3f1a7e8e4da228329182fc1dd, type: 2}
 --- !u!114 &854592342237272632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +257,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimator
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.2
+--- !u!114 &530485584549624666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900823288402649937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17090424fb90a274eb5b2d0a745de949, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDamageable
+  _enemy: {fileID: 8010943512667726129}
+  _staggerState: 2
 --- !u!65 &8838160874129828706
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -278,31 +319,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &8010943512667726129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6900823288402649937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a13bb9d731c3ce45a893640fcd98ebb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  _stats: {fileID: 854592342237272632}
-  _navMeshAgent: {fileID: 1592182489320676592}
-  _rigidbody: {fileID: 6827338249854996756}
-  _animator: {fileID: 1879680284868728812}
-  _soundConfig: {fileID: 11400000, guid: 61a08e0075f1f394ba85aefac97da91e, type: 2}
-  _collider: {fileID: 8838160874129828706}
-  _attackStrats:
-  - {fileID: 11400000, guid: c11f0062706e890468589a16526ea3f2, type: 2}
-  _targetStrats: []
-  _movementStrats: []
-  _drops: {fileID: 11400000, guid: 91505f07313de1e48a168c4fe728a893, type: 2}
-  _soundStrategy: {fileID: 11400000, guid: 5c5a55ebf2f337c4a80a8fcd0ffba53d, type: 2}
-  _enemyCacheStrategy: {fileID: 11400000, guid: c87f18d3f1a7e8e4da228329182fc1dd, type: 2}
 --- !u!1001 &8348667889125641309
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -387,5 +403,10 @@ PrefabInstance:
 --- !u!4 &86432653124173814 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8281978135524586411, guid: 96bb96e3ba672834c9e92ddcb001202d, type: 3}
+  m_PrefabInstance: {fileID: 8348667889125641309}
+  m_PrefabAsset: {fileID: 0}
+--- !u!2083052967 &6135991116511513266 stripped
+VisualEffect:
+  m_CorrespondingSourceObject: {fileID: 2808845799223740143, guid: 96bb96e3ba672834c9e92ddcb001202d, type: 3}
   m_PrefabInstance: {fileID: 8348667889125641309}
   m_PrefabAsset: {fileID: 0}
