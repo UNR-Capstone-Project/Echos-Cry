@@ -206,11 +206,17 @@ public class InputTranslator : ScriptableObject,
         if(context.started) OnSelectEvent?.Invoke();
     }
 
+    public void OnTeleport(InputAction.CallbackContext context)
+    {
+        if (context.started) OnTeleportEvent?.Invoke(true);
+        else if (context.canceled) OnTeleportEvent?.Invoke(false);
+    }
+
     private PlayerInputs _playerInputs;
     public PlayerInputs PlayerInputs { get { return _playerInputs; } }  
 
     public event Action<Vector2> OnMovementEvent;
-    public event Action<bool>    OnDashEvent;
+    public event Action<bool>    OnDashEvent, OnTeleportEvent;
     public event Action<bool>    OnPrimaryActionEvent;
     public event Action<bool>    OnSecondaryActionEvent;
     public event Action<bool>    OnSkill1Event, OnSkill2Event, OnSkill3Event;
