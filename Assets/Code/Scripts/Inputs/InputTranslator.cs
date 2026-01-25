@@ -67,6 +67,13 @@ public class InputTranslator : ScriptableObject,
             OnDashEvent?.Invoke();
         }
     }
+    public void OnTeleport(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            OnTeleportEvent?.Invoke();
+        }
+    }
     public void OnLightAttack(InputAction.CallbackContext context)
     {
         if (context.started) OnLightAttackEvent?.Invoke();
@@ -240,6 +247,7 @@ public class InputTranslator : ScriptableObject,
 
     public event Action<Vector2> OnMovementEvent;
     public event Action          OnDashEvent;
+    public event Action          OnTeleportEvent;
     public event Action          OnLightAttackEvent;
     public event Action          OnHeavyAttackEvent;
     public event Action          OnPauseEvent, OnPauseDownInput, OnPauseUpInput, OnSelectEvent;

@@ -8,9 +8,9 @@
             "actions": [
                 {
                     "name": "Movement",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "b1ad9ef6-8b3c-4e3e-9853-9947e4b6fa9c",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -127,6 +127,15 @@
                     "name": "Interact",
                     "type": "Button",
                     "id": "66953180-c669-403c-a70c-326d528ceadf",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Teleport",
+                    "type": "Button",
+                    "id": "a5b953a0-7dc7-40cf-945f-2c90a29d100f",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -329,6 +338,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "44e22e2a-d5e9-434c-bcfd-0acc6304af6d",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Teleport",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
