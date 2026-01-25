@@ -30,6 +30,11 @@ public class SceneTriggerManager : MonoBehaviour
 
     public void StartTransition()
     {
+        if (_isLevelExit)
+        { //If it's a level exit, give the player back full health.
+            PlayerStats.Instance.Respawn();
+        }
+
         StartCoroutine(HandleSceneTransition());
     }
     IEnumerator HandleSceneTransition()
@@ -41,11 +46,6 @@ public class SceneTriggerManager : MonoBehaviour
         newSceneLoad.allowSceneActivation = true;
 
         while (!newSceneLoad.isDone) { yield return null; }
-
-        if (_isLevelExit)
-        { //If it's a level exit, give the player back full health.
-            PlayerStats.Instance.Respawn();
-        }
         
         sceneTransitioning = false;
     }
