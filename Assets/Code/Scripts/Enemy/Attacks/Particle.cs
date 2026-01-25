@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class AOECollision : MonoBehaviour
+public class Particle : MonoBehaviour
 {
     [SerializeField] private float damageAmount = 10f;
     [SerializeField] private float attackDuration = 2f;

@@ -177,6 +177,13 @@ public class WalkerAttackState : EnemyState
 
     protected override void OnEnter()
     {
+        GameObject fireRing = GameObject.Instantiate(_config.FireRingPrefab);
+        fireRing.transform.position = _enemyContext.transform.position;
+        if(fireRing.TryGetComponent<ParticleSystem>(out ParticleSystem particles))
+        {
+            particles.Play();
+        }
+        GameObject.Destroy(fireRing, _config.FireRingTime);
         _enemyContext.AttackStrategies[0].Execute(10f, Vector3.zero, _enemyContext.transform);
         _enemyContext.StartCoroutine(AttackCooldown());
     }

@@ -13,3 +13,8 @@ MonoBehaviour:
   m_Name: Default AOE Attack
   m_EditorClassIdentifier: Assembly-CSharp::AOEAttackStrategy
   _aoeObject: {fileID: 5464901287887852699, guid: b7edc944a1fc12648b567bed5d42f336, type: 3}
+  _aoeRadius: 4
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  _maxHits: 5

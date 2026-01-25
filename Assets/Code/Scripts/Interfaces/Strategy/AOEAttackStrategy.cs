@@ -5,9 +5,22 @@ using UnityEngine;
 public class AOEAttackStrategy : AttackStrategy
 {
     [SerializeField] GameObject _aoeObject;
+    [SerializeField] float _aoeRadius;
+    [SerializeField] LayerMask _layerMask;
+    [SerializeField] int _maxHits;
+
     public override bool Execute(float damage, Vector3 direction, Transform origin)
     {
-        Instantiate(_aoeObject).transform.position = origin.position;
+        Collider[] colliders = new Collider[_maxHits];
+        int count = Physics.OverlapSphereNonAlloc(origin.position, _aoeRadius, colliders, _layerMask);
+        for (int i = 0; i < count; i++)
+        {
+            if(colliders[i] != null 
+                && colliders[i].TryGetComponent<IDamageable>(out IDamageable damageable))
+            {
+                damageable.Execute(damage);
+            }
+        }
         return true;
     }
 }
