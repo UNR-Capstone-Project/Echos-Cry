@@ -202,7 +202,7 @@ public class WalkerAttackState : EnemyState
     {
         yield return new WaitForSeconds(_config.FireRingTime);
         _fireRingReference.Stop();
-        GameObject.Destroy(_fireRingReference.gameObject, _config.AttackCooldown - _config.FireRingTime);
+        GameObject.Destroy(_fireRingReference.gameObject, _config.FireRingTime);
     }
     private IEnumerator AttackCooldown()
     {
