@@ -95,6 +95,7 @@ public class ShopManager : MonoBehaviour
                 for (int i = 0; i < shopItemScript.GetAmount(); i++)
                 {
                     Instantiate(shopItemScript.GetPrefab(), GameObject.Find("Player").transform.position, Quaternion.identity);
+                    //ISSUE: Items spawn inside player collider, and they have colliders, so player is pushed up!
                 }
                 shopItemScript.ResetAmount();
             }
