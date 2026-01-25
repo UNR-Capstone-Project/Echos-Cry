@@ -1,9 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-/// Original Author: Victor
-/// All Contributors Since Creation: Victor
-/// Last Modified By:
+
 public enum pauseOptions
 {
     CONTINUE, SETTINGS, QUIT
@@ -27,6 +25,9 @@ public class PauseMenu : MonoBehaviour
             case pauseOptions.QUIT:
                 Application.Quit();
                 break;
+            case pauseOptions.SETTINGS:
+                HandleSettingsMenu();
+                break;
             default:
                 break;
         }
@@ -36,5 +37,10 @@ public class PauseMenu : MonoBehaviour
     {
         currentPauseOption = (pauseOptions)option;
         ChooseOption();
+    }
+
+    public void HandleSettingsMenu()
+    {
+        
     }
 }
