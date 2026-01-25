@@ -94,7 +94,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Movement"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""b1ad9ef6-8b3c-4e3e-9853-9947e4b6fa9c"",
                     ""expectedControlType"": """",
                     ""processors"": """",
