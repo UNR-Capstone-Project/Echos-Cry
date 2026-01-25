@@ -6,16 +6,16 @@ public class EnemySound : MonoBehaviour
     public void HandleDamageSound(float damage, Color color)
     {
         SoundEffectManager.Instance.Builder
-            .setSound(hitSFX)
-            .setSoundPosition(transform.position)
+            .SetSound(hitSFX)
+            .SetSoundPosition(transform.position)
             .ValidateAndPlaySound();
     }
 
     public void HandleAttackSound()
     {
         SoundEffectManager.Instance.Builder
-            .setSound(attackSFX)
-            .setSoundPosition(transform.position)
+            .SetSound(attackSFX)
+            .SetSoundPosition(transform.position)
             .ValidateAndPlaySound();
     }
     

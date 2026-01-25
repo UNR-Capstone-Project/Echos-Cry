@@ -17,8 +17,8 @@ public class shopkeeper : MonoBehaviour
 
         VolumeManager.Instance.SetDepthOfField(true);
         SoundEffectManager.Instance.Builder
-            .setSound(shopOpenSFX)
-            .setSoundPosition(this.transform.position)
+            .SetSound(shopOpenSFX)
+            .SetSoundPosition(this.transform.position)
             .ValidateAndPlaySound();
 
         MenuManager.Instance.SetMenu("Shop");

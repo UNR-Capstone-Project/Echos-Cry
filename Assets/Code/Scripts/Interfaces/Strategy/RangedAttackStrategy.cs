@@ -14,8 +14,8 @@ public class RangedAttackStrategy : AttackStrategy
         if (!SoundEffectManager.Instance.Builder.GetSoundPlayer().IsSoundPlaying())
         {
             SoundEffectManager.Instance.Builder
-                .setSound(_attackSound)
-                .setSoundPosition(origin.position)
+                .SetSound(_attackSound)
+                .SetSoundPosition(origin.position)
                 .ValidateAndPlaySound();
         }
         return true;

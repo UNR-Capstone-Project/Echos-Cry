@@ -21,8 +21,8 @@ public class EnvironmentObject : MonoBehaviour
         Instantiate(_destroyedPrefab, transform.position, transform.rotation);
         if (_itemDropStrategy != null) _itemDropStrategy.Execute(transform);
         SoundEffectManager.Instance.Builder
-            .setSound(_destroySFX)
-            .setSoundPosition(transform.position)
+            .SetSound(_destroySFX)
+            .SetSoundPosition(transform.position)
             .ValidateAndPlaySound();
         Destroy(gameObject);
     }

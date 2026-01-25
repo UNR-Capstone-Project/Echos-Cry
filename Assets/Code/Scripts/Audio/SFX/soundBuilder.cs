@@ -8,12 +8,13 @@ using AudioSystem;
 /// helper object that builds out the sound and player for soundEffectManager to use properly 
 /// </summary>
 
-public class soundBuilder 
+public class SoundBuilder 
 {
     SoundEffectManager soundManager;
-    soundEffectPlayer currentSoundPlayer;
+    SoundEffectPlayer currentSoundPlayer;
     soundEffect soundForBuild;
     Vector3 soundPosition = Vector3.zero;
+    float soundDelay = 0;
 
     public void Initialize(SoundEffectManager soundManager)
     {
@@ -21,20 +22,26 @@ public class soundBuilder
         currentSoundPlayer = soundManager.GetPlayer();
     }
 
-    public soundEffectPlayer GetSoundPlayer()
+    public SoundEffectPlayer GetSoundPlayer()
     {
         return currentSoundPlayer;
     }
 
-    public soundBuilder setSound(soundEffect sound)
+    public SoundBuilder SetSound(soundEffect sound)
     {
         soundForBuild = sound;
         return this;
     }
 
-    public soundBuilder setSoundPosition(Vector3 position)
+    public SoundBuilder SetSoundPosition(Vector3 position)
     {
         soundPosition = position;
+        return this;
+    }
+
+    public SoundBuilder SetDelay(float delay)
+    {
+        soundDelay = delay;
         return this;
     }
 
@@ -42,12 +49,13 @@ public class soundBuilder
     {
         if (!SoundEffectManager.Instance.CanPlaySound(soundForBuild)) return;
         currentSoundPlayer = soundManager.GetPlayer();
-        currentSoundPlayer.setupSoundEffect(soundForBuild);
+        currentSoundPlayer.SetupSoundEffect(soundForBuild);
         currentSoundPlayer.transform.position = soundPosition;
         currentSoundPlayer.transform.parent = soundManager.transform;
 
         if (soundForBuild.isFrequent) soundManager.RegisterFrequentPlayer(currentSoundPlayer);
 
-        currentSoundPlayer.Play();
+        if(soundDelay > 0) currentSoundPlayer.DelayedPlay(soundDelay);
+        else currentSoundPlayer.Play();
     }
 }

@@ -10,8 +10,8 @@ public class DamagableObject : MonoBehaviour, IDamageable
     {
         environmentObject.Health -= amount;
         SoundEffectManager.Instance.Builder
-            .setSound(hitSFX)
-            .setSoundPosition(environmentObject.transform.position)
+            .SetSound(hitSFX)
+            .SetSoundPosition(environmentObject.transform.position)
             .ValidateAndPlaySound();
     }
 }

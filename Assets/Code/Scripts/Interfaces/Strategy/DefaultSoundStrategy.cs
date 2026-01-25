@@ -4,11 +4,12 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Echo's Cry/Strategies/Sound/Default Sound Strategy")]
 public class DefaultSoundStrategy : SoundStrategy
 {
-    public override void Execute(soundEffect sfx, Transform origin)
+    public override void Execute(soundEffect sfx, Transform origin, float time)
     {
         SoundEffectManager.Instance.Builder
-            .setSound(sfx)
-            .setSoundPosition(origin.position)
+            .SetSound(sfx)
+            .SetSoundPosition(origin.position)
+            .SetDelay(time)
             .ValidateAndPlaySound();
     }
 }

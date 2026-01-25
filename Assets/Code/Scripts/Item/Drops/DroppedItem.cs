@@ -40,8 +40,8 @@ public class DroppedItem : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         SoundEffectManager.Instance.Builder
-            .setSound(pickupSFX)
-            .setSoundPosition(this.transform.position)
+            .SetSound(pickupSFX)
+            .SetSoundPosition(this.transform.position)
             .ValidateAndPlaySound();
         //PlayerStats.UpdateCurrency(1);
         GetComponent<Collider>().enabled = false;   

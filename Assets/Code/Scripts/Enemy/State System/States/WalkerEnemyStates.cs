@@ -131,6 +131,7 @@ public class WalkerJumpState : EnemyState
         _enemyContext.Rigidbody.isKinematic = false;
         _enemyContext.Rigidbody.AddForce(_config.JumpDashForce * attackDirection, ForceMode.Impulse);
         _enemyContext.Animator.Play("Attack");
+        _enemyContext.SoundStrategy.Execute(_enemyContext.SoundConfig.AttackSFX, _enemyContext.transform, 0);
         _enemyContext.StartCoroutine(JumpDuration());
     }
     protected override void OnExit()
@@ -147,8 +148,10 @@ public class WalkerJumpState : EnemyState
     private IEnumerator JumpDuration()
     {
         yield return new WaitForSeconds(_config.JumpDuration);
-
-        _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerAttack));
+        if (!TempoConductor.Instance.IsOnBeat())
+            _enemyContext.StartCoroutine(WaitUntilBeat());
+        else
+            _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerAttack));
     }
 
     IEnumerator ChargeAttackCoroutine()
@@ -163,13 +166,15 @@ public class WalkerJumpState : EnemyState
         yield return new WaitForEndOfFrame();
         if (TempoConductor.Instance.IsOnBeat()) 
             _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerAttack));
-        else _enemyContext.StartCoroutine(WaitUntilBeat());
+        else 
+            _enemyContext.StartCoroutine(WaitUntilBeat());
     }
 }
 
 public class WalkerAttackState : EnemyState
 {
     WalkerData _config;
+    ParticleSystem _fireRingReference;
     public WalkerAttackState(WalkerData config, Enemy enemyContext) : base(enemyContext) 
     { 
         _config = config;
@@ -181,10 +186,11 @@ public class WalkerAttackState : EnemyState
         fireRing.transform.position = _enemyContext.transform.position;
         if(fireRing.TryGetComponent<ParticleSystem>(out ParticleSystem particles))
         {
+            _fireRingReference = particles;
             particles.Play();
         }
-        GameObject.Destroy(fireRing, _config.FireRingTime);
         _enemyContext.AttackStrategies[0].Execute(10f, Vector3.zero, _enemyContext.transform);
+        _enemyContext.StartCoroutine(AOEVisualDuration());
         _enemyContext.StartCoroutine(AttackCooldown());
     }
     public override void CheckSwitch()
@@ -192,6 +198,12 @@ public class WalkerAttackState : EnemyState
         CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerDeath));
     }
 
+    private IEnumerator AOEVisualDuration()
+    {
+        yield return new WaitForSeconds(_config.FireRingTime);
+        _fireRingReference.Stop();
+        GameObject.Destroy(_fireRingReference.gameObject, _config.AttackCooldown - _config.FireRingTime);
+    }
     private IEnumerator AttackCooldown()
     {
         yield return new WaitForSeconds(_config.AttackCooldown);

@@ -15,10 +15,10 @@ public class PlaySoundOnStart : MonoBehaviour
     private void PlaySound(soundEffect sound)
     {
         _builderRef
-        .setSound(sound)
-        .setSoundPosition(transform.position)
+        .SetSound(sound)
+        .SetSoundPosition(transform.position)
         .ValidateAndPlaySound();
     }
 
-    private soundBuilder _builderRef;
+    private SoundBuilder _builderRef;
 }
