@@ -42,6 +42,7 @@ public class PlayerAnimator : MonoBehaviour
 
     public void HandleDashStartedEmit()
     {
+        _playerSpriteAnimator.Play("Dash");
         _dashTrail.emitting = true;
     }
     public void HandleDashEndedEmit()
