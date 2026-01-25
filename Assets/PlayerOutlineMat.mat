@@ -49,7 +49,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: a0a9c2f6c724fde45ba7547737e4e372, type: 3}
+        m_Texture: {fileID: 2800000, guid: d5c4adf51a7ebb947820a1fb31a96b8a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -89,7 +89,7 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _BeatTime: 0.62114775
+    - _BeatTime: 0.9958844
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1

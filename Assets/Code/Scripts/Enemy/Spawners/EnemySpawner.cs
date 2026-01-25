@@ -34,6 +34,7 @@ public class EnemySpawner : MonoBehaviour
         if (spawnTimer <= 0)
         {
             terrain = Terrain.activeTerrain; //ISSUE: Not ideal here, but terrain is getting lost on scene change!
+            //There is a on scene change method that could be used to fix above mentioned issue!
             spawnEnemyDecal();
             spawnTimer = spawnWait;
         }
