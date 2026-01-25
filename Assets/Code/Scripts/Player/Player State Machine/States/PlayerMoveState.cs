@@ -1,7 +1,9 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMoveState : PlayerActionState
 {
+    Coroutine currentCoroutine;
     public PlayerMoveState(Player playerContext,
         PlayerStateMachine playerStateMachine, 
         PlayerStateCache playerStateCache)
@@ -27,14 +29,26 @@ public class PlayerMoveState : PlayerActionState
     public override void Enter()
     {
         _playerContext.Animator.SpriteAnimator.Play("Run");
+        _playerContext.SFX.Execute(_playerContext.SFXConfig.FootstepSFX, _playerContext.transform, 0);
+        currentCoroutine = _playerContext.StartCoroutine(RepeatSoundFootstep(_playerContext.SFXConfig.FootstepSFX.soundClips[0].length));
+    }
+    public override void Exit()
+    {
+        _playerContext.StopCoroutine(currentCoroutine);
+
     }
     public override void Update()
     {
         _playerContext.Animator.UpdateMainSpriteDirection(_playerStateMachine.Locomotion);
     }
-
     public override void FixedUpdate()
     {
         _playerContext.Movement.Move(_playerStateMachine.Locomotion);
+    }
+    private IEnumerator RepeatSoundFootstep(float clipLength)
+    {
+        yield return new WaitForSeconds(clipLength);
+        _playerContext.SFX.Execute(_playerContext.SFXConfig.FootstepSFX, _playerContext.transform, 0);
+        currentCoroutine = _playerContext.StartCoroutine(RepeatSoundFootstep(_playerContext.SFXConfig.FootstepSFX.soundClips[0].length));
     }
 }

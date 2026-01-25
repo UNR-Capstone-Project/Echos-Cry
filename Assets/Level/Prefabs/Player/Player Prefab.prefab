@@ -466,7 +466,6 @@ Transform:
   - {fileID: 391624207702511625}
   - {fileID: 8109899283628625893}
   - {fileID: 8203918266017756090}
-  - {fileID: 6774187308919859205}
   - {fileID: 2091355728142018776}
   - {fileID: 6736455730916581110}
   - {fileID: 1876697883255032612}
@@ -488,13 +487,14 @@ MonoBehaviour:
   _stats: {fileID: 4955914926744265378}
   _comboMeter: {fileID: 6448038699777697774}
   _animator: {fileID: 6459526305365980964}
-  _sfx: {fileID: 2732405943756659283}
   _movement: {fileID: 5127503919009400606}
   _weaponHolder: {fileID: 8451625182466559565}
   _skills: {fileID: 6372820548089278461}
   _orientation: {fileID: 6103571335002571596}
   _currencySystem: {fileID: 2347857121992901382}
   _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
+  _sfx: {fileID: 11400000, guid: 5c5a55ebf2f337c4a80a8fcd0ffba53d, type: 2}
+  _sfxConfig: {fileID: 11400000, guid: adc0363584558ca40b2ee6043daa5f4c, type: 2}
 --- !u!114 &3818315168867680251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,7 +519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 371f546f247e6734dbb5165a69756ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDamagable
-  stats: {fileID: 4955914926744265378}
+  player: {fileID: 1520755955600332291}
 --- !u!54 &2019051602396369572
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -587,51 +587,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   playerTransform: {fileID: 415338203038042998}
---- !u!1 &2939557049066656866
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6774187308919859205}
-  - component: {fileID: 2732405943756659283}
-  m_Layer: 10
-  m_Name: Player Sound
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6774187308919859205
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2939557049066656866}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 415338203038042998}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2732405943756659283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2939557049066656866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c64d65797eacb64aaa52035713efda5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSound
-  _playerSoundConfig: {fileID: 0}
 --- !u!1 &4323622196322604754
 GameObject:
   m_ObjectHideFlags: 0

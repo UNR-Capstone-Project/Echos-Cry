@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class PlayerDamagable : MonoBehaviour, IDamageable
 {
-    [SerializeField] PlayerStats stats;
+    [SerializeField] Player player;
     public void Execute(float amount)
     {
-        stats.Damage(amount);
+        player.Stats.Damage(amount);
+        player.Animator.TintFlash(Color.red);
+        player.SFX.Execute(player.SFXConfig.HurtEffect, player.transform, 0);
     }
 }

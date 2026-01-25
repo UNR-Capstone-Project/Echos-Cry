@@ -6,13 +6,14 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerStats _stats;
     [SerializeField] private PlayerComboMeter _comboMeter;
     [SerializeField] private PlayerAnimator _animator;
-    [SerializeField] private PlayerSound _sfx;
     [SerializeField] private PlayerMovement _movement;
     [SerializeField] private WeaponHolder _weaponHolder;
     [SerializeField] private PlayerSkillManager _skills;
     [SerializeField] private PlayerOrientation _orientation;
     [SerializeField] private PlayerCurrencySystem _currencySystem;
     [SerializeField] private InputTranslator _inputTranslator;
+    [SerializeField] private SoundStrategy _sfx;
+    [SerializeField] private SFXConfig _sfxConfig;
 
     private PlayerStateMachine _playerStateMachine;
     private PlayerStateCache _playerStateCache;
@@ -23,7 +24,8 @@ public class Player : MonoBehaviour
     public PlayerStats Stats { get => _stats; }
     public PlayerComboMeter ComboMeter { get => _comboMeter; }
     public PlayerAnimator Animator { get => _animator; }
-    public PlayerSound SFX { get => _sfx; }
+    public SoundStrategy SFX { get => _sfx; }
+    public SFXConfig SFXConfig { get => _sfxConfig; }
     public PlayerMovement Movement { get => _movement; }
     public WeaponHolder WeaponHolder { get => _weaponHolder; }
     public PlayerSkillManager Skills { get => _skills; }
