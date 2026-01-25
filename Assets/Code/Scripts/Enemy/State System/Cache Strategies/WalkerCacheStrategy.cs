@@ -21,7 +21,7 @@ public class WalkerCacheStrategy : EnemyCacheStrategy
         );
         stateCache.AddState(
             EnemyStateCache.EnemyStates.WalkerChase,
-            new WalkerChaseState(enemyContext)
+            new WalkerChaseState(_data, enemyContext)
         );
         stateCache.AddState(
             EnemyStateCache.EnemyStates.WalkerDeath,
@@ -33,7 +33,7 @@ public class WalkerCacheStrategy : EnemyCacheStrategy
         );
         stateCache.AddState(
             EnemyStateCache.EnemyStates.WalkerCharge,
-            new WalkerChargeAttackState(_data, enemyContext)
+            new WalkerJumpState(_data, enemyContext)
         );
         stateCache.StartState = stateCache.RequestState(EnemyStateCache.EnemyStates.WalkerSpawn);
     }

@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class WalkerAttackCollisionHandler : MonoBehaviour
+public class AOECollision : MonoBehaviour
 {
     [SerializeField] private float damageAmount = 10f;
     [SerializeField] private float attackDuration = 2f;
@@ -31,9 +31,12 @@ public class WalkerAttackCollisionHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !hit)
+        if (!hit)
         {
-            //PlayerStats.Instance.OnDamageTaken(damageAmount);
+            if(other.TryGetComponent<IDamageable>(out IDamageable damageable))
+            {
+                damageable.Execute(damageAmount);
+            }
             hit = true;
         }
     }

@@ -65,8 +65,10 @@ public class WalkerIdleState : EnemyState
 
 public class WalkerChaseState : EnemyState
 {
-    public WalkerChaseState(Enemy enemyContext) : base(enemyContext) 
+    WalkerData _data;
+    public WalkerChaseState(WalkerData data,Enemy enemyContext) : base(enemyContext) 
     {
+        _data = data;
         TickManager.Instance.GetTimer(0.2f).Tick += Tick;
     }
     ~WalkerChaseState()
@@ -76,6 +78,7 @@ public class WalkerChaseState : EnemyState
 
     protected override void OnEnter()
     {
+        _enemyContext.NavMeshAgent.stoppingDistance = _data.StoppingDistance;
         _enemyContext.Animator.SetBool("isWalking", true);
         SetEnemyTarget();
     }
@@ -110,29 +113,42 @@ public class WalkerChaseState : EnemyState
     }
 }
 
-public class WalkerChargeAttackState : EnemyState
+public class WalkerJumpState : EnemyState
 {
     WalkerData _config;
 
-    public WalkerChargeAttackState(WalkerData config, Enemy enemyContext) : base(enemyContext)
+    public WalkerJumpState(WalkerData config, Enemy enemyContext) : base(enemyContext)
     {
         _config = config;
     }
 
     protected override void OnEnter()
     {
-        //Debug.Log("Enter Charge Attack State");
         _enemyContext.Animator.SetBool("isWalking", false);
         _enemyContext.StartCoroutine(ChargeAttackCoroutine());
+        Vector3 attackDirection = (PlayerRef.Transform.position - _enemyContext.transform.position).normalized;
+        attackDirection.y = 0;
+        _enemyContext.Rigidbody.isKinematic = false;
+        _enemyContext.Rigidbody.AddForce(_config.JumpDashForce * attackDirection, ForceMode.Impulse);
+        _enemyContext.Animator.Play("Attack");
+        _enemyContext.StartCoroutine(JumpDuration());
     }
     protected override void OnExit()
     {
         //Debug.Log("Exit Charge Attack State");
+        _enemyContext.Rigidbody.isKinematic = true;
         _enemyContext.StopAllCoroutines();
     }
     public override void CheckSwitch()
     {
         CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerDeath));
+    }
+
+    private IEnumerator JumpDuration()
+    {
+        yield return new WaitForSeconds(_config.JumpDuration);
+
+        _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerAttack));
     }
 
     IEnumerator ChargeAttackCoroutine()
@@ -154,55 +170,25 @@ public class WalkerChargeAttackState : EnemyState
 public class WalkerAttackState : EnemyState
 {
     WalkerData _config;
-    bool isAttacking;
-    Vector3 attackDirection;
     public WalkerAttackState(WalkerData config, Enemy enemyContext) : base(enemyContext) 
     { 
         _config = config;
     }
 
-    private IEnumerator AttackDuration()
-    {
-        yield return new WaitForSeconds(_config.AttackDuration);
-        isAttacking = false;
-        _enemyContext.StartCoroutine(AttackCooldown());
-    }
-    private IEnumerator AttackCooldown()
-    {
-        yield return new WaitForSeconds(_config.AttackCooldown);
-        _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerChase));
-    }
-
     protected override void OnEnter()
     {
-        isAttacking = true;
-        _enemyContext.Animator.SetBool("isWalking", false);
-        _enemyContext.Rigidbody.isKinematic = false;
-        attackDirection = (PlayerRef.Transform.position - _enemyContext.transform.position).normalized;
-        _enemyContext.Rigidbody.AddForce(_config.AttackDashForce * attackDirection, ForceMode.Impulse);
-        _enemyContext.StartCoroutine(AttackDuration());
-    }
-    protected override void OnExit()
-    {
-        _enemyContext.Rigidbody.isKinematic = true;
+        _enemyContext.AttackStrategies[0].Execute(10f, Vector3.zero, _enemyContext.transform);
+        _enemyContext.StartCoroutine(AttackCooldown());
     }
     public override void CheckSwitch()
     {
         CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerDeath));
     }
-    public override void Update()
-    {
-        if (!isAttacking
-            || _enemyContext.AttackStrategies.Length == 0
-            || _enemyContext.AttackStrategies[0] == null)
-            return;
 
-        if (_enemyContext.AttackStrategies[0]
-            .Execute(
-                10f,
-                attackDirection,
-                _enemyContext.transform))
-            isAttacking = false;
+    private IEnumerator AttackCooldown()
+    {
+        yield return new WaitForSeconds(_config.AttackCooldown);
+        _enemyContext.StateMachine.SwitchState(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerChase));
     }
 }
 public class WalkerStaggerState : EnemyState
