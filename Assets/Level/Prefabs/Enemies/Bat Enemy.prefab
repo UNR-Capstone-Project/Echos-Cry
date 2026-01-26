@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.8, z: 0}
-  m_LocalScale: {x: 0.26706123, y: 0.26706123, z: 0.26706123}
+  m_LocalScale: {x: -0.2670612, y: 0.26706123, z: 0.26706123}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2434889112220353080}
@@ -242,7 +242,7 @@ MonoBehaviour:
   _npcSprite: {fileID: 5765285837838741193}
   _animator: {fileID: 1879680284868728812}
   _visualEffect: {fileID: 6135991116511513266}
-  _spriteTransform: {fileID: 5725350970498192222}
+  _spriteTransform: {fileID: 2434889112220353080}
 --- !u!114 &530485584549624666
 MonoBehaviour:
   m_ObjectHideFlags: 0

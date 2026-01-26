@@ -146,7 +146,10 @@ public class WalkerJumpState : EnemyState
     {
         CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.WalkerDeath));
     }
-
+    public override void Update()
+    {
+        _enemyContext.NPCAnimator.UpdateSpriteDirection((PlayerRef.Transform.position - _enemyContext.transform.position).normalized);
+    }
     private IEnumerator JumpDuration()
     {
         yield return new WaitForSeconds(_config.JumpDuration);
@@ -187,6 +190,10 @@ public class WalkerAttackState : EnemyState
         _enemyContext.AttackStrategies[0].Execute(10f, Vector3.zero, _enemyContext.transform);
         _enemyContext.StartCoroutine(AOEVisualDuration());
         _enemyContext.StartCoroutine(AttackCooldown());
+    }
+    public override void Update()
+    {
+        _enemyContext.NPCAnimator.UpdateSpriteDirection((PlayerRef.Transform.position - _enemyContext.transform.position).normalized);
     }
     public override void CheckSwitch()
     {
