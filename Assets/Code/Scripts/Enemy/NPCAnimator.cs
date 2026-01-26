@@ -7,6 +7,7 @@ public class NPCAnimator : MonoBehaviour
     [SerializeField] private SpriteRenderer _npcSprite;
     [SerializeField] Animator _animator;
     [SerializeField] private VisualEffect _visualEffect;
+    [SerializeField] private Transform _spriteTransform;
 
     private Color _defaultTintColor;
     private readonly int hashedTintColor = Shader.PropertyToID("_TintColor");
@@ -17,6 +18,14 @@ public class NPCAnimator : MonoBehaviour
         StartCoroutine(TintFlashCoroutine(tintColor, flashDuration));
     }
 
+    public void UpdateSpriteDirection(Vector3 locomotion)
+    {
+        if (locomotion.x == 0) return;
+
+        Vector3 currentScale = _spriteTransform.localScale;
+        currentScale.x = Mathf.Sign(locomotion.x) * Mathf.Abs(currentScale.x);
+        _spriteTransform.localScale = currentScale;
+    }
     public void PlayAnimation(int hashCode)
     {
         _animator.Play(hashCode);

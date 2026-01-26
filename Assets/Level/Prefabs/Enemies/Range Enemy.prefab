@@ -220,6 +220,7 @@ MonoBehaviour:
   _npcSprite: {fileID: 5765285837838741193}
   _animator: {fileID: 1879680284868728812}
   _visualEffect: {fileID: 7566651568526738815}
+  _spriteTransform: {fileID: 5725350970498192222}
 --- !u!114 &393378646141688295
 MonoBehaviour:
   m_ObjectHideFlags: 0

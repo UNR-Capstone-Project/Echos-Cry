@@ -113,6 +113,10 @@ public class BatChaseState : EnemyState
     {
         CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.BatDeath));
     }
+    public override void Update()
+    {
+        _enemyContext.NPCAnimator.UpdateSpriteDirection(_enemyContext.NavMeshAgent.velocity);
+    }
 }
 
 public class BatChargeState : EnemyState
@@ -153,6 +157,10 @@ public class BatChargeState : EnemyState
     public override void CheckSwitch()
     {
         CheckDeath(_enemyContext.StateCache.RequestState(EnemyStateCache.EnemyStates.BatDeath));
+    }
+    public override void Update()
+    {
+        _enemyContext.NPCAnimator.UpdateSpriteDirection(_enemyContext.NavMeshAgent.velocity);
     }
 }
 

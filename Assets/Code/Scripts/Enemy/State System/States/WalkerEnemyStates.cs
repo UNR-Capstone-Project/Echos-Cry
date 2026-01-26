@@ -95,6 +95,10 @@ public class WalkerChaseState : EnemyState
         CheckNavMeshDistance();
         SetEnemyTarget();
     }
+    public override void Update()
+    {
+        _enemyContext.NPCAnimator.UpdateSpriteDirection(_enemyContext.NavMeshAgent.velocity);
+    }
 
     private void CheckNavMeshDistance()
     {

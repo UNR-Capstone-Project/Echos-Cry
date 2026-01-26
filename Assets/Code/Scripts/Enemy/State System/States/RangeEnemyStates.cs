@@ -53,6 +53,10 @@ public class RangeRoamState : EnemyState
     {
         CheckDeath(_enemyContext.StateCache.RequestState(EnemyStates.RangeDeath));
     }
+    public override void Update()
+    {
+        _enemyContext.NPCAnimator.UpdateSpriteDirection(_enemyContext.NavMeshAgent.velocity);
+    }
     protected override void OnEnter()
     {
         //Debug.Log("Enter Roam");
@@ -88,6 +92,10 @@ public class RangeChargeAttackState : EnemyState
         //Debug.Log("Enter Charge");
         _enemyContext.StartCoroutine(ChargeDurationCoroutine());
     }
+    public override void Update()
+    {
+        _enemyContext.NPCAnimator.UpdateSpriteDirection(_enemyContext.transform.position - PlayerRef.Transform.position);
+    }
     protected override void OnExit()
     {
         _enemyContext.StopAllCoroutines();
@@ -118,6 +126,10 @@ public class RangeAttackState : EnemyState
         _enemyContext.AttackStrategies[0].Execute(10f, GetDirection(), _enemyContext.transform);
         _enemyContext.SoundStrategy.Execute(_enemyContext.SoundConfig.AttackSFX, _enemyContext.transform, 0);
         _enemyContext.StartCoroutine(BetweenAttackPauseCoroutine());
+    }
+    public override void Update()
+    {
+        _enemyContext.NPCAnimator.UpdateSpriteDirection(_enemyContext.NavMeshAgent.velocity);
     }
     private Vector3 GetDirection()
     {
