@@ -28,6 +28,9 @@ public class PauseMenu : MonoBehaviour
             case pauseOptions.QUIT:
                 Application.Quit();
                 break;
+            case pauseOptions.SETTINGS:
+                HandleSettingsMenu();
+                break;
             default:
                 break;
         }
@@ -37,5 +40,10 @@ public class PauseMenu : MonoBehaviour
     {
         currentPauseOption = (pauseOptions)option;
         ChooseOption();
+    }
+
+    public void HandleSettingsMenu()
+    {
+        
     }
 }
