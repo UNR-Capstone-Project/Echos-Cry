@@ -15,7 +15,7 @@ public class PlayerDashState : PlayerActionState
         _playerContext.Animator.SetIsTrailEmit(true);
         _playerContext.Animator.SpriteAnimator.Play("Dash");
         _playerContext.SFX.Execute(_playerContext.SFXConfig.DashSFX, _playerContext.transform, 0);
-        _playerContext.Movement.Dash();
+        _playerContext.Movement.Dash(_playerStateMachine.Locomotion);
         _playerContext.StartCoroutine(DashDuration());
     }
     public override void Exit()
