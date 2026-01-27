@@ -11,15 +11,12 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 targetVel = (playerInputLocomotion.y * _playerMovementConfig.PlayerSpeed * forwardVector)
                           + (playerInputLocomotion.x * _playerMovementConfig.PlayerSpeed * rightVector)
-                          + new Vector3(0f,_playerRigidbody.linearVelocity.y,0f);
+                          + new Vector3(0f, _playerRigidbody.linearVelocity.y, 0f);
 
         _playerRigidbody.AddForce(targetVel - _playerRigidbody.linearVelocity, ForceMode.VelocityChange);
     }
     public void Dash()
-    {
-        // Developer options for playtesting -- Please don't remove, just disable if you don't like them! Ask your friends too.
-        if (_playerMovementConfig.IsDashToBeat && !TempoConductor.Instance.IsOnBeat()) return;
-
+    { 
         _playerRigidbody.AddForce(_playerRigidbody.linearVelocity.normalized * _playerMovementConfig.DashSpeed, ForceMode.VelocityChange);
     }
 

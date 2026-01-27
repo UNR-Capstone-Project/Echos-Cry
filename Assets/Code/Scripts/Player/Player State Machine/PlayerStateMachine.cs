@@ -6,6 +6,7 @@ public class PlayerStateMachine : AbstractStateMachine<PlayerActionState>
     private bool _isAttacking;
     private bool _usingPrimaryAction, _usingSecondaryAction;
     private bool _isDashing;
+    private bool _canDash = true;
     private Vector2 _locomotion;
 
     public bool IsMoving { get => _isMoving; }
@@ -13,6 +14,7 @@ public class PlayerStateMachine : AbstractStateMachine<PlayerActionState>
     public bool UsingPrimaryAction { get => _usingPrimaryAction; }
     public bool UsingSecondaryAction { get => _usingSecondaryAction; }
     public bool IsDashing { get => _isDashing; set => _isDashing = value; }
+    public bool CanDash { get => _canDash; set => _canDash = value; }
     public Vector2 Locomotion { get => _locomotion; }
 
     public void BindInputs(InputTranslator translator)

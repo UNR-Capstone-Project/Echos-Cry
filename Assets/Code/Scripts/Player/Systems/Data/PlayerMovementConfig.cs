@@ -11,10 +11,12 @@ public class PlayerMovementConfig : ScriptableObject
     
     [Header("Dev Testing variable")]
     [SerializeField] private bool _isDashToBeat = true;
+    [SerializeField] private bool _hasDashCooldown = true;
     
     public float DashSpeed { get { return _dashSpeed; } }
     public float DashDuration { get { return _dashDuration; } }
     public float DashCooldown { get { return _dashCooldown; } }
     public float PlayerSpeed { get { return _playerSpeed; } }
     public bool IsDashToBeat { get => _isDashToBeat; }
+    public bool HasDashCooldown { get => _hasDashCooldown; }
 }
