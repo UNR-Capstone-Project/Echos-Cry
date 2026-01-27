@@ -150,4 +150,16 @@ public class MusicManager : ScriptableObject
             currentMusicPlayer = null;
         }
     }
+
+    public bool SongCurrentlyPlaying()
+    {
+        if (currentMusicPlayer != null)
+        {
+            if (currentMusicPlayer.SelfIsPlaying())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

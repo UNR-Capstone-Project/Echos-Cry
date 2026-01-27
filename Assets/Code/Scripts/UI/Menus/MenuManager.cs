@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using System.Collections;
+using System;
 
 [System.Serializable]
 public class StringGameobjectPair
@@ -16,6 +17,8 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject screenFadeObject;
     [SerializeField] private List<StringGameobjectPair> menuDictionary;
     public static MenuManager Instance { get; private set; }
+    public static event Action PauseStarted;
+    public static event Action PauseEnded;
 
     void Awake()
     {
@@ -56,6 +59,7 @@ public class MenuManager : MonoBehaviour
     private void EnablePauseMenu()
     {
         SetMenu("Pause");
+        PauseStarted?.Invoke();
         VolumeManager.Instance.SetDepthOfField(true);
         AudioManager.Instance.SetMasterVolume(0.4f);
         Time.timeScale = 0f;
@@ -64,6 +68,7 @@ public class MenuManager : MonoBehaviour
     public void DisablePauseMenu()
     {
         SetMenu("HUD");
+        PauseEnded?.Invoke();
         VolumeManager.Instance.SetDepthOfField(false);
         AudioManager.Instance.SetMasterVolume(1f);
         Time.timeScale = 1f;
