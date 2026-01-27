@@ -300,4 +300,16 @@ public class MusicPlayer : MonoBehaviour
             songLayers[i].volume = targetVolume;
         }
     }
+
+    public bool SelfIsPlaying()
+    {
+        foreach (var layer in songLayers)
+        {   
+            if (layer.isPlaying)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

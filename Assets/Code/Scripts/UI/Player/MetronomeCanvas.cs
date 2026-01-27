@@ -65,7 +65,8 @@ public class MetronomeCanvas : MonoBehaviour
 
     public void FlashOutline()
     {
-        StartCoroutine(Flash(flashDuration));
+        if (this.gameObject.activeInHierarchy)
+            StartCoroutine(Flash(flashDuration));
     }
 
     IEnumerator Flash(float duration)

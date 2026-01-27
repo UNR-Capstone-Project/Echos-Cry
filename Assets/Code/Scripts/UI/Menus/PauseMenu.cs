@@ -1,9 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-/// Original Author: Victor
-/// All Contributors Since Creation: Victor
-/// Last Modified By:
+
 public enum pauseOptions
 {
     CONTINUE, SETTINGS, QUIT
@@ -23,6 +21,9 @@ public class PauseMenu : MonoBehaviour
                 MenuManager.Instance.DisablePauseMenu();
                 translator.PlayerInputs.Gameplay.Enable();
                 translator.PlayerInputs.PauseMenu.Disable();
+                break;
+            case pauseOptions.SETTINGS:
+                MenuManager.Instance.SetMenu("Settings");
                 break;
             case pauseOptions.QUIT:
                 Application.Quit();
