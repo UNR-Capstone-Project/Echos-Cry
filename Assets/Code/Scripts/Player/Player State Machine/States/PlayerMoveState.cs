@@ -36,8 +36,7 @@ public class PlayerMoveState : PlayerActionState
     }
     public override void Exit()
     {
-        _playerContext.StopCoroutine(currentCoroutine);
-
+        if(currentCoroutine != null) _playerContext.StopCoroutine(currentCoroutine);
     }
     public override void Update()
     {
