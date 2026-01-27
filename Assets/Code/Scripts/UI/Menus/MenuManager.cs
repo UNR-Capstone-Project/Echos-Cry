@@ -61,7 +61,6 @@ public class MenuManager : MonoBehaviour
         SetMenu("Pause");
         PauseStarted?.Invoke();
         VolumeManager.Instance.SetDepthOfField(true);
-        AudioManager.Instance.SetMasterVolume(0.4f);
         Time.timeScale = 0f;
     }
 
@@ -70,7 +69,6 @@ public class MenuManager : MonoBehaviour
         SetMenu("HUD");
         PauseEnded?.Invoke();
         VolumeManager.Instance.SetDepthOfField(false);
-        AudioManager.Instance.SetMasterVolume(1f);
         Time.timeScale = 1f;
     }
 
