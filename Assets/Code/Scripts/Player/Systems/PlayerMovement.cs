@@ -15,30 +15,28 @@ public class PlayerMovement : MonoBehaviour
 
         _playerRigidbody.AddForce(targetVel - _playerRigidbody.linearVelocity, ForceMode.VelocityChange);
     }
-    public void Dash(Vector2 playerInputLocomotion)
+    public void Dash()
     {
         // Developer options for playtesting -- Please don't remove, just disable if you don't like them! Ask your friends too.
-        if (_isDashToBeat && !TempoConductor.Instance.IsOnBeat()) return;
+        if (_playerMovementConfig.IsDashToBeat && !TempoConductor.Instance.IsOnBeat()) return;
 
         _playerRigidbody.AddForce(_playerRigidbody.linearVelocity.normalized * _playerMovementConfig.DashSpeed, ForceMode.VelocityChange);
     }
 
     void Start()
     {
-        _mainCameraTransform = Camera.main.transform;
-
         if(_playerMovementConfig == null)
         {
             Debug.LogWarning("Player Movement Configuration file is null!");
             return;
         }
 
-        if (_mainCameraTransform != null)
+        if (Camera.main != null)
         {
-            forwardVector = _mainCameraTransform.forward.normalized;
+            forwardVector = Camera.main.transform.forward.normalized;
             forwardVector.y = 0f;
 
-            rightVector = _mainCameraTransform.right.normalized;
+            rightVector = Camera.main.transform.right.normalized;
             rightVector.y = 0f;
         }
     }
@@ -50,10 +48,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Player Movement System Dependencies")]
     [SerializeField] private Rigidbody _playerRigidbody;
 
-    [Header("Developer Playtesting Options")]
-    [SerializeField] private bool _isDashToBeat = true;
-
-    private Transform _mainCameraTransform;
     private Vector3 forwardVector;
     private Vector3 rightVector;
 }
