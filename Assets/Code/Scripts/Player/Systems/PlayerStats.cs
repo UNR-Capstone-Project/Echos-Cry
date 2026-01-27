@@ -8,6 +8,7 @@ public class PlayerStats : MonoBehaviour
 
     public static event Action OnPlayerDamagedEvent;
     public static event Action OnPlayerHealedEvent;
+    public static event Action OnPlayerDeathEvent;
     public static event Action<float, float> OnPlayerHealthChangeEvent;
 
     private float _currentHealth;
@@ -30,6 +31,10 @@ public class PlayerStats : MonoBehaviour
 
         OnPlayerDamagedEvent?.Invoke();
         OnPlayerHealthChangeEvent?.Invoke(_currentHealth, _playerStatsConfig.maxHealth);
+
+        CameraManager.Instance.ScreenShake(0.6f, 0.2f);
+
+        if (_currentHealth == 0) OnPlayerDeathEvent?.Invoke();
     }
     public void Heal(float healAmount)
     {

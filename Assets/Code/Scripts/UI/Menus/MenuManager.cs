@@ -36,16 +36,16 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
-        //PlayerStats.OnPlayerDeathEvent += EnableGameoverMenu;
-        //_translator.OnPauseEvent += EnablePauseMenu;
-        //_translator.OnResumeEvent += DisablePauseMenu;
+        PlayerStats.OnPlayerDeathEvent += EnableGameoverMenu;
+        _translator.OnPauseEvent += EnablePauseMenu;
+        _translator.OnResumeEvent += DisablePauseMenu;
     }
 
     void OnDestroy()
     {
-        //PlayerStats.OnPlayerDeathEvent -= EnableGameoverMenu;
-        //_translator.OnPauseEvent -= EnablePauseMenu;
-        //_translator.OnResumeEvent -= DisablePauseMenu;
+        PlayerStats.OnPlayerDeathEvent -= EnableGameoverMenu;
+        _translator.OnPauseEvent -= EnablePauseMenu;
+        _translator.OnResumeEvent -= DisablePauseMenu;
     }
 
     public void EnableGameoverMenu()
@@ -58,6 +58,7 @@ public class MenuManager : MonoBehaviour
 
     private void EnablePauseMenu()
     {
+        Debug.Log("Pause!");
         SetMenu("Pause");
         PauseStarted?.Invoke();
         VolumeManager.Instance.SetDepthOfField(true);

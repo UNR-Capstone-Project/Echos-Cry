@@ -32,9 +32,6 @@ public class MetronomeCanvas : MonoBehaviour
         _metronomeImage.material = metronomeMaterial;
 
         TempoConductor.Instance.BeatTickEvent += FlashOutline;
-
-        MenuManager.PauseStarted += PauseMetronome;
-        MenuManager.PauseEnded += UnpauseMetronome; 
     }
     private void OnDestroy()
     {
@@ -75,14 +72,5 @@ public class MetronomeCanvas : MonoBehaviour
         metronomeMaterial.SetFloat("_Enabled", 1f);
         yield return new WaitForSeconds(duration);
         metronomeMaterial.SetFloat("_Enabled", 0f);
-    }
-    void PauseMetronome()
-    {
-        MusicManager.Instance.PauseSong();
-    }
-
-    void UnpauseMetronome()
-    {
-        MusicManager.Instance.ResumeSong();
     }
 }

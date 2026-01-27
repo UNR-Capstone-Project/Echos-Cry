@@ -6,7 +6,7 @@ public class DevTeleport : MonoBehaviour
 {
     [SerializeField] private InputTranslator translator;
     [SerializeField] private LayerMask ground;
-    [SerializeField] private Transform playerTransform;
+    [SerializeField] private Rigidbody _playerRigidbody;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,7 +23,7 @@ public class DevTeleport : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, ground))
         {
-            playerTransform.position = hit.point;
+            _playerRigidbody.position = hit.point;
         }
     }
 }
