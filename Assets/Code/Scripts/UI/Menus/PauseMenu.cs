@@ -39,9 +39,4 @@ public class PauseMenu : MonoBehaviour
         currentPauseOption = (pauseOptions)option;
         ChooseOption();
     }
-
-    public void HandleSettingsMenu()
-    {
-        
-    }
 }
