@@ -9,30 +9,30 @@ using static EnemyStateCache;
 
 //This is used to increase combo meter/multiplier and set enemy to stagger state
 
-[RequireComponent(typeof(Rigidbody))]
-public class EnemyCollisionHandler : MonoBehaviour
-{
-    protected void OnTriggerEnter(Collider collision)
-    {
-        if(collision.TryGetComponent<WeaponCollider>(out WeaponCollider handler))
-        {
-            PlayerComboMeter.AddToComboMeter(handler.AttackDamage);
-            PlayerComboMeter.UpdateComboMultiplier();
-            _enemyCollider.enabled = false;
-            //_enemyManager.SwitchState(enemyStaggerState);
-        }
-    }
-    private void ResetColliderBool()
-    {
-        _enemyCollider.enabled = true;
-    }
+//[RequireComponent(typeof(Rigidbody))]
+//public class EnemyCollisionHandler : MonoBehaviour
+//{
+//    protected void OnTriggerEnter(Collider collision)
+//    {
+//        if(collision.TryGetComponent<WeaponCollider>(out WeaponCollider handler))
+//        {
+//            PlayerComboMeter.AddToComboMeter(handler.AttackDamage);
+//            PlayerComboMeter.UpdateComboMultiplier();
+//            _enemyCollider.enabled = false;
+//            //_enemyManager.SwitchState(enemyStaggerState);
+//        }
+//    }
+//    private void ResetColliderBool()
+//    {
+//        _enemyCollider.enabled = true;
+//    }
 
-    private void Awake()
-    {
-        _enemyManager = GetComponent<Enemy>();
-        _enemyCollider = GetComponent<Collider>();
-    }
+//    private void Awake()
+//    {
+//        _enemyManager = GetComponent<Enemy>();
+//        _enemyCollider = GetComponent<Collider>();
+//    }
     
-    private Collider _enemyCollider;
-    protected Enemy _enemyManager;
-}
+//    private Collider _enemyCollider;
+//    protected Enemy _enemyManager;
+//}

@@ -11,17 +11,17 @@ public class PlayerComboMeter : MonoBehaviour
     //  - Implement combo multiplier increase based on attack hit quality
     //  - Implement combo multiplier decrease based on time and attack hit quality (maybe just fully reset combo bar if they miss)
 
-    public static void AddToComboMeter(float amount)
+    public void AddToComboMeter(float amount)
     {
         _comboMeterAmount = Mathf.Clamp(_comboMeterAmount + (_percentOfDamage * _comboMultiplier) * amount, 0, _comboMeterMax);
         OnComboMeterChangeEvent?.Invoke(_comboMeterAmount, _comboMeterMax);
     }
-    public static void SubtractFromComboMeter(float amount)
+    public void SubtractFromComboMeter(float amount)
     {
         _comboMeterAmount = Mathf.Clamp(_comboMeterAmount - amount, 0, _comboMeterMax);
         OnComboMeterChangeEvent?.Invoke(_comboMeterAmount, _comboMeterMax);
     }
-    public static void UpdateComboMultiplier()
+    public void UpdateComboMultiplier()
     {
         _comboMultiplier = Mathf.Clamp(_comboMultiplier * _comboMultiplierRate, 1, _comboMultiplierMax);
         OnComboMultiplierChangeEvent?.Invoke(_comboMultiplier);
@@ -34,7 +34,7 @@ public class PlayerComboMeter : MonoBehaviour
             OnComboMultiplierChangeEvent?.Invoke(_comboMultiplier);
         }
     }
-    public static void UpdateHitQualityMultipliers(TempoConductor.HitQuality hit)
+    public void UpdateHitQualityMultipliers(TempoConductor.HitQuality hit)
     {
         switch (hit)
         {
@@ -58,16 +58,6 @@ public class PlayerComboMeter : MonoBehaviour
     {
         _comboMeterAmount = 0;
         _comboMultiplier = 1;
-
-        //_inputTranslator.OnDashEvent += ResetComboMultiplier;
-        //_inputTranslator.OnLightAttackEvent += ResetComboMultiplier;
-        //_inputTranslator.OnHeavyAttackEvent += ResetComboMultiplier;
-    }
-    private void OnDestroy()
-    {
-        //_inputTranslator.OnDashEvent -= ResetComboMultiplier;
-        //_inputTranslator.OnLightAttackEvent -= ResetComboMultiplier;
-        //_inputTranslator.OnHeavyAttackEvent -= ResetComboMultiplier;
     }
 
     [SerializeField] private InputTranslator _inputTranslator;

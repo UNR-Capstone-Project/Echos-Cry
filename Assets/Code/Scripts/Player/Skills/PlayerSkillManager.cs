@@ -15,7 +15,7 @@ public class PlayerSkillManager : MonoBehaviour
         {
             Debug.Log("Using Skill 1");
             currentSkill.UseSkill();
-            PlayerComboMeter.SubtractFromComboMeter(currentSkill.SkillCost);
+            //PlayerComboMeter.SubtractFromComboMeter(currentSkill.SkillCost);
         }
     }
     public void HandleSkill2()
@@ -25,7 +25,7 @@ public class PlayerSkillManager : MonoBehaviour
         {
             Debug.Log("Using Skill 2");
             currentSkill.UseSkill();
-            PlayerComboMeter.SubtractFromComboMeter(currentSkill.SkillCost);
+            //PlayerComboMeter.SubtractFromComboMeter(currentSkill.SkillCost);
         }
     }
     public void HandleSkill3()
@@ -35,7 +35,7 @@ public class PlayerSkillManager : MonoBehaviour
         {
             Debug.Log("Using Ultimate");
             currentSkill.UseSkill();
-            PlayerComboMeter.SubtractFromComboMeter(currentSkill.SkillCost);
+            //PlayerComboMeter.SubtractFromComboMeter(currentSkill.SkillCost);
         }
     }
 

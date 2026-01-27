@@ -1,5 +1,7 @@
+using NUnit.Framework;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
@@ -12,6 +14,18 @@ public abstract class Weapon : MonoBehaviour
     
     public bool IsAttackEnded { get; private set; }
 
+    private List<Collider> _hitColliders;
+    public List<Collider> HitColliders { get => _hitColliders; }
+    public void AddColliderToList(Collider collider)
+    {
+        if (_hitColliders == null || collider == null) return;
+        _hitColliders.Add(collider);
+    }
+    public void ClearColliderList()
+    {
+        _hitColliders.Clear();
+    }
+
     protected virtual void OnAwake() { } 
     protected virtual void OnPrimaryAction() { }
     protected virtual void OnSecondaryAction() { }
@@ -22,6 +36,7 @@ public abstract class Weapon : MonoBehaviour
     private void Awake()
     {
         _defaultAnimatorController = _attackAnimator.runtimeAnimatorController;
+        _hitColliders = new();
         SetChildrenActive(false);
         OnAwake();
     }
@@ -35,6 +50,7 @@ public abstract class Weapon : MonoBehaviour
     public void PrimaryAction()
     {
         SetChildrenActive(true);
+        ClearColliderList();
         IsAttackEnded = false;
         OnPrimaryAction();
         Attack();
@@ -42,6 +58,7 @@ public abstract class Weapon : MonoBehaviour
     public void SecondaryAction() 
     {
         SetChildrenActive(true);
+        ClearColliderList();
         IsAttackEnded = false;
         OnSecondaryAction();
         Attack();

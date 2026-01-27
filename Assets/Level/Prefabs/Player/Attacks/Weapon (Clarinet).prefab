@@ -156,6 +156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad69f5cc54697b4092c9095bc8d96d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponCollider
+  _weaponContext: {fileID: 6557154924598691002}
+  _collider: {fileID: 1584114766417235778}
 --- !u!1 &6698232584449221764
 GameObject:
   m_ObjectHideFlags: 0

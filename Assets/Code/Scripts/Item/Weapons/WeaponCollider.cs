@@ -6,20 +6,22 @@ using UnityEngine;
 
 public class WeaponCollider : MonoBehaviour
 {
+    [SerializeField] private Weapon _weaponContext;
+    [SerializeField] private Collider _collider;
     public float AttackDamage { get; private set; }
-    //public Color AttackColor { get; private set; }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.TryGetComponent<IDamageable>(out IDamageable damagable))
         {
             damagable.Execute(AttackDamage);
+            if(_weaponContext != null) _weaponContext.AddColliderToList(other);
         }
     }
 
     public void UpdateAttackDamage(float attackDamage)
     {
         AttackDamage = attackDamage;
-        //AttackColor = attackColor;
     }
 
 }

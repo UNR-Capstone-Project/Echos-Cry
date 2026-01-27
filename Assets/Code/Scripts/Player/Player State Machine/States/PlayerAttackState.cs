@@ -7,6 +7,8 @@ public class PlayerAttackState : PlayerActionState
 
     public override void Enter()
     {
+        _playerContext.ComboMeter.ResetComboMultiplier();
+
         //Initialize whatever attack is happening
         if (_playerStateMachine.UsingPrimaryAction)
         {
@@ -33,6 +35,10 @@ public class PlayerAttackState : PlayerActionState
         //check if current attack is done
         if (_playerContext.WeaponHolder.IsActionEnded())
         {
+            //TODO: implement rate into combo meter class
+            float rate = 1f;
+            int hitCount = _playerContext.WeaponHolder.CurrentlyEquippedWeapon.HitColliders.Count;
+            if (hitCount > 0) _playerContext.ComboMeter.AddToComboMeter(hitCount * rate);
             _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Idle));
             _playerContext.InvokeAttackEnded();
         }
