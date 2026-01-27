@@ -17,7 +17,7 @@ public class DevTeleport : MonoBehaviour
         translator.OnTeleportEvent += TeleportPlayer;
     }
 
-    private void TeleportPlayer(bool isPressed)
+    private void TeleportPlayer()
     {
         Ray ray = CameraManager.MainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
