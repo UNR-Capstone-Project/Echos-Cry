@@ -36,8 +36,6 @@ public class MetronomeCanvas : MonoBehaviour
         _translator.OnDashEvent += UpdateHitQualityText;
         _translator.OnLightAttackEvent += UpdateHitQualityText;
         _translator.OnHeavyAttackEvent += UpdateHitQualityText;
-        MenuManager.PauseStarted += PauseMetronome;
-        MenuManager.PauseEnded += UnpauseMetronome;
     }
     private void OnDestroy()
     {
@@ -46,8 +44,6 @@ public class MetronomeCanvas : MonoBehaviour
         _translator.OnDashEvent -= UpdateHitQualityText;
         _translator.OnLightAttackEvent -= UpdateHitQualityText;
         _translator.OnHeavyAttackEvent -= UpdateHitQualityText;
-        MenuManager.PauseStarted -= PauseMetronome;
-        MenuManager.PauseEnded -= UnpauseMetronome;
     }
 
     public void UpdateHitQualityText()
@@ -69,11 +65,8 @@ public class MetronomeCanvas : MonoBehaviour
 
     public void FlashOutline()
     {
-        if (MusicManager.Instance.SongCurrentlyPlaying())
-        {
+        if (this.gameObject.activeInHierarchy)
             StartCoroutine(Flash(flashDuration));
-        }
-        
     }
 
     IEnumerator Flash(float duration)
@@ -81,15 +74,5 @@ public class MetronomeCanvas : MonoBehaviour
         metronomeMaterial.SetFloat("_Enabled", 1f);
         yield return new WaitForSeconds(duration);
         metronomeMaterial.SetFloat("_Enabled", 0f);
-    }
-
-    void PauseMetronome()
-    {
-        MusicManager.Instance.PauseSong();
-    }
-
-    void UnpauseMetronome()
-    {
-        MusicManager.Instance.ResumeSong();
     }
 }

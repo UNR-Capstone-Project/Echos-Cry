@@ -283,6 +283,7 @@ MonoBehaviour:
   dashSpeed: 28
   dashDuration: 0.18
   dashCooldown: 1
+  dashToBeat: 0
   playerSpeed: 4.5
 --- !u!114 &8506666208944667827
 MonoBehaviour:
@@ -640,7 +641,7 @@ SpriteRenderer:
   m_SortingLayerID: 1903394121
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d16e9a8f9a6f88b40b72c3cd7a5cb55e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d5c4adf51a7ebb947820a1fb31a96b8a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -780,7 +781,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d16e9a8f9a6f88b40b72c3cd7a5cb55e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d5c4adf51a7ebb947820a1fb31a96b8a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -969,6 +970,18 @@ PrefabInstance:
       propertyPath: onAttackPushForce
       value: 3.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5428771555926968140, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
+      propertyPath: _passiveEffects.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428771555926968140, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
+      propertyPath: '_passiveEffects.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 25e9fd5d2ef64b447905e84d09e57e47, type: 2}
+    - target: {fileID: 5428771555926968140, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
+      propertyPath: '_passiveEffects.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 3664655054d7d144f873f217fd3e71cc, type: 2}
     - target: {fileID: 6698232584449221764, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
       propertyPath: m_Name
       value: Weapon (Clarinet)
@@ -984,6 +997,10 @@ PrefabInstance:
     - target: {fileID: 6991853144152505543, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
       propertyPath: m_SortingLayerID
       value: 1903394121
+      objectReference: {fileID: 0}
+    - target: {fileID: 6991853144152505543, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

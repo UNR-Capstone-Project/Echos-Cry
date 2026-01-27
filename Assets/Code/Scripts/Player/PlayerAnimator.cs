@@ -23,6 +23,11 @@ public class PlayerAnimator : MonoBehaviour
         else _playerSpriteAnimator.SetBool(hashedIsRunning, false);
     }
 
+    public void PlayAttackAnimation(ComboStateMachine.StateName state)
+    {
+        _playerSpriteAnimator.Play("Attack");
+    }
+
     public void DamagePlayerFlash()
     {
         StopCoroutine(flashPlayerDamaged());
@@ -37,6 +42,7 @@ public class PlayerAnimator : MonoBehaviour
 
     public void HandleDashStartedEmit()
     {
+        _playerSpriteAnimator.Play("Dash");
         _dashTrail.emitting = true;
     }
     public void HandleDashEndedEmit()
@@ -61,7 +67,7 @@ public class PlayerAnimator : MonoBehaviour
         defaultSpriteColor = _playerSpriteRenderer.material.GetColor(hashedTintColor);
 
         PlayerStats.OnPlayerDamagedEvent += DamagePlayerFlash;
-
+        BaseWeapon.OnAttackStartEvent += PlayAttackAnimation;
         PlayerMovement.OnDashStarted += HandleDashStartedEmit;
         PlayerMovement.OnDashEnded += HandleDashEndedEmit;
 
@@ -70,7 +76,7 @@ public class PlayerAnimator : MonoBehaviour
     private void OnDestroy()
     {
         PlayerStats.OnPlayerDamagedEvent -= DamagePlayerFlash;
-
+        BaseWeapon.OnAttackStartEvent -= PlayAttackAnimation;
         PlayerMovement.OnDashStarted -= HandleDashStartedEmit;
         PlayerMovement.OnDashEnded   -= HandleDashEndedEmit;
 

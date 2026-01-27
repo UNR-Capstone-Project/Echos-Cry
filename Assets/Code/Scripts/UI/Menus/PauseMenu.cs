@@ -22,11 +22,11 @@ public class PauseMenu : MonoBehaviour
                 translator.PlayerInputs.Gameplay.Enable();
                 translator.PlayerInputs.PauseMenu.Disable();
                 break;
+            case pauseOptions.SETTINGS:
+                MenuManager.Instance.SetMenu("Settings");
+                break;
             case pauseOptions.QUIT:
                 Application.Quit();
-                break;
-            case pauseOptions.SETTINGS:
-                HandleSettingsMenu();
                 break;
             default:
                 break;
@@ -37,10 +37,5 @@ public class PauseMenu : MonoBehaviour
     {
         currentPauseOption = (pauseOptions)option;
         ChooseOption();
-    }
-
-    public void HandleSettingsMenu()
-    {
-        
     }
 }

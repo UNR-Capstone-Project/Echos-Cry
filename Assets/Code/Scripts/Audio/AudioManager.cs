@@ -27,4 +27,48 @@ public class AudioManager : MonoBehaviour
 
         masterMixer.SetFloat("MasterVolume", dbVolume);
     }
+    public void SetMusicVolume(float linearVolume)
+    {
+        float dbVolume;
+        if (linearVolume <= 0) { dbVolume = -80f; }
+        else { dbVolume = Mathf.Log10(linearVolume) * 20f; }
+
+        masterMixer.SetFloat("MusicVolume", dbVolume);
+    }
+    public void SetSFXVolume(float linearVolume)
+    {
+        float dbVolume;
+        if (linearVolume <= 0) { dbVolume = -80f; }
+        else { dbVolume = Mathf.Log10(linearVolume) * 20f; }
+
+        masterMixer.SetFloat("SFXVolume", dbVolume);
+    }
+
+    public float GetMasterLinearVolume()
+    {
+        if (masterMixer.GetFloat("MasterVolume", out float dbVolume))
+        {
+            float linearVolume = Mathf.Pow(10f, dbVolume / 20f);
+            return linearVolume;
+        }
+        return 1f;
+    }
+    public float GetMusicLinearVolume()
+    {
+        if (masterMixer.GetFloat("MusicVolume", out float dbVolume))
+        {
+            float linearVolume = Mathf.Pow(10f, dbVolume / 20f);
+            return linearVolume;
+        }
+        return 1f;
+    }
+    public float GetSFXLinearVolume()
+    {
+        if (masterMixer.GetFloat("SFXVolume", out float dbVolume))
+        {
+            float linearVolume = Mathf.Pow(10f, dbVolume / 20f);
+            return linearVolume;
+        }
+        return 1f;
+    }
 }

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 //Handles attack collider.
@@ -11,15 +12,29 @@ public class AttackCollisionHandler : MonoBehaviour
         if(other.TryGetComponent<SimpleEnemyManager>(out SimpleEnemyManager enemyManager))
         {
             enemyManager.EnemyStats.DamageEnemy(AttackDamage, AttackColor);
+
+            foreach (PassiveEffect effect in _passiveEffects)
+            {
+                if (effect.requiredState == AttackStateName)
+                {
+                    enemyManager.EnemyStats.UsePassiveEffect(effect, enemyManager);
+                }  
+            }
         }
     }
 
-    public void UpdateAttackDamage(float attackDamage, Color attackColor)
+    public void UpdateAttackDamage(float attackDamage, Color attackColor, ComboStateMachine.StateName stateName)
     {
         AttackDamage = attackDamage;
         AttackColor = attackColor;
+        AttackStateName = stateName;
+        Debug.Log(AttackStateName);
     }
 
     public float AttackDamage { get; private set; }
     public Color AttackColor { get; private set; }
+
+    public ComboStateMachine.StateName AttackStateName { get; private set; }
+
+    [SerializeField] private PassiveEffect[] _passiveEffects;
 }

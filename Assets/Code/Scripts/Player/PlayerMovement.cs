@@ -2,6 +2,7 @@ using AudioSystem;
 using System.Collections;
 using UnityEngine;
 using System;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
         mainCameraRef = Camera.main.transform;
         translator.OnMovementEvent += HandleMovement;
         translator.OnDashEvent += HandleDash;
+        translator.OnTeleportEvent += TeleportPlayer;
 
         BaseWeapon.OnAttackStartEvent += HandleAttackStart;
         BaseWeapon.OnAttackEndedEvent += HandleAttackEnd;
@@ -26,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     {
         translator.OnMovementEvent -= HandleMovement;
         translator.OnDashEvent -= HandleDash;
+        translator.OnTeleportEvent -= TeleportPlayer;
         BaseWeapon.OnAttackStartEvent -= HandleAttackStart;
         BaseWeapon.OnAttackEndedEvent -= HandleAttackEnd;
     }
@@ -33,6 +36,24 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isDashing || isAttacking) return;
         MovePlayer();
+    }
+
+    private void TeleportPlayer()
+    {
+        Debug.Log("Teleport!");
+        Vector3 targetPos = GetTeleportPosition();
+        _playerRigidbody.position = targetPos;
+    }
+
+    private Vector3 GetTeleportPosition()
+    {
+        Ray ray = CameraManager.MainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 1000f))
+        {
+            return hit.point;
+        }
+        return Vector3.zero;
     }
 
     private void MovePlayer()
@@ -53,9 +74,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void HandleDash()
     {
-        if (!canDash 
-            || TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.MISS 
-            || playerLocomotion == Vector2.zero) return;
+        if (!canDash || playerLocomotion == Vector2.zero) return;
+        if (dashToBeat)
+        {
+            if (TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.MISS) return;
+        }
 
         canDash = false;
 
@@ -139,6 +162,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashDuration = 3f;
     [Header("")]
     [SerializeField] private float dashCooldown = 1f;
+    [SerializeField] private bool dashToBeat = true;
 
     [SerializeField] private float playerSpeed = 10f;
     private float stoppingAcceleration;

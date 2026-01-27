@@ -16,7 +16,7 @@ public class ClarinetWeapon : BaseWeapon
         
         int attackIndex = (int)attackState;
 
-        SetupCurrentDamage(_attackData[attackIndex]);
+        SetupCurrentDamage(_attackData[attackIndex], attackState);
 
         gameObject.SetActive(true);
         SetupAndStartAnimation(_attackData[attackIndex]);
@@ -26,7 +26,7 @@ public class ClarinetWeapon : BaseWeapon
         attackSFX = _attackData[attackIndex].AttackSound;
     }
 
-    private void SetupCurrentDamage(AttackData attackData)
+    private void SetupCurrentDamage(AttackData attackData, StateName attackState)
     {
         float multiplier;
         Color multiplierColor;
@@ -42,7 +42,7 @@ public class ClarinetWeapon : BaseWeapon
         }
         float damage = attackData.BaseDamage * multiplier;
 
-        _weaponCollisionHandler.UpdateAttackDamage(damage, multiplierColor);
+        _weaponCollisionHandler.UpdateAttackDamage(damage, multiplierColor, attackState);
     }
 
     private void SetupAndUseSound()
