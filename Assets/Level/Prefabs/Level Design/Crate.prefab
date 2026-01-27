@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b039fd194ec2f4e9c40e21ca1487e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnvironmentObject
-  _statsConfig: {fileID: 11400000, guid: 756e2aac9ef16dd4f8b3d83060c174db, type: 2}
+  _statsConfig: {fileID: 11400000, guid: afeca21892a1ca549b5da02345d931bb, type: 2}
   _itemDropStrategy: {fileID: 11400000, guid: 91505f07313de1e48a168c4fe728a893, type: 2}
   _destroyedPrefab: {fileID: 7559960175404138094, guid: d58d57a86839c2d40822e65e501ca646, type: 3}
   _destroySFX: {fileID: 11400000, guid: 8e6fff67d6d1b4d46859475d8ddf7611, type: 2}
