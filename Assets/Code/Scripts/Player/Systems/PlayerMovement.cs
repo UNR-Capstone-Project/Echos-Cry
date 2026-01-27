@@ -16,7 +16,8 @@ public class PlayerMovement : MonoBehaviour
         _playerRigidbody.AddForce(targetVel - _playerRigidbody.linearVelocity, ForceMode.VelocityChange);
     }
     public void Dash()
-    { 
+    {
+        if (_playerMovementConfig == null) return;
         _playerRigidbody.AddForce(_playerRigidbody.linearVelocity.normalized * _playerMovementConfig.DashSpeed, ForceMode.VelocityChange);
     }
 
