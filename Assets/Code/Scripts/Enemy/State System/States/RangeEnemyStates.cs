@@ -56,7 +56,7 @@ public class RangeRoamState : EnemyState
     public override void Update()
     {
         _enemyContext.NPCAnimator
-            .UpdateSpriteDirection((PlayerRef.Transform.position - _enemyContext.transform.position).normalized);
+            .UpdateSpriteDirection((PlayerRef.Transform.position - _enemyContext.transform.position).normalized, true);
     }
     protected override void OnEnter()
     {
@@ -96,7 +96,7 @@ public class RangeChargeAttackState : EnemyState
     public override void Update()
     {
         _enemyContext.NPCAnimator
-            .UpdateSpriteDirection((PlayerRef.Transform.position - _enemyContext.transform.position).normalized);
+            .UpdateSpriteDirection((PlayerRef.Transform.position - _enemyContext.transform.position).normalized, true);
     }
     protected override void OnExit()
     {
@@ -131,7 +131,7 @@ public class RangeAttackState : EnemyState
     }
     public override void Update()
     {
-        _enemyContext.NPCAnimator.UpdateSpriteDirection(GetDirection());
+        _enemyContext.NPCAnimator.UpdateSpriteDirection(GetDirection(), true);
     }
     private Vector3 GetDirection()
     {

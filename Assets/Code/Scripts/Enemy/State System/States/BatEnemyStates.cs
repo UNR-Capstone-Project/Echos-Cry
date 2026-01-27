@@ -116,7 +116,7 @@ public class BatChaseState : EnemyState
     public override void Update()
     {
         _enemyContext.NPCAnimator
-            .UpdateSpriteDirection((PlayerRef.Transform.position - _enemyContext.transform.position).normalized);
+            .UpdateSpriteDirection((PlayerRef.Transform.position - _enemyContext.transform.position).normalized, false);
     }
 }
 
@@ -162,7 +162,7 @@ public class BatChargeState : EnemyState
     public override void Update()
     {
         _enemyContext.NPCAnimator
-            .UpdateSpriteDirection((PlayerRef.Transform.position - _enemyContext.transform.position).normalized);
+            .UpdateSpriteDirection((PlayerRef.Transform.position - _enemyContext.transform.position).normalized, false);
     }
 }
 

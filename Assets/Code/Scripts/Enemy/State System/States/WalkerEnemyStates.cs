@@ -97,7 +97,7 @@ public class WalkerChaseState : EnemyState
     }
     public override void Update()
     {
-        _enemyContext.NPCAnimator.UpdateSpriteDirection(_enemyContext.NavMeshAgent.velocity);
+        _enemyContext.NPCAnimator.UpdateSpriteDirection(_enemyContext.NavMeshAgent.velocity, false);
     }
 
     private void CheckNavMeshDistance()
@@ -148,7 +148,7 @@ public class WalkerJumpState : EnemyState
     }
     public override void Update()
     {
-        _enemyContext.NPCAnimator.UpdateSpriteDirection((PlayerRef.Transform.position - _enemyContext.transform.position).normalized);
+        _enemyContext.NPCAnimator.UpdateSpriteDirection((PlayerRef.Transform.position - _enemyContext.transform.position).normalized, false);
     }
     private IEnumerator JumpDuration()
     {
@@ -193,7 +193,7 @@ public class WalkerAttackState : EnemyState
     }
     public override void Update()
     {
-        _enemyContext.NPCAnimator.UpdateSpriteDirection((PlayerRef.Transform.position - _enemyContext.transform.position).normalized);
+        _enemyContext.NPCAnimator.UpdateSpriteDirection((PlayerRef.Transform.position - _enemyContext.transform.position).normalized, false);
     }
     public override void CheckSwitch()
     {
