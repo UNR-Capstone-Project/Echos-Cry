@@ -66,13 +66,19 @@ public class PlayerComboMeter : MonoBehaviour
     public static event Action<float> OnComboMultiplierChangeEvent;
 
     [SerializeField] private float _comboMeterDrainRate = 2.5f;
-    private static float _comboMeterMax = 120f;
-    private static float _comboMeterAmount;
+    private float _comboMeterMax = 120f;
+    private float _comboMeterAmount;
 
-    private static float _comboMultiplierMax = 16;
-    private static float _percentOfDamage = 0.25f;
-    private static float _comboMultiplierRate = 1f;
-    private static float _comboMultiplier;
+    private float _comboMultiplierMax = 16;
+    private float _percentOfDamage = 0.25f;
+    private float _comboMultiplierRate = 1f;
+    private float _comboMultiplier;
 
-    public static float ComboMeterAmount { get { return _comboMeterAmount; } }
+    public float ComboMeterAmount { get { return _comboMeterAmount; } }
+}
+
+[CreateAssetMenu(menuName = "Echo's Cry/Player Data/Player Combo Meter Config")]
+public class ComboMeterConfig : ScriptableObject
+{
+
 }

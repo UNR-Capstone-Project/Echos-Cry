@@ -31,7 +31,7 @@ public class PlayerSkillManager : MonoBehaviour
     public void HandleSkill3()
     {
         Skill currentSkill = playerSkills[(int)SKILL_NUM.ULTIMATE];
-        if (currentSkill != null && PlayerComboMeter.ComboMeterAmount >= currentSkill.SkillCost)
+        if (currentSkill != null)
         {
             Debug.Log("Using Ultimate");
             currentSkill.UseSkill();
