@@ -16,3 +16,4 @@ MonoBehaviour:
   _dashDuration: 0.2
   _dashCooldown: 1
   _playerSpeed: 5.5
+  _isDashToBeat: 0
