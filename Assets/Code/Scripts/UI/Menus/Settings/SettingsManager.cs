@@ -4,11 +4,17 @@ using UnityEngine.UI;
 public class SettingsManager : MonoBehaviour
 {
     [SerializeField] private Slider volumeSlider;
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private Slider sfxSlider;
 
     private void OnEnable()
     {
-        float currentVolume = AudioManager.Instance.GetMasterLinearVolume();
-        volumeSlider.value = currentVolume;
+        float currentMasterVolume = AudioManager.Instance.GetMasterLinearVolume();
+        float currentMusicVolume = AudioManager.Instance.GetMusicLinearVolume();
+        float currentSFXVolume = AudioManager.Instance.GetSFXLinearVolume();
+        volumeSlider.value = currentMasterVolume;
+        musicSlider.value = currentMusicVolume;
+        sfxSlider.value = currentSFXVolume;
     }
 
     public void OnBackButton()
@@ -16,8 +22,16 @@ public class SettingsManager : MonoBehaviour
         MenuManager.Instance.SetMenu("Pause");
     }
 
-    public void ChangeVolume(float volume)
+    public void ChangeMasterVolume()
     {
-        AudioManager.Instance.SetMasterVolume(volume);
+        AudioManager.Instance.SetMasterVolume(volumeSlider.value);
+    }
+    public void ChangeMusicVolume()
+    {
+        AudioManager.Instance.SetMusicVolume(musicSlider.value);
+    }
+    public void ChangeSFXVolume()
+    {
+        AudioManager.Instance.SetSFXVolume(sfxSlider.value);
     }
 }
