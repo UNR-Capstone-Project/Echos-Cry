@@ -27,4 +27,14 @@ public class AudioManager : MonoBehaviour
 
         masterMixer.SetFloat("MasterVolume", dbVolume);
     }
+
+    public float GetMasterLinearVolume()
+    {
+        if (masterMixer.GetFloat("MasterVolume", out float dbVolume))
+        {
+            float linearVolume = Mathf.Pow(10f, dbVolume / 20f);
+            return linearVolume;
+        }
+        return 1f;
+    }
 }
