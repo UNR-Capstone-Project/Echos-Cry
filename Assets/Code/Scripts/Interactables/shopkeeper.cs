@@ -50,14 +50,14 @@ public class shopkeeper : MonoBehaviour
         }
     }
 
-    void Start(){
-        //translator.OnShopEvent += OpenShop;
-        //translator.OnCloseShopEvent += CloseShop;
-        //translator.OnInteractEvent += RequestOpenShop;
+    void Start()
+    {
+        translator.OnCloseShopEvent += CloseShop;
+        translator.OnInteractEvent += RequestOpenShop;
     }
-    void OnDestroy(){
-        //translator.OnShopEvent -= OpenShop;
-        //translator.OnCloseShopEvent -= CloseShop;
-        //translator.OnInteractEvent -= RequestOpenShop;
+    void OnDestroy()
+    {
+        translator.OnCloseShopEvent -= CloseShop;
+        translator.OnInteractEvent -= RequestOpenShop;
     }
 }
