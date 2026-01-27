@@ -24,12 +24,10 @@ public class PauseMenu : MonoBehaviour
                 break;
             case pauseOptions.SETTINGS:
                 MenuManager.Instance.SetMenu("Settings");
+                HandleSettingsMenu();
                 break;
             case pauseOptions.QUIT:
                 Application.Quit();
-                break;
-            case pauseOptions.SETTINGS:
-                HandleSettingsMenu();
                 break;
             default:
                 break;
