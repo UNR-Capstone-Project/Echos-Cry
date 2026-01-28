@@ -6,6 +6,7 @@ public class PlayerStats : MonoBehaviour
     [Header("Configuration Object")]
     [SerializeField] private StatsConfig _playerStatsConfig;
 
+    //TODO: change these so they don't exist at some point
     public static event Action OnPlayerDamagedEvent;
     public static event Action OnPlayerHealedEvent;
     public static event Action OnPlayerDeathEvent;
@@ -34,6 +35,7 @@ public class PlayerStats : MonoBehaviour
 
         CameraManager.Instance.ScreenShake(0.6f, 0.2f);
 
+        //TODO: Change this so that there is a PlayerDeathState and checks happen in state machine
         if (_currentHealth == 0) OnPlayerDeathEvent?.Invoke();
     }
     public void Heal(float healAmount)
