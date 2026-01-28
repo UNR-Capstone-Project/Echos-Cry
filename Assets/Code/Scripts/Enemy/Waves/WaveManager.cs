@@ -25,12 +25,24 @@ public class WaveManager : MonoBehaviour
         currentWave = 0;
     }
 
+    void OnEnable()
+    {
+        //Enemy.enemyKilled += updateKillCount;
+    }
+
+    void OnDisable()
+    {
+        //Enemy.enemyKilled -= updateKillCount;
+    }
+
     public void updateKillCount()
     {
+        Debug.Log($"total killed so far: {totalEnemiesKilled}");
         totalEnemiesKilled++;
 
         if (totalEnemiesKilled >= allWaves[currentWave].totalEnemies)
         {
+            Debug.Log($"Total enemies killed match the current wave {currentWave+1}, all waves completed.");
             currentWave++;
             if (currentWave >= allWaves.Length) //All waves completed
             {
@@ -40,6 +52,7 @@ public class WaveManager : MonoBehaviour
             }
             else //Start next wave
             {
+                Debug.Log($"Total enemies killed match the current wave {currentWave+1}, moving to next wave");
                 StartCoroutine(spawnWaveAfterDelay(timeBetweenWaves));
             }
         }
@@ -87,7 +100,6 @@ public class WaveManager : MonoBehaviour
             {
                 enemyInstance.transform.SetParent(enemySpawner.transform);
                 EnemyStats stats = enemyInstance.GetComponent<EnemyStats>();
-                //if (stats != null) stats.OnEnemyDeathEvent += updateKillCount;
             }));
 
             yield return new WaitForSeconds(wave.spawnInterval);
@@ -97,7 +109,6 @@ public class WaveManager : MonoBehaviour
         Vector3 keyedEnemyPosition = enemySpawner.GetRandomPoint(wave.spawnRadius);
         GameObject keyedInstance = Instantiate(keyedEnemy, keyedEnemyPosition, Quaternion.identity, enemySpawner.transform);
         var keyedStats = keyedInstance.GetComponent<EnemyStats>();
-        //if (keyedStats != null) keyedStats.OnEnemyDeathEvent += updateKillCount;
 
         OnWaveSpawningEnded?.Invoke();
         yield return null;

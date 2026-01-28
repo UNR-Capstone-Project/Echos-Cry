@@ -13,5 +13,7 @@ public class WaveData : ScriptableObject
     public GameObject[] enemyTypesArray;
     public GameObject keyedEnemy;
     public float spawnRadius = 10f;
-    public float spawnInterval = 2f;
+
+    //spawnInterval - the delay between each enemy spawn, shorter time like 0.1f -> effectively spawns the entire wave simultaneously
+    public float spawnInterval = 2f;   
 }
