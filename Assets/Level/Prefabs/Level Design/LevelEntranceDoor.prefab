@@ -94,7 +94,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 86aa2387b1514174ea7fcb5edf20f09a, type: 2}
     - target: {fileID: 919132149155446097, guid: 1db4140409139e64bb4a087d58705cad, type: 3}
       propertyPath: m_Name
-      value: Doors
+      value: LevelEntranceDoor
       objectReference: {fileID: 0}
     - target: {fileID: 2989515709367281966, guid: 1db4140409139e64bb4a087d58705cad, type: 3}
       propertyPath: m_Name
@@ -109,10 +109,10 @@ PrefabInstance:
       addedObject: {fileID: 7047729017233982081}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1db4140409139e64bb4a087d58705cad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5350839731573509473}
+      addedObject: {fileID: 1349252157542467394}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1db4140409139e64bb4a087d58705cad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1349252157542467394}
+      addedObject: {fileID: 5349473876772963567}
     - targetCorrespondingSourceObject: {fileID: 2989515709367281966, guid: 1db4140409139e64bb4a087d58705cad, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1199329035211738967}
@@ -173,22 +173,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5350839731573509473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2861670386412083735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4840cb87ea0598d43b91bb1b9d049188, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  doorAnimator: {fileID: 7047729017233982081}
-  ToolTipPrefab: {fileID: 5435326603873152583, guid: 2368d443f59e53f4dbdf1ce2d1423114, type: 3}
-  translator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
-  isLocked: 0
 --- !u!65 &1349252157542467394
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -210,6 +194,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 1, z: 2}
   m_Center: {x: 0, y: 0.5, z: 1}
+--- !u!114 &5349473876772963567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2861670386412083735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a18600db514d4b4faffae1343db8cc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  doorAnimator: {fileID: 7047729017233982081}
+  ToolTipPrefab: {fileID: 5435326603873152583, guid: 2368d443f59e53f4dbdf1ce2d1423114, type: 3}
+  translator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
+  levelReferenceName: 0
 --- !u!1 &4295198696863885956 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8003943645828936254, guid: 1db4140409139e64bb4a087d58705cad, type: 3}

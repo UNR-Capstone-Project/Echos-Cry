@@ -1,20 +1,19 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DoorManager : MonoBehaviour
+public abstract class DoorManager : MonoBehaviour
 {
-    [SerializeField] private Animator doorAnimator;
-    [SerializeField] private GameObject ToolTipPrefab;
-    [SerializeField] private InputTranslator translator;
-    [SerializeField] private bool isLocked = false;
+    [SerializeField] protected Animator doorAnimator;
+    [SerializeField] protected GameObject ToolTipPrefab;
+    [SerializeField] protected InputTranslator translator;
 
-    [SerializeField] private bool isWaveBased = false;
-    [SerializeField] private WaveManager waveManager;
+    //[SerializeField] private WaveManager waveManager;
 
-    private bool playerInRange = false;
-    private bool isOpen = false;
+    protected bool playerInRange = false;
+    protected bool isOpen = false;
+    protected bool isLocked = false;
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (!isOpen)
         {
@@ -34,12 +33,12 @@ public class DoorManager : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    protected virtual void OnTriggerExit(Collider other)
     {
         playerInRange = false;
     }
 
-    private void OpenDoor()
+    protected virtual void OpenDoor()
     {
         if (playerInRange && !isLocked)
         {
@@ -48,21 +47,22 @@ public class DoorManager : MonoBehaviour
         }
     }
 
-    void Start()
+    protected virtual void Start()
     {
-        if (isWaveBased && waveManager != null)
-        {
-            waveManager.OnAllWavesCompleted += () => { isLocked = false; };
-        }
+        //if (isWaveBased && waveManager != null)
+        //{
+        //    waveManager.OnAllWavesCompleted += () => { isLocked = false; };
+        //}
 
         translator.OnInteractEvent += OpenDoor;
     }
-    private void OnDestroy()
+
+    protected virtual void OnDestroy()
     {
-        if (isWaveBased && waveManager != null)
-        {
-            waveManager.OnAllWavesCompleted -= () => { isLocked = false; };
-        }
+        //if (isWaveBased && waveManager != null)
+        //{
+        //   waveManager.OnAllWavesCompleted -= () => { isLocked = false; };
+        //}
 
         translator.OnInteractEvent -= OpenDoor;
     }
