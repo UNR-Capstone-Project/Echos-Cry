@@ -7,7 +7,6 @@ public class StatsConfig : ScriptableObject
     //[SerializeField] private FloatVariable _maxHealth;
     //public FloatVariable CurrentHealth { get { return _currentHealth; } }
     //public FloatVariable MaxHealth { get { return _maxHealth; } }
-    public bool invincible;
     public float currentHealth;
     public float maxHealth;
     public float maxArmor;
