@@ -69,7 +69,6 @@ public class EnemyStats : MonoBehaviour
 
     public void Damage(float damage, Color color)
     {
-        if (_statsConfig.invincible) return;
         if (HasArmor)
         {
             _armor -= Mathf.Abs(damage);

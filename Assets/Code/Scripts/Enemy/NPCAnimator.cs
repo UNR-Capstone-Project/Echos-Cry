@@ -14,7 +14,6 @@ public class NPCAnimator : MonoBehaviour
  
     public void TintFlash(Color tintColor, float flashDuration)
     {
-        if (_npcSprite == null) return;
         StopCoroutine(TintFlashCoroutine(tintColor, flashDuration));
         StartCoroutine(TintFlashCoroutine(tintColor, flashDuration));
     }
@@ -22,7 +21,6 @@ public class NPCAnimator : MonoBehaviour
     public void UpdateSpriteDirection(Vector3 locomotion, bool isReversed)
     {
         if (locomotion.x == 0) return;
-        if (_spriteTransform == null) return;
 
         Vector3 currentScale = _spriteTransform.localScale;
         currentScale.x = Mathf.Sign(locomotion.x) * Mathf.Abs(currentScale.x);
@@ -31,13 +29,11 @@ public class NPCAnimator : MonoBehaviour
     }
     public void PlayAnimation(int hashCode)
     {
-        if (_animator == null) return;
         _animator.Play(hashCode);
     }
 
     public void PlayVisualEffect()
     {
-        if (_visualEffect == null) return;
         _visualEffect.Play();
     }
 
