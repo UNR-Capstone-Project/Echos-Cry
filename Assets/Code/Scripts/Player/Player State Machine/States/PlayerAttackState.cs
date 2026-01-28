@@ -36,7 +36,7 @@ public class PlayerAttackState : PlayerActionState
         if (_playerContext.WeaponHolder.IsActionEnded())
         {
             //TODO: implement rate into combo meter class
-            float rate = 1f;
+            float rate = 5f;
             int hitCount = _playerContext.WeaponHolder.CurrentlyEquippedWeapon.HitColliders.Count;
             if (hitCount > 0) _playerContext.ComboMeter.AddToComboMeter(hitCount * rate);
             _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Idle));
