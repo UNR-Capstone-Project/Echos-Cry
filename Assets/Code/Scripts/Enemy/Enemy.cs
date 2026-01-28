@@ -43,8 +43,12 @@ public class Enemy : MonoBehaviour
     {   
         _stateMachine = new();
         _stateCache = new();
-        _enemyCacheStrategy.Execute(_stateCache, this);
-        _stateMachine.Init(_stateCache.StartState);
+
+        if (_enemyCacheStrategy != null) //Added so some enemies don't have to implement states.
+        {
+            _enemyCacheStrategy.Execute(_stateCache, this);
+            _stateMachine.Init(_stateCache.StartState);
+        }  
     }
     private void Start()
     {

@@ -1214,10 +1214,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4409496962696009897, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
-      propertyPath: _attackAnimator
-      value: 
-      objectReference: {fileID: 3825858434900943514}
     - target: {fileID: 6698232584449221764, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
       propertyPath: m_Name
       value: Weapon (Clarinet)
@@ -1230,11 +1226,6 @@ PrefabInstance:
 --- !u!4 &2127575191814039986 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1910465096639058828, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
-  m_PrefabInstance: {fileID: 506091730931972670}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &3825858434900943514 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 3611273676873636004, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
   m_PrefabInstance: {fileID: 506091730931972670}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &6771810849660010116 stripped

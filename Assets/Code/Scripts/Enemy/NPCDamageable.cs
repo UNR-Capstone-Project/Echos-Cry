@@ -10,10 +10,14 @@ public class NPCDamageable : MonoBehaviour, IDamageable
         _npc.Collider.enabled = false;
 
         _npc.Stats.Damage(amount, Color.red);
-        _npc.SoundStrategy.Execute(_npc.SoundConfig.HitSFX, _npc.transform, 0);
 
-        _npc.NPCAnimator.TintFlash(Color.red, 0.2f);
-        _npc.NPCAnimator.PlayVisualEffect();
+        if (_npc.NPCAnimator != null) //Allow for NPCs without animators
+        {
+            _npc.SoundStrategy.Execute(_npc.SoundConfig.HitSFX, _npc.transform, 0);
+            _npc.NPCAnimator.TintFlash(Color.red, 0.2f);
+            _npc.NPCAnimator.PlayVisualEffect();
+        }
+
         DamageLabelManager.Instance.SpawnPopup(amount, _npc.transform.position, Color.white);
         
         if(!_npc.Stats.HasArmor) 
