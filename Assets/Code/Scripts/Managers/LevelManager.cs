@@ -35,6 +35,15 @@ public class LevelManager : MonoBehaviour
         _instance = this;
     }
 
+    private void Start()
+    {
+        PlayerStats.OnPlayerDeathEvent += LockAllLevels;
+    }
+    private void OnDestroy()
+    {
+        PlayerStats.OnPlayerDeathEvent -= LockAllLevels;
+    }
+
     public void UnlockLevel(LevelName levelName)
     {
         int index = (int)levelName;
@@ -56,7 +65,7 @@ public class LevelManager : MonoBehaviour
 
     public void LockAllLevels()
     {
-        for (int i = 0; i < LevelList.Count; i++)
+        for (int i = 1; i < LevelList.Count; i++) //Skip locking the first level!
         {
             Level newLevel = LevelList[i];
             newLevel.locked = true;
