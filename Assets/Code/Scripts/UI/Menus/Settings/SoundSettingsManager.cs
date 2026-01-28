@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SettingsManager : MonoBehaviour
+public class SoundSettingsManager : MonoBehaviour
 {
     [SerializeField] private Slider volumeSlider;
     [SerializeField] private Slider musicSlider;
