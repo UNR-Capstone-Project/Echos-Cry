@@ -2,12 +2,13 @@ using AudioSystem;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class DroppedItem : MonoBehaviour
+public class DroppedCurrency : MonoBehaviour
 {
     [SerializeField] private float itemSpeed = 4f;
     [SerializeField] float itemDragDistance = 4f;
     [SerializeField] Rigidbody itemBody;
     [SerializeField] soundEffect pickupSFX;
+    [SerializeField] Collider _collider;
 
     private void Awake()
     {
@@ -39,12 +40,16 @@ public class DroppedItem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //If unperformant, store reference to player currency system
+        if(other.TryGetComponent<Player>(out Player player))
+        {
+            player.CurrencySystem.IncrementFingerCurrency(1);
+        }
         SoundEffectManager.Instance.Builder
             .SetSound(pickupSFX)
             .SetSoundPosition(this.transform.position)
             .ValidateAndPlaySound();
-        //PlayerStats.UpdateCurrency(1);
-        GetComponent<Collider>().enabled = false;   
+        _collider.enabled = false;
         Destroy(gameObject);
     }
 }

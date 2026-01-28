@@ -5,17 +5,17 @@ public class CurrencyCounterUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI currencyText;
 
-    public void UpdateCurrencyText()
+    public void UpdateCurrencyText(int currencyCount)
     {
-        currencyText.text = "Fingers: 0";// + PlayerStats.CurrencyCount.ToString();
+        currencyText.text = "Fingers: " + currencyCount.ToString();
     }
 
     private void Start()
     {
-       // PlayerStats.OnCurrencyChangeEvent += UpdateCurrencyText;
+        PlayerCurrencySystem.OnCurrencyChangeEvent += UpdateCurrencyText;
     }
     private void OnDestroy()
     {
-       // PlayerStats.OnCurrencyChangeEvent -= UpdateCurrencyText;
+       PlayerCurrencySystem.OnCurrencyChangeEvent -= UpdateCurrencyText;
     }
 }
