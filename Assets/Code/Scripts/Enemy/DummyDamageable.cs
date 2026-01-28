@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Scarecrow : MonoBehaviour, IDamageable
+public class DummyDamageable : MonoBehaviour, IDamageable
 {
     [SerializeField] private Collider _collider;
     [SerializeField] private SoundStrategy _soundStrategy;
