@@ -36,7 +36,11 @@ public class PlayerStats : MonoBehaviour
         CameraManager.Instance.ScreenShake(0.6f, 0.2f);
 
         //TODO: Change this so that there is a PlayerDeathState and checks happen in state machine
-        if (_currentHealth == 0) OnPlayerDeathEvent?.Invoke();
+        if (_currentHealth == 0)
+        {
+            OnPlayerDeathEvent?.Invoke();
+            Heal(_playerStatsConfig.maxHealth);
+        }
     }
     public void Heal(float healAmount)
     {

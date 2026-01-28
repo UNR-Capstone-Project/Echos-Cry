@@ -72,34 +72,34 @@ public class ShopManager : MonoBehaviour
         totalCost = tempCost;
         totalCostText.text = $"Total Cost: ${totalCost.ToString()}";
 
-        //if(totalCost <= PlayerStats.CurrencyCount)
-        //{
-        //    totalCostText.color = Color.white;
-        //}
-        //else
-        //{
-        //    totalCostText.color = Color.red;
-        //}
+        if(totalCost <= PlayerCurrencySystem.Instance.GetFingerCurrency())
+        {
+            totalCostText.color = Color.white;
+        }
+        else
+        {
+            totalCostText.color = Color.red;
+        }
 
-        //currentFingersText.text = $"Current Fingers: ${PlayerStats.CurrencyCount.ToString()}";
+        currentFingersText.text = $"Current Fingers: ${PlayerCurrencySystem.Instance.GetFingerCurrency().ToString()}";
     }
 
     public void Purchase()
     {
         if (totalCost <= 0) return;
-        //if(PlayerStats.CurrencyCount >= totalCost)
-        //{
-        //    foreach (GameObject item in ShopItemArray)
-        //    {
-        //        ShopItem shopItemScript = item.GetComponent<ShopItem>();
-        //        for (int i = 0; i < shopItemScript.GetAmount(); i++)
-        //        {
-        //            Instantiate(shopItemScript.GetPrefab(), GameObject.Find("Player").transform.position, Quaternion.identity);
-        //        }
-        //        shopItemScript.ResetAmount();
-        //    }
+        if(PlayerCurrencySystem.Instance.GetFingerCurrency() >= totalCost)
+        {
+            foreach (GameObject item in ShopItemArray)
+            {
+                ShopItem shopItemScript = item.GetComponent<ShopItem>();
+                for (int i = 0; i < shopItemScript.GetAmount(); i++)
+                {
+                    Instantiate(shopItemScript.GetPrefab(), PlayerRef.Transform.position, Quaternion.identity);
+                }
+                shopItemScript.ResetAmount();
+            }
 
-        //    PlayerStats.UpdateCurrency(-(int)totalCost);
-        //}
+            PlayerCurrencySystem.Instance.DecrementFingerCurrency((int)totalCost);
+        }
     }
 }

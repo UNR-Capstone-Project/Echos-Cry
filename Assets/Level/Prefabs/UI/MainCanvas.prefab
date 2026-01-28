@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 4080592535432107092}
   - component: {fileID: 535489460764206293}
   - component: {fileID: 4481951059888851365}
-  - component: {fileID: 5480269914008866502}
+  - component: {fileID: 6939155204017948552}
   m_Layer: 5
   m_Name: DamageLabelCanvas
   m_TagString: Untagged
@@ -271,7 +271,7 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
---- !u!114 &5480269914008866502
+--- !u!114 &6939155204017948552
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -280,11 +280,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 399665455554144398}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2784691c9a64734c8d2d792bda5f500, type: 3}
+  m_Script: {fileID: 11500000, guid: 1286c1973e55bb64cac135a2e202effd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpawnsDamagePopups
+  m_EditorClassIdentifier: Assembly-CSharp::DamageLabelManager
   damageLabelPrefab: {fileID: 2115787942821154026, guid: b4f23445892cc694fa935f1a8ff6fbe9, type: 3}
-  displayLength: 0.6
+  _displayLength: 1
 --- !u!1 &626311549930519317
 GameObject:
   m_ObjectHideFlags: 0
@@ -1881,7 +1881,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5629266551370521159
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1947,7 +1947,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &8742998139374480467
 MonoBehaviour:
   m_ObjectHideFlags: 0

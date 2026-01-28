@@ -2,17 +2,29 @@ using System;
 using UnityEngine;
 
 
-public class PlayerCurrencySystem : MonoBehaviour
+public class PlayerCurrencySystem : Singleton<PlayerCurrencySystem>
 {
+
     public void IncrementFingerCurrency(int amount)
     {
         _fingerCurrency += amount;
         OnCurrencyChangeEvent?.Invoke(_fingerCurrency);
     }
-    public void DecrementFingerCurrenct(int amount)
+    public void DecrementFingerCurrency(int amount)
     {
         _fingerCurrency -= amount;
         OnCurrencyChangeEvent?.Invoke(_fingerCurrency);
+    }
+
+    public void SetFingerCurrency(int amount)
+    {
+        _fingerCurrency = amount;
+        OnCurrencyChangeEvent?.Invoke(_fingerCurrency);
+    }
+
+    public int GetFingerCurrency()
+    {
+        return _fingerCurrency;
     }
 
     private void Start()
