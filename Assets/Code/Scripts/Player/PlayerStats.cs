@@ -8,6 +8,7 @@ public class PlayerStats : MonoBehaviour
     {
         _currentHealth = _maxHealth;
         OnPlayerHealthChangeEvent?.Invoke(_currentHealth, _maxHealth);
+        SetCurrency(0);
         StartInvulnerability();
     }
 
@@ -26,6 +27,11 @@ public class PlayerStats : MonoBehaviour
     public static void UpdateCurrency(int amount)
     {
         _currencyCount += amount;
+        OnCurrencyChangeEvent?.Invoke();
+    }
+    public static void SetCurrency(int amount)
+    {
+        _currencyCount = amount;
         OnCurrencyChangeEvent?.Invoke();
     }
 
