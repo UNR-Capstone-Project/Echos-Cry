@@ -6504,13 +6504,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1766548610647288419, guid: 455a8e4cf5c982f479bdf9a75d562f0f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2015160982183895731, guid: 455a8e4cf5c982f479bdf9a75d562f0f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 2015160982183895731, guid: 455a8e4cf5c982f479bdf9a75d562f0f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6518,7 +6514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2015160982183895731, guid: 455a8e4cf5c982f479bdf9a75d562f0f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2015160982183895731, guid: 455a8e4cf5c982f479bdf9a75d562f0f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6551,22 +6547,6 @@ PrefabInstance:
     - target: {fileID: 3809796366610336885, guid: 455a8e4cf5c982f479bdf9a75d562f0f, type: 3}
       propertyPath: m_Name
       value: Scarecrow
-      objectReference: {fileID: 0}
-    - target: {fileID: 8731657074516914193, guid: 455a8e4cf5c982f479bdf9a75d562f0f, type: 3}
-      propertyPath: m_Size.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8731657074516914193, guid: 455a8e4cf5c982f479bdf9a75d562f0f, type: 3}
-      propertyPath: m_Size.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8731657074516914193, guid: 455a8e4cf5c982f479bdf9a75d562f0f, type: 3}
-      propertyPath: m_Size.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8731657074516914193, guid: 455a8e4cf5c982f479bdf9a75d562f0f, type: 3}
-      propertyPath: m_Center.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
