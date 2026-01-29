@@ -20,5 +20,16 @@ public abstract class PlayerActionState : IState
     public virtual void FixedUpdate(){ }
     public virtual void Enter() { }
     public virtual void Exit() { }
-    public virtual void CheckSwitch() { }
+    public void CheckSwitch() 
+    {
+        if (IsDead()) _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Death));
+        OnCheckSwitch();
+    }
+    protected virtual void OnCheckSwitch() { }
+
+    private bool IsDead()
+    {
+        if (_playerContext.Stats.CurrentHealth <= 0) return true;
+        else return false;
+    }
 }

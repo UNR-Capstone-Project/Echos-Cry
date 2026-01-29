@@ -10,7 +10,7 @@ public class PlayerMoveState : PlayerActionState
         : base(playerContext, playerStateMachine, playerStateCache)
     {}
 
-    public override void CheckSwitch()
+    protected override void OnCheckSwitch()
     {
         if (!_playerStateMachine.IsMoving)
         {
