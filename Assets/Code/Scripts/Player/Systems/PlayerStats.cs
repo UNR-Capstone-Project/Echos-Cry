@@ -26,6 +26,7 @@ public class PlayerStats : MonoBehaviour
     public void ResetHealth()
     {
         _currentHealth = _playerStatsConfig.maxHealth;
+        OnPlayerHealthChangeEvent?.Invoke(_currentHealth, _playerStatsConfig.maxHealth);
     }
     public void Damage(float damageAmount)
     {

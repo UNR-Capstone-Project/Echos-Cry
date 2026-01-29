@@ -19,7 +19,6 @@ public class PlayerIdleState : PlayerActionState
     }
     public override void Enter()
     {
-        Debug.Log("Idle");
         _playerContext.Animator.SpriteAnimator.Play("Idle");
     }
 }
