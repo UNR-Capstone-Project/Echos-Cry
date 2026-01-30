@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Relevant Player Components")]
     [SerializeField] private PlayerStats _stats;
     [SerializeField] private PlayerComboMeter _comboMeter;
     [SerializeField] private PlayerAnimator _animator;
@@ -17,9 +18,12 @@ public class Player : MonoBehaviour
 
     private PlayerStateMachine _playerStateMachine;
     private PlayerStateCache _playerStateCache;
-
-    public static event Action AttackEndedEvent;
-    public void InvokeAttackEnded() => AttackEndedEvent?.Invoke();
+    [Header("Event Channel (Broadcaster)")]
+    [SerializeField] EventChannel _attackEndedChannel;
+    public void InvokeAttackEnded()
+    {
+        if (_attackEndedChannel != null) _attackEndedChannel.Invoke();
+    }
 
     public PlayerStats Stats { get => _stats; }
     public PlayerComboMeter ComboMeter { get => _comboMeter; }
@@ -74,10 +78,13 @@ public class Player : MonoBehaviour
     private void Start()
     {
         InitStateCache();
-        _playerStateMachine.BindInputs(_inputTranslator);
         _playerStateMachine.Init(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Idle));
     }
-    private void OnDestroy()
+    private void OnEnable()
+    {
+        _playerStateMachine.BindInputs(_inputTranslator);
+    }
+    private void OnDisable()
     {
         _playerStateMachine.UnbindInputs(_inputTranslator);
     }

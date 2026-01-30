@@ -24,6 +24,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] private SoundStrategy _soundStrategy;
     [SerializeField] private EnemyCacheStrategy _enemyCacheStrategy;
 
+    [Header("Event Channel (Subscriber)")]
+    [Tooltip("Invoked when player's attack ends")]
+    [SerializeField] private EventChannel _playerAttackEndChannel;
+
     public EnemyStateCache StateCache { get => _stateCache; }
     public EnemyStateMachine StateMachine { get => _stateMachine; }
 
@@ -45,19 +49,23 @@ public class Enemy : MonoBehaviour
         _stateMachine = new();
         _stateCache = new();
 
-        if (_enemyCacheStrategy != null) //Added so some enemies don't have to implement states.
-        {
-            _enemyCacheStrategy.Execute(_stateCache, this);
-            _stateMachine.Init(_stateCache.StartState);
-        }  
+        _enemyCacheStrategy.Execute(_stateCache, this);
+        _stateMachine.Init(_stateCache.StartState); 
     }
-    private void Start()
+    private void OnEnable()
     {
-        Player.AttackEndedEvent += ResetCollider;
+        _stateCache?.Enable();
+        _playerAttackEndChannel.Channel += ResetCollider;
+    }
+    private void OnDisable()
+    {
+        _stateCache?.Disable();
+        _playerAttackEndChannel.Channel -= ResetCollider; 
     }
     private void OnDestroy()
     {
-        Player.AttackEndedEvent -= ResetCollider;
+        _stateMachine = null;
+        _stateCache = null;
     }
 
     protected virtual void Update()

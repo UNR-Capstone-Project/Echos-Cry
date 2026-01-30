@@ -2,10 +2,14 @@ using UnityEngine;
 
 public class DummyDamageable : MonoBehaviour, IDamageable
 {
+    [Header("Relevant Components")]
     [SerializeField] private Collider _collider;
     [SerializeField] private SoundStrategy _soundStrategy;
     [SerializeField] private NPCAnimator _npcAnimator;
     [SerializeField] private EnemySoundConfig _soundConfig;
+    [Header("Event Channel (Subscriber)")]
+    [Tooltip("Invoked when player's attack ends")]
+    [SerializeField] EventChannel _playerAttackEndedChannel;
 
     public virtual void Execute(float amount)
     {
@@ -15,13 +19,15 @@ public class DummyDamageable : MonoBehaviour, IDamageable
 
         DamageLabelManager.Instance.SpawnPopup(amount, gameObject.transform.position, Color.white);
     }
-    private void Start()
+
+    private void OnEnable()
     {
-        Player.AttackEndedEvent += ResetCollider;
+        _playerAttackEndedChannel.Channel += ResetCollider;
     }
-    private void OnDestroy()
+    private void OnDisable()
     {
-        Player.AttackEndedEvent -= ResetCollider;
+        _playerAttackEndedChannel.Channel -= ResetCollider;
     }
+
     private void ResetCollider() => _collider.enabled = true;
 }
