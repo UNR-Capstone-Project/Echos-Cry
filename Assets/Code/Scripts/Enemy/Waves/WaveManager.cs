@@ -25,12 +25,26 @@ public class WaveManager : MonoBehaviour
         currentWave = 0;
     }
 
+    /*
+    void OnEnable()
+    {
+        Enemy.enemyKilled += updateKillCount;
+    }
+
+    void OnDisable()
+    {
+        Enemy.enemyKilled -= updateKillCount;
+    }*/
+
     public void updateKillCount()
     {
+        
         totalEnemiesKilled++;
-
+        //Debug.Log($"total killed so far: {totalEnemiesKilled}");
+        //Debug.Log($"total enemied needed to be killed was: {allWaves[currentWave].totalEnemies}");
         if (totalEnemiesKilled >= allWaves[currentWave].totalEnemies)
         {
+            //Debug.Log($"Total enemies killed match the current wave {currentWave+1}, all waves completed.");
             currentWave++;
             if (currentWave >= allWaves.Length) //All waves completed
             {
@@ -40,6 +54,7 @@ public class WaveManager : MonoBehaviour
             }
             else //Start next wave
             {
+                Debug.Log($"Total enemies killed match the current wave {currentWave+1}, moving to next wave");
                 StartCoroutine(spawnWaveAfterDelay(timeBetweenWaves));
             }
         }
@@ -78,26 +93,38 @@ public class WaveManager : MonoBehaviour
     private IEnumerator spawnWave(WaveData wave)
     {
         OnNewWaveSpawned?.Invoke();
-        for (int i = 0; i < wave.totalEnemies - 1; i++)
+
+        if (allWaves[currentWave].spawnCountOrderRandomized)
         {
-            GameObject enemy = getRandomEnemy(wave);
-            Vector3 enemyPosition = enemySpawner.GetRandomPoint(wave.spawnRadius);
-
-            StartCoroutine(enemySpawner.SpawnWithDecal(enemy, enemyPosition, wave.spawnRadius, (enemyInstance) =>
+            //will add later
+        } else
+        {
+            //spawns the enemies linearly in order of enemySpawnCounts list in WaveData 
+            for (int allCounts = 0; allCounts < allWaves[currentWave].enemySpawnCounts.Length; allCounts++)
             {
-                enemyInstance.transform.SetParent(enemySpawner.transform);
-                EnemyStats stats = enemyInstance.GetComponent<EnemyStats>();
-                //if (stats != null) stats.OnEnemyDeathEvent += updateKillCount;
-            }));
+                //Debug.Log($"Current enemy spawn count to look at is: {allCounts}");
+                //Debug.Log($"Actual listed number in spawn count is: {allWaves[currentWave].enemySpawnCounts[allCounts]}");
+                //Debug.Log($"Enemy Type that will be spawned from enemyTypesArray: {allWaves[currentWave].enemyTypesArray[allCounts]}");
 
-            yield return new WaitForSeconds(wave.spawnInterval);
+                for (int i = 0; i < allWaves[currentWave].enemySpawnCounts[allCounts]; i++)
+                {
+                    //Debug.Log($"will spawn enemy this many types: {i}");
+                    GameObject enemy = allWaves[currentWave].enemyTypesArray[allCounts];
+                    Vector3 enemyPosition = enemySpawner.GetRandomPoint(wave.spawnRadius);
+                    StartCoroutine(enemySpawner.SpawnWithDecal(enemy, enemyPosition, wave.spawnRadius, (enemyInstance) =>
+                    {
+                        enemyInstance.transform.SetParent(enemySpawner.transform);
+                        EnemyStats stats = enemyInstance.GetComponent<EnemyStats>();
+                    }));
+                    yield return new WaitForSeconds(wave.spawnInterval);
+                }
+            }
         }
 
         GameObject keyedEnemy = wave.keyedEnemy;
         Vector3 keyedEnemyPosition = enemySpawner.GetRandomPoint(wave.spawnRadius);
         GameObject keyedInstance = Instantiate(keyedEnemy, keyedEnemyPosition, Quaternion.identity, enemySpawner.transform);
         var keyedStats = keyedInstance.GetComponent<EnemyStats>();
-        //if (keyedStats != null) keyedStats.OnEnemyDeathEvent += updateKillCount;
 
         OnWaveSpawningEnded?.Invoke();
         yield return null;

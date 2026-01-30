@@ -54,6 +54,16 @@ public class Player : MonoBehaviour
             new PlayerDashState
             (this, _playerStateMachine, _playerStateCache)
         );
+        _playerStateCache.AddState(
+            PlayerStateCache.PlayerState.Death,
+            new PlayerDeathState
+            (this, _playerStateMachine, _playerStateCache)
+        );
+    }
+    public void Reset()
+    {
+        _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Idle));
+        _stats.ResetHealth();
     }
 
     private void Awake()

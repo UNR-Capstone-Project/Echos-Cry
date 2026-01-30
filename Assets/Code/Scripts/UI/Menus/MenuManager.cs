@@ -11,39 +11,32 @@ public class StringGameobjectPair
     public GameObject value;
 }
 
-public class MenuManager : MonoBehaviour
+public class MenuManager : Singleton<MenuManager>
 {
     [SerializeField] private InputTranslator _translator;
     [SerializeField] private GameObject screenFadeObject;
     [SerializeField] private List<StringGameobjectPair> menuDictionary;
-    public static MenuManager Instance { get; private set; }
+
     public static event Action PauseStarted;
     public static event Action PauseEnded;
 
-    void Awake()
+    protected override void OnAwake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
-
         SetMenu("HUD");
     }
 
     private void Start()
     {
-        PlayerStats.OnPlayerDeathEvent += EnableGameoverMenu;
+        GameManager.OnPlayerDeathEvent += EnableGameoverMenu;
+
         _translator.OnPauseEvent += EnablePauseMenu;
         _translator.OnResumeEvent += DisablePauseMenu;
     }
 
     void OnDestroy()
     {
-        PlayerStats.OnPlayerDeathEvent -= EnableGameoverMenu;
+        GameManager.OnPlayerDeathEvent -= EnableGameoverMenu;
+
         _translator.OnPauseEvent -= EnablePauseMenu;
         _translator.OnResumeEvent -= DisablePauseMenu;
     }

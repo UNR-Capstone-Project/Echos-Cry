@@ -8,9 +8,7 @@ public class PlayerStats : MonoBehaviour
 
     //TODO: change these so they don't exist at some point
     public static event Action OnPlayerDamagedEvent;
-    public static event Action OnPlayerHealedEvent;
-    public static event Action OnPlayerDeathEvent;
-    public static event Action<float, float> OnPlayerHealthChangeEvent;
+    public static event Action OnPlayerHealedEvent;    public static event Action<float, float> OnPlayerHealthChangeEvent;
 
     private float _currentHealth;
     public float CurrentHealth { get { return _currentHealth; } }
@@ -25,6 +23,11 @@ public class PlayerStats : MonoBehaviour
         _currentHealth = _playerStatsConfig.maxHealth;
     }
 
+    public void ResetHealth()
+    {
+        _currentHealth = _playerStatsConfig.maxHealth;
+        OnPlayerHealthChangeEvent?.Invoke(_currentHealth, _playerStatsConfig.maxHealth);
+    }
     public void Damage(float damageAmount)
     {
         _currentHealth -= damageAmount;
@@ -34,13 +37,6 @@ public class PlayerStats : MonoBehaviour
         OnPlayerHealthChangeEvent?.Invoke(_currentHealth, _playerStatsConfig.maxHealth);
 
         CameraManager.Instance.ScreenShake(0.6f, 0.2f);
-
-        //TODO: Change this so that there is a PlayerDeathState and checks happen in state machine
-        if (_currentHealth == 0)
-        {
-            OnPlayerDeathEvent?.Invoke();
-            Heal(_playerStatsConfig.maxHealth);
-        }
     }
     public void Heal(float healAmount)
     {
