@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 13594593}
   - component: {fileID: 13594592}
   - component: {fileID: 13594591}
+  - component: {fileID: 13594594}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -198,6 +199,107 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &13594594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13594590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 424b6720ff5999446843ba414e58a907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.UI.VirtualMouseInput
+  m_CursorMode: 0
+  m_CursorGraphic: {fileID: 0}
+  m_CursorTransform: {fileID: 0}
+  m_CursorSpeed: 400
+  m_ScrollSpeed: 45
+  m_StickAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Stick
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: a9871f0e-943d-45b5-9e1d-162e0c1850be
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_LeftButtonAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Left Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: abdb79c5-9577-4dbb-ae2c-485e79d703ba
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_MiddleButtonAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Middle Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: c583d759-8197-4b22-9d4c-ce152ff1bc12
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_RightButtonAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Right Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 850afd01-2c49-4e6d-9241-95a28ac6a679
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_ForwardButtonAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Forward Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 3a5b7287-4b76-489d-9ba8-e69c2ce284db
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_BackButtonAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Back Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 2620bb2b-a90c-4534-9e64-fa49074b8a48
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_ScrollWheelAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Scroll Wheel
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 1ac0f215-eb07-4bdc-a50c-a6137cd260f4
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
 --- !u!1001 &23583319
 PrefabInstance:
   m_ObjectHideFlags: 0
