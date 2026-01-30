@@ -214,6 +214,7 @@ MonoBehaviour:
   _drops: {fileID: 11400000, guid: 91505f07313de1e48a168c4fe728a893, type: 2}
   _soundStrategy: {fileID: 11400000, guid: 5c5a55ebf2f337c4a80a8fcd0ffba53d, type: 2}
   _enemyCacheStrategy: {fileID: 11400000, guid: 3e44f8811fadc334a97725ee01a4a7f7, type: 2}
+  _playerAttackEndChannel: {fileID: 11400000, guid: 32c2647349869554ca690720dab27258, type: 2}
 --- !u!114 &854592342237272632
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -44,11 +44,13 @@ public class BatIdleState : EnemyState
 
     public BatIdleState(BatData configFile, Enemy enemyContext) : base(enemyContext)
     {
-        TickManager.Instance.GetTimer(0.2f).Tick += Tick;
-
         _configFile = configFile;
     }
-    ~BatIdleState()
+    protected override void OnEnable()
+    {
+        TickManager.Instance.GetTimer(0.2f).Tick += Tick;
+    }
+    protected override void OnDisable()
     {
         TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
     }
@@ -84,12 +86,13 @@ public class BatChaseState : EnemyState
         if(_enemyContext.NavMeshAgent == null || PlayerRef.Transform == null) return;
         _enemyContext.NavMeshAgent.SetDestination(PlayerRef.Transform.position);
     }
- 
-    public BatChaseState(Enemy enemyContext) : base(enemyContext) 
+
+    public BatChaseState(Enemy enemyContext) : base(enemyContext) { }
+    protected override void OnEnable()
     {
         TickManager.Instance.GetTimer(0.2f).Tick += Tick;
     }
-    ~BatChaseState()
+    protected override void OnDisable()
     {
         TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
     }

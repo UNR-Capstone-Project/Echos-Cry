@@ -18,10 +18,13 @@ public class RangeIdleState : EnemyState
 
     public RangeIdleState(RangeData config, Enemy enemyContext) : base(enemyContext)
     {
-        TickManager.Instance.GetTimer(0.2f).Tick += Tick;
         _config = config;
     }
-    ~RangeIdleState()
+    protected override void OnEnable()
+    {
+        TickManager.Instance.GetTimer(0.2f).Tick += Tick;
+    }
+    protected override void OnDisable()
     {
         TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
     }
@@ -43,9 +46,12 @@ public class RangeRoamState : EnemyState
     public RangeRoamState(RangeData config, Enemy enemyContext) : base(enemyContext) 
     {
         _config = config;
+    }
+    protected override void OnEnable()
+    {
         TickManager.Instance.GetTimer(0.2f).Tick += Tick;
     }
-    ~RangeRoamState()
+    protected override void OnDisable()
     {
         TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
     }

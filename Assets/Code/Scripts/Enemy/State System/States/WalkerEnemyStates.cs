@@ -32,9 +32,12 @@ public class WalkerIdleState : EnemyState
     public WalkerIdleState(WalkerData config, Enemy enemyContext) : base(enemyContext)
     {
         _config = config;
+    }
+    protected override void OnEnable()
+    {
         TickManager.Instance.GetTimer(0.2f).Tick += Tick;
     }
-    ~WalkerIdleState() 
+    protected override void OnDisable()
     {
         TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
     }
@@ -69,9 +72,12 @@ public class WalkerChaseState : EnemyState
     public WalkerChaseState(WalkerData data,Enemy enemyContext) : base(enemyContext) 
     {
         _data = data;
+    }
+    protected override void OnEnable()
+    {
         TickManager.Instance.GetTimer(0.2f).Tick += Tick;
     }
-    ~WalkerChaseState()
+    protected override void OnDisable()
     {
         TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
     }
