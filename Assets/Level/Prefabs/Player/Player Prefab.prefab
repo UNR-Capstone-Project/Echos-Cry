@@ -369,6 +369,7 @@ MonoBehaviour:
   _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
   _sfx: {fileID: 11400000, guid: 5c5a55ebf2f337c4a80a8fcd0ffba53d, type: 2}
   _sfxConfig: {fileID: 11400000, guid: adc0363584558ca40b2ee6043daa5f4c, type: 2}
+  _attackEndedChannel: {fileID: 11400000, guid: 32c2647349869554ca690720dab27258, type: 2}
 --- !u!114 &3818315168867680251
 MonoBehaviour:
   m_ObjectHideFlags: 0

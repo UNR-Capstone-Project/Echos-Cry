@@ -68,6 +68,7 @@ MonoBehaviour:
   _soundStrategy: {fileID: 11400000, guid: 5c5a55ebf2f337c4a80a8fcd0ffba53d, type: 2}
   _npcAnimator: {fileID: 4626249444706746508}
   _soundConfig: {fileID: 11400000, guid: 691276c4a36beec4db035cacfdae9741, type: 2}
+  _playerAttackEndedChannel: {fileID: 11400000, guid: 32c2647349869554ca690720dab27258, type: 2}
 --- !u!65 &8731657074516914193
 BoxCollider:
   m_ObjectHideFlags: 0

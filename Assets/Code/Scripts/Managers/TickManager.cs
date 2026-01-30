@@ -55,7 +55,7 @@ public class TickManager : Singleton<TickManager>
     {
         UpdateTimers();
     }
-    private void OnDestroy()
+    private void OnDisable()
     {
         _timers.Clear();
     }

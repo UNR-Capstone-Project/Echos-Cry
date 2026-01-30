@@ -14,7 +14,6 @@ public abstract class EnemyState : IState
     }
 
     public virtual void Update() { }
-
     public virtual void FixedUpdate() { }
 
     public void Enter()
@@ -22,24 +21,31 @@ public abstract class EnemyState : IState
         _isActive = true;
         OnEnter();
     }
-    protected virtual void OnEnter() { } 
-    
     public void Exit()
     {
         _isActive = false;
         OnExit();
     }
-    protected virtual void OnExit() { }
-
-    public virtual void CheckSwitch() { }
-
-    //New function added to EnemyState because enemies may have behavior/conditions that do not need to be checked every frame
-    public void Tick() 
+    public void Tick()     //New function added to EnemyState because enemies may have behavior/conditions that do not need to be checked every frame
     {
         if (!_isActive) return;
         OnTick();
     }
+    public void Enable()
+    {
+        OnEnable();
+    }
+    public void Disable()
+    {
+        OnDisable();
+    }
+
+    protected virtual void OnEnter() { }
+    protected virtual void OnExit() { }
+    public virtual void CheckSwitch() { }
     protected virtual void OnTick() { }
+    protected virtual void OnEnable() { }
+    protected virtual void OnDisable() { }
 
     protected void CheckDeath(EnemyState deathState)
     {

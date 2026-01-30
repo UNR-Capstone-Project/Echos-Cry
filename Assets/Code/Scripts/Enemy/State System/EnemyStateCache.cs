@@ -31,4 +31,23 @@ public class EnemyStateCache
     {
         _stateCache.Add(statesEnum, state);
     }
+
+    public void Enable()
+    {
+        EnableStates();
+    }
+    public void Disable()
+    {
+        DisableStates();
+    }
+    private void EnableStates()
+    {
+        foreach (var state in _stateCache.Values)
+            state.Enable();
+    }
+    private void DisableStates()
+    {
+        foreach (var state in _stateCache.Values)
+            state.Disable();
+    }
 }
