@@ -26,7 +26,8 @@ public class RangeIdleState : EnemyState
     }
     protected override void OnDisable()
     {
-        TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
+        if (TickManager.Instance != null)
+            TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
     }
     public override void CheckSwitch()
     {
@@ -53,7 +54,8 @@ public class RangeRoamState : EnemyState
     }
     protected override void OnDisable()
     {
-        TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
+        if (TickManager.Instance != null)
+            TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
     }
     public override void CheckSwitch()
     {
