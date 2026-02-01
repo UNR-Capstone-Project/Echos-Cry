@@ -4,7 +4,7 @@ using UnityEngine;
 //Implementation idea from https://gamedev.stackexchange.com/questions/116009/in-unity-how-do-i-correctly-implement-the-singleton-pattern
 public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    public static bool IsQuitting {  get; private set; }
+    public static bool IsQuitting{  get; private set; }
     
     private static T _instance = null;
     public static T Instance 

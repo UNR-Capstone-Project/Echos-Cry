@@ -21,3 +21,12 @@ public class NPCDamageable : MonoBehaviour, IDamageable
             _npc.StateMachine.SwitchState(_npc.StateCache.RequestState(_staggerState));
     }
 }
+
+public struct AttackInfo
+{
+    public float damage;
+    public float force;
+    public ForceMode forceMode;
+    public TempoConductor.HitQuality hitQuality;
+    public Vector3 direction;
+}

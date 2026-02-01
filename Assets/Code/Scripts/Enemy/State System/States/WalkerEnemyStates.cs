@@ -39,7 +39,8 @@ public class WalkerIdleState : EnemyState
     }
     protected override void OnDisable()
     {
-        TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
+        if (TickManager.Instance != null)
+            TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
     }
 
     protected override void OnEnter()
@@ -79,7 +80,8 @@ public class WalkerChaseState : EnemyState
     }
     protected override void OnDisable()
     {
-        TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
+        if (TickManager.Instance != null)
+            TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
     }
 
     protected override void OnEnter()
