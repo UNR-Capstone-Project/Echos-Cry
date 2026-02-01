@@ -7,8 +7,8 @@ public class PlayerDeathState : PlayerActionState
 
     public override void Enter()
     {
-        Debug.Log("Death");
-        GameManager.HandlePlayerDeath(_playerContext);
+        //Debug.Log("Death");
         _playerContext.Reset();
+        GameManager.HandlePlayerDeath(_playerContext);
     }
 }

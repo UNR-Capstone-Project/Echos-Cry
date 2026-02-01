@@ -15,7 +15,8 @@ public class NPCDamageable : MonoBehaviour, IDamageable
         _npc.NPCAnimator.TintFlash(Color.red, 0.2f);
         _npc.NPCAnimator.PlayVisualEffect();
 
-        DamageLabelManager.Instance.SpawnPopup(amount, _npc.transform.position, Color.white);
+        if(DamageLabelManager.Instance != null)
+            DamageLabelManager.Instance.SpawnPopup(amount, _npc.transform.position, Color.white);
         
         if(!_npc.Stats.HasArmor) 
             _npc.StateMachine.SwitchState(_npc.StateCache.RequestState(_staggerState));
