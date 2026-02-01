@@ -52,7 +52,8 @@ public class BatIdleState : EnemyState
     }
     protected override void OnDisable()
     {
-        TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
+        if (TickManager.Instance != null)
+            TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
     }
 
     protected override void OnTick()
@@ -94,7 +95,8 @@ public class BatChaseState : EnemyState
     }
     protected override void OnDisable()
     {
-        TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
+        if(TickManager.Instance != null)
+            TickManager.Instance.GetTimer(0.2f).Tick -= Tick;
     }
 
     protected override void OnEnter()
