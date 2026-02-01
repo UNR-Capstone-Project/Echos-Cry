@@ -25,16 +25,10 @@ public class DamageLabel : MonoBehaviour
     private bool direction = true;
 
     private ObjectPool<DamageLabel> _pool;
-    private Coroutine moveCoroutine;
-    private bool returningToPool = false;
 
-    private void OnEnable()
-    {
-        returningToPool = false;
-    }
     private void OnDisable()
     {
-        if (!returningToPool) _pool.Release(this);
+        StopAllCoroutines();
     }
 
     private void OrientCurveBasedOnDirection()
@@ -77,12 +71,7 @@ public class DamageLabel : MonoBehaviour
         damageText.color = color;
         //damageText.fontSize = isCrit ? critFontSize : normalFontSize;
 
-        if (moveCoroutine != null)
-        {
-            StopCoroutine(moveCoroutine);
-        }
-        moveCoroutine = StartCoroutine(Move());
-        StartCoroutine(ReturnDamageLabelToPool(displayDuration));
+        StartCoroutine(Move());
     }
 
     private IEnumerator Move()
@@ -119,12 +108,5 @@ public class DamageLabel : MonoBehaviour
 
             yield return null;
         }
-    }
-
-    private IEnumerator ReturnDamageLabelToPool(float displayLength)
-    {
-        yield return new WaitForSeconds(displayLength);
-        returningToPool = true;
-        _pool.Release(this);
     }
 }
