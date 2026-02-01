@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 4044307535273396445}
   - component: {fileID: 4955914926744265378}
   m_Layer: 10
-  m_Name: Player Stats
+  m_Name: Player Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,10 +86,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 475222138870821773}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bb0d8d974a229a4ab05cb29a4d24eed, type: 3}
+  m_Script: {fileID: 11500000, guid: 49243be4183b1dc40b9e1d2b4602606c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  _playerStatsConfig: {fileID: 11400000, guid: 756e2aac9ef16dd4f8b3d83060c174db, type: 2}
+  _statsConfig: {fileID: 11400000, guid: 756e2aac9ef16dd4f8b3d83060c174db, type: 2}
+  healthChannel: {fileID: 11400000, guid: c585d041cc469f04b887f8eeb82703dc, type: 2}
+  armorChannel: {fileID: 11400000, guid: cec94596b92da1b4a92dd5b3272c8302, type: 2}
 --- !u!1 &1045470528465248169
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,7 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 201c69cd24c0a124c8f28d6d32ce7023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  _stats: {fileID: 4955914926744265378}
+  _health: {fileID: 4955914926744265378}
   _comboMeter: {fileID: 6448038699777697774}
   _animator: {fileID: 6459526305365980964}
   _movement: {fileID: 5127503919009400606}

@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 
 //Implementation idea from https://gamedev.stackexchange.com/questions/116009/in-unity-how-do-i-correctly-implement-the-singleton-pattern
+//A spawnable singleton that will simple instantiate the singleton if it doesn't already exist in scene
+//Non spawnable version below
 public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     public static bool IsQuitting{  get; private set; }
@@ -47,6 +49,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     protected virtual void OnAwake() { }
 }
 
+//Non spawnable version of Singleton above as not every singleton will want to be spawned when referenced
 public abstract class NonSpawnableSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     public static bool IsQuitting { get; private set; }
@@ -77,7 +80,6 @@ public abstract class NonSpawnableSingleton<T> : MonoBehaviour where T : MonoBeh
             }
         }
     }
-
     private void OnApplicationQuit()
     {
         IsQuitting = true;

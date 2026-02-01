@@ -114,7 +114,7 @@ public class WaveManager : MonoBehaviour
                     StartCoroutine(enemySpawner.SpawnWithDecal(enemy, enemyPosition, wave.spawnRadius, (enemyInstance) =>
                     {
                         enemyInstance.transform.SetParent(enemySpawner.transform);
-                        EnemyStats stats = enemyInstance.GetComponent<EnemyStats>();
+                        HealthSystem stats = enemyInstance.GetComponent<HealthSystem>();
                     }));
                     yield return new WaitForSeconds(wave.spawnInterval);
                 }
@@ -124,7 +124,7 @@ public class WaveManager : MonoBehaviour
         GameObject keyedEnemy = wave.keyedEnemy;
         Vector3 keyedEnemyPosition = enemySpawner.GetRandomPoint(wave.spawnRadius);
         GameObject keyedInstance = Instantiate(keyedEnemy, keyedEnemyPosition, Quaternion.identity, enemySpawner.transform);
-        var keyedStats = keyedInstance.GetComponent<EnemyStats>();
+        var keyedStats = keyedInstance.GetComponent<HealthSystem>();
 
         OnWaveSpawningEnded?.Invoke();
         yield return null;

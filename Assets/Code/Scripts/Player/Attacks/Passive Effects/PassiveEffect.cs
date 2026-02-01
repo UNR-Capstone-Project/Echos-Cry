@@ -17,7 +17,7 @@ public abstract class PassiveEffect : ScriptableObject
         enemyManager = enemyRef;
 
         isActive = true;
-        enemyManager.Stats.StartCoroutine(EndRoutineEffect());
+        enemyManager.Health.StartCoroutine(EndRoutineEffect());
 
         if (isEffectOneTime)
         {
@@ -25,7 +25,7 @@ public abstract class PassiveEffect : ScriptableObject
         }
         else
         {
-            enemyManager.Stats.StartCoroutine(RoutineEffect());
+            enemyManager.Health.StartCoroutine(RoutineEffect());
         }
     }
 

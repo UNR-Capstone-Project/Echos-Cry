@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-//Inspired from https://blog.thebear.dev/how-to-event-systems-in-unity and https://unity.com/how-to/scriptableobjects-event-channels-game-code
+//Inspired and implemented from https://blog.thebear.dev/how-to-event-systems-in-unity and https://unity.com/how-to/scriptableobjects-event-channels-game-code
 
 [CreateAssetMenu(menuName = "Echo's Cry/Events/Event(Void)")]
 public class EventChannel : ScriptableObject
