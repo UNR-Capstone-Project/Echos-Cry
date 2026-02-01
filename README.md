@@ -1,5 +1,5 @@
-### Echo's Cry
+## Echo's Cry
 “Echo’s Cry” attempts to merge fans of rhythm games and music to an intense wave-based hack-and-slash adventure. Set in the dark and gloomy Victorian Era England, the story follows the main character Echo, as they discover the lost power of playing music in their twisted overturned world, when they first pick up a forgotten instrument tucked deep away into their home. The player will follow a mystical journey of learning music with each new instrument they unlock. They will use this knowledge to battle the demons that have overtaken their village. Rhythmic timing and heavy and light combination attacks dictate the players effectiveness to defeat enemies, as well as their proficiency to dodge incoming attacks by rolling. This project hopes to marry the thrill of defeating hordes of enemies with the satisfaction of precisely timed player inputs, all while getting to experience beautifully produced orchestral music.
 
-### Google Drive
-https://drive.google.com/drive/folders/1o51JvXHIbLLBr5Y6DKXg4r_Mf2DF3qKL?usp=sharing
+### Itch.io Link
+https://strangefew.itch.io/echos-cry
