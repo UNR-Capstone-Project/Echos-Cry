@@ -8126,6 +8126,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4825304858372058321, guid: fd5ad3683e10af942a8a9cb220a24d05, type: 3}
+      propertyPath: currentGoldText
+      value: 
+      objectReference: {fileID: 7858032826122642273}
+    - target: {fileID: 4825304858372058321, guid: fd5ad3683e10af942a8a9cb220a24d05, type: 3}
       propertyPath: currentFingersText
       value: 
       objectReference: {fileID: 7858032826122642273}
