@@ -258,6 +258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDamageable
   _npc: {fileID: 3180805991097293313}
   _staggerState: 16
+  _damageLabelManager: {fileID: 11400000, guid: 6830b0d5048cbb249bfa16c7e4044886, type: 2}
 --- !u!65 &8838160874129828706
 BoxCollider:
   m_ObjectHideFlags: 0

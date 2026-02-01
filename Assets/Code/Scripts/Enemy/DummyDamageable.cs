@@ -17,7 +17,8 @@ public class DummyDamageable : MonoBehaviour, IDamageable
         _soundStrategy.Execute(_soundConfig.HitSFX, gameObject.transform, 0);
         _npcAnimator.TintFlash(Color.red, 0.2f);
 
-        DamageLabelManager.Instance.SpawnPopup(amount, gameObject.transform.position, Color.white);
+        if (DamageLabelManager.Instance != null)
+            DamageLabelManager.Instance.SpawnPopup(amount, transform.position, Color.white);
     }
 
     private void OnEnable()

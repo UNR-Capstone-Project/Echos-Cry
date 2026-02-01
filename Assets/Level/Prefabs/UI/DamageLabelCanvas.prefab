@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7778235188670340687}
   - component: {fileID: 6070441252857966286}
   - component: {fileID: 7882403557733123006}
-  - component: {fileID: 4420767079818596788}
+  - component: {fileID: 459334131999580108}
   m_Layer: 5
   m_Name: DamageLabelCanvas
   m_TagString: Untagged
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
---- !u!114 &4420767079818596788
+--- !u!114 &459334131999580108
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
