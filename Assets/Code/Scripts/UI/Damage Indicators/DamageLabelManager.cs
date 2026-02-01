@@ -1,11 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
-using System.Collections.Generic;
 
 public class DamageLabelManager : NonSpawnableSingleton<DamageLabelManager>
 {
     private ObjectPool<DamageLabel> damageLabelPopupPool;
-    private List<DamageLabel> activeDamageLabels;
+    private List<DamageLabel> allDamageLabels;
 
     //Find another way to pass damage label to manager
     [SerializeField] private DamageLabel damageLabelPrefab;
@@ -13,31 +14,21 @@ public class DamageLabelManager : NonSpawnableSingleton<DamageLabelManager>
 
     protected override void OnAwake()
     {
+        allDamageLabels = new List<DamageLabel>();
+        
         damageLabelPopupPool = new ObjectPool<DamageLabel>(
-            () =>
-            {
-                DamageLabel damageLabel = Instantiate(damageLabelPrefab, transform);
-                damageLabel.Initialize(_displayLength, damageLabelPopupPool);
-                return damageLabel;
-            },
-            damageLabel =>
-            {
-                damageLabel.gameObject.SetActive(true);
-                activeDamageLabels.Add(damageLabel);
-            },
-            damageLabel =>
-            {
-                damageLabel.gameObject.SetActive(false);
-                activeDamageLabels.Remove(damageLabel);
-            }
+            createFunc: CreateLabel,
+            actionOnGet: GetLabel,
+            actionOnRelease: ReleaseLabel,
+            actionOnDestroy: DestroyLabel
         );
-        activeDamageLabels = new();
     }
-
-    private void GetAndDisplayPopup(float damage, Vector3 position, bool direction, Color color)
+    private void OnDisable()
     {
-        DamageLabel damageLabel = damageLabelPopupPool.Get();
-        damageLabel.Display(damage, position, direction, color);
+        StopAllCoroutines();
+        DestroyAllLabels();
+        allDamageLabels.Clear();
+        damageLabelPopupPool.Clear();
     }
 
     public void SpawnPopup(float damage, Vector3 position, Color color)
@@ -47,5 +38,42 @@ public class DamageLabelManager : NonSpawnableSingleton<DamageLabelManager>
         bool direction = screenPosition.x < Screen.width * 0.5f;
 
         GetAndDisplayPopup(damage, screenPosition, direction, color);
+    }
+
+    private void GetAndDisplayPopup(float damage, Vector3 position, bool direction, Color color)
+    {
+        damageLabelPopupPool.Get().Display(damage, position, direction, color);
+    }
+    private void DestroyAllLabels()
+    {
+        for(int i = 0;i < allDamageLabels.Count; i++)
+        {
+            Destroy(allDamageLabels[i].gameObject);
+        }
+    }
+    private IEnumerator ReturnDamageLabelToPool(DamageLabel damageLabel)
+    {
+        yield return new WaitForSeconds(_displayLength);
+        damageLabelPopupPool.Release(damageLabel);
+    }
+    private DamageLabel CreateLabel()
+    {
+        DamageLabel damageLabel = Instantiate(damageLabelPrefab, transform);
+        allDamageLabels.Add(damageLabel);
+        damageLabel.Initialize(_displayLength, damageLabelPopupPool);
+        return damageLabel;
+    }
+    private void GetLabel(DamageLabel damageLabel)
+    {
+        damageLabel.gameObject.SetActive(true);
+        StartCoroutine(ReturnDamageLabelToPool(damageLabel));
+    }
+    private void ReleaseLabel(DamageLabel damageLabel)
+    {
+        damageLabel.gameObject.SetActive(false);
+    }
+    private void DestroyLabel(DamageLabel damageLabel)
+    {
+        Destroy(damageLabel.gameObject);
     }
 }
