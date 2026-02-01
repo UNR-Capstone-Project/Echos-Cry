@@ -43,7 +43,7 @@ public class DroppedCurrency : MonoBehaviour
         //If unperformant, store reference to player currency system
         if(other.TryGetComponent<Player>(out Player player))
         {
-            player.CurrencySystem.IncrementFingerCurrency(1);
+            player.CurrencySystem.IncrementGoldCurrency(1);
         }
         SoundEffectManager.Instance.Builder
             .SetSound(pickupSFX)
