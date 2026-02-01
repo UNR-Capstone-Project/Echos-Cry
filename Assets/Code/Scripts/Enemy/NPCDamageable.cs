@@ -9,7 +9,7 @@ public class NPCDamageable : MonoBehaviour, IDamageable
     {
         _npc.Collider.enabled = false;
 
-        _npc.Stats.Damage(amount, Color.red);
+        _npc.Health.Damage(amount, Color.red);
 
         _npc.SoundStrategy.Execute(_npc.SoundConfig.HitSFX, _npc.transform, 0);
         _npc.NPCAnimator.TintFlash(Color.red, 0.2f);
@@ -18,7 +18,7 @@ public class NPCDamageable : MonoBehaviour, IDamageable
         if(DamageLabelManager.Instance != null)
             DamageLabelManager.Instance.SpawnPopup(amount, _npc.transform.position, Color.white);
         
-        if(!_npc.Stats.HasArmor) 
+        if(!_npc.Health.HasArmor) 
             _npc.StateMachine.SwitchState(_npc.StateCache.RequestState(_staggerState));
     }
 }

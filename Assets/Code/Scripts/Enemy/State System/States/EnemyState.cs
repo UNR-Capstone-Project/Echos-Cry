@@ -49,7 +49,7 @@ public abstract class EnemyState : IState
 
     protected void CheckDeath(EnemyState deathState)
     {
-        if(_enemyContext.Stats.Health <= 0) 
+        if(_enemyContext.Health.CurrentHealth <= 0) 
             _enemyContext.StateMachine.SwitchState(deathState);
     }
 }
