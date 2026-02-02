@@ -4715,8 +4715,8 @@ RectTransform:
   - {fileID: 5948792590953892330}
   m_Father: {fileID: 5603128249434295007}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 320, y: 64}
   m_Pivot: {x: 0, y: 1}
@@ -4770,6 +4770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3497b21a514e4a147aec92b4af4f4cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthBar
+  eventChannel: {fileID: 11400000, guid: c585d041cc469f04b887f8eeb82703dc, type: 2}
   healthText: {fileID: 8583406580470477534}
   chipSpeed: 2
   frontHealthBar: {fileID: 3179794154708759026}
@@ -5716,9 +5717,9 @@ RectTransform:
   - {fileID: 2026368156153447402}
   m_Father: {fileID: 5603128249434295007}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 160, y: -112}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 320, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4500906308030911129
@@ -7186,7 +7187,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3640311375593257568
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7262,7 +7263,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &576701412841773614
 MonoBehaviour:
   m_ObjectHideFlags: 0
