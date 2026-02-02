@@ -3117,11 +3117,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7152249d4fca6348b280a4b834d8e0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
-  enemySpawner: {fileID: 597810209}
-  timeBetweenWaves: 10
-  allWaves:
-  - {fileID: 11400000, guid: 45467ac205af6fa4f9bb34fa0acd7879, type: 2}
-  - {fileID: 11400000, guid: 0b18c16fca094d3409253ce5f73ebdd9, type: 2}
+  _timeBetweenWaves: 10
+  _allWaves:
+  - {fileID: 11400000, guid: 34d52ba525cb925489614a2478aa1c2a, type: 2}
+  - {fileID: 11400000, guid: 30b2135a3dfe3f946be45c9faa7f5a76, type: 2}
+  _enemySpawner: {fileID: 597810209}
 --- !u!4 &598651759 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3613657363267196147, guid: a755f3aeba45e434a896ce982236d931, type: 3}
@@ -10786,10 +10786,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7152249d4fca6348b280a4b834d8e0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
-  enemySpawner: {fileID: 1907767413}
-  timeBetweenWaves: 10
-  allWaves:
-  - {fileID: 11400000, guid: af6b7f07c44853540b8e9d700dcb96c3, type: 2}
+  _timeBetweenWaves: 10
+  _allWaves: []
+  _enemySpawner: {fileID: 0}
 --- !u!114 &1907767413
 MonoBehaviour:
   m_ObjectHideFlags: 0

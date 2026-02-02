@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   _statsConfig: {fileID: 11400000, guid: 756e2aac9ef16dd4f8b3d83060c174db, type: 2}
-  healthChannel: {fileID: 0}
+  healthChannel: {fileID: 11400000, guid: c585d041cc469f04b887f8eeb82703dc, type: 2}
   armorChannel: {fileID: 0}
 --- !u!114 &4267862705877107826
 MonoBehaviour:
