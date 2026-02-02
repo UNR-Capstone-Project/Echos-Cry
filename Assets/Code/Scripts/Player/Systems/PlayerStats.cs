@@ -21,7 +21,8 @@ public class PlayerStats : MonoBehaviour
             if (_newXPGoalCalculation != null)
                 _goalXPAmount = _newXPGoalCalculation.Execute(this);
             else _goalXPAmount = _goalXPAmount + _currentLevel * 1.5f;
-                _currentXPAmount = 0;
+            
+            _currentXPAmount = 0;
         }
     }
 }

@@ -47,7 +47,7 @@ public class MetronomeCanvas : MonoBehaviour
         _translator.OnSecondaryActionEvent -= UpdateHitQualityText;
     }
 
-    public void UpdateHitQualityText(bool isPressed)
+    private void UpdateHitQualityText(bool isPressed)
     {
         if (!isPressed) return;
         switch (TempoConductor.Instance.CurrentHitQuality)

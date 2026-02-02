@@ -40,7 +40,7 @@ public class DroppedXp : MonoBehaviour
         //If not performant, store reference to player currency system
         if (other.TryGetComponent<Player>(out Player player))
         {
-            player.XpSystem.IncrementXp(_xpValue);
+            player.XPSystem.IncrementXp(_xpValue);
         }
         SoundEffectManager.Instance.Builder
             .SetSound(pickupSFX)
