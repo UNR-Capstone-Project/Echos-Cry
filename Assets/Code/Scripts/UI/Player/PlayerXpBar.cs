@@ -12,27 +12,22 @@ public class PlayerXpBar : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Image frontXpBar;
     [SerializeField] private UnityEngine.UI.Image backXpBar;
     [SerializeField] private TextMeshProUGUI levelText;
+    [SerializeField] private FloatFloatIntEventChannel eventChannel;
 
-    void Awake()
+    private void OnEnable()
     {
-        UpdateXp(0, 100, 1);
+        eventChannel.Channel += UpdateXP;
+    }
+    private void OnDisable()
+    {
+        eventChannel.Channel -= UpdateXP;
     }
 
-    void Start()
+    private void UpdateXP(float xp, float goalXP, int currentLevel)
     {
-        PlayerXpSystem.OnXPChangeEvent += UpdateXp;
-    }
-
-    void OnDestroy()
-    {
-        PlayerXpSystem.OnXPChangeEvent -= UpdateXp;
-    }
-
-    private void UpdateXp(int xp, int xpRequired, int level)
-    {
-        xpText.text = $"{xp} / {xpRequired}";
-        levelText.text = level.ToString();
-        hFraction = (float)xp / xpRequired;
+        xpText.text = $"{xp} / {goalXP}";
+        levelText.text = currentLevel.ToString();
+        hFraction = (float)xp / goalXP;
         lerpTimer = 0f;
     }
 

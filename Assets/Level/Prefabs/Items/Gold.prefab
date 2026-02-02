@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7298120469166719481}
   - component: {fileID: 2190708703436907014}
   - component: {fileID: 4594376071606678493}
-  - component: {fileID: 95251433317768229}
   - component: {fileID: 7234026575468646422}
   - component: {fileID: 5206124917355304881}
+  - component: {fileID: -6734770928169151766}
   m_Layer: 8
   m_Name: Gold
   m_TagString: Untagged
@@ -77,27 +77,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!135 &95251433317768229
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 651722200087660623}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 1271
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 31488
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.2
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &7234026575468646422
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -135,8 +114,28 @@ MonoBehaviour:
   itemDragDistance: 2.2
   itemBody: {fileID: 4594376071606678493}
   pickupSFX: {fileID: 11400000, guid: ae887be74a883064b9243d72a90da102, type: 2}
-  _collider: {fileID: 95251433317768229}
-  _rigidbody: {fileID: 4594376071606678493}
+  _collider: {fileID: 0}
+--- !u!65 &-6734770928169151766
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651722200087660623}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 1024
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3759508161561436246
 GameObject:
   m_ObjectHideFlags: 0

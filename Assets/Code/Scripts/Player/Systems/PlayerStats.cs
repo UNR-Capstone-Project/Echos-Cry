@@ -6,6 +6,8 @@ public class PlayerStats : MonoBehaviour
     private float _currentXPAmount;
     private float _goalXPAmount = 10f;
     [SerializeField] private XPCalculationStrategy _newXPGoalCalculation;
+    [SerializeField] private FloatFloatIntEventChannel _updateXPChannel;
+    [SerializeField] private IntEventChannel _levelUpChannel;
 
     public int CurrentLevel { get => _currentLevel; }
     public float CurrentXPAmount { get => _currentXPAmount; }
@@ -14,6 +16,7 @@ public class PlayerStats : MonoBehaviour
     private void Start()
     {
         _goalXPAmount = _newXPGoalCalculation.Execute(this);
+        if (_updateXPChannel != null) _updateXPChannel.Invoke(_currentXPAmount, _goalXPAmount, _currentLevel);
     }
 
     public void IncreaseXP(float xp)
@@ -22,12 +25,14 @@ public class PlayerStats : MonoBehaviour
         if(_currentXPAmount >= _goalXPAmount)
         {
             _currentLevel++;
-            //Set new goal amount
+            if (_levelUpChannel != null) _levelUpChannel.Invoke(_currentLevel);
+            float leftOverXP = _currentXPAmount - _goalXPAmount;
             if (_newXPGoalCalculation != null)
                 _goalXPAmount = _newXPGoalCalculation.Execute(this);
             else _goalXPAmount = _goalXPAmount + _currentLevel * 1.5f;
             
-            _currentXPAmount = 0;
+            _currentXPAmount = leftOverXP;
         }
+        if(_updateXPChannel != null) _updateXPChannel.Invoke(_currentXPAmount, _goalXPAmount, _currentLevel);
     }
 }
