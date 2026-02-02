@@ -1,19 +1,20 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UpgradeSelector : MonoBehaviour
+public class UpgradeSelector : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private GameObject _highlight;
     [SerializeField] private TextMeshProUGUI _upgradeNameText;
     [SerializeField] private TextMeshProUGUI _upgradeDescriptionText;
     [SerializeField] private Button _useButton;
 
+    private bool isActive = true;
     private UpgradeManager.UpgradeType currentUpgrade;
 
     public void SetUpgrade(UpgradeManager.UpgradeType upgrade)
     {
-        Debug.Log("Hello world!");
         currentUpgrade = upgrade;
         _upgradeNameText.text = currentUpgrade.ToString();
     }
@@ -26,11 +27,34 @@ public class UpgradeSelector : MonoBehaviour
 
     public void SetSelectorState(bool state)
     {
-        _useButton.interactable = state;
-        if (!state)
-        { 
+        isActive = state;
+
+        _useButton.interactable = isActive;
+        if (!isActive)
+        {
             _upgradeNameText.text = "???";
-            _upgradeDescriptionText.text = "You need to level up to see this upgrade!";
+            _upgradeDescriptionText.text = "You need to level up to see these upgrades!";
+        }
+        else
+        {
+            _upgradeNameText.text = currentUpgrade.ToString();
+        }
+    }
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        _highlight.SetActive(true);
+        if (isActive)
+        { 
+            _upgradeDescriptionText.text = UpgradeManager.Instance.GetDescription(currentUpgrade);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        _highlight.SetActive(false);
+        if (isActive)
+        {
+            _upgradeDescriptionText.text = "Hover over an upgrade to see it's stats.";
         }
     }
 }

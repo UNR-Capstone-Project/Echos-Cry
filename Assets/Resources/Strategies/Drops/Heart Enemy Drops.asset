@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDrops
   ItemDrops:
   - prefab: {fileID: 651722200087660623, guid: b0b6fa8d05324ed459c48eb3f4a5bc41, type: 3}
-    minDropAmount: 12
-    maxDropAmount: 15
+    minDropAmount: 1
+    maxDropAmount: 5
   itemExplosionSpeed: 4

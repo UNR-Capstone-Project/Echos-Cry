@@ -32,7 +32,7 @@ public class PlayerXpBar : MonoBehaviour
     {
         xpText.text = $"{xp} / {xpRequired}";
         levelText.text = level.ToString();
-        hFraction = xp / xpRequired;
+        hFraction = (float)xp / xpRequired;
         lerpTimer = 0f;
     }
 
@@ -45,7 +45,6 @@ public class PlayerXpBar : MonoBehaviour
         if (fillB > hFraction)
         {
             frontXpBar.fillAmount = hFraction;
-            backXpBar.color = Color.red;
             lerpTimer += Time.deltaTime;
             float percentComplete = lerpTimer / chipSpeed;
             percentComplete = percentComplete * percentComplete;
@@ -55,7 +54,6 @@ public class PlayerXpBar : MonoBehaviour
         if (fillF < hFraction)
         {
             backXpBar.fillAmount = hFraction;
-            backXpBar.color = Color.green;
             lerpTimer += Time.deltaTime;
             float percentComplete = lerpTimer / chipSpeed;
             percentComplete = percentComplete * percentComplete;

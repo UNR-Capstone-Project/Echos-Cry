@@ -3,8 +3,7 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class UpgradeManager : MonoBehaviour
 {
@@ -12,7 +11,6 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _currentLevelText;
     [SerializeField] private TextMeshProUGUI _xpRequiredText;
     [SerializeField] private TextMeshProUGUI _pointsAvailableText;
-    [SerializeField] private InputTranslator _inputTranslator;
 
     private int availablePoints = 1;
     public enum UpgradeType
@@ -22,6 +20,15 @@ public class UpgradeManager : MonoBehaviour
         Defense,
         Attack
     }
+
+    private Dictionary<UpgradeType, string> _upgradeDescriptions = new Dictionary<UpgradeType, string>
+    {
+        //[UpgradeType.] = "",
+        [UpgradeType.Speed] = "This is speed.",
+        [UpgradeType.Strength] = "This is strength.",
+        [UpgradeType.Defense] = "This is defense.",
+        [UpgradeType.Attack] = "This is attack.",
+    };
 
     public static UpgradeManager Instance { get; private set; }
     void Awake()
@@ -47,28 +54,38 @@ public class UpgradeManager : MonoBehaviour
         PlayerXpSystem.OnXPChangeEvent -= UpdateInfo;
     }
 
+    public string GetDescription(UpgradeType upgrade)
+    {
+        return _upgradeDescriptions.GetValueOrDefault(upgrade);
+    }
 
     private void UpdateInfo(int xp, int xpRequired, int level)
     {
-        _xpRequiredText.text = $"[{xp} / {xpRequired} XP till Level {level}";
+        _xpRequiredText.text = $"[{xp} / {xpRequired}] XP till Level {level}";
         _currentLevelText.text = $"Current Level: {level}";
+        UpdateSelectors();
     }
 
     private void AddLevelPoint(int level)
     {
         availablePoints++;
-        _pointsAvailableText.text = $"{availablePoints} Upgrade Points to Spend";
         UpdateSelectors();
     }
 
     private void UpdateSelectors()
     {
-        _pointsAvailableText.text = $"{availablePoints} Upgrade Points to Spend";
+        bool canUpgrade = availablePoints > 0;
 
-        foreach (UpgradeSelector selector in _upgradeSelectors)
-        {
-            selector.SetSelectorState(availablePoints > 0);
-        }
+        _pointsAvailableText.text = $"{availablePoints} Upgrade Points to Spend";
+        if (canUpgrade)
+            _pointsAvailableText.color = Color.white;
+        else
+            _pointsAvailableText.color = Color.red;
+
+            foreach (UpgradeSelector selector in _upgradeSelectors)
+            {
+                selector.SetSelectorState(canUpgrade);
+            }
     }
 
     public void Roll()
@@ -113,16 +130,12 @@ public class UpgradeManager : MonoBehaviour
             case UpgradeType.Defense:
                 Debug.Log("Defense upgrade applied.");
                 break;
+            case UpgradeType.Attack:
+                Debug.Log("Attack upgrade applied.");
+                break;
             default:
                 Debug.LogWarning("Unknown upgrade type.");
                 break;
         }
-    }
-
-    public void BackButton()
-    {
-        MenuManager.Instance.DisablePauseMenu();
-        _inputTranslator.PlayerInputs.Gameplay.Enable();
-        _inputTranslator.PlayerInputs.PauseMenu.Disable();
     }
 }

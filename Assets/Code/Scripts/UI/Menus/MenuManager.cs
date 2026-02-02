@@ -16,6 +16,7 @@ public class MenuManager : Singleton<MenuManager>
     [SerializeField] private InputTranslator _translator;
     [SerializeField] private GameObject screenFadeObject;
     [SerializeField] private List<StringGameobjectPair> menuDictionary;
+    [SerializeField] private InputTranslator _inputTranslator;
 
     public static event Action PauseStarted;
     public static event Action PauseEnded;
@@ -111,5 +112,12 @@ public class MenuManager : Singleton<MenuManager>
             yield return null;
         }
         canvasGroup.alpha = 0f;
+    }
+
+    public void BackButton()
+    {
+        MenuManager.Instance.DisablePauseMenu();
+        _inputTranslator.PlayerInputs.Gameplay.Enable();
+        _inputTranslator.PlayerInputs.PauseMenu.Disable();
     }
 }
