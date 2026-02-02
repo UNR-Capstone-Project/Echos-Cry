@@ -28,6 +28,9 @@ public class HealthSystem : MonoBehaviour
         _currentArmor = _statsConfig.maxArmor;
         _maxHealth = _statsConfig.maxHealth;
         _maxArmor = _statsConfig.maxArmor;
+
+        if (healthChannel != null)
+            healthChannel.Invoke(_currentHealth, _maxHealth);
     }
 
     public void Damage(float damage, Color color)

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8765777957890595090}
   - component: {fileID: 7069263632693241980}
   - component: {fileID: 706464828502641190}
+  - component: {fileID: 972668018670141712}
   m_Layer: 0
   m_Name: LargeRock
   m_TagString: Untagged
@@ -109,5 +110,26 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 9.73068, y: 11.774338, z: 5.250489}
-  m_Center: {x: -0.08953166, y: 0.034415483, z: -0.14341152}
+  m_Size: {x: 4.44, y: 10.23, z: 4.9}
+  m_Center: {x: -0.08953166, y: 0.2, z: -0.14341152}
+--- !u!65 &972668018670141712
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266036679646005675}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 8.78, y: 8.98, z: 3.2}
+  m_Center: {x: -0.0917325, y: 0.031990528, z: -0.14211297}

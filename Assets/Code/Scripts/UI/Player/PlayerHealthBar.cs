@@ -19,11 +19,6 @@ public class PlayerHealthBar : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Image frontHealthBar;
     [SerializeField] private UnityEngine.UI.Image backHealthBar;
 
-    void Awake()
-    {
-        UpdateHealth(100, 100);
-    }
-
     void Start()
     {
         if(eventChannel != null) eventChannel.Channel += UpdateHealth;
@@ -39,7 +34,6 @@ public class PlayerHealthBar : MonoBehaviour
         healthText.text = currentHealth.ToString() + "/" + maxHealth.ToString();
         hFraction = currentHealth / maxHealth;
         lerpTimer = 0f;
-        
     }
 
     private void Update()
