@@ -10,9 +10,10 @@ public class DroppedCurrency : ItemDropHandler
         {
             if(other.TryGetComponent<Player>(out Player player))
             {
-                _currencySystem = player.CurrencySystem; 
+                _currencySystem = player.CurrencySystem;
+                _currencySystem.IncrementGoldCurrency(1);
             }
         }
-        _currencySystem.IncrementGoldCurrency(1);
+        else _currencySystem.IncrementGoldCurrency(1);
     }
 }
