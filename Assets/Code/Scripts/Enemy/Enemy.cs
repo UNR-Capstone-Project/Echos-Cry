@@ -28,6 +28,12 @@ public class Enemy : MonoBehaviour
     [Tooltip("Invoked when player's attack ends")]
     [SerializeField] private EventChannel _playerAttackEndChannel;
 
+    public event Action OnDeathEvent;
+    public void InvokeDeathEvent()
+    {
+        OnDeathEvent?.Invoke();
+    }
+
     public EnemyStateCache StateCache { get => _stateCache; }
     public EnemyStateMachine StateMachine { get => _stateMachine; }
 
