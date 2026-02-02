@@ -7,7 +7,7 @@ public class CurrencyCounterUI : MonoBehaviour
 
     public void UpdateCurrencyText(int currencyCount)
     {
-        currencyText.text = "Fingers: " + currencyCount.ToString();
+        currencyText.text = "Gold: " + currencyCount.ToString();
     }
 
     private void Start()

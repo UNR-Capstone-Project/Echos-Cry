@@ -9,7 +9,7 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private InputTranslator _translator;
     [SerializeField] private GameObject[] ShopItemArray;
     [SerializeField] private TextMeshProUGUI totalCostText;
-    [SerializeField] private TextMeshProUGUI currentFingersText;
+    [SerializeField] private TextMeshProUGUI currentGoldText;
     private int currentItemIndex = 0;
     private float totalCost = 0f;
 
@@ -72,7 +72,7 @@ public class ShopManager : MonoBehaviour
         totalCost = tempCost;
         totalCostText.text = $"Total Cost: ${totalCost.ToString()}";
 
-        if(totalCost <= PlayerCurrencySystem.Instance.GetFingerCurrency())
+        if(totalCost <= PlayerCurrencySystem.Instance.GetGoldCurrency())
         {
             totalCostText.color = Color.white;
         }
@@ -81,13 +81,13 @@ public class ShopManager : MonoBehaviour
             totalCostText.color = Color.red;
         }
 
-        currentFingersText.text = $"Current Fingers: ${PlayerCurrencySystem.Instance.GetFingerCurrency().ToString()}";
+        currentGoldText.text = $"Gold Balance: ${PlayerCurrencySystem.Instance.GetGoldCurrency().ToString()}";
     }
 
     public void Purchase()
     {
         if (totalCost <= 0) return;
-        if(PlayerCurrencySystem.Instance.GetFingerCurrency() >= totalCost)
+        if(PlayerCurrencySystem.Instance.GetGoldCurrency() >= totalCost)
         {
             foreach (GameObject item in ShopItemArray)
             {
@@ -99,7 +99,7 @@ public class ShopManager : MonoBehaviour
                 shopItemScript.ResetAmount();
             }
 
-            PlayerCurrencySystem.Instance.DecrementFingerCurrency((int)totalCost);
+            PlayerCurrencySystem.Instance.DecrementGoldCurrency((int)totalCost);
         }
     }
 }

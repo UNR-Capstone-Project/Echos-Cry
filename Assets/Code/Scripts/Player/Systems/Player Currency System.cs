@@ -5,26 +5,26 @@ using UnityEngine;
 public class PlayerCurrencySystem : Singleton<PlayerCurrencySystem>
 {
 
-    public void IncrementFingerCurrency(int amount)
+    public void IncrementGoldCurrency(int amount)
     {
-        _fingerCurrency += amount;
-        OnCurrencyChangeEvent?.Invoke(_fingerCurrency);
+        _goldCurrency += amount;
+        OnCurrencyChangeEvent?.Invoke(_goldCurrency);
     }
-    public void DecrementFingerCurrency(int amount)
+    public void DecrementGoldCurrency(int amount)
     {
-        _fingerCurrency -= amount;
-        OnCurrencyChangeEvent?.Invoke(_fingerCurrency);
-    }
-
-    public void SetFingerCurrency(int amount)
-    {
-        _fingerCurrency = amount;
-        OnCurrencyChangeEvent?.Invoke(_fingerCurrency);
+        _goldCurrency -= amount;
+        OnCurrencyChangeEvent?.Invoke(_goldCurrency);
     }
 
-    public int GetFingerCurrency()
+    public void SetGoldCurrency(int amount)
     {
-        return _fingerCurrency;
+        _goldCurrency = amount;
+        OnCurrencyChangeEvent?.Invoke(_goldCurrency);
+    }
+
+    public int GetGoldCurrency()
+    {
+        return _goldCurrency;
     }
 
     private void Start()
@@ -34,14 +34,14 @@ public class PlayerCurrencySystem : Singleton<PlayerCurrencySystem>
             Debug.LogWarning("Player Currency Configuration file is null");
             return;
         }
-        _fingerCurrency = _playerCurrencyConfig.StartingFingerCurrency;
+        _goldCurrency = _playerCurrencyConfig.StartingGoldCurrency;
     }
 
     [Header("Configuration Object")]
     [SerializeField] private PlayerCurrencyConfig _playerCurrencyConfig;
 
-    private int _fingerCurrency;
-    public int FingerCurrency { get { return _fingerCurrency; } }
+    private int _goldCurrency;
+    public int GoldCurrency { get { return _goldCurrency; } }
 
     public static event Action<int> OnCurrencyChangeEvent;
 }
