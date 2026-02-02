@@ -41,6 +41,8 @@ public class TickManager : Singleton<TickManager>
     }
     private void UpdateTimers()
     {
+        //Michael:
+        //Bug with this fuck ass thing. TODO: will change from dictionary system
         foreach(var timer in _timers)
         {
             timer.Value.Update();
