@@ -71,7 +71,8 @@ public class WaveManager : MonoBehaviour
                 StartCoroutine(_enemySpawner.SpawnWithDecal(enemyPrefab, enemyPosition, wave.spawnRadius, (enemyInstance) =>
                 {
                     enemyInstance.transform.SetParent(_enemySpawner.transform);
-                    HealthSystem stats = enemyInstance.GetComponent<HealthSystem>();
+                    Enemy enemy = enemyInstance.GetComponent<Enemy>();
+                    enemy.OnDeathEvent += UpdateKillCount;
                 }));
             }
             yield return new WaitForSeconds(wave.spawnInterval);
