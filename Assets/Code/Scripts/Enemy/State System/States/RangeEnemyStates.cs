@@ -205,6 +205,7 @@ public class RangeDeathState : EnemyState
     protected override void OnEnter()
     {
         _enemyContext.DropsStrategy.Execute(_enemyContext.transform);
+        _enemyContext.InvokeDeathEvent();
         Object.Destroy(_enemyContext.gameObject);
     }
 }
