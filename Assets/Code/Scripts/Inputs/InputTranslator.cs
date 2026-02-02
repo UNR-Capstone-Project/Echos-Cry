@@ -76,12 +76,21 @@ public class InputTranslator : ScriptableObject,
         if (context.started) OnSecondaryActionEvent?.Invoke(true);
         else if (context.canceled) OnSecondaryActionEvent?.Invoke(false);
     }
-    
+
     public void OnPause(InputAction.CallbackContext context)
     {
         if (context.started)
         {
             OnPauseEvent?.Invoke();
+            _playerInputs.PauseMenu.Enable();
+            _playerInputs.Gameplay.Disable();
+        }
+    }
+    public void OnUpgrade(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            OnUpgradeEvent?.Invoke();
             _playerInputs.PauseMenu.Enable();
             _playerInputs.Gameplay.Disable();
         }
@@ -222,6 +231,7 @@ public class InputTranslator : ScriptableObject,
     public event Action<bool>    OnSkill1Event, OnSkill2Event, OnSkill3Event;
     public event Action    OnInteractEvent;
     public event Action    OnPauseEvent, OnPauseDownInput, OnPauseUpInput, OnSelectEvent;
+    public event Action    OnUpgradeEvent;
     public event Action    OnResumeEvent;
     public event Action    OnMapEvent;
     public event Action    OnExitMapEvent, OnJournalLeftInput, OnJournalRightInput;

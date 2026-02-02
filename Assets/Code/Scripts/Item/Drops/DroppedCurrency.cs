@@ -10,17 +10,13 @@ public class DroppedCurrency : MonoBehaviour
     [SerializeField] soundEffect pickupSFX;
     [SerializeField] Collider _collider;
 
-    private void Awake()
-    {
-        itemBody = GetComponent<Rigidbody>();
-    }
     private void Start()
     {
-        TickManager.Instance.GetTimer(0.2f).Tick += MoveItemToPlayer;
+        TickManager.Instance.GetTimer(0.1f).Tick += MoveItemToPlayer; //0.1 felt more responsive than 0.2f
     }
     private void OnDestroy()
     {
-        if (TickManager.Instance != null) TickManager.Instance.GetTimer(0.2f).Tick -= MoveItemToPlayer;
+        if (TickManager.Instance != null) TickManager.Instance.GetTimer(0.1f).Tick -= MoveItemToPlayer;
     }
 
     private void MoveItemToPlayer()
@@ -40,10 +36,10 @@ public class DroppedCurrency : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //If unperformant, store reference to player currency system
+        //If not performant, store reference to player currency system
         if(other.TryGetComponent<Player>(out Player player))
         {
-            player.CurrencySystem.IncrementFingerCurrency(1);
+            player.CurrencySystem.IncrementGoldCurrency(1);
         }
         SoundEffectManager.Instance.Builder
             .SetSound(pickupSFX)

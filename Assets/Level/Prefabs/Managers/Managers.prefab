@@ -38,6 +38,7 @@ Transform:
   - {fileID: 6491277895832929760}
   - {fileID: 5528799210215704500}
   - {fileID: 4978944362699727778}
+  - {fileID: 8961427896768757301}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7213933989764012594
@@ -189,6 +190,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24fd209d674b5aa49aa83b09b5f9787f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BillboardManager
+--- !u!1 &7283154042145334160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8961427896768757301}
+  - component: {fileID: 3602099862138373745}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8961427896768757301
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7283154042145334160}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1580324783960160912}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3602099862138373745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7283154042145334160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d7f6ecadc926a4438945dad4abef9e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  masterMixer: {fileID: 24100000, guid: ac2ef84a7ad88f74fb5e10f3c7be54d1, type: 2}
 --- !u!1 &7488804517245753447
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,6 +376,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1580324783960160912}
     m_Modifications:
+    - target: {fileID: 3542431999539309550, guid: bf4d7b646412a36438a5917eb5d3c604, type: 3}
+      propertyPath: _inputTranslator
+      value: 
+      objectReference: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
     - target: {fileID: 5219241489934582586, guid: bf4d7b646412a36438a5917eb5d3c604, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

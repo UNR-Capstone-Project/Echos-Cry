@@ -16,6 +16,7 @@ public class MenuManager : Singleton<MenuManager>
     [SerializeField] private InputTranslator _translator;
     [SerializeField] private GameObject screenFadeObject;
     [SerializeField] private List<StringGameobjectPair> menuDictionary;
+    [SerializeField] private InputTranslator _inputTranslator;
 
     public static event Action PauseStarted;
     public static event Action PauseEnded;
@@ -29,6 +30,7 @@ public class MenuManager : Singleton<MenuManager>
     {
         GameManager.OnPlayerDeathEvent += EnableGameoverMenu;
 
+        _translator.OnUpgradeEvent += EnableUpgradeMenu;
         _translator.OnPauseEvent += EnablePauseMenu;
         _translator.OnResumeEvent += DisablePauseMenu;
     }
@@ -37,6 +39,7 @@ public class MenuManager : Singleton<MenuManager>
     {
         GameManager.OnPlayerDeathEvent -= EnableGameoverMenu;
 
+        _translator.OnUpgradeEvent -= EnableUpgradeMenu;
         _translator.OnPauseEvent -= EnablePauseMenu;
         _translator.OnResumeEvent -= DisablePauseMenu;
     }
@@ -51,8 +54,15 @@ public class MenuManager : Singleton<MenuManager>
 
     private void EnablePauseMenu()
     {
-        Debug.Log("Pause!");
         SetMenu("Pause");
+        PauseStarted?.Invoke();
+        VolumeManager.Instance.SetDepthOfField(true);
+        Time.timeScale = 0f;
+    }
+
+    private void EnableUpgradeMenu()
+    {
+        SetMenu("Upgrade");
         PauseStarted?.Invoke();
         VolumeManager.Instance.SetDepthOfField(true);
         Time.timeScale = 0f;
@@ -102,5 +112,12 @@ public class MenuManager : Singleton<MenuManager>
             yield return null;
         }
         canvasGroup.alpha = 0f;
+    }
+
+    public void BackButton()
+    {
+        MenuManager.Instance.DisablePauseMenu();
+        _inputTranslator.PlayerInputs.Gameplay.Enable();
+        _inputTranslator.PlayerInputs.PauseMenu.Disable();
     }
 }
