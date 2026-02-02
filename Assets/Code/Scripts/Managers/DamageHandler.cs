@@ -12,10 +12,10 @@ public class DamageHandler : MonoBehaviour
     public void InstantiateEnemyStatsPool(GameObject[] enemyPool)
     {
         int poolLen = enemyPool.Length;
-        _enemyStatsPool = new EnemyStats[poolLen];
+        _enemyStatsPool = new HealthSystem[poolLen];
         for(int i = 0; i < poolLen; i++)
         {
-            _enemyStatsPool[i] = enemyPool[i].GetComponent<EnemyStats>();
+            _enemyStatsPool[i] = enemyPool[i].GetComponent<HealthSystem>();
         }
     }
     //Adds enemy index and amount of damage to the queue
@@ -65,7 +65,7 @@ public class DamageHandler : MonoBehaviour
     }
     public static DamageHandler Instance { get; private set; }
     //The EnemyStatsPool which will be instantiated with the EnemyPool. This will keep references to each Enemy's EnemyStats script
-    private EnemyStats[] _enemyStatsPool;
+    private HealthSystem[] _enemyStatsPool;
     private Queue<DamageInfo> _indexQueue;
     private const int MAX_HANDLES = 5;
 }

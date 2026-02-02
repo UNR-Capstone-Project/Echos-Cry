@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     private EnemyStateMachine _stateMachine;
 
     [Header("Enemy-Related Components")]
-    [SerializeField] private EnemyStats _stats;
+    [SerializeField] private HealthSystem _health;
     [SerializeField] private NavMeshAgent _navMeshAgent;
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private NPCAnimator _npcAnimator;
@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
     public EnemyStateCache StateCache { get => _stateCache; }
     public EnemyStateMachine StateMachine { get => _stateMachine; }
 
-    public EnemyStats Stats { get => _stats; }
+    public HealthSystem Health { get => _health; }
     public NavMeshAgent NavMeshAgent { get => _navMeshAgent; }
     public Rigidbody Rigidbody { get => _rigidbody; }
     public NPCAnimator NPCAnimator { get => _npcAnimator; }

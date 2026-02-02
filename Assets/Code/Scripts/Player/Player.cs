@@ -4,7 +4,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Relevant Player Components")]
-    [SerializeField] private PlayerStats _stats;
+    [SerializeField] private HealthSystem _health;
     [SerializeField] private PlayerComboMeter _comboMeter;
     [SerializeField] private PlayerAnimator _animator;
     [SerializeField] private PlayerMovement _movement;
@@ -17,16 +17,13 @@ public class Player : MonoBehaviour
     [SerializeField] private SoundStrategy _sfx;
     [SerializeField] private SFXConfig _sfxConfig;
 
-    private PlayerStateMachine _playerStateMachine;
-    private PlayerStateCache _playerStateCache;
     [Header("Event Channel (Broadcaster)")]
     [SerializeField] EventChannel _attackEndedChannel;
-    public void InvokeAttackEnded()
-    {
-        if (_attackEndedChannel != null) _attackEndedChannel.Invoke();
-    }
 
-    public PlayerStats Stats { get => _stats; }
+    private PlayerStateMachine _playerStateMachine;
+    private PlayerStateCache _playerStateCache;
+    
+    public HealthSystem Health { get => _health; }
     public PlayerComboMeter ComboMeter { get => _comboMeter; }
     public PlayerAnimator Animator { get => _animator; }
     public SoundStrategy SFX { get => _sfx; }
@@ -66,11 +63,6 @@ public class Player : MonoBehaviour
             (this, _playerStateMachine, _playerStateCache)
         );
     }
-    public void Reset()
-    {
-        _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Idle));
-        _stats.ResetHealth();
-    }
 
     private void Awake()
     {
@@ -97,5 +89,16 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         _playerStateMachine.FixedUpdateState();
+    }
+
+    public void Reset()
+    {
+        _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Idle));
+        _health.HealHealth(_health.MaxHealth);
+        _health.HealArmor(_health.MaxArmor);
+    }
+    public void InvokeAttackEnded()
+    {
+        if (_attackEndedChannel != null) _attackEndedChannel.Invoke();
     }
 }

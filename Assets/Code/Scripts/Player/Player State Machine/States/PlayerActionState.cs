@@ -29,7 +29,7 @@ public abstract class PlayerActionState : IState
 
     private bool IsDead()
     {
-        if (_playerContext.Stats.CurrentHealth <= 0) return true;
+        if (_playerContext.Health.CurrentHealth <= 0) return true;
         else return false;
     }
 }
