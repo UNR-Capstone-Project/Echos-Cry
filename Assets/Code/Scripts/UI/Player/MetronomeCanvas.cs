@@ -47,22 +47,22 @@ public class MetronomeCanvas : MonoBehaviour
         _translator.OnSecondaryActionEvent -= UpdateHitQualityText;
     }
 
-    public void UpdateHitQualityText(bool isPressed)
+    private void UpdateHitQualityText(bool isPressed)
     {
         if (!isPressed) return;
-        if (TempoConductor.Instance.CurrentHitQuality == TempoConductor.HitQuality.Excellent)
+        switch (TempoConductor.Instance.CurrentHitQuality)
         {
-            hitQualityText.color = new Color(110f / 255f, 44f / 255f, 222f / 255f, 1f); //purple
+            case TempoConductor.HitQuality.Excellent:
+                hitQualityText.color = new Color(110f / 255f, 44f / 255f, 222f / 255f, 1f); //purple
+                break;
+            case TempoConductor.HitQuality.Good:
+                hitQualityText.color = new Color(47f / 255f, 235f / 255f, 81f / 255f, 1.0f);
+                break;
+            case TempoConductor.HitQuality.Miss:
+                hitQualityText.color = Color.red;
+                break;
         }
-        else if (TempoConductor.Instance.CurrentHitQuality == TempoConductor.HitQuality.Good)
-        {
-            hitQualityText.color = new Color(47f / 255f, 235f / 255f, 81f / 255f, 1.0f);
-        }
-        else
-        {
-            hitQualityText.color = Color.red;
-        }
-            hitQualityText.text = TempoConductor.Instance.CurrentHitQuality.ToString();
+        hitQualityText.text = TempoConductor.Instance.CurrentHitQuality.ToString();
     }
 
     public void FlashOutline()

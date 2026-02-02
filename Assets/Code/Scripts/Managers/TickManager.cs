@@ -41,9 +41,9 @@ public class TickManager : Singleton<TickManager>
     }
     private void UpdateTimers()
     {
-        foreach(var value in _timers.Values)
+        foreach(var timer in _timers)
         {
-            value.Update();
+            timer.Value.Update();
         }
     }
 

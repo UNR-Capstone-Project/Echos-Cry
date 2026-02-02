@@ -49,7 +49,7 @@ public class PlayerStateMachine : AbstractStateMachine<PlayerActionState>
     }
     private void HandlePrimaryAction(bool buttonPressed)
     {
-        if (buttonPressed && !SpamPrevention.InputLocked)
+        if (TempoConductor.Instance.IsOnBeat() && buttonPressed && !SpamPrevention.InputLocked)
         {
             _usingPrimaryAction = true;
             _isAttacking = true;
@@ -62,7 +62,7 @@ public class PlayerStateMachine : AbstractStateMachine<PlayerActionState>
     }
     private void HandleSecondaryAction(bool buttonPressed)
     {
-        if (buttonPressed && !SpamPrevention.InputLocked)
+        if (TempoConductor.Instance.IsOnBeat() && buttonPressed && !SpamPrevention.InputLocked)
         {
             _usingSecondaryAction = true;
             _isAttacking = true;
@@ -75,7 +75,7 @@ public class PlayerStateMachine : AbstractStateMachine<PlayerActionState>
     }
     private void HandleDash(bool buttonPressed)
     {
-        if (buttonPressed && !SpamPrevention.InputLocked) _isDashing = true;
+        if (TempoConductor.Instance.IsOnBeat() && buttonPressed && !SpamPrevention.InputLocked) _isDashing = true;
         else _isDashing = false;
     }
 }

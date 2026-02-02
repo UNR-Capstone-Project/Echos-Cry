@@ -11,6 +11,8 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _currentLevelText;
     [SerializeField] private TextMeshProUGUI _xpRequiredText;
     [SerializeField] private TextMeshProUGUI _pointsAvailableText;
+    [SerializeField] private FloatFloatIntEventChannel _playerXPChannel;
+    [SerializeField] private IntEventChannel _playerLevelUpChannel;
 
     private int availablePoints = 1;
     public enum UpgradeType
@@ -42,27 +44,29 @@ public class UpgradeManager : MonoBehaviour
             Instance = this;
         }
 
-        PlayerXpSystem.OnLevelUp += AddLevelPoint;
-        PlayerXpSystem.OnXPChangeEvent += UpdateInfo;
-
         Roll();
     }
-
-    private void OnDestroy()
+    private void OnEnable()
     {
-        PlayerXpSystem.OnLevelUp -= AddLevelPoint;
-        PlayerXpSystem.OnXPChangeEvent -= UpdateInfo;
+        if(_playerXPChannel != null) _playerXPChannel.Channel += UpdateInfo;
+        if(_playerLevelUpChannel != null) _playerLevelUpChannel.Channel += AddLevelPoint;
     }
+    private void OnDisable()
+    {
+        if (_playerXPChannel != null) _playerXPChannel.Channel -= UpdateInfo;
+        if (_playerLevelUpChannel != null) _playerLevelUpChannel.Channel -= AddLevelPoint;
+    }
+
 
     public string GetDescription(UpgradeType upgrade)
     {
         return _upgradeDescriptions.GetValueOrDefault(upgrade);
     }
 
-    private void UpdateInfo(int xp, int xpRequired, int level)
+    private void UpdateInfo(float xp, float goalXP, int currentLevel)
     {
-        _xpRequiredText.text = $"[{xp} / {xpRequired}] XP till Level {level}";
-        _currentLevelText.text = $"Current Level: {level}";
+        _xpRequiredText.text = $"[{xp} / {goalXP}] XP till Level {currentLevel + 1}";
+        _currentLevelText.text = $"Current Level: {currentLevel}";
         UpdateSelectors();
     }
 
