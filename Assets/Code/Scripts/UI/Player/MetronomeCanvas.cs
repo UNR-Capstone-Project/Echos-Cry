@@ -32,18 +32,24 @@ public class MetronomeCanvas : MonoBehaviour
         _metronomeImage.material = metronomeMaterial;
 
         TempoConductor.Instance.BeatTickEvent += FlashOutline;
+
+        _translator.OnDashEvent += UpdateHitQualityText;
+        _translator.OnPrimaryActionEvent += UpdateHitQualityText;
+        _translator.OnSecondaryActionEvent += UpdateHitQualityText;
     }
+
     private void OnDestroy()
     {
         if(TempoConductor.Instance != null) TempoConductor.Instance.BeatTickEvent -= FlashOutline;
 
-        //_translator.OnDashEvent -= UpdateHitQualityText;
-        //_translator.OnLightAttackEvent -= UpdateHitQualityText;
-        //_translator.OnHeavyAttackEvent -= UpdateHitQualityText;
+        _translator.OnDashEvent -= UpdateHitQualityText;
+        _translator.OnPrimaryActionEvent -= UpdateHitQualityText;
+        _translator.OnSecondaryActionEvent -= UpdateHitQualityText;
     }
 
-    public void UpdateHitQualityText()
+    public void UpdateHitQualityText(bool isPressed)
     {
+        if (!isPressed) return;
         if (TempoConductor.Instance.CurrentHitQuality == TempoConductor.HitQuality.Excellent)
         {
             hitQualityText.color = new Color(110f / 255f, 44f / 255f, 222f / 255f, 1f); //purple
