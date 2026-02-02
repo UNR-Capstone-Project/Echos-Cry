@@ -29,6 +29,7 @@ public class MenuManager : Singleton<MenuManager>
     {
         GameManager.OnPlayerDeathEvent += EnableGameoverMenu;
 
+        _translator.OnUpgradeEvent += EnableUpgradeMenu;
         _translator.OnPauseEvent += EnablePauseMenu;
         _translator.OnResumeEvent += DisablePauseMenu;
     }
@@ -37,6 +38,7 @@ public class MenuManager : Singleton<MenuManager>
     {
         GameManager.OnPlayerDeathEvent -= EnableGameoverMenu;
 
+        _translator.OnUpgradeEvent -= EnableUpgradeMenu;
         _translator.OnPauseEvent -= EnablePauseMenu;
         _translator.OnResumeEvent -= DisablePauseMenu;
     }
@@ -51,8 +53,15 @@ public class MenuManager : Singleton<MenuManager>
 
     private void EnablePauseMenu()
     {
-        Debug.Log("Pause!");
         SetMenu("Pause");
+        PauseStarted?.Invoke();
+        VolumeManager.Instance.SetDepthOfField(true);
+        Time.timeScale = 0f;
+    }
+
+    private void EnableUpgradeMenu()
+    {
+        SetMenu("Upgrade");
         PauseStarted?.Invoke();
         VolumeManager.Instance.SetDepthOfField(true);
         Time.timeScale = 0f;

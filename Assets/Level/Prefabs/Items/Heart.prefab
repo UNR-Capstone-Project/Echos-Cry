@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4594376071606678493}
   - component: {fileID: 95251433317768229}
   - component: {fileID: 7234026575468646422}
-  - component: {fileID: 5206124917355304881}
+  - component: {fileID: -528169718836213794}
   m_Layer: 8
   m_Name: Heart
   m_TagString: Untagged
@@ -119,7 +119,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.6, y: 0.6, z: 0.6}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5206124917355304881
+--- !u!114 &-528169718836213794
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,14 +128,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 651722200087660623}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85c2cd325ed7a6e4cabe1745ec4db91b, type: 3}
+  m_Script: {fileID: 11500000, guid: b0adccea9e733ea46b253879808b3084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  itemSpeed: 2.4
-  itemDragDistance: 2.2
+  itemSpeed: 4
+  itemDragDistance: 4
   itemBody: {fileID: 4594376071606678493}
-  pickupSFX: {fileID: 11400000, guid: ae887be74a883064b9243d72a90da102, type: 2}
-  _collider: {fileID: 95251433317768229}
+  pickupSFX: {fileID: 11400000, guid: f83534ee1030a2941a4bef753d73a245, type: 2}
+  _collider: {fileID: 7234026575468646422}
 --- !u!1 &1635657867822772642
 GameObject:
   m_ObjectHideFlags: 0

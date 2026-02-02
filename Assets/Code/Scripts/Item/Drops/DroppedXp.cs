@@ -1,14 +1,15 @@
 using AudioSystem;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class DroppedCurrency : MonoBehaviour
+public class DroppedXp : MonoBehaviour
 {
     [SerializeField] private float itemSpeed = 4f;
     [SerializeField] float itemDragDistance = 4f;
     [SerializeField] Rigidbody itemBody;
     [SerializeField] soundEffect pickupSFX;
     [SerializeField] Collider _collider;
+
+    private int _xpValue = 10; //ISSUE, obviously
 
     private void Start()
     {
@@ -37,9 +38,9 @@ public class DroppedCurrency : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //If not performant, store reference to player currency system
-        if(other.TryGetComponent<Player>(out Player player))
+        if (other.TryGetComponent<Player>(out Player player))
         {
-            player.CurrencySystem.IncrementGoldCurrency(1);
+            player.XpSystem.IncrementXp(_xpValue);
         }
         SoundEffectManager.Instance.Builder
             .SetSound(pickupSFX)

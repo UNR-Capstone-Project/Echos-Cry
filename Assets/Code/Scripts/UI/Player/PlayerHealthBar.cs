@@ -20,19 +20,17 @@ public class PlayerHealthBar : MonoBehaviour
 
     void Awake()
     {
-        updateHealth(100, 100);
+        updateHealth(100, 100); //ISSUE: Statically coded in! Need to retrieve this from the player's stats!
     }
 
     void Start()
     {
         PlayerStats.OnPlayerHealthChangeEvent += updateHealth;
-        //PlayerStats.OnPlayerDeathEvent += updateHealthOnDeath;
     }
 
     void OnDestroy()
     {
         PlayerStats.OnPlayerHealthChangeEvent -= updateHealth;
-        //PlayerStats.OnPlayerDeathEvent -= updateHealthOnDeath;
     }
 
     private void updateHealth(float currentHealth, float maxHealth)
@@ -67,9 +65,5 @@ public class PlayerHealthBar : MonoBehaviour
             percentComplete = percentComplete * percentComplete;
             frontHealthBar.fillAmount = Mathf.Lerp(fillF, backHealthBar.fillAmount, percentComplete);
         }
-    }
-
-    private void updateHealthOnDeath() {
-        
     }
 }
