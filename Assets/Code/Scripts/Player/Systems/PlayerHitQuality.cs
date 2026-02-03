@@ -9,19 +9,19 @@ public class PlayerHitQuality : MonoBehaviour
 
     [SerializeField] InputTranslator _translator;   
 
-    private void Start()
+    private void OnEnable()
     {
         if (_translator == null) return;
         _translator.OnPrimaryActionEvent += DetermineHitQualitySound;
         _translator.OnSecondaryActionEvent += DetermineHitQualitySound;
-        _translator.OnDashEvent += DetermineHitQualitySound;
+        _translator.OnDashEvent += DetermineHitQualitySound;        
     }
-    private void OnDestroy()
+    private void OnDisable()
     {
         if (_translator == null) return;
         _translator.OnPrimaryActionEvent -= DetermineHitQualitySound;
         _translator.OnSecondaryActionEvent -= DetermineHitQualitySound;
-        _translator.OnDashEvent -= DetermineHitQualitySound;
+        _translator.OnDashEvent -= DetermineHitQualitySound;        
     }
     private void PlayHitQualitySound(soundEffect sfx)
     {

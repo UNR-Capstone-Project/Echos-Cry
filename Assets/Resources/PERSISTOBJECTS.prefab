@@ -85,11 +85,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1520755955600332291, guid: 1fcae267f2b29f64091f684c98bfbfc1, type: 3}
+      propertyPath: MetronomeCanvas
+      value: 
+      objectReference: {fileID: 4717447565599285135}
     - target: {fileID: 2428720641269041060, guid: 1fcae267f2b29f64091f684c98bfbfc1, type: 3}
       propertyPath: m_Name
       value: Player Prefab
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3367732906925958267, guid: 1fcae267f2b29f64091f684c98bfbfc1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -643,6 +648,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42f411ff78ea6ef4f9d4785b36fbf7c0, type: 3}
+--- !u!114 &4717447565599285135 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4259656351432009994, guid: 42f411ff78ea6ef4f9d4785b36fbf7c0, type: 3}
+  m_PrefabInstance: {fileID: 8821121699685922437}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aea4dc729f4e95438b52c1d682eefad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MetronomeCanvas
 --- !u!224 &5034085868764075964 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4590928467762864441, guid: 42f411ff78ea6ef4f9d4785b36fbf7c0, type: 3}

@@ -5777,6 +5777,7 @@ MonoBehaviour:
   frontXpBar: {fileID: 8822247853218662497}
   backXpBar: {fileID: 1271382879684934358}
   levelText: {fileID: 6890799334334003916}
+  eventChannel: {fileID: 11400000, guid: 5ef765da4634f204397ef3093ebeeee2, type: 2}
 --- !u!1 &4951925025338273956
 GameObject:
   m_ObjectHideFlags: 0
@@ -10574,6 +10575,8 @@ MonoBehaviour:
   _currentLevelText: {fileID: 7503790335083339472}
   _xpRequiredText: {fileID: 3581760817067160400}
   _pointsAvailableText: {fileID: 1005288165675750067}
+  _playerXPChannel: {fileID: 11400000, guid: 5ef765da4634f204397ef3093ebeeee2, type: 2}
+  _playerLevelUpChannel: {fileID: 11400000, guid: 32986d85d32905d4abd66964bbb5f54e, type: 2}
 --- !u!1 &8786925093521931265
 GameObject:
   m_ObjectHideFlags: 0

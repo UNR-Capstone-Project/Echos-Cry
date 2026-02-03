@@ -12,7 +12,7 @@ public class PlayerIdleState : PlayerActionState
         {
             _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Move));
         }
-        else if (_playerStateMachine.IsAttacking && TempoConductor.Instance.IsOnBeat())
+        else if (_playerStateMachine.IsAttacking)
         {
             _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Attack));
         }
