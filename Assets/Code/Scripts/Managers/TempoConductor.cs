@@ -43,7 +43,7 @@ public class TempoConductor : Singleton<TempoConductor>
 
     public bool IsOnBeat()
     {
-        Debug.Log(CurrentHitQuality);
+        //Debug.Log(CurrentHitQuality);
         if (_currentHitQuality == HitQuality.Good || _currentHitQuality == HitQuality.Excellent) 
             return true;
         else
