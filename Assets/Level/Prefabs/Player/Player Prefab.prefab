@@ -561,7 +561,6 @@ MonoBehaviour:
   _translator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
   _maxInputCount: 5
   _inputCooldown: 3
-  _resetTimer: 0.8
 --- !u!1 &4323622196322604754
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,6 +759,7 @@ MonoBehaviour:
   _goodSFX: {fileID: 11400000, guid: 0c04344d140505046a375088c946717e, type: 2}
   _missSFX: {fileID: 11400000, guid: 244cc789554b807419aa853b0793edb3, type: 2}
   _translator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
+  _spamPrevention: {fileID: 0}
 --- !u!1 &5710194311805252216
 GameObject:
   m_ObjectHideFlags: 0
