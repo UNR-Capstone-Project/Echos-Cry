@@ -59,6 +59,7 @@ public class HealthSystem : MonoBehaviour
     public void DamageHealth(float damage, Color color)
     {
         _currentHealth -= Mathf.Abs(damage);
+        if(_currentHealth < 0) _currentHealth = 0;
         if (healthChannel != null) healthChannel.Invoke(_currentHealth, _maxHealth);
     }
     public void DamageArmor(float damage, Color color)
