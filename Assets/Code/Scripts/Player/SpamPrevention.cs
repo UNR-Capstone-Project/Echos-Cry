@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class SpamPrevention : MonoBehaviour
     [SerializeField, Range(0f, 10f)] private float _inputCooldown;
     private int _currentInputCount = 0;
 
-    public static bool InputLocked {  get; private set; }
+    public static bool InputLocked { get; private set; }
 
     private void OnEnable()
     {
@@ -26,13 +27,10 @@ public class SpamPrevention : MonoBehaviour
 
         StopAllCoroutines();
     }
-    private void Start()
-    {
-        StartCoroutine(ResetCountPerSecondCoroutine());
-    }
 
     private void IncrementCount(bool isPressed)
     {
+        if (!isPressed) return;
         if (InputLocked) return;
         
         _currentInputCount++;
@@ -46,10 +44,10 @@ public class SpamPrevention : MonoBehaviour
     private IEnumerator InputCooldownCoroutine()
     {
         yield return new WaitForSeconds(_inputCooldown);
+
         InputLocked = false;
         _currentInputCount = 0;
         StartCoroutine(ResetCountPerSecondCoroutine());
-
     }
     private IEnumerator ResetCountPerSecondCoroutine()
     {

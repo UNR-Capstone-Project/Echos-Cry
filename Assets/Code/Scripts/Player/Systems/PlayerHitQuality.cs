@@ -6,22 +6,22 @@ public class PlayerHitQuality : MonoBehaviour
     [SerializeField] soundEffect _excellentSFX;
     [SerializeField] soundEffect _goodSFX;
     [SerializeField] soundEffect _missSFX;
-
-    [SerializeField] InputTranslator _translator;   
+    [SerializeField] InputTranslator _translator;
+    private bool _playerSpamming = false;
 
     private void OnEnable()
     {
         if (_translator == null) return;
         _translator.OnPrimaryActionEvent += DetermineHitQualitySound;
         _translator.OnSecondaryActionEvent += DetermineHitQualitySound;
-        _translator.OnDashEvent += DetermineHitQualitySound;        
+        _translator.OnDashEvent += DetermineHitQualitySound;
     }
     private void OnDisable()
     {
         if (_translator == null) return;
         _translator.OnPrimaryActionEvent -= DetermineHitQualitySound;
         _translator.OnSecondaryActionEvent -= DetermineHitQualitySound;
-        _translator.OnDashEvent -= DetermineHitQualitySound;        
+        _translator.OnDashEvent -= DetermineHitQualitySound;
     }
     private void PlayHitQualitySound(soundEffect sfx)
     {
@@ -33,7 +33,9 @@ public class PlayerHitQuality : MonoBehaviour
     }
     private void DetermineHitQualitySound(bool isPressed)
     {
+        if (SpamPrevention.InputLocked) return;
         if (!isPressed) return;
+
         switch (TempoConductor.Instance.CurrentHitQuality)
         {
             case TempoConductor.HitQuality.Excellent:
