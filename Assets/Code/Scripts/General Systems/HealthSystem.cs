@@ -29,8 +29,11 @@ public class HealthSystem : MonoBehaviour
         _maxHealth = _statsConfig.maxHealth;
         _maxArmor = _statsConfig.maxArmor;
 
+        //These are called to update the starting values of each bar.
         if (healthChannel != null)
             healthChannel.Invoke(_currentHealth, _maxHealth);
+        if (armorChannel != null)
+            armorChannel.Invoke(_currentArmor, _maxArmor);
     }
 
     public void Damage(float damage, Color color)
