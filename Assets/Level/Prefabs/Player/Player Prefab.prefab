@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 391624207702511625}
   - component: {fileID: 2347857121992901382}
-  - component: {fileID: 3367732906925958267}
   m_Layer: 10
   m_Name: Player Currency System
   m_TagString: Untagged
@@ -46,18 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCurrencySystem
   _playerCurrencyConfig: {fileID: 11400000, guid: db011ca429b1756488be92fe1bdb5e51, type: 2}
---- !u!114 &3367732906925958267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 343930898882040868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2eb3e15da8fe5a04daf9dce406d54266, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!1 &475222138870821773
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,7 +560,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpamPrevention
   _translator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
   _maxInputCount: 5
-  _inputCooldown: 3.18
+  _inputCooldown: 3
 --- !u!1 &4323622196322604754
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,6 +759,7 @@ MonoBehaviour:
   _goodSFX: {fileID: 11400000, guid: 0c04344d140505046a375088c946717e, type: 2}
   _missSFX: {fileID: 11400000, guid: 244cc789554b807419aa853b0793edb3, type: 2}
   _translator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
+  _spamPrevention: {fileID: 0}
 --- !u!1 &5710194311805252216
 GameObject:
   m_ObjectHideFlags: 0
