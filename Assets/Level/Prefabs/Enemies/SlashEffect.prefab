@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3016788951364905046}
   - component: {fileID: 2270180594265222523}
   - component: {fileID: 1524348524237038881}
-  - component: {fileID: 8310259683820124466}
+  - component: {fileID: 5230151733984932928}
   m_Layer: 0
   m_Name: SlashEffect
   m_TagString: Untagged
@@ -127,7 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea07031b24d8a9f4ca7368458aaa6f07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::timedDestroy
---- !u!114 &8310259683820124466
+  destroyTime: 5
+  destroyOnStart: 0
+--- !u!114 &5230151733984932928
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,7 +138,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8439387494433135425}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 971a2c0256099cb4683bd85d1c810450, type: 3}
+  m_Script: {fileID: 11500000, guid: ad64d351d797b1a4a8f2257738fcd1b0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Billboard
-  lockZRotation: 1
+  m_EditorClassIdentifier: Assembly-CSharp::DynamicBillboard
