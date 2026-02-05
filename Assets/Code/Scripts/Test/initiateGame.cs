@@ -17,8 +17,6 @@ public class initiateGame : MonoBehaviour
     public void Start()
     {
         bindObjects();
-
-        //ISSUE: Show loading screen!
     }
 
     private void bindObjects()

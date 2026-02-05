@@ -1,8 +1,6 @@
-using System;
-using System.Collections;
 using UnityEngine;
-using static SimpleEnemyManager;
-using static SimpleEnemyStateCache;
+using static Enemy;
+using static EnemyStateCache;
 
 //This will be placed on every enemy to handle collision with an attack from player
 
@@ -11,56 +9,30 @@ using static SimpleEnemyStateCache;
 
 //This is used to increase combo meter/multiplier and set enemy to stagger state
 
-[RequireComponent(typeof(Rigidbody))]
-public class EnemyCollisionHandler : MonoBehaviour
-{
-    protected void OnTriggerEnter(Collider collision)
-    {
-        if(collision.TryGetComponent<AttackCollisionHandler>(out AttackCollisionHandler handler))
-        {
-            PlayerComboMeter.AddToComboMeter(handler.AttackDamage);
-            PlayerComboMeter.UpdateComboMultiplier();
-            _enemyCollider.enabled = false;
-            _enemyManager.SwitchState(enemyStaggerState);
-        }
-    }
-    private void ResetColliderBool()
-    {
-        _enemyCollider.enabled = true;
-    }
+//[RequireComponent(typeof(Rigidbody))]
+//public class EnemyCollisionHandler : MonoBehaviour
+//{
+//    protected void OnTriggerEnter(Collider collision)
+//    {
+//        if(collision.TryGetComponent<WeaponCollider>(out WeaponCollider handler))
+//        {
+//            PlayerComboMeter.AddToComboMeter(handler.AttackDamage);
+//            PlayerComboMeter.UpdateComboMultiplier();
+//            _enemyCollider.enabled = false;
+//            //_enemyManager.SwitchState(enemyStaggerState);
+//        }
+//    }
+//    private void ResetColliderBool()
+//    {
+//        _enemyCollider.enabled = true;
+//    }
 
-    private void DetermineStaggerState()
-    {
-        switch (_enemyManager.TypeOfEnemy)
-        {
-            case EnemyType.BAT:
-                enemyStaggerState = EnemyStates.BAT_STAGGER;
-                break;
-            case EnemyType.RANGE:
-                enemyStaggerState = EnemyStates.RANGE_STAGGER;
-                break;
-            default:
-                enemyStaggerState = EnemyStates.UNASSIGNED;
-                break;
-        }
-    }
-
-    private void Awake()
-    {
-        _enemyManager = GetComponent<SimpleEnemyManager>();
-        _enemyCollider = GetComponent<Collider>();
-    }
-    private void Start()
-    {
-        DetermineStaggerState();
-        BaseWeapon.OnAttackEndedEvent += ResetColliderBool;
-    }
-    private void OnDestroy()
-    {
-        BaseWeapon.OnAttackEndedEvent -= ResetColliderBool;
-    }
+//    private void Awake()
+//    {
+//        _enemyManager = GetComponent<Enemy>();
+//        _enemyCollider = GetComponent<Collider>();
+//    }
     
-    private Collider _enemyCollider;
-    EnemyStates enemyStaggerState;
-    protected SimpleEnemyManager _enemyManager;
-}
+//    private Collider _enemyCollider;
+//    protected Enemy _enemyManager;
+//}

@@ -8,17 +8,17 @@ public class PlaySoundOnStart : MonoBehaviour
 
     private void Start()
     {
-        _builderRef = soundEffectManager.Instance.Builder;
+        _builderRef = SoundEffectManager.Instance.Builder;
         PlaySound(sound);
     }
 
     private void PlaySound(soundEffect sound)
     {
         _builderRef
-        .setSound(sound)
-        .setSoundPosition(transform.position)
+        .SetSound(sound)
+        .SetSoundPosition(transform.position)
         .ValidateAndPlaySound();
     }
 
-    private soundBuilder _builderRef;
+    private SoundBuilder _builderRef;
 }

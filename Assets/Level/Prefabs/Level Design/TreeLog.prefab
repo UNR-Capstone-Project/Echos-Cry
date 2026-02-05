@@ -81,6 +81,9 @@ PrefabInstance:
       addedObject: {fileID: 9026717796516382462}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a49d354e09b4967458fef7d035d28d9d, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 5363750508952649777}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a49d354e09b4967458fef7d035d28d9d, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 8800236097428414373}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a49d354e09b4967458fef7d035d28d9d, type: 3}
       insertIndex: -1
@@ -103,11 +106,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e6985fba19b0f34a9ee3d88386f6f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ItemDrops: []
-  itemExplosionSpeed: 0
-  hasItemDrops: 0
-  destroyedVersion: {fileID: 6139050866861346000, guid: 47cbd946f7e1e9348911da1e0f28c87b, type: 3}
-  destroyEffect: {fileID: 11400000, guid: 8e6fff67d6d1b4d46859475d8ddf7611, type: 2}
+  environmentObject: {fileID: 5363750508952649777}
+  hitSFX: {fileID: 11400000, guid: c8c975e393c92cc4f8f6aa88905bcc9e, type: 2}
+--- !u!114 &5363750508952649777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7769821345122375549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9b039fd194ec2f4e9c40e21ca1487e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnvironmentObject
+  _statsConfig: {fileID: 11400000, guid: afeca21892a1ca549b5da02345d931bb, type: 2}
+  _itemDropStrategy: {fileID: 0}
+  _destroyedPrefab: {fileID: 6139050866861346000, guid: 47cbd946f7e1e9348911da1e0f28c87b, type: 3}
+  _destroySFX: {fileID: 11400000, guid: 8e6fff67d6d1b4d46859475d8ddf7611, type: 2}
+  _isDestructable: 1
 --- !u!54 &8800236097428414373
 Rigidbody:
   m_ObjectHideFlags: 0

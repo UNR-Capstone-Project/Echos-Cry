@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class ExitButton : MonoBehaviour
 {
     public GameObject shopCanvas;
-    public void exit(){
+    public void Exit(){
         shopCanvas.SetActive(false);
     }
 }

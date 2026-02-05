@@ -4883,10 +4883,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 3584
+    m_Bits: 1024
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 61942
+    m_Bits: 64503
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -4934,7 +4934,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandleProjectileCollision
   timer: 4
-  startingUser: 2
 --- !u!114 &2239671463730842952
 MonoBehaviour:
   m_ObjectHideFlags: 0

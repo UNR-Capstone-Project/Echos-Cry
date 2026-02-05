@@ -11,37 +11,27 @@ using UnityEngine.Pool;
 /// <summary>
 /// Singleton to manage all the sound effects in the game
 /// </summary>
-public class soundEffectManager : MonoBehaviour
+public class SoundEffectManager : Singleton<SoundEffectManager>
 {
-    public static soundEffectManager Instance { get; private set; }
-    public soundBuilder Builder { get; private set; }
+    public SoundBuilder Builder { get; private set; }
 
-    [SerializeField, HideInInspector] private soundEffectPlayer sfxPlayerPrefab;
+    [SerializeField, HideInInspector] private SoundEffectPlayer sfxPlayerPrefab;
     private bool collectionCheck = true;
     private int DEFAULT_POOL_CAPACITY = 30;
     private int MAX_SFX_PLAYERS = 30;
     private int MAX_POOL_SIZE = 50;
-    IObjectPool<soundEffectPlayer> sfxPlayersPool;
-    private Queue<soundEffectPlayer> frequentSfxPlayers = new();
+    IObjectPool<SoundEffectPlayer> sfxPlayersPool;
+    private Queue<SoundEffectPlayer> frequentSfxPlayers = new();
 
-    void Awake()
+    protected override void OnAwake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
+        if (Application.isPlaying) InitializeSoundPool();
 
-        if (Application.isPlaying) initializeSoundPool();
-
-        Builder = new soundBuilder();
+        Builder = new SoundBuilder();
         Builder.Initialize(this);
     }
 
-    public bool canPlaySound(soundEffect sound)
+    public bool CanPlaySound(soundEffect sound)
     {
         if (sound == null) return false;
         if (!sound.isFrequent) return true;
@@ -49,7 +39,7 @@ public class soundEffectManager : MonoBehaviour
         if (frequentSfxPlayers.Count >= MAX_SFX_PLAYERS && frequentSfxPlayers.TryDequeue(out var oldest))
         {
             oldest.Stop();
-            releasePlayer(oldest);
+            ReleasePlayer(oldest);
         }
 
         return true;
@@ -65,10 +55,10 @@ public class soundEffectManager : MonoBehaviour
     //    return Builder;
     //}
 
-    public void initializeSoundPool()
+    public void InitializeSoundPool()
     {
-        sfxPlayersPool = new ObjectPool<soundEffectPlayer>(
-            createFunc: createSoundPlayer,
+        sfxPlayersPool = new ObjectPool<SoundEffectPlayer>(
+            createFunc: CreateSoundPlayer,
             actionOnGet: OnTakeFromPool,
             actionOnRelease: OnReturnedToPool,
             actionOnDestroy: OnDestroyPoolObject,
@@ -78,50 +68,50 @@ public class soundEffectManager : MonoBehaviour
         );
     }
 
-    public void OnDestroyPoolObject(soundEffectPlayer player)
+    public void OnDestroyPoolObject(SoundEffectPlayer player)
     {
         Destroy(player);
     }
 
-    public void OnReturnedToPool(soundEffectPlayer player)
+    public void OnReturnedToPool(SoundEffectPlayer player)
     {
         player.gameObject.SetActive(false);
     }
 
-    public void OnTakeFromPool(soundEffectPlayer player)
+    public void OnTakeFromPool(SoundEffectPlayer player)
     {
         player.gameObject.SetActive(true);
     }
 
-    public soundEffectPlayer createSoundPlayer()
+    public SoundEffectPlayer CreateSoundPlayer()
     {
         if (sfxPlayerPrefab == null)
         {
             GameObject temporary = new GameObject("SFXPlayer");
-            return temporary.AddComponent<soundEffectPlayer>();
+            return temporary.AddComponent<SoundEffectPlayer>();
         }
         var soundPlayer = Instantiate(sfxPlayerPrefab);
         soundPlayer.gameObject.SetActive(false);
         return soundPlayer;
     }
 
-    public soundEffectPlayer getPlayer()
+    public SoundEffectPlayer GetPlayer()
     {
         if (sfxPlayersPool == null)
         {
-            initializeSoundPool();
+            InitializeSoundPool();
         }
 
         return sfxPlayersPool.Get();
     }
 
-    public void releasePlayer(soundEffectPlayer player)
+    public void ReleasePlayer(SoundEffectPlayer player)
     {
         if (!player.gameObject.activeSelf) return;
         sfxPlayersPool.Release(player);
     }
     
-    public void registerFrequentPlayer(soundEffectPlayer player)
+    public void RegisterFrequentPlayer(SoundEffectPlayer player)
     {
         frequentSfxPlayers.Enqueue(player);
 
@@ -135,9 +125,9 @@ public class soundEffectManager : MonoBehaviour
         
         }
     }
-    public void unregisterFrequentPlayer(soundEffectPlayer player)
+    public void UnregisterFrequentPlayer(SoundEffectPlayer player)
     {
-        var newQueue = new Queue<soundEffectPlayer>();
+        var newQueue = new Queue<SoundEffectPlayer>();
         while (frequentSfxPlayers.Count > 0)
         {
             var p = frequentSfxPlayers.Dequeue();

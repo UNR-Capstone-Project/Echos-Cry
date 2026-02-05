@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-/// Original Author: Andy
-/// All Contributors Since Creation: Victor, Andy
-/// Last Modified By: Victor
+
 public static class PersistenceInitializer
 {
     private static bool loaded = false;
@@ -21,11 +19,12 @@ public static class PersistenceInitializer
 
         if (currentScene.name != "MainMenu")
         {
-            //Code Section Begins. Code Author: Andy
+            
             Debug.Log("Loaded by the Persist Object from the PersistenceInitializer script");
+            Application.targetFrameRate = 60;
             Object.DontDestroyOnLoad(Object.Instantiate(Resources.Load("PERSISTOBJECTS")));
             loaded = true;
-            //Code Section Ends.
+            
         }
         
     }

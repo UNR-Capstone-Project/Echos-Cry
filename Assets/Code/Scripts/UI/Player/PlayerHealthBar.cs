@@ -9,6 +9,7 @@ using UnityEngine.UI;
 /// Last Modified By:
 public class PlayerHealthBar : MonoBehaviour
 {
+    [SerializeField] private DoubleFloatEventChannel eventChannel;
     [SerializeField] private TMPro.TextMeshProUGUI healthText;
 
     // Variables Provided from here: https://youtu.be/CFASjEuhyf4?si=ri_WpIV1OxgtQdgp at 5:00
@@ -18,29 +19,21 @@ public class PlayerHealthBar : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Image frontHealthBar;
     [SerializeField] private UnityEngine.UI.Image backHealthBar;
 
-    void Awake()
-    {
-        updateHealth(100, 100);
-    }
-
     void Start()
     {
-        PlayerStats.OnPlayerHealthChangeEvent += updateHealth;
-        PlayerStats.OnPlayerDeathEvent += updateHealthOnDeath;
+        if(eventChannel != null) eventChannel.Channel += UpdateHealth;
     }
 
     void OnDestroy()
     {
-        PlayerStats.OnPlayerHealthChangeEvent -= updateHealth;
-        PlayerStats.OnPlayerDeathEvent -= updateHealthOnDeath;
+        if (eventChannel != null) eventChannel.Channel -= UpdateHealth;
     }
 
-    private void updateHealth(float currentHealth, float maxHealth)
+    private void UpdateHealth(float currentHealth, float maxHealth)
     {
         healthText.text = currentHealth.ToString() + "/" + maxHealth.ToString();
         hFraction = currentHealth / maxHealth;
         lerpTimer = 0f;
-        
     }
 
     private void Update()
@@ -67,9 +60,5 @@ public class PlayerHealthBar : MonoBehaviour
             percentComplete = percentComplete * percentComplete;
             frontHealthBar.fillAmount = Mathf.Lerp(fillF, backHealthBar.fillAmount, percentComplete);
         }
-    }
-
-    private void updateHealthOnDeath() {
-        
     }
 }

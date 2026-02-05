@@ -27,8 +27,11 @@ public class CameraManager : MonoBehaviour
         cameraBrain = gameObject.GetComponentInChildren<CinemachineCamera>();
         cinemachinePerlin = cameraBrain.GetComponent<CinemachineBasicMultiChannelPerlin>();
 
-        cameraBrain.Target.TrackingTarget = PlayerRef.PlayerTransform;
         _mainCamera = GetComponentInChildren<Camera>();
+    }
+    private void Start()
+    {
+        cameraBrain.Target.TrackingTarget = PlayerRef.Transform;
     }
 
     // This was provided from a tutorial by CodeMonkey on Youtube https://youtu.be/ACf1I27I6Tk?si=Ic2BCVnjAV80Pkvv

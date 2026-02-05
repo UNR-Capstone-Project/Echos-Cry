@@ -1,40 +1,64 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class TickManager : MonoBehaviour
+public class TimerNode
 {
-    public static event Action OnTick01Event;
-    public static event Action OnTick02Event;
-    public static event Action OnTick05Event;
-    private float tick_timer01 = 0;
-    private float tick_timer02 = 0;
-    private float tick_timer05 = 0;
+    private float _timer;
+    private readonly float _tickTime;
+    public event Action Tick;
 
-    private void Start()
+    public TimerNode(float tickTime)
     {
-        tick_timer01 = 0;
-        tick_timer02 = 0;
-        tick_timer05 = 0;
+        _timer = 0;
+        _tickTime = tickTime;
+    }
+    public void Update()
+    {
+        _timer += Time.deltaTime;
+        if(_timer >= _tickTime)
+        {
+            Tick?.Invoke();
+            _timer -= _tickTime;
+        }
+    }
+}
+//Other TODO: may or may not be relevant to this script but design way to separate out tick events across frames, specifically for enemies (could use queue?)
+public class TickManager : Singleton<TickManager>
+{
+    private Dictionary<float, TimerNode> _timers;
+
+    private TimerNode AddTimer(float tickTime)
+    {
+        TimerNode newTimer = new(tickTime);
+        _timers.Add(tickTime, newTimer);
+        return newTimer;
+    }
+    public TimerNode GetTimer(float key)
+    {
+        if(_timers.ContainsKey(key)) return _timers[key]; 
+        return AddTimer(key);
+    }
+    private void UpdateTimers()
+    {
+        //Michael:
+        //Bug with this fuck ass thing. TODO: will change from dictionary system
+        foreach(var timer in _timers)
+        {
+            timer.Value.Update();
+        }
+    }
+
+    protected override void OnAwake()
+    {
+        _timers = new();
     }
     void Update()
     {
-        tick_timer01 += Time.deltaTime;
-        tick_timer02 += Time.deltaTime;
-        tick_timer05 += Time.deltaTime;
-        if(tick_timer01 >= 0.1f)
-        {
-            tick_timer01 -= 0.1f;
-            OnTick01Event?.Invoke();
-        }
-        if (tick_timer02 >= 0.2f)
-        {
-            tick_timer02 -= 0.2f;
-            OnTick02Event?.Invoke();
-        }
-        if (tick_timer05 >= 0.5f)
-        {
-            tick_timer05 -= 0.5f;
-            OnTick05Event?.Invoke();
-        }
+        UpdateTimers();
+    }
+    private void OnDisable()
+    {
+        _timers.Clear();
     }
 }

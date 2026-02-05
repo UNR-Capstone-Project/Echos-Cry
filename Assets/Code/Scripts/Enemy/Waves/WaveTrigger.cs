@@ -11,7 +11,7 @@ public class WaveTrigger : MonoBehaviour
     {
         if (!waveHasStarted)
         {
-            _waveManager.startNewWave();
+            _waveManager.StartNextWave();
             waveHasStarted = true;
         }
     }

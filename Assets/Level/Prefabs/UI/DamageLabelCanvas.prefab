@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7778235188670340687}
   - component: {fileID: 6070441252857966286}
   - component: {fileID: 7882403557733123006}
-  - component: {fileID: 2260013751848355037}
+  - component: {fileID: 459334131999580108}
   m_Layer: 5
   m_Name: DamageLabelCanvas
   m_TagString: Untagged
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
---- !u!114 &2260013751848355037
+--- !u!114 &459334131999580108
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,8 +93,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 6258630633210618517}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2784691c9a64734c8d2d792bda5f500, type: 3}
+  m_Script: {fileID: 11500000, guid: 1286c1973e55bb64cac135a2e202effd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpawnsDamagePopups
+  m_EditorClassIdentifier: Assembly-CSharp::DamageLabelManager
   damageLabelPrefab: {fileID: 2115787942821154026, guid: b4f23445892cc694fa935f1a8ff6fbe9, type: 3}
-  displayLength: 0.6
+  _displayLength: 1

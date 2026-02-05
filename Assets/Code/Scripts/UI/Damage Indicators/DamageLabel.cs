@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Pool;
 
 //This script is based on the Damage Popup tutorial from Christina Maraakis
 //https://www.youtube.com/watch?v=2Jzl-fU8B0A
@@ -23,8 +24,12 @@ public class DamageLabel : MonoBehaviour
     private Vector3 dropPointOffsetBasedOnDirection = Vector3.zero;
     private bool direction = true;
 
-    private SpawnsDamagePopups poolManager;
-    private Coroutine moveCoroutine;
+    private ObjectPool<DamageLabel> _pool;
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
 
     private void OrientCurveBasedOnDirection()
     {
@@ -48,9 +53,9 @@ public class DamageLabel : MonoBehaviour
         return currentLocation;
     }
 
-    public void Initialize(float displayDuration, SpawnsDamagePopups poolManager)
+    public void Initialize(float displayDuration, ObjectPool<DamageLabel> pool)
     {
-        this.poolManager = poolManager;
+        _pool = pool;
         this.displayDuration = displayDuration;
 
         OrientCurveBasedOnDirection();
@@ -66,12 +71,7 @@ public class DamageLabel : MonoBehaviour
         damageText.color = color;
         //damageText.fontSize = isCrit ? critFontSize : normalFontSize;
 
-        if (moveCoroutine != null)
-        {
-            StopCoroutine(moveCoroutine);
-        }
-        moveCoroutine = StartCoroutine(Move());
-        StartCoroutine(ReturnDamageLabelToPool(displayDuration));
+        StartCoroutine(Move());
     }
 
     private IEnumerator Move()
@@ -108,11 +108,5 @@ public class DamageLabel : MonoBehaviour
 
             yield return null;
         }
-    }
-
-    private IEnumerator ReturnDamageLabelToPool(float displayLength)
-    {
-        yield return new WaitForSeconds(displayLength);
-        poolManager.ReturnDamageLabelToPool(this);
     }
 }

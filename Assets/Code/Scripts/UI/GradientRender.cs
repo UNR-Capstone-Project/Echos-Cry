@@ -1,8 +1,7 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Splines.Interpolators;
 using UnityEngine.UI;
 
+[ExecuteAlways]
 public class GradientRender : Graphic
 {
     [SerializeField] private RectTransform mRectTransform;

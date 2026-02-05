@@ -1,17 +1,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RBProjectileManager : MonoBehaviour
+public class RBProjectileManager : Singleton<RBProjectileManager>
 {
-    private void Awake()
+    public struct PoolNode
     {
-        if (_instance != null)
+        public RBProjectilePool _pool;
+        public int _count;
+        public PoolNode(RBProjectilePool handler, int count)
         {
-            Destroy(this);
-            return;
+            _pool = handler;
+            _count = count;
         }
-        _instance = this;
-        projectileHandlers = new Dictionary<int, HandlerNode>();
+    }
+
+    private Dictionary<int, PoolNode> projectilePools;
+
+    protected override void OnAwake()
+    {
+        projectilePools = new Dictionary<int, PoolNode>();
     }
     private void Start()
     {
@@ -24,40 +31,26 @@ public class RBProjectileManager : MonoBehaviour
 
     private void OnSceneTransition()
     {
-        projectileHandlers.Clear();
+        projectilePools.Clear();
     }
 
-    public static RBProjectileHandler RequestHandler(GameObject prefab)
+    public RBProjectilePool RequestPool(GameObject prefab)
     {
         int id = prefab.GetInstanceID();
 
-        if (projectileHandlers.TryGetValue(id, out HandlerNode node))
+        if (projectilePools.TryGetValue(id, out PoolNode node))
         {
             node._count++;
-            return node._handler;
+            return node._pool;
         }
         else
         {
-            RBProjectileHandler handler = new GameObject(prefab.name + "//SceneHandler").AddComponent<RBProjectileHandler>();
-            handler.InitializeHandler(prefab, 5, 50).ProjectileSpeed = 5f;
-            HandlerNode newNode = new HandlerNode(handler, 1);
-            projectileHandlers.Add(id, newNode);
-            return handler;
+            RBProjectilePool pool = new GameObject(prefab.name + "//SceneHandler").AddComponent<RBProjectilePool>();
+            pool.Init(prefab, 5, 50).ProjectileSpeed = 5f;
+            PoolNode newNode = new(pool, 1);
+            projectilePools.Add(id, newNode);
+            return pool;
         }
             
     }
-
-    public struct HandlerNode
-    {
-        public RBProjectileHandler _handler;
-        public int _count;
-        public HandlerNode(RBProjectileHandler handler, int count)
-        {
-            _handler = handler;
-            _count = count;
-        }
-    }
-
-    private static RBProjectileManager _instance;
-    private static Dictionary<int, HandlerNode> projectileHandlers;
 }

@@ -5,29 +5,18 @@ public class EnemySound : MonoBehaviour
 {
     public void HandleDamageSound(float damage, Color color)
     {
-        soundEffectManager.Instance.Builder
-            .setSound(hitSFX)
-            .setSoundPosition(transform.position)
+        SoundEffectManager.Instance.Builder
+            .SetSound(hitSFX)
+            .SetSoundPosition(transform.position)
             .ValidateAndPlaySound();
     }
 
     public void HandleAttackSound()
     {
-        soundEffectManager.Instance.Builder
-            .setSound(attackSFX)
-            .setSoundPosition(transform.position)
+        SoundEffectManager.Instance.Builder
+            .SetSound(attackSFX)
+            .SetSoundPosition(transform.position)
             .ValidateAndPlaySound();
-    }
-
-    void Start()
-    {
-        GetComponent<EnemyStats>().OnEnemyDamagedEvent += HandleDamageSound;
-        GetComponent<EnemyBaseAttack>().OnEnemyUseAttackEvent += HandleAttackSound;
-    }
-    private void OnDestroy()
-    {
-        GetComponent<EnemyStats>().OnEnemyDamagedEvent -= HandleDamageSound;
-        GetComponent<EnemyBaseAttack>().OnEnemyUseAttackEvent -= HandleAttackSound;
     }
     
     [SerializeField] soundEffect hitSFX;

@@ -30,10 +30,10 @@ public class JournalMenu : MonoBehaviour
             journalCanvas.enabled = false;
             currentPos = selectedJournalTab.rectTransform.anchoredPosition;
             originPos = currentPos;
-            _translator.OnMapEvent += showJournal;
-            _translator.OnExitMapEvent += hideJournal;
-            _translator.OnJournalLeftInput += switchTabLeft;
-            _translator.OnJournalRightInput += switchTabRight;
+            //_translator.OnMapEvent += showJournal;
+            //_translator.OnExitMapEvent += hideJournal;
+            //_translator.OnJournalLeftInput += switchTabLeft;
+            //_translator.OnJournalRightInput += switchTabRight;
         }
         else
         {
@@ -44,10 +44,10 @@ public class JournalMenu : MonoBehaviour
 
     void OnDestroy()
     {
-        _translator.OnMapEvent -= showJournal;
-        _translator.OnExitMapEvent -= hideJournal;
-        _translator.OnJournalLeftInput -= switchTabLeft;
-        _translator.OnJournalRightInput -= switchTabRight;
+        //_translator.OnMapEvent -= showJournal;
+        //_translator.OnExitMapEvent -= hideJournal;
+        //_translator.OnJournalLeftInput -= switchTabLeft;
+        //_translator.OnJournalRightInput -= switchTabRight;
     }
 
     private void showJournal()

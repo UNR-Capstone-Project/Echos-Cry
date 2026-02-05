@@ -11,39 +11,35 @@ public class StringGameobjectPair
     public GameObject value;
 }
 
-public class MenuManager : MonoBehaviour
+public class MenuManager : Singleton<MenuManager>
 {
     [SerializeField] private InputTranslator _translator;
     [SerializeField] private GameObject screenFadeObject;
     [SerializeField] private List<StringGameobjectPair> menuDictionary;
-    public static MenuManager Instance { get; private set; }
+    [SerializeField] private InputTranslator _inputTranslator;
+
     public static event Action PauseStarted;
     public static event Action PauseEnded;
 
-    void Awake()
+    protected override void OnAwake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
-
         SetMenu("HUD");
     }
 
     private void Start()
     {
-        PlayerStats.OnPlayerDeathEvent += EnableGameoverMenu;
+        GameManager.OnPlayerDeathEvent += EnableGameoverMenu;
+
+        _translator.OnUpgradeEvent += EnableUpgradeMenu;
         _translator.OnPauseEvent += EnablePauseMenu;
         _translator.OnResumeEvent += DisablePauseMenu;
     }
 
     void OnDestroy()
     {
-        PlayerStats.OnPlayerDeathEvent -= EnableGameoverMenu;
+        GameManager.OnPlayerDeathEvent -= EnableGameoverMenu;
+
+        _translator.OnUpgradeEvent -= EnableUpgradeMenu;
         _translator.OnPauseEvent -= EnablePauseMenu;
         _translator.OnResumeEvent -= DisablePauseMenu;
     }
@@ -61,7 +57,14 @@ public class MenuManager : MonoBehaviour
         SetMenu("Pause");
         PauseStarted?.Invoke();
         VolumeManager.Instance.SetDepthOfField(true);
-        AudioManager.Instance.SetMasterVolume(0.4f);
+        Time.timeScale = 0f;
+    }
+
+    private void EnableUpgradeMenu()
+    {
+        SetMenu("Upgrade");
+        PauseStarted?.Invoke();
+        VolumeManager.Instance.SetDepthOfField(true);
         Time.timeScale = 0f;
     }
 
@@ -70,7 +73,6 @@ public class MenuManager : MonoBehaviour
         SetMenu("HUD");
         PauseEnded?.Invoke();
         VolumeManager.Instance.SetDepthOfField(false);
-        AudioManager.Instance.SetMasterVolume(1f);
         Time.timeScale = 1f;
     }
 
@@ -110,5 +112,12 @@ public class MenuManager : MonoBehaviour
             yield return null;
         }
         canvasGroup.alpha = 0f;
+    }
+
+    public void BackButton()
+    {
+        MenuManager.Instance.DisablePauseMenu();
+        _inputTranslator.PlayerInputs.Gameplay.Enable();
+        _inputTranslator.PlayerInputs.PauseMenu.Disable();
     }
 }

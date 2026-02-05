@@ -31,49 +31,46 @@ public class MetronomeCanvas : MonoBehaviour
         //Setup metronome image
         _metronomeImage.material = metronomeMaterial;
 
-        TempoManager.BeatTickEvent += FlashOutline;
+        TempoConductor.Instance.BeatTickEvent += FlashOutline;
 
         _translator.OnDashEvent += UpdateHitQualityText;
-        _translator.OnLightAttackEvent += UpdateHitQualityText;
-        _translator.OnHeavyAttackEvent += UpdateHitQualityText;
-        MenuManager.PauseStarted += PauseMetronome;
-        MenuManager.PauseEnded += UnpauseMetronome;
+        _translator.OnPrimaryActionEvent += UpdateHitQualityText;
+        _translator.OnSecondaryActionEvent += UpdateHitQualityText;
     }
+
     private void OnDestroy()
     {
-        TempoManager.BeatTickEvent -= FlashOutline;
+        if(TempoConductor.Instance != null) TempoConductor.Instance.BeatTickEvent -= FlashOutline;
 
         _translator.OnDashEvent -= UpdateHitQualityText;
-        _translator.OnLightAttackEvent -= UpdateHitQualityText;
-        _translator.OnHeavyAttackEvent -= UpdateHitQualityText;
-        MenuManager.PauseStarted -= PauseMetronome;
-        MenuManager.PauseEnded -= UnpauseMetronome;
+        _translator.OnPrimaryActionEvent -= UpdateHitQualityText;
+        _translator.OnSecondaryActionEvent -= UpdateHitQualityText;
     }
 
-    public void UpdateHitQualityText()
+    private void UpdateHitQualityText(bool isPressed)
     {
-        if (TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.EXCELLENT)
+        if (!isPressed) return;
+        switch (TempoConductor.Instance.CurrentHitQuality)
         {
-            hitQualityText.color = new Color(110f / 255f, 44f / 255f, 222f / 255f, 1f); //purple
+            case TempoConductor.HitQuality.Excellent:
+                hitQualityText.color = new Color(110f / 255f, 44f / 255f, 222f / 255f, 1f); //purple
+                break;
+            case TempoConductor.HitQuality.Good:
+                hitQualityText.color = new Color(47f / 255f, 235f / 255f, 81f / 255f, 1.0f);
+                break;
+            case TempoConductor.HitQuality.Miss:
+                hitQualityText.color = Color.red;
+                break;
         }
-        else if (TempoManager.CurrentHitQuality == TempoManager.HIT_QUALITY.GOOD)
-        {
-            hitQualityText.color = new Color(47f / 255f, 235f / 255f, 81f / 255f, 1.0f);
-        }
-        else
-        {
-            hitQualityText.color = Color.red;
-        }
-            hitQualityText.text = TempoManager.CurrentHitQuality.ToString();
+        hitQualityText.text = TempoConductor.Instance.CurrentHitQuality.ToString();
     }
 
     public void FlashOutline()
     {
-        if (MusicManager.Instance.SongCurrentlyPlaying())
+        if (MusicManager.Instance.SongCurrentlyPlaying() && gameObject.activeInHierarchy)
         {
             StartCoroutine(Flash(flashDuration));
         }
-        
     }
 
     IEnumerator Flash(float duration)
@@ -81,15 +78,5 @@ public class MetronomeCanvas : MonoBehaviour
         metronomeMaterial.SetFloat("_Enabled", 1f);
         yield return new WaitForSeconds(duration);
         metronomeMaterial.SetFloat("_Enabled", 0f);
-    }
-
-    void PauseMetronome()
-    {
-        MusicManager.Instance.PauseSong();
-    }
-
-    void UnpauseMetronome()
-    {
-        MusicManager.Instance.ResumeSong();
     }
 }

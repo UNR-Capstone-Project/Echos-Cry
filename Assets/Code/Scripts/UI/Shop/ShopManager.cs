@@ -9,7 +9,7 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private InputTranslator _translator;
     [SerializeField] private GameObject[] ShopItemArray;
     [SerializeField] private TextMeshProUGUI totalCostText;
-    [SerializeField] private TextMeshProUGUI currentFingersText;
+    [SerializeField] private TextMeshProUGUI currentGoldText;
     private int currentItemIndex = 0;
     private float totalCost = 0f;
 
@@ -38,7 +38,7 @@ public class ShopManager : MonoBehaviour
     }
     private void Right()
     {
-        PlayerStats.UpdateCurrency(100);
+        //PlayerStats.UpdateCurrency(100);
         ShopItemArray[currentItemIndex].GetComponent<ShopItem>().IncreaseAmount();
     }
     private void Down()
@@ -72,7 +72,7 @@ public class ShopManager : MonoBehaviour
         totalCost = tempCost;
         totalCostText.text = $"Total Cost: ${totalCost.ToString()}";
 
-        if(totalCost <= PlayerStats.CurrencyCount)
+        if(totalCost <= PlayerCurrencySystem.Instance.GetGoldCurrency())
         {
             totalCostText.color = Color.white;
         }
@@ -81,25 +81,25 @@ public class ShopManager : MonoBehaviour
             totalCostText.color = Color.red;
         }
 
-        currentFingersText.text = $"Current Fingers: ${PlayerStats.CurrencyCount.ToString()}";
+        currentGoldText.text = $"Gold Balance: ${PlayerCurrencySystem.Instance.GetGoldCurrency().ToString()}";
     }
 
     public void Purchase()
     {
         if (totalCost <= 0) return;
-        if(PlayerStats.CurrencyCount >= totalCost)
+        if(PlayerCurrencySystem.Instance.GetGoldCurrency() >= totalCost)
         {
             foreach (GameObject item in ShopItemArray)
             {
                 ShopItem shopItemScript = item.GetComponent<ShopItem>();
                 for (int i = 0; i < shopItemScript.GetAmount(); i++)
                 {
-                    Instantiate(shopItemScript.GetPrefab(), GameObject.Find("Player").transform.position, Quaternion.identity);
+                    Instantiate(shopItemScript.GetPrefab(), PlayerRef.Transform.position, Quaternion.identity);
                 }
                 shopItemScript.ResetAmount();
             }
 
-            PlayerStats.UpdateCurrency(-(int)totalCost);
+            PlayerCurrencySystem.Instance.DecrementGoldCurrency((int)totalCost);
         }
     }
 }

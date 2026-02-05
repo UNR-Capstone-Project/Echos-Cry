@@ -4,41 +4,53 @@ using UnityEngine;
 
 public class RBPRojectileCollisionHandler : MonoBehaviour
 {
+    private RBProjectilePool handler;
+    private Rigidbody rb;
+
+    private float projectileDamage = 0;
+    [SerializeField] private float timer = 5;
+   
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("PlayerMeleeAttack")
-            && currentUser == ProjectileUser.ENEMY)
-        {
-            StopAllCoroutines();
-            StartCoroutine(WaitForTime());
+        //if (other.gameObject.layer == LayerMask.NameToLayer("PlayerMeleeAttack")
+        //    && currentUser == ProjectileUser.ENEMY)
+        //{
+        //    StopAllCoroutines();
+        //    StartCoroutine(WaitForTime());
 
-            //Switch to attacking enemies
-            ParryProjectile();
-                
-            return;
-        }
+        //    //Switch to attacking enemies
+        //    ParryProjectile();
 
-        //Only damage if colliding with valid target
-        if ((currentUser == ProjectileUser.ENEMY && other.gameObject.layer != LayerMask.NameToLayer("Player"))
-            || (currentUser == ProjectileUser.PLAYER && other.gameObject.layer != LayerMask.NameToLayer("Enemy")))
-        {
-            return;
-        }
+        //    return;
+        //}
 
-        damageEnemyAction(other);
+        ////Only damage if colliding with valid target
+        //if ((currentUser == ProjectileUser.ENEMY && other.gameObject.layer != LayerMask.NameToLayer("Player"))
+        //    || (currentUser == ProjectileUser.PLAYER && other.gameObject.layer != LayerMask.NameToLayer("Enemy")))
+        //{
+        //    return;
+        //}
+
+        //damageEnemyAction(other);
+        Damage(other);
         StopAllCoroutines();
-        ResetProjectile();
+        ReleaseProjectile();
     }
+    private void Damage(Collider collider)
+    {
+        collider.GetComponent<IDamageable>().Execute(projectileDamage);
+    }
+
     IEnumerator WaitForTime()
     {
         yield return new WaitForSeconds(timer);
-        ResetProjectile();
+        ReleaseProjectile();
     }
-    public void ResetProjectile()
+    public void ReleaseProjectile()
     {
         if (handler != null) handler.ReleaseProjectile(rb);
     }
-    public void SetHandler(RBProjectileHandler handler)
+    public void SetHandler(RBProjectilePool handler)
     {
         if (this.handler != null) return;
         this.handler = handler;
@@ -48,69 +60,28 @@ public class RBPRojectileCollisionHandler : MonoBehaviour
         projectileDamage = damage;
     }
 
-    private void ParryProjectile()
-    {
-        currentUser = ProjectileUser.PLAYER;
-        DetermineUserAction();
+    //private void ParryProjectile()
+    //{
+    //    //currentUser = ProjectileUser.PLAYER;
 
-        if (rb == null) return;
-        Vector3 projectileDirection = PlayerDirection.AimDirection;
-        rb.linearVelocity = projectileDirection * rb.linearVelocity.magnitude;
-    }
-
-    private void DetermineUserAction()
-    {
-        switch (currentUser)
-        {
-            case ProjectileUser.ENEMY:
-                damageEnemyAction = (other) => 
-                { 
-                    if (other.TryGetComponent<PlayerStats>(out PlayerStats playerStats)) 
-                        PlayerStats.Instance.OnDamageTaken(projectileDamage); 
-                };
-                break;
-            case ProjectileUser.PLAYER:
-                damageEnemyAction = (other) =>
-                {
-                    if (other.TryGetComponent<SimpleEnemyManager>(out SimpleEnemyManager manager)) 
-                        manager.EnemyStats.DamageEnemy(projectileDamage, Color.yellow);
-                };
-                break;
-            default:
-                break;
-        }
-    }
+    //    if (rb == null) return;
+    //    Vector3 projectileDirection = PlayerOrientation.Direction;
+    //    rb.linearVelocity = projectileDirection * rb.linearVelocity.magnitude;
+    //}
 
     private void Awake()
     {
-        handler = GetComponentInParent<RBProjectileHandler>();
+        handler = GetComponentInParent<RBProjectilePool>();
         rb = GetComponent<Rigidbody>();
     }
-    private void Start()
-    {
-        DetermineUserAction();
-    }
+
     private void OnEnable()
     {
-        currentUser = startingUser;
-        DetermineUserAction();
+        //currentUser = startingUser;
         StartCoroutine(WaitForTime());
     }
     private void OnDisable()
     {
         StopAllCoroutines();
     }
-
-    public enum ProjectileUser
-    {
-        UNASSIGNED = 0, PLAYER, ENEMY
-    }
-
-    private RBProjectileHandler handler;
-    private Rigidbody rb;
-    private Action<Collider> damageEnemyAction;
-    private float projectileDamage = 0;
-    [SerializeField] private float timer = 5;
-    [SerializeField] private ProjectileUser startingUser;
-    private ProjectileUser currentUser;
 }

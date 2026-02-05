@@ -112,7 +112,6 @@ public class MinigameManager : MonoBehaviour
         }
 
         currentTrackTime += Time.deltaTime;
-        //ISSUE: To sync with audio use audioSource.time; instead!
 
         if (currentTrackTime >= 0)
         {

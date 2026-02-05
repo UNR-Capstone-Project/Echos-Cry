@@ -42,7 +42,7 @@ public class MusicPlayer : MonoBehaviour
     
     void OnAudioFilterRead(float[] data, int channels) //This callback is executed on the audio thread when an audio buffer is read from an AudioSource
     {
-        //ISSUE: The tick sound is being written into the audio buffer that the music plays from, therefore it is added onto the music's sound wave. This means volume control of the tick sound is difficult to lower without lowering overall music volume.
+        //SOLVED: The tick sound is being written into the audio buffer that the music plays from, therefore it is added onto the music's sound wave. This means volume control of the tick sound is difficult to lower without lowering overall music volume.
         if (!tickEnabled) { return; }
         if (!songRunning) { return; }
 

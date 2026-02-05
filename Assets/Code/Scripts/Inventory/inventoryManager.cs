@@ -43,13 +43,13 @@ public class InventoryManager : MonoBehaviour
         inventory = new List<InventoryItem>();
         m_itemDictionary = new Dictionary<inventoryItemData, InventoryItem>();
 
-        _inputTranslator.OnItem1Event += UseItem1;
-        _inputTranslator.OnItem2Event += UseItem2;
-        _inputTranslator.OnItem3Event += UseItem3;
-        _inputTranslator.OnItem4Event += UseItem4;
+        //_inputTranslator.OnItem1Event += UseItem1;
+        //_inputTranslator.OnItem2Event += UseItem2;
+        //_inputTranslator.OnItem3Event += UseItem3;
+        //_inputTranslator.OnItem4Event += UseItem4;
     }
     private void healthPotion(){
-        PlayerStats.OnDamageHealed(30f);
+        //PlayerStats.OnDamageHealed(10f);
         Debug.Log("Health");
     }
     private void shieldPotion(){
@@ -70,7 +70,7 @@ public class InventoryManager : MonoBehaviour
 
         if (usedItem.data.id == "healthP")
         {
-            if (PlayerStats.CurrentHealth == PlayerStats.MaxHealth) return;
+            //if (PlayerStats.CurrentHealth == PlayerStats.MaxHealth) return;
             healthPotion();
         }
         else if (usedItem.data.id == "shieldP")
@@ -101,10 +101,10 @@ public class InventoryManager : MonoBehaviour
         UseItem(3);
     }
     void OnDestroy(){
-        _inputTranslator.OnItem1Event -= UseItem1;
-        _inputTranslator.OnItem2Event -= UseItem2;
-        _inputTranslator.OnItem3Event -= UseItem3;
-        _inputTranslator.OnItem4Event -= UseItem4;
+        //_inputTranslator.OnItem1Event -= UseItem1;
+        //_inputTranslator.OnItem2Event -= UseItem2;
+        //_inputTranslator.OnItem3Event -= UseItem3;
+        //_inputTranslator.OnItem4Event -= UseItem4;
     }
     public InventoryItem Get(inventoryItemData referenceData){
         if(m_itemDictionary.TryGetValue(referenceData, out InventoryItem value)){

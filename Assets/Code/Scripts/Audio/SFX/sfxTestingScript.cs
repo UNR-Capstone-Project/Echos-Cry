@@ -31,17 +31,17 @@ public class sfxTestingScript : MonoBehaviour
 
             if (randomSound == 1)
             {
-                soundEffectManager.Instance.Builder
-                    .setSound(singleSound)
-                    .setSoundPosition(posA)
+                SoundEffectManager.Instance.Builder
+                    .SetSound(singleSound)
+                    .SetSoundPosition(posA)
                     .ValidateAndPlaySound();
                 //Debug.Log("SOUND A PLAYED");
             }
             else
             {
-                soundEffectManager.Instance.Builder
-                    .setSound(multiClipSound)
-                    .setSoundPosition(posA)
+                SoundEffectManager.Instance.Builder
+                    .SetSound(multiClipSound)
+                    .SetSoundPosition(posA)
                     .ValidateAndPlaySound();
                 //Debug.Log("====SECOND SOUND PLAYED====");
             }

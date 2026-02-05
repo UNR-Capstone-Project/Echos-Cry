@@ -100,7 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4663246515495992762}
   - component: {fileID: 1584114766417235778}
-  - component: {fileID: 5428771555926968140}
+  - component: {fileID: 1971523843926539588}
   m_Layer: 11
   m_Name: Collider
   m_TagString: Untagged
@@ -142,9 +142,9 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 1.4, z: 1}
-  m_Center: {x: 0, y: -0.7, z: 0}
---- !u!114 &5428771555926968140
+  m_Size: {x: 2, y: 1.4, z: 2}
+  m_Center: {x: 0, y: -0.7, z: 1}
+--- !u!114 &1971523843926539588
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,9 +153,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6357811904261634917}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56cacdd06334ca94c82989f3319767ff, type: 3}
+  m_Script: {fileID: 11500000, guid: bad69f5cc54697b4092c9095bc8d96d0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AttackCollisionHandler
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponCollider
+  _weaponContext: {fileID: 6557154924598691002}
+  _collider: {fileID: 1584114766417235778}
 --- !u!1 &6698232584449221764
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,7 +167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1910465096639058828}
-  - component: {fileID: 4409496962696009897}
+  - component: {fileID: 6557154924598691002}
   - component: {fileID: 3611273676873636004}
   m_Layer: 0
   m_Name: Weapon (Clarinet)
@@ -191,7 +193,7 @@ Transform:
   - {fileID: 7080666016828949649}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4409496962696009897
+--- !u!114 &6557154924598691002
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -200,18 +202,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6698232584449221764}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a58614897399dbf4991a2cefdd6d07fd, type: 3}
+  m_Script: {fileID: 11500000, guid: 53ab3a6cab3f8a44599b4cb4dc61d137, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Weapon
-  _attackData:
-  - {fileID: 11400000, guid: e0aeec050dfa3a243b1d69bf8a2dcfed, type: 2}
-  - {fileID: 11400000, guid: 9bee12bb448b3ce4184250f833c136ab, type: 2}
-  - {fileID: 11400000, guid: f3506d4bad7bb874fa3b605a65a37b21, type: 2}
-  - {fileID: 11400000, guid: 092c1058aec5e9d4dab20883adbd4e1e, type: 2}
-  - {fileID: 11400000, guid: 4cd1100127fe2ac4bb140abc0f3c8a84, type: 2}
-  - {fileID: 11400000, guid: 5953f8a768bb34545b3ba86177973a29, type: 2}
-  - {fileID: 11400000, guid: 9bd910b84b4f85749a16dadb92a02c61, type: 2}
-  - {fileID: 11400000, guid: ce20ad35b9132194bb9f637fee4854c1, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::ComboWeapon
+  _attackAnimator: {fileID: 3611273676873636004}
+  _weaponCollider: {fileID: 1971523843926539588}
+  _comboWeaponData: {fileID: 11400000, guid: 8e8fe5fe3bb62fd40abebcb91d6c6eb6, type: 2}
 --- !u!95 &3611273676873636004
 Animator:
   serializedVersion: 7

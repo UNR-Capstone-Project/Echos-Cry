@@ -15,6 +15,7 @@ public class SceneTriggerManager : MonoBehaviour
 {
     [SerializeField] private SceneField sceneTarget;
     [SerializeField] soundEffect portalSFX;
+    [SerializeField] private bool _isLevelExit;
     public static event Action OnSceneTransitionEvent;
 
     private bool sceneTransitioning = false;
@@ -29,8 +30,6 @@ public class SceneTriggerManager : MonoBehaviour
 
     public void StartTransition()
     {
-        MenuManager.Instance.ScreenFadeIn();
-        HUDMessage.Instance.UpdateMessage("Loading...", 1f);
         StartCoroutine(HandleSceneTransition());
     }
     IEnumerator HandleSceneTransition()
@@ -41,7 +40,12 @@ public class SceneTriggerManager : MonoBehaviour
         AsyncOperation newSceneLoad = SceneManager.LoadSceneAsync(sceneTarget.SceneName, LoadSceneMode.Single);
         newSceneLoad.allowSceneActivation = true;
 
-        while (!newSceneLoad.isDone) { yield return null;  }
+        while (!newSceneLoad.isDone) { yield return null; }
+
+        if (_isLevelExit)
+        { //If it's a level exit, give the player back full health.
+            //PlayerStats.Instance.Respawn();
+        }
         
         sceneTransitioning = false;
     }
@@ -58,9 +62,11 @@ public class SceneTriggerManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        soundEffectManager.Instance.Builder
-            .setSound(portalSFX)
-            .setSoundPosition(this.transform.position)
+        MenuManager.Instance.ScreenFadeIn();
+        HUDMessage.Instance.UpdateMessage("Loading...", 1f);
+        SoundEffectManager.Instance.Builder
+            .SetSound(portalSFX)
+            .SetSoundPosition(this.transform.position)
             .ValidateAndPlaySound();
     }
 }

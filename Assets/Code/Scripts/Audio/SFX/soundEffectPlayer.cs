@@ -11,7 +11,7 @@ using Random = UnityEngine.Random;
 /// <summary>
 /// a object instantiated in by soundEffectManager to play sounds with list a of audioSources
 /// </summary>
-public class soundEffectPlayer : MonoBehaviour
+public class SoundEffectPlayer : MonoBehaviour
 {
     public soundEffect soundData;
     private bool hasReleased = false;
@@ -23,7 +23,7 @@ public class soundEffectPlayer : MonoBehaviour
         sfxAudioSource = new List<AudioSource>();
     }
 
-    public void setupSoundEffect(soundEffect sound)
+    public void SetupSoundEffect(soundEffect sound)
     {
         soundData = sound;
 
@@ -65,7 +65,7 @@ public class soundEffectPlayer : MonoBehaviour
                 if (!soundData.ambience)
                 {
                     float clipLength = sfxAudioSource[random].clip.length;
-                    StartCoroutine(returnToPoolAfterTime(clipLength));
+                    StartCoroutine(ReturnToPoolAfterTime(clipLength));
                 }
             }
             else
@@ -74,7 +74,7 @@ public class soundEffectPlayer : MonoBehaviour
                 if (!soundData.ambience)
                 {
                     float clipLength = sfxAudioSource[0].clip.length;
-                    StartCoroutine(returnToPoolAfterTime(clipLength));
+                    StartCoroutine(ReturnToPoolAfterTime(clipLength));
                 }
             }
         }
@@ -94,7 +94,7 @@ public class soundEffectPlayer : MonoBehaviour
         ReleaseToPool();
     }
 
-    private IEnumerator returnToPoolAfterTime(float seconds)
+    private IEnumerator ReturnToPoolAfterTime(float seconds)
     {
         yield return new WaitForSeconds(seconds);
         ReleaseToPool();
@@ -106,15 +106,25 @@ public class soundEffectPlayer : MonoBehaviour
         hasReleased = true;
         soundPlaying = false;
 
-        if (soundEffectManager.Instance != null && soundData.isFrequent)
+        if (SoundEffectManager.Instance != null && soundData.isFrequent)
         {
-            soundEffectManager.Instance.unregisterFrequentPlayer(this);
+            SoundEffectManager.Instance.UnregisterFrequentPlayer(this);
         }
 
-        if (soundEffectManager.Instance != null)
+        if (SoundEffectManager.Instance != null)
         {
-            soundEffectManager.Instance.releasePlayer(this);
+            SoundEffectManager.Instance.ReleasePlayer(this);
         }
+    }
+
+    public void DelayedPlay(float delay)
+    {
+        StartCoroutine(DelayPlayCoroutine(delay));
+    }
+    private IEnumerator DelayPlayCoroutine(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Play();
     }
 
     private void OnEnable()
