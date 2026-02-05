@@ -263,7 +263,6 @@ public class WalkerDeathState : EnemyState
     {
         //Debug.Log("Enter Death State");
         _enemyContext.DropsStrategy.Execute(_enemyContext.transform);
-        _enemyContext.InvokeDeathEvent();
-        Object.Destroy(_enemyContext.gameObject);       
+        _enemyContext.HandleDeath();      
     }
 }
