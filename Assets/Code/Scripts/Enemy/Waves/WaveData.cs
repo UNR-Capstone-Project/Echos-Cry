@@ -21,5 +21,5 @@ public class WaveData : ScriptableObject
     public SpawnData[] EnemySpawns;
 
     public float spawnRadius = 10f;
-    public float spawnInterval = 2f;   
+    public float spawnInterval; 
 }
