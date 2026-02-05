@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddabb830e7b914f4fb031b6d809d92f9, type: 3}
-  m_Name: Drums Light Attack 1
+  m_Name: Drums Light Attack 5
   m_EditorClassIdentifier: Assembly-CSharp::AttackData
   OverrideController: {fileID: 22100000, guid: 978a690c3a0c2bc40af54db591f86656, type: 2}
   AnimationClip: {fileID: 7400000, guid: f11c627a05c8ddb459a72f5408d31671, type: 2}

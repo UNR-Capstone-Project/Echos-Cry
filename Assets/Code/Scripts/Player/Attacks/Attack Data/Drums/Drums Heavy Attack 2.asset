@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddabb830e7b914f4fb031b6d809d92f9, type: 3}
-  m_Name: Drums Light Attack 1
+  m_Name: Drums Heavy Attack 2
   m_EditorClassIdentifier: Assembly-CSharp::AttackData
-  OverrideController: {fileID: 22100000, guid: 978a690c3a0c2bc40af54db591f86656, type: 2}
-  AnimationClip: {fileID: 7400000, guid: f11c627a05c8ddb459a72f5408d31671, type: 2}
-  AttackSound: {fileID: 11400000, guid: 39e12e82cb30de44c8403249851de156, type: 2}
-  BaseDamage: 10
+  OverrideController: {fileID: 22100000, guid: 07f13f02e6de4174fa582158e6a717b0, type: 2}
+  AnimationClip: {fileID: 7400000, guid: d42f04eedcd9c7948a0ac19ac423e10f, type: 2}
+  AttackSound: {fileID: 11400000, guid: 32fc51584779ab5469383925ce9d3213, type: 2}
+  BaseDamage: 15
