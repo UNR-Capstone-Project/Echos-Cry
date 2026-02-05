@@ -1,37 +1,59 @@
+using System;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class EnemyPool
+public class EnemyPool: MonoBehaviour
 {
     private ObjectPool<Enemy> _enemyPool;
+    private GameObject _prefab;
+    public event Action EnemyReleaseEvent;
 
-    public void Init()
+    private Enemy CreateEnemy()
     {
+        Enemy enemy = GameObject.Instantiate(_prefab, transform).GetComponent<Enemy>();
+        enemy.Pool = this;
+        return enemy;
+    }
+    private void OnGetEnemy(Enemy context)
+    {
+        context.gameObject.SetActive(true);
+    }
+    private void OnReleaseEnemy(Enemy context)
+    {
+        context.gameObject.SetActive(false);
+    }
+    private void OnDestroyEnemy(Enemy context)
+    {
+        Destroy(context.gameObject);
+    }
+
+    public void Init(GameObject prefab, int defaultCap, int maxCap)
+    {
+        _prefab = prefab;
+        if(_prefab == null || !_prefab.TryGetComponent<Enemy>(out Enemy enemy))
+        {
+            Debug.LogError("ERROR: Invalid prefab passed to EnemyPool. EnemyPool will be destroyed...");
+            Destroy(gameObject);
+            return;
+        }
         _enemyPool = new ObjectPool<Enemy>(
             createFunc: CreateEnemy,
             actionOnGet: OnGetEnemy,
             actionOnRelease: OnReleaseEnemy,
             actionOnDestroy: OnDestroyEnemy,
             collectionCheck: true,
-            defaultCapacity: 1,
-            maxSize: 1
+            defaultCapacity: defaultCap,
+            maxSize: maxCap
             );
     }
-
-    private Enemy CreateEnemy()
+    public Enemy GetEnemy()
     {
-        return null;
+        if(_enemyPool != null) return _enemyPool.Get();
+        else return null;
     }
-    private void OnGetEnemy(Enemy context)
+    public void ReleaseEnemy(Enemy enemy)
     {
-
-    }
-    private void OnReleaseEnemy(Enemy context)
-    {
-
-    }
-    private void OnDestroyEnemy(Enemy context)
-    {
-
+        _enemyPool?.Release(enemy);
+        EnemyReleaseEvent?.Invoke();
     }
 }

@@ -277,8 +277,8 @@ public class BatDeathState : EnemyState
     {
         //Debug.Log("Enter Death State");
         _enemyContext.DropsStrategy.Execute(_enemyContext.transform);
-        _enemyContext.InvokeDeathEvent();
+        _enemyContext.HandleDeath();
         //Temporary
-        Object.Destroy(_enemyContext.gameObject);
+        //Object.Destroy(_enemyContext.gameObject);
     }
 }

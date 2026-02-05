@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour
 {
     private EnemyStateCache _stateCache;
     private EnemyStateMachine _stateMachine;
+    private EnemyPool _pool;
+    private bool IsPooled => _pool != null;
 
     [Header("Enemy-Related Components")]
     [SerializeField] private HealthSystem _health;
@@ -29,13 +31,16 @@ public class Enemy : MonoBehaviour
     [SerializeField] private EventChannel _playerAttackEndChannel;
 
     public event Action OnDeathEvent;
-    public void InvokeDeathEvent()
+    public void HandleDeath()
     {
+        if (IsPooled) _pool.ReleaseEnemy(this);
+        else Destroy(gameObject);
         OnDeathEvent?.Invoke();
     }
 
     public EnemyStateCache StateCache { get => _stateCache; }
     public EnemyStateMachine StateMachine { get => _stateMachine; }
+    public EnemyPool Pool { get => _pool; set => _pool = value; }
 
     public HealthSystem Health { get => _health; }
     public NavMeshAgent NavMeshAgent { get => _navMeshAgent; }
