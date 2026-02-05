@@ -587,12 +587,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",
-                    ""id"": ""44e22e2a-d5e9-434c-bcfd-0acc6304af6d"",
-                    ""path"": ""<Keyboard>/t"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Teleport"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
