@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackData
   OverrideController: {fileID: 22100000, guid: 07f13f02e6de4174fa582158e6a717b0, type: 2}
   AnimationClip: {fileID: 7400000, guid: d42f04eedcd9c7948a0ac19ac423e10f, type: 2}
-  AttackSound: {fileID: 11400000, guid: 32fc51584779ab5469383925ce9d3213, type: 2}
+  AttackSound: {fileID: 11400000, guid: 8d82bfdd90e1ccc4d9fe7376a83b2717, type: 2}
   BaseDamage: 15
