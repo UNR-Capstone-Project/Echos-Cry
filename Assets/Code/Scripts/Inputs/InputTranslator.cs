@@ -220,12 +220,18 @@ public class InputTranslator : ScriptableObject,
         if (context.started) OnTeleportEvent?.Invoke();
     }
 
+    public void OnWeaponNext(InputAction.CallbackContext context)
+    {
+        if (context.started) OnWeaponNextEvent?.Invoke();
+    }
+
     private PlayerInputs _playerInputs;
     public PlayerInputs PlayerInputs { get { return _playerInputs; } }  
 
     public event Action<Vector2> OnMovementEvent;
     public event Action<bool>    OnDashEvent;
     public event Action          OnTeleportEvent;
+    public event Action          OnWeaponNextEvent;
     public event Action<bool>    OnPrimaryActionEvent;
     public event Action<bool>    OnSecondaryActionEvent;
     public event Action<bool>    OnSkill1Event, OnSkill2Event, OnSkill3Event;

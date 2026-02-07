@@ -235,6 +235,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""WeaponNext"",
+                    ""type"": ""Button"",
+                    ""id"": ""3bb2a1a9-c380-44d8-9924-35d95cf21401"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -609,6 +618,17 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Teleport"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5ee3cf1a-ff71-41ac-860d-7badcfc0977a"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WeaponNext"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1106,6 +1126,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
         m_Gameplay_Teleport = m_Gameplay.FindAction("Teleport", throwIfNotFound: true);
         m_Gameplay_Upgrade = m_Gameplay.FindAction("Upgrade", throwIfNotFound: true);
+        m_Gameplay_WeaponNext = m_Gameplay.FindAction("WeaponNext", throwIfNotFound: true);
         // Pause Menu
         m_PauseMenu = asset.FindActionMap("Pause Menu", throwIfNotFound: true);
         m_PauseMenu_Resume = m_PauseMenu.FindAction("Resume", throwIfNotFound: true);
@@ -1224,6 +1245,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Interact;
     private readonly InputAction m_Gameplay_Teleport;
     private readonly InputAction m_Gameplay_Upgrade;
+    private readonly InputAction m_Gameplay_WeaponNext;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -1300,6 +1322,10 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Upgrade => m_Wrapper.m_Gameplay_Upgrade;
         /// <summary>
+        /// Provides access to the underlying input action "Gameplay/WeaponNext".
+        /// </summary>
+        public InputAction @WeaponNext => m_Wrapper.m_Gameplay_WeaponNext;
+        /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
@@ -1373,6 +1399,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Upgrade.started += instance.OnUpgrade;
             @Upgrade.performed += instance.OnUpgrade;
             @Upgrade.canceled += instance.OnUpgrade;
+            @WeaponNext.started += instance.OnWeaponNext;
+            @WeaponNext.performed += instance.OnWeaponNext;
+            @WeaponNext.canceled += instance.OnWeaponNext;
         }
 
         /// <summary>
@@ -1432,6 +1461,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Upgrade.started -= instance.OnUpgrade;
             @Upgrade.performed -= instance.OnUpgrade;
             @Upgrade.canceled -= instance.OnUpgrade;
+            @WeaponNext.started -= instance.OnWeaponNext;
+            @WeaponNext.performed -= instance.OnWeaponNext;
+            @WeaponNext.canceled -= instance.OnWeaponNext;
         }
 
         /// <summary>
@@ -1982,6 +2014,13 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnUpgrade(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "WeaponNext" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnWeaponNext(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Pause Menu" which allows adding and removing callbacks.

@@ -184,7 +184,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6b2fbf423fa4d489467847b0b42559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponHolder
-  _currentlyEquippedWeapon: {fileID: 7330900206718537595}
+  _weaponInventory:
+  - {fileID: 624493834288233041}
+  - {fileID: 6625103690610810554}
+  _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
 --- !u!1 &2010116007821540472
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,34 +1195,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon (Clarinet)
       objectReference: {fileID: 0}
-    - target: {fileID: 6698232584449221764, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6991853144152505543, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
-      propertyPath: m_SortingLayer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6991853144152505543, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6991853144152505543, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6991853144152505543, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
-      propertyPath: m_RenderingLayerMask
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 6991853144152505543, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
-    - target: {fileID: 7080666016828949649, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -90
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1230,6 +1205,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1910465096639058828, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
   m_PrefabInstance: {fileID: 506091730931972670}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6625103690610810554 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6698232584449221764, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
+  m_PrefabInstance: {fileID: 506091730931972670}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8538074099773145904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1238,10 +1218,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1242409098282706864}
     m_Modifications:
-    - target: {fileID: 6488380711068240670, guid: e0d33cc1b61b8d743b9d71a0b5652b14, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 8474684134448079835, guid: e0d33cc1b61b8d743b9d71a0b5652b14, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1286,6 +1262,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon (Drums)
       objectReference: {fileID: 0}
+    - target: {fileID: 9140038939595962721, guid: e0d33cc1b61b8d743b9d71a0b5652b14, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1296,14 +1276,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8474684134448079835, guid: e0d33cc1b61b8d743b9d71a0b5652b14, type: 3}
   m_PrefabInstance: {fileID: 8538074099773145904}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7330900206718537595 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1423634244738665547, guid: e0d33cc1b61b8d743b9d71a0b5652b14, type: 3}
+--- !u!1 &624493834288233041 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9140038939595962721, guid: e0d33cc1b61b8d743b9d71a0b5652b14, type: 3}
   m_PrefabInstance: {fileID: 8538074099773145904}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53ab3a6cab3f8a44599b4cb4dc61d137, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ComboWeapon
