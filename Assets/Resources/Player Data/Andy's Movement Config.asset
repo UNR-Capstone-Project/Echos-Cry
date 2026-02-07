@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4c6c8e2e86c9242b7d186a864db7a9, type: 3}
   m_Name: Andy's Movement Config
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementConfig
-  _dashSpeed: 30
+  _dashSpeed: 22
   _dashDuration: 0.2
-  _dashCooldown: 1
-  _playerSpeed: 5.5
-  _isDashToBeat: 0
+  _dashCooldown: 0.5
+  _playerSpeed: 5.2
+  _isDashToBeat: 1
+  _hasDashCooldown: 1
