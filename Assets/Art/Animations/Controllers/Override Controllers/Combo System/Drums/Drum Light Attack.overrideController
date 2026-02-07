@@ -9,5 +9,5 @@ AnimatorOverrideController:
   m_Name: Drum Light Attack
   m_Controller: {fileID: 9100000, guid: 214fe6129a4ca684a8d2c05f7ae6611c, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: 4d075efcf54560449bbb250cd991caca, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: f11c627a05c8ddb459a72f5408d31671, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: f11c627a05c8ddb459a72f5408d31671, type: 2}
