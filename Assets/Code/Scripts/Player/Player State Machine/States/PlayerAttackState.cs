@@ -23,10 +23,13 @@ public class PlayerAttackState : PlayerActionState
         {
             _playerContext.Animator.SpriteAnimator.Play("Attack");
         }
+
+        _playerContext.Orientation.IsRotating = false;
     }
 
     public override void Exit()
     {
+        _playerContext.Orientation.IsRotating = true;
         _playerStateMachine.IsAttacking = false;
     }
 
