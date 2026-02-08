@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 2813710605354840663}
   - component: {fileID: 8838160874129828706}
   - component: {fileID: 6827338249854996756}
+  - component: {fileID: 3727599544175325857}
   m_Layer: 9
   m_Name: Walker Enemy
   m_TagString: Enemy
@@ -206,6 +207,7 @@ MonoBehaviour:
   _npcAnimator: {fileID: 4267862705877107826}
   _soundConfig: {fileID: 11400000, guid: 61a08e0075f1f394ba85aefac97da91e, type: 2}
   _collider: {fileID: 8838160874129828706}
+  _passiveEffectHandler: {fileID: 0}
   _attackStrats:
   - {fileID: 11400000, guid: 922f6460c5d88124687907449599c73e, type: 2}
   _targetStrats: []
@@ -307,6 +309,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &3727599544175325857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900823288402649937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6d0f9e36cee16249ae7ef01169b26f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PassiveEffectHandler
+  enemyReference: {fileID: 3180805991097293313}
 --- !u!1001 &5332649190230434966
 PrefabInstance:
   m_ObjectHideFlags: 0
