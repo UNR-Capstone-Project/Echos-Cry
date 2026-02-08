@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Default Bat Data
   m_EditorClassIdentifier: Assembly-CSharp::BatEnemyConfigFile
   _distanceCheck: 10
-  _attackChargeTime: 2
-  _attackDashForce: 2
+  _attackChargeTime: 0.2
+  _attackDashForce: 3
   _attackDuration: 0.25
-  _attackCooldown: 1
-  _staggerDuration: 2
-  _knockbackForce: 3
+  _attackCooldown: 0.8
+  _staggerDuration: 1.2
+  _knockbackForce: 4

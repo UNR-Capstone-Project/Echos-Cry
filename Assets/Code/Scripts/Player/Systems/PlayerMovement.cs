@@ -18,13 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public void Dash()
     {
         if (_playerMovementConfig == null) return;
-        if (DashCounter > 0 && DashGenerationProgress == 1f)
-        {
-            DashCounter = 0;
-            _playerRigidbody.AddForce(_playerRigidbody.linearVelocity.normalized * _playerMovementConfig.DashSpeed, ForceMode.VelocityChange);
-            StartCoroutine(IncrementDashProgress());
-        }
-        
+        _playerRigidbody.AddForce(_playerRigidbody.linearVelocity.normalized * _playerMovementConfig.DashSpeed, ForceMode.VelocityChange);
     }
 
     void Start()
@@ -45,21 +39,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private IEnumerator IncrementDashProgress()
-    {
-        //Debug.Log("Dash Reset Starting.");
-        float elapsed = 0;
-        while (elapsed < _playerMovementConfig.DashCooldown)
-        {
-            elapsed = elapsed + Time.deltaTime;
-            DashGenerationProgress = elapsed;
-            //Debug.Log($"Elapsed Dash Time: {elapsed}");
-            yield return null;
-        }
-        DashGenerationProgress = 1;
-        DashCounter = 1;
-    }
-
     [Header("Configuration Object")]
     [SerializeField] private PlayerMovementConfig _playerMovementConfig;
     public PlayerMovementConfig PlayerMovementConfig { get { return _playerMovementConfig; } }
@@ -69,7 +48,4 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 forwardVector;
     private Vector3 rightVector;
-    private int DashCounter = 1;
-    private float DashGenerationProgress = 1f;
-
 }

@@ -149,6 +149,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Weapon Next",
+                    "type": "Button",
+                    "id": "3bb2a1a9-c380-44d8-9924-35d95cf21401",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -523,6 +532,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Teleport",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5ee3cf1a-ff71-41ac-860d-7badcfc0977a",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Weapon Next",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

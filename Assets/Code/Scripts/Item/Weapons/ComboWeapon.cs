@@ -1,8 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ComboWeapon : Weapon
 {
     private ComboTree _comboTree;
+
     [SerializeField] private ComboWeaponData _comboWeaponData;
 
     protected override void Attack()
@@ -15,6 +17,7 @@ public class ComboWeapon : Weapon
         _attackAnimator.runtimeAnimatorController = _currentAttackData.OverrideController;
         _attackAnimator.Play("Attack");
         //Begin coroutine that will measure the animation length and then reset weapon
+
         StartCoroutine(AttackLengthCoroutine(_currentAttackData.AnimationClip.length));
     }
 

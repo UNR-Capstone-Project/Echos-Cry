@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private NPCAnimator _npcAnimator;
     [SerializeField] private EnemySoundConfig _soundConfig;
     [SerializeField] private Collider _collider;
+    [SerializeField] private PassiveEffectHandler _passiveEffectHandler;
 
     [Header("Strategies")]
     [SerializeField] private AttackStrategy[] _attackStrats;
@@ -48,6 +49,7 @@ public class Enemy : MonoBehaviour
     public NPCAnimator NPCAnimator { get => _npcAnimator; }
     public EnemySoundConfig SoundConfig { get => _soundConfig; }
     public Collider Collider { get => _collider; }
+    public PassiveEffectHandler PassiveEffectHandler { get => _passiveEffectHandler; }
 
     public AttackStrategy[] AttackStrategies { get => _attackStrats; }
     public TargetStrategy[] TargetStrategy { get => _targetStrats; }

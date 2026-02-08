@@ -9,6 +9,8 @@ public class NPCDamageable : MonoBehaviour, IDamageable
     {
         _npc.Collider.enabled = false;
 
+        amount *= _npc.Health.DamageMultiplier;
+
         _npc.Health.Damage(amount, Color.red);
 
         _npc.SoundStrategy.Execute(_npc.SoundConfig.HitSFX, _npc.transform, 0);

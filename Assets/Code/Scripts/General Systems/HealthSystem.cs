@@ -15,12 +15,14 @@ public class HealthSystem : MonoBehaviour
     private float _currentArmor;
     private float _maxHealth;
     private float _maxArmor;
+    private float _damageMultiplier = 1f;
 
     public float CurrentHealth { get => _currentHealth; }
     public float CurrentArmor { get => _currentArmor; }
     public float MaxHealth { get => _maxHealth; }
     public float MaxArmor { get => _maxArmor; }
     public bool HasArmor => _currentArmor > 0;
+    public float DamageMultiplier => _damageMultiplier;
 
     private void Start()
     {
@@ -34,6 +36,11 @@ public class HealthSystem : MonoBehaviour
             healthChannel.Invoke(_currentHealth, _maxHealth);
         if (armorChannel != null)
             armorChannel.Invoke(_currentArmor, _maxArmor);
+    }
+
+    public void SetDamageMultiplier(float multiplier)
+    {
+        _damageMultiplier = multiplier;
     }
 
     public void Damage(float damage, Color color)

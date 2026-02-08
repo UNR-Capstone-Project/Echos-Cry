@@ -2312,7 +2312,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -80}
-  m_SizeDelta: {x: 128, y: 128}
+  m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6994350410735037561
 CanvasRenderer:
@@ -2335,7 +2335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.49019608}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2365,6 +2365,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   progressRingImage: {fileID: 9109441165184660358}
+  combobarBackgroundFill: {fileID: 4285997076916508827}
+  combobarSprites:
+  - {fileID: 21300000, guid: 358bed1adc9dd3a4f9603abace9a0108, type: 3}
+  - {fileID: 21300000, guid: 8ccc66eb94e6c5c44a1b9966be43032d, type: 3}
+  - {fileID: 21300000, guid: 371c2e2e4bd294d4eb87435a947e28bf, type: 3}
+  - {fileID: 21300000, guid: a7cc003ff6e87f844b5a0516c799e2ea, type: 3}
 --- !u!1 &1956465493607254278
 GameObject:
   m_ObjectHideFlags: 0
@@ -7594,8 +7600,8 @@ RectTransform:
   - {fileID: 1849530320314093968}
   - {fileID: 2765759949454438075}
   - {fileID: 7649597469298076421}
-  - {fileID: 8868429491072316032}
   - {fileID: 3859894484307922653}
+  - {fileID: 8868429491072316032}
   - {fileID: 7126640893069505080}
   m_Father: {fileID: 4590928467762864441}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8291,10 +8297,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3859894484307922653}
   - component: {fileID: 4019379787755470786}
-  - component: {fileID: 3453224862154927537}
   - component: {fileID: 3802107778587009259}
+  - component: {fileID: 4285997076916508827}
   m_Layer: 5
-  m_Name: OutterRing
+  m_Name: ComboBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8317,7 +8323,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -80}
-  m_SizeDelta: {x: 128, y: 128}
+  m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4019379787755470786
 CanvasRenderer:
@@ -8327,33 +8333,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6465826173182038982}
   m_CullTransparentMesh: 1
---- !u!114 &3453224862154927537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6465826173182038982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
-  m_Material: {fileID: 2100000, guid: f29c86f34ed19b94d9c97c9996988e36, type: 2}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Texture: {fileID: 2800000, guid: a7cc003ff6e87f844b5a0516c799e2ea, type: 3}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
 --- !u!114 &3802107778587009259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8367,6 +8346,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ManageBeatShaderMaterials
   outlineMaterial: {fileID: 2100000, guid: f29c86f34ed19b94d9c97c9996988e36, type: 2}
+--- !u!114 &4285997076916508827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6465826173182038982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 2100000, guid: f29c86f34ed19b94d9c97c9996988e36, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 358bed1adc9dd3a4f9603abace9a0108, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &6608670215798881411
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,16 +11,45 @@ public class PlayerComboMeter : MonoBehaviour
     //  - Implement combo multiplier increase based on attack hit quality
     //  - Implement combo multiplier decrease based on time and attack hit quality (maybe just fully reset combo bar if they miss)
 
-    public void AddToComboMeter(float amount)
+    public enum MeterState
     {
-        _comboMeterAmount = Mathf.Clamp(_comboMeterAmount + (_percentOfDamage * _comboMultiplier) * amount, 0, _comboMeterMax);
+        Starting,
+        OneThird,
+        TwoThirds,
+        Full
+    }
+    private static MeterState _currentMeterState = MeterState.Starting;
+    public static MeterState CurrentMeterState { get { return _currentMeterState; } }
+
+    public void AddToComboMeter(float count)
+    {
+        _comboMeterAmount = Mathf.Clamp(_comboMeterAmount + (_percentOfDamage * _comboMultiplier) * count * _comboBaseRate, 0, _comboMeterMax);
+        UpdateComboMeterState();
         OnComboMeterChangeEvent?.Invoke(_comboMeterAmount, _comboMeterMax);
     }
     public void SubtractFromComboMeter(float amount)
     {
         _comboMeterAmount = Mathf.Clamp(_comboMeterAmount - amount, 0, _comboMeterMax);
+        UpdateComboMeterState();
         OnComboMeterChangeEvent?.Invoke(_comboMeterAmount, _comboMeterMax);
     }
+
+    private void UpdateComboMeterState()
+    {
+        float progress = _comboMeterAmount / _comboMeterMax;
+        float oneThird = 1f / 3f;
+        float twoThirds = 2f / 3f;
+
+        if (progress < oneThird)
+            _currentMeterState = MeterState.Starting;
+        else if (progress >= oneThird && progress < twoThirds)
+            _currentMeterState = MeterState.OneThird;
+        else if (progress >= twoThirds && progress != 1f)
+            _currentMeterState = MeterState.TwoThirds;
+        else
+            _currentMeterState = MeterState.Full;
+    }
+
     public void UpdateComboMultiplier()
     {
         _comboMultiplier = Mathf.Clamp(_comboMultiplier * _comboMultiplierRate, 1, _comboMultiplierMax);
@@ -69,6 +98,7 @@ public class PlayerComboMeter : MonoBehaviour
     private float _comboMeterMax = 120f;
     private float _comboMeterAmount;
 
+    private float _comboBaseRate = 20f;
     private float _comboMultiplierMax = 16;
     private float _percentOfDamage = 0.25f;
     private float _comboMultiplierRate = 1f;

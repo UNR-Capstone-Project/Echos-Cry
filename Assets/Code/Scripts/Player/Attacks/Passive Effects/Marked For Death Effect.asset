@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Marked For Death Effect
   m_EditorClassIdentifier: Assembly-CSharp::MarkedForDeathPassive
   isEffectOneTime: 1
-  effectUseInterval: 1
-  effectDuration: 4
-  requiredState: 5
+  effectUseInterval: 0
+  effectDuration: 0
+  damageMultiplier: 2
+  _markedIcon: {fileID: 0}

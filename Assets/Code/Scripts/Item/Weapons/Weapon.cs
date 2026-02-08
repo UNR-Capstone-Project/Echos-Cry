@@ -10,8 +10,8 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected WeaponCollider _weaponCollider;
 
     protected RuntimeAnimatorController _defaultAnimatorController;
-    protected AttackData _currentAttackData;
-    
+    public AttackData _currentAttackData;
+
     public bool IsAttackEnded { get; private set; }
 
     private List<Collider> _hitColliders;
@@ -30,7 +30,6 @@ public abstract class Weapon : MonoBehaviour
     protected virtual void OnPrimaryAction() { }
     protected virtual void OnSecondaryAction() { }
     protected virtual void OnAttackEnded() { }
-
     protected abstract void Attack();
 
     private void Awake()
