@@ -10,7 +10,7 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected WeaponCollider _weaponCollider;
 
     protected RuntimeAnimatorController _defaultAnimatorController;
-    protected AttackData _currentAttackData;
+    public AttackData _currentAttackData;
 
     public bool IsAttackEnded { get; private set; }
 
@@ -25,23 +25,6 @@ public abstract class Weapon : MonoBehaviour
     {
         _hitColliders.Clear();
     }
-
-    //---------------------------
-    // Passive Effects Management
-    //---------------------------
-    public List<PassiveEffect> GetPassiveEffects()
-    {
-        List<PassiveEffect> activePassiveEffects = new List<PassiveEffect>();
-        if (PlayerComboMeter.CurrentMeterState == PlayerComboMeter.MeterState.OneThird)
-            activePassiveEffects.Add(_currentAttackData.PassiveEffects.OneThirdEffect);
-        else if (PlayerComboMeter.CurrentMeterState == PlayerComboMeter.MeterState.TwoThirds)
-            activePassiveEffects.Add(_currentAttackData.PassiveEffects.TwoThirdsEffect);
-        else if (PlayerComboMeter.CurrentMeterState == PlayerComboMeter.MeterState.Full)
-            activePassiveEffects.Add(_currentAttackData.PassiveEffects.FullEffect);
-
-        return activePassiveEffects;
-    }
-    //---------------------------
 
     protected virtual void OnAwake() { } 
     protected virtual void OnPrimaryAction() { }

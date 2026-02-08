@@ -15,7 +15,7 @@ public class HealthSystem : MonoBehaviour
     private float _currentArmor;
     private float _maxHealth;
     private float _maxArmor;
-    private float _damageMultiplier;
+    private float _damageMultiplier = 1f;
 
     public float CurrentHealth { get => _currentHealth; }
     public float CurrentArmor { get => _currentArmor; }

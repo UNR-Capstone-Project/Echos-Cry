@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PassiveEffectHandler : MonoBehaviour
 {
-    [SerializeField] private Enemy _enemyReference;
     private HashSet<Type> _passiveEffectSet = new();
     
     public void UsePassiveEffect(PassiveEffect effect)
@@ -14,7 +13,7 @@ public class PassiveEffectHandler : MonoBehaviour
         if (!_passiveEffectSet.Add(effectType)) return; //Avoid duplicate effects.
 
         PassiveEffect effectInstance = Instantiate(effect);
-        effectInstance.ApplyEffect(_enemyReference);
+        effectInstance.ApplyEffect(gameObject);
     }
 
     public void RemovePassiveEffect(PassiveEffect effect)

@@ -41,15 +41,9 @@ public class PlayerComboMeter : MonoBehaviour
         float twoThirds = 2f / 3f;
 
         if (progress < oneThird)
-        {
             _currentMeterState = MeterState.Starting;
-            Debug.Log("Meter State: Starting!");
-        }
         else if (progress >= oneThird && progress < twoThirds)
-        {
-            Debug.Log("Meter State: One Third!");
             _currentMeterState = MeterState.OneThird;
-        }
         else if (progress >= twoThirds && progress != 1f)
             _currentMeterState = MeterState.TwoThirds;
         else

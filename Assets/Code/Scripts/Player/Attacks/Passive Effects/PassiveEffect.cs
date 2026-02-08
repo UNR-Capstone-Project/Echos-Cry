@@ -6,15 +6,15 @@ public abstract class PassiveEffect : ScriptableObject
     protected Enemy enemyReference;
 
     public bool isEffectOneTime = false;
-    public float effectUseInterval = 1f;
-    public float effectDuration = 5f;
+    public float effectUseInterval;
+    public float effectDuration;
     //public ComboStateMachine.StateName requiredState = ComboStateMachine.StateName.START;
 
     private bool isActive = false;
 
-    public virtual void ApplyEffect(Enemy enemyRef)
+    public virtual void ApplyEffect(GameObject enemyObject)
     {
-        enemyReference = enemyRef;
+        enemyReference = enemyObject.GetComponent<Enemy>();
 
         isActive = true;
         enemyReference.StartCoroutine(EndRoutineEffect()); //Scriptable objects can't use coroutines, so starts from the enemy manager.
