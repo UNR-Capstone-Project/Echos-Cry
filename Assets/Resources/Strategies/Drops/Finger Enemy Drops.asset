@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9fe2e8bc8144028459b9a88e83ac090e, type: 3}
-  m_Name: Default Enemy Drops
+  m_Name: Finger Enemy Drops
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDrops
   ItemDrops:
-  - prefab: {fileID: 651722200087660623, guid: 97046ff4e4a41054f9df101045151fb5, type: 3}
-    minDropAmount: 2
+  - prefab: {fileID: 651722200087660623, guid: d733d53992d2a31438a0bd580748ee7e, type: 3}
+    minDropAmount: 1
     maxDropAmount: 5
   itemExplosionSpeed: 2
