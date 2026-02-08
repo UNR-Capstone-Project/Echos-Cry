@@ -22,6 +22,7 @@ public class HealthSystem : MonoBehaviour
     public float MaxHealth { get => _maxHealth; }
     public float MaxArmor { get => _maxArmor; }
     public bool HasArmor => _currentArmor > 0;
+    public float DamageMultiplier => _damageMultiplier;
 
     private void Start()
     {
@@ -46,11 +47,11 @@ public class HealthSystem : MonoBehaviour
     {
         if (HasArmor)
         {
-            DamageArmor(damage * _damageMultiplier, color);
+            DamageArmor(damage, color);
         }
         else
         {
-            DamageHealth(damage * _damageMultiplier, color);
+            DamageHealth(damage, color);
         }
     }
     public void HealHealth(float heal)

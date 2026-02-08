@@ -12,12 +12,6 @@ public class WeaponCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent<IDamageable>(out IDamageable damagable))
-        {
-            damagable.Execute(AttackDamage);
-            if(_weaponContext != null) _weaponContext.AddColliderToList(other);
-        } 
-
         if (other.TryGetComponent<PassiveEffectHandler>(out PassiveEffectHandler passiveEffectHandler))
         {
             if (PlayerComboMeter.CurrentMeterState == PlayerComboMeter.MeterState.OneThird)
@@ -27,11 +21,16 @@ public class WeaponCollider : MonoBehaviour
             else if (PlayerComboMeter.CurrentMeterState == PlayerComboMeter.MeterState.Full)
                 passiveEffectHandler.UsePassiveEffect(_weaponContext._currentAttackData.PassiveEffects.FullEffect);
         }
+
+        if (other.TryGetComponent<IDamageable>(out IDamageable damagable))
+        {
+            damagable.Execute(AttackDamage);
+            if (_weaponContext != null) _weaponContext.AddColliderToList(other);
+        }
     }
 
     public void UpdateAttackDamage(float attackDamage)
     {
         AttackDamage = attackDamage;
     }
-
 }
