@@ -7,7 +7,7 @@ public class ComboProgressUI : MonoBehaviour
 
     public void UpdateComboMeterFill(float currentAmount, float maxAmount)
     {
-        progressRingImage.fillAmount = currentAmount/maxAmount;
+        progressRingImage.fillAmount = currentAmount / maxAmount;
     }
 
     private void Start()

@@ -10,6 +10,7 @@ public class MarkedForDeathPassive : PassiveEffect
     {
         if (!_markedForDeath)
         {
+
             //enemyManager.Stats.SetDamageMultiplier(1.2f); //20% more damage is dealt on this enemy
             //enemyManager.AnimatorManager.SetMarkedForDeath(true);
             //enemyReference.Instant
