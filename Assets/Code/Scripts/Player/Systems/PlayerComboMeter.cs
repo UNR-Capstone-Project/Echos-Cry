@@ -98,7 +98,7 @@ public class PlayerComboMeter : MonoBehaviour
     private float _comboMeterMax = 120f;
     private float _comboMeterAmount;
 
-    private float _comboBaseRate = 10f;
+    private float _comboBaseRate = 20f;
     private float _comboMultiplierMax = 16;
     private float _percentOfDamage = 0.25f;
     private float _comboMultiplierRate = 1f;
