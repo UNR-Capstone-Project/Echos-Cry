@@ -15,5 +15,5 @@ MonoBehaviour:
   isEffectOneTime: 1
   effectUseInterval: 0
   effectDuration: 0
-  damageMultiplier: 2
+  damageMultiplier: 1.2
   _markedIcon: {fileID: 0}

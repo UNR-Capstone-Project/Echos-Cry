@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49243be4183b1dc40b9e1d2b4602606c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  _statsConfig: {fileID: 11400000, guid: 756e2aac9ef16dd4f8b3d83060c174db, type: 2}
+  _statsConfig: {fileID: 11400000, guid: 1365cb9196b0a6d4594175058e32267c, type: 2}
   healthChannel: {fileID: 11400000, guid: c585d041cc469f04b887f8eeb82703dc, type: 2}
   armorChannel: {fileID: 11400000, guid: cec94596b92da1b4a92dd5b3272c8302, type: 2}
 --- !u!1 &1045470528465248169

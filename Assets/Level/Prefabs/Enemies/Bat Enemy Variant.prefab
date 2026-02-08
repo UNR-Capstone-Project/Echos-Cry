@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 3667ab4905f39a542b64e68e072a45c5, type: 2}
+    - target: {fileID: 5765285837838741193, guid: 29058e1cb20b8264b8f94e98792051cd, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3667ab4905f39a542b64e68e072a45c5, type: 2}
     - target: {fileID: 6900823288402649937, guid: 29058e1cb20b8264b8f94e98792051cd, type: 3}
       propertyPath: m_Name
       value: Bat Enemy Variant
