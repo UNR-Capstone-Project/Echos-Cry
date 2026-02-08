@@ -17,6 +17,17 @@ public class WeaponCollider : MonoBehaviour
             damagable.Execute(AttackDamage);
             if(_weaponContext != null) _weaponContext.AddColliderToList(other);
         }
+
+        if (other.TryGetComponent<PassiveEffectHandler>(out PassiveEffectHandler passiveEffectHandler))
+        {
+            if (_weaponContext != null)
+            {
+                foreach (PassiveEffect effect in _weaponContext.GetPassiveEffects())
+                {
+                    passiveEffectHandler.UsePassiveEffect(effect);
+                }
+            }
+        }
     }
 
     public void UpdateAttackDamage(float attackDamage)

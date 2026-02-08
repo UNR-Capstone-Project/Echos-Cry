@@ -10,10 +10,8 @@ public class MarkedForDeathPassive : PassiveEffect
     {
         if (!_markedForDeath)
         {
-
-            //enemyManager.Stats.SetDamageMultiplier(1.2f); //20% more damage is dealt on this enemy
+            enemyReference.Health.SetDamageMultiplier(1.2f); //20% more damage is dealt on this enemy
             //enemyManager.AnimatorManager.SetMarkedForDeath(true);
-            //enemyReference.Instant
             _markedForDeath = true;
         }
     }
@@ -23,7 +21,7 @@ public class MarkedForDeathPassive : PassiveEffect
         base.RemoveEffect();
         if (_markedForDeath)
         {
-            //enemyManager.Stats.SetDamageMultiplier(1f); //Reset damage multiplier
+            enemyReference.Health.SetDamageMultiplier(1.0f); //Reset damage multiplier
             //enemyManager.EnemyAnimatorManager.SetMarkedForDeath(false);
             _markedForDeath = false;
         }

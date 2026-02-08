@@ -1,8 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ComboWeapon : Weapon
 {
     private ComboTree _comboTree;
+
     [SerializeField] private ComboWeaponData _comboWeaponData;
 
     protected override void Attack()

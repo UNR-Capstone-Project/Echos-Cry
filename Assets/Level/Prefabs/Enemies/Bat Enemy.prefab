@@ -207,6 +207,7 @@ MonoBehaviour:
   _npcAnimator: {fileID: 4267862705877107826}
   _soundConfig: {fileID: 11400000, guid: 61a08e0075f1f394ba85aefac97da91e, type: 2}
   _collider: {fileID: 8838160874129828706}
+  _passiveEffectHandler: {fileID: 0}
   _attackStrats:
   - {fileID: 11400000, guid: c11f0062706e890468589a16526ea3f2, type: 2}
   _targetStrats: []
@@ -320,6 +321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d0f9e36cee16249ae7ef01169b26f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  _enemyReference: {fileID: 8010943512667726129}
+  _passiveEffectChoices: []
 --- !u!1001 &8348667889125641309
 PrefabInstance:
   m_ObjectHideFlags: 0

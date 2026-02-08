@@ -5,13 +5,13 @@ using UnityEngine;
 public class PassiveEffectHandler : MonoBehaviour
 {
     [SerializeField] private Enemy _enemyReference;
-    public HashSet<Type> passiveEffects = new();
-
+    private HashSet<Type> _passiveEffectSet = new();
+    
     public void UsePassiveEffect(PassiveEffect effect)
     {
         Type effectType = effect.GetType();
 
-        if (!passiveEffects.Add(effectType)) return; //Avoid duplicate effects.
+        if (!_passiveEffectSet.Add(effectType)) return; //Avoid duplicate effects.
 
         PassiveEffect effectInstance = Instantiate(effect);
         effectInstance.ApplyEffect(_enemyReference);
@@ -20,6 +20,6 @@ public class PassiveEffectHandler : MonoBehaviour
     public void RemovePassiveEffect(PassiveEffect effect)
     {
         Type effectType = effect.GetType();
-        passiveEffects.Remove(effectType);
+        _passiveEffectSet.Remove(effectType);
     }
 }
