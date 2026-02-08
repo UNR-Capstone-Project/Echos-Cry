@@ -10688,8 +10688,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
   _timeBetweenWaves: 10
-  _allWaves: []
-  _enemySpawner: {fileID: 0}
+  _allWaves:
+  - {fileID: 11400000, guid: f16c6b90146f66c47a38953474e6d4ec, type: 2}
+  _enemySpawner: {fileID: 1907767413}
 --- !u!114 &1907767413
 MonoBehaviour:
   m_ObjectHideFlags: 0
