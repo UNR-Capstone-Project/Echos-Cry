@@ -13,7 +13,7 @@ public class PlayerComboMeter : MonoBehaviour
     private float _comboMeterDrainRate = 10f;
     private float _comboDrainDelay = 3f; //ISSUE: This will not be dynamically adjusted with new time between beats if the tempo changes.
     private float _comboMeterAmount = 0;
-    private float _comboBaseIncrease = 3f;
+    private float _comboBaseIncrease = 3.5f;
     private float _comboBaseDecrease = 15f;
     private float _comboGoodRate = 1.2f;
     private float _comboExcellentRate = 1.5f;

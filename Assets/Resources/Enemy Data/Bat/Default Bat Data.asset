@@ -16,6 +16,6 @@ MonoBehaviour:
   _attackChargeTime: 0.2
   _attackDashForce: 3
   _attackDuration: 0.25
-  _attackCooldown: 0.8
+  _attackCooldown: 1
   _staggerDuration: 0.8
   _knockbackForce: 4

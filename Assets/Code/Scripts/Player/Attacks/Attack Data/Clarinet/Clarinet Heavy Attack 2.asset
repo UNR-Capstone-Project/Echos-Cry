@@ -17,6 +17,6 @@ MonoBehaviour:
   AttackSound: {fileID: 11400000, guid: 32fc51584779ab5469383925ce9d3213, type: 2}
   BaseDamage: 7
   PassiveEffects:
-    OneThirdEffect: {fileID: 11400000, guid: 25e9fd5d2ef64b447905e84d09e57e47, type: 2}
-    TwoThirdsEffect: {fileID: 11400000, guid: 3664655054d7d144f873f217fd3e71cc, type: 2}
-    FullEffect: {fileID: 11400000, guid: 25e9fd5d2ef64b447905e84d09e57e47, type: 2}
+    OneThirdEffect: {fileID: 11400000, guid: 3664655054d7d144f873f217fd3e71cc, type: 2}
+    TwoThirdsEffect: {fileID: 11400000, guid: 25e9fd5d2ef64b447905e84d09e57e47, type: 2}
+    FullEffect: {fileID: 11400000, guid: 5d93e2ffc070cf648871667b95c1e5a9, type: 2}

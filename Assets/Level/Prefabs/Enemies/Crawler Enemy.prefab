@@ -59,7 +59,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8acc8bfdf6f020441a91df02cf588c09, type: 2}
+  - {fileID: 2100000, guid: aa205275eb50f62439fad6eea645419d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 6827338249854996756}
   - component: {fileID: 6614945081944071576}
   m_Layer: 9
-  m_Name: Range Enemy
+  m_Name: Crawler Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -185,7 +185,7 @@ MonoBehaviour:
   _npcAnimator: {fileID: 4267862705877107826}
   _soundConfig: {fileID: 11400000, guid: 13653aed55342c348ab4d4d298f40b62, type: 2}
   _collider: {fileID: 8838160874129828706}
-  _passiveEffectHandler: {fileID: 0}
+  _passiveEffectHandler: {fileID: 6614945081944071576}
   _attackStrats:
   - {fileID: 11400000, guid: 3ef0d87b33e7b3f40ac4037d7fa15a53, type: 2}
   _targetStrats: []
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49243be4183b1dc40b9e1d2b4602606c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
-  _statsConfig: {fileID: 11400000, guid: 756e2aac9ef16dd4f8b3d83060c174db, type: 2}
+  _statsConfig: {fileID: 11400000, guid: f56d71364f3ec1a488aa0b3e3020c72e, type: 2}
   healthChannel: {fileID: 0}
   armorChannel: {fileID: 0}
 --- !u!114 &4267862705877107826

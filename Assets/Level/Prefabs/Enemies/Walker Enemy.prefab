@@ -59,7 +59,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cf39ed99c03a9b04cbd80ad48f486586, type: 2}
+  - {fileID: 2100000, guid: aa205275eb50f62439fad6eea645419d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -207,7 +207,7 @@ MonoBehaviour:
   _npcAnimator: {fileID: 4267862705877107826}
   _soundConfig: {fileID: 11400000, guid: 61a08e0075f1f394ba85aefac97da91e, type: 2}
   _collider: {fileID: 8838160874129828706}
-  _passiveEffectHandler: {fileID: 0}
+  _passiveEffectHandler: {fileID: 3727599544175325857}
   _attackStrats:
   - {fileID: 11400000, guid: 922f6460c5d88124687907449599c73e, type: 2}
   _targetStrats: []
@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49243be4183b1dc40b9e1d2b4602606c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
-  _statsConfig: {fileID: 11400000, guid: 756e2aac9ef16dd4f8b3d83060c174db, type: 2}
+  _statsConfig: {fileID: 11400000, guid: 1b9095bfabe78c041ab095c1b2ff102a, type: 2}
   healthChannel: {fileID: 0}
   armorChannel: {fileID: 0}
 --- !u!114 &4267862705877107826
