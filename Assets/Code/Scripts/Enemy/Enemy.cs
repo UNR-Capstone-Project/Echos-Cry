@@ -40,6 +40,11 @@ public class Enemy : MonoBehaviour
         
     }
 
+    public void ResetDeathEvent()
+    {
+        OnDeathEvent = null;
+    }
+
     public EnemyStateCache StateCache { get => _stateCache; }
     public EnemyStateMachine StateMachine { get => _stateMachine; }
     public EnemyPool Pool { get => _pool; set => _pool = value; }

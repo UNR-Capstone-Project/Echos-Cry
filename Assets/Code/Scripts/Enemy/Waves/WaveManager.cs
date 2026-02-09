@@ -23,10 +23,12 @@ public class WaveManager : MonoBehaviour
         {
             count += enemySpawns.enemySpawnCount;
         }
+        Debug.Log($"Total enemies in the wave needed to be killed is: {count}");
         return count;
     }
     public void UpdateKillCount()
     {
+        Debug.Log($"Kill count of enemy upated to now {_totalEnemiesKilled}");
         _totalEnemiesKilled++;
 
         if (_totalEnemiesKilled >= GetTotalEnemiesInWave(_allWaves[_currentWave]))
@@ -72,6 +74,11 @@ public class WaveManager : MonoBehaviour
                 StartCoroutine(_enemySpawner.SpawnWithDecal(pool, enemyPosition, wave.spawnRadius, (enemy) =>
                 {
                     enemy.transform.SetParent(_enemySpawner.transform);
+
+                    //prevent stacking of events
+                    enemy.OnDeathEvent -= UpdateKillCount;
+                    enemy.OnDeathEvent -= () => pool.ReleaseEnemy(enemy);
+
                     enemy.OnDeathEvent += UpdateKillCount;
                     enemy.OnDeathEvent += () => pool.ReleaseEnemy(enemy);
                 }));

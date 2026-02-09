@@ -54,7 +54,13 @@ public class EnemyPool: MonoBehaviour
     }
     public void ReleaseEnemy(Enemy enemy)
     {
-        _enemyPool.Release(enemy);
+        enemy.ResetDeathEvent(); //remove event stacking
+        enemy.Health.ResetHealth();
+        
+        //reset the state of the enemy too
+        
+        
+        _enemyPool?.Release(enemy);
         EnemyReleaseEvent?.Invoke();
     }
 }
