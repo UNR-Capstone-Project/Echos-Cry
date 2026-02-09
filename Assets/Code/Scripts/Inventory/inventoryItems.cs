@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class inventoryItems : MonoBehaviour
+public class InventoryItems : MonoBehaviour
 {
-    public inventoryItemData itemData;
-    public void pickupItem(){
+    public InventoryItemData itemData;
+    public void PickupItem()
+    {
         InventoryManager.Instance.Add(itemData);
         Destroy(gameObject);
     }
-    void OnCollisionEnter(Collision col){
-        if(col.gameObject.tag == "Player"){
-            pickupItem();
-        }
+    void OnTriggerEnter(Collider other)
+    {
+        PickupItem();
     }
 }

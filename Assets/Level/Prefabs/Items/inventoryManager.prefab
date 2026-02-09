@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50c7aaa7e34bea14f8023baf51d70925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::inventoryDisplay
-  slotOne: {fileID: 0}
-  slotTwo: {fileID: 0}
-  slotThree: {fileID: 0}
-  slotFour: {fileID: 0}
-  wallet: {fileID: 0}
+  slotScriptArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &3542431999539309550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,3 +63,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::inventoryManager
   _inventoryDisplay: {fileID: 2156123696442323902}
+  _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
+  healthChannel: {fileID: 11400000, guid: c585d041cc469f04b887f8eeb82703dc, type: 2}
