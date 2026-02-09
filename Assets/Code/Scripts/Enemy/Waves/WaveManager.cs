@@ -64,16 +64,18 @@ public class WaveManager : MonoBehaviour
 
         for (int i = 0; i < wave.EnemySpawns.Length; i++)
         {
+            GameObject enemyPrefab = wave.EnemySpawns[i].enemySpawnType;
+            EnemyPool pool = EnemyPoolManager.Instance.GetPool(enemyPrefab);
             for (int j = 0; j < wave.EnemySpawns[i].enemySpawnCount; j++)
             {
-                GameObject enemyPrefab = wave.EnemySpawns[i].enemySpawnType;
                 Vector3 enemyPosition = _enemySpawner.GetRandomPoint(wave.spawnRadius);
-                StartCoroutine(_enemySpawner.SpawnWithDecal(enemyPrefab, enemyPosition, wave.spawnRadius, (enemyInstance) =>
+                StartCoroutine(_enemySpawner.SpawnWithDecal(pool, enemyPosition, wave.spawnRadius, (enemy) =>
                 {
-                    enemyInstance.transform.SetParent(_enemySpawner.transform);
-                    Enemy enemy = enemyInstance.GetComponent<Enemy>();
+                    enemy.transform.SetParent(_enemySpawner.transform);
                     enemy.OnDeathEvent += UpdateKillCount;
+                    enemy.OnDeathEvent += () => pool.ReleaseEnemy(enemy);
                 }));
+
             }
             yield return new WaitForSeconds(wave.spawnInterval);
         }

@@ -34,9 +34,10 @@ public class Enemy : MonoBehaviour
     public event Action OnDeathEvent;
     public void HandleDeath()
     {
-        if (IsPooled) _pool.ReleaseEnemy(this);
-        else Destroy(gameObject);
         OnDeathEvent?.Invoke();
+       // if (IsPooled) _pool.ReleaseEnemy(this);
+        //else Destroy(gameObject);
+        
     }
 
     public EnemyStateCache StateCache { get => _stateCache; }
