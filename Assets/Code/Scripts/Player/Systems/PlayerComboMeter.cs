@@ -11,9 +11,10 @@ public class PlayerComboMeter : MonoBehaviour
     [SerializeField] private InputTranslator _inputTranslator;
 
     private float _comboMeterDrainRate = 10f;
-    private float _comboDrainDelay = 4f; //ISSUE: This will not be dynamically adjusted with new time between beats if the tempo changes.
+    private float _comboDrainDelay = 3f; //ISSUE: This will not be dynamically adjusted with new time between beats if the tempo changes.
     private float _comboMeterAmount = 0;
-    private float _comboBaseIncrease = 4f;
+    private float _comboBaseIncrease = 3f;
+    private float _comboBaseDecrease = 15f;
     private float _comboGoodRate = 1.2f;
     private float _comboExcellentRate = 1.5f;
     private float _comboMeterMax = 120f;
@@ -33,6 +34,16 @@ public class PlayerComboMeter : MonoBehaviour
     public static MeterState CurrentMeterState { get { return _currentMeterState; } }
     //-----------------------------------------
 
+    private void Start()
+    {
+        _inputTranslator.OnPrimaryActionEvent += CheckForMiss;
+        _inputTranslator.OnSecondaryActionEvent += CheckForMiss;
+    }
+    private void OnDestroy()
+    {
+        _inputTranslator.OnPrimaryActionEvent -= CheckForMiss;
+        _inputTranslator.OnSecondaryActionEvent -= CheckForMiss;
+    }
     private void Update()
     {      
         if (_isDraining)
@@ -58,17 +69,23 @@ public class PlayerComboMeter : MonoBehaviour
             StartCoroutine(DrainResetWait());
         }
         
-        OnComboMeterChangeEvent?.Invoke(_comboMeterAmount, _comboMeterMax);
         UpdateComboMeterState();
+        OnComboMeterChangeEvent?.Invoke(_comboMeterAmount, _comboMeterMax);
     }
     public void SubtractFromComboMeter(float amount)
     {
         _comboMeterAmount = Mathf.Clamp(_comboMeterAmount - amount, 0, _comboMeterMax);
         
-        OnComboMeterChangeEvent?.Invoke(_comboMeterAmount, _comboMeterMax);
         UpdateComboMeterState();
+        OnComboMeterChangeEvent?.Invoke(_comboMeterAmount, _comboMeterMax);
     }
 
+    private void CheckForMiss(bool isPressed)
+    {
+        if (!isPressed) return;
+        if (!TempoConductor.Instance.IsOnBeat())
+            SubtractFromComboMeter(_comboBaseDecrease);
+    }
     private void UpdateComboMeterState()
     {
         float progress = _comboMeterAmount / _comboMeterMax;
