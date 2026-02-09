@@ -11,14 +11,21 @@ public class NewEnemySpawner : MonoBehaviour
     public GameObject spawnDecal;
     private float spawnFromDecalWait = 3f;
 
-    public IEnumerator SpawnWithDecal(GameObject prefab, Vector3 initialPos, float samplingDistance, Action<GameObject> callback)
+    public IEnumerator SpawnWithDecal(EnemyPool enemyPool, Vector3 initialPos, float samplingDistance, Action<Enemy> callback)
     {
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(initialPos, out hit, samplingDistance, NavMesh.AllAreas)) initialPos = hit.position;
-        var decal = Instantiate(spawnDecal, initialPos, Quaternion.Euler(90f, 0f, 0f));
+        Vector3 spawnPos = new Vector3(1f, 1f, 1f);
+        if (NavMesh.SamplePosition(initialPos, out NavMeshHit hit, samplingDistance, NavMesh.AllAreas)) {
+            spawnPos = hit.position;
+        }
+        var decal = Instantiate(spawnDecal, spawnPos, Quaternion.Euler(90f, 0f, 0f));
 
         yield return new WaitForSeconds(spawnFromDecalWait);
-        GameObject instance = Instantiate(prefab, initialPos, Quaternion.identity);
+        Enemy instance = enemyPool.GetEnemy();
+
+        //to get it to spawn where i want to instead of it teleporting to the location of the pool manager gameobject
+        if (instance.TryGetComponent(out NavMeshAgent agent)) agent.enabled = false;
+        instance.transform.position = spawnPos;
+        if (agent != null) agent.enabled = true;
 
         callback?.Invoke(instance);
     }

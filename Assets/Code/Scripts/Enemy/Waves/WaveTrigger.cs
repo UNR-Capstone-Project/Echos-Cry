@@ -14,5 +14,5 @@ public class WaveTrigger : MonoBehaviour
             _waveManager.StartNextWave();
             waveHasStarted = true;
         }
-    }
+    }  
 }

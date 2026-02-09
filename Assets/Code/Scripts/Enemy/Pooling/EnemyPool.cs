@@ -10,7 +10,8 @@ public class EnemyPool: MonoBehaviour
 
     private Enemy CreateEnemy()
     {
-        Enemy enemy = GameObject.Instantiate(_prefab, transform).GetComponent<Enemy>();
+        //Debug.Log("spawning from enemy pool!");
+        Enemy enemy = Instantiate(_prefab, transform).GetComponent<Enemy>();
         enemy.Pool = this;
         return enemy;
     }

@@ -5155,6 +5155,60 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 513553268569399042, guid: 1c3b5e407201580449613318ff6d3874, type: 3}
   m_PrefabInstance: {fileID: 185005054}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1002714833
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1002714835}
+  - component: {fileID: 1002714834}
+  m_Layer: 0
+  m_Name: EnemyPoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1002714834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002714833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5fc5d82a87c08429ada1b311da0f9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyPoolManager
+  Prefabs:
+  - Prefab: {fileID: 6900823288402649937, guid: 29058e1cb20b8264b8f94e98792051cd, type: 3}
+    DefaultCapacity: 50
+    MaxCapacity: 100
+  - Prefab: {fileID: 6900823288402649937, guid: 4e6ad55f889d65e40b6ce9414d619049, type: 3}
+    DefaultCapacity: 50
+    MaxCapacity: 100
+  - Prefab: {fileID: 6900823288402649937, guid: b6393c099ff99e547b82c84b1a483987, type: 3}
+    DefaultCapacity: 50
+    MaxCapacity: 100
+--- !u!4 &1002714835
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002714833}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.39893, y: 0, z: 13.43478}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1007122698 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2017199890293909498, guid: 3f7dc89af4221c84eb148bc917ee6b79, type: 3}
@@ -10691,6 +10745,7 @@ MonoBehaviour:
   _allWaves:
   - {fileID: 11400000, guid: f16c6b90146f66c47a38953474e6d4ec, type: 2}
   _enemySpawner: {fileID: 1907767413}
+  _updateKillCountChannel: {fileID: 11400000, guid: 63b54daa2224c144a9a5bb8cf2c47790, type: 2}
 --- !u!114 &1907767413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12348,6 +12403,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 34d52ba525cb925489614a2478aa1c2a, type: 2}
   - {fileID: 11400000, guid: 30b2135a3dfe3f946be45c9faa7f5a76, type: 2}
   _enemySpawner: {fileID: 5718520714409244158}
+  _updateKillCountChannel: {fileID: 11400000, guid: 63b54daa2224c144a9a5bb8cf2c47790, type: 2}
 --- !u!114 &5718520714409244158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12436,3 +12492,4 @@ SceneRoots:
   - {fileID: 1570501146}
   - {fileID: 288703331}
   - {fileID: 843670585}
+  - {fileID: 1002714835}

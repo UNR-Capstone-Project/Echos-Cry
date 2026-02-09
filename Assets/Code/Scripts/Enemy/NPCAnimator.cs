@@ -44,9 +44,14 @@ public class NPCAnimator : MonoBehaviour
         _npcSprite.material.SetColor(hashedTintColor, _defaultTintColor);
     }
 
-    void Start()
+    private void Awake()
     {
         if (_npcSprite != null)
-            _defaultTintColor = _npcSprite.material.GetColor(hashedTintColor);
+            _defaultTintColor = _npcSprite.material.GetColor(hashedTintColor);        
+    }
+
+    private void OnEnable()
+    {
+        _npcSprite.material.SetColor(hashedTintColor, _defaultTintColor);
     }
 }
