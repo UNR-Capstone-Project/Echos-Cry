@@ -185,8 +185,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponHolder
   _weaponInventory:
-  - {fileID: 624493834288233041}
   - {fileID: 6625103690610810554}
+  - {fileID: 624493834288233041}
   _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
 --- !u!1 &2010116007821540472
 GameObject:
@@ -714,7 +714,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerComboMeter
   _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
-  _comboMeterDrainRate: 2.5
 --- !u!1 &5023412517127650446
 GameObject:
   m_ObjectHideFlags: 0

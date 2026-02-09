@@ -5,23 +5,17 @@ using UnityEngine;
 
 public class PlayerComboMeter : MonoBehaviour
 {
-    // TODO:
-    //  - Implement combo bar increase based on attack hit quality
-    //  - Implement combo bar decrease at a certain rate that pauses based on attack hit quality
-    //  - Implement combo multiplier increase based on attack hit quality
-    //  - Implement combo multiplier decrease based on time and attack hit quality (maybe just fully reset combo bar if they miss)
-
     //-----------------------------------------
     // Combo Variables
     //-----------------------------------------
     [SerializeField] private InputTranslator _inputTranslator;
 
-    private float _comboMeterDrainRate = 2.5f;
-    private float _comboDrainDelay;
+    private float _comboMeterDrainRate = 10f;
+    private float _comboDrainDelay = 4f; //ISSUE: This will not be dynamically adjusted with new time between beats if the tempo changes.
     private float _comboMeterAmount = 0;
-    private float _comboBaseIncrease = 10f;
+    private float _comboBaseIncrease = 4f;
     private float _comboGoodRate = 1.2f;
-    private float _comboExcellentRate = 2f;
+    private float _comboExcellentRate = 1.5f;
     private float _comboMeterMax = 120f;
     private bool _isDraining = false;
 
@@ -39,13 +33,8 @@ public class PlayerComboMeter : MonoBehaviour
     public static MeterState CurrentMeterState { get { return _currentMeterState; } }
     //-----------------------------------------
 
-    private void Start()
-    {
-        _comboDrainDelay = TempoConductor.Instance.TimeBetweenBeats * 2f;
-    }
-
     private void Update()
-    {
+    {      
         if (_isDraining)
             DrainComboMeter();
     }
@@ -60,13 +49,9 @@ public class PlayerComboMeter : MonoBehaviour
             case TempoConductor.HitQuality.Good:
                 _comboMeterAmount = Mathf.Clamp(_comboMeterAmount + _comboBaseIncrease * _comboGoodRate, 0, _comboMeterMax);
                 break;
-            case TempoConductor.HitQuality.Miss:
-                //Should we reset the combo meter on a miss, or decrease the combo meter by a certain amount?
-                _comboMeterAmount = 0f;
-                _isDraining = false;
-                break;
         }
 
+        _isDraining = false;
         if (_comboMeterAmount > 0f)
         {
             StopAllCoroutines();
@@ -102,7 +87,6 @@ public class PlayerComboMeter : MonoBehaviour
 
     private IEnumerator DrainResetWait()
     {
-        _isDraining = false;
         yield return new WaitForSeconds(_comboDrainDelay);
         _isDraining = true;
     }
