@@ -1,15 +1,32 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerComboMeter : MonoBehaviour
 {
-    //Brain not working taking break
-    //TODO:
+    // TODO:
     //  - Implement combo bar increase based on attack hit quality
     //  - Implement combo bar decrease at a certain rate that pauses based on attack hit quality
     //  - Implement combo multiplier increase based on attack hit quality
     //  - Implement combo multiplier decrease based on time and attack hit quality (maybe just fully reset combo bar if they miss)
+
+    //-----------------------------------------
+    // Combo Variables
+    //-----------------------------------------
+    [SerializeField] private InputTranslator _inputTranslator;
+
+    private float _comboMeterDrainRate = 2.5f;
+    private float _comboDrainDelay;
+    private float _comboMeterAmount = 0;
+    private float _comboBaseIncrease = 10f;
+    private float _comboGoodRate = 1.2f;
+    private float _comboExcellentRate = 2f;
+    private float _comboMeterMax = 120f;
+    private bool _isDraining = false;
+
+    public static event Action<float, float> OnComboMeterChangeEvent;
+    public float ComboMeterAmount { get { return _comboMeterAmount; } }
 
     public enum MeterState
     {
@@ -20,91 +37,83 @@ public class PlayerComboMeter : MonoBehaviour
     }
     private static MeterState _currentMeterState = MeterState.Starting;
     public static MeterState CurrentMeterState { get { return _currentMeterState; } }
+    //-----------------------------------------
 
-    public void AddToComboMeter(float count)
+    private void Start()
     {
-        _comboMeterAmount = Mathf.Clamp(_comboMeterAmount + (_percentOfDamage * _comboMultiplier) * count * _comboBaseRate, 0, _comboMeterMax);
-        UpdateComboMeterState();
+        _comboDrainDelay = TempoConductor.Instance.TimeBetweenBeats * 2f;
+    }
+
+    private void Update()
+    {
+        if (_isDraining)
+            DrainComboMeter();
+    }
+
+    public void AddToComboMeter(TempoConductor.HitQuality hit)
+    {
+        switch (hit)
+        {
+            case TempoConductor.HitQuality.Excellent:
+                _comboMeterAmount = Mathf.Clamp(_comboMeterAmount + _comboBaseIncrease * _comboExcellentRate, 0, _comboMeterMax);
+                break;
+            case TempoConductor.HitQuality.Good:
+                _comboMeterAmount = Mathf.Clamp(_comboMeterAmount + _comboBaseIncrease * _comboGoodRate, 0, _comboMeterMax);
+                break;
+            case TempoConductor.HitQuality.Miss:
+                //Should we reset the combo meter on a miss, or decrease the combo meter by a certain amount?
+                _comboMeterAmount = 0f;
+                _isDraining = false;
+                break;
+        }
+
+        if (_comboMeterAmount > 0f)
+        {
+            StopAllCoroutines();
+            StartCoroutine(DrainResetWait());
+        }
+        
         OnComboMeterChangeEvent?.Invoke(_comboMeterAmount, _comboMeterMax);
+        UpdateComboMeterState();
     }
     public void SubtractFromComboMeter(float amount)
     {
         _comboMeterAmount = Mathf.Clamp(_comboMeterAmount - amount, 0, _comboMeterMax);
-        UpdateComboMeterState();
+        
         OnComboMeterChangeEvent?.Invoke(_comboMeterAmount, _comboMeterMax);
+        UpdateComboMeterState();
     }
 
     private void UpdateComboMeterState()
     {
         float progress = _comboMeterAmount / _comboMeterMax;
-        float oneThird = 1f / 3f;
-        float twoThirds = 2f / 3f;
+        float oneThird = .33f;
+        float twoThirds = .66f;
 
         if (progress < oneThird)
             _currentMeterState = MeterState.Starting;
         else if (progress >= oneThird && progress < twoThirds)
             _currentMeterState = MeterState.OneThird;
-        else if (progress >= twoThirds && progress != 1f)
+        else if (progress >= twoThirds && progress < 1f)
             _currentMeterState = MeterState.TwoThirds;
         else
             _currentMeterState = MeterState.Full;
     }
 
-    public void UpdateComboMultiplier()
+    private IEnumerator DrainResetWait()
     {
-        _comboMultiplier = Mathf.Clamp(_comboMultiplier * _comboMultiplierRate, 1, _comboMultiplierMax);
-        OnComboMultiplierChangeEvent?.Invoke(_comboMultiplier);
+        _isDraining = false;
+        yield return new WaitForSeconds(_comboDrainDelay);
+        _isDraining = true;
     }
-    public void ResetComboMultiplier()
-    {
-        if (TempoConductor.Instance.CurrentHitQuality == TempoConductor.HitQuality.Miss)
-        {
-            _comboMultiplier = 1;
-            OnComboMultiplierChangeEvent?.Invoke(_comboMultiplier);
-        }
-    }
-    public void UpdateHitQualityMultipliers(TempoConductor.HitQuality hit)
-    {
-        switch (hit)
-        {
-            case TempoConductor.HitQuality.Excellent:
-                _percentOfDamage = 0.03125f;
-                _comboMultiplierRate = 2;
-                break;
-            case TempoConductor.HitQuality.Good:
-                _percentOfDamage = 0.03125f;
-                _comboMultiplierRate = 1;
-                break;
-        }
-    }
+
     private void DrainComboMeter()
     {
         _comboMeterAmount = Mathf.Clamp(_comboMeterAmount - (_comboMeterDrainRate * Time.deltaTime), 0, _comboMeterMax);
+
+        UpdateComboMeterState();
         OnComboMeterChangeEvent?.Invoke(_comboMeterAmount, _comboMeterMax);
     }
-
-    void Start()
-    {
-        _comboMeterAmount = 0;
-        _comboMultiplier = 1;
-    }
-
-    [SerializeField] private InputTranslator _inputTranslator;
-
-    public static event Action<float, float> OnComboMeterChangeEvent;
-    public static event Action<float> OnComboMultiplierChangeEvent;
-
-    [SerializeField] private float _comboMeterDrainRate = 2.5f;
-    private float _comboMeterMax = 120f;
-    private float _comboMeterAmount;
-
-    private float _comboBaseRate = 20f;
-    private float _comboMultiplierMax = 16;
-    private float _percentOfDamage = 0.25f;
-    private float _comboMultiplierRate = 1f;
-    private float _comboMultiplier;
-
-    public float ComboMeterAmount { get { return _comboMeterAmount; } }
 }
 
 [CreateAssetMenu(menuName = "Echo's Cry/Player Data/Player Combo Meter Config")]
