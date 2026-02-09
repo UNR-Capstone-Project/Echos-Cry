@@ -11,7 +11,7 @@ public class EnemyPool: MonoBehaviour
     private Enemy CreateEnemy()
     {
         //Debug.Log("spawning from enemy pool!");
-        Enemy enemy = Instantiate(_prefab).GetComponent<Enemy>();
+        Enemy enemy = Instantiate(_prefab, transform).GetComponent<Enemy>();
         enemy.Pool = this;
         return enemy;
     }
@@ -54,12 +54,6 @@ public class EnemyPool: MonoBehaviour
     }
     public void ReleaseEnemy(Enemy enemy)
     {
-        enemy.ResetDeathEvent(); //remove event stacking
-        enemy.Health.ResetHealth();
-        
-        //reset the state of the enemy too
-        
-        
         _enemyPool?.Release(enemy);
         EnemyReleaseEvent?.Invoke();
     }

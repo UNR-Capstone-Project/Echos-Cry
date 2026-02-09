@@ -13,9 +13,8 @@ public class NewEnemySpawner : MonoBehaviour
 
     public IEnumerator SpawnWithDecal(EnemyPool enemyPool, Vector3 initialPos, float samplingDistance, Action<Enemy> callback)
     {
-        NavMeshHit hit;
-        Vector3 spawnPos = new Vector3(1f,1f,1f);
-        if (NavMesh.SamplePosition(initialPos, out hit, samplingDistance, NavMesh.AllAreas)) {
+        Vector3 spawnPos = new Vector3(1f, 1f, 1f);
+        if (NavMesh.SamplePosition(initialPos, out NavMeshHit hit, samplingDistance, NavMesh.AllAreas)) {
             spawnPos = hit.position;
         }
         var decal = Instantiate(spawnDecal, spawnPos, Quaternion.Euler(90f, 0f, 0f));

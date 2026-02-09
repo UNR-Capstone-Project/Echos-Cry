@@ -10745,6 +10745,7 @@ MonoBehaviour:
   _allWaves:
   - {fileID: 11400000, guid: f16c6b90146f66c47a38953474e6d4ec, type: 2}
   _enemySpawner: {fileID: 1907767413}
+  _updateKillCountChannel: {fileID: 11400000, guid: 63b54daa2224c144a9a5bb8cf2c47790, type: 2}
 --- !u!114 &1907767413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12402,6 +12403,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 34d52ba525cb925489614a2478aa1c2a, type: 2}
   - {fileID: 11400000, guid: 30b2135a3dfe3f946be45c9faa7f5a76, type: 2}
   _enemySpawner: {fileID: 5718520714409244158}
+  _updateKillCountChannel: {fileID: 11400000, guid: 63b54daa2224c144a9a5bb8cf2c47790, type: 2}
 --- !u!114 &5718520714409244158
 MonoBehaviour:
   m_ObjectHideFlags: 0
