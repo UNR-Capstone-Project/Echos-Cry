@@ -11,11 +11,11 @@ public class PlayerComboMeter : MonoBehaviour
     [SerializeField] private InputTranslator _inputTranslator;
 
     private float _comboMeterDrainRate = 10f;
-    private float _comboDrainDelay = 3f; //ISSUE: This will not be dynamically adjusted with new time between beats if the tempo changes.
+    private float _comboDrainDelay = 5f;
     private float _comboMeterAmount = 0;
-    private float _comboBaseIncrease = 3.5f;
+    private float _comboBaseIncrease = 4f;
     private float _comboBaseDecrease = 15f;
-    private float _comboGoodRate = 1.2f;
+    private float _comboGoodRate = 0.8f;
     private float _comboExcellentRate = 1.5f;
     private float _comboMeterMax = 120f;
     private bool _isDraining = false;
