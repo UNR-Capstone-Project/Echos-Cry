@@ -15,5 +15,5 @@ MonoBehaviour:
   isEffectOneTime: 1
   effectUseInterval: 0
   effectDuration: 0
-  criticalChance: 0.2
+  criticalChance: 0.4
   criticalMultiplier: 2

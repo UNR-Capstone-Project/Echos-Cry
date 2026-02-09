@@ -203,7 +203,6 @@ public class InputTranslator : ScriptableObject,
     public void OnInteract(InputAction.CallbackContext context)
     {
         if(context.started) OnInteractEvent?.Invoke();
-        else if (context.canceled) OnInteractEvent?.Invoke();
     }
 
     public void OnSelect(InputAction.CallbackContext context)
