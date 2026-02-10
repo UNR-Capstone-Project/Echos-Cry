@@ -10722,7 +10722,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1907767416}
   - component: {fileID: 1907767415}
-  - component: {fileID: 1907767414}
   - component: {fileID: 1907767413}
   - component: {fileID: 1907767412}
   m_Layer: 2
@@ -10762,19 +10761,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewEnemySpawner
   spawnDecal: {fileID: 7591030504746827832, guid: 437111543cf5ec541b27385210249a0f, type: 3}
---- !u!114 &1907767414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907767411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cef04469576eff240bb2da433d4248d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WaveTrigger
-  _waveManager: {fileID: 1907767412}
 --- !u!65 &1907767415
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12319,19 +12305,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8369d7233d10ec44b35f22f8071e0f6, type: 3}
---- !u!114 &1021155743906526746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6248898221677718762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cef04469576eff240bb2da433d4248d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WaveTrigger
-  _waveManager: {fileID: 4432813994091459229}
 --- !u!1001 &1288837245994125006
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12430,7 +12403,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6249495718565311279}
   - component: {fileID: 8794710815016647538}
-  - component: {fileID: 1021155743906526746}
   - component: {fileID: 5718520714409244158}
   - component: {fileID: 4432813994091459229}
   m_Layer: 2
