@@ -26,26 +26,44 @@ public class TimerNode
 //Other TODO: may or may not be relevant to this script but design way to separate out tick events across frames, specifically for enemies (could use queue?)
 public class TickManager : Singleton<TickManager>
 {
-    private Dictionary<float, TimerNode> _timers;
+    struct Timer
+    {
+        public float tick;
+        public TimerNode node;
+    }
+
+    private List<Timer> _timers;
 
     private TimerNode AddTimer(float tickTime)
     {
-        TimerNode newTimer = new(tickTime);
-        _timers.Add(tickTime, newTimer);
-        return newTimer;
+        Timer newTimer = new Timer
+        {
+            tick = tickTime,
+            node = new TimerNode(tickTime),
+        };
+
+        _timers.Add(newTimer);
+        return newTimer.node;
     }
-    public TimerNode GetTimer(float key)
+    public TimerNode GetTimer(float tickTime)
     {
-        if(_timers.ContainsKey(key)) return _timers[key]; 
-        return AddTimer(key);
+        for (int i = 0; i < _timers.Count; i++)
+        {
+            if (Mathf.Approximately(_timers[i].tick, tickTime))
+            {
+                return _timers[i].node;
+            }
+        }
+
+        return AddTimer(tickTime);
     }
     private void UpdateTimers()
     {
-        //Michael:
-        //Bug with this fuck ass thing. TODO: will change from dictionary system
-        foreach(var timer in _timers)
+        int count = _timers.Count;
+
+        for (int i = 0; i < count; i++)
         {
-            timer.Value.Update();
+            _timers[i].node.Update();
         }
     }
 
