@@ -68,7 +68,7 @@ public class WaveManager : MonoBehaviour
     }
     public void StartNextWave()
     {
-        Debug.Log($"current wave is {_currentWave}");
+        //Debug.Log($"current wave is {_currentWave}");
         _totalEnemiesKilled = 0;
         
         HUDMessage.Instance.UpdateMessage("Wave " + (_currentWave + 1).ToString() + " Has Begun.", 2f);

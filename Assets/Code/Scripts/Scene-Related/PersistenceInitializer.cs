@@ -20,7 +20,7 @@ public static class PersistenceInitializer
         if (currentScene.name != "MainMenu")
         {
             
-            Debug.Log("Loaded by the Persist Object from the PersistenceInitializer script");
+            //Debug.Log("Loaded by the Persist Object from the PersistenceInitializer script");
             Application.targetFrameRate = 60;
             Object.DontDestroyOnLoad(Object.Instantiate(Resources.Load("PERSISTOBJECTS")));
             loaded = true;
