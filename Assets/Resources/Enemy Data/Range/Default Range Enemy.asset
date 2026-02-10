@@ -15,7 +15,7 @@ MonoBehaviour:
   _distanceCheck: 10
   _attackChargeTime: 1
   _attackCooldown: 2
-  _staggerDuration: 2
+  _staggerDuration: 1.2
   _knockbackForce: 3
   _projectileCount: 3
-  _distanceFromPlayer: 7
+  _distanceFromPlayer: 5

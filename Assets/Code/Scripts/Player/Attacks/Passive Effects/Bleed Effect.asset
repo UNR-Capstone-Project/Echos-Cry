@@ -14,6 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BleedPassiveEffect
   isEffectOneTime: 0
   effectUseInterval: 1
-  effectDuration: 6
-  requiredState: 0
+  effectDuration: 5
   bleedDamage: 2
