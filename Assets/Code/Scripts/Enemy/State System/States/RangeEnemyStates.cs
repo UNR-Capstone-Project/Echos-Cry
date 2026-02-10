@@ -157,7 +157,7 @@ public class RangeAttackState : EnemyState
     private IEnumerator BetweenAttackPauseCoroutine()
     {
         yield return new WaitForSeconds(TempoConductor.Instance.TimeBetweenBeats);
-        if (count >= _config.ProjectileCount) _enemyContext.StartCoroutine(AttackCooldownCoroutine());
+        if (count + 1 >= _config.ProjectileCount) _enemyContext.StartCoroutine(AttackCooldownCoroutine());
         else
         {
             _enemyContext.AttackStrategies[0].Execute(10f, GetDirection(), _enemyContext.transform);

@@ -12,7 +12,7 @@ public class PlayerDashState : PlayerActionState
 
     public override void Enter()
     {
-        _playerContext.ComboMeter.ResetComboMultiplier();
+        //_playerContext.ComboMeter.ResetComboMultiplier();
 
         _playerContext.Animator.SetIsTrailEmit(true);
         _playerContext.Animator.SpriteAnimator.Play("Dash");

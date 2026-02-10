@@ -66,7 +66,7 @@ public class DamageLabel : MonoBehaviour
         transform.position = objPosition;
         this.direction = direction;
 
-        damageText.SetText(damage.ToString());
+        damageText.SetText(damage.ToString("0.#"));
 
         damageText.color = color;
         //damageText.fontSize = isCrit ? critFontSize : normalFontSize;

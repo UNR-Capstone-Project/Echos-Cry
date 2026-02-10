@@ -97,3 +97,4 @@ MonoBehaviour:
   _timeBetweenWaves: 10
   _allWaves: []
   _enemySpawner: {fileID: 4634003130030037239}
+  _updateKillCountChannel: {fileID: 11400000, guid: 63b54daa2224c144a9a5bb8cf2c47790, type: 2}

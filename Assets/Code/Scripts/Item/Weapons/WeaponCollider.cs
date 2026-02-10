@@ -9,6 +9,7 @@ public class WeaponCollider : MonoBehaviour
 {
     [SerializeField] private Weapon _weaponContext;
     public float AttackDamage { get; private set; }
+    public TempoConductor.HitQuality AttackHitQuality { get; private set; }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -25,12 +26,13 @@ public class WeaponCollider : MonoBehaviour
         if (other.TryGetComponent<IDamageable>(out IDamageable damagable))
         {
             damagable.Execute(AttackDamage);
-            if (_weaponContext != null) _weaponContext.AddColliderToList(other);
+            if (_weaponContext != null) _weaponContext.AddColliderToList(other, AttackHitQuality);
         }
     }
 
-    public void UpdateAttackDamage(float attackDamage)
+    public void UpdateAttack(float attackDamage, TempoConductor.HitQuality hit)
     {
         AttackDamage = attackDamage;
+        AttackHitQuality = hit;
     }
 }

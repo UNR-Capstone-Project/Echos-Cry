@@ -8,10 +8,8 @@ public class InventoryManager : MonoBehaviour
     private static InventoryManager _instance;
     public static InventoryManager Instance { get { return _instance; } }
 
-    private Dictionary<inventoryItemData, InventoryItem> m_itemDictionary;
-    public List<InventoryItem> inventory { get; private set;}  
-
-    //public PlayerStats player;
+    private Dictionary<InventoryItemData, InventoryItem> m_itemDictionary;
+    public List<InventoryItem> inventory { get; private set; }  
 
     [SerializeField] private InventoryDisplay _inventoryDisplay;
     [SerializeField] private InputTranslator _inputTranslator;
@@ -41,26 +39,30 @@ public class InventoryManager : MonoBehaviour
     void Start()
     {
         inventory = new List<InventoryItem>();
-        m_itemDictionary = new Dictionary<inventoryItemData, InventoryItem>();
+        m_itemDictionary = new Dictionary<InventoryItemData, InventoryItem>();
 
-        //_inputTranslator.OnItem1Event += UseItem1;
-        //_inputTranslator.OnItem2Event += UseItem2;
-        //_inputTranslator.OnItem3Event += UseItem3;
-        //_inputTranslator.OnItem4Event += UseItem4;
+        _inputTranslator.OnItem1Event += UseItem;
+        _inputTranslator.OnItem2Event += UseItem;
+        _inputTranslator.OnItem3Event += UseItem;
+        _inputTranslator.OnItem4Event += UseItem;
     }
-    private void healthPotion(){
-        //PlayerStats.OnDamageHealed(10f);
-        Debug.Log("Health");
+    private void UseHealthPotion()
+    {
+        GameObject playerRef = GameObject.FindWithTag("Player");
+        if (playerRef != null)
+        {
+            playerRef.GetComponent<Player>().Health.HealHealth(10f);
+        }
     }
-    private void shieldPotion(){
-        Debug.Log("Shield");
+    private void UseShieldPotion()
+    {
+        GameObject playerRef = GameObject.FindWithTag("Player");
+        if (playerRef != null)
+        {
+            playerRef.GetComponent<Player>().Health.HealArmor(5f);
+        }
     }
-    private void attackPotion(){
-        Debug.Log("Attack");
-    }
-    private void speedPotion(){
-        Debug.Log("Speed");
-    }
+
     private void UseItem(int index)
     {
         if (inventory.Count <= 0 || inventory.Count <= index) return;
@@ -70,81 +72,72 @@ public class InventoryManager : MonoBehaviour
 
         if (usedItem.data.id == "healthP")
         {
-            //if (PlayerStats.CurrentHealth == PlayerStats.MaxHealth) return;
-            healthPotion();
+            UseHealthPotion();
         }
         else if (usedItem.data.id == "shieldP")
         {
-            shieldPotion();
-        }
-        else if (usedItem.data.id == "attackP")
-        {
-            attackPotion();
-        }
-        else if (usedItem.data.id == "speedP")
-        {
-            speedPotion();
+            UseShieldPotion();
         }
         Remove(usedItem.data);
     }
 
-    private void UseItem1(){
-        UseItem(0);
+    void OnDestroy()
+    {
+        _inputTranslator.OnItem1Event -= UseItem;
+        _inputTranslator.OnItem2Event -= UseItem;
+        _inputTranslator.OnItem3Event -= UseItem;
+        _inputTranslator.OnItem4Event -= UseItem;
     }
-    private void UseItem2(){
-        UseItem(1);
-    }
-    private void UseItem3(){
-        UseItem(2);
-    }
-    private void UseItem4(){
-        UseItem(3);
-    }
-    void OnDestroy(){
-        //_inputTranslator.OnItem1Event -= UseItem1;
-        //_inputTranslator.OnItem2Event -= UseItem2;
-        //_inputTranslator.OnItem3Event -= UseItem3;
-        //_inputTranslator.OnItem4Event -= UseItem4;
-    }
-    public InventoryItem Get(inventoryItemData referenceData){
-        if(m_itemDictionary.TryGetValue(referenceData, out InventoryItem value)){
+    public InventoryItem Get(InventoryItemData referenceData)
+    {
+        if (m_itemDictionary.TryGetValue(referenceData, out InventoryItem value))
+        {
             return value;
         }
         return null;
     }
-    public void Add(inventoryItemData referenceData){
-        if(m_itemDictionary.TryGetValue(referenceData, out InventoryItem value)){
+    public void Add(InventoryItemData referenceData){
+        if (m_itemDictionary.TryGetValue(referenceData, out InventoryItem value))
+        {
             value.AddToStack();
-        }else{
+        } 
+        else 
+        {
             InventoryItem newItem = new InventoryItem(referenceData);
             inventory.Add(newItem);
             m_itemDictionary.Add(referenceData, newItem);
         }
     }
-    public void Remove(inventoryItemData referenceData){
-        if(m_itemDictionary.TryGetValue(referenceData, out InventoryItem value)){
+    public void Remove(InventoryItemData referenceData){
+        if (m_itemDictionary.TryGetValue(referenceData, out InventoryItem value))
+        {
             value.RemoveFromStack();
-            if(value.stackSize == 0){
+            if (value.stackSize == 0)
+            {
                 inventory.Remove(value);
                 m_itemDictionary.Remove(referenceData);
             }
         }
     }
 }
-public class InventoryItem{
-    public inventoryItemData data {get; private set; }
+public class InventoryItem
+{
+    public InventoryItemData data {get; private set; }
     public int stackSize {get; private set;}
 
-    public InventoryItem(inventoryItemData source){
+    public InventoryItem(InventoryItemData source)
+    {
         data = source;
         AddToStack();
     }
 
-    public void AddToStack(){
+    public void AddToStack()
+    {
         stackSize++;
     }
 
-    public void RemoveFromStack(){
+    public void RemoveFromStack()
+    {
         stackSize--;
     }
 }

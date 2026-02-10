@@ -78,7 +78,22 @@ public class PassiveEffectHandler : MonoBehaviour
                 break;
             case MarkedForDeathPassive marked:
                 enemyReference.Health.SetDamageMultiplier(marked.damageMultiplier);
+                StartCoroutine(ResetDamageMultiplier(marked.duration));
+                break;
+            case CriticalHitPassiveEffect critical:
+                bool isCriticalHit = critical.RollCriticalHit();
+                if (isCriticalHit)
+                {
+                    enemyReference.Health.SetDamageMultiplier(critical.criticalMultiplier);
+                    StartCoroutine(ResetDamageMultiplier(.1f));
+                }
                 break;
         }
+    }
+
+    private IEnumerator ResetDamageMultiplier(float time)
+    {
+        yield return new WaitForSeconds(time);
+        enemyReference.Health.SetDamageMultiplier(1f);
     }
 }

@@ -6,9 +6,11 @@ public class InventoryDisplay : MonoBehaviour
 {
     public slotScript[] slotScriptArray = new slotScript[4];
 
-    private void OnUpdateInventory(){
+    private void OnUpdateInventory()
+    {
         int i = 0;
-        foreach(InventoryItem item in InventoryManager.Instance.inventory){
+        foreach(InventoryItem item in InventoryManager.Instance.inventory)
+        {
             if(i == 0){
                 slotScriptArray[i].Set(item);
                 i++;

@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8351964614839590640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2489767002183102680}
+  - component: {fileID: 1754920277385323924}
+  m_Layer: 0
+  m_Name: EnemyPoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2489767002183102680
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8351964614839590640}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.39893, y: 0, z: 13.43478}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1754920277385323924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8351964614839590640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5fc5d82a87c08429ada1b311da0f9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyPoolManager
+  Prefabs:
+  - Prefab: {fileID: 6900823288402649937, guid: 29058e1cb20b8264b8f94e98792051cd, type: 3}
+    DefaultCapacity: 50
+    MaxCapacity: 100
+  - Prefab: {fileID: 5404336137336009058, guid: 128fb26a87e63b6488058dafa47b63dd, type: 3}
+    DefaultCapacity: 50
+    MaxCapacity: 100
+  - Prefab: {fileID: 6900823288402649937, guid: 4e6ad55f889d65e40b6ce9414d619049, type: 3}
+    DefaultCapacity: 50
+    MaxCapacity: 100
+  - Prefab: {fileID: 6730894656085681688, guid: 18676ec0132be884cb685389feb03828, type: 3}
+    DefaultCapacity: 50
+    MaxCapacity: 100
+  - Prefab: {fileID: 6900823288402649937, guid: b6393c099ff99e547b82c84b1a483987, type: 3}
+    DefaultCapacity: 50
+    MaxCapacity: 100
+  - Prefab: {fileID: 9145729383849834323, guid: d3ddc9f8e3a13e141817a6baffb95bfb, type: 3}
+    DefaultCapacity: 50
+    MaxCapacity: 100
