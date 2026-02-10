@@ -5401,7 +5401,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2158403951494366317, guid: c207864393097ac4d8958f8cf4331e56, type: 3}
       propertyPath: m_text
-      value: No way back
+      value: Good luck!
       objectReference: {fileID: 0}
     - target: {fileID: 3925811560770362277, guid: c207864393097ac4d8958f8cf4331e56, type: 3}
       propertyPath: m_Name
