@@ -1047,7 +1047,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1849530320314093968
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4257,7 +4257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac600b6e0f3ab204c9bb832ef02cd591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ManageBeatShaderMaterials
-  outlineMaterial: {fileID: 2100000, guid: 7f0ee9522ff086f4ab3d9bb4c2393ff1, type: 2}
+  _material: {fileID: 2100000, guid: 7f0ee9522ff086f4ab3d9bb4c2393ff1, type: 2}
 --- !u!1 &2806546650018117244
 GameObject:
   m_ObjectHideFlags: 0
@@ -8345,7 +8345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac600b6e0f3ab204c9bb832ef02cd591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ManageBeatShaderMaterials
-  outlineMaterial: {fileID: 2100000, guid: f29c86f34ed19b94d9c97c9996988e36, type: 2}
+  _material: {fileID: 2100000, guid: f29c86f34ed19b94d9c97c9996988e36, type: 2}
 --- !u!114 &4285997076916508827
 MonoBehaviour:
   m_ObjectHideFlags: 0
