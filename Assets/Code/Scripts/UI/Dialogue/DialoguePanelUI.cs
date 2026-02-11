@@ -1,16 +1,21 @@
-using UnityEngine;
-using System;
-using TMPro;
 using Ink.Runtime;
+using System;
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class DialoguePanelUI: MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _dialogueText;
+    [SerializeField] private TextMeshProUGUI _infoText;
+    [SerializeField] private InputTranslator _translator;
     [SerializeField] private DialogueChoiceButton[] _choiceButtons;
 
     private void OnEnable()
     {
+        _infoText.text = $"Press '{_translator.PlayerInputs.Gameplay.Submit.GetBindingDisplayString()}' to continue.";
         DialogueEvents.Instance.OnDialogueEnded += DialogueFinished;
         DialogueEvents.Instance.OnDisplayDialogue += DisplayDialogue;
     }
