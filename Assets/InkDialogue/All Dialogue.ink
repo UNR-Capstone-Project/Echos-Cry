@@ -5,7 +5,7 @@ Can't you see I've lost my hands!?
     You're darn right it is.
     Ever since these demons came around nothin' has been the same.
 * [Really? I couldn't even tell!]
-    blushes* ...You really mean that?
+    (blushes) ...You really mean that?
 -
 Well nevermind me, if you're to survive here, you'll need to learn a few things.
 Your 'left mouse button' is used for your primary attack, and the 'right mouse button' is your heavy attack.
