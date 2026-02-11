@@ -3,7 +3,67 @@ guid: e85bb3c2fee96d5438ccd27a76370ca3
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.001_Circle.003Mat
+    second: {fileID: 2100000, guid: 45f2a260ae7e8f342aac58576c164f42, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.002_Circle.004Mat
+    second: {fileID: 2100000, guid: 3037db1bd5886b04586491e90042ef41, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.003_Circle.005Mat
+    second: {fileID: 2100000, guid: c30aaf5eee1daf7458bdbfd28a4f8390, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle_Circle.002Mat
+    second: {fileID: 2100000, guid: 56efb2758b5a8f34bbb7850f6653a2b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Arm_Circle.001Mat
+    second: {fileID: 2100000, guid: 5c2f2e5b68759694f832afc2181eefcd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Planks.001_Cube.013Mat
+    second: {fileID: 2100000, guid: cb13376ce01e0d14b83bce04974cc943, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Planks.002_Cube.014Mat
+    second: {fileID: 2100000, guid: 08dd98ee059f2b44e83d74a8cb46f64b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Planks.003_Cube.010Mat
+    second: {fileID: 2100000, guid: fe3f5296518db334e8d5d82b2bb322ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Planks.004_Cube.011Mat
+    second: {fileID: 2100000, guid: 05131a52d2fe99b4887372b29754b5f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Planks.005_Cube.012Mat
+    second: {fileID: 2100000, guid: 0c40a22cc6f13734c82e9996ee38a56c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Planks_Cube.004Mat
+    second: {fileID: 2100000, guid: a7ba93c436d9ec544afbbd4cd8d4f7e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Right_Arm_CircleMat
+    second: {fileID: 2100000, guid: b438d326e8547a64f864deee7e407d29, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

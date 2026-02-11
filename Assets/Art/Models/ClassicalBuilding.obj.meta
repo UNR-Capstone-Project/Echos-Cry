@@ -3,7 +3,32 @@ guid: fc15301d352865d4a9286375b4cd490d
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plane_BrickMat
+    second: {fileID: 2100000, guid: 73509e7107dbcf14989d980258f47d32, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plane_GlassMat
+    second: {fileID: 2100000, guid: 6d2fc5b3488be924289bdadd1909d4a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plane_RoofMat
+    second: {fileID: 2100000, guid: 3c2bdfa65ced010428dc7fb73d236fab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plane_WhiteWoodMat
+    second: {fileID: 2100000, guid: 16c350639250eb0479f41f000630450d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plane_WoodMat
+    second: {fileID: 2100000, guid: e41279efc270b1c43ba8a922e98028f7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
