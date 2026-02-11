@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbcf6b0c0055f89418334568b5e15077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  _lockMovementChannel: {fileID: 11400000, guid: 78594f026571afa4d8c01663a1ba938f, type: 2}
   _playerMovementConfig: {fileID: 11400000, guid: 76c311f76b625844d9f6f769ca631ed6, type: 2}
   _playerRigidbody: {fileID: 2019051602396369572}
 --- !u!1 &1324492916464091062

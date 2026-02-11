@@ -5,8 +5,20 @@ using System;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] BoolEventChannel _lockMovementChannel;
+    private bool _isMovementLocked = false;
+    private void OnEnable()
+    {
+        _lockMovementChannel.Channel += (state) => _isMovementLocked = state;
+    }
+    private void OnDisable()
+    {
+        _lockMovementChannel.Channel -= (state) => _isMovementLocked = state;
+    }
+
     public void Move(Vector2 playerInputLocomotion)
     {
+        if (_isMovementLocked) return;
         if (_playerMovementConfig == null) return;
 
         Vector3 targetVel = (playerInputLocomotion.y * _playerMovementConfig.PlayerSpeed * forwardVector)
@@ -17,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Dash()
     {
+        if (_isMovementLocked) return;
         if (_playerMovementConfig == null) return;
         _playerRigidbody.AddForce(_playerRigidbody.linearVelocity.normalized * _playerMovementConfig.DashSpeed, ForceMode.VelocityChange);
     }
