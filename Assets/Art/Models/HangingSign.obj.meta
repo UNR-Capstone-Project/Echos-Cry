@@ -3,7 +3,32 @@ guid: b055fc3b5fa80954da636010e34e2283
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle_CircleMat
+    second: {fileID: 2100000, guid: c2f8b096c7774854ebeed9d1ea3a2a9f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cube.001_Cube.002Mat
+    second: {fileID: 2100000, guid: c9b589d835a14834aabb423a37c09402, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cube_Cube.001Mat
+    second: {fileID: 2100000, guid: a8e49ab181082b74784641f97d1cdd0d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cylinder.001_Cylinder.001Mat
+    second: {fileID: 2100000, guid: 9640119fafab7384b9da468d131c4b11, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cylinder.002_Cylinder.002Mat
+    second: {fileID: 2100000, guid: 6e5465eed4b147c4e8000057859c9d14, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
