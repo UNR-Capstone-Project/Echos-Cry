@@ -119,6 +119,8 @@ public class UpgradeManager : MonoBehaviour
 
         UpdateSelectors();
     }
+
+    //Make this event-based using the void event channels for each event. The events can then be bound to the PlayerStats class
     public void ApplyUpgrade(UpgradeType upgradeType)
     {
         availablePoints--;

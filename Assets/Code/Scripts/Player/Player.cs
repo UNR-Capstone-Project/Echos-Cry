@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerSkillManager _skills;
     [SerializeField] private PlayerOrientation _orientation;
     [SerializeField] private PlayerCurrencySystem _currencySystem;
-    [SerializeField] private PlayerStats _stats;
+    [SerializeField] private PlayerXP _stats;
     [SerializeField] private InputTranslator _inputTranslator;
     [SerializeField] private SoundStrategy _sfx;
     [SerializeField] private SFXConfig _sfxConfig;
@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     public PlayerSkillManager Skills { get => _skills; }
     public PlayerOrientation Orientation { get => _orientation; }
     public PlayerCurrencySystem CurrencySystem { get => _currencySystem; }
-    public PlayerStats Stats { get => _stats; }
+    public PlayerXP Stats { get => _stats; }
     public InputTranslator InputTranslator { get => _inputTranslator; }
 
     private void InitStateCache()

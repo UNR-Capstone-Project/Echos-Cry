@@ -62,6 +62,8 @@ public class PassiveEffectHandler : MonoBehaviour
         }
     }
 
+    //ISSUE: Instead of directly referencing the health systems through the enemy, use NPC Damageable
+    //Also seems that the damage multiplier stuff should happen in the NPC Damageable script rather than the Health System
     public void UseEffect(PassiveEffect effect)
     {
         switch (effect)
