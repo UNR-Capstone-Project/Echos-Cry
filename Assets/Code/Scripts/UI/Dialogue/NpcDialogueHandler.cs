@@ -6,7 +6,7 @@ public class NpcDialogueHandler : MonoBehaviour
     [SerializeField] private InputTranslator translator;
     [SerializeField] private GameObject ToolTipPrefab;
 
-    [Header("Dialogue (optional")]
+    [Header("Dialogue Knot from Ink")]
     [SerializeField] private string _dialogueKnotName;
 
     private bool _playerInRange = false;
