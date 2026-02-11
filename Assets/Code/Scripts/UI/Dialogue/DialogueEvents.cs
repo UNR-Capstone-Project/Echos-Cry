@@ -8,6 +8,9 @@ public class DialogueEvents : MonoBehaviour
 
     public event Action<string> OnEnterDiaglogue;
     public event Action OnSubmitPressed;
+    public event Action OnDialogueStarted;
+    public event Action OnDialogueEnded;
+    public event Action<string> OnDisplayDialogue;
 
     private void Awake()
     {
@@ -25,5 +28,20 @@ public class DialogueEvents : MonoBehaviour
     public void SubmitPressed()
     {
         OnSubmitPressed?.Invoke();
+    }
+
+    public  void DialogueStarted()
+    {
+        OnDialogueStarted?.Invoke();
+    }
+
+    public void DialogueEnded()
+    {
+        OnDialogueEnded?.Invoke();
+    }
+
+    public void DisplayDialogue(string dialogueLine)
+    {
+        OnDisplayDialogue?.Invoke(dialogueLine);
     }
 }

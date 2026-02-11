@@ -39,6 +39,8 @@ public class DialogueManager : MonoBehaviour
         if (_dialoguePlaying) return;
         _dialoguePlaying = true;
 
+        DialogueEvents.Instance.DialogueStarted();
+
         _lockMovementChannel.Invoke(true);
 
         if (!knotName.Equals(""))
@@ -54,7 +56,7 @@ public class DialogueManager : MonoBehaviour
         if (_story.canContinue)
         {
             string dialogueLine = _story.Continue();
-            Debug.Log(dialogueLine);
+            DialogueEvents.Instance.DisplayDialogue(dialogueLine);
         }
         else
         {
@@ -64,8 +66,10 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator ExitDialogue()
     {
         yield return null; //Avoiding race conditions.
-        Debug.Log("Exiting dialogue.");
+        //Debug.Log("Exiting dialogue.");
         _dialoguePlaying = false;
+
+        DialogueEvents.Instance.DialogueEnded();
 
         _lockMovementChannel.Invoke(false);
 
