@@ -11,6 +11,7 @@ public class DialogueEvents : MonoBehaviour
     public event Action OnDialogueStarted;
     public event Action OnDialogueEnded;
     public event Action<string> OnDisplayDialogue;
+    public event Action<int> OnUpdateChoiceIndex;
 
     private void Awake()
     {
@@ -43,5 +44,10 @@ public class DialogueEvents : MonoBehaviour
     public void DisplayDialogue(string dialogueLine)
     {
         OnDisplayDialogue?.Invoke(dialogueLine);
+    }
+
+    public void UpdateChoiceIndex(int choiceIndex)
+    {
+        OnUpdateChoiceIndex?.Invoke(choiceIndex);
     }
 }
