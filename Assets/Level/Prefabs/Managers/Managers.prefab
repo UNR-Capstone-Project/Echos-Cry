@@ -40,6 +40,7 @@ Transform:
   - {fileID: 4978944362699727778}
   - {fileID: 8961427896768757301}
   - {fileID: 1219027981405282584}
+  - {fileID: 8549820288382442185}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7213933989764012594
@@ -236,6 +237,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24fd209d674b5aa49aa83b09b5f9787f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BillboardManager
+--- !u!1 &6995668911894562656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8549820288382442185}
+  - component: {fileID: 8823125206681022235}
+  m_Layer: 0
+  m_Name: DialogueManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8549820288382442185
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6995668911894562656}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1580324783960160912}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8823125206681022235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6995668911894562656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0744e2a0b37fc54997cc4375e2bfb16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &7283154042145334160
 GameObject:
   m_ObjectHideFlags: 0
