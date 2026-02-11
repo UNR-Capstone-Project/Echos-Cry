@@ -1,6 +1,8 @@
 using System;
 using UnityEditor;
 using UnityEngine;
+using Ink.Runtime;
+using System.Collections.Generic;
 
 public class DialogueEvents : MonoBehaviour
 {
@@ -10,7 +12,7 @@ public class DialogueEvents : MonoBehaviour
     public event Action OnSubmitPressed;
     public event Action OnDialogueStarted;
     public event Action OnDialogueEnded;
-    public event Action<string> OnDisplayDialogue;
+    public event Action<string, List<Choice>> OnDisplayDialogue;
     public event Action<int> OnUpdateChoiceIndex;
 
     private void Awake()
@@ -41,9 +43,9 @@ public class DialogueEvents : MonoBehaviour
         OnDialogueEnded?.Invoke();
     }
 
-    public void DisplayDialogue(string dialogueLine)
+    public void DisplayDialogue(string dialogueLine, List<Choice> dialogueChoices)
     {
-        OnDisplayDialogue?.Invoke(dialogueLine);
+        OnDisplayDialogue?.Invoke(dialogueLine, dialogueChoices);
     }
 
     public void UpdateChoiceIndex(int choiceIndex)

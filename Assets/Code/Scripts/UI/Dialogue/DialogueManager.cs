@@ -9,6 +9,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextAsset _inkJson;
     [SerializeField] private BoolEventChannel _lockMovementChannel;
     private Story _story;
+    private int _currentChoiceIndex = -1;
 
     private bool _dialoguePlaying = false;
 
@@ -20,11 +21,18 @@ public class DialogueManager : MonoBehaviour
     {
         DialogueEvents.Instance.OnEnterDiaglogue += EnterDialogue;
         DialogueEvents.Instance.OnSubmitPressed += SubmitPressed;
+        DialogueEvents.Instance.OnUpdateChoiceIndex += UpdateChoiceIndex;
     }
     private void OnDisable()
     {
         DialogueEvents.Instance.OnEnterDiaglogue -= EnterDialogue;
         DialogueEvents.Instance.OnSubmitPressed -= SubmitPressed;
+        DialogueEvents.Instance.OnUpdateChoiceIndex -= UpdateChoiceIndex;
+    }
+
+    private void UpdateChoiceIndex(int choiceIndex)
+    {
+        this._currentChoiceIndex = choiceIndex;
     }
 
     private void SubmitPressed()
@@ -53,12 +61,18 @@ public class DialogueManager : MonoBehaviour
 
     private void ContinueOrExitStory()
     {
+        if (_story.currentChoices.Count > 0 && _currentChoiceIndex != -1)
+        {
+            _story.ChooseChoiceIndex(_currentChoiceIndex);
+            _currentChoiceIndex = -1;
+        }
+
         if (_story.canContinue)
         {
             string dialogueLine = _story.Continue();
-            DialogueEvents.Instance.DisplayDialogue(dialogueLine);
+            DialogueEvents.Instance.DisplayDialogue(dialogueLine, _story.currentChoices);
         }
-        else
+        else if (_story.currentChoices.Count == 0)
         {
             StartCoroutine(ExitDialogue());
         }
