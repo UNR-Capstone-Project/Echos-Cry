@@ -17,6 +17,12 @@ public class PlayerIdleState : PlayerActionState
             _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Attack));
         }
     }
+
+    public override void FixedUpdate()
+    {
+        _playerContext.Movement.StopHorizontalMovement();
+    }
+
     public override void Enter()
     {
         _playerContext.Animator.SpriteAnimator.Play("Idle");

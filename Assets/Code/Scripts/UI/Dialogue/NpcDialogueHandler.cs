@@ -1,3 +1,4 @@
+using AudioSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,6 +6,7 @@ public class NpcDialogueHandler : MonoBehaviour
 {
     [SerializeField] private InputTranslator translator;
     [SerializeField] private GameObject ToolTipPrefab;
+    [SerializeField] private soundEffect _submitSound;
 
     [Header("Dialogue Knot from Ink")]
     [SerializeField] private string _dialogueKnotName;
@@ -37,9 +39,14 @@ public class NpcDialogueHandler : MonoBehaviour
 
     private void RequestSubmit()
     {
-        if (_playerInRange)
+        if (_playerInRange && DialogueEvents.Instance.InDialogue)
         {
             DialogueEvents.Instance.SubmitPressed();
+
+            SoundEffectManager.Instance.Builder
+                .SetSound(_submitSound)
+                .SetSoundPosition(PlayerRef.Transform.position)
+                .ValidateAndPlaySound();
         }
     }
 

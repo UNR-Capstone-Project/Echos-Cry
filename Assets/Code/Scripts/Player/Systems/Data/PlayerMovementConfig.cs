@@ -6,6 +6,7 @@ public class PlayerMovementConfig : ScriptableObject
     [Header("Player Movement Variables")]
     [SerializeField] private float _dashSpeed;
     [SerializeField] private float _dashDuration;
+    [SerializeField] private float _attackMomentumSpeed;
     [SerializeField] private float _dashCooldown;
     [SerializeField] private float _playerSpeed;
     [SerializeField] private int _dashCount;
@@ -17,6 +18,7 @@ public class PlayerMovementConfig : ScriptableObject
     
     public float DashSpeed { get { return _dashSpeed; } }
     public float DashDuration { get { return _dashDuration; } }
+    public float AttackMomentumSpeed { get { return _attackMomentumSpeed; } }
     public float DashCooldown { get { return _dashCooldown; } }
     public float PlayerSpeed { get { return _playerSpeed; } }
     public int DashCount { get => _dashCount; }

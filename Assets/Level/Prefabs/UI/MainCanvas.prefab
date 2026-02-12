@@ -4969,6 +4969,7 @@ MonoBehaviour:
   - {fileID: 5241412038496461820}
   - {fileID: 9128041202700755710}
   - {fileID: 3878805087195286693}
+  _displaySound: {fileID: 11400000, guid: ca344e292d5ae8142aedbced0df315d7, type: 2}
 --- !u!1 &3869598979523466354
 GameObject:
   m_ObjectHideFlags: 0

@@ -136,6 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueChoiceButton
   button: {fileID: 7710998081950590328}
   _choiceText: {fileID: 6775073468088556280}
+  _soundEffect: {fileID: 11400000, guid: 7ab67a276e82d494ab5e45685ff92ab0, type: 2}
 --- !u!1 &8420891256608271051
 GameObject:
   m_ObjectHideFlags: 0
