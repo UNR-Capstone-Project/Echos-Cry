@@ -1,3 +1,4 @@
+using AudioSystem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,11 +9,17 @@ public class DialogueChoiceButton : MonoBehaviour, ISelectHandler
 {
     [SerializeField] private Button button;
     [SerializeField] private TextMeshProUGUI _choiceText;
+    [SerializeField] private soundEffect _soundEffect;
     private int _choiceIndex = -1;
 
     public void OnSelect(BaseEventData eventData)
     {
         DialogueEvents.Instance.UpdateChoiceIndex(_choiceIndex);
+
+        SoundEffectManager.Instance.Builder
+            .SetSound(_soundEffect)
+            .SetSoundPosition(transform.position)
+            .ValidateAndPlaySound();
     }
 
     public void SelectButton()

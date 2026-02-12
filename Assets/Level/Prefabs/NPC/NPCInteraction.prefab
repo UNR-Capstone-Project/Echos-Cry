@@ -68,4 +68,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   translator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
   ToolTipPrefab: {fileID: 5435326603873152583, guid: 2368d443f59e53f4dbdf1ce2d1423114, type: 3}
+  _submitSound: {fileID: 11400000, guid: ca344e292d5ae8142aedbced0df315d7, type: 2}
   _dialogueKnotName: npc
