@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
         _dashCount--;
         StartDashCooldown();
     }
+
     private IEnumerator AddDashCoroutine()
     {
         yield return new WaitForSeconds(_dashCooldown);
