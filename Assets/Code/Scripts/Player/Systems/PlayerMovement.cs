@@ -12,10 +12,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_isMovementLocked) return;
         if (_playerMovementConfig == null) return;
-
-        Vector3 targetVel = (playerInputLocomotion.y * _moveSpeed * forwardVector)
-                          + (playerInputLocomotion.x * _moveSpeed * rightVector)
-                          + new Vector3(0f, _playerRigidbody.linearVelocity.y, 0f);
+        Vector3 moveDirection = ((playerInputLocomotion.y * forwardVector) + (playerInputLocomotion.x * rightVector)).normalized;
+        Vector3 targetVel = _moveSpeed * moveDirection + new Vector3(0f, _playerRigidbody.linearVelocity.y, 0f);
 
         _playerRigidbody.AddForce(targetVel - _playerRigidbody.linearVelocity, ForceMode.VelocityChange);
     }
@@ -38,13 +36,13 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(AddDashCoroutine());
     }
 
-    public void MomentumPush(Vector3 direction)
+    public void MomentumPush()
     {
         if (_isMovementLocked) return;
         if (_playerMovementConfig == null) return;
         //Working on making momentum maintain when attacking in opposite direction
-        float directionDot = Vector3.Dot(direction.normalized, _playerRigidbody.linearVelocity.normalized);
-        _playerRigidbody.AddForce(_playerMovementConfig.AttackMomentumSpeed * directionDot * direction, ForceMode.VelocityChange);
+        //float directionDot = Vector3.Dot(direction.normalized, _playerRigidbody.linearVelocity.normalized);
+        _playerRigidbody.AddForce(_playerMovementConfig.AttackMomentumSpeed * _playerRigidbody.linearVelocity.normalized, ForceMode.VelocityChange);
     }
 
     private void OnEnable()

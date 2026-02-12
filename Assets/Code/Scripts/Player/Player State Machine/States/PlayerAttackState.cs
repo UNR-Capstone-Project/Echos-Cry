@@ -21,7 +21,7 @@ public class PlayerAttackState : PlayerActionState
         if (_playerContext.WeaponHolder.HasWeapon)
         {
             _playerContext.Animator.SpriteAnimator.Play("Attack");
-            _playerContext.Movement.MomentumPush(_playerContext.Orientation.Direction);
+            _playerContext.Movement.MomentumPush();
         }
 
         _playerContext.Orientation.IsRotating = false;

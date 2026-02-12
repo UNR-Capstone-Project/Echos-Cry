@@ -75,8 +75,6 @@ public class UpgradeManager : MonoBehaviour
     {
         if (_playerXPChannel != null) _playerXPChannel.Channel -= UpdateInfo;
         if (_playerLevelUpChannel != null) _playerLevelUpChannel.Channel -= AddLevelPoint;
-
-
     }
 
 
