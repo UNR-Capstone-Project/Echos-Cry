@@ -61,9 +61,11 @@ public class PlayerMovement : MonoBehaviour
         {
             forwardVector = Camera.main.transform.forward.normalized;
             forwardVector.y = 0f;
+            forwardVector.Normalize();
 
             rightVector = Camera.main.transform.right.normalized;
             rightVector.y = 0f;
+            rightVector.Normalize();
         }
     }
 
