@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerAttackState : PlayerActionState
 {
@@ -22,6 +23,7 @@ public class PlayerAttackState : PlayerActionState
         if (_playerContext.WeaponHolder.HasWeapon)
         {
             _playerContext.Animator.SpriteAnimator.Play("Attack");
+            _playerContext.Movement.MomentumPush();
         }
 
         _playerContext.Orientation.IsRotating = false;
