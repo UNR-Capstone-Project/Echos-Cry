@@ -3,7 +3,32 @@ guid: 4c18f1fa282361e40bdfd9c047a76153
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "B\xE9zierCurve.001_WoodMat"
+    second: {fileID: 2100000, guid: cfa623daf7bf2bc46b5de74f02a3563d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "B\xE9zierCurve_WoodMat"
+    second: {fileID: 2100000, guid: 84fe9e2eda7e635469e2416c5e63d076, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cube_TopMat
+    second: {fileID: 2100000, guid: 6b43eecd7b6108043add50a20f51624c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cylinder_BaseMat
+    second: {fileID: 2100000, guid: ef277d76e0f0d3c4697b10d3ed808819, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Obelisk_Base_RockMat
+    second: {fileID: 2100000, guid: 7e7eaefe25c230e44b495ef8d8667286, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

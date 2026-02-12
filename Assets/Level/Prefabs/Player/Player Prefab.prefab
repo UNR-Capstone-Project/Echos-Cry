@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbcf6b0c0055f89418334568b5e15077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  _lockMovementChannel: {fileID: 11400000, guid: 78594f026571afa4d8c01663a1ba938f, type: 2}
   _playerMovementConfig: {fileID: 11400000, guid: 76c311f76b625844d9f6f769ca631ed6, type: 2}
   _playerRigidbody: {fileID: 2019051602396369572}
 --- !u!1 &1324492916464091062
@@ -292,7 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac600b6e0f3ab204c9bb832ef02cd591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  outlineMaterial: {fileID: 2100000, guid: ae41a1466203a3e48935a521f9206df8, type: 2}
+  _material: {fileID: 2100000, guid: ae41a1466203a3e48935a521f9206df8, type: 2}
 --- !u!114 &2431117810447779374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1243,6 +1244,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6557154924598691002, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
+      propertyPath: _playerAttackEndedChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: 32c2647349869554ca690720dab27258, type: 2}
     - target: {fileID: 6698232584449221764, guid: e285dd95641fdc344a4f3e866609bf56, type: 3}
       propertyPath: m_Name
       value: Weapon (Clarinet)
@@ -1270,6 +1275,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1242409098282706864}
     m_Modifications:
+    - target: {fileID: 1423634244738665547, guid: e0d33cc1b61b8d743b9d71a0b5652b14, type: 3}
+      propertyPath: _playerAttackEndedChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: 32c2647349869554ca690720dab27258, type: 2}
     - target: {fileID: 8474684134448079835, guid: e0d33cc1b61b8d743b9d71a0b5652b14, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

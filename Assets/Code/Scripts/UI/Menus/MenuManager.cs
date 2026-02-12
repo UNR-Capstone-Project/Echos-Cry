@@ -21,6 +21,9 @@ public class MenuManager : Singleton<MenuManager>
     public static event Action PauseStarted;
     public static event Action PauseEnded;
 
+    private string _previousMenu;
+    private string _currentMenu;
+
     protected override void OnAwake()
     {
         SetMenu("HUD");
@@ -29,7 +32,8 @@ public class MenuManager : Singleton<MenuManager>
     private void Start()
     {
         GameManager.OnPlayerDeathEvent += EnableGameoverMenu;
-
+        DialogueEvents.Instance.OnDialogueStarted += () => SetMenu("Dialogue");
+        DialogueEvents.Instance.OnDialogueEnded += () => SetMenu("HUD");
         _translator.OnUpgradeEvent += EnableUpgradeMenu;
         _translator.OnPauseEvent += EnablePauseMenu;
         _translator.OnResumeEvent += DisablePauseMenu;
@@ -38,7 +42,8 @@ public class MenuManager : Singleton<MenuManager>
     void OnDestroy()
     {
         GameManager.OnPlayerDeathEvent -= EnableGameoverMenu;
-
+        DialogueEvents.Instance.OnDialogueStarted -= () => SetMenu("Dialogue");
+        DialogueEvents.Instance.OnDialogueEnded -= () => SetMenu("HUD");
         _translator.OnUpgradeEvent -= EnableUpgradeMenu;
         _translator.OnPauseEvent -= EnablePauseMenu;
         _translator.OnResumeEvent -= DisablePauseMenu;
@@ -54,6 +59,7 @@ public class MenuManager : Singleton<MenuManager>
 
     private void EnablePauseMenu()
     {
+        _previousMenu = _currentMenu;
         SetMenu("Pause");
         PauseStarted?.Invoke();
         VolumeManager.Instance.SetDepthOfField(true);
@@ -62,6 +68,7 @@ public class MenuManager : Singleton<MenuManager>
 
     private void EnableUpgradeMenu()
     {
+        _previousMenu = _currentMenu;
         SetMenu("Upgrade");
         PauseStarted?.Invoke();
         VolumeManager.Instance.SetDepthOfField(true);
@@ -70,7 +77,9 @@ public class MenuManager : Singleton<MenuManager>
 
     public void DisablePauseMenu()
     {
-        SetMenu("HUD");
+        if (_previousMenu != null) SetMenu(_previousMenu);
+        else SetMenu("HUD");
+
         PauseEnded?.Invoke();
         VolumeManager.Instance.SetDepthOfField(false);
         Time.timeScale = 1f;
@@ -78,6 +87,7 @@ public class MenuManager : Singleton<MenuManager>
 
     public void SetMenu(string menuName)
     {
+        _currentMenu = menuName;
         foreach (StringGameobjectPair menu in menuDictionary) 
         { 
             if (menu.key == menuName) 
