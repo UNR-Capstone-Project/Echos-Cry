@@ -34,13 +34,19 @@ public class PlayerMovement : MonoBehaviour
 
         _playerRigidbody.AddForce(targetVel - _playerRigidbody.linearVelocity, ForceMode.VelocityChange);
     }
+
     public void Dash()
     {
         if (_isMovementLocked) return;
         if (_playerMovementConfig == null) return;
         if (_lastMoveDirection == Vector3.zero) return;
-        _playerRigidbody.linearVelocity = Vector3.zero; //Remove previous force.
+
         _playerRigidbody.AddForce(_lastMoveDirection * _playerMovementConfig.DashSpeed, ForceMode.VelocityChange);
+    }
+
+    public void StopHorizontalMovement()
+    { //When player goes from dash -> idle, the movement is never stopped causing a slide, this ensures motion is stopped.
+        _playerRigidbody.linearVelocity = new Vector3(0f, _playerRigidbody.linearVelocity.y, 0f);
     }
 
     void Start()

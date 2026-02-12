@@ -69,7 +69,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D:
-        m_Texture: {fileID: 2800000, guid: 8ccc66eb94e6c5c44a1b9966be43032d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 358bed1adc9dd3a4f9603abace9a0108, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -89,7 +89,7 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _BeatTime: 0.50605816
+    - _BeatTime: 0.93024355
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BounceFactor: 0.1
