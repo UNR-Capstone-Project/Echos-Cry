@@ -3,7 +3,17 @@ guid: a49d354e09b4967458fef7d035d28d9d
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cylinder_BarkMat
+    second: {fileID: 2100000, guid: 801281c9316369749bc87759b9404294, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cylinder_RingsMat
+    second: {fileID: 2100000, guid: e4a1bed8f82f0ab40a2af8e963eb194c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

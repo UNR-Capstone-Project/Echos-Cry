@@ -104,3 +104,6 @@ InitTestScene*.unity*
 # Visual Studio Code Settings
 
 .vscode
+Assets/Art/Materials/UI/OuterRingBounce.mat
+Assets/Art/Materials/UI/PatternBounceMat.mat
+Assets/PlayerOutlineMat.mat

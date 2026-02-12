@@ -14,11 +14,8 @@ public class WaveManager : MonoBehaviour
 
     private int _currentWave = 0;
     private int _totalEnemiesKilled = 0;
-    private int cachedWave = -1;
-    public void resetCurrentWave()
-    {
-        _currentWave = 0;
-    }
+    private bool _allWavesCompleted = false;
+    private bool _waveHasStarted = false;
 
     private void OnEnable()
     {
@@ -27,6 +24,15 @@ public class WaveManager : MonoBehaviour
     private void OnDisable()
     {
         _updateKillCountChannel.Channel -= UpdateKillCount;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!_waveHasStarted)
+        {
+            _waveHasStarted = true;
+            StartNextWave();
+        }
     }
 
     private int GetTotalEnemiesInWave(WaveData currentWave)
@@ -41,7 +47,8 @@ public class WaveManager : MonoBehaviour
     }
     public void UpdateKillCount()
     {
-        if (_currentWave >= _allWaves.Length) return;
+        if (_allWavesCompleted || !_waveHasStarted) return;
+
         _totalEnemiesKilled++;
         //Debug.Log($"Kill count of enemy updated to now {_totalEnemiesKilled}");
         if (_totalEnemiesKilled >= GetTotalEnemiesInWave(_allWaves[_currentWave]))
@@ -49,13 +56,13 @@ public class WaveManager : MonoBehaviour
             _currentWave++;
             if (_currentWave >= _allWaves.Length) //All waves completed
             {
+                //Debug.Log("Waves Complete!");
                 HUDMessage.Instance.UpdateMessage("Waves Completed!", 2f);
                 OnAllWavesCompleted?.Invoke();
-                cachedWave = _currentWave;
+                _allWavesCompleted = true;
             }
             else
             {
-                
                 StartCoroutine(SpawnWaveAfterDelay(_timeBetweenWaves));
             }
         }
@@ -73,10 +80,6 @@ public class WaveManager : MonoBehaviour
         
         HUDMessage.Instance.UpdateMessage("Wave " + (_currentWave + 1).ToString() + " Has Begun.", 2f);
         CameraManager.Instance.ScreenShake(0.4f, 2.5f);
-        if (cachedWave != -1)
-        {
-            _currentWave = 0;
-        }
 
         StartCoroutine(SpawnWave(_allWaves[_currentWave]));
     }

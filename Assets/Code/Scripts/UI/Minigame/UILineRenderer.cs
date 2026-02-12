@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UILineRenderer : Graphic
 {
-    private List<Vector2> points;
+    private List<Vector2> points = new List<Vector2>();
     [SerializeField] private RectTransform mRectTransform;
     [SerializeField] private float thickness = 10f;
     [SerializeField] private float lineWidth = 10f;
@@ -13,8 +13,7 @@ public class UILineRenderer : Graphic
 
     [SerializeField] private Color leftColor = Color.white;
     [SerializeField] private Color rightColor = Color.black;
-
-    //TODO: make the UI line render start from the end and move to the middle as before
+    
     private void Update()
     {
         if (MusicManager.Instance == null || MusicManager.Instance.GetMusicPlayer() == null) { return; }
@@ -23,14 +22,12 @@ public class UILineRenderer : Graphic
         float progress = MusicManager.Instance.GetSampleProgress();
         float rectWidth = mRectTransform.rect.width + (lineWidth * 2);
 
-        points = new List<Vector2>
-        {
-            new Vector2((rectWidth * progress) - rectWidth / 2 - lineWidth / 2, 0),
-            new Vector2((rectWidth * progress) - rectWidth / 2 + lineWidth / 2, 0)
-        };
+        points.Clear();
+
+        points.Add(new Vector2((rectWidth * progress) - rectWidth / 2 - lineWidth / 2, 0));
+        points.Add(new Vector2((rectWidth * progress) - rectWidth / 2 + lineWidth / 2, 0));
 
         alpha = progress;
-
 
         SetVerticesDirty();
     }
