@@ -48,6 +48,7 @@ public class DialogueManager : MonoBehaviour
         _dialoguePlaying = true;
 
         DialogueEvents.Instance.DialogueStarted();
+        CameraManager.Instance.ZoomInCamera(5f, .8f);
 
         _lockMovementChannel.Invoke(true);
 
@@ -84,6 +85,7 @@ public class DialogueManager : MonoBehaviour
         _dialoguePlaying = false;
 
         DialogueEvents.Instance.DialogueEnded();
+        CameraManager.Instance.ZoomOutCamera(.8f);
 
         _lockMovementChannel.Invoke(false);
 
