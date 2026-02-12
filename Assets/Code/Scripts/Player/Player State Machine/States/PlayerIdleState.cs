@@ -18,11 +18,6 @@ public class PlayerIdleState : PlayerActionState
         }
     }
 
-    public override void FixedUpdate()
-    {
-        _playerContext.Movement.StopHorizontalMovement();
-    }
-
     public override void Enter()
     {
         _playerContext.Animator.SpriteAnimator.Play("Idle");
