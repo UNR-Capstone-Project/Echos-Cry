@@ -20,6 +20,8 @@ public class PlayerStats : MonoBehaviour
         if (_armorChannel != null) _armorChannel.Channel += UpgradeMaxArmor;
         if (_moveSpeedChannel != null) _moveSpeedChannel.Channel += UpgradeMoveSpeed;
         if (_dashSpeedChannel != null) _dashSpeedChannel.Channel += UpgradeDashSpeed;
+        if(_dashCooldownChannel != null) _dashCooldownChannel.Channel += UpgradeDashCooldown;
+        if(_dashCountChannel != null) _dashCountChannel.Channel += UpgradeDashCount;
     }
     private void OnDisable()
     {
@@ -27,12 +29,22 @@ public class PlayerStats : MonoBehaviour
         if (_armorChannel != null) _armorChannel.Channel -= UpgradeMaxArmor;
         if (_moveSpeedChannel != null) _moveSpeedChannel.Channel -= UpgradeMoveSpeed;
         if (_dashSpeedChannel != null) _dashSpeedChannel.Channel -= UpgradeDashSpeed;
+        if (_dashCooldownChannel != null) _dashCooldownChannel.Channel -= UpgradeDashCooldown;
+        if (_dashCountChannel != null) _dashCountChannel.Channel -= UpgradeDashCount;
     }
 
     //Currently using unmutable variables but will eventually change to handle configuration or scaling upgrades eventually
     void UpgradeDashSpeed()
     {
         if (_movement != null) _movement.DashSpeed += 0.25f;
+    }
+    void UpgradeDashCount()
+    {
+        if (_movement != null) _movement.DashCount++;
+    }
+    void UpgradeDashCooldown()
+    {
+        if (_movement != null) _movement.DashCooldown -= 0.05f;
     }
     void UpgradeMoveSpeed()
     {

@@ -7,14 +7,6 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] BoolEventChannel _lockMovementChannel;
     private bool _isMovementLocked = false;
-    private void OnEnable()
-    {
-        _lockMovementChannel.Channel += (state) => _isMovementLocked = state;
-    }
-    private void OnDisable()
-    {
-        _lockMovementChannel.Channel -= (state) => _isMovementLocked = state;
-    }
 
     public void Move(Vector2 playerInputLocomotion)
     {
@@ -32,6 +24,28 @@ public class PlayerMovement : MonoBehaviour
         if (_isMovementLocked) return;
         if (_playerMovementConfig == null) return;
         _playerRigidbody.AddForce(_playerRigidbody.linearVelocity.normalized * _dashSpeed, ForceMode.VelocityChange);
+        _dashCount--;
+        StartDashCooldown();
+    }
+    private IEnumerator AddDashCoroutine()
+    {
+        yield return new WaitForSeconds(_dashCooldown);
+        _dashCount++;
+    }
+    public void StartDashCooldown()
+    {
+        StartCoroutine(AddDashCoroutine());
+    }
+    
+    private void OnEnable()
+    {
+        _lockMovementChannel.Channel += (state) => _isMovementLocked = state;
+        _dashCount = _playerMovementConfig.DashCount;
+    }
+    private void OnDisable()
+    {
+        _lockMovementChannel.Channel -= (state) => _isMovementLocked = state;
+        StopAllCoroutines();
     }
 
     void Start()
@@ -45,6 +59,8 @@ public class PlayerMovement : MonoBehaviour
         {
             _dashSpeed = _playerMovementConfig.DashSpeed;
             _moveSpeed = _playerMovementConfig.PlayerSpeed;
+            _dashCount = _playerMovementConfig.DashCount;
+            _dashCooldown = _playerMovementConfig.DashCooldown;
         }
 
         if (Camera.main != null)
@@ -66,8 +82,14 @@ public class PlayerMovement : MonoBehaviour
 
     private float _dashSpeed;
     private float _moveSpeed;
+    private float _dashCooldown;
+    private int _dashCount;
     public float DashSpeed { get => _dashSpeed; set => _dashSpeed = value; }
     public float MoveSpeed { get => _moveSpeed; set => _moveSpeed = value; }
+    public float DashCooldown { get => _dashCooldown; set => _dashCooldown = value; }
+    public int DashCount { get => _dashCount; set => _dashCount = value; }
+
+    public bool HasDash => _dashCount > 0;
 
     private Vector3 forwardVector;
     private Vector3 rightVector;

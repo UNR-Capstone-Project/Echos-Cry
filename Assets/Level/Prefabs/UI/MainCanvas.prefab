@@ -11690,8 +11690,8 @@ MonoBehaviour:
   _dashSpeedChannel: {fileID: 11400000, guid: b49daf7febadf974d853b7c7efd88e9c, type: 2}
   _healthChannel: {fileID: 11400000, guid: 500d6e615a856a844a407ce00b7f4ff7, type: 2}
   _armorChannel: {fileID: 11400000, guid: ed980f021be41e944b80a689b2fca290, type: 2}
-  _dashCountChannel: {fileID: 0}
-  _dashCooldownChannel: {fileID: 0}
+  _dashCountChannel: {fileID: 11400000, guid: 525432ab9a8309644a0c3e1894f626e4, type: 2}
+  _dashCooldownChannel: {fileID: 11400000, guid: 01cfb1c9714eab745b95991f9c7b59f8, type: 2}
 --- !u!1 &8786925093521931265
 GameObject:
   m_ObjectHideFlags: 0

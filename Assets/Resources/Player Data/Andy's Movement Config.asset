@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementConfig
   _dashSpeed: 22
   _dashDuration: 0.2
-  _dashCooldown: 0.5
+  _dashCooldown: 4
   _playerSpeed: 5.2
-  _isDashToBeat: 1
+  _dashCount: 3
+  _isDashToBeat: 0
   _hasDashCooldown: 1
