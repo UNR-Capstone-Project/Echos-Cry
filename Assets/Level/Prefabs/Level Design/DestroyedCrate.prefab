@@ -1445,7 +1445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea07031b24d8a9f4ca7368458aaa6f07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::timedDestroy
-  destroyTime: 10
+  destroyTime: 5
   destroyOnStart: 1
 --- !u!1 &8041323041061021509 stripped
 GameObject:
