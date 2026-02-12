@@ -11686,6 +11686,12 @@ MonoBehaviour:
   _pointsAvailableText: {fileID: 1005288165675750067}
   _playerXPChannel: {fileID: 11400000, guid: 5ef765da4634f204397ef3093ebeeee2, type: 2}
   _playerLevelUpChannel: {fileID: 11400000, guid: 32986d85d32905d4abd66964bbb5f54e, type: 2}
+  _moveSpeedChannel: {fileID: 11400000, guid: b9b7dd2a8f79bec4b9365537b310ce1e, type: 2}
+  _dashSpeedChannel: {fileID: 11400000, guid: b49daf7febadf974d853b7c7efd88e9c, type: 2}
+  _healthChannel: {fileID: 11400000, guid: 500d6e615a856a844a407ce00b7f4ff7, type: 2}
+  _armorChannel: {fileID: 11400000, guid: ed980f021be41e944b80a689b2fca290, type: 2}
+  _dashCountChannel: {fileID: 0}
+  _dashCooldownChannel: {fileID: 0}
 --- !u!1 &8786925093521931265
 GameObject:
   m_ObjectHideFlags: 0
