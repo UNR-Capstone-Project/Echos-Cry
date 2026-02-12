@@ -39,13 +39,13 @@ public class NpcDialogueHandler : MonoBehaviour
 
     private void RequestSubmit()
     {
-        if (_playerInRange)
+        if (_playerInRange && DialogueEvents.Instance.InDialogue)
         {
             DialogueEvents.Instance.SubmitPressed();
 
             SoundEffectManager.Instance.Builder
                 .SetSound(_submitSound)
-                .SetSoundPosition(transform.position)
+                .SetSoundPosition(PlayerRef.Transform.position)
                 .ValidateAndPlaySound();
         }
     }

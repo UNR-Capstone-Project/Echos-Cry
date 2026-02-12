@@ -18,7 +18,7 @@ public class DialogueChoiceButton : MonoBehaviour, ISelectHandler
 
         SoundEffectManager.Instance.Builder
             .SetSound(_soundEffect)
-            .SetSoundPosition(transform.position)
+            .SetSoundPosition(PlayerRef.Transform.position)
             .ValidateAndPlaySound();
     }
 
