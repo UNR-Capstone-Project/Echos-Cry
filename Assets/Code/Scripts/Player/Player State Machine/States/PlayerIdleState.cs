@@ -20,5 +20,7 @@ public class PlayerIdleState : PlayerActionState
     public override void Enter()
     {
         _playerContext.Animator.SpriteAnimator.Play("Idle");
+        //Reset players momentum to prevent gliding
+        _playerContext.RB.linearVelocity = Vector3.zero;
     }
 }

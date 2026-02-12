@@ -37,7 +37,16 @@ public class PlayerMovement : MonoBehaviour
     {
         StartCoroutine(AddDashCoroutine());
     }
-    
+
+    public void MomentumPush(Vector3 direction)
+    {
+        if (_isMovementLocked) return;
+        if (_playerMovementConfig == null) return;
+        //Working on making momentum maintain when attacking in opposite direction
+        float directionDot = Vector3.Dot(direction.normalized, _playerRigidbody.linearVelocity.normalized);
+        _playerRigidbody.AddForce(_playerMovementConfig.AttackMomentumSpeed * directionDot * direction, ForceMode.VelocityChange);
+    }
+
     private void OnEnable()
     {
         _lockMovementChannel.Channel += (state) => _isMovementLocked = state;

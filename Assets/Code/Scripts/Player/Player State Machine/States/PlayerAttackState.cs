@@ -7,7 +7,6 @@ public class PlayerAttackState : PlayerActionState
 
     public override void Enter()
     {
-        //_playerContext.ComboMeter.ResetComboMultiplier();
 
         //Initialize whatever attack is happening
         if (_playerStateMachine.UsingPrimaryAction)
@@ -22,6 +21,7 @@ public class PlayerAttackState : PlayerActionState
         if (_playerContext.WeaponHolder.HasWeapon)
         {
             _playerContext.Animator.SpriteAnimator.Play("Attack");
+            _playerContext.Movement.MomentumPush(_playerContext.Orientation.Direction);
         }
 
         _playerContext.Orientation.IsRotating = false;

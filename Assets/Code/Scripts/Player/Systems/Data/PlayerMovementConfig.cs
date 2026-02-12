@@ -9,6 +9,7 @@ public class PlayerMovementConfig : ScriptableObject
     [SerializeField] private float _dashCooldown;
     [SerializeField] private float _playerSpeed;
     [SerializeField] private int _dashCount;
+    [SerializeField] private float _attackMomentumSpeed;
     
     [Header("Dev Testing variable")]
     [SerializeField] private bool _isDashToBeat = true;
@@ -21,4 +22,5 @@ public class PlayerMovementConfig : ScriptableObject
     public int DashCount { get => _dashCount; }
     public bool IsDashToBeat { get => _isDashToBeat; }
     public bool HasDashCooldown { get => _hasDashCooldown; }
+    public float AttackMomentumSpeed { get => _attackMomentumSpeed; }
 }

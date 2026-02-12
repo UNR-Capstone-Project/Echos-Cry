@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     [SerializeField] private InputTranslator _inputTranslator;
     [SerializeField] private SoundStrategy _sfx;
     [SerializeField] private SFXConfig _sfxConfig;
+    [SerializeField] private Rigidbody _rb;
 
     [Header("Event Channel (Broadcaster)")]
     [SerializeField] EventChannel _attackEndedChannel;
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour
     public PlayerCurrencySystem CurrencySystem { get => _currencySystem; }
     public PlayerXP Stats { get => _stats; }
     public InputTranslator InputTranslator { get => _inputTranslator; }
+    public Rigidbody RB { get => _rb; }
 
     private void InitStateCache()
     {

@@ -24,7 +24,7 @@ public class PlayerMoveState : PlayerActionState
         {
             if (_playerContext.Movement.PlayerMovementConfig.IsDashToBeat)
             {
-                _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Dash));
+                if(TempoConductor.Instance.IsOnBeat()) _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Dash));
             }
             else _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Dash));
         }

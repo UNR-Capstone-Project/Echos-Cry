@@ -18,8 +18,8 @@ public class ProjectileAttack : BaseAttack
     {
         base.InitAttack();
 
-        projectileDirection = PlayerOrientation.Direction;
-        projectileRB.AddForce(projectileDirection * projectileSpeed, ForceMode.Impulse);
+        //projectileDirection = PlayerOrientation.Direction;
+        //projectileRB.AddForce(projectileDirection * projectileSpeed, ForceMode.Impulse);
     }
 
 

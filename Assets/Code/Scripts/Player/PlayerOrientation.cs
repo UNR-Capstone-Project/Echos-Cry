@@ -5,10 +5,10 @@ public class PlayerOrientation : MonoBehaviour
 {
 
     public bool IsRotating = true;
-    private static Vector3 aimDirection;
-    private static Quaternion aimRotation;
-    public static Vector3 Direction { get { return aimDirection; } }
-    public static Quaternion Rotation { get { return aimRotation; } }
+    private Vector3 aimDirection;
+    private Quaternion aimRotation;
+    public Vector3 Direction { get { return aimDirection; } }
+    public Quaternion Rotation { get { return aimRotation; } }
 
     [SerializeField] private LayerMask groundLayer;
 
