@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using AudioSystem;
 /// Original Author: Abby
 /// All Contributors Since Creation: Abby
 /// Last Modified By:
@@ -13,6 +14,7 @@ public class InventoryManager : MonoBehaviour
 
     [SerializeField] private InventoryDisplay _inventoryDisplay;
     [SerializeField] private InputTranslator _inputTranslator;
+    [SerializeField] private soundEffect _useItemSound;
 
     private void Awake()
     {
@@ -66,6 +68,11 @@ public class InventoryManager : MonoBehaviour
     private void UseItem(int index)
     {
         if (inventory.Count <= 0 || inventory.Count <= index) return;
+
+        SoundEffectManager.Instance.Builder
+                .SetSound(_useItemSound)
+                .SetSoundPosition(PlayerRef.Transform.position)
+                .ValidateAndPlaySound();
 
         InventoryItem usedItem = inventory[index];
         if (usedItem == null || usedItem.data == null) return;

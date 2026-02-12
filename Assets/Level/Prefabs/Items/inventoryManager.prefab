@@ -64,4 +64,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::inventoryManager
   _inventoryDisplay: {fileID: 2156123696442323902}
   _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
-  healthChannel: {fileID: 11400000, guid: c585d041cc469f04b887f8eeb82703dc, type: 2}
+  _useItemSound: {fileID: 11400000, guid: 41822ffa48839a14490c776b17fa35c4, type: 2}
