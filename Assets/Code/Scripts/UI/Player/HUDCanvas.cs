@@ -5,22 +5,24 @@ using UnityEngine;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.UI;
 
-public class MetronomeCanvas : MonoBehaviour
+public class HUDCanvas : MonoBehaviour
 {
     [SerializeField] private InputTranslator _translator;
     [SerializeField] private TextMeshProUGUI hitQualityText;
-    [SerializeField] private GameObject      metronomeImageObject;
-    [SerializeField] private float           flashDuration = 0.1f;
-    
-    private RawImage _metronomeImage;
+    [SerializeField] private Animator _textAnimator;
+
+    //[SerializeField] private GameObject      metronomeImageObject;
+    //[SerializeField] private float           flashDuration = 0.1f;
+    //private RawImage _metronomeImage;
+
     private Canvas   _mainCanvas;
-    private Material metronomeMaterial;
+    //private Material metronomeMaterial;
 
     private void Awake()
     {
         _mainCanvas = GetComponent<Canvas>();
-        _metronomeImage = metronomeImageObject.GetComponent<RawImage>();
-        metronomeMaterial = Instantiate(_metronomeImage.material);
+        //_metronomeImage = metronomeImageObject.GetComponent<RawImage>();
+        //metronomeMaterial = Instantiate(_metronomeImage.material);
     }
     void Start()
     {
@@ -29,9 +31,8 @@ public class MetronomeCanvas : MonoBehaviour
         _mainCanvas.planeDistance = 1;
 
         //Setup metronome image
-        _metronomeImage.material = metronomeMaterial;
-
-        TempoConductor.Instance.BeatTickEvent += FlashOutline;
+        //_metronomeImage.material = metronomeMaterial;
+        //TempoConductor.Instance.BeatTickEvent += FlashOutline;
 
         _translator.OnDashEvent += UpdateHitQualityText;
         _translator.OnPrimaryActionEvent += UpdateHitQualityText;
@@ -40,7 +41,7 @@ public class MetronomeCanvas : MonoBehaviour
 
     private void OnDestroy()
     {
-        if(TempoConductor.Instance != null) TempoConductor.Instance.BeatTickEvent -= FlashOutline;
+        //if(TempoConductor.Instance != null) TempoConductor.Instance.BeatTickEvent -= FlashOutline;
 
         _translator.OnDashEvent -= UpdateHitQualityText;
         _translator.OnPrimaryActionEvent -= UpdateHitQualityText;
@@ -63,8 +64,10 @@ public class MetronomeCanvas : MonoBehaviour
                 break;
         }
         hitQualityText.text = TempoConductor.Instance.CurrentHitQuality.ToString();
+        _textAnimator.SetTrigger("Bounce");
     }
 
+    /*
     public void FlashOutline()
     {
         if (MusicManager.Instance.SongCurrentlyPlaying() && gameObject.activeInHierarchy)
@@ -79,4 +82,5 @@ public class MetronomeCanvas : MonoBehaviour
         yield return new WaitForSeconds(duration);
         metronomeMaterial.SetFloat("_Enabled", 0f);
     }
+    */
 }
