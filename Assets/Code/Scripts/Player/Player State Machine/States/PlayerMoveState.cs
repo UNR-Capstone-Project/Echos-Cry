@@ -31,12 +31,14 @@ public class PlayerMoveState : PlayerActionState
     public override void Enter()
     {
         _playerContext.Animator.SpriteAnimator.Play("Run");
+        _playerContext.Animator.StartMovementParticles();
         _playerContext.SFX.Execute(_playerContext.SFXConfig.FootstepSFX, _playerContext.transform, 0);
         currentCoroutine = _playerContext.StartCoroutine(RepeatSoundFootstep(_playerContext.SFXConfig.FootstepSFX.soundClips[0].length));
     }
     public override void Exit()
     {
-        if(currentCoroutine != null) _playerContext.StopCoroutine(currentCoroutine);
+        _playerContext.Animator.EndMovementParticles();
+        if (currentCoroutine != null) _playerContext.StopCoroutine(currentCoroutine);
     }
     public override void Update()
     {
