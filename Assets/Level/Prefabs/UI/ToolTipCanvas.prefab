@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   textMeshPro: {fileID: 2449679018934426242}
-  text: Hello world!
+  text: Press 'E | Right Stick Press' to talk.
   displayTime: 2
 --- !u!114 &2537680531963021833
 MonoBehaviour:
@@ -279,5 +279,5 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0

@@ -15,4 +15,8 @@ MonoBehaviour:
   OverrideController: {fileID: 22100000, guid: 91a7d9dbfb801d249b1cf03f17421ceb, type: 2}
   AnimationClip: {fileID: 7400000, guid: 9220fa3fa40fc364496a19f14b47f85b, type: 2}
   AttackSound: {fileID: 11400000, guid: 32fc51584779ab5469383925ce9d3213, type: 2}
-  BaseDamage: 10
+  BaseDamage: 7
+  PassiveEffects:
+    OneThirdEffect: {fileID: 11400000, guid: 3664655054d7d144f873f217fd3e71cc, type: 2}
+    TwoThirdsEffect: {fileID: 11400000, guid: 25e9fd5d2ef64b447905e84d09e57e47, type: 2}
+    FullEffect: {fileID: 11400000, guid: 5d93e2ffc070cf648871667b95c1e5a9, type: 2}

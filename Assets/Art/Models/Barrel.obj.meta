@@ -3,7 +3,17 @@ guid: 0e6257dcb38b0964fb29bea5e9ad258c
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bands_Circle.001Mat
+    second: {fileID: 2100000, guid: c5d1a097724e4f14aa5d470a93480eb0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Barrel_CircleMat
+    second: {fileID: 2100000, guid: 4c175711e19b1784fa35900bc5242573, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -2,8 +2,6 @@ using System;
 using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
-/// Original Author: Victor
-/// All Contributors Since Creation: Victor
 
 public class WaveManager : MonoBehaviour
 {
@@ -12,9 +10,30 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private float _timeBetweenWaves = 10f;
     [SerializeField] private WaveData[] _allWaves;
     [SerializeField] private NewEnemySpawner _enemySpawner;
+    [SerializeField] private EventChannel _updateKillCountChannel;
 
     private int _currentWave = 0;
     private int _totalEnemiesKilled = 0;
+    private bool _allWavesCompleted = false;
+    private bool _waveHasStarted = false;
+
+    private void OnEnable()
+    {
+        _updateKillCountChannel.Channel += UpdateKillCount;
+    }
+    private void OnDisable()
+    {
+        _updateKillCountChannel.Channel -= UpdateKillCount;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!_waveHasStarted)
+        {
+            _waveHasStarted = true;
+            StartNextWave();
+        }
+    }
 
     private int GetTotalEnemiesInWave(WaveData currentWave)
     {
@@ -23,20 +42,24 @@ public class WaveManager : MonoBehaviour
         {
             count += enemySpawns.enemySpawnCount;
         }
+        //Debug.Log($"Total enemies in the wave needed to be killed is: {count}");
         return count;
     }
     public void UpdateKillCount()
     {
-        _totalEnemiesKilled++;
+        if (_allWavesCompleted || !_waveHasStarted) return;
 
+        _totalEnemiesKilled++;
+        //Debug.Log($"Kill count of enemy updated to now {_totalEnemiesKilled}");
         if (_totalEnemiesKilled >= GetTotalEnemiesInWave(_allWaves[_currentWave]))
         {
             _currentWave++;
-
             if (_currentWave >= _allWaves.Length) //All waves completed
             {
-                HUDMessage.Instance.UpdateMessage("Waves Completed!", 2f);
+                //Debug.Log("Waves Complete!");
+                HUDMessage.Instance.UpdateMessage("Waves Completed!", 2.5f);
                 OnAllWavesCompleted?.Invoke();
+                _allWavesCompleted = true;
             }
             else
             {
@@ -52,10 +75,12 @@ public class WaveManager : MonoBehaviour
     }
     public void StartNextWave()
     {
+        //Debug.Log($"current wave is {_currentWave}");
         _totalEnemiesKilled = 0;
-
+        
         HUDMessage.Instance.UpdateMessage("Wave " + (_currentWave + 1).ToString() + " Has Begun.", 2f);
         CameraManager.Instance.ScreenShake(0.4f, 2.5f);
+
         StartCoroutine(SpawnWave(_allWaves[_currentWave]));
     }
     private IEnumerator SpawnWave(WaveData wave)
@@ -64,16 +89,12 @@ public class WaveManager : MonoBehaviour
 
         for (int i = 0; i < wave.EnemySpawns.Length; i++)
         {
+            GameObject enemyPrefab = wave.EnemySpawns[i].enemySpawnType;
+            EnemyPool pool = EnemyPoolManager.Instance.GetPool(enemyPrefab);
             for (int j = 0; j < wave.EnemySpawns[i].enemySpawnCount; j++)
             {
-                GameObject enemyPrefab = wave.EnemySpawns[i].enemySpawnType;
                 Vector3 enemyPosition = _enemySpawner.GetRandomPoint(wave.spawnRadius);
-                StartCoroutine(_enemySpawner.SpawnWithDecal(enemyPrefab, enemyPosition, wave.spawnRadius, (enemyInstance) =>
-                {
-                    enemyInstance.transform.SetParent(_enemySpawner.transform);
-                    Enemy enemy = enemyInstance.GetComponent<Enemy>();
-                    enemy.OnDeathEvent += UpdateKillCount;
-                }));
+                StartCoroutine(_enemySpawner.SpawnWithDecal(pool, enemyPosition, wave.spawnRadius, (enemy) =>  { }));
             }
             yield return new WaitForSeconds(wave.spawnInterval);
         }

@@ -186,28 +186,23 @@ public class InputTranslator : ScriptableObject,
     }
     public void OnItem1(InputAction.CallbackContext context)
     {
-        if (context.started) OnItem1Event?.Invoke();
-        else if(context.canceled) OnItem1Event?.Invoke();
+        if (context.started) OnItem1Event?.Invoke(0);
     }
     public void OnItem2(InputAction.CallbackContext context)
     {
-        if (context.started) OnItem2Event?.Invoke();
-        else if (context.canceled) OnItem2Event?.Invoke();
+        if (context.started) OnItem2Event?.Invoke(1);
     }
     public void OnItem3(InputAction.CallbackContext context)
     {
-        if (context.started) OnItem3Event?.Invoke();
-        else if (context.canceled) OnItem3Event?.Invoke();
+        if (context.started) OnItem3Event?.Invoke(2);
     }
     public void OnItem4(InputAction.CallbackContext context)
     {
-        if (context.started)OnItem4Event?.Invoke();
-        else if (context.canceled) OnItem4Event?.Invoke();
+        if (context.started)OnItem4Event?.Invoke(3);
     }
     public void OnInteract(InputAction.CallbackContext context)
     {
         if(context.started) OnInteractEvent?.Invoke();
-        else if (context.canceled) OnInteractEvent?.Invoke();
     }
 
     public void OnSelect(InputAction.CallbackContext context)
@@ -215,9 +210,19 @@ public class InputTranslator : ScriptableObject,
         if(context.started) OnSelectEvent?.Invoke();
     }
 
+    public void OnSubmit(InputAction.CallbackContext context)
+    {
+        if (context.started) OnSubmitEvent?.Invoke();
+    }
+
     public void OnTeleport(InputAction.CallbackContext context)
     {
         if (context.started) OnTeleportEvent?.Invoke();
+    }
+
+    public void OnWeaponNext(InputAction.CallbackContext context)
+    {
+        if (context.started) OnWeaponNextEvent?.Invoke();
     }
 
     private PlayerInputs _playerInputs;
@@ -226,15 +231,17 @@ public class InputTranslator : ScriptableObject,
     public event Action<Vector2> OnMovementEvent;
     public event Action<bool>    OnDashEvent;
     public event Action          OnTeleportEvent;
+    public event Action          OnWeaponNextEvent;
     public event Action<bool>    OnPrimaryActionEvent;
     public event Action<bool>    OnSecondaryActionEvent;
     public event Action<bool>    OnSkill1Event, OnSkill2Event, OnSkill3Event;
     public event Action    OnInteractEvent;
+    public event Action    OnSubmitEvent;
     public event Action    OnPauseEvent, OnPauseDownInput, OnPauseUpInput, OnSelectEvent;
     public event Action    OnUpgradeEvent;
     public event Action    OnResumeEvent;
     public event Action    OnMapEvent;
     public event Action    OnExitMapEvent, OnJournalLeftInput, OnJournalRightInput;
     public event Action    OnCloseShopEvent, OnShopLeftInput, OnShopRightInput, OnShopUpInput, OnShopDownInput, OnPurchaseEvent;
-    public event Action    OnItem1Event, OnItem2Event, OnItem3Event, OnItem4Event;
+    public event Action<int>    OnItem1Event, OnItem2Event, OnItem3Event, OnItem4Event;
 }

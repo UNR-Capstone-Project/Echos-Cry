@@ -209,6 +209,7 @@ MonoBehaviour:
   doorAnimator: {fileID: 7047729017233982081}
   ToolTipPrefab: {fileID: 5435326603873152583, guid: 2368d443f59e53f4dbdf1ce2d1423114, type: 3}
   translator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
+  doorOpenSoundEffect: {fileID: 11400000, guid: 50542308163397549bce9f4b9c4889ea, type: 2}
   levelReferenceName: 0
 --- !u!1 &4295198696863885956 stripped
 GameObject:

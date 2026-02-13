@@ -5,26 +5,57 @@ using System;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] BoolEventChannel _lockMovementChannel;
+    private bool _isMovementLocked = false;
+    public Vector3 _lastMoveDirection = Vector3.zero;
+
+    private void OnEnable()
+    {
+        _lockMovementChannel.Channel += (state) => _isMovementLocked = state;
+    }
+    private void OnDisable()
+    {
+        _lockMovementChannel.Channel -= (state) => _isMovementLocked = state;
+    }
+
     public void Move(Vector2 playerInputLocomotion)
     {
+        if (_isMovementLocked) return;
         if (_playerMovementConfig == null) return;
 
-        Vector3 targetVel = (playerInputLocomotion.y * _playerMovementConfig.PlayerSpeed * forwardVector)
-                          + (playerInputLocomotion.x * _playerMovementConfig.PlayerSpeed * rightVector)
+        Vector3 movementDirection = (playerInputLocomotion.y * forwardVector
+                                   + playerInputLocomotion.x * rightVector);
+
+        Vector3 targetVel = movementDirection * _playerMovementConfig.PlayerSpeed
                           + new Vector3(0f, _playerRigidbody.linearVelocity.y, 0f);
+
+        if (movementDirection.sqrMagnitude > 0.01f)
+            _lastMoveDirection = movementDirection.normalized;
 
         _playerRigidbody.AddForce(targetVel - _playerRigidbody.linearVelocity, ForceMode.VelocityChange);
     }
+
     public void Dash()
     {
+        if (_isMovementLocked) return;
         if (_playerMovementConfig == null) return;
-        if (DashCounter > 0 && DashGenerationProgress == 1f)
-        {
-            DashCounter = 0;
-            _playerRigidbody.AddForce(_playerRigidbody.linearVelocity.normalized * _playerMovementConfig.DashSpeed, ForceMode.VelocityChange);
-            StartCoroutine(IncrementDashProgress());
-        }
-        
+        if (_lastMoveDirection == Vector3.zero) return;
+
+        _playerRigidbody.AddForce(_lastMoveDirection * _playerMovementConfig.DashSpeed, ForceMode.VelocityChange);
+    }
+    public void MomentumPush()
+    {
+        if (_isMovementLocked) return;
+        if (_playerMovementConfig == null) return;
+        if (_lastMoveDirection == Vector3.zero) return;
+
+        _playerRigidbody.AddForce(_lastMoveDirection * _playerMovementConfig.AttackMomentumSpeed, ForceMode.VelocityChange);
+    }
+
+    public void StopHorizontalMovement()
+    { //When player goes from dash -> idle, the movement is never stopped causing a slide, this ensures motion is stopped.
+        _playerRigidbody.linearVelocity = new Vector3(0f, _playerRigidbody.linearVelocity.y, 0f);
+        _lastMoveDirection = Vector3.zero;
     }
 
     void Start()
@@ -39,25 +70,12 @@ public class PlayerMovement : MonoBehaviour
         {
             forwardVector = Camera.main.transform.forward.normalized;
             forwardVector.y = 0f;
+            forwardVector.Normalize();
 
             rightVector = Camera.main.transform.right.normalized;
             rightVector.y = 0f;
+            rightVector.Normalize();
         }
-    }
-
-    private IEnumerator IncrementDashProgress()
-    {
-        //Debug.Log("Dash Reset Starting.");
-        float elapsed = 0;
-        while (elapsed < _playerMovementConfig.DashCooldown)
-        {
-            elapsed = elapsed + Time.deltaTime;
-            DashGenerationProgress = elapsed;
-            //Debug.Log($"Elapsed Dash Time: {elapsed}");
-            yield return null;
-        }
-        DashGenerationProgress = 1;
-        DashCounter = 1;
     }
 
     [Header("Configuration Object")]
@@ -69,7 +87,4 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 forwardVector;
     private Vector3 rightVector;
-    private int DashCounter = 1;
-    private float DashGenerationProgress = 1f;
-
 }

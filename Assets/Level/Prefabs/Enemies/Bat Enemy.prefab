@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.8, z: 0}
-  m_LocalScale: {x: -0.2670612, y: 0.26706123, z: 0.26706123}
+  m_LocalScale: {x: -0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2434889112220353080}
@@ -59,7 +59,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cf39ed99c03a9b04cbd80ad48f486586, type: 2}
+  - {fileID: 2100000, guid: aa205275eb50f62439fad6eea645419d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 530485584549624666}
   - component: {fileID: 8838160874129828706}
   - component: {fileID: 6827338249854996756}
+  - component: {fileID: 8005077659622388430}
   m_Layer: 9
   m_Name: Bat Enemy
   m_TagString: Enemy
@@ -200,20 +201,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a13bb9d731c3ce45a893640fcd98ebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  _spawnState: 1
   _health: {fileID: 854592342237272632}
   _navMeshAgent: {fileID: 1592182489320676592}
   _rigidbody: {fileID: 6827338249854996756}
   _npcAnimator: {fileID: 4267862705877107826}
   _soundConfig: {fileID: 11400000, guid: 61a08e0075f1f394ba85aefac97da91e, type: 2}
   _collider: {fileID: 8838160874129828706}
+  _passiveEffectHandler: {fileID: 8005077659622388430}
   _attackStrats:
   - {fileID: 11400000, guid: c11f0062706e890468589a16526ea3f2, type: 2}
   _targetStrats: []
   _movementStrats: []
-  _drops: {fileID: 11400000, guid: 91505f07313de1e48a168c4fe728a893, type: 2}
+  _drops: {fileID: 11400000, guid: 077ec2d97228a87489e08f93f3aec007, type: 2}
   _soundStrategy: {fileID: 11400000, guid: 5c5a55ebf2f337c4a80a8fcd0ffba53d, type: 2}
   _enemyCacheStrategy: {fileID: 11400000, guid: c87f18d3f1a7e8e4da228329182fc1dd, type: 2}
   _playerAttackEndChannel: {fileID: 11400000, guid: 32c2647349869554ca690720dab27258, type: 2}
+  _updateWaveCount: {fileID: 11400000, guid: 63b54daa2224c144a9a5bb8cf2c47790, type: 2}
 --- !u!114 &854592342237272632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,6 +311,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &8005077659622388430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900823288402649937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6d0f9e36cee16249ae7ef01169b26f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  enemyReference: {fileID: 8010943512667726129}
 --- !u!1001 &8348667889125641309
 PrefabInstance:
   m_ObjectHideFlags: 0

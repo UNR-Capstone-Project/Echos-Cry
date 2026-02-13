@@ -10,16 +10,22 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected WeaponCollider _weaponCollider;
 
     protected RuntimeAnimatorController _defaultAnimatorController;
-    protected AttackData _currentAttackData;
-    
+
+    public AttackData _currentAttackData;
     public bool IsAttackEnded { get; private set; }
 
-    private List<Collider> _hitColliders;
-    public List<Collider> HitColliders { get => _hitColliders; }
-    public void AddColliderToList(Collider collider)
+    public struct ColliderInfo
+    {
+        public Collider collider;
+        public TempoConductor.HitQuality hit;
+    }
+    private List<ColliderInfo> _hitColliders;
+    public List<ColliderInfo> HitColliders { get => _hitColliders; }
+
+    public void AddColliderToList(Collider collider, TempoConductor.HitQuality hit)
     {
         if (_hitColliders == null || collider == null) return;
-        _hitColliders.Add(collider);
+        _hitColliders.Add(new ColliderInfo { collider = collider, hit = hit });
     }
     public void ClearColliderList()
     {
@@ -30,7 +36,6 @@ public abstract class Weapon : MonoBehaviour
     protected virtual void OnPrimaryAction() { }
     protected virtual void OnSecondaryAction() { }
     protected virtual void OnAttackEnded() { }
-
     protected abstract void Attack();
 
     private void Awake()

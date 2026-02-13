@@ -22,8 +22,8 @@ public class TempoConductor : Singleton<TempoConductor>
     public float TimeBetweenBeats { get { return _timeBetweenBeats; } }
 
     //Hit Time
-    private readonly float _excellentPercent = 0.1f; 
-    private readonly float _goodPercent = 0.2f; 
+    private readonly float _excellentPercent = 0.08f; 
+    private readonly float _goodPercent = 0.13f; 
 
     //            Tempo Threshold
     // Start                           End

@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     private EnemyStateCache _stateCache;
     private EnemyStateMachine _stateMachine;
     private EnemyPool _pool;
+
+    [SerializeField] private EnemyStateCache.EnemyStates _spawnState;
     private bool IsPooled => _pool != null;
 
     [Header("Enemy-Related Components")]
@@ -17,6 +19,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private NPCAnimator _npcAnimator;
     [SerializeField] private EnemySoundConfig _soundConfig;
     [SerializeField] private Collider _collider;
+    [SerializeField] private PassiveEffectHandler _passiveEffectHandler;
 
     [Header("Strategies")]
     [SerializeField] private AttackStrategy[] _attackStrats;
@@ -29,13 +32,19 @@ public class Enemy : MonoBehaviour
     [Header("Event Channel (Subscriber)")]
     [Tooltip("Invoked when player's attack ends")]
     [SerializeField] private EventChannel _playerAttackEndChannel;
+    [Header("Event Channel (Broadcaster)")]
+    [SerializeField] private EventChannel _updateWaveCount;
 
-    public event Action OnDeathEvent;
     public void HandleDeath()
     {
-        if (IsPooled) _pool.ReleaseEnemy(this);
+        _updateWaveCount.Invoke();
+        if (IsPooled)
+        {
+            _stateMachine.SwitchState(_stateCache.RequestState(_spawnState));
+            _health.ResetHealth();
+            _pool.ReleaseEnemy(this);
+        }
         else Destroy(gameObject);
-        OnDeathEvent?.Invoke();
     }
 
     public EnemyStateCache StateCache { get => _stateCache; }
@@ -48,6 +57,7 @@ public class Enemy : MonoBehaviour
     public NPCAnimator NPCAnimator { get => _npcAnimator; }
     public EnemySoundConfig SoundConfig { get => _soundConfig; }
     public Collider Collider { get => _collider; }
+    public PassiveEffectHandler PassiveEffectHandler { get => _passiveEffectHandler; }
 
     public AttackStrategy[] AttackStrategies { get => _attackStrats; }
     public TargetStrategy[] TargetStrategy { get => _targetStrats; }

@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ public class CameraManager : MonoBehaviour
     private float shakeTimer;
     private float startingIntensity;
     private float shakeTimerTotal;
+
+    private float startingOrthagaphicSize;
     public static Camera MainCamera { get { return _mainCamera; } }
 
     private void Awake()
@@ -32,6 +35,11 @@ public class CameraManager : MonoBehaviour
     private void Start()
     {
         cameraBrain.Target.TrackingTarget = PlayerRef.Transform;
+
+        if (cameraBrain != null)
+        {
+            startingOrthagaphicSize = cameraBrain.Lens.OrthographicSize;
+        }
     }
 
     // This was provided from a tutorial by CodeMonkey on Youtube https://youtu.be/ACf1I27I6Tk?si=Ic2BCVnjAV80Pkvv
@@ -41,6 +49,32 @@ public class CameraManager : MonoBehaviour
         startingIntensity = intensity;
         shakeTimer = time;
         shakeTimerTotal = time;
+    }
+
+    public void ZoomInCamera(float zoomLevel, float zoomDuration)
+    {
+        StopAllCoroutines();
+        StartCoroutine(ZoomRoutine(startingOrthagaphicSize, zoomLevel, zoomDuration));
+    }
+
+    public void ZoomOutCamera(float zoomDuration)
+    {
+        StopAllCoroutines();
+        StartCoroutine(ZoomRoutine(cameraBrain.Lens.OrthographicSize, startingOrthagaphicSize, zoomDuration));
+    }
+
+    IEnumerator ZoomRoutine(float startZoom, float endZoom, float zoomDuration)
+    {
+        float time = 0f;
+        while (time < zoomDuration)
+        {
+            time += Time.deltaTime;
+            float t = time / zoomDuration;
+            cameraBrain.Lens.OrthographicSize = Mathf.Lerp(startZoom, endZoom, t);
+            yield return null;
+        }
+
+        cameraBrain.Lens.OrthographicSize = endZoom;
     }
 
     private void Update()

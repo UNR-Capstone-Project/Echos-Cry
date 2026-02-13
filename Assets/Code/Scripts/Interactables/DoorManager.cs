@@ -6,6 +6,7 @@ public abstract class DoorManager : MonoBehaviour
     [SerializeField] protected Animator doorAnimator;
     [SerializeField] protected GameObject ToolTipPrefab;
     [SerializeField] protected InputTranslator translator;
+    [SerializeField] protected AudioSystem.soundEffect doorOpenSoundEffect;
 
     //[SerializeField] private WaveManager waveManager;
 
@@ -40,8 +41,13 @@ public abstract class DoorManager : MonoBehaviour
 
     protected virtual void OpenDoor()
     {
-        if (playerInRange && !isLocked)
+        if (playerInRange && !isLocked && !isOpen)
         {
+            SoundEffectManager.Instance.Builder
+            .SetSound(doorOpenSoundEffect)
+            .SetSoundPosition(transform.position)
+            .ValidateAndPlaySound();
+
             doorAnimator.SetTrigger("Interact");
             isOpen = true;
         }

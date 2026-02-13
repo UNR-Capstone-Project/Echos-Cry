@@ -3,7 +3,57 @@ guid: d08ed16de2ee30244a6dbfcd7c8df2c6
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cube.001_Cube.002Mat
+    second: {fileID: 2100000, guid: c9b589d835a14834aabb423a37c09402, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cube.002_Cube.003Mat
+    second: {fileID: 2100000, guid: f4a4ef4224fa7fb4f84f85bb28f21b2c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cube.003_Cube.004Mat
+    second: {fileID: 2100000, guid: 52af5704199e2ce4991899adcc9392a3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cube_Cube.001Mat
+    second: {fileID: 2100000, guid: a8e49ab181082b74784641f97d1cdd0d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cylinder.001_Cylinder.001Mat
+    second: {fileID: 2100000, guid: 9640119fafab7384b9da468d131c4b11, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cylinder.002_Cylinder.002Mat
+    second: {fileID: 2100000, guid: 6e5465eed4b147c4e8000057859c9d14, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cylinder.003_Cylinder.003Mat
+    second: {fileID: 2100000, guid: 8d04cc01cffb4b04c978866ba83d568a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cylinder_CylinderMat
+    second: {fileID: 2100000, guid: 5684fda81a89f5e42b4b06e56072c30a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plane.001_Plane.001Mat
+    second: {fileID: 2100000, guid: 434bf39bfe953df4bb751d4311cd799e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plane_PlaneMat
+    second: {fileID: 2100000, guid: 431b4b8bde582c84bbc9f6f28c27505d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

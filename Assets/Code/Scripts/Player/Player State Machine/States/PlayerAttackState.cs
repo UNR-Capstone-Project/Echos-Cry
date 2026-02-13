@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerAttackState : PlayerActionState
 {
@@ -7,7 +8,7 @@ public class PlayerAttackState : PlayerActionState
 
     public override void Enter()
     {
-        _playerContext.ComboMeter.ResetComboMultiplier();
+        //_playerContext.ComboMeter.ResetComboMultiplier();
 
         //Initialize whatever attack is happening
         if (_playerStateMachine.UsingPrimaryAction)
@@ -22,6 +23,7 @@ public class PlayerAttackState : PlayerActionState
         if (_playerContext.WeaponHolder.HasWeapon)
         {
             _playerContext.Animator.SpriteAnimator.Play("Attack");
+            _playerContext.Movement.MomentumPush();
         }
 
         _playerContext.Orientation.IsRotating = false;
@@ -35,13 +37,17 @@ public class PlayerAttackState : PlayerActionState
 
     public override void Update()
     {
-        //check if current attack is done
+        //Check if the current attack is done.
         if (_playerContext.WeaponHolder.IsActionEnded())
         {
-            //TODO: implement rate into combo meter class
-            float rate = 5f;
             int hitCount = _playerContext.WeaponHolder.CurrentlyEquippedWeapon.HitColliders.Count;
-            if (hitCount > 0) _playerContext.ComboMeter.AddToComboMeter(hitCount * rate);
+
+            for (int i = 0; i < hitCount; i++)
+            {
+                TempoConductor.HitQuality hitQuality = _playerContext.WeaponHolder.CurrentlyEquippedWeapon.HitColliders[i].hit;
+                _playerContext.ComboMeter.AddToComboMeter(hitQuality);
+            }
+
             _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Idle));
             _playerContext.InvokeAttackEnded();
         }

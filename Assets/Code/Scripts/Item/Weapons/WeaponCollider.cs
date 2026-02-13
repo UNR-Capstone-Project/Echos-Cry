@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 //Handles attack collider.
@@ -7,21 +8,31 @@ using UnityEngine;
 public class WeaponCollider : MonoBehaviour
 {
     [SerializeField] private Weapon _weaponContext;
-    [SerializeField] private Collider _collider;
     public float AttackDamage { get; private set; }
+    public TempoConductor.HitQuality AttackHitQuality { get; private set; }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent<IDamageable>(out IDamageable damagable))
+        if (other.TryGetComponent<PassiveEffectHandler>(out PassiveEffectHandler passiveEffectHandler))
+        {
+            if (PlayerComboMeter.CurrentMeterState == PlayerComboMeter.MeterState.OneThird)
+                passiveEffectHandler.UsePassiveEffect(_weaponContext._currentAttackData.PassiveEffects.OneThirdEffect);
+            else if (PlayerComboMeter.CurrentMeterState == PlayerComboMeter.MeterState.TwoThirds)
+                passiveEffectHandler.UsePassiveEffect(_weaponContext._currentAttackData.PassiveEffects.TwoThirdsEffect);
+            else if (PlayerComboMeter.CurrentMeterState == PlayerComboMeter.MeterState.Full)
+                passiveEffectHandler.UsePassiveEffect(_weaponContext._currentAttackData.PassiveEffects.FullEffect);
+        }
+
+        if (other.TryGetComponent<IDamageable>(out IDamageable damagable))
         {
             damagable.Execute(AttackDamage);
-            if(_weaponContext != null) _weaponContext.AddColliderToList(other);
+            if (_weaponContext != null) _weaponContext.AddColliderToList(other, AttackHitQuality);
         }
     }
 
-    public void UpdateAttackDamage(float attackDamage)
+    public void UpdateAttack(float attackDamage, TempoConductor.HitQuality hit)
     {
         AttackDamage = attackDamage;
+        AttackHitQuality = hit;
     }
-
 }
