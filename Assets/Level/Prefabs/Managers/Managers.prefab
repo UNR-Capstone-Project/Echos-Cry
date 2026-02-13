@@ -282,6 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870dcb6dec4060640a68e02994cfb54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueEvents
+  InDialogue: 0
 --- !u!114 &8823125206681022235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,6 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   _inkJson: {fileID: 4900000, guid: b2d75804432a1ed4092fc026cc89941d, type: 3}
   _lockMovementChannel: {fileID: 11400000, guid: 78594f026571afa4d8c01663a1ba938f, type: 2}
+  _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
 --- !u!1 &7283154042145334160
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class NpcDialogueHandler : MonoBehaviour
 {
-    [SerializeField] private InputTranslator translator;
+    [SerializeField] private InputTranslator _translator;
     [SerializeField] private GameObject ToolTipPrefab;
     [SerializeField] private soundEffect _submitSound;
 
@@ -16,7 +16,7 @@ public class NpcDialogueHandler : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         ToolTipPrefab.GetComponent<ToolTip>().text =
-            $"Press '{translator.PlayerInputs.Gameplay.Interact.GetBindingDisplayString()}' to talk.";
+            $"Press '{_translator.PlayerInputs.Gameplay.Interact.GetBindingDisplayString()}' to talk.";
         Instantiate(ToolTipPrefab, this.transform.position + new Vector3(0, 1, -1), Quaternion.identity);
         _playerInRange = true;
     }
@@ -52,12 +52,12 @@ public class NpcDialogueHandler : MonoBehaviour
 
     void Start()
     {
-        translator.OnInteractEvent += RequestDialogue;
-        translator.OnSubmitEvent += RequestSubmit;
+        _translator.OnInteractEvent += RequestDialogue;
+        _translator.OnSubmitEvent += RequestSubmit;
     }
     void OnDestroy()
     {
-        translator.OnInteractEvent += RequestDialogue;
-        translator.OnSubmitEvent -= RequestSubmit;
+        _translator.OnInteractEvent += RequestDialogue;
+        _translator.OnSubmitEvent -= RequestSubmit;
     }
 }

@@ -8,6 +8,7 @@ public class NPCAnimator : MonoBehaviour
     [SerializeField] Animator _animator;
     [SerializeField] private VisualEffect _visualEffect;
     [SerializeField] private Transform _spriteTransform;
+    [SerializeField] private ParticleSystem _staggerParticles;
 
     private Color _defaultTintColor;
     private readonly int hashedTintColor = Shader.PropertyToID("_TintColor");
@@ -35,6 +36,15 @@ public class NPCAnimator : MonoBehaviour
     public void PlayVisualEffect()
     {
         _visualEffect.Play();
+    }
+
+    public void StaggerParticleStart()
+    {
+        _staggerParticles.Play();
+    }
+    public void StaggerParticleStop()
+    {
+        _staggerParticles.Stop();
     }
 
     private IEnumerator TintFlashCoroutine(Color tintColor, float flashDuration)

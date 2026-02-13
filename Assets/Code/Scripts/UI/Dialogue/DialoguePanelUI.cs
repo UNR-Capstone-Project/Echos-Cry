@@ -13,7 +13,7 @@ public class DialoguePanelUI: MonoBehaviour
 
     private void OnEnable()
     {
-        _infoText.text = $"Press '{_translator.PlayerInputs.Gameplay.Submit.GetBindingDisplayString()}' to continue.";
+        _infoText.text = $"Press '{_translator.PlayerInputs.Dialogue.Submit.GetBindingDisplayString()}' to continue.";
         DialogueEvents.Instance.OnDialogueEnded += DialogueFinished;
         DialogueEvents.Instance.OnDisplayDialogue += DisplayDialogue;
     }

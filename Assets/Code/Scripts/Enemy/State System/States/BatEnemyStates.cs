@@ -257,11 +257,13 @@ public class BatStaggerState : EnemyState
         Vector3 direction = (PlayerRef.Transform.position - _enemyContext.transform.position).normalized;
         _enemyContext.Rigidbody.AddForce(-(_configFile.KnockbackForce * direction), ForceMode.Impulse);
         _enemyContext.StartCoroutine(StaggerDuration());
+        _enemyContext.NPCAnimator.StaggerParticleStart();
     }
     protected override void OnExit()
     {
         _enemyContext.Rigidbody.isKinematic = true;
         _enemyContext.StopAllCoroutines();
+        _enemyContext.NPCAnimator.StaggerParticleStop();
     }
     public override void CheckSwitch()
     {

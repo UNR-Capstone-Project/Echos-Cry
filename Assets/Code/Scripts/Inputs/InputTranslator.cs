@@ -11,7 +11,8 @@ public class InputTranslator : ScriptableObject,
     PlayerInputs.IGameplayActions, 
     PlayerInputs.IPauseMenuActions, 
     PlayerInputs.IPlayerMenuActions, 
-    PlayerInputs.IShopMenuActions
+    PlayerInputs.IShopMenuActions,
+    PlayerInputs.IDialogueActions
 {
     private void Awake()
     {
@@ -20,6 +21,7 @@ public class InputTranslator : ScriptableObject,
         _playerInputs.PauseMenu.SetCallbacks(this);
         _playerInputs.PlayerMenu.SetCallbacks(this);
         _playerInputs.ShopMenu.SetCallbacks(this);
+        _playerInputs.Dialogue.SetCallbacks(this);
     }
     private void OnEnable()
     {
@@ -30,11 +32,13 @@ public class InputTranslator : ScriptableObject,
             _playerInputs.PauseMenu.SetCallbacks(this);
             _playerInputs.PlayerMenu.SetCallbacks(this);
             _playerInputs.ShopMenu.SetCallbacks(this);
+            _playerInputs.Dialogue.SetCallbacks(this);
         }
         _playerInputs.Gameplay.Enable();
         _playerInputs.PauseMenu.Disable();
         _playerInputs.PlayerMenu.Disable();
         _playerInputs.ShopMenu.Disable();
+        _playerInputs.Dialogue.Disable();
     }
     private void OnDisable()
     {
@@ -42,6 +46,7 @@ public class InputTranslator : ScriptableObject,
         _playerInputs.PauseMenu.Disable();
         _playerInputs.PlayerMenu.Disable();
         _playerInputs.ShopMenu.Disable();
+        _playerInputs.Dialogue.Disable();
     }
     private void OnDestroy()
     {
@@ -49,11 +54,13 @@ public class InputTranslator : ScriptableObject,
         _playerInputs.PauseMenu.Disable();
         _playerInputs.PlayerMenu.Disable();
         _playerInputs.ShopMenu.Disable();
+        _playerInputs.Dialogue.Disable();
 
         _playerInputs.Gameplay.RemoveCallbacks(this);
         _playerInputs.PlayerMenu.RemoveCallbacks(this);
         _playerInputs.PauseMenu.RemoveCallbacks(this);
         _playerInputs.ShopMenu.RemoveCallbacks(this);
+        _playerInputs.Dialogue.RemoveCallbacks(this);
         _playerInputs = null;
     }
 

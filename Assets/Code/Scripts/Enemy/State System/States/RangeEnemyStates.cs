@@ -186,11 +186,13 @@ public class RangeStaggerState : EnemyState
         Vector3 direction = (PlayerRef.Transform.position - _enemyContext.transform.position).normalized;
         _enemyContext.Rigidbody.AddForce(-(_config.KnockbackForce * direction), ForceMode.Impulse);
         _enemyContext.StartCoroutine(StaggerDurationCoroutine());
+        _enemyContext.NPCAnimator.StaggerParticleStart();
     }
     protected override void OnExit()
     {
         _enemyContext.Rigidbody.isKinematic = true;
         _enemyContext.StopAllCoroutines();
+        _enemyContext.NPCAnimator.StaggerParticleStop();
     }
     private IEnumerator StaggerDurationCoroutine()
     {

@@ -165,6 +165,7 @@ Transform:
   m_Children:
   - {fileID: 5725350970498192222}
   - {fileID: 86432653124173814}
+  - {fileID: 6084545768438748889}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &1592182489320676592
@@ -202,6 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   _spawnState: 1
+  _attackDamage: 0
   _health: {fileID: 854592342237272632}
   _navMeshAgent: {fileID: 1592182489320676592}
   _rigidbody: {fileID: 6827338249854996756}
@@ -249,6 +251,7 @@ MonoBehaviour:
   _animator: {fileID: 1879680284868728812}
   _visualEffect: {fileID: 6135991116511513266}
   _spriteTransform: {fileID: 5725350970498192222}
+  _staggerParticles: {fileID: 9195744456746233480}
 --- !u!114 &530485584549624666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,6 +327,77 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   enemyReference: {fileID: 8010943512667726129}
+--- !u!1001 &5983545831009502376
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2434889112220353080}
+    m_Modifications:
+    - target: {fileID: 538590379372614257, guid: 8a183f7b0cc198c4ea2b06e6a99bb07f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 538590379372614257, guid: 8a183f7b0cc198c4ea2b06e6a99bb07f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 538590379372614257, guid: 8a183f7b0cc198c4ea2b06e6a99bb07f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 538590379372614257, guid: 8a183f7b0cc198c4ea2b06e6a99bb07f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 538590379372614257, guid: 8a183f7b0cc198c4ea2b06e6a99bb07f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 538590379372614257, guid: 8a183f7b0cc198c4ea2b06e6a99bb07f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 538590379372614257, guid: 8a183f7b0cc198c4ea2b06e6a99bb07f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 538590379372614257, guid: 8a183f7b0cc198c4ea2b06e6a99bb07f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 538590379372614257, guid: 8a183f7b0cc198c4ea2b06e6a99bb07f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 538590379372614257, guid: 8a183f7b0cc198c4ea2b06e6a99bb07f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 945353859828484681, guid: 8a183f7b0cc198c4ea2b06e6a99bb07f, type: 3}
+      propertyPath: m_Name
+      value: Dazed Particles
+      objectReference: {fileID: 0}
+    - target: {fileID: 3212205523524332064, guid: 8a183f7b0cc198c4ea2b06e6a99bb07f, type: 3}
+      propertyPath: prewarm
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8a183f7b0cc198c4ea2b06e6a99bb07f, type: 3}
+--- !u!4 &6084545768438748889 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 538590379372614257, guid: 8a183f7b0cc198c4ea2b06e6a99bb07f, type: 3}
+  m_PrefabInstance: {fileID: 5983545831009502376}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &9195744456746233480 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3212205523524332064, guid: 8a183f7b0cc198c4ea2b06e6a99bb07f, type: 3}
+  m_PrefabInstance: {fileID: 5983545831009502376}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8348667889125641309
 PrefabInstance:
   m_ObjectHideFlags: 0
