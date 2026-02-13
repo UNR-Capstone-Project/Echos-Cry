@@ -57,7 +57,7 @@ public class WaveManager : MonoBehaviour
             if (_currentWave >= _allWaves.Length) //All waves completed
             {
                 //Debug.Log("Waves Complete!");
-                HUDMessage.Instance.UpdateMessage("Waves Completed!", 2.5f);
+                HUDMessage.Instance.UpdateMessage("All Waves Completed!", 2.5f);
                 OnAllWavesCompleted?.Invoke();
                 _allWavesCompleted = true;
             }

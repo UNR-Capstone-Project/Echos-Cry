@@ -39,14 +39,10 @@ public class SceneTriggerManager : MonoBehaviour
         OnSceneTransitionEvent?.Invoke();
         AsyncOperation newSceneLoad = SceneManager.LoadSceneAsync(sceneTarget.SceneName, LoadSceneMode.Single);
         newSceneLoad.allowSceneActivation = true;
-
-        while (!newSceneLoad.isDone) { yield return null; }
-
-        if (_isLevelExit)
-        { //If it's a level exit, give the player back full health.
-            //PlayerStats.Instance.Respawn();
+        while (!newSceneLoad.isDone)
+        {
+            yield return null; 
         }
-        
         sceneTransitioning = false;
     }
 
