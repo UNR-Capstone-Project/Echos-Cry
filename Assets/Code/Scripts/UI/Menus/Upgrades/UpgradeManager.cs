@@ -26,9 +26,6 @@ public class UpgradeManager : MonoBehaviour
     public enum UpgradeType
     {
         MoveSpeed,
-        Strength,
-        Defense,
-        Attack,
         Health,
         Armor,
         DashSpeed,
@@ -39,15 +36,12 @@ public class UpgradeManager : MonoBehaviour
     private Dictionary<UpgradeType, string> _upgradeDescriptions = new Dictionary<UpgradeType, string>
     {
         //[UpgradeType.] = "",
-        [UpgradeType.MoveSpeed] = "This is speed.",
-        [UpgradeType.Strength] = "This is strength.",
-        [UpgradeType.Defense] = "This is defense.",
-        [UpgradeType.Attack] = "This is attack.",
-        [UpgradeType.DashSpeed] = "Increase speed of dashes.",
-        [UpgradeType.Health] = "Increase amount of health.",
-        [UpgradeType.Armor] = "Increase amount of armor.",
-        [UpgradeType.DashCount] = "Increase amount of dashes.",
-        [UpgradeType.DashCooldown] = "Decrease dash cooldown.",
+        [UpgradeType.MoveSpeed] = "Increase your base movement speed by _%.",
+        [UpgradeType.DashSpeed] = "Increase the speed of your dashing by _%.",
+        [UpgradeType.Health] = "Increase your base health by +_.",
+        [UpgradeType.Armor] = "Increase your base armor by +_.",
+        [UpgradeType.DashCount] = "Increase the amount of dashes before cooldown by +_.",
+        [UpgradeType.DashCooldown] = "Decrease the dash cooldown time by _%.",
     };
 
     public static UpgradeManager Instance { get; private set; }
@@ -149,15 +143,6 @@ public class UpgradeManager : MonoBehaviour
         {
             case UpgradeType.MoveSpeed:
                 if (_moveSpeedChannel != null) _moveSpeedChannel.Invoke();
-                break;
-            case UpgradeType.Strength:
-                Debug.Log("Strength upgrade applied.");
-                break;
-            case UpgradeType.Defense:
-                Debug.Log("Defense upgrade applied.");
-                break;
-            case UpgradeType.Attack:
-                Debug.Log("Attack upgrade applied.");
                 break;
             case UpgradeType.DashSpeed:
                 if (_dashSpeedChannel != null) _dashSpeedChannel.Invoke();

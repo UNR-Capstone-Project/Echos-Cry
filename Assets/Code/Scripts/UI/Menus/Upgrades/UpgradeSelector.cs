@@ -33,7 +33,7 @@ public class UpgradeSelector : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (!isActive)
         {
             _upgradeNameText.text = "???";
-            _upgradeDescriptionText.text = "You need to level up to see these upgrades!";
+            _upgradeDescriptionText.text = "You need to level up before you can view these upgrades!";
         }
         else
         {
@@ -54,7 +54,7 @@ public class UpgradeSelector : MonoBehaviour, IPointerEnterHandler, IPointerExit
         _highlight.SetActive(false);
         if (isActive)
         {
-            _upgradeDescriptionText.text = "Hover over an upgrade to see it's stats.";
+            _upgradeDescriptionText.text = "Hover over an upgrade to see the improvements!";
         }
     }
 }
