@@ -20,10 +20,12 @@ public class PlayerMoveState : PlayerActionState
         {
             _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Attack));
         }
-        else if (_playerStateMachine.CanDash && _playerStateMachine.IsDashing)
+        else if (_playerStateMachine.CanDash && _playerContext.Movement.HasDash && _playerStateMachine.IsDashing)
         {
-            if(_playerContext.Movement.PlayerMovementConfig.IsDashToBeat)
-                _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Dash));
+            if (_playerContext.Movement.PlayerMovementConfig.IsDashToBeat)
+            {
+                if(TempoConductor.Instance.IsOnBeat()) _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Dash));
+            }
             else _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Dash));
         }
     }

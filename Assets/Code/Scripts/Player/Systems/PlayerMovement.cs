@@ -7,55 +7,53 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] BoolEventChannel _lockMovementChannel;
     private bool _isMovementLocked = false;
-    public Vector3 _lastMoveDirection = Vector3.zero;
-
-    private void OnEnable()
-    {
-        _lockMovementChannel.Channel += (state) => _isMovementLocked = state;
-    }
-    private void OnDisable()
-    {
-        _lockMovementChannel.Channel -= (state) => _isMovementLocked = state;
-    }
 
     public void Move(Vector2 playerInputLocomotion)
     {
         if (_isMovementLocked) return;
         if (_playerMovementConfig == null) return;
-
-        Vector3 movementDirection = (playerInputLocomotion.y * forwardVector
-                                   + playerInputLocomotion.x * rightVector);
-
-        Vector3 targetVel = movementDirection * _playerMovementConfig.PlayerSpeed
-                          + new Vector3(0f, _playerRigidbody.linearVelocity.y, 0f);
-
-        if (movementDirection.sqrMagnitude > 0.01f)
-            _lastMoveDirection = movementDirection.normalized;
+        Vector3 moveDirection = ((playerInputLocomotion.y * forwardVector) + (playerInputLocomotion.x * rightVector)).normalized;
+        Vector3 targetVel = _moveSpeed * moveDirection + new Vector3(0f, _playerRigidbody.linearVelocity.y, 0f);
 
         _playerRigidbody.AddForce(targetVel - _playerRigidbody.linearVelocity, ForceMode.VelocityChange);
     }
-
     public void Dash()
     {
         if (_isMovementLocked) return;
         if (_playerMovementConfig == null) return;
-        if (_lastMoveDirection == Vector3.zero) return;
-
-        _playerRigidbody.AddForce(_lastMoveDirection * _playerMovementConfig.DashSpeed, ForceMode.VelocityChange);
+        _playerRigidbody.AddForce(_playerRigidbody.linearVelocity.normalized * _dashSpeed, ForceMode.VelocityChange);
+        _dashCount--;
+        StartDashCooldown();
     }
+
+    private IEnumerator AddDashCoroutine()
+    {
+        yield return new WaitForSeconds(_dashCooldown);
+        _dashCount++;
+    }
+    public void StartDashCooldown()
+    {
+        StartCoroutine(AddDashCoroutine());
+    }
+
     public void MomentumPush()
     {
         if (_isMovementLocked) return;
         if (_playerMovementConfig == null) return;
-        if (_lastMoveDirection == Vector3.zero) return;
-
-        _playerRigidbody.AddForce(_lastMoveDirection * _playerMovementConfig.AttackMomentumSpeed, ForceMode.VelocityChange);
+        //Working on making momentum maintain when attacking in opposite direction
+        //float directionDot = Vector3.Dot(direction.normalized, _playerRigidbody.linearVelocity.normalized);
+        _playerRigidbody.AddForce(_playerMovementConfig.AttackMomentumSpeed * _playerRigidbody.linearVelocity.normalized, ForceMode.VelocityChange);
     }
 
-    public void StopHorizontalMovement()
-    { //When player goes from dash -> idle, the movement is never stopped causing a slide, this ensures motion is stopped.
-        _playerRigidbody.linearVelocity = new Vector3(0f, _playerRigidbody.linearVelocity.y, 0f);
-        _lastMoveDirection = Vector3.zero;
+    private void OnEnable()
+    {
+        _lockMovementChannel.Channel += (state) => _isMovementLocked = state;
+        _dashCount = _playerMovementConfig.DashCount;
+    }
+    private void OnDisable()
+    {
+        _lockMovementChannel.Channel -= (state) => _isMovementLocked = state;
+        StopAllCoroutines();
     }
 
     void Start()
@@ -65,16 +63,21 @@ public class PlayerMovement : MonoBehaviour
             Debug.LogWarning("Player Movement Configuration file is null!");
             return;
         }
+        else
+        {
+            _dashSpeed = _playerMovementConfig.DashSpeed;
+            _moveSpeed = _playerMovementConfig.PlayerSpeed;
+            _dashCount = _playerMovementConfig.DashCount;
+            _dashCooldown = _playerMovementConfig.DashCooldown;
+        }
 
         if (Camera.main != null)
         {
             forwardVector = Camera.main.transform.forward.normalized;
             forwardVector.y = 0f;
-            forwardVector.Normalize();
 
             rightVector = Camera.main.transform.right.normalized;
             rightVector.y = 0f;
-            rightVector.Normalize();
         }
     }
 
@@ -84,6 +87,17 @@ public class PlayerMovement : MonoBehaviour
     
     [Header("Player Movement System Dependencies")]
     [SerializeField] private Rigidbody _playerRigidbody;
+
+    private float _dashSpeed;
+    private float _moveSpeed;
+    private float _dashCooldown;
+    private int _dashCount;
+    public float DashSpeed { get => _dashSpeed; set => _dashSpeed = value; }
+    public float MoveSpeed { get => _moveSpeed; set => _moveSpeed = value; }
+    public float DashCooldown { get => _dashCooldown; set => _dashCooldown = value; }
+    public int DashCount { get => _dashCount; set => _dashCount = value; }
+
+    public bool HasDash => _dashCount > 0;
 
     private Vector3 forwardVector;
     private Vector3 rightVector;

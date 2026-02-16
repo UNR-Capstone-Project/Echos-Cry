@@ -13,7 +13,7 @@ public class ExponentialXPCalculation : XPCalculationStrategy
 
     [Header("Base multiplier to increase amount of total XP required")]
     [SerializeField] float _multiplier;
-    public override float Execute(PlayerStats stats)
+    public override float Execute(PlayerXP stats)
     {
         return (Mathf.Pow(stats.CurrentLevel, _exponent) * _rateOfGrowth) * _multiplier;
     }

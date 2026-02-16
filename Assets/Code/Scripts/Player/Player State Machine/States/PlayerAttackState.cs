@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class PlayerAttackState : PlayerActionState
 {
@@ -8,7 +7,6 @@ public class PlayerAttackState : PlayerActionState
 
     public override void Enter()
     {
-        //_playerContext.ComboMeter.ResetComboMultiplier();
 
         //Initialize whatever attack is happening
         if (_playerStateMachine.UsingPrimaryAction)

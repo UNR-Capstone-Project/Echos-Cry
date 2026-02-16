@@ -4,7 +4,7 @@ using UnityEngine;
 public class DroppedXP : ItemDropHandler
 {
     [SerializeField] private float _xpAmount = 10f;
-    private PlayerStats _stats;
+    private PlayerXP _stats;
     protected override void OnInteraction(Collider other)
     {
         if(_stats == null)

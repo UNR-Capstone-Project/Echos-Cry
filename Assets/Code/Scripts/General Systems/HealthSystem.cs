@@ -17,10 +17,26 @@ public class HealthSystem : MonoBehaviour
     private float _maxArmor;
     private float _damageMultiplier = 1f;
 
-    public float CurrentHealth { get => _currentHealth; }
-    public float CurrentArmor { get => _currentArmor; }
-    public float MaxHealth { get => _maxHealth; }
-    public float MaxArmor { get => _maxArmor; }
+    public float CurrentHealth 
+    {
+        get => _currentHealth; 
+        set
+        {
+            _currentHealth = value;
+            if (healthChannel != null) healthChannel.Invoke(_currentHealth, _maxHealth);
+        } 
+    }
+    public float CurrentArmor 
+    { 
+        get => _currentArmor;
+        set 
+        { 
+            _currentArmor = value;
+            if (armorChannel != null) armorChannel.Invoke(_currentArmor, _maxArmor);
+        }
+    }
+    public float MaxHealth { get => _maxHealth; set => _maxHealth = value; }
+    public float MaxArmor { get => _maxArmor; set => _maxArmor = value; }
     public bool HasArmor => _currentArmor > 0;
     public float DamageMultiplier => _damageMultiplier;
 
@@ -52,6 +68,9 @@ public class HealthSystem : MonoBehaviour
             armorChannel.Invoke(_currentArmor, _maxArmor);
     }
 
+    //ISSUE: This should be moved somewhere else, doesn't seem appropriate in HealthSystem, 
+    //seems like it would be better in NPC Damageable so that the multiplier can be passed to damage already being done to enemy
+    //Either that or having another system that handles debuffs/damage multipliers for enemies or player
     public void SetDamageMultiplier(float multiplier)
     {
         _damageMultiplier = multiplier;

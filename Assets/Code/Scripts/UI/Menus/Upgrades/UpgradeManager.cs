@@ -14,22 +14,40 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private FloatFloatIntEventChannel _playerXPChannel;
     [SerializeField] private IntEventChannel _playerLevelUpChannel;
 
+    [Header("Event Channels (Broadcasters)")]
+    [SerializeField] EventChannel _moveSpeedChannel;
+    [SerializeField] EventChannel _dashSpeedChannel;
+    [SerializeField] EventChannel _healthChannel;
+    [SerializeField] EventChannel _armorChannel;
+    [SerializeField] EventChannel _dashCountChannel;
+    [SerializeField] EventChannel _dashCooldownChannel;
+
     private int availablePoints = 1;
     public enum UpgradeType
     {
-        Speed,
+        MoveSpeed,
         Strength,
         Defense,
-        Attack
+        Attack,
+        Health,
+        Armor,
+        DashSpeed,
+        DashCount,
+        DashCooldown
     }
 
     private Dictionary<UpgradeType, string> _upgradeDescriptions = new Dictionary<UpgradeType, string>
     {
         //[UpgradeType.] = "",
-        [UpgradeType.Speed] = "This is speed.",
+        [UpgradeType.MoveSpeed] = "This is speed.",
         [UpgradeType.Strength] = "This is strength.",
         [UpgradeType.Defense] = "This is defense.",
         [UpgradeType.Attack] = "This is attack.",
+        [UpgradeType.DashSpeed] = "Increase speed of dashes.",
+        [UpgradeType.Health] = "Increase amount of health.",
+        [UpgradeType.Armor] = "Increase amount of armor.",
+        [UpgradeType.DashCount] = "Increase amount of dashes.",
+        [UpgradeType.DashCooldown] = "Decrease dash cooldown.",
     };
 
     public static UpgradeManager Instance { get; private set; }
@@ -50,6 +68,8 @@ public class UpgradeManager : MonoBehaviour
     {
         if(_playerXPChannel != null) _playerXPChannel.Channel += UpdateInfo;
         if(_playerLevelUpChannel != null) _playerLevelUpChannel.Channel += AddLevelPoint;
+
+
     }
     private void OnDisable()
     {
@@ -119,14 +139,16 @@ public class UpgradeManager : MonoBehaviour
 
         UpdateSelectors();
     }
+
+    //Make this event-based using the void event channels for each event. The events can then be bound to the PlayerStats class
     public void ApplyUpgrade(UpgradeType upgradeType)
     {
         availablePoints--;
 
         switch (upgradeType)
         {
-            case UpgradeType.Speed:
-                Debug.Log("Speed upgrade applied.");
+            case UpgradeType.MoveSpeed:
+                if (_moveSpeedChannel != null) _moveSpeedChannel.Invoke();
                 break;
             case UpgradeType.Strength:
                 Debug.Log("Strength upgrade applied.");
@@ -136,6 +158,21 @@ public class UpgradeManager : MonoBehaviour
                 break;
             case UpgradeType.Attack:
                 Debug.Log("Attack upgrade applied.");
+                break;
+            case UpgradeType.DashSpeed:
+                if (_dashSpeedChannel != null) _dashSpeedChannel.Invoke();
+                break;
+            case UpgradeType.Health:
+                if(_healthChannel != null) _healthChannel.Invoke();
+                break;
+            case UpgradeType.Armor:
+                if(_armorChannel != null) _armorChannel.Invoke();
+                break;
+            case UpgradeType.DashCount:
+                if (_dashCountChannel != null) _dashCountChannel.Invoke();
+                break;
+            case UpgradeType.DashCooldown:
+                if (_dashCooldownChannel != null) _dashCooldownChannel.Invoke();
                 break;
             default:
                 Debug.LogWarning("Unknown upgrade type.");
