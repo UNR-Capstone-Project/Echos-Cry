@@ -8,6 +8,7 @@ public class DialogueManager : MonoBehaviour
     [Header("Ink Story")]
     [SerializeField] private TextAsset _inkJson;
     [SerializeField] private BoolEventChannel _lockMovementChannel;
+    [SerializeField] private InputTranslator _inputTranslator;
     private Story _story;
     private int _currentChoiceIndex = -1;
 
@@ -47,6 +48,9 @@ public class DialogueManager : MonoBehaviour
         if (_dialoguePlaying) return;
         _dialoguePlaying = true;
 
+        _inputTranslator.PlayerInputs.Gameplay.Disable();
+        _inputTranslator.PlayerInputs.Dialogue.Enable();
+
         DialogueEvents.Instance.DialogueStarted();
         CameraManager.Instance.ZoomInCamera(5f, .8f);
 
@@ -83,6 +87,9 @@ public class DialogueManager : MonoBehaviour
         yield return null; //Avoiding race conditions.
         //Debug.Log("Exiting dialogue.");
         _dialoguePlaying = false;
+
+        _inputTranslator.PlayerInputs.Gameplay.Enable();
+        _inputTranslator.PlayerInputs.Dialogue.Disable();
 
         DialogueEvents.Instance.DialogueEnded();
         CameraManager.Instance.ZoomOutCamera(.8f);

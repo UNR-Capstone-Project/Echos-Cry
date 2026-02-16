@@ -158,15 +158,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Submit",
-                    "type": "Button",
-                    "id": "c91ce2a5-22a3-4174-bde7-e1db85abd338",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -552,17 +543,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Weapon Next",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4f29aa2b-b491-4221-91ac-635ab3637976",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Submit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1034,6 +1014,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "Purchase",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Dialogue",
+            "id": "e0a547f4-308c-4da9-ad5f-37dbee89c8df",
+            "actions": [
+                {
+                    "name": "Submit",
+                    "type": "Button",
+                    "id": "e52034b7-45bb-45e4-b698-5cbda282e09d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1725d04e-48ed-4b74-8058-664dfdd0dace",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Submit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Victorian Wall 2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 22cba3f67abe7604c9c004a0b08078cd, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

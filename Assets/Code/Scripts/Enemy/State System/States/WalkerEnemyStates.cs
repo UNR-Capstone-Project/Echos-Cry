@@ -143,12 +143,14 @@ public class WalkerJumpState : EnemyState
         _enemyContext.NPCAnimator.PlayAnimation(_config.AttackHashCode);
         _enemyContext.SoundStrategy.Execute(_enemyContext.SoundConfig.AttackSFX, _enemyContext.transform, 0);
         _enemyContext.StartCoroutine(JumpDuration());
+        _enemyContext.NPCAnimator.StaggerParticleStart();
     }
     protected override void OnExit()
     {
         //Debug.Log("Exit Charge Attack State");
         _enemyContext.Rigidbody.isKinematic = true;
         _enemyContext.StopAllCoroutines();
+        _enemyContext.NPCAnimator.StaggerParticleStop();
     }
     public override void CheckSwitch()
     {

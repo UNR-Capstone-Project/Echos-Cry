@@ -10,6 +10,7 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] private Transform      _playerMainSpriteTransform;
     [SerializeField] private SpriteRenderer _playerMainSpriteRenderer;
     [SerializeField] private Animator       _playerMainSpriteAnimator;
+    [SerializeField] private ParticleSystem _noteParticles;
     public Animator SpriteAnimator { get => _playerMainSpriteAnimator; }
 
     private Color defaultSpriteColor;
@@ -19,6 +20,14 @@ public class PlayerAnimator : MonoBehaviour
     private void Start()
     {
         defaultSpriteColor = _playerMainSpriteRenderer.material.GetColor(hashedTintColor);
+    }
+    public void StartMovementParticles()
+    {
+        _noteParticles.Play();
+    }
+    public void EndMovementParticles()
+    {
+        _noteParticles.Stop();
     }
 
     public void UpdateMainSpriteDirection(Vector2 locomotion)

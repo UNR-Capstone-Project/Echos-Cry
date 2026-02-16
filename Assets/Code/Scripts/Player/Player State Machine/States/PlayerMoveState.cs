@@ -20,10 +20,12 @@ public class PlayerMoveState : PlayerActionState
         {
             _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Attack));
         }
-        else if (_playerStateMachine.CanDash && _playerStateMachine.IsDashing)
+        else if (_playerStateMachine.CanDash && _playerContext.Movement.HasDash && _playerStateMachine.IsDashing)
         {
-            if(_playerContext.Movement.PlayerMovementConfig.IsDashToBeat)
-                _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Dash));
+            if (_playerContext.Movement.PlayerMovementConfig.IsDashToBeat)
+            {
+                if(TempoConductor.Instance.IsOnBeat()) _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Dash));
+            }
             else _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Dash));
         }
     }
@@ -31,12 +33,14 @@ public class PlayerMoveState : PlayerActionState
     public override void Enter()
     {
         _playerContext.Animator.SpriteAnimator.Play("Run");
+        _playerContext.Animator.StartMovementParticles();
         _playerContext.SFX.Execute(_playerContext.SFXConfig.FootstepSFX, _playerContext.transform, 0);
         currentCoroutine = _playerContext.StartCoroutine(RepeatSoundFootstep(_playerContext.SFXConfig.FootstepSFX.soundClips[0].length));
     }
     public override void Exit()
     {
-        if(currentCoroutine != null) _playerContext.StopCoroutine(currentCoroutine);
+        _playerContext.Animator.EndMovementParticles();
+        if (currentCoroutine != null) _playerContext.StopCoroutine(currentCoroutine);
     }
     public override void Update()
     {
