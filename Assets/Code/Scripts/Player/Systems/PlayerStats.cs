@@ -2,37 +2,68 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    private int _currentLevel = 1;
-    private float _currentXPAmount;
-    private float _goalXPAmount = 10f;
-    [SerializeField] private XPCalculationStrategy _newXPGoalCalculation;
-    [SerializeField] private FloatFloatIntEventChannel _updateXPChannel;
-    [SerializeField] private IntEventChannel _levelUpChannel;
+    [Header("Player Systems")]
+    [SerializeField] PlayerMovement _movement;
+    [SerializeField] HealthSystem _health;
 
-    public int CurrentLevel { get => _currentLevel; }
-    public float CurrentXPAmount { get => _currentXPAmount; }
-    public float GoalXPAmount { get => _goalXPAmount; }
+    [Header("Event Channels (Subscribers)")]
+    [SerializeField] EventChannel _moveSpeedChannel;
+    [SerializeField] EventChannel _dashSpeedChannel;
+    [SerializeField] EventChannel _healthChannel;
+    [SerializeField] EventChannel _armorChannel;
+    [SerializeField] EventChannel _dashCountChannel;
+    [SerializeField] EventChannel _dashCooldownChannel;
 
-    private void Start()
+    private void OnEnable()
     {
-        _goalXPAmount = _newXPGoalCalculation.Execute(this);
-        if (_updateXPChannel != null) _updateXPChannel.Invoke(_currentXPAmount, _goalXPAmount, _currentLevel);
+        if (_healthChannel != null) _healthChannel.Channel += UpgradeMaxHealth;
+        if (_armorChannel != null) _armorChannel.Channel += UpgradeMaxArmor;
+        if (_moveSpeedChannel != null) _moveSpeedChannel.Channel += UpgradeMoveSpeed;
+        if (_dashSpeedChannel != null) _dashSpeedChannel.Channel += UpgradeDashSpeed;
+        if(_dashCooldownChannel != null) _dashCooldownChannel.Channel += UpgradeDashCooldown;
+        if(_dashCountChannel != null) _dashCountChannel.Channel += UpgradeDashCount;
+    }
+    private void OnDisable()
+    {
+        if (_healthChannel != null) _healthChannel.Channel -= UpgradeMaxHealth;
+        if (_armorChannel != null) _armorChannel.Channel -= UpgradeMaxArmor;
+        if (_moveSpeedChannel != null) _moveSpeedChannel.Channel -= UpgradeMoveSpeed;
+        if (_dashSpeedChannel != null) _dashSpeedChannel.Channel -= UpgradeDashSpeed;
+        if (_dashCooldownChannel != null) _dashCooldownChannel.Channel -= UpgradeDashCooldown;
+        if (_dashCountChannel != null) _dashCountChannel.Channel -= UpgradeDashCount;
     }
 
-    public void IncreaseXP(float xp)
+    //Currently using unmutable variables but will eventually change to handle configuration or scaling upgrades eventually
+    void UpgradeDashSpeed()
     {
-        _currentXPAmount += xp;
-        if(_currentXPAmount >= _goalXPAmount)
+        if (_movement != null) _movement.DashSpeed += 0.25f;
+    }
+    void UpgradeDashCount()
+    {
+        if (_movement != null) _movement.DashCount++;
+    }
+    void UpgradeDashCooldown()
+    {
+        if (_movement != null) _movement.DashCooldown -= 0.05f;
+    }
+    void UpgradeMoveSpeed()
+    {
+        if (_movement != null) _movement.MoveSpeed += 0.25f;
+    }
+    void UpgradeMaxHealth()
+    {
+        if (_health != null)
         {
-            _currentLevel++;
-            if (_levelUpChannel != null) _levelUpChannel.Invoke(_currentLevel);
-            float leftOverXP = _currentXPAmount - _goalXPAmount;
-            if (_newXPGoalCalculation != null)
-                _goalXPAmount = _newXPGoalCalculation.Execute(this);
-            else _goalXPAmount = _goalXPAmount + _currentLevel * 1.5f;
-            
-            _currentXPAmount = leftOverXP;
+            _health.MaxHealth += 5f;
+            _health.CurrentHealth += 5f;
         }
-        if(_updateXPChannel != null) _updateXPChannel.Invoke(_currentXPAmount, _goalXPAmount, _currentLevel);
+    }
+    void UpgradeMaxArmor()
+    {
+        if (_health != null)
+        {
+            _health.MaxArmor += 10f;
+            _health.CurrentArmor += 10f;
+        }
     }
 }

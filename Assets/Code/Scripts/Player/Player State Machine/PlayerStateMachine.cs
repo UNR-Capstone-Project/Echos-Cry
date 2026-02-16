@@ -77,7 +77,8 @@ public class PlayerStateMachine : AbstractStateMachine<PlayerActionState>
     }
     private void HandleDash(bool buttonPressed)
     {
-        if (TempoConductor.Instance.IsOnBeat() && buttonPressed && !SpamPrevention.InputLocked) _isDashing = true;
+        //Checks if moving because it would cause bug where player could enter dash immediately as they started moving
+        if (buttonPressed && !SpamPrevention.InputLocked && _isMoving) _isDashing = true;
         else _isDashing = false;
     }
 }

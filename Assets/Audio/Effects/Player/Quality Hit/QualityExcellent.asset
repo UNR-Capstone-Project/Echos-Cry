@@ -12,15 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0af6e37581d16d47aa4a2ce36e29f5c, type: 3}
   m_Name: QualityExcellent
   m_EditorClassIdentifier: Assembly-CSharp::AudioSystem.soundEffect
-  sfxVolume: 0.1
+  sfxVolume: 0.15
   sfxClips:
-  - {fileID: 8300000, guid: c32b4f52cb037084b82d389bcebaac01, type: 3}
-  - {fileID: 8300000, guid: 35e70f7b037a85e4dac73e766199e25d, type: 3}
-  - {fileID: 8300000, guid: deb9494e79431e74fa3a844468c25a23, type: 3}
-  - {fileID: 8300000, guid: fd97cf5cd4804a54cb7e96648ae2a7fb, type: 3}
-  - {fileID: 8300000, guid: 6c352f1df95f9934c91c1f75b249ed9a, type: 3}
-  - {fileID: 8300000, guid: 7c96de9e8b59e684d8db97f042692622, type: 3}
+  - {fileID: 8300000, guid: ccaf75edfe7631a46871c8ed74f784ba, type: 3}
   sfxMixerGroup: {fileID: 57649532358978260, guid: ac2ef84a7ad88f74fb5e10f3c7be54d1, type: 2}
   frequentlyPlayed: 0
-  clipsAreRandomized: 1
+  clipsAreRandomized: 0
   isAmbience: 0

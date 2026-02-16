@@ -17,7 +17,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 505af40d0c01e28408ae70e1d046b7fc, type: 3}
   - {fileID: 8300000, guid: 470f1e25957057c41a40be08714d84da, type: 3}
   - {fileID: 8300000, guid: 595629740fc64bb428fdceaf4423cb56, type: 3}
-  sfxMixerGroup: {fileID: 0}
+  sfxMixerGroup: {fileID: 57649532358978260, guid: ac2ef84a7ad88f74fb5e10f3c7be54d1, type: 2}
   frequentlyPlayed: 0
   clipsAreRandomized: 1
   isAmbience: 0
