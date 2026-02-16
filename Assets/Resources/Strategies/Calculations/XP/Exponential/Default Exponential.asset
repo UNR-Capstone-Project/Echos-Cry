@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec803a41f270d21429fe2a50fd879a6d, type: 3}
   m_Name: Default Exponential
   m_EditorClassIdentifier: Assembly-CSharp::ExponentialXPCalculation
-  _rateOfGrowth: 0.006
-  _exponent: 2
-  _multiplier: 7500
+  _baseXP: 25
+  _growthRate: 0.1
