@@ -22,7 +22,7 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] EventChannel _dashCountChannel;
     [SerializeField] EventChannel _dashCooldownChannel;
 
-    private int availablePoints = 1;
+    private int availablePoints = 0;
     public enum UpgradeType
     {
         MoveSpeed,
