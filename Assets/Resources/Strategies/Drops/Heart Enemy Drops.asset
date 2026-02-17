@@ -19,4 +19,4 @@ MonoBehaviour:
   - prefab: {fileID: 651722200087660623, guid: 97046ff4e4a41054f9df101045151fb5, type: 3}
     minDropAmount: 2
     maxDropAmount: 4
-  itemExplosionSpeed: 2
+  itemExplosionSpeed: 3

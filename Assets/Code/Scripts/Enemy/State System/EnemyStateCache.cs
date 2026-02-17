@@ -9,8 +9,10 @@ public class EnemyStateCache
         BatSpawn, BatStagger, BatDeath, BatCharge, BatAttack, BatIdle, BatChase,
         //Range Enemy
         RangeSpawn, RangeStagger, RangeDeath, RangeCharge, RangeAttack, RangeIdle, RangeRoam,
-
-        WalkerSpawn, WalkerStagger, WalkerDeath, WalkerJump, WalkerAttack, WalkerIdle, WalkerChase
+        //Walker Enemy
+        WalkerSpawn, WalkerStagger, WalkerDeath, WalkerJump, WalkerAttack, WalkerIdle, WalkerChase,
+        //Slime Enemy
+        SlimeSpawn, SlimeStagger, SlimeDeath, SlimeCharge, SlimeAttack, SlimeIdle, SlimeChase,
     }
 
     private readonly Dictionary<EnemyStates, EnemyState> _stateCache;
