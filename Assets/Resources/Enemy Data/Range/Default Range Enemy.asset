@@ -19,3 +19,4 @@ MonoBehaviour:
   _knockbackForce: 3
   _projectileCount: 3
   _distanceFromPlayer: 5
+  _baseDamage: 5

@@ -19,18 +19,22 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] EventChannel _dashSpeedChannel;
     [SerializeField] EventChannel _healthChannel;
     [SerializeField] EventChannel _armorChannel;
+    [SerializeField] EventChannel _regenHealthChannel;
     [SerializeField] EventChannel _dashCountChannel;
     [SerializeField] EventChannel _dashCooldownChannel;
+    [SerializeField] EventChannel _dashAttackChannel;
 
-    private int availablePoints = 1;
+    private int availablePoints = 0;
     public enum UpgradeType
     {
         MoveSpeed,
+        DashSpeed,
         Health,
         Armor,
-        DashSpeed,
+        RegenHealth,
         DashCount,
-        DashCooldown
+        DashCooldown,
+        DashAttack
     }
 
     private Dictionary<UpgradeType, string> _upgradeDescriptions = new Dictionary<UpgradeType, string>
@@ -40,8 +44,10 @@ public class UpgradeManager : MonoBehaviour
         [UpgradeType.DashSpeed] = "Increase the speed of your dashing by _%.",
         [UpgradeType.Health] = "Increase your base health by +_.",
         [UpgradeType.Armor] = "Increase your base armor by +_.",
+        [UpgradeType.RegenHealth] = "Regen health when not in danger by +_ every 10 seconds.",
         [UpgradeType.DashCount] = "Increase the amount of dashes before cooldown by +_.",
         [UpgradeType.DashCooldown] = "Decrease the dash cooldown time by _%.",
+        [UpgradeType.DashAttack] = "Dashing can harm enemies, dealing _ damage.",
     };
 
     public static UpgradeManager Instance { get; private set; }
@@ -153,11 +159,17 @@ public class UpgradeManager : MonoBehaviour
             case UpgradeType.Armor:
                 if(_armorChannel != null) _armorChannel.Invoke();
                 break;
+            case UpgradeType.RegenHealth:
+                if (_regenHealthChannel != null) _regenHealthChannel.Invoke();
+                break;
             case UpgradeType.DashCount:
                 if (_dashCountChannel != null) _dashCountChannel.Invoke();
                 break;
             case UpgradeType.DashCooldown:
                 if (_dashCooldownChannel != null) _dashCooldownChannel.Invoke();
+                break;
+            case UpgradeType.DashAttack:
+                if (_dashAttackChannel != null) _dashAttackChannel.Invoke();
                 break;
             default:
                 Debug.LogWarning("Unknown upgrade type.");
