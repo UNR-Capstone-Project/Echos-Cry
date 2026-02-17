@@ -49,8 +49,11 @@ public class PlayerStats : MonoBehaviour
     }
     void UpgradeDashCount()
     {
-        if (_movement != null) _movement.DashCount++;
-        if (_movement != null) _movement.DashMaxCount++;
+        if (_movement != null)
+        {
+            _movement.DashCount++;
+            _movement.DashMaxCount++;
+        }
     }
     void UpgradeDashCooldown()
     {
@@ -72,8 +75,8 @@ public class PlayerStats : MonoBehaviour
     {
         if (_health != null)
         {
-            _health.MaxArmor += 10f;
-            _health.CurrentArmor += 10f;
+            _health.MaxArmor += 5f;
+            _health.CurrentArmor += 5f;
         }
     }
     void UpgradeHealthRegen()
