@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     [SerializeField] private SoundStrategy _sfx;
     [SerializeField] private SFXConfig _sfxConfig;
     [SerializeField] private Rigidbody _rb;
+    [SerializeField] private DashWeapon _dashAttack;
+    [SerializeField] private PlayerStats _playerStats;
 
     [Header("Event Channel (Broadcaster)")]
     [SerializeField] EventChannel _attackEndedChannel;
@@ -38,6 +40,8 @@ public class Player : MonoBehaviour
     public PlayerXP Stats { get => _stats; }
     public InputTranslator InputTranslator { get => _inputTranslator; }
     public Rigidbody RB { get => _rb; }
+    public DashWeapon DashAttack { get => _dashAttack; }
+    public PlayerStats PlayerStats { get => _playerStats; }
 
     private void InitStateCache()
     {

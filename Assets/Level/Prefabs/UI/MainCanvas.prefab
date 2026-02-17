@@ -12686,6 +12686,7 @@ MonoBehaviour:
   _regenHealthChannel: {fileID: 11400000, guid: 58f244f8770115148acb4868ba17b6b8, type: 2}
   _dashCountChannel: {fileID: 11400000, guid: 525432ab9a8309644a0c3e1894f626e4, type: 2}
   _dashCooldownChannel: {fileID: 11400000, guid: 01cfb1c9714eab745b95991f9c7b59f8, type: 2}
+  _dashAttackChannel: {fileID: 11400000, guid: 0827540fa0d61a848adf46dd6bfb67db, type: 2}
 --- !u!1 &8786925093521931265
 GameObject:
   m_ObjectHideFlags: 0

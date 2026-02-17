@@ -22,6 +22,7 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] EventChannel _regenHealthChannel;
     [SerializeField] EventChannel _dashCountChannel;
     [SerializeField] EventChannel _dashCooldownChannel;
+    [SerializeField] EventChannel _dashAttackChannel;
 
     private int availablePoints = 0;
     public enum UpgradeType
@@ -32,7 +33,8 @@ public class UpgradeManager : MonoBehaviour
         Armor,
         RegenHealth,
         DashCount,
-        DashCooldown
+        DashCooldown,
+        DashAttack
     }
 
     private Dictionary<UpgradeType, string> _upgradeDescriptions = new Dictionary<UpgradeType, string>
@@ -45,6 +47,7 @@ public class UpgradeManager : MonoBehaviour
         [UpgradeType.RegenHealth] = "Regen health when not in danger by +_ every 10 seconds.",
         [UpgradeType.DashCount] = "Increase the amount of dashes before cooldown by +_.",
         [UpgradeType.DashCooldown] = "Decrease the dash cooldown time by _%.",
+        [UpgradeType.DashAttack] = "Dashing can harm enemies, dealing _ damage.",
     };
 
     public static UpgradeManager Instance { get; private set; }
@@ -164,6 +167,9 @@ public class UpgradeManager : MonoBehaviour
                 break;
             case UpgradeType.DashCooldown:
                 if (_dashCooldownChannel != null) _dashCooldownChannel.Invoke();
+                break;
+            case UpgradeType.DashAttack:
+                if (_dashAttackChannel != null) _dashAttackChannel.Invoke();
                 break;
             default:
                 Debug.LogWarning("Unknown upgrade type.");

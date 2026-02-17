@@ -23,7 +23,6 @@ public class PlayerDashBar : MonoBehaviour
     private void UpdateBar(int dashCount, int dashMax)
     {
         hFraction = (float)dashCount / (float)dashMax; //ISSUE: Need to get this stat from player!
-        Debug.Log(hFraction);
         lerpTimer = 0f;
     }
 

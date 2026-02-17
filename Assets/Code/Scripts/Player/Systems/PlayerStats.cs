@@ -14,6 +14,10 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] EventChannel _regenHealthChannel;
     [SerializeField] EventChannel _dashCountChannel;
     [SerializeField] EventChannel _dashCooldownChannel;
+    [SerializeField] EventChannel _dashAttackChannel;
+
+    private bool _dashAttackEnabled = false;
+    public bool DashAttackEnabled { get => _dashAttackEnabled; }
 
     private void OnEnable()
     {
@@ -24,6 +28,7 @@ public class PlayerStats : MonoBehaviour
         if (_dashSpeedChannel != null) _dashSpeedChannel.Channel += UpgradeDashSpeed;
         if(_dashCooldownChannel != null) _dashCooldownChannel.Channel += UpgradeDashCooldown;
         if(_dashCountChannel != null) _dashCountChannel.Channel += UpgradeDashCount;
+        if (_dashAttackChannel != null) _dashAttackChannel.Channel += UpgradeDashAttack;
     }
     private void OnDisable()
     {
@@ -34,6 +39,7 @@ public class PlayerStats : MonoBehaviour
         if (_dashSpeedChannel != null) _dashSpeedChannel.Channel -= UpgradeDashSpeed;
         if (_dashCooldownChannel != null) _dashCooldownChannel.Channel -= UpgradeDashCooldown;
         if (_dashCountChannel != null) _dashCountChannel.Channel -= UpgradeDashCount;
+        if (_dashAttackChannel != null) _dashAttackChannel.Channel -= UpgradeDashAttack;
     }
 
     //Currently using unmutable variables but will eventually change to handle configuration or scaling upgrades eventually
@@ -70,7 +76,6 @@ public class PlayerStats : MonoBehaviour
             _health.CurrentArmor += 10f;
         }
     }
-
     void UpgradeHealthRegen()
     {
         if (_health != null)
@@ -78,5 +83,9 @@ public class PlayerStats : MonoBehaviour
             _health.RegenHealthAmount++;
             _health.EnableHealthRegen();
         }    
+    }
+    void UpgradeDashAttack()
+    {
+        _dashAttackEnabled = true;
     }
 }
