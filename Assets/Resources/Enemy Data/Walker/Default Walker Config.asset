@@ -22,3 +22,4 @@ MonoBehaviour:
   _stoppingDistance: 5
   _fireRingPrefab: {fileID: 5464901287887852699, guid: b7edc944a1fc12648b567bed5d42f336, type: 3}
   _fireRingTime: 1
+  _baseDamage: 8

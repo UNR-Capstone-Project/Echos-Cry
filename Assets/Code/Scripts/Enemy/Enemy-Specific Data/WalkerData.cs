@@ -13,6 +13,7 @@ public class WalkerData : ScriptableObject
     [SerializeField] private float _stoppingDistance;
     [SerializeField] private GameObject _fireRingPrefab;
     [SerializeField] private float _fireRingTime;
+    [SerializeField] private float _baseDamage;
 
     public readonly int IdleHashCode = Animator.StringToHash("Idle");
     public readonly int WalkHashCode = Animator.StringToHash("Walk");
@@ -28,4 +29,5 @@ public class WalkerData : ScriptableObject
     public float StoppingDistance { get => _stoppingDistance; }
     public GameObject FireRingPrefab { get => _fireRingPrefab; }
     public float FireRingTime { get => _fireRingTime; }
+    public float BaseDamage { get => _baseDamage; }
 }

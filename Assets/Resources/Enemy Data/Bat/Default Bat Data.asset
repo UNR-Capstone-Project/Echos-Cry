@@ -19,3 +19,4 @@ MonoBehaviour:
   _attackCooldown: 1.2
   _staggerDuration: 1.2
   _knockbackForce: 4
+  _baseDamage: 6

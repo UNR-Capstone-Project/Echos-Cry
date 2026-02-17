@@ -197,7 +197,7 @@ public class WalkerAttackState : EnemyState
             _fireRingReference = particles;
             particles.Play();
         }
-        _enemyContext.AttackStrategies[0].Execute(10f, Vector3.zero, _enemyContext.transform);
+        _enemyContext.AttackStrategies[0].Execute(_config.BaseDamage, Vector3.zero, _enemyContext.transform);
         _enemyContext.StartCoroutine(AOEVisualDuration());
         _enemyContext.StartCoroutine(AttackCooldown());
     }

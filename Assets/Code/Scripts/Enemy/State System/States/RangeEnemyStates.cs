@@ -160,7 +160,7 @@ public class RangeAttackState : EnemyState
         if (count + 1 >= _config.ProjectileCount) _enemyContext.StartCoroutine(AttackCooldownCoroutine());
         else
         {
-            _enemyContext.AttackStrategies[0].Execute(10f, GetDirection(), _enemyContext.transform);
+            _enemyContext.AttackStrategies[0].Execute(_config.BaseDamage, GetDirection(), _enemyContext.transform);
             _enemyContext.SoundStrategy.Execute(_enemyContext.SoundConfig.AttackSFX, _enemyContext.transform, 0);
             count++;
             _enemyContext.StartCoroutine(BetweenAttackPauseCoroutine());

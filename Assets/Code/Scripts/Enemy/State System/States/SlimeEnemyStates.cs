@@ -220,7 +220,7 @@ public class SlimeAttackState : EnemyState
 
         if (_enemyContext.AttackStrategies[MeleeIndex]
             .Execute(
-                6f, //ISSUE: This is hard coded and very hard to find!
+                _configFile.BaseDamage,
                 attackDirection, 
                 _enemyContext.transform)) 
             isAttacking = false;
