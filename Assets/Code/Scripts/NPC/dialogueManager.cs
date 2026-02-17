@@ -16,6 +16,7 @@ public class dialogueManager : MonoBehaviour
 
     public static event Action broadcastSlapjackStarting;
 
+    [SerializeField] private InputTranslator _inputTranslator;
 
     [Header("Dialogue Box UI")]
     //[SerializeField] private string speaker;
@@ -75,7 +76,7 @@ public class dialogueManager : MonoBehaviour
         }
         currentEventSystem = EventSystem.current;
 
-        clickAction = InputController.Instance.GetAction("Click");
+        //clickAction = InputController.Instance.GetAction("Click");
         if (clickAction != null)
         {
             clickAction.performed += clickCheck; 
@@ -122,7 +123,7 @@ public class dialogueManager : MonoBehaviour
         currentStory = new Story(inkJSON.text);
         isDialoguePlaying = true;
         onDialogueStarted?.Invoke(); 
-        InputController.Instance.PushActionMap("UI");
+        //InputController.Instance.PushActionMap("UI");
         //Debug.Log($"Current action map after switch: {InputController.Instance.playerInput.currentActionMap.name}");
         dialogueCanvas.SetActive(true);
         continueStory();
@@ -136,13 +137,13 @@ public class dialogueManager : MonoBehaviour
         dialogueCanvas.SetActive(false);
         dialogueText.text = "";
         onDialogueEnded?.Invoke();
-        InputController.Instance.PopActionMap();
+        //InputController.Instance.PopActionMap();
 
         if (switchToGameScene)
         {
             switchToGameScene = false;
             //InputController.Instance.PushActionMap("PlayerSlapjack");
-            GameManager.Instance.loadSlapjackGameplay();
+            //GameManager.Instance.loadSlapjackGameplay();
         }
     }
 

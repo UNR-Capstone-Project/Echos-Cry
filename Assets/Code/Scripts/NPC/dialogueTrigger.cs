@@ -20,6 +20,7 @@ public class dialogueTrigger : MonoBehaviour
     [SerializeField] private CinemachineCamera dialogueCamera;
     [SerializeField] private CinemachineCamera defaultCamera;
     
+    [SerializeField] private InputTranslator _inputTranslator;
 
     //max characters on player choice buttons is 40 characters long
 
@@ -39,7 +40,7 @@ public class dialogueTrigger : MonoBehaviour
 
     void Start()
     {
-        interactAction = InputController.Instance.GetAction("Interact");
+        //interactAction = InputController.Instance.GetAction("Interact");
         if (interactAction != null)
         {
             interactAction.performed += interactCheck;
@@ -66,6 +67,14 @@ public class dialogueTrigger : MonoBehaviour
 
     void Update()
     {
+        if(playerInRange){
+            visualCue.SetActive(true);
+            /*if(_inputTranslator.OnInteract){
+                Debug.Log(inkJSON.text);
+            }*/
+        }else{
+            visualCue.SetActive(false);
+        }
         if (dialogueManager.DialogueManagerInstance.isDialoguePlaying)
         {
             visualCue.SetActive(false);
@@ -128,13 +137,13 @@ public class dialogueTrigger : MonoBehaviour
 
     private void SwitchToDialogueCamera()
     {
-        if (dialogueCamera != null)
-            CameraSwitcher.SwitchCamera(dialogueCamera);
+        //if (dialogueCamera != null)
+            //CameraSwitcher.SwitchCamera(dialogueCamera);
     }
 
     private void SwitchToDefaultCamera()
     {
-        if (defaultCamera != null)
-            CameraSwitcher.SwitchCamera(defaultCamera);
+        //if (defaultCamera != null)
+            //CameraSwitcher.SwitchCamera(defaultCamera);
     }
 }
