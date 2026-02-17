@@ -41,6 +41,7 @@ public class PlayerStats : MonoBehaviour
     void UpgradeDashCount()
     {
         if (_movement != null) _movement.DashCount++;
+        if (_movement != null) _movement.DashMaxCount++;
     }
     void UpgradeDashCooldown()
     {
