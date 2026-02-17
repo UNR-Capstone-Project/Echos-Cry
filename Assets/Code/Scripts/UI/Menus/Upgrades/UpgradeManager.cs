@@ -19,6 +19,7 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] EventChannel _dashSpeedChannel;
     [SerializeField] EventChannel _healthChannel;
     [SerializeField] EventChannel _armorChannel;
+    [SerializeField] EventChannel _regenHealthChannel;
     [SerializeField] EventChannel _dashCountChannel;
     [SerializeField] EventChannel _dashCooldownChannel;
 
@@ -26,9 +27,10 @@ public class UpgradeManager : MonoBehaviour
     public enum UpgradeType
     {
         MoveSpeed,
+        DashSpeed,
         Health,
         Armor,
-        DashSpeed,
+        RegenHealth,
         DashCount,
         DashCooldown
     }
@@ -40,6 +42,7 @@ public class UpgradeManager : MonoBehaviour
         [UpgradeType.DashSpeed] = "Increase the speed of your dashing by _%.",
         [UpgradeType.Health] = "Increase your base health by +_.",
         [UpgradeType.Armor] = "Increase your base armor by +_.",
+        [UpgradeType.RegenHealth] = "Regen health when not in danger by +_ every 10 seconds.",
         [UpgradeType.DashCount] = "Increase the amount of dashes before cooldown by +_.",
         [UpgradeType.DashCooldown] = "Decrease the dash cooldown time by _%.",
     };
@@ -152,6 +155,9 @@ public class UpgradeManager : MonoBehaviour
                 break;
             case UpgradeType.Armor:
                 if(_armorChannel != null) _armorChannel.Invoke();
+                break;
+            case UpgradeType.RegenHealth:
+                if (_regenHealthChannel != null) _regenHealthChannel.Invoke();
                 break;
             case UpgradeType.DashCount:
                 if (_dashCountChannel != null) _dashCountChannel.Invoke();
