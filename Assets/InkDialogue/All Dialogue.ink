@@ -1,4 +1,4 @@
-=== scarecrow ===
+=== tutorial_1 ===
 Why're you bothering me, huh?
 Can't you see I've lost my hands!?
 * [Uh... that's a shame.]
@@ -17,4 +17,21 @@ Stay on beat!
     Good luck!
 * [No idea, but lets do this!]
     Break a leg!
+- ->END
+
+=== tutorial_2 ===
+Hey, I know you!
+You're the one driving me crazy with all that noise!
+* [I've only just started practicing, I'm getting better each day.]
+    You could have fooled me.
+* [Do you want to hear some Beethoven?]
+    No.
+-
+All that playing and slashing has earned you some serious XP! 
+Press "tab" to spend your level points on new upgrades.
+I heard some horrifying screams up this path... Have fun!
+* [I hope they like twinkle twinkle little star.]
+    Doubt it, see ya' round kid.
+* [Ah, like music to my ears!]
+    Your playing makes much more sense now.
 - ->END
