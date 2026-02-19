@@ -43,7 +43,7 @@ public class dialogueTrigger : MonoBehaviour
         //interactAction = InputController.Instance.GetAction("Interact");
         if (interactAction != null)
         {
-            interactAction.performed += interactCheck;
+            _inputTranslator.OnInteract += interactCheck;
         }
         
         enterCameraLook.AddListener(SwitchToDialogueCamera);
