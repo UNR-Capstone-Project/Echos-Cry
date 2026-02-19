@@ -41,10 +41,9 @@ public class dialogueTrigger : MonoBehaviour
     void Start()
     {
         //interactAction = InputController.Instance.GetAction("Interact");
-        if (interactAction != null)
-        {
-            _inputTranslator.OnInteract += interactCheck;
-        }
+        
+        _inputTranslator.OnInteractEvent += interactCheck;
+        
         
         enterCameraLook.AddListener(SwitchToDialogueCamera);
         exitCameraLook.AddListener(SwitchToDefaultCamera);
@@ -82,18 +81,15 @@ public class dialogueTrigger : MonoBehaviour
         }
     }
 
-    private void interactCheck(InputAction.CallbackContext context)
+    private void interactCheck()
     {
-        if (context.performed)
-        {
-            onInteractWithDialogue?.Invoke();
-            if (triggerBattleAtEnd) broadcastBattleBool?.Invoke();
+        onInteractWithDialogue?.Invoke();
+        if (triggerBattleAtEnd) broadcastBattleBool?.Invoke();
 
-            if (!dialogueManager.DialogueManagerInstance.isDialoguePlaying)
-            {
-                enterCameraLook?.Invoke();
-                dialogueManager.DialogueManagerInstance.enterDialogueMode(inkJSON);
-            }
+        if (!dialogueManager.DialogueManagerInstance.isDialoguePlaying)
+        {
+            enterCameraLook?.Invoke();
+            dialogueManager.DialogueManagerInstance.enterDialogueMode(inkJSON);
         }
     }
 
