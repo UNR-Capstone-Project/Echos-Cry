@@ -51,12 +51,12 @@ public class dialogueTrigger : MonoBehaviour
 
     private void OnEnable()
     {
-        dialogueManager.onDialogueEnded += cameraPassThroughEvent;
+        //dialogueManager.onDialogueEnded += cameraPassThroughEvent;
     }
 
     private void OnDisable()
     {
-        dialogueManager.onDialogueEnded -= cameraPassThroughEvent;
+        //dialogueManager.onDialogueEnded -= cameraPassThroughEvent;
     }
 
     void cameraPassThroughEvent()
@@ -74,22 +74,25 @@ public class dialogueTrigger : MonoBehaviour
         }else{
             visualCue.SetActive(false);
         }
-        if (dialogueManager.DialogueManagerInstance.isDialoguePlaying)
+        /*if (dialogueManager.DialogueManagerInstance.isDialoguePlaying)
         {
             visualCue.SetActive(false);
             //visualCueText.SetActive(false);
-        }
+        }*/
     }
 
     private void interactCheck()
     {
-        onInteractWithDialogue?.Invoke();
-        if (triggerBattleAtEnd) broadcastBattleBool?.Invoke();
+        //onInteractWithDialogue?.Invoke();
+        //if (triggerBattleAtEnd) broadcastBattleBool?.Invoke();
 
-        if (!dialogueManager.DialogueManagerInstance.isDialoguePlaying)
+        /*if (!dialogueManager.DialogueManagerInstance.isDialoguePlaying)
         {
             enterCameraLook?.Invoke();
             dialogueManager.DialogueManagerInstance.enterDialogueMode(inkJSON);
+        }*/
+        if(playerInRange){
+            Debug.Log(inkJSON.text);
         }
     }
 
@@ -102,11 +105,11 @@ public class dialogueTrigger : MonoBehaviour
         {
             
             playerInRange = true;
-            if (!dialogueManager.DialogueManagerInstance.isDialoguePlaying)
+            /*if (!dialogueManager.DialogueManagerInstance.isDialoguePlaying)
             {
                 visualCue.SetActive(true);
                 //visualCueText.SetActive(true);
-            } 
+            } */
             //if (oneShot) alreadyEntered = true;
         }
 
