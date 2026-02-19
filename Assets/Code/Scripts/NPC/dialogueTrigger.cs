@@ -10,7 +10,7 @@ public class dialogueTrigger : MonoBehaviour
     public static event Action onInteractWithDialogue;
     public static event Action broadcastBattleBool;
     [SerializeField] private GameObject visualCue;
-    [SerializeField] private GameObject visualCueText;
+    //[SerializeField] private GameObject visualCueText;
     [SerializeField] private TextAsset inkJSON;
     [SerializeField] public bool triggerBattleAtEnd = false;
 
@@ -27,7 +27,7 @@ public class dialogueTrigger : MonoBehaviour
     void Awake()
     {
         visualCue.SetActive(false);
-        visualCueText.SetActive(false);
+        //visualCueText.SetActive(false);
         if (enterCameraLook == null) {
             enterCameraLook = new UnityEvent();
         }
@@ -78,7 +78,7 @@ public class dialogueTrigger : MonoBehaviour
         if (dialogueManager.DialogueManagerInstance.isDialoguePlaying)
         {
             visualCue.SetActive(false);
-            visualCueText.SetActive(false);
+            //visualCueText.SetActive(false);
         }
     }
 
@@ -109,7 +109,7 @@ public class dialogueTrigger : MonoBehaviour
             if (!dialogueManager.DialogueManagerInstance.isDialoguePlaying)
             {
                 visualCue.SetActive(true);
-                visualCueText.SetActive(true);
+                //visualCueText.SetActive(true);
             } 
             //if (oneShot) alreadyEntered = true;
         }
@@ -127,7 +127,7 @@ public class dialogueTrigger : MonoBehaviour
             //onTriggerExit.Invoke();
             playerInRange = false;   
             visualCue.SetActive(false);
-            visualCueText.SetActive(false);
+            //visualCueText.SetActive(false);
             //exitCameraLook?.Invoke();
             //if (oneShot) alreadyExited = true;
         }
