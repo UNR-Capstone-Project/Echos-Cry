@@ -22,10 +22,12 @@ public class dialogueTrigger : MonoBehaviour
     
     [SerializeField] private InputTranslator _inputTranslator;
 
+    [SerializeField] private dialogueManager DialogueManagerInstance;
     //max characters on player choice buttons is 40 characters long
 
     void Awake()
     {
+        //currentDialogueManager = GameObject.Find("dialogueManager").GetComponent<dialogueManager>();
         visualCue.SetActive(false);
         //visualCueText.SetActive(false);
         if (enterCameraLook == null) {
@@ -71,6 +73,7 @@ public class dialogueTrigger : MonoBehaviour
             /*if(_inputTranslator.OnInteract){
                 Debug.Log(inkJSON.text);
             }*/
+            dialogueManager.DialogueManagerInstance.enterDialogueMode(inkJSON);
         }else{
             visualCue.SetActive(false);
         }
@@ -105,11 +108,11 @@ public class dialogueTrigger : MonoBehaviour
         {
             
             playerInRange = true;
-            /*if (!dialogueManager.DialogueManagerInstance.isDialoguePlaying)
+            if (!dialogueManager.DialogueManagerInstance.isDialoguePlaying)
             {
                 visualCue.SetActive(true);
                 //visualCueText.SetActive(true);
-            } */
+            }
             //if (oneShot) alreadyEntered = true;
         }
 
