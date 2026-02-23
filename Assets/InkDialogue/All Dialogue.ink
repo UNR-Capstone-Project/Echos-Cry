@@ -21,7 +21,7 @@ Stay on beat!
 
 === tutorial_2 ===
 Hey, I know you!
-You're the one driving me crazy with all that noise!
+Quite the show back there, I heard your playing!
 * [I've only just started practicing, I'm getting better each day.]
     You could have fooled me.
 * [Do you want to hear some Beethoven?]
