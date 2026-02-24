@@ -219,7 +219,7 @@ public class BatAttackState : EnemyState
 
         if (_enemyContext.AttackStrategies[MeleeIndex]
             .Execute(
-                _configFile.BaseDamage, //ISSUE: This is hard coded and very hard to find!
+                _configFile.BaseDamage,
                 attackDirection, 
                 _enemyContext.transform)) 
             isAttacking = false;
