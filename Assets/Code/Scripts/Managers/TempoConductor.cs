@@ -50,7 +50,7 @@ public class TempoConductor : Singleton<TempoConductor>
     private void UpdateHitQuality()
     {
         _currentBeatProgress = MusicManager.Instance.GetSampleProgress();
-        Debug.Log(_currentBeatProgress);
+        //Debug.Log(_currentBeatProgress);
 
         if (_currentBeatProgress <= _excellentPercent ||
             _currentBeatProgress >= (1f - _excellentPercent))

@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Level/Scenes/Test Scenes/LevelBlockoutAndEnemyWaves.unity
     guid: d0ddf20918cee494897fdd83f129ce5c
+  - enabled: 1
+    path: Assets/Level/Scenes/MainScenes/LevelThreeScene.unity
+    guid: 54131469adf76d748870efaec8ed3b1c
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 2ff1d2472918f084dbccf1e2c06937ac, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 9d8fb2100d4c4f147b0db2c4c773e309, type: 3}

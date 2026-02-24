@@ -1334,8 +1334,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3645533978470768532, guid: e1ffdf3d89e980e48901136d6808dd91, type: 3}
       propertyPath: _allWaves.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3645533978470768532, guid: e1ffdf3d89e980e48901136d6808dd91, type: 3}
+      propertyPath: '_allWaves.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: e5dceb5da6ae1e44ea72bfc98bf3e916, type: 2}
+    - target: {fileID: 3645533978470768532, guid: e1ffdf3d89e980e48901136d6808dd91, type: 3}
+      propertyPath: '_allWaves.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: f377bc252e000104bab76183e404d72b, type: 2}
+    - target: {fileID: 3645533978470768532, guid: e1ffdf3d89e980e48901136d6808dd91, type: 3}
+      propertyPath: '_allWaves.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0beb796d1722c6842bc95817c3d5b5c1, type: 2}
     - target: {fileID: 6460877931832319526, guid: e1ffdf3d89e980e48901136d6808dd91, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1742,6 +1754,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c66d786ed98dea54b92fa07b4a8f4799, type: 3}
+--- !u!1001 &692975253
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2489767002183102680, guid: 379f43b0993486942a6e33104c3e345f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.18973
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489767002183102680, guid: 379f43b0993486942a6e33104c3e345f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.4985
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489767002183102680, guid: 379f43b0993486942a6e33104c3e345f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.34532
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489767002183102680, guid: 379f43b0993486942a6e33104c3e345f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489767002183102680, guid: 379f43b0993486942a6e33104c3e345f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489767002183102680, guid: 379f43b0993486942a6e33104c3e345f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489767002183102680, guid: 379f43b0993486942a6e33104c3e345f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489767002183102680, guid: 379f43b0993486942a6e33104c3e345f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489767002183102680, guid: 379f43b0993486942a6e33104c3e345f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489767002183102680, guid: 379f43b0993486942a6e33104c3e345f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8351964614839590640, guid: 379f43b0993486942a6e33104c3e345f, type: 3}
+      propertyPath: m_Name
+      value: EnemyPoolManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 379f43b0993486942a6e33104c3e345f, type: 3}
 --- !u!1001 &703509473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4945,7 +5014,7 @@ MonoBehaviour:
     m_SceneAsset: {fileID: 102900000, guid: 7b0faddb61c47924fa4e055b3b1bfd09, type: 3}
     m_SceneName: TownScene
   portalSFX: {fileID: 11400000, guid: 3c2c25fd20eacfe4aaa9eeece1a7174c, type: 2}
-  _isLevelExit: 0
+  _isLevelExit: 1
 --- !u!65 &2102998044
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5192,6 +5261,7 @@ SceneRoots:
   - {fileID: 1604272053}
   - {fileID: 2122062099}
   - {fileID: 490782094}
+  - {fileID: 692975253}
   - {fileID: 2584158873097198917}
   - {fileID: 340443762925203907}
   - {fileID: 1868328133}
