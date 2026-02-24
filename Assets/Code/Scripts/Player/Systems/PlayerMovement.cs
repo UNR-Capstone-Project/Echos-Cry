@@ -13,16 +13,26 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_isMovementLocked) return;
         if (_playerMovementConfig == null) return;
-        Vector3 moveDirection = ((playerInputLocomotion.y * forwardVector) + (playerInputLocomotion.x * rightVector)).normalized;
-        Vector3 targetVel = _moveSpeed * moveDirection + new Vector3(0f, _playerRigidbody.linearVelocity.y, 0f);
 
-        _playerRigidbody.AddForce(targetVel - _playerRigidbody.linearVelocity, ForceMode.VelocityChange);
+        Vector3 moveDirection = ((playerInputLocomotion.y * forwardVector) + (playerInputLocomotion.x * rightVector)).normalized;
+        Vector3 targetVelocity = _moveSpeed * moveDirection;
+        Vector3 currentVelocity = _playerRigidbody.linearVelocity;
+
+        Vector3 velocityChange = new Vector3(targetVelocity.x - currentVelocity.x, 0f, targetVelocity.z - currentVelocity.z);
+
+        _playerRigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
     }
     public void Dash()
     {
         if (_isMovementLocked) return;
         if (_playerMovementConfig == null) return;
-        _playerRigidbody.AddForce(_playerRigidbody.linearVelocity.normalized * _dashSpeed, ForceMode.VelocityChange);
+
+        Vector3 dashDirection = _playerRigidbody.linearVelocity;
+        dashDirection.y = 0f; //Ensure dash is only affecting horizontal velocity.
+        dashDirection.Normalize();
+
+        _playerRigidbody.AddForce(dashDirection * _dashSpeed, ForceMode.VelocityChange);
+
         _dashCount--;
         _dashUpdateChannel.Invoke(_dashCount, _maxDashCount);
         StartDashCooldown();
