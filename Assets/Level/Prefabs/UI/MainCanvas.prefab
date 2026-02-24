@@ -9752,8 +9752,8 @@ MonoBehaviour:
   mRectTransform: {fileID: 7944283960505196019}
   thickness: 64
   lineWidth: 6
-  leftColor: {r: 1, g: 1, b: 1, a: 1}
-  rightColor: {r: 1, g: 1, b: 1, a: 0}
+  leftColor: {r: 0.95686275, g: 0.78039217, b: 0.09411765, a: 0.39215687}
+  rightColor: {r: 0.95686275, g: 0.78039217, b: 0.09411765, a: 0}
 --- !u!114 &4473273664853023762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10340,8 +10340,8 @@ MonoBehaviour:
   mRectTransform: {fileID: 8773803677135402126}
   thickness: 64
   lineWidth: 6
-  leftColor: {r: 1, g: 1, b: 1, a: 1}
-  rightColor: {r: 1, g: 1, b: 1, a: 0}
+  leftColor: {r: 0.95686275, g: 0.78039217, b: 0.09411765, a: 0.39215687}
+  rightColor: {r: 0.95686275, g: 0.78039217, b: 0.09411765, a: 0}
 --- !u!114 &2228744864275110973
 MonoBehaviour:
   m_ObjectHideFlags: 0
