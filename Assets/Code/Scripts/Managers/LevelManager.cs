@@ -19,8 +19,9 @@ public class LevelManager : MonoBehaviour
 
     public enum LevelName
     {
-        LEVEL_ONE = 0,
-        LEVEL_TWO = 1
+        LEVEL_ONE,
+        LEVEL_TWO,
+        LEVEL_THREE,
     }
 
     [SerializeField] private List<Level> LevelList = new();
