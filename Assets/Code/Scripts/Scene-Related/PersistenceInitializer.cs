@@ -17,14 +17,11 @@ public static class PersistenceInitializer
 
         var currentScene = SceneManager.GetActiveScene();
 
-        if (currentScene.name != "MainMenu")
+        if (currentScene.name != "MainMenu" && currentScene.name != "EndCreditsMenu")
         {
-            
             //Debug.Log("Loaded by the Persist Object from the PersistenceInitializer script");
-            //Application.targetFrameRate = 60;
             Object.DontDestroyOnLoad(Object.Instantiate(Resources.Load("PERSISTOBJECTS")));
             loaded = true;
-            
         }
         
     }
