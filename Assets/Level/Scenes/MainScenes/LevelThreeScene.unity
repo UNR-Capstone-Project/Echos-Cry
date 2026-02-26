@@ -5015,6 +5015,7 @@ MonoBehaviour:
     m_SceneName: TownScene
   portalSFX: {fileID: 11400000, guid: 3c2c25fd20eacfe4aaa9eeece1a7174c, type: 2}
   _isLevelExit: 1
+  _isFinalExit: 1
 --- !u!65 &2102998044
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5082,6 +5083,10 @@ PrefabInstance:
     - target: {fileID: 2015721030331506293, guid: 1c5f5372fde806d4e87546032cd7d91f, type: 3}
       propertyPath: levelName
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2015721030331506293, guid: 1c5f5372fde806d4e87546032cd7d91f, type: 3}
+      propertyPath: isFinalExit
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2015721030331506293, guid: 1c5f5372fde806d4e87546032cd7d91f, type: 3}
       propertyPath: waveManager

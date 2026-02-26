@@ -418,9 +418,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
-        m_MethodName: OnBackButton
+      - m_Target: {fileID: 581383073}
+        m_TargetAssemblyTypeName: CreditsManager, Assembly-CSharp
+        m_MethodName: BackButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -546,6 +546,7 @@ GameObject:
   - component: {fileID: 581383068}
   - component: {fileID: 581383067}
   - component: {fileID: 581383072}
+  - component: {fileID: 581383073}
   m_Layer: 5
   m_Name: MenuCanvas
   m_TagString: Untagged
@@ -650,6 +651,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MusicTester
   testSong: {fileID: 11400000, guid: e549643a533a0c840937ac958bf39070, type: 2}
+--- !u!114 &581383073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581383066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47e72c795dda10046b59f9fcd70d85a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _returnSceneName: MainMenu
 --- !u!1 &818567013
 GameObject:
   m_ObjectHideFlags: 0
