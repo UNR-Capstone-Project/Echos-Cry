@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MainMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class MainMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] private GameObject _selectImage;
 
@@ -16,6 +16,11 @@ public class MainMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     }
 
     public void OnPointerExit(PointerEventData eventData)
+    {
+        _selectImage.SetActive(false);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
     {
         _selectImage.SetActive(false);
     }

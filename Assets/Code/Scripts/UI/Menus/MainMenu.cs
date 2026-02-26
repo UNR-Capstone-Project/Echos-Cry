@@ -33,12 +33,7 @@ public class MainMenu : MonoBehaviour
         SetMenu("Main");
     }
 
-    public void Continue()
-    {
-        SceneManager.LoadScene("TownScene");
-    }
-
-    public void NewGame()
+    public void Play()
     {
         SceneManager.LoadScene("TownScene");
     }
