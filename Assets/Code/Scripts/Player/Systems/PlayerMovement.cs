@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
         _playerRigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
     }
+
     public void Dash()
     {
         if (_isMovementLocked) return;
