@@ -16,6 +16,7 @@ public class SceneTriggerManager : MonoBehaviour
     [SerializeField] private SceneField sceneTarget;
     [SerializeField] soundEffect portalSFX;
     [SerializeField] private bool _isLevelExit;
+    [SerializeField] private bool _isFinalExit = false;
     public static event Action OnSceneTransitionEvent;
 
     private bool sceneTransitioning = false;
@@ -30,7 +31,11 @@ public class SceneTriggerManager : MonoBehaviour
 
     public void StartTransition()
     {
-        StartCoroutine(HandleSceneTransition());
+        if (_isFinalExit)
+        {
+            SceneManager.LoadScene("EndCreditsMenu");
+        }
+        else { StartCoroutine(HandleSceneTransition()); }
     }
     IEnumerator HandleSceneTransition()
     {
