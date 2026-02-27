@@ -20,7 +20,7 @@ public class GraphicsSettingsManager : MonoBehaviour
         List<string> options = new List<string>();
         foreach (var resolution in resolutions)
         {
-            options.Add(resolution.width + " x " + resolution.height);
+            options.Add(resolution.width + " x " + resolution.height + " @ " + resolution.refreshRateRatio.value + "Hz");
         }
 
         _resolutionDropdown.AddOptions(options);
