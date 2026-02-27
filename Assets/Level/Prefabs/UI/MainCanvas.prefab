@@ -4573,6 +4573,7 @@ MonoBehaviour:
     m_SceneName: TownScene
   portalSFX: {fileID: 11400000, guid: 3c2c25fd20eacfe4aaa9eeece1a7174c, type: 2}
   _isLevelExit: 0
+  _isFinalExit: 0
 --- !u!1 &4845643980943756514
 GameObject:
   m_ObjectHideFlags: 0
