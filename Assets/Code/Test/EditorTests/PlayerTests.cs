@@ -1,15 +1,20 @@
 using System.Collections;
 using NUnit.Framework;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
-public class calculate_xp
+public class PlayerTests
 {
-    // A Test behaves as an ordinary method
-    [Test]
-    public void calculate_xpSimplePasses()
+    [UnityTest]
+    public IEnumerator PlayerLoadedInTownScene()
     {
-        // Use the Assert class to test conditions
+        EditorSceneManager.OpenScene("Assets/Level/Scenes/MainScenes/" + EchosCry.Scene.Name.Town + ".unity");
+        yield return null;
+        yield return null;
+        var Player = GameObject.FindGameObjectWithTag("Player");
+        Assert.IsNotNull(Player);
     }
 
     // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
