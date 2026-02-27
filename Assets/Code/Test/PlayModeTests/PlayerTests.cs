@@ -13,8 +13,8 @@ public class PlayerTests
     public IEnumerator Setup()
     {
         SceneManager.LoadScene(EchosCry.Scene.Name.Town, LoadSceneMode.Single);
-        //Scene does not finish loading until next frame, so skip frame
-        yield return null;
+        //Scene does not finish loading until next frame, also wait for other entities of scene to load
+        yield return new WaitForSeconds(1);
         Player = GameObject.FindGameObjectWithTag("Player");
     }
 
