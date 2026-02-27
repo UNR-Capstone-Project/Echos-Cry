@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using System.Collections;
 using System;
+using UnityEditor;
 
 [System.Serializable]
 public class StringGameobjectPair
@@ -17,6 +18,7 @@ public class MenuManager : Singleton<MenuManager>
     [SerializeField] private GameObject screenFadeObject;
     [SerializeField] private List<StringGameobjectPair> menuDictionary;
     [SerializeField] private InputTranslator _inputTranslator;
+    [SerializeField] private SettingsManager _settingsManager;
 
     public static event Action PauseStarted;
     public static event Action PauseEnded;
@@ -34,6 +36,7 @@ public class MenuManager : Singleton<MenuManager>
         GameManager.OnPlayerDeathEvent += EnableGameoverMenu;
         DialogueEvents.Instance.OnDialogueStarted += () => SetMenu("Dialogue");
         DialogueEvents.Instance.OnDialogueEnded += () => SetMenu("HUD");
+        _settingsManager.OnMenuBackButton += () => SetMenu("Pause");
         _translator.OnUpgradeEvent += EnableUpgradeMenu;
         _translator.OnPauseEvent += EnablePauseMenu;
         _translator.OnResumeEvent += DisablePauseMenu;
@@ -44,6 +47,7 @@ public class MenuManager : Singleton<MenuManager>
         GameManager.OnPlayerDeathEvent -= EnableGameoverMenu;
         DialogueEvents.Instance.OnDialogueStarted -= () => SetMenu("Dialogue");
         DialogueEvents.Instance.OnDialogueEnded -= () => SetMenu("HUD");
+        _settingsManager.OnMenuBackButton -= () => SetMenu("Pause");
         _translator.OnUpgradeEvent -= EnableUpgradeMenu;
         _translator.OnPauseEvent -= EnablePauseMenu;
         _translator.OnResumeEvent -= DisablePauseMenu;
