@@ -18,7 +18,8 @@ public class PlayerMovement : MonoBehaviour
         Vector3 targetVelocity = _moveSpeed * moveDirection;
         Vector3 currentVelocity = _playerRigidbody.linearVelocity;
 
-        Vector3 velocityChange = new Vector3(targetVelocity.x - currentVelocity.x, 0f, targetVelocity.z - currentVelocity.z);
+        Vector3 velocityChange = targetVelocity - currentVelocity;
+        velocityChange.y = 0;
 
         _playerRigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
     }

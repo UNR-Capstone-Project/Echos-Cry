@@ -11,6 +11,10 @@ public class SpamPrevention : MonoBehaviour
 
     public static bool InputLocked { get; private set; }
 
+    public int MaxInputCount {  get { return _maxInputCount; } }
+    public float InputCooldown { get => _inputCooldown; }
+    public int CurrentInputCount { get =>  _currentInputCount; }
+
     private void OnEnable()
     {
         _translator.OnPrimaryActionEvent += IncrementCount;
@@ -28,7 +32,7 @@ public class SpamPrevention : MonoBehaviour
         StopAllCoroutines();
     }
 
-    private void IncrementCount(bool isPressed)
+    public void IncrementCount(bool isPressed)
     {
         if (!isPressed) return;
         if (InputLocked) return;
