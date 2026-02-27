@@ -27,7 +27,7 @@ public class TabButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         _tabGroup.OnTabExit(this);
     }
 
-    void Start()
+    void Awake()
     {
         _tabGroup.Subscribe(this);
     }
