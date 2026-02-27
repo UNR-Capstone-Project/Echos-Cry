@@ -13,13 +13,14 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerSkillManager _skills;
     [SerializeField] private PlayerOrientation _orientation;
     [SerializeField] private PlayerCurrencySystem _currencySystem;
-    [SerializeField] private PlayerXP _stats;
+    [SerializeField] private PlayerXP _xp;
     [SerializeField] private InputTranslator _inputTranslator;
     [SerializeField] private SoundStrategy _sfx;
     [SerializeField] private SFXConfig _sfxConfig;
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private DashWeapon _dashAttack;
-    [SerializeField] private PlayerStats _playerStats;
+    [SerializeField] private PlayerStats _stats;
+    [SerializeField] private SpamPrevention _spamPrevention;
 
     [Header("Event Channel (Broadcaster)")]
     [SerializeField] EventChannel _attackEndedChannel;
@@ -37,11 +38,12 @@ public class Player : MonoBehaviour
     public PlayerSkillManager Skills { get => _skills; }
     public PlayerOrientation Orientation { get => _orientation; }
     public PlayerCurrencySystem CurrencySystem { get => _currencySystem; }
-    public PlayerXP Stats { get => _stats; }
+    public PlayerXP XP { get => _xp; }
     public InputTranslator InputTranslator { get => _inputTranslator; }
     public Rigidbody RB { get => _rb; }
     public DashWeapon DashAttack { get => _dashAttack; }
-    public PlayerStats PlayerStats { get => _playerStats; }
+    public PlayerStats Stats { get => _stats; }
+    public SpamPrevention SpamPrevention { get => _spamPrevention; }
 
     private void InitStateCache()
     {

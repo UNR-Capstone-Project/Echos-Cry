@@ -14,7 +14,7 @@ public class PlayerDashState : PlayerActionState
     {
         // Handle Dash Attack
         //--------------------
-        if (_playerContext.PlayerStats.DashAttackEnabled)
+        if (_playerContext.Stats.DashAttackEnabled)
             _playerContext.WeaponHolder.DashAction();
         //--------------------
 
@@ -30,7 +30,7 @@ public class PlayerDashState : PlayerActionState
     {
         // Handle Dash Attack
         //--------------------
-        if (_playerContext.PlayerStats.DashAttackEnabled)
+        if (_playerContext.Stats.DashAttackEnabled)
         {
             _playerContext.WeaponHolder.ResetPreviousWeapon();
             int hitCount = _playerContext.WeaponHolder.CurrentlyEquippedWeapon.HitColliders.Count;
