@@ -193,9 +193,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 83d80e8880ac36248a04df2b3651d427, type: 3}
       insertIndex: -1
       addedObject: {fileID: -756382160915533379}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 83d80e8880ac36248a04df2b3651d427, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2610748848504449433}
   m_SourcePrefab: {fileID: 100100000, guid: 83d80e8880ac36248a04df2b3651d427, type: 3}
 --- !u!1 &833407691746095718 stripped
 GameObject:
@@ -262,22 +259,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b039fd194ec2f4e9c40e21ca1487e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnvironmentObject
-  _statsConfig: {fileID: 11400000, guid: afeca21892a1ca549b5da02345d931bb, type: 2}
   _itemDropStrategy: {fileID: 11400000, guid: 91505f07313de1e48a168c4fe728a893, type: 2}
   _destroyedPrefab: {fileID: 7559960175404138094, guid: d58d57a86839c2d40822e65e501ca646, type: 3}
   _destroySFX: {fileID: 11400000, guid: 8e6fff67d6d1b4d46859475d8ddf7611, type: 2}
-  _isDestructable: 1
---- !u!114 &2610748848504449433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 833407691746095718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e6985fba19b0f34a9ee3d88386f6f8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  environmentObject: {fileID: -756382160915533379}
   hitSFX: {fileID: 11400000, guid: c8c975e393c92cc4f8f6aa88905bcc9e, type: 2}
+  _isDestructable: 1
+  _health: 10

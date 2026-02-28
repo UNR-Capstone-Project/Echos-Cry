@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Echo's Cry/Player Data/Player Stats Config")]
+[CreateAssetMenu(menuName = "Echo's Cry/Stats/Stats Config")]
 public class StatsConfig : ScriptableObject
 {
     //[SerializeField] private FloatVariable _currentHealth;

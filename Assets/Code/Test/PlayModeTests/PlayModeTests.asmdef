@@ -1,10 +1,10 @@
 {
-    "name": "PlayModeTests",
+    "name": "PlayMode Tests",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "EchosCry"
+        "Echos Cry Core"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

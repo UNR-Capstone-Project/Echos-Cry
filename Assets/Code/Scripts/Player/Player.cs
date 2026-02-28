@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerAnimator _animator;
     [SerializeField] private PlayerMovement _movement;
     [SerializeField] private WeaponHolder _weaponHolder;
-    [SerializeField] private PlayerSkillManager _skills;
+//    [SerializeField] private PlayerSkillManager _skills;
     [SerializeField] private PlayerOrientation _orientation;
     [SerializeField] private PlayerCurrencySystem _currencySystem;
     [SerializeField] private PlayerXP _xp;
@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     public SFXConfig SFXConfig { get => _sfxConfig; }
     public PlayerMovement Movement { get => _movement; }
     public WeaponHolder WeaponHolder { get => _weaponHolder; }
-    public PlayerSkillManager Skills { get => _skills; }
+ //   public PlayerSkillManager Skills { get => _skills; }
     public PlayerOrientation Orientation { get => _orientation; }
     public PlayerCurrencySystem CurrencySystem { get => _currencySystem; }
     public PlayerXP XP { get => _xp; }
