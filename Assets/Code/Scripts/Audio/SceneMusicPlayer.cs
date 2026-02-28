@@ -5,9 +5,9 @@ using UnityEngine;
 /// Original Author: Victor
 /// All Contributors Since Creation: Victor
 /// Last Modified By:
-public class MusicTester : MonoBehaviour
+public class SceneMusicPlayer : MonoBehaviour
 {
-    [SerializeField] private MusicEvent testSong;
+    [SerializeField] private MusicEvent song;
 
     void Start()
     {
@@ -17,6 +17,6 @@ public class MusicTester : MonoBehaviour
     IEnumerator WaitToPlaySong(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        MusicManager.Instance.PlaySong(testSong);
+        MusicManager.Instance.PlaySong(song);
     }
 }

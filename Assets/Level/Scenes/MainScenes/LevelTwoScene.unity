@@ -689,7 +689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f497e532d73d448b21793aeebba287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  testSong: {fileID: 11400000, guid: d74c2772cc3381b45a89915c7d7f0c10, type: 2}
+  song: {fileID: 11400000, guid: d74c2772cc3381b45a89915c7d7f0c10, type: 2}
 --- !u!4 &383236096
 Transform:
   m_ObjectHideFlags: 0
@@ -4553,6 +4553,7 @@ MonoBehaviour:
     m_SceneName: TownScene
   portalSFX: {fileID: 11400000, guid: 3c2c25fd20eacfe4aaa9eeece1a7174c, type: 2}
   _isLevelExit: 0
+  _isFinalExit: 0
 --- !u!65 &2102998044
 BoxCollider:
   m_ObjectHideFlags: 0
