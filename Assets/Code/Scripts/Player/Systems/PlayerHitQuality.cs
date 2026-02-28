@@ -7,7 +7,6 @@ public class PlayerHitQuality : MonoBehaviour
     [SerializeField] soundEffect _goodSFX;
     [SerializeField] soundEffect _missSFX;
     [SerializeField] InputTranslator _translator;
-    private bool _playerSpamming = false;
 
     private void OnEnable()
     {

@@ -7,7 +7,7 @@ public class CameraManager : MonoBehaviour
     private static CameraManager _instance;
     public static CameraManager Instance { get { return _instance; } }
 
-    [SerializeField] private static Camera _mainCamera;
+    private static Camera _mainCamera;
     private CinemachineCamera cameraBrain;
     private CinemachineBasicMultiChannelPerlin cinemachinePerlin;
 
@@ -16,6 +16,8 @@ public class CameraManager : MonoBehaviour
     private float shakeTimerTotal;
 
     private float startingOrthagaphicSize;
+
+    [SerializeField] private Transform target;
     public static Camera MainCamera { get { return _mainCamera; } }
 
     private void Awake()
@@ -34,7 +36,7 @@ public class CameraManager : MonoBehaviour
     }
     private void Start()
     {
-        cameraBrain.Target.TrackingTarget = PlayerRef.Transform;
+        cameraBrain.Target.TrackingTarget = target;
 
         if (cameraBrain != null)
         {
