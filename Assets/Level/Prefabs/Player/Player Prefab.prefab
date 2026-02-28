@@ -426,13 +426,14 @@ MonoBehaviour:
   _skills: {fileID: 6372820548089278461}
   _orientation: {fileID: 6103571335002571596}
   _currencySystem: {fileID: 2347857121992901382}
-  _stats: {fileID: 6601748428389984218}
+  _xp: {fileID: 6601748428389984218}
   _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
   _sfx: {fileID: 11400000, guid: 5c5a55ebf2f337c4a80a8fcd0ffba53d, type: 2}
   _sfxConfig: {fileID: 11400000, guid: adc0363584558ca40b2ee6043daa5f4c, type: 2}
   _rb: {fileID: 2019051602396369572}
   _dashAttack: {fileID: 6608774333512097546}
-  _playerStats: {fileID: 9198607601960987057}
+  _stats: {fileID: 9198607601960987057}
+  _spamPrevention: {fileID: 8377683321204229973}
   _attackEndedChannel: {fileID: 11400000, guid: 32c2647349869554ca690720dab27258, type: 2}
 --- !u!114 &3818315168867680251
 MonoBehaviour:
