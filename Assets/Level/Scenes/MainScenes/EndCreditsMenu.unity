@@ -291,7 +291,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1801204537}
   m_HandleRect: {fileID: 1801204536}
   m_Direction: 2
-  m_Value: 0.9999995
+  m_Value: 1
   m_Size: 0.85714287
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -650,7 +650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f497e532d73d448b21793aeebba287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MusicTester
-  testSong: {fileID: 11400000, guid: e549643a533a0c840937ac958bf39070, type: 2}
+  song: {fileID: 11400000, guid: 0162284deb3679d49989e63c30362d40, type: 2}
 --- !u!114 &581383073
 MonoBehaviour:
   m_ObjectHideFlags: 0

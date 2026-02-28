@@ -2532,7 +2532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f497e532d73d448b21793aeebba287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  testSong: {fileID: 11400000, guid: e549643a533a0c840937ac958bf39070, type: 2}
+  song: {fileID: 11400000, guid: e549643a533a0c840937ac958bf39070, type: 2}
 --- !u!4 &511794601
 Transform:
   m_ObjectHideFlags: 0
