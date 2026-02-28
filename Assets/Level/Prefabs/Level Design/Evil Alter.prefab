@@ -460,7 +460,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9e7ecb0dc5f72e742aa1a41ee0801ec3, type: 2}
+  - {fileID: 2100000, guid: 7b987acc9696b314490a95cd5b01b6ce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -630,7 +630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 917719431bdc4c941a0c0ffe37d23354, type: 3}
       propertyPath: m_Name
-      value: Obelisk
+      value: Evil Alter
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 917719431bdc4c941a0c0ffe37d23354, type: 3}
       propertyPath: m_StaticEditorFlags
