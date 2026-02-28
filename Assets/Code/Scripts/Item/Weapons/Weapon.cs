@@ -11,6 +11,7 @@ public abstract class Weapon : MonoBehaviour
 
     protected RuntimeAnimatorController _defaultAnimatorController;
 
+    [HideInInspector]
     public AttackData _currentAttackData;
     public bool IsAttackEnded { get; private set; }
 

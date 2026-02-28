@@ -614,6 +614,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RenderMetronome
       objectReference: {fileID: 0}
+    - target: {fileID: 4603908624531791749, guid: f4c0953c4f20de340ba6c0f87ec71c90, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

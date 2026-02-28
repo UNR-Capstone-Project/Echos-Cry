@@ -36,7 +36,7 @@ public class PlayerStateMachine : AbstractStateMachine<PlayerActionState>
         translator.OnDashEvent -= HandleDash;
     }
 
-    private void HandleMovement(Vector2 locomotion)
+    public void HandleMovement(Vector2 locomotion)
     {
         _locomotion = locomotion;
 
@@ -49,7 +49,7 @@ public class PlayerStateMachine : AbstractStateMachine<PlayerActionState>
             _isMoving = false;
         }
     }
-    private void HandlePrimaryAction(bool buttonPressed)
+    public void HandlePrimaryAction(bool buttonPressed)
     {
         if (TempoConductor.Instance.IsOnBeat() && buttonPressed && !SpamPrevention.InputLocked)
         {
@@ -62,7 +62,7 @@ public class PlayerStateMachine : AbstractStateMachine<PlayerActionState>
             if (!_usingSecondaryAction) _isAttacking = false;
         }
     }
-    private void HandleSecondaryAction(bool buttonPressed)
+    public void HandleSecondaryAction(bool buttonPressed)
     {
         if (TempoConductor.Instance.IsOnBeat() && buttonPressed && !SpamPrevention.InputLocked)
         {
@@ -75,7 +75,7 @@ public class PlayerStateMachine : AbstractStateMachine<PlayerActionState>
             if (!_usingPrimaryAction) _isAttacking = false;
         }
     }
-    private void HandleDash(bool buttonPressed)
+    public void HandleDash(bool buttonPressed)
     {
         //Checks if moving because it would cause bug where player could enter dash immediately as they started moving
         if (buttonPressed && !SpamPrevention.InputLocked && _isMoving) _isDashing = true;

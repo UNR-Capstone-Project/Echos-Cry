@@ -1,3 +1,5 @@
+using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,11 +17,6 @@ public class SoundSettingsManager : MonoBehaviour
         volumeSlider.value = currentMasterVolume;
         musicSlider.value = currentMusicVolume;
         sfxSlider.value = currentSFXVolume;
-    }
-
-    public void OnBackButton()
-    {
-        MenuManager.Instance.SetMenu("Pause");
     }
 
     public void ChangeMasterVolume()

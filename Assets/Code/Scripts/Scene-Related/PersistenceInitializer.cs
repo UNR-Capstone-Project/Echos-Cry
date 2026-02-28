@@ -1,9 +1,11 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public static class PersistenceInitializer
 {
     private static bool loaded = false;
+    private static Object _persistenceRef;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     public static void Execute()
@@ -13,19 +15,25 @@ public static class PersistenceInitializer
 
     static void LoadObjects(Scene scene, LoadSceneMode mode)
     {
-        if (loaded) return;
-
         var currentScene = SceneManager.GetActiveScene();
 
-        if (currentScene.name != "MainMenu")
+        if (currentScene.name == "EndCreditsMenu")
         {
-            
-            //Debug.Log("Loaded by the Persist Object from the PersistenceInitializer script");
-            Application.targetFrameRate = 60;
-            Object.DontDestroyOnLoad(Object.Instantiate(Resources.Load("PERSISTOBJECTS")));
-            loaded = true;
-            
+            if (_persistenceRef != null)
+            {
+                Object.Destroy(_persistenceRef);
+                loaded = false;
+            }
         }
-        
+
+        if (loaded) return;
+
+        if (currentScene.name != "MainMenu" && currentScene.name != "EndCreditsMenu")
+        {
+            //Debug.Log("Loaded by the Persist Object from the PersistenceInitializer script");
+            _persistenceRef = Object.Instantiate(Resources.Load("PERSISTOBJECTS"));
+            Object.DontDestroyOnLoad(_persistenceRef);
+            loaded = true;
+        }
     }
 }

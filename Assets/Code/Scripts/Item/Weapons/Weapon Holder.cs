@@ -3,9 +3,11 @@ using UnityEngine;
 public class WeaponHolder : MonoBehaviour
 {
     [SerializeField] private GameObject[] _weaponInventory;
+    [SerializeField] private GameObject _dashWeapon;
     [SerializeField] private InputTranslator _inputTranslator;
 
     private Weapon _currentlyEquippedWeapon;
+    private Weapon _previouslyEquippedWeapon;
     public Weapon CurrentlyEquippedWeapon
     {
         get => _currentlyEquippedWeapon;
@@ -40,6 +42,14 @@ public class WeaponHolder : MonoBehaviour
         }
     }
 
+    private void DeactivateAllWeapons()
+    {
+        foreach (var weapon in _weaponInventory)
+        {
+            weapon.SetActive(false);
+        }
+    }
+
     private void NextWeapon()
     {
         if (_weaponInventory.Length == 0) return;
@@ -61,6 +71,19 @@ public class WeaponHolder : MonoBehaviour
     {
         if (_currentlyEquippedWeapon == null) return;
         _currentlyEquippedWeapon.SecondaryAction();
+    }
+    public void DashAction()
+    {
+        if (_currentlyEquippedWeapon == null) return;
+        _previouslyEquippedWeapon = _currentlyEquippedWeapon;
+        DeactivateAllWeapons();
+        _currentlyEquippedWeapon = _dashWeapon.GetComponent<Weapon>();
+        _currentlyEquippedWeapon.PrimaryAction();
+    }
+    public void ResetPreviousWeapon()
+    {
+        _currentlyEquippedWeapon = _previouslyEquippedWeapon;
+        ActivateWeapon();
     }
 
     public bool IsActionEnded()

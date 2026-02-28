@@ -30,6 +30,7 @@ public class DoorWaveEntrance : DoorManager
     private void HandleWaveComplete()
     {
         isLocked = false;
+
         if (isExit)
         {
             LevelName nextLevel = (LevelName)((int)levelName + 1); //Unlock the next level.

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerXP : MonoBehaviour
 {
-    private int _currentLevel = 1;
+    private int _currentLevel = 0;
     private float _currentXPAmount;
     private float _goalXPAmount = 10f;
     [SerializeField] private XPCalculationStrategy _newXPGoalCalculation;

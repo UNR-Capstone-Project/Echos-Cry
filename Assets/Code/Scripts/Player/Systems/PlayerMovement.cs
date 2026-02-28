@@ -5,24 +5,37 @@ using System;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] BoolEventChannel _lockMovementChannel;
+    [SerializeField] private BoolEventChannel _lockMovementChannel;
+    [SerializeField] private DoubleIntEventChannel _dashUpdateChannel;
     private bool _isMovementLocked = false;
 
     public void Move(Vector2 playerInputLocomotion)
     {
         if (_isMovementLocked) return;
         if (_playerMovementConfig == null) return;
-        Vector3 moveDirection = ((playerInputLocomotion.y * forwardVector) + (playerInputLocomotion.x * rightVector)).normalized;
-        Vector3 targetVel = _moveSpeed * moveDirection + new Vector3(0f, _playerRigidbody.linearVelocity.y, 0f);
 
-        _playerRigidbody.AddForce(targetVel - _playerRigidbody.linearVelocity, ForceMode.VelocityChange);
+        Vector3 moveDirection = ((playerInputLocomotion.y * forwardVector) + (playerInputLocomotion.x * rightVector)).normalized;
+        Vector3 targetVelocity = _moveSpeed * moveDirection;
+        Vector3 currentVelocity = _playerRigidbody.linearVelocity;
+
+        Vector3 velocityChange = targetVelocity - currentVelocity;
+        velocityChange.y = 0;
+
+        _playerRigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
     }
     public void Dash()
     {
         if (_isMovementLocked) return;
         if (_playerMovementConfig == null) return;
-        _playerRigidbody.AddForce(_playerRigidbody.linearVelocity.normalized * _dashSpeed, ForceMode.VelocityChange);
+
+        Vector3 dashDirection = _playerRigidbody.linearVelocity;
+        dashDirection.y = 0f; //Ensure dash is only affecting horizontal velocity.
+        dashDirection.Normalize();
+
+        _playerRigidbody.AddForce(dashDirection * _dashSpeed, ForceMode.VelocityChange);
+
         _dashCount--;
+        _dashUpdateChannel.Invoke(_dashCount, _maxDashCount);
         StartDashCooldown();
     }
 
@@ -30,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(_dashCooldown);
         _dashCount++;
+        _dashUpdateChannel.Invoke(_dashCount, _maxDashCount);
     }
     public void StartDashCooldown()
     {
@@ -67,8 +81,10 @@ public class PlayerMovement : MonoBehaviour
         {
             _dashSpeed = _playerMovementConfig.DashSpeed;
             _moveSpeed = _playerMovementConfig.PlayerSpeed;
-            _dashCount = _playerMovementConfig.DashCount;
+            _maxDashCount = _playerMovementConfig.DashCount;
+            _dashCount = _maxDashCount;
             _dashCooldown = _playerMovementConfig.DashCooldown;
+            _dashUpdateChannel.Invoke(_dashCount, _maxDashCount);
         }
 
         if (Camera.main != null)
@@ -92,9 +108,11 @@ public class PlayerMovement : MonoBehaviour
     private float _moveSpeed;
     private float _dashCooldown;
     private int _dashCount;
+    private int _maxDashCount;
     public float DashSpeed { get => _dashSpeed; set => _dashSpeed = value; }
     public float MoveSpeed { get => _moveSpeed; set => _moveSpeed = value; }
     public float DashCooldown { get => _dashCooldown; set => _dashCooldown = value; }
+    public int DashMaxCount { get => _maxDashCount; set => _maxDashCount = value; }
     public int DashCount { get => _dashCount; set => _dashCount = value; }
 
     public bool HasDash => _dashCount > 0;

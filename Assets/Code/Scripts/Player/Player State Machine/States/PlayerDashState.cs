@@ -12,8 +12,13 @@ public class PlayerDashState : PlayerActionState
 
     public override void Enter()
     {
-        //_playerContext.ComboMeter.ResetComboMultiplier();
+        // Handle Dash Attack
+        //--------------------
+        if (_playerContext.Stats.DashAttackEnabled)
+            _playerContext.WeaponHolder.DashAction();
+        //--------------------
 
+        //_playerContext.ComboMeter.ResetComboMultiplier();
         _playerContext.Animator.SetIsTrailEmit(true);
         _playerContext.Animator.SpriteAnimator.Play("Dash");
         _playerContext.SFX.Execute(_playerContext.SFXConfig.DashSFX, _playerContext.transform, 0);
@@ -23,6 +28,21 @@ public class PlayerDashState : PlayerActionState
     }
     public override void Exit()
     {
+        // Handle Dash Attack
+        //--------------------
+        if (_playerContext.Stats.DashAttackEnabled)
+        {
+            _playerContext.WeaponHolder.ResetPreviousWeapon();
+            int hitCount = _playerContext.WeaponHolder.CurrentlyEquippedWeapon.HitColliders.Count;
+            for (int i = 0; i < hitCount; i++)
+            {
+                TempoConductor.HitQuality hitQuality = _playerContext.WeaponHolder.CurrentlyEquippedWeapon.HitColliders[i].hit;
+                _playerContext.ComboMeter.AddToComboMeter(hitQuality);
+            }
+            _playerContext.InvokeAttackEnded();
+        }
+        //--------------------
+
         _playerContext.Animator.SetIsTrailEmit(false);
         _playerStateMachine.IsDashing = false;
     }
@@ -33,6 +53,7 @@ public class PlayerDashState : PlayerActionState
         _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Move));
         _playerStateMachine.CanDash = true;
     }
+
     //IEnumerator DashCooldown()
     //{
     //    yield return new WaitForSeconds(_playerContext.Movement.PlayerMovementConfig.DashCooldown);

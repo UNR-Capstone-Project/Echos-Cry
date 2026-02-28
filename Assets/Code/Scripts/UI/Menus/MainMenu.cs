@@ -1,23 +1,46 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-/// Original Author: Victor
-/// All Contributors Since Creation: Victor
-/// Last Modified By:
+
 public class MainMenu : MonoBehaviour
 {
-    public void Continue()
+    [SerializeField] private List<StringGameobjectPair> menuDictionary;
+    [SerializeField] private SettingsManager settingsManager;
+
+    public void SetMenu(string menuName)
     {
-        SceneManager.LoadScene("TownScene");
+        foreach (StringGameobjectPair menu in menuDictionary)
+        {
+            if (menu.key == menuName) { menu.value.SetActive(true); }
+            else { menu.value.SetActive(false); }
+        }
     }
 
-    public void NewGame()
+    private void OnAwake()
+    {
+        SetMenu("Main");
+    }
+    private void OnEnable()
+    {
+        settingsManager.OnMenuBackButton += HandleBackButton;
+    }
+    private void OnDisable()
+    {
+        settingsManager.OnMenuBackButton += HandleBackButton;
+    }
+    private void HandleBackButton()
+    {
+        SetMenu("Main");
+    }
+
+    public void Play()
     {
         SceneManager.LoadScene("TownScene");
     }
 
     public void Settings()
     {
-        Debug.Log("Opening settings!");
+        SetMenu("Settings");
     }
 
     public void ExitGame()

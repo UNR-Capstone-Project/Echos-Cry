@@ -19,15 +19,16 @@ public class UILineRenderer : Graphic
         if (MusicManager.Instance == null || MusicManager.Instance.GetMusicPlayer() == null) { return; }
         if (!MusicManager.Instance.GetMusicPlayer().IsTickEnabled()) { return; }
 
-        float progress = MusicManager.Instance.GetSampleProgress();
-        float rectWidth = mRectTransform.rect.width + (lineWidth * 2);
+        float progress = (1 - MusicManager.Instance.GetSampleProgress());
+        //float rectWidth = mRectTransform.rect.width + (lineWidth * 2);
+        float rectWidth = mRectTransform.rect.width;
 
         points.Clear();
 
-        points.Add(new Vector2((rectWidth * progress) - rectWidth / 2 - lineWidth / 2, 0));
-        points.Add(new Vector2((rectWidth * progress) - rectWidth / 2 + lineWidth / 2, 0));
+        points.Add(new Vector2((rectWidth * progress) - (rectWidth / 2) - (lineWidth / 2), 0));
+        points.Add(new Vector2((rectWidth * progress) - (rectWidth / 2) + (lineWidth / 2), 0));
 
-        alpha = progress;
+        alpha = 1 - progress;
 
         SetVerticesDirty();
     }
