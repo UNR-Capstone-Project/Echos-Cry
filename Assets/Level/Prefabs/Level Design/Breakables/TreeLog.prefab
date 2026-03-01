@@ -120,7 +120,7 @@ MonoBehaviour:
   _destroySFX: {fileID: 11400000, guid: 8e6fff67d6d1b4d46859475d8ddf7611, type: 2}
   hitSFX: {fileID: 11400000, guid: c8c975e393c92cc4f8f6aa88905bcc9e, type: 2}
   _isDestructable: 1
-  _health: 10
+  _health: 1
 --- !u!54 &8800236097428414373
 Rigidbody:
   m_ObjectHideFlags: 0
