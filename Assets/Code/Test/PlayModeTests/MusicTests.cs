@@ -9,27 +9,25 @@ public class MusicTests
     MusicManager musicInstance;
 
     [UnitySetUp]
-    public IEnumerator Setup()
+    public IEnumerator SetupTown()
     {
         SceneManager.LoadScene(EchosCry.Scene.Name.Town, LoadSceneMode.Single);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         musicInstance = MusicManager.Instance;
     }
 
-    // A Test behaves as an ordinary method
-    [Test]
-    public void MusicTestsSimplePasses()
+    public void MusicPlayer_NullCheck()
     {
-        // Use the Assert class to test conditions
+        Assert.That(musicInstance.GetMusicPlayer(), Is.Not.Null);
     }
 
-    // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-    // `yield return null;` to skip a frame.
     [UnityTest]
-    public IEnumerator MusicTestsWithEnumeratorPasses()
+    public IEnumerator MusicManager_SongPlaysInTown()
     {
-        // Use the Assert class to test conditions.
-        // Use yield to skip a frame.
+        int errorValue = -1;
+        SetupTown();
+        MusicPlayer_NullCheck();
         yield return null;
+        Assert.That(musicInstance.GetSampleProgress(), Is.Not.EqualTo(errorValue));
     }
 }
