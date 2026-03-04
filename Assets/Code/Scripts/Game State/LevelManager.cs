@@ -23,6 +23,8 @@ public class LevelManager : MonoBehaviour
         LEVEL_ONE,
         LEVEL_TWO,
         LEVEL_THREE,
+        LEVEL_FOUR,
+        LEVEL_FIVE,
     }
 
     [SerializeField] private List<Level> LevelList = new();

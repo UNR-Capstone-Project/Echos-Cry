@@ -14,7 +14,7 @@ public class slotScript : MonoBehaviour
     private void Start()
     {
         InventoryManager.Instance.AddInventorySlot(this);
-        keyTooltipText.text = useItemInput.action.GetBindingDisplayString();
+        keyTooltipText.text = useItemInput.action.GetBindingDisplayString(InputBinding.MaskByGroup("KeyboardMouse"));
     }
 
     public void Set(InventoryItem item)
