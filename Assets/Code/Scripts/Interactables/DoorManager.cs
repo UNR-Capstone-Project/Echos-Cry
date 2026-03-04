@@ -8,8 +8,6 @@ public abstract class DoorManager : MonoBehaviour
     [SerializeField] protected InputTranslator translator;
     [SerializeField] protected AudioSystem.soundEffect doorOpenSoundEffect;
 
-    //[SerializeField] private WaveManager waveManager;
-
     protected bool playerInRange = false;
     protected bool isOpen = false;
     protected bool isLocked = false;
@@ -55,21 +53,11 @@ public abstract class DoorManager : MonoBehaviour
 
     protected virtual void Start()
     {
-        //if (isWaveBased && waveManager != null)
-        //{
-        //    waveManager.OnAllWavesCompleted += () => { isLocked = false; };
-        //}
-
         translator.OnInteractEvent += OpenDoor;
     }
 
     protected virtual void OnDestroy()
     {
-        //if (isWaveBased && waveManager != null)
-        //{
-        //   waveManager.OnAllWavesCompleted -= () => { isLocked = false; };
-        //}
-
         translator.OnInteractEvent -= OpenDoor;
     }
 }
