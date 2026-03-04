@@ -16,7 +16,7 @@ public class NpcDialogueHandler : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         ToolTipPrefab.GetComponent<ToolTip>().text =
-            $"Press '{_translator.PlayerInputs.Gameplay.Interact.GetBindingDisplayString()}' to talk.";
+            $"Press '{_translator.PlayerInputs.Gameplay.Interact.GetBindingDisplayString(InputBinding.MaskByGroup("KeyboardMouse"))}' to talk.";
         Instantiate(ToolTipPrefab, this.transform.position + new Vector3(0, 1, -1), Quaternion.identity);
         _playerInRange = true;
     }

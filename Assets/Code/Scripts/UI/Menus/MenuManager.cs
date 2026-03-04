@@ -1,9 +1,10 @@
-using UnityEngine;
-using System.Collections.Generic;
-using UnityEngine.EventSystems;
-using System.Collections;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEditor;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 [System.Serializable]
 public class StringGameobjectPair
@@ -23,7 +24,6 @@ public class MenuManager : Singleton<MenuManager>
     public static event Action PauseStarted;
     public static event Action PauseEnded;
 
-    private string _previousMenu;
     private string _currentMenu;
 
     protected override void OnAwake()
@@ -63,7 +63,9 @@ public class MenuManager : Singleton<MenuManager>
 
     private void EnablePauseMenu()
     {
-        _previousMenu = _currentMenu;
+        _inputTranslator.PlayerInputs.PauseMenu.Enable();
+        _inputTranslator.PlayerInputs.Gameplay.Disable();
+
         SetMenu("Pause");
         PauseStarted?.Invoke();
         VolumeManager.Instance.SetDepthOfField(true);
@@ -72,7 +74,9 @@ public class MenuManager : Singleton<MenuManager>
 
     private void EnableUpgradeMenu()
     {
-        _previousMenu = _currentMenu;
+        _inputTranslator.PlayerInputs.PauseMenu.Enable();
+        _inputTranslator.PlayerInputs.Gameplay.Disable();
+
         SetMenu("Upgrade");
         PauseStarted?.Invoke();
         VolumeManager.Instance.SetDepthOfField(true);
@@ -81,9 +85,10 @@ public class MenuManager : Singleton<MenuManager>
 
     public void DisablePauseMenu()
     {
-        if (_previousMenu != null) SetMenu(_previousMenu);
-        else SetMenu("HUD");
-
+        _inputTranslator.PlayerInputs.Gameplay.Enable();
+        _inputTranslator.PlayerInputs.PauseMenu.Disable();
+        
+        SetMenu("HUD");
         PauseEnded?.Invoke();
         VolumeManager.Instance.SetDepthOfField(false);
         Time.timeScale = 1f;
@@ -131,7 +136,5 @@ public class MenuManager : Singleton<MenuManager>
     public void BackButton()
     {
         MenuManager.Instance.DisablePauseMenu();
-        _inputTranslator.PlayerInputs.Gameplay.Enable();
-        _inputTranslator.PlayerInputs.PauseMenu.Disable();
     }
 }
