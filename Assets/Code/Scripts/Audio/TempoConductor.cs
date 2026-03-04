@@ -17,12 +17,12 @@ public class TempoConductor : Singleton<TempoConductor>
     //Beat Timing Values
     private float _currentBeatProgress = 0;
     private float _timeBetweenBeats;
-    
+
     public float TimeBetweenBeats { get { return _timeBetweenBeats; } }
 
     //Hit Time --> Higher values are easier to hit within!
-    private readonly float _excellentPercent = 0.1f;
-    private readonly float _goodPercent = 0.2f;
+    private float _excellentPercent;
+    private float _goodPercent;
 
     //            Tempo Threshold
     // Start                           End
@@ -65,10 +65,26 @@ public class TempoConductor : Singleton<TempoConductor>
         else
         {
             _currentHitQuality = HitQuality.Miss;
-        }     
+        }
     }
 
-    void OnEnable()
+    private void Awake()
+    { //Higher values are easier to hit within!
+        float accuracy = Mathf.Clamp01(CalibrationManager.HitAccuracy);
+
+        float t = Mathf.InverseLerp(0.1f, 0.9f, accuracy);
+        t = 1f - t;
+
+        _excellentPercent = Mathf.Lerp(0.1f, 0.3f, t);
+        _goodPercent = Mathf.Lerp(0.2f, 0.4f, t);
+
+        _excellentPercent = Mathf.Clamp(_excellentPercent, 0f, 1f);
+        _goodPercent = Mathf.Clamp(_goodPercent, 0f, 1f);
+
+        Debug.Log($"Excellent:{_excellentPercent} Good:{_goodPercent}");
+    }
+
+    private void OnEnable()
     {
         MusicManager.Instance.SongPlayEvent += UpdateTempo;
         UpdateTempo();

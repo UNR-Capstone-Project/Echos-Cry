@@ -89,41 +89,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4372036117148911257, guid: 6b19c5ead35d86943b3d3a62222f9f80, type: 3}
-      propertyPath: LevelList.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4372036117148911257, guid: 6b19c5ead35d86943b3d3a62222f9f80, type: 3}
-      propertyPath: LevelList.Array.data[2].name
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4372036117148911257, guid: 6b19c5ead35d86943b3d3a62222f9f80, type: 3}
-      propertyPath: LevelList.Array.data[3].name
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4372036117148911257, guid: 6b19c5ead35d86943b3d3a62222f9f80, type: 3}
-      propertyPath: LevelList.Array.data[4].name
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4372036117148911257, guid: 6b19c5ead35d86943b3d3a62222f9f80, type: 3}
-      propertyPath: LevelList.Array.data[2].locked
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4372036117148911257, guid: 6b19c5ead35d86943b3d3a62222f9f80, type: 3}
-      propertyPath: LevelList.Array.data[3].locked
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4372036117148911257, guid: 6b19c5ead35d86943b3d3a62222f9f80, type: 3}
-      propertyPath: LevelList.Array.data[4].locked
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8823125206681022235, guid: 6b19c5ead35d86943b3d3a62222f9f80, type: 3}
-      propertyPath: _inkJson
-      value: 
-      objectReference: {fileID: 4900000, guid: b2d75804432a1ed4092fc026cc89941d, type: 3}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 7268934246999311627, guid: 6b19c5ead35d86943b3d3a62222f9f80, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b19c5ead35d86943b3d3a62222f9f80, type: 3}
