@@ -404,6 +404,11 @@
             "name": "KeyboardMouse",
             "bindingGroup": "KeyboardMouse",
             "devices": []
+        },
+        {
+            "name": "Controller",
+            "bindingGroup": "Controller",
+            "devices": []
         }
     ]
 }
