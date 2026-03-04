@@ -16,7 +16,11 @@ public class UILineRenderer : Graphic
     
     private void Update()
     {
-        if (MusicManager.Instance == null || MusicManager.Instance.GetMusicPlayer() == null) { return; }
+        if (MusicManager.Instance == null || MusicManager.Instance.GetMusicPlayer() == null) 
+        {
+            //Debug.Log("Music Manager could not be found!");
+            return; 
+        }
         if (!MusicManager.Instance.GetMusicPlayer().IsTickEnabled()) { return; }
 
         float progress = (1 - MusicManager.Instance.GetSampleProgress());

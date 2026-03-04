@@ -35,7 +35,7 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
-        SceneManager.LoadScene("TownScene");
+        SetMenu("Calibration");
     }
 
     public void Settings()

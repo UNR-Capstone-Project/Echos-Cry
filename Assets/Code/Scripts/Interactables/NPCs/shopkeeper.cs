@@ -32,7 +32,7 @@ public class shopkeeper : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         ToolTipPrefab.GetComponent<ToolTip>().text = 
-            $"Press '{translator.PlayerInputs.Gameplay.Interact.GetBindingDisplayString()}' to Shop";
+            $"Press '{translator.PlayerInputs.Gameplay.Interact.GetBindingDisplayString(InputBinding.MaskByGroup("KeyboardMouse"))}' to Shop";
         Instantiate(ToolTipPrefab, this.transform.position + new Vector3(0, 1, -1), Quaternion.identity);
         playerInRange = true;
     }
