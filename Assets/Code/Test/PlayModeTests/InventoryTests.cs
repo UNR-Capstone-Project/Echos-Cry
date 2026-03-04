@@ -14,25 +14,18 @@ public class InventoryTests
     {
         GameObject inventoryGO = new GameObject("InventoryManager");
         inventoryInstance = inventoryGO.AddComponent<InventoryManager>();
-        var inventoryBackingField = typeof(InventoryManager)
-            .GetField("<inventory>k__BackingField",
-                System.Reflection.BindingFlags.NonPublic |
-                System.Reflection.BindingFlags.Instance);
-        var dictionaryField = typeof(InventoryManager)
-            .GetField("m_itemDictionary",
-                System.Reflection.BindingFlags.NonPublic |
-                System.Reflection.BindingFlags.Instance);
+        var inventoryBackingField = typeof(InventoryManager).GetField("<inventory>k__BackingField",System.Reflection.BindingFlags.NonPublic 
+                |System.Reflection.BindingFlags.Instance);
+        var dictionaryField = typeof(InventoryManager).GetField("m_itemDictionary",System.Reflection.BindingFlags.NonPublic 
+                |System.Reflection.BindingFlags.Instance);
 
         inventoryBackingField.SetValue(inventoryInstance, new List<InventoryItem>());
         dictionaryField.SetValue(inventoryInstance, new Dictionary<InventoryItemData, InventoryItem>());
 
         var inputTranslator = ScriptableObject.CreateInstance<InputTranslator>();
 
-        var inputField = typeof(InventoryManager)
-            .GetField("_inputTranslator",
-                System.Reflection.BindingFlags.NonPublic |
-                System.Reflection.BindingFlags.Instance);
-
+        var inputField = typeof(InventoryManager).GetField("_inputTranslator", System.Reflection.BindingFlags.NonPublic
+                |System.Reflection.BindingFlags.Instance);
         inputField.SetValue(inventoryInstance, inputTranslator);
 
         testItemData = ScriptableObject.CreateInstance<InventoryItemData>();
