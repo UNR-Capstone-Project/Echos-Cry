@@ -1,0 +1,72 @@
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class CalibrationManager : MonoBehaviour
+{
+    [SerializeField] private InputTranslator _inputTranslator;
+    [SerializeField] private TextMeshProUGUI _resultsText;
+    private float _currentBeatProgress = 0;
+    private int _hitCount = 0;
+    private int _maxHitCount = 5;
+    private float _overallAccuracy = 0;
+    private List<float> _accuracyList = new List<float>();
+
+    private void OnEnable()
+    {
+        _inputTranslator.OnPrimaryActionEvent += CheckHitAccuracy;
+    }
+    private void OnDisable()
+    {
+        _inputTranslator.OnPrimaryActionEvent -= CheckHitAccuracy;
+    }
+
+    private void CheckHitAccuracy(bool isPressed)
+    {
+        if (!isPressed) return;
+        if (_hitCount >= _maxHitCount) return;
+
+        Debug.Log(_currentBeatProgress);
+        float distanceFromBeat = Mathf.Min(_currentBeatProgress, 1f - _currentBeatProgress);
+        _accuracyList.Add(distanceFromBeat);
+        _hitCount++;
+        CalculateOverallAccuracy();
+    }
+    private void CalculateOverallAccuracy()
+    {
+        //Calculate Overall Accuracy
+        float total = 0;
+        foreach (var accuracy in _accuracyList)
+        {
+            total += accuracy;
+        }
+
+        float averageDistance = total / _accuracyList.Count;
+        _overallAccuracy = 1f - (averageDistance * 2f);
+        DisplayResults();
+    }
+
+    private void DisplayResults()
+    {
+        _resultsText.text = $"Results:\nBeat Hit: {_hitCount} | Accuracy: {(_overallAccuracy * 100f):F1}%";
+    }
+    private void Update()
+    {
+        _currentBeatProgress = MusicManager.Instance.GetSampleProgress();
+    }
+    public void ContinueButton()
+    {
+        if (_hitCount == _maxHitCount)
+        {
+            SceneManager.LoadScene("TownScene");
+        }
+    }
+    public void RetryButton()
+    {
+        _accuracyList.Clear();
+        _hitCount = 0;
+        _overallAccuracy = 0;
+        DisplayResults();
+    }
+}
