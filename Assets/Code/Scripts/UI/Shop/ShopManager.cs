@@ -15,50 +15,6 @@ public class ShopManager : MonoBehaviour
 
     void Start()
     {
-        _translator.OnShopLeftInput += Left;
-        _translator.OnShopRightInput += Right;
-        _translator.OnShopUpInput += Up;
-        _translator.OnShopDownInput += Down;
-        _translator.OnPurchaseEvent += Purchase;
-
-        ShopItemArray[currentItemIndex].GetComponent<ShopItem>().ToggleHighlight(true);
-    }
-    private void OnDestroy()
-    {
-        _translator.OnShopLeftInput -= Left;
-        _translator.OnShopRightInput -= Right;
-        _translator.OnShopUpInput -= Up;
-        _translator.OnShopDownInput -= Down;
-        _translator.OnPurchaseEvent -= Purchase;
-    }
-
-    private void Left()
-    {
-        ShopItemArray[currentItemIndex].GetComponent<ShopItem>().DecreaseAmount();
-    }
-    private void Right()
-    {
-        //PlayerStats.UpdateCurrency(100);
-        ShopItemArray[currentItemIndex].GetComponent<ShopItem>().IncreaseAmount();
-    }
-    private void Down()
-    {
-        ShopItemArray[currentItemIndex].GetComponent<ShopItem>().ToggleHighlight(false);
-        currentItemIndex++;
-        if (currentItemIndex >= ShopItemArray.Length) 
-        {
-            currentItemIndex = 0;
-        }
-        ShopItemArray[currentItemIndex].GetComponent<ShopItem>().ToggleHighlight(true);
-    }
-    private void Up()
-    {
-        ShopItemArray[currentItemIndex].GetComponent<ShopItem>().ToggleHighlight(false);
-        currentItemIndex--;
-        if (currentItemIndex < 0)
-        {
-            currentItemIndex = ShopItemArray.Length - 1;
-        }
         ShopItemArray[currentItemIndex].GetComponent<ShopItem>().ToggleHighlight(true);
     }
 

@@ -129,45 +129,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Map"",
-                    ""type"": ""Button"",
-                    ""id"": ""f46bc9ee-cdc3-4d3c-b8ec-58ce0a31ab47"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Dash"",
                     ""type"": ""Button"",
                     ""id"": ""9a58ee9d-36b8-441e-81e0-449306af4936"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Skill 1"",
-                    ""type"": ""Button"",
-                    ""id"": ""5296c64e-183a-4bb2-9bac-19070babb574"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Skill 2"",
-                    ""type"": ""Button"",
-                    ""id"": ""2374ad8e-391f-4731-88bb-1a2acd255f8f"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Skill 3"",
-                    ""type"": ""Button"",
-                    ""id"": ""fcb806a6-d7b9-4041-9083-423680405744"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -264,7 +228,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";KeyboardMouse"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -275,7 +239,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";KeyboardMouse"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -286,7 +250,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";KeyboardMouse"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -297,21 +261,10 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";KeyboardMouse"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b3a1f1f9-5f28-409e-af47-2057351150d2"",
-                    ""path"": ""<XInputController>/leftStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
@@ -319,18 +272,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Light Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""466f6f06-fbc0-4fe4-8c5b-be91a9794e5e"",
-                    ""path"": ""<XInputController>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";KeyboardMouse"",
                     ""action"": ""Light Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -341,18 +283,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Heavy Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""41d10398-81da-48eb-bcf6-d44960660963"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";KeyboardMouse"",
                     ""action"": ""Heavy Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -363,41 +294,8 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";KeyboardMouse"",
                     ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7667766a-623c-477e-83f8-58d6d123d424"",
-                    ""path"": ""<XInputController>/start"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c21393f9-8b7a-4a88-9d0b-10e987c35f02"",
-                    ""path"": ""<Keyboard>/m"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Map"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""78a192a9-ffe5-4a71-bcb8-2535a6f03533"",
-                    ""path"": ""<XInputController>/select"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Map"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -407,85 +305,8 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";KeyboardMouse"",
                     ""action"": ""Dash"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""35fd93d2-9d4b-4ad8-bd1d-7ba112b1dd99"",
-                    ""path"": ""<XInputController>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Dash"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5f7021b6-c50a-418f-a802-2915dfbe6979"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Skill 1"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""05ec1938-7dcd-4953-a020-d86bd5876f57"",
-                    ""path"": ""<XInputController>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Skill 1"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""fcc39016-efa4-4dc5-8ecb-96214a1a6451"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Skill 2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e47d36ac-4fc3-4c6e-a47f-d034815b1ca2"",
-                    ""path"": ""<XInputController>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Skill 2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e18e1dbf-c35f-4ed2-b4f7-44a1adb0aa7f"",
-                    ""path"": ""<Keyboard>/3"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Skill 3"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5819f7c4-6fbe-444d-99f6-a178420f128a"",
-                    ""path"": ""<XInputController>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Skill 3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -495,18 +316,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/z"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Item 1"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ddd7055a-1b8d-42a6-a9df-d50da043e555"",
-                    ""path"": ""<XInputController>/dpad/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";KeyboardMouse"",
                     ""action"": ""Item 1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -517,18 +327,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Item 2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9aab52cd-3613-4fed-9cd3-3f0660335956"",
-                    ""path"": ""<XInputController>/dpad/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";KeyboardMouse"",
                     ""action"": ""Item 2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -539,18 +338,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Item 3"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7ff8a34a-1bd6-47fc-b73b-8e0888f51d20"",
-                    ""path"": ""<XInputController>/dpad/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";KeyboardMouse"",
                     ""action"": ""Item 3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -561,18 +349,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/v"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Item 4"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6e69dd18-c45c-4f33-b48c-db30098a1c12"",
-                    ""path"": ""<XInputController>/dpad/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";KeyboardMouse"",
                     ""action"": ""Item 4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -583,18 +360,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e09ac36f-e460-48fe-b650-c4ff413d01d4"",
-                    ""path"": ""<XInputController>/rightStickPress"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";KeyboardMouse"",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -605,7 +371,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";KeyboardMouse"",
                     ""action"": ""Upgrade"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -616,7 +382,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/t"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";KeyboardMouse"",
                     ""action"": ""Teleport"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -627,7 +393,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";KeyboardMouse"",
                     ""action"": ""Weapon Next"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -646,33 +412,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""NavUp"",
-                    ""type"": ""Button"",
-                    ""id"": ""a0ee324f-9195-4878-85c2-55fa00307598"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""NavDown"",
-                    ""type"": ""Button"",
-                    ""id"": ""728e57f8-5e2d-40b0-a723-880f4aee5166"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Select"",
-                    ""type"": ""Button"",
-                    ""id"": ""61e77bc9-7850-4734-b00e-393a41a4f61c"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -682,186 +421,8 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";KeyboardMouse"",
                     ""action"": ""Resume"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""134647d1-9c1e-49d9-946a-feb9ea38bf8d"",
-                    ""path"": ""<XInputController>/start"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Resume"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f85505c6-d848-4cfc-b46e-3a1e630ceeb5"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""NavUp"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d0cd944b-e418-42f6-954c-c675bac6e858"",
-                    ""path"": ""<XInputController>/leftStick/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""NavUp"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""cc47273e-ca91-4e26-bf71-be4efea73415"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""NavDown"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""218592f5-6491-4500-a27f-a4025c44aa4a"",
-                    ""path"": ""<XInputController>/leftStick/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""NavDown"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""706d35a6-ee63-4c52-9c3a-66aa32b58606"",
-                    ""path"": ""<Keyboard>/enter"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Select"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""97c77688-3ff7-4c8c-8e01-5db09f41142f"",
-                    ""path"": ""<XInputController>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Select"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""Player Menu"",
-            ""id"": ""fd1a1f88-87a2-413f-a6ff-e46a237de1c6"",
-            ""actions"": [
-                {
-                    ""name"": ""ExitMenuMap"",
-                    ""type"": ""Button"",
-                    ""id"": ""3356f71e-5f60-424d-bff5-358ed0e14b78"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""NavLeft"",
-                    ""type"": ""Button"",
-                    ""id"": ""f5f2b720-1713-4c42-954c-e2a0c93296d2"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""NavRight"",
-                    ""type"": ""Button"",
-                    ""id"": ""9823c3d8-6e67-40b4-b891-a54676d95a82"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""2610430f-a3c1-4ce3-b54a-611c86a37967"",
-                    ""path"": ""<Keyboard>/m"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ExitMenuMap"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6ea12c1b-4d29-44e2-a471-0108d0e62f5b"",
-                    ""path"": ""<XInputController>/start"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ExitMenuMap"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e7ce65e5-3c64-4aa2-9776-f5e02b25fbce"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""NavLeft"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c8c4b94c-8ad9-4e1d-96bb-07bc0f864637"",
-                    ""path"": ""<XInputController>/leftStick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""NavLeft"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0b255a66-5c83-402f-8e3b-d68bb26f1f41"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""NavRight"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""18ef2f06-ef89-43e8-b9fa-fac5755070aa"",
-                    ""path"": ""<XInputController>/leftStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""NavRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -879,51 +440,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""UpArrow"",
-                    ""type"": ""Button"",
-                    ""id"": ""406fa42e-9ac9-4a3d-8215-f0fd2f82bf85"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""RightArrow"",
-                    ""type"": ""Button"",
-                    ""id"": ""9181dafb-341c-46db-b8f0-a45d28d47819"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""LeftArrow"",
-                    ""type"": ""Button"",
-                    ""id"": ""c146698b-138b-4ea6-addf-ddebe3297699"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""DownArrow"",
-                    ""type"": ""Button"",
-                    ""id"": ""f6b45496-a24b-4491-965f-4964d32c9dab"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Purchase"",
-                    ""type"": ""Button"",
-                    ""id"": ""2f322e1a-2498-4127-b86f-5fbbe6a740c8"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -933,173 +449,8 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";KeyboardMouse"",
                     ""action"": ""CloseShop"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3d99b05b-efd9-4fb8-b1f0-0679e58f28ce"",
-                    ""path"": ""<XInputController>/start"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CloseShop"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d8285a7e-82c5-43f5-b7ca-afd4a3e50429"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""UpArrow"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b51e3776-55d8-4a23-81af-24d481eb13cf"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""UpArrow"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f45707bb-db56-4eea-8b64-3711e9349728"",
-                    ""path"": ""<XInputController>/leftStick/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""UpArrow"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""bdc2c5f9-82cb-4ca3-bb51-f3f6860a33dd"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RightArrow"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5d2a376e-ae36-4721-92c4-2955247cfc05"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RightArrow"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1382a6a3-f028-409d-bdc4-4376b372ae01"",
-                    ""path"": ""<XInputController>/leftStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RightArrow"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f180ac8e-e89e-4d7f-85f8-e9c5aa869afb"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LeftArrow"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f5cf5eee-f593-45c4-a4f6-47a5fc2f87d0"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LeftArrow"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1744917b-63d5-44a8-9233-35fc94f64847"",
-                    ""path"": ""<XInputController>/leftStick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LeftArrow"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""87fbc967-cc5b-40d4-8cb9-4fecf8f10071"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""DownArrow"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""cb84ebb1-38e5-415c-9978-28772955535a"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""DownArrow"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""cc2c0af9-10b2-49ed-ab05-b985130b4c0e"",
-                    ""path"": ""<XInputController>/leftStick/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""DownArrow"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0b6908b1-cdbe-474d-ba9f-9f0e31f9f29c"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Purchase"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0a9f0645-e83e-4025-a199-b0118000de3a"",
-                    ""path"": ""<XInputController>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Purchase"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1126,7 +477,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";KeyboardMouse"",
                     ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1134,7 +485,13 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""KeyboardMouse"",
+            ""bindingGroup"": ""KeyboardMouse"",
+            ""devices"": []
+        }
+    ]
 }");
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
@@ -1142,11 +499,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_Gameplay_LightAttack = m_Gameplay.FindAction("Light Attack", throwIfNotFound: true);
         m_Gameplay_HeavyAttack = m_Gameplay.FindAction("Heavy Attack", throwIfNotFound: true);
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
-        m_Gameplay_Map = m_Gameplay.FindAction("Map", throwIfNotFound: true);
         m_Gameplay_Dash = m_Gameplay.FindAction("Dash", throwIfNotFound: true);
-        m_Gameplay_Skill1 = m_Gameplay.FindAction("Skill 1", throwIfNotFound: true);
-        m_Gameplay_Skill2 = m_Gameplay.FindAction("Skill 2", throwIfNotFound: true);
-        m_Gameplay_Skill3 = m_Gameplay.FindAction("Skill 3", throwIfNotFound: true);
         m_Gameplay_Item1 = m_Gameplay.FindAction("Item 1", throwIfNotFound: true);
         m_Gameplay_Item2 = m_Gameplay.FindAction("Item 2", throwIfNotFound: true);
         m_Gameplay_Item3 = m_Gameplay.FindAction("Item 3", throwIfNotFound: true);
@@ -1158,22 +511,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         // Pause Menu
         m_PauseMenu = asset.FindActionMap("Pause Menu", throwIfNotFound: true);
         m_PauseMenu_Resume = m_PauseMenu.FindAction("Resume", throwIfNotFound: true);
-        m_PauseMenu_NavUp = m_PauseMenu.FindAction("NavUp", throwIfNotFound: true);
-        m_PauseMenu_NavDown = m_PauseMenu.FindAction("NavDown", throwIfNotFound: true);
-        m_PauseMenu_Select = m_PauseMenu.FindAction("Select", throwIfNotFound: true);
-        // Player Menu
-        m_PlayerMenu = asset.FindActionMap("Player Menu", throwIfNotFound: true);
-        m_PlayerMenu_ExitMenuMap = m_PlayerMenu.FindAction("ExitMenuMap", throwIfNotFound: true);
-        m_PlayerMenu_NavLeft = m_PlayerMenu.FindAction("NavLeft", throwIfNotFound: true);
-        m_PlayerMenu_NavRight = m_PlayerMenu.FindAction("NavRight", throwIfNotFound: true);
         // Shop Menu
         m_ShopMenu = asset.FindActionMap("Shop Menu", throwIfNotFound: true);
         m_ShopMenu_CloseShop = m_ShopMenu.FindAction("CloseShop", throwIfNotFound: true);
-        m_ShopMenu_UpArrow = m_ShopMenu.FindAction("UpArrow", throwIfNotFound: true);
-        m_ShopMenu_RightArrow = m_ShopMenu.FindAction("RightArrow", throwIfNotFound: true);
-        m_ShopMenu_LeftArrow = m_ShopMenu.FindAction("LeftArrow", throwIfNotFound: true);
-        m_ShopMenu_DownArrow = m_ShopMenu.FindAction("DownArrow", throwIfNotFound: true);
-        m_ShopMenu_Purchase = m_ShopMenu.FindAction("Purchase", throwIfNotFound: true);
         // Dialogue
         m_Dialogue = asset.FindActionMap("Dialogue", throwIfNotFound: true);
         m_Dialogue_Submit = m_Dialogue.FindAction("Submit", throwIfNotFound: true);
@@ -1183,7 +523,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     {
         UnityEngine.Debug.Assert(!m_Gameplay.enabled, "This will cause a leak and performance issues, PlayerInputs.Gameplay.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_PauseMenu.enabled, "This will cause a leak and performance issues, PlayerInputs.PauseMenu.Disable() has not been called.");
-        UnityEngine.Debug.Assert(!m_PlayerMenu.enabled, "This will cause a leak and performance issues, PlayerInputs.PlayerMenu.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_ShopMenu.enabled, "This will cause a leak and performance issues, PlayerInputs.ShopMenu.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Dialogue.enabled, "This will cause a leak and performance issues, PlayerInputs.Dialogue.Disable() has not been called.");
     }
@@ -1265,11 +604,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_LightAttack;
     private readonly InputAction m_Gameplay_HeavyAttack;
     private readonly InputAction m_Gameplay_Pause;
-    private readonly InputAction m_Gameplay_Map;
     private readonly InputAction m_Gameplay_Dash;
-    private readonly InputAction m_Gameplay_Skill1;
-    private readonly InputAction m_Gameplay_Skill2;
-    private readonly InputAction m_Gameplay_Skill3;
     private readonly InputAction m_Gameplay_Item1;
     private readonly InputAction m_Gameplay_Item2;
     private readonly InputAction m_Gameplay_Item3;
@@ -1306,25 +641,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
         /// <summary>
-        /// Provides access to the underlying input action "Gameplay/Map".
-        /// </summary>
-        public InputAction @Map => m_Wrapper.m_Gameplay_Map;
-        /// <summary>
         /// Provides access to the underlying input action "Gameplay/Dash".
         /// </summary>
         public InputAction @Dash => m_Wrapper.m_Gameplay_Dash;
-        /// <summary>
-        /// Provides access to the underlying input action "Gameplay/Skill1".
-        /// </summary>
-        public InputAction @Skill1 => m_Wrapper.m_Gameplay_Skill1;
-        /// <summary>
-        /// Provides access to the underlying input action "Gameplay/Skill2".
-        /// </summary>
-        public InputAction @Skill2 => m_Wrapper.m_Gameplay_Skill2;
-        /// <summary>
-        /// Provides access to the underlying input action "Gameplay/Skill3".
-        /// </summary>
-        public InputAction @Skill3 => m_Wrapper.m_Gameplay_Skill3;
         /// <summary>
         /// Provides access to the underlying input action "Gameplay/Item1".
         /// </summary>
@@ -1395,21 +714,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
-            @Map.started += instance.OnMap;
-            @Map.performed += instance.OnMap;
-            @Map.canceled += instance.OnMap;
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
-            @Skill1.started += instance.OnSkill1;
-            @Skill1.performed += instance.OnSkill1;
-            @Skill1.canceled += instance.OnSkill1;
-            @Skill2.started += instance.OnSkill2;
-            @Skill2.performed += instance.OnSkill2;
-            @Skill2.canceled += instance.OnSkill2;
-            @Skill3.started += instance.OnSkill3;
-            @Skill3.performed += instance.OnSkill3;
-            @Skill3.canceled += instance.OnSkill3;
             @Item1.started += instance.OnItem1;
             @Item1.performed += instance.OnItem1;
             @Item1.canceled += instance.OnItem1;
@@ -1457,21 +764,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
-            @Map.started -= instance.OnMap;
-            @Map.performed -= instance.OnMap;
-            @Map.canceled -= instance.OnMap;
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
-            @Skill1.started -= instance.OnSkill1;
-            @Skill1.performed -= instance.OnSkill1;
-            @Skill1.canceled -= instance.OnSkill1;
-            @Skill2.started -= instance.OnSkill2;
-            @Skill2.performed -= instance.OnSkill2;
-            @Skill2.canceled -= instance.OnSkill2;
-            @Skill3.started -= instance.OnSkill3;
-            @Skill3.performed -= instance.OnSkill3;
-            @Skill3.canceled -= instance.OnSkill3;
             @Item1.started -= instance.OnItem1;
             @Item1.performed -= instance.OnItem1;
             @Item1.canceled -= instance.OnItem1;
@@ -1534,9 +829,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PauseMenu;
     private List<IPauseMenuActions> m_PauseMenuActionsCallbackInterfaces = new List<IPauseMenuActions>();
     private readonly InputAction m_PauseMenu_Resume;
-    private readonly InputAction m_PauseMenu_NavUp;
-    private readonly InputAction m_PauseMenu_NavDown;
-    private readonly InputAction m_PauseMenu_Select;
     /// <summary>
     /// Provides access to input actions defined in input action map "Pause Menu".
     /// </summary>
@@ -1552,18 +844,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "PauseMenu/Resume".
         /// </summary>
         public InputAction @Resume => m_Wrapper.m_PauseMenu_Resume;
-        /// <summary>
-        /// Provides access to the underlying input action "PauseMenu/NavUp".
-        /// </summary>
-        public InputAction @NavUp => m_Wrapper.m_PauseMenu_NavUp;
-        /// <summary>
-        /// Provides access to the underlying input action "PauseMenu/NavDown".
-        /// </summary>
-        public InputAction @NavDown => m_Wrapper.m_PauseMenu_NavDown;
-        /// <summary>
-        /// Provides access to the underlying input action "PauseMenu/Select".
-        /// </summary>
-        public InputAction @Select => m_Wrapper.m_PauseMenu_Select;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1593,15 +873,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Resume.started += instance.OnResume;
             @Resume.performed += instance.OnResume;
             @Resume.canceled += instance.OnResume;
-            @NavUp.started += instance.OnNavUp;
-            @NavUp.performed += instance.OnNavUp;
-            @NavUp.canceled += instance.OnNavUp;
-            @NavDown.started += instance.OnNavDown;
-            @NavDown.performed += instance.OnNavDown;
-            @NavDown.canceled += instance.OnNavDown;
-            @Select.started += instance.OnSelect;
-            @Select.performed += instance.OnSelect;
-            @Select.canceled += instance.OnSelect;
         }
 
         /// <summary>
@@ -1616,15 +887,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Resume.started -= instance.OnResume;
             @Resume.performed -= instance.OnResume;
             @Resume.canceled -= instance.OnResume;
-            @NavUp.started -= instance.OnNavUp;
-            @NavUp.performed -= instance.OnNavUp;
-            @NavUp.canceled -= instance.OnNavUp;
-            @NavDown.started -= instance.OnNavDown;
-            @NavDown.performed -= instance.OnNavDown;
-            @NavDown.canceled -= instance.OnNavDown;
-            @Select.started -= instance.OnSelect;
-            @Select.performed -= instance.OnSelect;
-            @Select.canceled -= instance.OnSelect;
         }
 
         /// <summary>
@@ -1659,133 +921,10 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     /// </summary>
     public PauseMenuActions @PauseMenu => new PauseMenuActions(this);
 
-    // Player Menu
-    private readonly InputActionMap m_PlayerMenu;
-    private List<IPlayerMenuActions> m_PlayerMenuActionsCallbackInterfaces = new List<IPlayerMenuActions>();
-    private readonly InputAction m_PlayerMenu_ExitMenuMap;
-    private readonly InputAction m_PlayerMenu_NavLeft;
-    private readonly InputAction m_PlayerMenu_NavRight;
-    /// <summary>
-    /// Provides access to input actions defined in input action map "Player Menu".
-    /// </summary>
-    public struct PlayerMenuActions
-    {
-        private @PlayerInputs m_Wrapper;
-
-        /// <summary>
-        /// Construct a new instance of the input action map wrapper class.
-        /// </summary>
-        public PlayerMenuActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
-        /// <summary>
-        /// Provides access to the underlying input action "PlayerMenu/ExitMenuMap".
-        /// </summary>
-        public InputAction @ExitMenuMap => m_Wrapper.m_PlayerMenu_ExitMenuMap;
-        /// <summary>
-        /// Provides access to the underlying input action "PlayerMenu/NavLeft".
-        /// </summary>
-        public InputAction @NavLeft => m_Wrapper.m_PlayerMenu_NavLeft;
-        /// <summary>
-        /// Provides access to the underlying input action "PlayerMenu/NavRight".
-        /// </summary>
-        public InputAction @NavRight => m_Wrapper.m_PlayerMenu_NavRight;
-        /// <summary>
-        /// Provides access to the underlying input action map instance.
-        /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_PlayerMenu; }
-        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
-        public void Enable() { Get().Enable(); }
-        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
-        public void Disable() { Get().Disable(); }
-        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
-        public bool enabled => Get().enabled;
-        /// <summary>
-        /// Implicitly converts an <see ref="PlayerMenuActions" /> to an <see ref="InputActionMap" /> instance.
-        /// </summary>
-        public static implicit operator InputActionMap(PlayerMenuActions set) { return set.Get(); }
-        /// <summary>
-        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
-        /// </summary>
-        /// <param name="instance">Callback instance.</param>
-        /// <remarks>
-        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
-        /// </remarks>
-        /// <seealso cref="PlayerMenuActions" />
-        public void AddCallbacks(IPlayerMenuActions instance)
-        {
-            if (instance == null || m_Wrapper.m_PlayerMenuActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_PlayerMenuActionsCallbackInterfaces.Add(instance);
-            @ExitMenuMap.started += instance.OnExitMenuMap;
-            @ExitMenuMap.performed += instance.OnExitMenuMap;
-            @ExitMenuMap.canceled += instance.OnExitMenuMap;
-            @NavLeft.started += instance.OnNavLeft;
-            @NavLeft.performed += instance.OnNavLeft;
-            @NavLeft.canceled += instance.OnNavLeft;
-            @NavRight.started += instance.OnNavRight;
-            @NavRight.performed += instance.OnNavRight;
-            @NavRight.canceled += instance.OnNavRight;
-        }
-
-        /// <summary>
-        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
-        /// </summary>
-        /// <remarks>
-        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
-        /// </remarks>
-        /// <seealso cref="PlayerMenuActions" />
-        private void UnregisterCallbacks(IPlayerMenuActions instance)
-        {
-            @ExitMenuMap.started -= instance.OnExitMenuMap;
-            @ExitMenuMap.performed -= instance.OnExitMenuMap;
-            @ExitMenuMap.canceled -= instance.OnExitMenuMap;
-            @NavLeft.started -= instance.OnNavLeft;
-            @NavLeft.performed -= instance.OnNavLeft;
-            @NavLeft.canceled -= instance.OnNavLeft;
-            @NavRight.started -= instance.OnNavRight;
-            @NavRight.performed -= instance.OnNavRight;
-            @NavRight.canceled -= instance.OnNavRight;
-        }
-
-        /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PlayerMenuActions.UnregisterCallbacks(IPlayerMenuActions)" />.
-        /// </summary>
-        /// <seealso cref="PlayerMenuActions.UnregisterCallbacks(IPlayerMenuActions)" />
-        public void RemoveCallbacks(IPlayerMenuActions instance)
-        {
-            if (m_Wrapper.m_PlayerMenuActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        /// <summary>
-        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
-        /// </summary>
-        /// <remarks>
-        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
-        /// </remarks>
-        /// <seealso cref="PlayerMenuActions.AddCallbacks(IPlayerMenuActions)" />
-        /// <seealso cref="PlayerMenuActions.RemoveCallbacks(IPlayerMenuActions)" />
-        /// <seealso cref="PlayerMenuActions.UnregisterCallbacks(IPlayerMenuActions)" />
-        public void SetCallbacks(IPlayerMenuActions instance)
-        {
-            foreach (var item in m_Wrapper.m_PlayerMenuActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_PlayerMenuActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    /// <summary>
-    /// Provides a new <see cref="PlayerMenuActions" /> instance referencing this action map.
-    /// </summary>
-    public PlayerMenuActions @PlayerMenu => new PlayerMenuActions(this);
-
     // Shop Menu
     private readonly InputActionMap m_ShopMenu;
     private List<IShopMenuActions> m_ShopMenuActionsCallbackInterfaces = new List<IShopMenuActions>();
     private readonly InputAction m_ShopMenu_CloseShop;
-    private readonly InputAction m_ShopMenu_UpArrow;
-    private readonly InputAction m_ShopMenu_RightArrow;
-    private readonly InputAction m_ShopMenu_LeftArrow;
-    private readonly InputAction m_ShopMenu_DownArrow;
-    private readonly InputAction m_ShopMenu_Purchase;
     /// <summary>
     /// Provides access to input actions defined in input action map "Shop Menu".
     /// </summary>
@@ -1801,26 +940,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "ShopMenu/CloseShop".
         /// </summary>
         public InputAction @CloseShop => m_Wrapper.m_ShopMenu_CloseShop;
-        /// <summary>
-        /// Provides access to the underlying input action "ShopMenu/UpArrow".
-        /// </summary>
-        public InputAction @UpArrow => m_Wrapper.m_ShopMenu_UpArrow;
-        /// <summary>
-        /// Provides access to the underlying input action "ShopMenu/RightArrow".
-        /// </summary>
-        public InputAction @RightArrow => m_Wrapper.m_ShopMenu_RightArrow;
-        /// <summary>
-        /// Provides access to the underlying input action "ShopMenu/LeftArrow".
-        /// </summary>
-        public InputAction @LeftArrow => m_Wrapper.m_ShopMenu_LeftArrow;
-        /// <summary>
-        /// Provides access to the underlying input action "ShopMenu/DownArrow".
-        /// </summary>
-        public InputAction @DownArrow => m_Wrapper.m_ShopMenu_DownArrow;
-        /// <summary>
-        /// Provides access to the underlying input action "ShopMenu/Purchase".
-        /// </summary>
-        public InputAction @Purchase => m_Wrapper.m_ShopMenu_Purchase;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1850,21 +969,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @CloseShop.started += instance.OnCloseShop;
             @CloseShop.performed += instance.OnCloseShop;
             @CloseShop.canceled += instance.OnCloseShop;
-            @UpArrow.started += instance.OnUpArrow;
-            @UpArrow.performed += instance.OnUpArrow;
-            @UpArrow.canceled += instance.OnUpArrow;
-            @RightArrow.started += instance.OnRightArrow;
-            @RightArrow.performed += instance.OnRightArrow;
-            @RightArrow.canceled += instance.OnRightArrow;
-            @LeftArrow.started += instance.OnLeftArrow;
-            @LeftArrow.performed += instance.OnLeftArrow;
-            @LeftArrow.canceled += instance.OnLeftArrow;
-            @DownArrow.started += instance.OnDownArrow;
-            @DownArrow.performed += instance.OnDownArrow;
-            @DownArrow.canceled += instance.OnDownArrow;
-            @Purchase.started += instance.OnPurchase;
-            @Purchase.performed += instance.OnPurchase;
-            @Purchase.canceled += instance.OnPurchase;
         }
 
         /// <summary>
@@ -1879,21 +983,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @CloseShop.started -= instance.OnCloseShop;
             @CloseShop.performed -= instance.OnCloseShop;
             @CloseShop.canceled -= instance.OnCloseShop;
-            @UpArrow.started -= instance.OnUpArrow;
-            @UpArrow.performed -= instance.OnUpArrow;
-            @UpArrow.canceled -= instance.OnUpArrow;
-            @RightArrow.started -= instance.OnRightArrow;
-            @RightArrow.performed -= instance.OnRightArrow;
-            @RightArrow.canceled -= instance.OnRightArrow;
-            @LeftArrow.started -= instance.OnLeftArrow;
-            @LeftArrow.performed -= instance.OnLeftArrow;
-            @LeftArrow.canceled -= instance.OnLeftArrow;
-            @DownArrow.started -= instance.OnDownArrow;
-            @DownArrow.performed -= instance.OnDownArrow;
-            @DownArrow.canceled -= instance.OnDownArrow;
-            @Purchase.started -= instance.OnPurchase;
-            @Purchase.performed -= instance.OnPurchase;
-            @Purchase.canceled -= instance.OnPurchase;
         }
 
         /// <summary>
@@ -2023,6 +1112,19 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="DialogueActions" /> instance referencing this action map.
     /// </summary>
     public DialogueActions @Dialogue => new DialogueActions(this);
+    private int m_KeyboardMouseSchemeIndex = -1;
+    /// <summary>
+    /// Provides access to the input control scheme.
+    /// </summary>
+    /// <seealso cref="UnityEngine.InputSystem.InputControlScheme" />
+    public InputControlScheme KeyboardMouseScheme
+    {
+        get
+        {
+            if (m_KeyboardMouseSchemeIndex == -1) m_KeyboardMouseSchemeIndex = asset.FindControlSchemeIndex("KeyboardMouse");
+            return asset.controlSchemes[m_KeyboardMouseSchemeIndex];
+        }
+    }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Gameplay" which allows adding and removing callbacks.
     /// </summary>
@@ -2059,40 +1161,12 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPause(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Map" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnMap(InputAction.CallbackContext context);
-        /// <summary>
         /// Method invoked when associated input action "Dash" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDash(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Skill 1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSkill1(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Skill 2" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSkill2(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Skill 3" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSkill3(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Item 1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
@@ -2164,56 +1238,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnResume(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "NavUp" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnNavUp(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "NavDown" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnNavDown(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Select" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSelect(InputAction.CallbackContext context);
-    }
-    /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player Menu" which allows adding and removing callbacks.
-    /// </summary>
-    /// <seealso cref="PlayerMenuActions.AddCallbacks(IPlayerMenuActions)" />
-    /// <seealso cref="PlayerMenuActions.RemoveCallbacks(IPlayerMenuActions)" />
-    public interface IPlayerMenuActions
-    {
-        /// <summary>
-        /// Method invoked when associated input action "ExitMenuMap" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnExitMenuMap(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "NavLeft" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnNavLeft(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "NavRight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnNavRight(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Shop Menu" which allows adding and removing callbacks.
@@ -2229,41 +1253,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnCloseShop(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "UpArrow" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnUpArrow(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "RightArrow" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnRightArrow(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "LeftArrow" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnLeftArrow(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "DownArrow" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnDownArrow(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Purchase" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnPurchase(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Dialogue" which allows adding and removing callbacks.
