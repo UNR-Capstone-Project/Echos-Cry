@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f8a8ac42bf12a247b0cbe23365986da, type: 3}
   m_Name: Marked For Death Effect
   m_EditorClassIdentifier: Assembly-CSharp::MarkedForDeathPassive
+  effectName: Marked for Death
+  effectIcon: {fileID: 21300000, guid: a64ab6a7aa63e6643b39541efaecbcdd, type: 3}
   isEffectOneTime: 1
   effectUseInterval: 0
   effectDuration: 0
   damageMultiplier: 1.2
-  _markedIcon: {fileID: 0}
+  duration: 2

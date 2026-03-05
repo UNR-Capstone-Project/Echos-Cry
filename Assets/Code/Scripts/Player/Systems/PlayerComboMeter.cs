@@ -21,6 +21,7 @@ public class PlayerComboMeter : MonoBehaviour
     private bool _isDraining = false;
 
     public static event Action<float, float> OnComboMeterChangeEvent;
+    public static event Action<string, Sprite> OnComboMeterPassiveUnlocked;
     public float ComboMeterAmount { get { return _comboMeterAmount; } }
 
     public enum MeterState
@@ -32,10 +33,13 @@ public class PlayerComboMeter : MonoBehaviour
     }
     private static MeterState _currentMeterState = MeterState.Starting;
     public static MeterState CurrentMeterState { get { return _currentMeterState; } }
+
+    private Player playerRef;
     //-----------------------------------------
 
     private void Start()
     {
+        playerRef = GetComponentInParent<Player>();
         _inputTranslator.OnPrimaryActionEvent += CheckForMiss;
         _inputTranslator.OnSecondaryActionEvent += CheckForMiss;
     }
@@ -88,18 +92,35 @@ public class PlayerComboMeter : MonoBehaviour
     }
     private void UpdateComboMeterState()
     {
+        ThreePassiveEffects currentPassives = playerRef.WeaponHolder.CurrentlyEquippedWeapon._currentAttackData.PassiveEffects;
+
         float progress = _comboMeterAmount / _comboMeterMax;
         float oneThird = .33f;
         float twoThirds = .66f;
 
         if (progress < oneThird)
+        {
             _currentMeterState = MeterState.Starting;
+            OnComboMeterPassiveUnlocked?.Invoke("", null);
+        }
         else if (progress >= oneThird && progress < twoThirds)
+        {
             _currentMeterState = MeterState.OneThird;
+            OnComboMeterPassiveUnlocked?.Invoke(currentPassives.OneThirdEffect.effectName,
+                                                currentPassives.OneThirdEffect.effectIcon);
+        } 
         else if (progress >= twoThirds && progress < 1f)
+        {
             _currentMeterState = MeterState.TwoThirds;
+            OnComboMeterPassiveUnlocked?.Invoke(currentPassives.TwoThirdsEffect.effectName,
+                                                currentPassives.TwoThirdsEffect.effectIcon);
+        }  
         else
+        {
             _currentMeterState = MeterState.Full;
+            OnComboMeterPassiveUnlocked?.Invoke(currentPassives.FullEffect.effectName,
+                                                currentPassives.FullEffect.effectIcon);
+        }  
     }
 
     private IEnumerator DrainResetWait()
