@@ -10,13 +10,17 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private float _timeBetweenWaves = 10f;
     [SerializeField] private WaveData[] _allWaves;
     [SerializeField] private NewEnemySpawner _enemySpawner;
-    [SerializeField] private EventChannel _updateKillCountChannel;
+    [SerializeField] private IntEventChannel _updateKillCountChannel;
 
     private int _currentWave = 0;
     private int _totalEnemiesKilled = 0;
     private bool _allWavesCompleted = false;
     private bool _waveHasStarted = false;
 
+    private void Start()
+    {
+        _enemySpawner.SpawnerID = Guid.NewGuid().GetHashCode();
+    }
     private void OnEnable()
     {
         _updateKillCountChannel.Channel += UpdateKillCount;
@@ -45,8 +49,10 @@ public class WaveManager : MonoBehaviour
         //Debug.Log($"Total enemies in the wave needed to be killed is: {count}");
         return count;
     }
-    public void UpdateKillCount()
+    public void UpdateKillCount(int enemySpawnerID)
     {
+        if (enemySpawnerID != _enemySpawner.SpawnerID) return; //If the enemy is not from this wave manager, then don't count it's death.
+
         if (_allWavesCompleted || !_waveHasStarted) return;
 
         _totalEnemiesKilled++;
@@ -94,7 +100,7 @@ public class WaveManager : MonoBehaviour
             for (int j = 0; j < wave.EnemySpawns[i].enemySpawnCount; j++)
             {
                 Vector3 enemyPosition = _enemySpawner.GetRandomPoint(wave.spawnRadius);
-                StartCoroutine(_enemySpawner.SpawnWithDecal(pool, enemyPosition, wave.spawnRadius, (enemy) =>  { }));
+                StartCoroutine(_enemySpawner.SpawnWithDecal(pool, enemyPosition, wave.spawnRadius, (enemy) => { }));
             }
             yield return new WaitForSeconds(wave.spawnInterval);
         }

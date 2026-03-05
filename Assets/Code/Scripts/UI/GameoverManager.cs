@@ -1,9 +1,21 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class GameoverManager : MonoBehaviour
 {
     [SerializeField] SceneTriggerManager sceneTriggerManager;
+    [SerializeField] private TextMeshProUGUI livesLeftText;
+    [SerializeField] private TextMeshProUGUI deathText;
+
+    private void OnEnable()
+    {
+        livesLeftText.text = $"Lives Left: {GameManager.PlayerLives}";
+        if (GameManager.PlayerLives > 0)
+            deathText.text = "You Died.";
+        else
+            deathText.text = "Game Over.";
+    }
     private void DisableGameoverMenu()
     {
         EventSystem.current.SetSelectedGameObject(null); //Clear selected button
