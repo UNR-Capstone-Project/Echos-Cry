@@ -23,11 +23,10 @@ public class RemapOptionHandler : MonoBehaviour
 
     public void OnRemapButtonPressed()
     {
-        _ActionBindingText.text = "Awaiting Key Press...";
+        _ActionBindingText.text = "Awaiting New Input...";
 
         _inputAction.Disable();
         rebindingOperationKeyboard = _inputAction.PerformInteractiveRebinding()
-            .WithControlsExcluding("Mouse")
             .WithTargetBinding(_bindingIndex)
             .OnMatchWaitForAnother(0.1f);
         rebindingOperationKeyboard.Start();
