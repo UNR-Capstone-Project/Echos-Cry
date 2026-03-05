@@ -13,12 +13,21 @@ public class ControlRemapManager : MonoBehaviour
         {
             foreach (var action in actionMap.actions)
             {
-                if (action.bindings.Count == 0) continue;
-
-                foreach (var binding in action.bindings)
+                for (int i = 0; i < action.bindings.Count; i++)
                 {
-                    GameObject newOptionInstsance = Instantiate(_remapOptionPrefab, _controlsContainer.transform);
-                    newOptionInstsance.GetComponent<RemapOptionHandler>().SetupAction(action.name, binding.ToDisplayString());
+                    var binding = action.bindings[i];
+
+                    if (binding.isComposite)
+                        continue;
+
+                    GameObject instance = Instantiate(_remapOptionPrefab, _controlsContainer.transform);
+
+                    instance.GetComponent<RemapOptionHandler>().SetupAction(
+                        action.name,
+                        action.GetBindingDisplayString(i),
+                        action,
+                        i
+                    );
                 }
             }
         }
