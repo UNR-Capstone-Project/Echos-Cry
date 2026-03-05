@@ -20,10 +20,16 @@ public class ControlRemapManager : MonoBehaviour
                     if (binding.isComposite)
                         continue;
 
+                    string actionName = action.name;
+                    if (binding.isPartOfComposite)
+                    {
+                        actionName += $" ({binding.name})";
+                    }
+
                     GameObject instance = Instantiate(_remapOptionPrefab, _controlsContainer.transform);
 
                     instance.GetComponent<RemapOptionHandler>().SetupAction(
-                        action.name,
+                        actionName,
                         action.GetBindingDisplayString(i),
                         action,
                         i
