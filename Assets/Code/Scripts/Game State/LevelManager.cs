@@ -41,11 +41,11 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        GameManager.OnPlayerDeathEvent += LockAllLevels;
+        GameManager.OnGameOverEvent += LockAllLevels;
     }
     private void OnDestroy()
     {
-        GameManager.OnPlayerDeathEvent -= LockAllLevels;
+        GameManager.OnGameOverEvent -= LockAllLevels;
     }
 
     public void UnlockLevel(LevelName levelName)

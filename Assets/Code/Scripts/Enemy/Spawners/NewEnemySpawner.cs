@@ -10,6 +10,7 @@ public class NewEnemySpawner : MonoBehaviour
 {
     public GameObject spawnDecal;
     private float spawnFromDecalWait = 3f;
+    public int SpawnerID;
 
     public IEnumerator SpawnWithDecal(EnemyPool enemyPool, Vector3 initialPos, float samplingDistance, Action<Enemy> callback)
     {
@@ -26,6 +27,8 @@ public class NewEnemySpawner : MonoBehaviour
         if (instance.TryGetComponent(out NavMeshAgent agent)) agent.enabled = false;
         instance.transform.position = spawnPos;
         if (agent != null) agent.enabled = true;
+
+        instance.EnemySpawnerID = SpawnerID;
 
         callback?.Invoke(instance);
     }
