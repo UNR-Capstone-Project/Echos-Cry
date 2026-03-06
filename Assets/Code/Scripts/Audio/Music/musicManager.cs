@@ -4,7 +4,7 @@ using SoundSystem;
 using System;
 /// Original Author: Victor
 /// All Contributors Since Creation: Victor, Michael, Andy
-/// Last Modified By: 
+
 [CreateAssetMenu(fileName = "MusicManager", menuName = "Echo's Cry/Music System/Music Manager")]
 public class MusicManager : ScriptableObject
 {
@@ -21,17 +21,15 @@ public class MusicManager : ScriptableObject
                 { //Scriptable object was not found in Resources!
                     _instance = CreateInstance<MusicManager>();
                 }
+                _instance.Initialize();
             }
-
-            _instance.Initialize();
-
             return _instance;
         }
     }
 
     public const int MAX_LAYER_COUNT = 5;
     private GameObject musicPlayerPrefab;
-    //[SerializeField] private float crossfadeTime = 0.5f;
+
     [SerializeField] private MusicPlayer currentMusicPlayer;
     [SerializeField] private List<MusicPlayer> inactiveMusicPlayers = new List<MusicPlayer>();
 
@@ -49,15 +47,6 @@ public class MusicManager : ScriptableObject
         if (currentMusicPlayer != null)
         {
             return currentMusicPlayer.SampleProgress;
-        }
-        else return -1;
-    }
-
-    public float GetSampleTime()
-    {
-        if (currentMusicPlayer != null)
-        {
-            return currentMusicPlayer.SampleTime;
         }
         else return -1;
     }
@@ -87,6 +76,7 @@ public class MusicManager : ScriptableObject
         {
             newMusicPlayer = inactiveMusicPlayers[0];
             inactiveMusicPlayers.RemoveAt(0);
+            newMusicPlayer.gameObject.SetActive(true);
         }
         else
         {
@@ -94,16 +84,16 @@ public class MusicManager : ScriptableObject
             newMusicPlayer = musicPlayerInstance.GetComponent<MusicPlayer>();
         }
 
-        if (music.TrackBPM == false)
+        if (music.KeepTrackOfBeat == false)
         {
-            newMusicPlayer.DisableTick();
+            newMusicPlayer.DisableBeatTracking();
         }
 
+        newMusicPlayer.bpm = music.BPM;
         newMusicPlayer.SetupSong(music);
         newMusicPlayer.Play();
-        //ISSUE: add function in player -> newMusicPlayer.PlayWithCrossfade(crossfadeTime);
-        currentMusicPlayer = newMusicPlayer;
 
+        currentMusicPlayer = newMusicPlayer;
         SongPlayEvent?.Invoke();
     }
 
@@ -112,6 +102,7 @@ public class MusicManager : ScriptableObject
         if (currentMusicPlayer != null) 
         { 
             currentMusicPlayer.Stop();
+            currentMusicPlayer.gameObject.SetActive(false);
             inactiveMusicPlayers.Add(currentMusicPlayer);
             currentMusicPlayer = null;
             SongStopEvent?.Invoke();
@@ -133,21 +124,6 @@ public class MusicManager : ScriptableObject
         {
             currentMusicPlayer.Resume(); 
             SongPlayEvent?.Invoke();
-        }
-    }
-
-    public void FadeVolumeToTarget(float volume, float fadeTime)
-    {
-        currentMusicPlayer.FadeVolume(volume, fadeTime);
-    }
-
-    public void fadeVolumeToZero(float fadeTime)
-    {
-        if (currentMusicPlayer != null)
-        {
-            currentMusicPlayer.FadeVolume(fadeTime);
-            inactiveMusicPlayers.Add(currentMusicPlayer);
-            currentMusicPlayer = null;
         }
     }
 
