@@ -241,6 +241,7 @@ public class WalkerStaggerState : EnemyState
         Vector3 direction = (PlayerRef.Transform.position - _enemyContext.transform.position).normalized;
         _enemyContext.Rigidbody.AddForce(-(_config.KnockbackForce * direction), ForceMode.Impulse);
         _enemyContext.StartCoroutine(StaggerDuration());
+        _enemyContext.NPCAnimator.StaggerParticleStart();
     }
     protected override void OnExit()
     {
