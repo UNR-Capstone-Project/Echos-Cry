@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using TMPro;
 using UnityEditor.Rendering;
 using UnityEditor.Rendering.Universal.ShaderGUI;
 #endif
@@ -10,7 +11,8 @@ using UnityEngine.UI;
 public class PlayerHealthBar : MonoBehaviour
 {
     [SerializeField] private DoubleFloatEventChannel eventChannel;
-    [SerializeField] private TMPro.TextMeshProUGUI healthText;
+    [SerializeField] private TextMeshProUGUI healthText;
+    [SerializeField] private TextMeshProUGUI livesRemainingText;
 
     // Variables Provided from here: https://youtu.be/CFASjEuhyf4?si=ri_WpIV1OxgtQdgp at 5:00
     private float lerpTimer;
@@ -22,11 +24,19 @@ public class PlayerHealthBar : MonoBehaviour
     void Start()
     {
         if(eventChannel != null) eventChannel.Channel += UpdateHealth;
+        GameManager.OnPlayerDeathEvent += UpdateLives;
+        UpdateLives();
     }
 
     void OnDestroy()
     {
         if (eventChannel != null) eventChannel.Channel -= UpdateHealth;
+        GameManager.OnPlayerDeathEvent -= UpdateLives;
+    }
+
+    private void UpdateLives()
+    {
+        livesRemainingText.text = $"Lives Remaining: {GameManager.PlayerLives}";
     }
 
     private void UpdateHealth(float currentHealth, float maxHealth)
