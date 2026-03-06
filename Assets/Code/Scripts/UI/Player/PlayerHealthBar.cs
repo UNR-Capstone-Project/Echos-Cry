@@ -1,10 +1,5 @@
-#if UNITY_EDITOR
 using TMPro;
-using UnityEditor.Rendering;
-using UnityEditor.Rendering.Universal.ShaderGUI;
-#endif
 using UnityEngine;
-using UnityEngine.UI;
 /// Original Author: Victor
 /// All Contributors Since Creation: Victor
 /// Last Modified By:

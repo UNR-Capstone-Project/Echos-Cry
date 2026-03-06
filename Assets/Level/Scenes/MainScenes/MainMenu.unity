@@ -698,7 +698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f497e532d73d448b21793aeebba287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MusicTester
-  song: {fileID: 11400000, guid: 0e158af708670154c88541040725f529, type: 2}
+  song: {fileID: 11400000, guid: 0162284deb3679d49989e63c30362d40, type: 2}
 --- !u!1 &642600241
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,6 +1251,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2768193800688297842, guid: e6486457d77f97143b6b6d2354f75e9e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4254297510733494642, guid: e6486457d77f97143b6b6d2354f75e9e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4517959744314426740, guid: e6486457d77f97143b6b6d2354f75e9e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1267,6 +1275,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4789069170303332072, guid: e6486457d77f97143b6b6d2354f75e9e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5030197879448137395, guid: e6486457d77f97143b6b6d2354f75e9e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1281,6 +1293,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5030197879448137395, guid: e6486457d77f97143b6b6d2354f75e9e, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5398016319070356844, guid: e6486457d77f97143b6b6d2354f75e9e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6291682363925320642, guid: e6486457d77f97143b6b6d2354f75e9e, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6639515063151862335, guid: e6486457d77f97143b6b6d2354f75e9e, type: 3}
@@ -1302,6 +1322,10 @@ PrefabInstance:
     - target: {fileID: 7786177158314198147, guid: e6486457d77f97143b6b6d2354f75e9e, type: 3}
       propertyPath: m_Name
       value: SettingsCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879256279821739201, guid: e6486457d77f97143b6b6d2354f75e9e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

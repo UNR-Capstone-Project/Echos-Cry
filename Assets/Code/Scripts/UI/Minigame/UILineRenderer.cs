@@ -21,7 +21,7 @@ public class UILineRenderer : Graphic
             //Debug.Log("Music Manager could not be found!");
             return; 
         }
-        if (!MusicManager.Instance.GetMusicPlayer().IsTickEnabled()) { return; }
+        if (!MusicManager.Instance.GetMusicPlayer().IsBeatTracked()) { return; }
 
         float progress = (1 - MusicManager.Instance.GetSampleProgress());
         //float rectWidth = mRectTransform.rect.width + (lineWidth * 2);

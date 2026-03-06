@@ -51,6 +51,20 @@ public abstract class DoorManager : MonoBehaviour
         }
     }
 
+    protected virtual void OpenDoorWithoutPlayer()
+    {
+        if (!isLocked && !isOpen)
+        {
+            SoundEffectManager.Instance.Builder
+            .SetSound(doorOpenSoundEffect)
+            .SetSoundPosition(transform.position)
+            .ValidateAndPlaySound();
+
+            doorAnimator.SetTrigger("Interact");
+            isOpen = true;
+        }
+    }
+
     protected virtual void Start()
     {
         translator.OnInteractEvent += OpenDoor;
