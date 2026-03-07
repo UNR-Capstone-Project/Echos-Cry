@@ -93,18 +93,13 @@ public class dialogueTrigger : MonoBehaviour
             visualCue.SetActive(false);
             //dialogueManagerInstance.exitDialogueMode();
         }
-        /*if (dialogueManager.DialogueManagerInstance.isDialoguePlaying)
-        {
-            visualCue.SetActive(false);
-            //visualCueText.SetActive(false);
-        }*/
     }
 
     private void interactCheck()
     {
-        if (dialogueManagerInstance == null)
+        if (dialogueManagerInstance == null){
             return;
-
+        }
         if (playerInRange && !dialogueManagerInstance.isDialoguePlaying)
         {
             //enterCameraLook?.Invoke();
@@ -117,9 +112,6 @@ public class dialogueTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        //if (alreadyEntered) return;
-        Debug.Log("collision!");
-
         if (other.gameObject.CompareTag("Player"))
         {
             
