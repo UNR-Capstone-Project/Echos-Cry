@@ -130,17 +130,13 @@ public class dialogueTrigger : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         //if (alreadyExited) return;
-
-        Debug.Log("exit");
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("exit1.25");
             //onTriggerExit.Invoke();
             playerInRange = false;   
             visualCue.SetActive(false);
             if (dialogueManagerInstance.isDialoguePlaying)
             {
-                Debug.Log("exit1.75");
                 StartCoroutine(dialogueManagerInstance.exitDialogueMode());
             }
             //visualCueText.SetActive(false);

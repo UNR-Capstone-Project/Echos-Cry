@@ -56,7 +56,7 @@ public class dialogueManager : MonoBehaviour
         if (dialogueCanvas == null) throw new Exception("Dialogue Canvas is null.");
         if (choices.Length == 0) throw new Exception("Choices List for UI Buttons is null.");
         if (continueIcon == null) throw new Exception("ContinueIcon UI is null.");
-
+        if (_inputTranslator == null) throw new Exception("Input Translator is null.");
         //Debug.Log("Currently In Start Function no Exception thrown for choices GameObject array");
 
         interruptTextDisplayer = false;
@@ -74,10 +74,7 @@ public class dialogueManager : MonoBehaviour
         currentEventSystem = EventSystem.current;
 
         //clickAction = InputController.Instance.GetAction("Click");
-        if (clickAction != null)
-        {
-            clickAction.performed += clickCheck; 
-        }
+        _inputTranslator.OnSubmitEvent += ContinueIfPossible;
         
     }
 
@@ -93,12 +90,16 @@ public class dialogueManager : MonoBehaviour
 
     private void OnEnable()
     {
-        dialogueTrigger.broadcastBattleBool += EnableGameSceneSwitch;
+        if(_inputTranslator != null){
+            _inputTranslator.OnSubmitEvent += ContinueIfPossible;
+        }
     }
 
     private void OnDisable()
     {
-        dialogueTrigger.broadcastBattleBool -= EnableGameSceneSwitch;
+        if(_inputTranslator != null){
+            _inputTranslator.OnSubmitEvent -= ContinueIfPossible;
+        }
     }
 
     public void clickCheck(InputAction.CallbackContext context)
@@ -123,20 +124,26 @@ public class dialogueManager : MonoBehaviour
         //InputController.Instance.PushActionMap("UI");
         //Debug.Log($"Current action map after switch: {InputController.Instance.playerInput.currentActionMap.name}");
         dialogueCanvas.SetActive(true);
+        if(_inputTranslator != null){
+            _inputTranslator.PlayerInputs.Gameplay.Disable();
+            _inputTranslator.PlayerInputs.Dialogue.Enable();
+        }
         continueStory();
         
     }
 
     public IEnumerator exitDialogueMode()
     {
-        Debug.Log("exit2");
         yield return new WaitForSeconds(0.1f);
         isDialoguePlaying = false;
         dialogueCanvas.SetActive(false);
         dialogueText.text = "";
         onDialogueEnded?.Invoke();
         //InputController.Instance.PopActionMap();
-
+        if(_inputTranslator != null){
+            _inputTranslator.PlayerInputs.Dialogue.Disable();
+            _inputTranslator.PlayerInputs.Gameplay.Enable();
+        }
         if (switchToGameScene)
         {
             switchToGameScene = false;
