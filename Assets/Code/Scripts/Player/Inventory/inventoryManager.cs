@@ -53,7 +53,7 @@ public class InventoryManager : MonoBehaviour
         GameObject playerRef = GameObject.FindWithTag("Player");
         if (playerRef != null)
         {
-            playerRef.GetComponent<Player>().Health.HealHealth(10f);
+            playerRef.GetComponent<Player>().Health.HealHealth(15f);
         }
     }
     private void UseShieldPotion()

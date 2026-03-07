@@ -45,7 +45,7 @@ public class PlayerStats : MonoBehaviour
     //Currently using unmutable variables but will eventually change to handle configuration or scaling upgrades eventually
     void UpgradeDashSpeed()
     {
-        if (_movement != null) _movement.DashSpeed += 0.25f;
+        if (_movement != null) _movement.DashSpeed *= 1.1f;
     }
     void UpgradeDashCount()
     {
@@ -57,11 +57,11 @@ public class PlayerStats : MonoBehaviour
     }
     void UpgradeDashCooldown()
     {
-        if (_movement != null) _movement.DashCooldown -= 0.05f;
+        if (_movement != null) _movement.DashCooldown *= 0.9f;
     }
     void UpgradeMoveSpeed()
     {
-        if (_movement != null) _movement.MoveSpeed += 0.25f;
+        if (_movement != null) _movement.MoveSpeed *= 1.1f;
     }
     void UpgradeMaxHealth()
     {

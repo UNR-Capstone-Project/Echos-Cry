@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: _statsConfig
       value: 
       objectReference: {fileID: 11400000, guid: 7ae92e2d44d1d5345b00fb0a6b7ee675, type: 2}
+    - target: {fileID: 1831394080825209204, guid: 29058e1cb20b8264b8f94e98792051cd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2434889112220353080, guid: 29058e1cb20b8264b8f94e98792051cd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

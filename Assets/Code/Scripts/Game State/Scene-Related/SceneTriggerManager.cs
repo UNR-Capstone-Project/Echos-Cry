@@ -15,7 +15,6 @@ public class SceneTriggerManager : MonoBehaviour
 {
     [SerializeField] private SceneField sceneTarget;
     [SerializeField] soundEffect portalSFX;
-    [SerializeField] private bool _isLevelExit;
     [SerializeField] private bool _isFinalExit = false;
     public static event Action OnSceneTransitionEvent;
 

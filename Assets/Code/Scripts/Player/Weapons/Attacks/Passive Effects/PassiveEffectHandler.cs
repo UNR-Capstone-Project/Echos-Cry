@@ -34,7 +34,7 @@ public class PassiveEffectHandler : MonoBehaviour
 
     private void ApplyEffect(PassiveEffect effect)
     {
-        StartCoroutine(EndRoutineEffect(effect)); //Scriptable objects can't use coroutines, so starts from the enemy manager.
+        StartCoroutine(EndRoutineEffect(effect));
 
         if (effect.isEffectOneTime)
         {

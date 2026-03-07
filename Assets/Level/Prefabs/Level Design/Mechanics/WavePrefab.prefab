@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewEnemySpawner
   spawnDecal: {fileID: 7591030504746827832, guid: 437111543cf5ec541b27385210249a0f, type: 3}
+  SpawnerID: 0
 --- !u!114 &3645533978470768532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,4 +84,4 @@ MonoBehaviour:
   _timeBetweenWaves: 10
   _allWaves: []
   _enemySpawner: {fileID: 4634003130030037239}
-  _updateKillCountChannel: {fileID: 11400000, guid: 63b54daa2224c144a9a5bb8cf2c47790, type: 2}
+  _updateKillCountChannel: {fileID: 11400000, guid: 7cab49118f492584f9f027f6ec0fa05a, type: 2}

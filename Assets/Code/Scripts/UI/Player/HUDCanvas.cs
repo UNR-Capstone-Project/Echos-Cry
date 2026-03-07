@@ -34,7 +34,7 @@ public class HUDCanvas : MonoBehaviour
         //_metronomeImage.material = metronomeMaterial;
         //TempoConductor.Instance.BeatTickEvent += FlashOutline;
 
-        _translator.OnDashEvent += UpdateHitQualityText;
+        //_translator.OnDashEvent += UpdateHitQualityText;
         _translator.OnPrimaryActionEvent += UpdateHitQualityText;
         _translator.OnSecondaryActionEvent += UpdateHitQualityText;
     }
@@ -43,7 +43,7 @@ public class HUDCanvas : MonoBehaviour
     {
         //if(TempoConductor.Instance != null) TempoConductor.Instance.BeatTickEvent -= FlashOutline;
 
-        _translator.OnDashEvent -= UpdateHitQualityText;
+        //_translator.OnDashEvent -= UpdateHitQualityText;
         _translator.OnPrimaryActionEvent -= UpdateHitQualityText;
         _translator.OnSecondaryActionEvent -= UpdateHitQualityText;
     }
