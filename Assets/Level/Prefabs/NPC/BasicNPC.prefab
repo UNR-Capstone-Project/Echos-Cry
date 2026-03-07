@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Echos Cry Core::dialogueTrigger
   visualCue: {fileID: 2048659596744181338}
-  inkJSON: {fileID: 4900000, guid: e5713de22c599304dbc44448c908f4fa, type: 3}
+  inkJSON: {fileID: 4900000, guid: 6e2458c8c3eb3d249a5e4e850835c4da, type: 3}
   triggerBattleAtEnd: 0
   dialogueCamera: {fileID: 0}
   defaultCamera: {fileID: 0}
