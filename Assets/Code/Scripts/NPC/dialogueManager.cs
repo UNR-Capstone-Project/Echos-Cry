@@ -67,13 +67,13 @@ public class dialogueManager : MonoBehaviour
         int index = 0;
         foreach (GameObject choice in choices)
         {
-            
             choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
             index++;
         }
         currentEventSystem = EventSystem.current;
 
         //clickAction = InputController.Instance.GetAction("Click");
+        
         _inputTranslator.OnSubmitEvent += ContinueIfPossible;
         
     }
