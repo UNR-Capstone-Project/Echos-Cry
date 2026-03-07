@@ -141,7 +141,10 @@ MonoBehaviour:
   continueIcon: {fileID: 5514157064401933011}
   dialogueText: {fileID: 3883754590701191724}
   dialogueCanvas: {fileID: 5317319749896260196}
-  choices: []
+  choices:
+  - {fileID: 6550132045909971508}
+  - {fileID: 7851695007358505782}
+  - {fileID: 2850719963039448429}
   typingSpeed: 0.1
 --- !u!1001 &6985231494317373937
 PrefabInstance:
@@ -795,6 +798,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42f411ff78ea6ef4f9d4785b36fbf7c0, type: 3}
+--- !u!1 &2850719963039448429 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6765851127088958440, guid: 42f411ff78ea6ef4f9d4785b36fbf7c0, type: 3}
+  m_PrefabInstance: {fileID: 8821121699685922437}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3883754590701191724 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5732859443478885545, guid: 42f411ff78ea6ef4f9d4785b36fbf7c0, type: 3}
@@ -819,5 +827,15 @@ GameObject:
 --- !u!1 &5514157064401933011 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3957771069655852118, guid: 42f411ff78ea6ef4f9d4785b36fbf7c0, type: 3}
+  m_PrefabInstance: {fileID: 8821121699685922437}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6550132045909971508 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2345343064603174065, guid: 42f411ff78ea6ef4f9d4785b36fbf7c0, type: 3}
+  m_PrefabInstance: {fileID: 8821121699685922437}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7851695007358505782 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1629239224258209203, guid: 42f411ff78ea6ef4f9d4785b36fbf7c0, type: 3}
   m_PrefabInstance: {fileID: 8821121699685922437}
   m_PrefabAsset: {fileID: 0}
