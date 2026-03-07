@@ -76,6 +76,7 @@ public class dialogueTrigger : MonoBehaviour
             dialogueManager.DialogueManagerInstance.enterDialogueMode(inkJSON);
         }else{
             visualCue.SetActive(false);
+            dialogueManager.DialogueManagerInstance.exitDialogueMode();
         }
         /*if (dialogueManager.DialogueManagerInstance.isDialoguePlaying)
         {
