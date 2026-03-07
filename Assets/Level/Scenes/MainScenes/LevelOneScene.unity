@@ -4965,6 +4965,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3809796366610336885, guid: 455a8e4cf5c982f479bdf9a75d562f0f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1301450242}
+    - targetCorrespondingSourceObject: {fileID: 3809796366610336885, guid: 455a8e4cf5c982f479bdf9a75d562f0f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1301450243}
   m_SourcePrefab: {fileID: 100100000, guid: 455a8e4cf5c982f479bdf9a75d562f0f, type: 3}
 --- !u!4 &857458383 stripped
 Transform:
@@ -7167,7 +7170,34 @@ MonoBehaviour:
   triggerBattleAtEnd: 0
   dialogueCamera: {fileID: 0}
   defaultCamera: {fileID: 0}
-  _inputTranslator: {fileID: 0}
+  _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
+--- !u!54 &1301450243
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301450237}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &1307441133 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7416094871299018028, guid: 5cb246b51061f964da299e6b2808de4a, type: 3}
@@ -7811,7 +7841,7 @@ Transform:
   m_GameObject: {fileID: 1387995298}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: -0}
+  m_LocalPosition: {x: 0, y: 2.8, z: -0}
   m_LocalScale: {x: 0.19272, y: 0.19272, z: 0.19272}
   m_ConstrainProportionsScale: 0
   m_Children: []
