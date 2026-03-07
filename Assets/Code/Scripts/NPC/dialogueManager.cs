@@ -129,6 +129,7 @@ public class dialogueManager : MonoBehaviour
 
     public IEnumerator exitDialogueMode()
     {
+        Debug.Log("exit2");
         yield return new WaitForSeconds(0.1f);
         isDialoguePlaying = false;
         dialogueCanvas.SetActive(false);
