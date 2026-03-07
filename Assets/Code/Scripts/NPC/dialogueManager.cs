@@ -10,7 +10,7 @@ using UnityEngine.UIElements;
 
 public class dialogueManager : MonoBehaviour
 {
-    public static dialogueManager DialogueManagerInstance;
+    public static dialogueManager Instance { get; private set; }
     public static event Action onDialogueStarted;
     public static event Action onDialogueEnded;
 
@@ -40,17 +40,14 @@ public class dialogueManager : MonoBehaviour
     private bool switchToGameScene = false;
     private EventSystem currentEventSystem;
 
-    void Awake()
-    {
-        //if (DialogueManagerInstance != null)
-        //{
-        //    Destroy(gameObject);
-        //    return;
-        //}
 
-        DialogueManagerInstance = this;
-        //DontDestroyOnLoad(gameObject);
-        
+    void Awake(){
+        if (Instance != null && Instance != this){
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     void Start()

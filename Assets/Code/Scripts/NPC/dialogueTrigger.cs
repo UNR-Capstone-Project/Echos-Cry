@@ -22,12 +22,12 @@ public class dialogueTrigger : MonoBehaviour
     
     [SerializeField] private InputTranslator _inputTranslator;
 
-    [SerializeField] private dialogueManager DialogueManagerInstance;
+    private dialogueManager dialogueManagerInstance;
     //max characters on player choice buttons is 40 characters long
 
     void Awake()
     {
-        //currentDialogueManager = GameObject.Find("dialogueManager").GetComponent<dialogueManager>();
+        //dialogueManagerInstance = dialogueManager.Instance;
         visualCue.SetActive(false);
         //visualCueText.SetActive(false);
         if (enterCameraLook == null) {
@@ -40,16 +40,28 @@ public class dialogueTrigger : MonoBehaviour
         }
     }
 
-    void Start()
+    void Start(){
+    dialogueManagerInstance = dialogueManager.Instance;
+
+    if (dialogueManagerInstance == null)
     {
-        //interactAction = InputController.Instance.GetAction("Interact");
-        
-        _inputTranslator.OnInteractEvent += interactCheck;
-        
-        
-        enterCameraLook.AddListener(SwitchToDialogueCamera);
-        exitCameraLook.AddListener(SwitchToDefaultCamera);
+        dialogueManagerInstance = FindObjectOfType<dialogueManager>();
     }
+
+    if (dialogueManagerInstance == null)
+    {
+        Debug.LogError("DialogueManager instance not found in scene!");
+        return;
+    }
+
+    if (_inputTranslator != null)
+    {
+        _inputTranslator.OnInteractEvent += interactCheck;
+    }
+
+    enterCameraLook.AddListener(SwitchToDialogueCamera);
+    exitCameraLook.AddListener(SwitchToDefaultCamera);
+}
 
     private void OnEnable()
     {
@@ -68,15 +80,18 @@ public class dialogueTrigger : MonoBehaviour
 
     void Update()
     {
-        if(playerInRange){
+        if(dialogueManagerInstance == null){
+            return;
+        }
+        if(playerInRange && !dialogueManagerInstance.isDialoguePlaying){
             visualCue.SetActive(true);
             /*if(_inputTranslator.OnInteract){
                 Debug.Log(inkJSON.text);
             }*/
-            dialogueManager.DialogueManagerInstance.enterDialogueMode(inkJSON);
+            //dialogueManagerInstance.enterDialogueMode(inkJSON);
         }else{
             visualCue.SetActive(false);
-            dialogueManager.DialogueManagerInstance.exitDialogueMode();
+            //dialogueManagerInstance.exitDialogueMode();
         }
         /*if (dialogueManager.DialogueManagerInstance.isDialoguePlaying)
         {
@@ -87,29 +102,29 @@ public class dialogueTrigger : MonoBehaviour
 
     private void interactCheck()
     {
-        //onInteractWithDialogue?.Invoke();
-        //if (triggerBattleAtEnd) broadcastBattleBool?.Invoke();
+        if (dialogueManagerInstance == null)
+            return;
 
-        /*if (!dialogueManager.DialogueManagerInstance.isDialoguePlaying)
+        if (playerInRange && !dialogueManagerInstance.isDialoguePlaying)
         {
-            enterCameraLook?.Invoke();
-            dialogueManager.DialogueManagerInstance.enterDialogueMode(inkJSON);
-        }*/
-        if(playerInRange){
-            Debug.Log(inkJSON.text);
+            //enterCameraLook?.Invoke();
+            dialogueManagerInstance.enterDialogueMode(inkJSON);
+            onInteractWithDialogue?.Invoke();
+            /*if (triggerBattleAtEnd)
+                broadcastBattleBool?.Invoke();*/
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
         //if (alreadyEntered) return;
-        
+        Debug.Log("collision!");
 
         if (other.gameObject.CompareTag("Player"))
         {
             
             playerInRange = true;
-            if (!dialogueManager.DialogueManagerInstance.isDialoguePlaying)
+            if (!dialogueManagerInstance.isDialoguePlaying)
             {
                 visualCue.SetActive(true);
                 //visualCueText.SetActive(true);
