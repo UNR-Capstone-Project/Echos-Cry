@@ -8,8 +8,6 @@ public abstract class DoorManager : MonoBehaviour
     [SerializeField] protected InputTranslator translator;
     [SerializeField] protected AudioSystem.soundEffect doorOpenSoundEffect;
 
-    //[SerializeField] private WaveManager waveManager;
-
     protected bool playerInRange = false;
     protected bool isOpen = false;
     protected bool isLocked = false;
@@ -21,7 +19,7 @@ public abstract class DoorManager : MonoBehaviour
             if (!isLocked)
             {
                 ToolTipPrefab.GetComponent<ToolTip>().text =
-                    $"Press '{translator.PlayerInputs.Gameplay.Interact.GetBindingDisplayString()}' to Open";
+                    $"Press '{translator.PlayerInputs.Gameplay.Interact.GetBindingDisplayString(InputBinding.MaskByGroup("KeyboardMouse"))}' to Open";
                 Instantiate(ToolTipPrefab, this.transform.position + new Vector3(0, 2, -1), Quaternion.identity);
             }
             else
@@ -53,23 +51,27 @@ public abstract class DoorManager : MonoBehaviour
         }
     }
 
+    protected virtual void OpenDoorWithoutPlayer()
+    {
+        if (!isLocked && !isOpen)
+        {
+            SoundEffectManager.Instance.Builder
+            .SetSound(doorOpenSoundEffect)
+            .SetSoundPosition(transform.position)
+            .ValidateAndPlaySound();
+
+            doorAnimator.SetTrigger("Interact");
+            isOpen = true;
+        }
+    }
+
     protected virtual void Start()
     {
-        //if (isWaveBased && waveManager != null)
-        //{
-        //    waveManager.OnAllWavesCompleted += () => { isLocked = false; };
-        //}
-
         translator.OnInteractEvent += OpenDoor;
     }
 
     protected virtual void OnDestroy()
     {
-        //if (isWaveBased && waveManager != null)
-        //{
-        //   waveManager.OnAllWavesCompleted -= () => { isLocked = false; };
-        //}
-
         translator.OnInteractEvent -= OpenDoor;
     }
 }

@@ -30,6 +30,7 @@ public class DoorWaveEntrance : DoorManager
     private void HandleWaveComplete()
     {
         isLocked = false;
+        OpenDoorWithoutPlayer();
 
         if (isExit)
         {

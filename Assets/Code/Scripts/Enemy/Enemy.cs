@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private EnemySoundConfig _soundConfig;
     [SerializeField] private Collider _collider;
     [SerializeField] private PassiveEffectHandler _passiveEffectHandler;
+    [SerializeField] private GameObject _deathEffect;
 
     [Header("Strategies")]
     [SerializeField] private AttackStrategy[] _attackStrats;
@@ -36,11 +37,17 @@ public class Enemy : MonoBehaviour
     [Tooltip("Invoked when player's attack ends")]
     [SerializeField] private EventChannel _playerAttackEndChannel;
     [Header("Event Channel (Broadcaster)")]
-    [SerializeField] private EventChannel _updateWaveCount;
+    [SerializeField] private IntEventChannel _updateWaveCount;
 
     public void HandleDeath()
     {
-        _updateWaveCount.Invoke();
+        //Effects and Updates
+        _updateWaveCount.Invoke(EnemySpawnerID);
+
+        DeathEffectHandler deathEffectPrefab = Instantiate(_deathEffect, transform.position, Quaternion.identity).GetComponent<DeathEffectHandler>();
+        deathEffectPrefab.SetSpriteShape(_npcAnimator.NPCSprite);
+
+        //Enemy Pooling
         if (IsPooled)
         {
             _stateMachine.SwitchState(_stateCache.RequestState(_spawnState));
@@ -67,6 +74,8 @@ public class Enemy : MonoBehaviour
     public MovementStrategy[] MovementStrategy { get => _movementStrats; }
     public ItemDropStrategy DropsStrategy { get => _drops; }
     public SoundStrategy SoundStrategy { get => _soundStrategy; }
+
+    public int EnemySpawnerID;
 
     protected virtual void Awake()
     {   

@@ -10,6 +10,8 @@ public class NPCAnimator : MonoBehaviour
     [SerializeField] private Transform _spriteTransform;
     [SerializeField] private ParticleSystem _staggerParticles;
 
+    public SpriteRenderer NPCSprite { get { return _npcSprite; } }
+
     private Color _defaultTintColor;
     private readonly int hashedTintColor = Shader.PropertyToID("_TintColor");
  

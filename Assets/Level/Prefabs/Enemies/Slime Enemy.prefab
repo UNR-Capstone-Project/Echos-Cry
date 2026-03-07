@@ -211,6 +211,7 @@ MonoBehaviour:
   _soundConfig: {fileID: 11400000, guid: 61a08e0075f1f394ba85aefac97da91e, type: 2}
   _collider: {fileID: 8838160874129828706}
   _passiveEffectHandler: {fileID: 8005077659622388430}
+  _deathEffect: {fileID: 2836163184616676573, guid: c9677a51a5d061340a514220e825b583, type: 3}
   _attackStrats:
   - {fileID: 11400000, guid: c11f0062706e890468589a16526ea3f2, type: 2}
   _targetStrats: []
@@ -219,7 +220,8 @@ MonoBehaviour:
   _soundStrategy: {fileID: 11400000, guid: 5c5a55ebf2f337c4a80a8fcd0ffba53d, type: 2}
   _enemyCacheStrategy: {fileID: 11400000, guid: 581cb02b006a899449c32d80a63f3608, type: 2}
   _playerAttackEndChannel: {fileID: 11400000, guid: 32c2647349869554ca690720dab27258, type: 2}
-  _updateWaveCount: {fileID: 11400000, guid: 63b54daa2224c144a9a5bb8cf2c47790, type: 2}
+  _updateWaveCount: {fileID: 11400000, guid: 7cab49118f492584f9f027f6ec0fa05a, type: 2}
+  EnemySpawnerID: 0
 --- !u!114 &854592342237272632
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -23,6 +23,8 @@ public class LevelManager : MonoBehaviour
         LEVEL_ONE,
         LEVEL_TWO,
         LEVEL_THREE,
+        LEVEL_FOUR,
+        LEVEL_FIVE,
     }
 
     [SerializeField] private List<Level> LevelList = new();
@@ -39,11 +41,11 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        GameManager.OnPlayerDeathEvent += LockAllLevels;
+        GameManager.OnGameOverEvent += LockAllLevels;
     }
     private void OnDestroy()
     {
-        GameManager.OnPlayerDeathEvent -= LockAllLevels;
+        GameManager.OnGameOverEvent -= LockAllLevels;
     }
 
     public void UnlockLevel(LevelName levelName)

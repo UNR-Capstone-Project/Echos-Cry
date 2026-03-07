@@ -40,14 +40,14 @@ public class UpgradeManager : MonoBehaviour
     private Dictionary<UpgradeType, string> _upgradeDescriptions = new Dictionary<UpgradeType, string>
     {
         //[UpgradeType.] = "",
-        [UpgradeType.MoveSpeed] = "Increase your base movement speed by _%.",
-        [UpgradeType.DashSpeed] = "Increase the speed of your dashing by _%.",
-        [UpgradeType.Health] = "Increase your base health by +_.",
-        [UpgradeType.Armor] = "Increase your base armor by +_.",
-        [UpgradeType.RegenHealth] = "Regen health when not in danger by +_ every 10 seconds.",
-        [UpgradeType.DashCount] = "Increase the amount of dashes before cooldown by +_.",
-        [UpgradeType.DashCooldown] = "Decrease the dash cooldown time by _%.",
-        [UpgradeType.DashAttack] = "Dashing can harm enemies, dealing _ damage.",
+        [UpgradeType.MoveSpeed] = "Increase your base movement speed by 10%.",
+        [UpgradeType.DashSpeed] = "Increase the speed of your dashing by 10%.",
+        [UpgradeType.Health] = "Increase your base health by +5 hp.",
+        [UpgradeType.Armor] = "Increase your base armor by +5.",
+        [UpgradeType.RegenHealth] = "Regen health when not in danger by +1 hp every 10 seconds.",
+        [UpgradeType.DashCount] = "Increase the total amount of dashes by +1.",
+        [UpgradeType.DashCooldown] = "Decrease the dash cooldown time by 10%.",
+        [UpgradeType.DashAttack] = "Dashing can harm enemies, dealing 8 damage.",
     };
 
     public static UpgradeManager Instance { get; private set; }

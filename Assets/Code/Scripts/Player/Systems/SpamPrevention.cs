@@ -19,7 +19,7 @@ public class SpamPrevention : MonoBehaviour
     {
         _translator.OnPrimaryActionEvent += IncrementCount;
         _translator.OnSecondaryActionEvent += IncrementCount;
-        _translator.OnDashEvent += IncrementCount;
+        //_translator.OnDashEvent += IncrementCount;
 
         StartCoroutine(ResetCountPerSecondCoroutine());
     }
@@ -27,7 +27,7 @@ public class SpamPrevention : MonoBehaviour
     {
         _translator.OnPrimaryActionEvent -= IncrementCount;
         _translator.OnSecondaryActionEvent -= IncrementCount;
-        _translator.OnDashEvent -= IncrementCount;
+        //_translator.OnDashEvent -= IncrementCount;
 
         StopAllCoroutines();
     }

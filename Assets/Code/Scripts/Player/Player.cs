@@ -107,6 +107,13 @@ public class Player : MonoBehaviour
         _health.HealArmor(_health.MaxArmor);
     }
 
+    public void FullReset()
+    {
+        //Reset is already called on player death, so only reset other values.
+        //ISSUE: Should all upgrades and levels be reset on game over?
+        _currencySystem.SetGoldCurrency(0);
+    }
+
     public void InvokeAttackEnded()
     {
         if (_attackEndedChannel != null) _attackEndedChannel.Invoke();
