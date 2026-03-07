@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private EnemySoundConfig _soundConfig;
     [SerializeField] private Collider _collider;
     [SerializeField] private PassiveEffectHandler _passiveEffectHandler;
+    [SerializeField] private GameObject _deathEffect;
 
     [Header("Strategies")]
     [SerializeField] private AttackStrategy[] _attackStrats;
@@ -40,7 +41,13 @@ public class Enemy : MonoBehaviour
 
     public void HandleDeath()
     {
+        //Effects and Updates
         _updateWaveCount.Invoke(EnemySpawnerID);
+
+        DeathEffectHandler deathEffectPrefab = Instantiate(_deathEffect, transform.position, Quaternion.identity).GetComponent<DeathEffectHandler>();
+        deathEffectPrefab.SetSpriteShape(_npcAnimator.NPCSprite);
+
+        //Enemy Pooling
         if (IsPooled)
         {
             _stateMachine.SwitchState(_stateCache.RequestState(_spawnState));

@@ -211,6 +211,7 @@ MonoBehaviour:
   _soundConfig: {fileID: 11400000, guid: 61a08e0075f1f394ba85aefac97da91e, type: 2}
   _collider: {fileID: 8838160874129828706}
   _passiveEffectHandler: {fileID: 3727599544175325857}
+  _deathEffect: {fileID: 2836163184616676573, guid: c9677a51a5d061340a514220e825b583, type: 3}
   _attackStrats:
   - {fileID: 11400000, guid: 922f6460c5d88124687907449599c73e, type: 2}
   _targetStrats: []
