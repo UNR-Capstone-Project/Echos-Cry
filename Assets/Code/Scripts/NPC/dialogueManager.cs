@@ -145,8 +145,10 @@ public class dialogueManager : MonoBehaviour
     public void ContinueIfPossible()
     {
         // not ready yet → do nothing
-        if (!canContinueToNextLine) return;
-
+        if (!canContinueToNextLine) {
+            interruptTextDisplayer = true;
+            return;
+        }
         // choice on screen → let the choice-buttons handle it
         if (currentStory.currentChoices.Count > 0) return;
 
