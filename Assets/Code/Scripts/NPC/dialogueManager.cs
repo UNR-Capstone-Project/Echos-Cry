@@ -29,7 +29,6 @@ public class DialogueManager : MonoBehaviour
     public bool isDialoguePlaying { get; private set; }
     private bool canContinueToNextLine;
     private bool interruptTextDisplayer = false;
-    private bool justInterruptedLine = false;
 
     [SerializeField] private float typingSpeed = 0.1f;
     
@@ -104,26 +103,18 @@ public class DialogueManager : MonoBehaviour
         _inputTranslator.PlayerInputs.Gameplay.Enable();
     }
 
-    public void ContinueIfPossible()
+    public void ContinueIfPossible(bool isPressed)
     {
-        // not ready yet → do nothing
+        if (!isPressed) return;
+
         if (!canContinueToNextLine)
         {
             interruptTextDisplayer = true;
-            justInterruptedLine = true;
             return;
         }
 
-        if (justInterruptedLine)
-        {
-            justInterruptedLine = false;
-            return;
-        }
-
-        // choice on screen → let the choice-buttons handle it
         if (currentStory.currentChoices.Count > 0) return;
 
-        // safe to continue the story
         ContinueStory();
     }
 
@@ -131,18 +122,17 @@ public class DialogueManager : MonoBehaviour
     {
         if (currentStory.canContinue) 
         {
-            // set text for the current dialogue line
             if (displayLineCoroutine != null) 
             {
                 StopCoroutine(displayLineCoroutine);
             }
             string nextLine = currentStory.Continue();
-            // handle case where the last line is an external function
+
             if (nextLine.Equals("") && !currentStory.canContinue)
             {
                 StartCoroutine(ExitDialogueMode());
             } 
-            // otherwise, handle the normal case for continuing the story
+            
             else 
             {
                 displayLineCoroutine = StartCoroutine(DisplayLine(nextLine));
@@ -196,12 +186,12 @@ public class DialogueManager : MonoBehaviour
      private IEnumerator DisplayLine(string line) 
     {
         interruptTextDisplayer = false;
+
         dialogueText.text = line;
         dialogueText.maxVisibleCharacters = 0;
         continueIcon.SetActive(false);
         HideChoices();
         canContinueToNextLine = false;
-        justInterruptedLine = false;
 
         bool isAddingRichTextTag = false;
 
@@ -233,7 +223,6 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        // actions to take after the entire line has finished displaying
         continueIcon.SetActive(true);
         DisplayChoices();
 

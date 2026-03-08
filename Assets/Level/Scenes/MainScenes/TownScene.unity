@@ -2568,14 +2568,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scarecrow
       objectReference: {fileID: 0}
-    - target: {fileID: 5399515055327974506, guid: 455a8e4cf5c982f479bdf9a75d562f0f, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5413064353834974067, guid: 455a8e4cf5c982f479bdf9a75d562f0f, type: 3}
-      propertyPath: _collider
+    - target: {fileID: 6802087171243017288, guid: 455a8e4cf5c982f479bdf9a75d562f0f, type: 3}
+      propertyPath: inkJSON
       value: 
-      objectReference: {fileID: 2011615975}
+      objectReference: {fileID: 4900000, guid: a697faf5ccb09b5498d0a2113d599346, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9926,11 +9922,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5850200527590367024, guid: 43c56ecbe7ffb7a4c874a41407cd819d, type: 3}
   m_PrefabInstance: {fileID: 2001103719}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &2011615975 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 5399515055327974506, guid: 455a8e4cf5c982f479bdf9a75d562f0f, type: 3}
-  m_PrefabInstance: {fileID: 432484936}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2054686985
 PrefabInstance:
