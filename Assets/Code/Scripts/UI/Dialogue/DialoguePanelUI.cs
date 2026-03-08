@@ -14,13 +14,13 @@ public class DialoguePanelUI: MonoBehaviour
     private void OnEnable()
     {
         _infoText.text = $"Press '{_translator.PlayerInputs.Dialogue.Submit.GetBindingDisplayString(InputBinding.MaskByGroup("KeyboardMouse"))}' to continue.";
-        DialogueEvents.Instance.OnDialogueEnded += DialogueFinished;
-        DialogueEvents.Instance.OnDisplayDialogue += DisplayDialogue;
+        //DialogueEvents.Instance.OnDialogueEnded += DialogueFinished;
+        //DialogueEvents.Instance.OnDisplayDialogue += DisplayDialogue;
     }
     private void OnDisable()
     {
-        DialogueEvents.Instance.OnDialogueEnded -= DialogueFinished;
-        DialogueEvents.Instance.OnDisplayDialogue -= DisplayDialogue;
+        //DialogueEvents.Instance.OnDialogueEnded -= DialogueFinished;
+        //DialogueEvents.Instance.OnDisplayDialogue -= DisplayDialogue;
     }
 
     private void DialogueFinished()
@@ -54,11 +54,11 @@ public class DialoguePanelUI: MonoBehaviour
             choiceButton.SetChoiceText(dialogueChoice.text);
             choiceButton.SetChoiceIndex(inkChoiceIndex);
 
-            if (inkChoiceIndex == 0)
-            {
-                choiceButton.SelectButton();
-                DialogueEvents.Instance.UpdateChoiceIndex(0);
-            }
+            //if (inkChoiceIndex == 0)
+            //{
+            //    choiceButton.SelectButton();
+            //    DialogueEvents.Instance.UpdateChoiceIndex(0);
+            //}
 
             choiceButtonIndex--;
         }

@@ -3,7 +3,7 @@ using Ink.Runtime;
 using Unity.Hierarchy;
 using System.Collections;
 
-public class DialogueManager : MonoBehaviour
+public class DialogueManagerLegacy : MonoBehaviour
 {
     [Header("Ink Story")]
     [SerializeField] private TextAsset _inkJson;

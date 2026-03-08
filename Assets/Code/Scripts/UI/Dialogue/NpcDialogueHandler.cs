@@ -53,11 +53,11 @@ public class NpcDialogueHandler : MonoBehaviour
     void Start()
     {
         _translator.OnInteractEvent += RequestDialogue;
-        _translator.OnSubmitEvent += RequestSubmit;
+        //_translator.OnSubmitEvent += RequestSubmit;
     }
     void OnDestroy()
     {
         _translator.OnInteractEvent += RequestDialogue;
-        _translator.OnSubmitEvent -= RequestSubmit;
+        //_translator.OnSubmitEvent -= RequestSubmit;
     }
 }

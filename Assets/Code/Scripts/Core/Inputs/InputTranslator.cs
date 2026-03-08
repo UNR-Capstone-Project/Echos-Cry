@@ -120,7 +120,8 @@ public class InputTranslator : ScriptableObject,
     }
     public void OnSubmit(InputAction.CallbackContext context)
     {
-        if (context.started) OnSubmitEvent?.Invoke();
+        if (context.started) OnSubmitEvent?.Invoke(true);
+        else if (context.canceled) OnSubmitEvent?.Invoke(false);
     }
     public void OnTeleport(InputAction.CallbackContext context)
     {
@@ -141,7 +142,7 @@ public class InputTranslator : ScriptableObject,
     public event Action<bool>       OnPrimaryActionEvent;
     public event Action<bool>       OnSecondaryActionEvent;
     public event Action             OnInteractEvent;
-    public event Action             OnSubmitEvent;
+    public event Action<bool>       OnSubmitEvent;
     public event Action             OnPauseEvent;
     public event Action             OnUpgradeEvent;
     public event Action             OnResumeEvent;
