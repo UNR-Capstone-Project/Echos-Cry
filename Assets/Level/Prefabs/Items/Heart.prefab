@@ -114,6 +114,7 @@ MonoBehaviour:
   itemDragDistance: 2.2
   itemBody: {fileID: 4594376071606678493}
   pickupSFX: {fileID: 11400000, guid: ae887be74a883064b9243d72a90da102, type: 2}
+  particleEffect: {fileID: 6250198881956377069, guid: b1a9a4c2a7b1a54459fae4db05f8d4a9, type: 3}
   _collider: {fileID: 7234026575468646422}
   _xpAmount: 10
 --- !u!1 &1635657867822772642

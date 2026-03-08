@@ -1,4 +1,5 @@
 using AudioSystem;
+using System.Security;
 using UnityEngine;
 
 public abstract class ItemDropHandler : MonoBehaviour
@@ -7,6 +8,7 @@ public abstract class ItemDropHandler : MonoBehaviour
     [SerializeField] protected float itemDragDistance = 4f;
     [SerializeField] protected Rigidbody itemBody;
     [SerializeField] protected soundEffect pickupSFX;
+    [SerializeField] protected GameObject particleEffect;
     [SerializeField] protected Collider _collider;
 
     private void OnEnable()
@@ -39,6 +41,10 @@ public abstract class ItemDropHandler : MonoBehaviour
                 .SetSound(pickupSFX)
                 .SetSoundPosition(transform.position)
                 .ValidateAndPlaySound();
+        }
+        if (particleEffect != null)
+        {
+            Instantiate(particleEffect, transform.position, Quaternion.identity);
         }
         OnInteraction(other);
         _collider.enabled = false;
