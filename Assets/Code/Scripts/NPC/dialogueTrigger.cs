@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using System;
 using UnityEngine.Events;
 using Unity.Cinemachine;
+
 public class dialogueTrigger : MonoBehaviour
 {
     private bool playerInRange = false;
@@ -10,7 +11,6 @@ public class dialogueTrigger : MonoBehaviour
     public static event Action onInteractWithDialogue;
     public static event Action broadcastBattleBool;
     [SerializeField] private GameObject visualCue;
-    //[SerializeField] private GameObject visualCueText;
     [SerializeField] private TextAsset inkJSON;
     [SerializeField] public bool triggerBattleAtEnd = false;
 
@@ -27,7 +27,6 @@ public class dialogueTrigger : MonoBehaviour
 
     void Awake()
     {
-        //dialogueManagerInstance = dialogueManager.Instance;
         visualCue.SetActive(false);
         //visualCueText.SetActive(false);
         if (enterCameraLook == null) {
@@ -85,13 +84,8 @@ public class dialogueTrigger : MonoBehaviour
         }
         if(playerInRange && !dialogueManagerInstance.isDialoguePlaying){
             visualCue.SetActive(true);
-            /*if(_inputTranslator.OnInteract){
-                Debug.Log(inkJSON.text);
-            }*/
-            //dialogueManagerInstance.enterDialogueMode(inkJSON);
         }else{
             visualCue.SetActive(false);
-            //dialogueManagerInstance.exitDialogueMode();
         }
     }
 
@@ -102,11 +96,8 @@ public class dialogueTrigger : MonoBehaviour
         }
         if (playerInRange && !dialogueManagerInstance.isDialoguePlaying)
         {
-            //enterCameraLook?.Invoke();
             dialogueManagerInstance.enterDialogueMode(inkJSON);
             onInteractWithDialogue?.Invoke();
-            /*if (triggerBattleAtEnd)
-                broadcastBattleBool?.Invoke();*/
         }
     }
 
@@ -121,7 +112,6 @@ public class dialogueTrigger : MonoBehaviour
                 visualCue.SetActive(true);
                 //visualCueText.SetActive(true);
             }
-            //if (oneShot) alreadyEntered = true;
         }
 
         
@@ -129,19 +119,14 @@ public class dialogueTrigger : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        //if (alreadyExited) return;
         if (other.gameObject.CompareTag("Player"))
         {
-            //onTriggerExit.Invoke();
             playerInRange = false;   
             visualCue.SetActive(false);
             if (dialogueManagerInstance.isDialoguePlaying)
             {
                 StartCoroutine(dialogueManagerInstance.exitDialogueMode());
             }
-            //visualCueText.SetActive(false);
-            //exitCameraLook?.Invoke();
-            //if (oneShot) alreadyExited = true;
         }
 
         

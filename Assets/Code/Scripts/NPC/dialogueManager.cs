@@ -19,7 +19,6 @@ public class dialogueManager : MonoBehaviour
     [SerializeField] private InputTranslator _inputTranslator;
 
     [Header("Dialogue Box UI")]
-    //[SerializeField] private string speaker;
     [SerializeField] private GameObject continueIcon;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private GameObject dialogueCanvas;
@@ -57,7 +56,6 @@ public class dialogueManager : MonoBehaviour
         if (choices.Length == 0) throw new Exception("Choices List for UI Buttons is null.");
         if (continueIcon == null) throw new Exception("ContinueIcon UI is null.");
         if (_inputTranslator == null) throw new Exception("Input Translator is null.");
-        //Debug.Log("Currently In Start Function no Exception thrown for choices GameObject array");
 
         interruptTextDisplayer = false;
         isDialoguePlaying = false;
@@ -71,8 +69,6 @@ public class dialogueManager : MonoBehaviour
             index++;
         }
         currentEventSystem = EventSystem.current;
-
-        //clickAction = InputController.Instance.GetAction("Click");
         
         _inputTranslator.OnSubmitEvent += ContinueIfPossible;
         
@@ -106,7 +102,7 @@ public class dialogueManager : MonoBehaviour
     {
         if (!context.performed) return;
 
-        //interruptTextDisplayer = true;
+        interruptTextDisplayer = true;
 
         if (canContinueToNextLine && currentStory.currentChoices.Count == 0)
         {
@@ -116,13 +112,10 @@ public class dialogueManager : MonoBehaviour
     }
 
     public void enterDialogueMode(TextAsset inkJSON)
-    {
-        //Debug.Log($"Current action map before switch: {InputController.Instance.playerInput.currentActionMap.name}");        
+    {       
         currentStory = new Story(inkJSON.text);
         isDialoguePlaying = true;
         onDialogueStarted?.Invoke(); 
-        //InputController.Instance.PushActionMap("UI");
-        //Debug.Log($"Current action map after switch: {InputController.Instance.playerInput.currentActionMap.name}");
         dialogueCanvas.SetActive(true);
         if(_inputTranslator != null){
             _inputTranslator.PlayerInputs.Gameplay.Disable();
@@ -139,7 +132,6 @@ public class dialogueManager : MonoBehaviour
         dialogueCanvas.SetActive(false);
         dialogueText.text = "";
         onDialogueEnded?.Invoke();
-        //InputController.Instance.PopActionMap();
         if(_inputTranslator != null){
             _inputTranslator.PlayerInputs.Dialogue.Disable();
             _inputTranslator.PlayerInputs.Gameplay.Enable();
@@ -147,8 +139,6 @@ public class dialogueManager : MonoBehaviour
         if (switchToGameScene)
         {
             switchToGameScene = false;
-            //InputController.Instance.PushActionMap("PlayerSlapjack");
-            //GameManager.Instance.loadSlapjackGameplay();
         }
     }
 
@@ -202,8 +192,6 @@ public class dialogueManager : MonoBehaviour
     private void displayChoices()
     {
         List<Choice> currentChoices = currentStory.currentChoices;
-        //Debug.Log($"Current choices list length is {currentChoices.Count}");
-        //Debug.Log($"The length of choices variable is: {choices.Length}");
 
         if (currentChoices.Count == 0)
         {
@@ -220,8 +208,6 @@ public class dialogueManager : MonoBehaviour
         foreach (Choice choice in currentChoices)
         {
             choices[index].gameObject.SetActive(true);
-            //Debug.Log($"Current index: {index}");
-            //Debug.Log($"Active state in hierarchy: {choices[index].gameObject.activeInHierarchy}");
             choicesText[index].text = choice.text;
             index++;
         }
@@ -245,15 +231,11 @@ public class dialogueManager : MonoBehaviour
 
         bool isAddingRichTextTag = false;
 
-        // display each letter one at a time
         foreach (char letter in line.ToCharArray())
         {
             // if the submit button is pressed, finish up displaying the line right away
-
-            
             if (interruptTextDisplayer) 
             {
-                //Debug.Log("Interrupt to finish letter displayer.");
                 dialogueText.maxVisibleCharacters = line.Length;
                 interruptTextDisplayer = false;
                 break;
