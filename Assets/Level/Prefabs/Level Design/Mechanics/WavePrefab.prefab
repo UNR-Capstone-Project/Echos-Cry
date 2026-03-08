@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7152249d4fca6348b280a4b834d8e0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
-  _timeBetweenWaves: 10
+  _timeBetweenWaves: 5
   _allWaves: []
   _enemySpawner: {fileID: 4634003130030037239}
   _updateKillCountChannel: {fileID: 11400000, guid: 7cab49118f492584f9f027f6ec0fa05a, type: 2}

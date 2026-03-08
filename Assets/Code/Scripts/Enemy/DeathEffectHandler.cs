@@ -4,6 +4,7 @@ using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 public class DeathEffectHandler : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _deathParticles;
+    [SerializeField] private Material _deathParticleMaterial;
     private SpriteRenderer _enemySpriteRenderer;
 
     public void SetSpriteShape(SpriteRenderer spriteRenderer)
@@ -23,6 +24,7 @@ public class DeathEffectHandler : MonoBehaviour
         shape.texture = spriteRenderer.sprite.texture;
         shape.scale = spriteRenderer.transform.localScale;
         shape.position = transform.InverseTransformPoint(spriteRenderer.bounds.center);
+        //_deathParticleMaterial.mainTexture = spriteRenderer.sprite.texture;
 
         StartParticles();
     }
