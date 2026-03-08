@@ -89,6 +89,7 @@ public class Enemy : MonoBehaviour
     {
         _stateCache?.Enable();
         _playerAttackEndChannel.Channel += ResetCollider;
+        ResetCollider();
     }
     private void OnDisable()
     {
