@@ -14,7 +14,7 @@ public class DialogueChoiceButton : MonoBehaviour, ISelectHandler
 
     public void OnSelect(BaseEventData eventData)
     {
-        DialogueEvents.Instance.UpdateChoiceIndex(_choiceIndex);
+        //DialogueEvents.Instance.UpdateChoiceIndex(_choiceIndex);
 
         SoundEffectManager.Instance.Builder
             .SetSound(_soundEffect)

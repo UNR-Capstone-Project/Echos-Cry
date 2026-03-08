@@ -150,10 +150,6 @@ MonoBehaviour:
     locked: 1
   - name: 2
     locked: 1
-  - name: 3
-    locked: 1
-  - name: 4
-    locked: 1
 --- !u!1 &3883498033160655944
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,8 +247,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8549820288382442185}
-  - component: {fileID: 1695252215544432063}
-  - component: {fileID: 8823125206681022235}
+  - component: {fileID: 8130095611241135652}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -275,7 +270,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1580324783960160912}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1695252215544432063
+--- !u!114 &8130095611241135652
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -284,25 +279,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 6995668911894562656}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 870dcb6dec4060640a68e02994cfb54f, type: 3}
+  m_Script: {fileID: 11500000, guid: efd09f9980e6b8e4887c2ea3e4c68afd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueEvents
-  InDialogue: 0
---- !u!114 &8823125206681022235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6995668911894562656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0744e2a0b37fc54997cc4375e2bfb16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  _inkJson: {fileID: 4900000, guid: b2d75804432a1ed4092fc026cc89941d, type: 3}
-  _lockMovementChannel: {fileID: 11400000, guid: 78594f026571afa4d8c01663a1ba938f, type: 2}
+  m_EditorClassIdentifier: Echos Cry Core::dialogueManager
   _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
+  continueIcon: {fileID: 0}
+  dialogueText: {fileID: 0}
+  dialogueCanvas: {fileID: 0}
+  choices:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  typingSpeed: 0.05
 --- !u!1 &7283154042145334160
 GameObject:
   m_ObjectHideFlags: 0

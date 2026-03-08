@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 2015160982183895731}
   - component: {fileID: 4626249444706746508}
   - component: {fileID: 5413064353834974067}
-  - component: {fileID: 8731657074516914193}
   - component: {fileID: 2641568866622479991}
+  - component: {fileID: 6802087171243017288}
+  - component: {fileID: 4596205580689175202}
+  - component: {fileID: 5399515055327974506}
   m_Layer: 9
   m_Name: Scarecrow
   m_TagString: Enemy
@@ -52,6 +54,7 @@ MonoBehaviour:
   _animator: {fileID: 0}
   _visualEffect: {fileID: 0}
   _spriteTransform: {fileID: 0}
+  _staggerParticles: {fileID: 0}
 --- !u!114 &5413064353834974067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,32 +67,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ada4ecf06bbe34d9eb1f6be96eac89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _collider: {fileID: 8731657074516914193}
+  _collider: {fileID: 5399515055327974506}
   _soundStrategy: {fileID: 11400000, guid: 5c5a55ebf2f337c4a80a8fcd0ffba53d, type: 2}
   _npcAnimator: {fileID: 4626249444706746508}
   _soundConfig: {fileID: 11400000, guid: 691276c4a36beec4db035cacfdae9741, type: 2}
   _playerAttackEndedChannel: {fileID: 11400000, guid: 32c2647349869554ca690720dab27258, type: 2}
---- !u!65 &8731657074516914193
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3809796366610336885}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 63488
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 2039
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.5, y: 2, z: 0.5}
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!95 &2641568866622479991
 Animator:
   serializedVersion: 7
@@ -112,6 +94,69 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6802087171243017288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3809796366610336885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c47dfac5985c04643909043d14eaa785, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Echos Cry Core::dialogueTrigger
+  inkJSON: {fileID: 4900000, guid: 6e429ba239ca9e44b8ae49bb9c4d0169, type: 3}
+  ToolTipPrefab: {fileID: 5435326603873152583, guid: 2368d443f59e53f4dbdf1ce2d1423114, type: 3}
+  _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
+--- !u!54 &4596205580689175202
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3809796366610336885}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &5399515055327974506
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3809796366610336885}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &6934741824353762213
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,7 +215,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cf39ed99c03a9b04cbd80ad48f486586, type: 2}
+  - {fileID: -876546973899608171, guid: a527ec1adc8e911489c0f8d3ef2a5ae0, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

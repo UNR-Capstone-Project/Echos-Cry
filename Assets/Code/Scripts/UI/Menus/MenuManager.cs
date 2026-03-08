@@ -34,8 +34,8 @@ public class MenuManager : Singleton<MenuManager>
     private void Start()
     {
         GameManager.OnPlayerDeathEvent += EnableGameoverMenu;
-        DialogueEvents.Instance.OnDialogueStarted += () => SetMenu("Dialogue");
-        DialogueEvents.Instance.OnDialogueEnded += () => SetMenu("HUD");
+        //DialogueEvents.Instance.OnDialogueStarted += () => SetMenu("Dialogue");
+        //DialogueEvents.Instance.OnDialogueEnded += () => SetMenu("HUD");
         _settingsManager.OnMenuBackButton += () => SetMenu("Pause");
         _translator.OnUpgradeEvent += EnableUpgradeMenu;
         _translator.OnPauseEvent += EnablePauseMenu;
@@ -45,8 +45,8 @@ public class MenuManager : Singleton<MenuManager>
     void OnDestroy()
     {
         GameManager.OnPlayerDeathEvent -= EnableGameoverMenu;
-        DialogueEvents.Instance.OnDialogueStarted -= () => SetMenu("Dialogue");
-        DialogueEvents.Instance.OnDialogueEnded -= () => SetMenu("HUD");
+        //DialogueEvents.Instance.OnDialogueStarted -= () => SetMenu("Dialogue");
+        //DialogueEvents.Instance.OnDialogueEnded -= () => SetMenu("HUD");
         _settingsManager.OnMenuBackButton -= () => SetMenu("Pause");
         _translator.OnUpgradeEvent -= EnableUpgradeMenu;
         _translator.OnPauseEvent -= EnablePauseMenu;
