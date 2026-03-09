@@ -10,7 +10,6 @@ public class MusicPlayer : MonoBehaviour
 {
     private MusicEvent song;
     private List<AudioSource> songLayers = new List<AudioSource>();
-    private Coroutine volumeFadingRoutine = null;
 
     public List<float> startingSongLayerVolumes = new List<float>();
 
@@ -29,6 +28,7 @@ public class MusicPlayer : MonoBehaviour
 
     private volatile float sampleProgress;
     public float SampleProgress => sampleProgress;
+    public int BeatInMeasure { get; private set; }
 
     public void DisableBeatTracking()
     {
@@ -36,10 +36,11 @@ public class MusicPlayer : MonoBehaviour
     }
     public bool IsBeatTracked()
     {
+
         return trackBeatTiming;
     }
 
-    void OnAudioFilterRead(float[] data, int channels) //This callback is executed on the audio thread when an audio buffer is read from an AudioSource
+    private void Update()
     {
         if (!trackBeatTiming || !songRunning) return;
 
@@ -47,9 +48,12 @@ public class MusicPlayer : MonoBehaviour
         double currentTotalSample = (AudioSettings.dspTime * sampleRate) - (startTime * sampleRate);
         double sampleInLoop = currentTotalSample % totalSamplesInClip;
         double currentBeatNumber = System.Math.Floor(sampleInLoop / samplesPerTick);
+        BeatInMeasure = (int)(currentBeatNumber % signatureHi);
+
         nextBeatTime = (currentBeatNumber + 1) * samplesPerTick;
         sampleProgress = (float)((sampleInLoop % samplesPerTick) / samplesPerTick);
     }
+
     public void Play()
     {
         if (song == null) return;
