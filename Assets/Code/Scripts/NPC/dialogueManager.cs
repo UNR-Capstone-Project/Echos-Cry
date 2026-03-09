@@ -17,9 +17,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private InputTranslator _inputTranslator;
 
     [Header("Dialogue Box UI")]
-    [SerializeField] private GameObject continueIcon;
     [SerializeField] private TextMeshProUGUI dialogueText;
-    [SerializeField] private GameObject dialogueCanvas;
 
     [Header("Dialogue Choices UI")]
     [SerializeField] private GameObject[] choices;
@@ -49,14 +47,11 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         if (dialogueText == null) throw new Exception("Dialogue Text is null.");
-        if (dialogueCanvas == null) throw new Exception("Dialogue Canvas is null.");
         if (choices.Length == 0) throw new Exception("Choices List for UI Buttons is null.");
-        if (continueIcon == null) throw new Exception("ContinueIcon UI is null.");
         if (_inputTranslator == null) throw new Exception("Input Translator is null.");
 
         interruptTextDisplayer = false;
         isDialoguePlaying = false;
-        dialogueCanvas.SetActive(false);
 
         choicesText = new TextMeshProUGUI[choices.Length];
         int index = 0;
@@ -81,7 +76,6 @@ public class DialogueManager : MonoBehaviour
         currentStory = new Story(inkJSON.text);
         isDialoguePlaying = true;
         onDialogueStarted?.Invoke(); 
-        dialogueCanvas.SetActive(true);
 
         CameraManager.Instance.ZoomInCamera(5f, .8f);
         _inputTranslator.PlayerInputs.Gameplay.Disable();
@@ -94,7 +88,6 @@ public class DialogueManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         isDialoguePlaying = false;
-        dialogueCanvas.SetActive(false);
         dialogueText.text = "";
         onDialogueEnded?.Invoke();
 
@@ -189,7 +182,6 @@ public class DialogueManager : MonoBehaviour
 
         dialogueText.text = line;
         dialogueText.maxVisibleCharacters = 0;
-        continueIcon.SetActive(false);
         HideChoices();
         canContinueToNextLine = false;
 
@@ -223,7 +215,6 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        continueIcon.SetActive(true);
         DisplayChoices();
 
         canContinueToNextLine = true;
