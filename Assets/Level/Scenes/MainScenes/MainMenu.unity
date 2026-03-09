@@ -1503,6 +1503,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeatTiming
       objectReference: {fileID: 0}
+    - target: {fileID: 1055928171036310096, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
+      propertyPath: leftColor.b
+      value: 0.09411766
+      objectReference: {fileID: 0}
+    - target: {fileID: 1055928171036310096, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
+      propertyPath: leftColor.g
+      value: 0.7803922
+      objectReference: {fileID: 0}
+    - target: {fileID: 1055928171036310096, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
+      propertyPath: leftColor.r
+      value: 0.9568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 1055928171036310096, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
+      propertyPath: onBeatLineColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1055928171036310096, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
+      propertyPath: onBeatLineColor.b
+      value: 0.09411766
+      objectReference: {fileID: 0}
+    - target: {fileID: 1055928171036310096, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
+      propertyPath: onBeatLineColor.g
+      value: 0.7803922
+      objectReference: {fileID: 0}
+    - target: {fileID: 1055928171036310096, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
+      propertyPath: onBeatLineColor.r
+      value: 0.9568628
+      objectReference: {fileID: 0}
     - target: {fileID: 7037231287620920825, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1582,6 +1610,34 @@ PrefabInstance:
     - target: {fileID: 7037231287620920825, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419972874623715169, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
+      propertyPath: leftColor.b
+      value: 0.09411766
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419972874623715169, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
+      propertyPath: leftColor.g
+      value: 0.7803922
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419972874623715169, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
+      propertyPath: leftColor.r
+      value: 0.9568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419972874623715169, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
+      propertyPath: onBeatLineColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419972874623715169, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
+      propertyPath: onBeatLineColor.b
+      value: 0.09411766
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419972874623715169, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
+      propertyPath: onBeatLineColor.g
+      value: 0.7803922
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419972874623715169, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
+      propertyPath: onBeatLineColor.r
+      value: 0.9568628
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
