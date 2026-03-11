@@ -13,8 +13,8 @@ public class HealthSystem : MonoBehaviour
     private float _maxHealth;
     private float _maxArmor;
 
-    public float CurrentHealth { get => _currentHealth; set => _currentHealth = value; }
-    public float CurrentArmor { get => _currentArmor; set => _currentArmor = value; }
+    public float CurrentHealth { get => _currentHealth; }
+    public float CurrentArmor { get => _currentArmor; }
     public float MaxHealth { get => _maxHealth; set => _maxHealth = value; }
     public float MaxArmor { get => _maxArmor; set => _maxArmor = value; }
 
@@ -25,6 +25,7 @@ public class HealthSystem : MonoBehaviour
         _maxHealth = _statsConfig.maxHealth;
         _maxArmor = _statsConfig.maxArmor;
     }
+
     public void ResetSystem()
     {
         _currentHealth = _statsConfig.maxHealth;
@@ -33,6 +34,42 @@ public class HealthSystem : MonoBehaviour
         _maxArmor = _statsConfig.maxArmor;
     }
 
+    public void Damage(float damage)
+    {
+        if (_currentArmor > 0)
+        {
+            DamageArmor(damage);
+
+            if (_currentArmor < 0)
+            {
+                float healthDamage = _currentArmor;
+                _currentArmor = 0;
+                DamageHealth(healthDamage);
+            }
+        }
+        else DamageHealth(damage);
+
+        if(_currentHealth < 0) _currentHealth = 0;
+    }
+
+    public void HealHealth(float heal)
+    {
+        _currentHealth += Mathf.Abs(heal);
+        if (_currentHealth > _maxHealth) _currentHealth = _maxHealth;
+    }
+    public void HealArmor(float heal)
+    {
+        _currentArmor += Mathf.Abs(heal);
+        if (_currentArmor > _maxArmor) _currentArmor = _maxArmor;
+    }
+    public void DamageHealth(float damage)
+    {
+        _currentHealth -= Mathf.Abs(damage);
+    }
+    public void DamageArmor(float damage)
+    {
+        _currentArmor -= Mathf.Abs(damage);
+    }
 
     //TODO: Move somewhere else
     private float _damageMultiplier = 1f;

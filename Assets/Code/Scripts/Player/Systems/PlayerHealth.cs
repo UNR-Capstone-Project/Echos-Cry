@@ -5,13 +5,22 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private HealthSystem _healthSystem;
 
+    public bool HasArmor => _healthSystem.CurrentArmor > 0;
+    public bool HasHealth => _healthSystem.CurrentHealth > 0;
+
+    public float CurrentHealth => _healthSystem.CurrentHealth;
+    public float CurrentArmor => _healthSystem.CurrentArmor;
+
     [Header("(Player Only) Event Channels")]
-    [Tooltip("Only relevant for players right now!")]
     [SerializeField] DoubleFloatEventChannel _healthChannel;
-    [Tooltip("Only relevant for players right now!")]
     [SerializeField] DoubleFloatEventChannel _armorChannel;
 
-    public bool HasArmor => _healthSystem.CurrentArmor > 0;
+    private float _regenHealthCooldown = 5f;
+    private float _regenHealthTickTime = 10f;
+    private float _regenHealthAmount = 0f;
+    private bool _canRegenHealth = false;
+    private Coroutine _regenHealthTickCoroutine;
+    public float RegenHealthAmount { get => _regenHealthAmount; set => _regenHealthAmount = value; }
 
     private void OnEnable()
     {
@@ -22,65 +31,61 @@ public class PlayerHealth : MonoBehaviour
             _armorChannel.Invoke(_healthSystem.CurrentArmor, _healthSystem.MaxArmor);
     }
 
-    //--------------------
-    // Health and Armor
-    //--------------------
-
-    public void Damage(float damage, Color color)
+    public void ResetHealth()
     {
-        if (HasArmor)
-        {
-            DamageArmor(damage, color);
-        }
-        else
-        {
-            DamageHealth(damage, color);
-            PauseHealthRegen();
-        }
-    }
-    public void HealHealth(float heal)
-    {
-        _healthSystem.CurrentHealth += Mathf.Abs(heal);
-        if (_healthSystem.CurrentHealth > _healthSystem.MaxHealth) _healthSystem.CurrentHealth = _healthSystem.MaxHealth;
-        if (_healthChannel != null) _healthChannel.Invoke(_healthSystem.CurrentHealth, _healthSystem.MaxHealth);
-    }
-    public void HealArmor(float heal)
-    {
-        _healthSystem.CurrentArmor += Mathf.Abs(heal);
-        if (_healthSystem.CurrentArmor > _healthSystem.MaxArmor) _healthSystem.CurrentArmor = _healthSystem.MaxArmor;
-        if (_armorChannel != null) _armorChannel.Invoke(_healthSystem.CurrentArmor, _healthSystem.MaxArmor);
-    }
-    public void DamageHealth(float damage, Color color)
-    {
-        _healthSystem.CurrentHealth -= Mathf.Abs(damage);
-        if (_healthSystem.CurrentHealth < 0) _healthSystem.CurrentHealth = 0;
-        if (_healthChannel != null) _healthChannel.Invoke(_healthSystem.CurrentHealth, _healthSystem.MaxHealth);
-    }
-    public void DamageArmor(float damage, Color color)
-    {
-        _healthSystem.CurrentArmor -= Mathf.Abs(damage);
-
-        if (_healthSystem.CurrentArmor < 0) 
-        {
-            float healthDamage = _healthSystem.CurrentArmor;
-            _healthSystem.CurrentArmor = 0;
-            DamageHealth(healthDamage, color);
-        }
-
-        if (_armorChannel != null) _armorChannel.Invoke(_healthSystem.CurrentArmor, _healthSystem.MaxArmor);
+        _healthSystem.ResetSystem();
+        if (_healthChannel != null)
+            _healthChannel.Invoke(_healthSystem.CurrentHealth, _healthSystem.MaxHealth);
+        if (_armorChannel != null)
+            _armorChannel.Invoke(_healthSystem.CurrentArmor, _healthSystem.MaxArmor);
     }
 
+    /// <summary>
+    /// MAX HEALTH INCREASES
+    /// </summary>
+    public void IncreaseMaxHealth(float amount)
+    {
+        _healthSystem.MaxHealth += amount;
+        _healthSystem.HealHealth(amount);
+        if (_healthChannel != null)
+            _healthChannel.Invoke(_healthSystem.CurrentHealth, _healthSystem.MaxHealth);
+    }
+    public void IncreaseMaxArmor(float amount)
+    {
+        _healthSystem.MaxArmor += amount;
+        _healthSystem.HealArmor(amount);
+        if (_armorChannel != null)
+            _armorChannel.Invoke(_healthSystem.CurrentArmor, _healthSystem.MaxArmor);
+    }
 
-    //--------------------
-    // Health Regen
-    //--------------------
+    /// <summary>
+    /// HEALTH DAMAGE AND HEAL
+    /// </summary>
+    public void Damage(float damage)
+    {
+        _healthSystem.Damage(damage);
+        PauseHealthRegen();
+        if (_armorChannel != null) 
+            _armorChannel.Invoke(_healthSystem.CurrentArmor, _healthSystem.MaxArmor);
+        if (_healthChannel != null) 
+            _healthChannel.Invoke(_healthSystem.CurrentHealth, _healthSystem.MaxHealth);
+    }
+    public void HealHealth(float amount)
+    {
+        _healthSystem.HealHealth(amount);
+        if (_healthChannel != null)
+            _healthChannel.Invoke(_healthSystem.CurrentHealth, _healthSystem.MaxHealth);
+    }
+    public void HealArmor(float amount)
+    {
+        _healthSystem.HealArmor(amount);
+        if (_armorChannel != null)
+            _armorChannel.Invoke(_healthSystem.CurrentArmor, _healthSystem.MaxArmor);
+    }
 
-    private float _regenHealthCooldown = 5f;
-    private float _regenHealthTickTime = 10f;
-    private float _regenHealthAmount = 0f;
-    private bool _canRegenHealth = false;
-    private Coroutine _regenHealthTickCoroutine;
-    public float RegenHealthAmount { get => _regenHealthAmount; set => _regenHealthAmount = value; }
+    /// <summary>
+    /// HEALTH REGEN
+    /// </summary>
     public void EnableHealthRegen()
     {
         _canRegenHealth = true;
@@ -107,7 +112,11 @@ public class PlayerHealth : MonoBehaviour
             yield return new WaitForSeconds(_regenHealthTickTime);
 
             if (_canRegenHealth)
-                HealHealth(_regenHealthAmount);
+            {
+                _healthSystem.HealHealth(_regenHealthAmount);
+                if (_healthChannel != null) 
+                    _healthChannel.Invoke(_healthSystem.CurrentHealth, _healthSystem.MaxHealth);
+            }   
         }
     }
 }

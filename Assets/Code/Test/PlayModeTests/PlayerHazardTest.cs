@@ -20,14 +20,16 @@ public class PlayerHazardTest
     [UnityTest]
     public IEnumerator Player_Damaged_By_Hazard()
     {
+        float playerHealth = player.Health.CurrentHealth;
+        float playerArmor = player.Health.CurrentArmor;
         player.RB.position = new Vector3(-0.09999999f, 1.498506f, 4.5f);
 
         yield return new WaitForFixedUpdate();
         yield return new WaitForFixedUpdate();
 
         Assert.That(
-            player.Health.CurrentHealth < player.Health.MaxHealth ||
-            player.Health.CurrentArmor < player.Health.MaxArmor
+            player.Health.CurrentHealth < playerHealth ||
+            player.Health.CurrentArmor < playerArmor
         );
     }
 }

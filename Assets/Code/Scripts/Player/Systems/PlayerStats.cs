@@ -4,7 +4,7 @@ public class PlayerStats : MonoBehaviour
 {
     [Header("Player Systems")]
     [SerializeField] PlayerMovement _movement;
-    [SerializeField] HealthSystem _health;
+    [SerializeField] PlayerHealth _health;
 
     [Header("Event Channels (Subscribers)")]
     [SerializeField] EventChannel _moveSpeedChannel;
@@ -67,16 +67,14 @@ public class PlayerStats : MonoBehaviour
     {
         if (_health != null)
         {
-            _health.MaxHealth += 5f;
-            _health.CurrentHealth += 5f;
+            _health.IncreaseMaxHealth(5f);
         }
     }
     void UpgradeMaxArmor()
     {
         if (_health != null)
         {
-            _health.MaxArmor += 5f;
-            _health.CurrentArmor += 5f;
+            _health.IncreaseMaxArmor(5f);
         }
     }
     void UpgradeHealthRegen()
