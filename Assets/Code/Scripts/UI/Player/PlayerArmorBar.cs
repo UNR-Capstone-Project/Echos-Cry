@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using DG.Tweening;
 public class PlayerArmorBar : MonoBehaviour
 {
     [SerializeField] private DoubleFloatEventChannel eventChannel;
@@ -26,11 +26,27 @@ public class PlayerArmorBar : MonoBehaviour
     {
         armorText.text = currentArmor.ToString() + "/" + maxArmor.ToString();
         hFraction = currentArmor / maxArmor;
-        lerpTimer = 0f;
+        //lerpTimer = 0f;
+        float fillF = frontFillBar.fillAmount;
+        float fillB = backFillBar.fillAmount;
+
+        if (fillB > hFraction)
+        {
+            frontFillBar.fillAmount = hFraction;
+            backFillBar.DOKill();
+            DOTween.To(() => backFillBar.fillAmount, x => backFillBar.fillAmount = x, hFraction, chipSpeed).SetEase(Ease.OutQuad);
+        }
+        if (fillF < hFraction)
+        {
+            backFillBar.fillAmount = hFraction;
+            frontFillBar.DOKill();
+            DOTween.To(() => frontFillBar.fillAmount, x => frontFillBar.fillAmount = x, hFraction, chipSpeed).SetEase(Ease.OutQuad);
+        }
     }
 
     private void Update()
     {
+        /*
         //Code Section Provided Here: https://youtu.be/CFASjEuhyf4?si=ri_WpIV1OxgtQdgp at 13:19
         float fillF = frontFillBar.fillAmount;
         float fillB = backFillBar.fillAmount;
@@ -51,6 +67,6 @@ public class PlayerArmorBar : MonoBehaviour
             float percentComplete = lerpTimer / chipSpeed;
             percentComplete = percentComplete * percentComplete;
             frontFillBar.fillAmount = Mathf.Lerp(fillF, backFillBar.fillAmount, percentComplete);
-        }
+        }*/
     }
 }

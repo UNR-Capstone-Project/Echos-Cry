@@ -288,6 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CurrencyCounterUI
   currencyText: {fileID: 8053843952207507022}
+  currencyTransform: {fileID: 1979278685149229006}
 --- !u!1 &527601450370668321
 GameObject:
   m_ObjectHideFlags: 0
@@ -4199,6 +4200,7 @@ MonoBehaviour:
   chipSpeed: 2
   frontHealthBar: {fileID: 3179794154708759026}
   backHealthBar: {fileID: 4661389087852983899}
+  frontFlashColor: {r: 0.89433956, g: 0.32904935, b: 0.32904935, a: 0}
 --- !u!1 &4055009592220838420
 GameObject:
   m_ObjectHideFlags: 0
@@ -6052,7 +6054,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &576701412841773614
 MonoBehaviour:
   m_ObjectHideFlags: 0
