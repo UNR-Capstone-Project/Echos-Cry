@@ -102,13 +102,14 @@ public class Player : MonoBehaviour
     public void Reset()
     {
         _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Idle));
-        _health.ResetHealth();
+        _health.HealFullHealthAndArmor();
     }
 
     public void FullReset()
     {
         //Reset is already called on player death, so only reset other values.
         //ISSUE: Should all upgrades and levels be reset on game over?
+        _health.ResetHealth();
         _currencySystem.SetGoldCurrency(0);
     }
 

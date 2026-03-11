@@ -38,6 +38,12 @@ public class PlayerHealth : MonoBehaviour
             _armorChannel.Invoke(_healthSystem.CurrentArmor, _healthSystem.MaxArmor);
     }
 
+    public void HealFullHealthAndArmor()
+    {
+        HealArmor(_healthSystem.MaxArmor);
+        HealHealth(_healthSystem.MaxHealth);
+    }
+
     public void ResetHealth()
     {
         _healthSystem.ResetSystem();
