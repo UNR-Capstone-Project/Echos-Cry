@@ -48,6 +48,17 @@ public class TempoConductor : Singleton<TempoConductor>
         _timeBetweenBeats = 60f / (float)MusicManager.Instance.GetTempo();
     }
 
+    private HitQuality GetHitQuality(float progress)
+    {
+        if (progress <= _excellentPercent || progress >= (1f - _excellentPercent))
+            return HitQuality.Excellent;
+
+        if (progress <= _goodPercent || progress >= (1f - _goodPercent))
+            return HitQuality.Good;
+
+        return HitQuality.Miss;
+    }
+
     private void UpdateHitQuality()
     {
         //--------------------
@@ -55,18 +66,7 @@ public class TempoConductor : Singleton<TempoConductor>
         //--------------------
         //Closer to 0 or 1 is perfectly on beat. Close to 0.5 is offbeat.
         _currentBeatProgress = MusicManager.Instance.GetSampleProgress();
-
-        if (_currentBeatProgress <= _excellentPercent ||
-            _currentBeatProgress >= (1f - _excellentPercent))
-        {
-            _currentHitQuality = HitQuality.Excellent;
-        }
-        else if (_currentBeatProgress <= _goodPercent ||
-            _currentBeatProgress >= (1f - _goodPercent))
-        {
-            _currentHitQuality = HitQuality.Good;
-        }
-        else _currentHitQuality = HitQuality.Miss;
+        _currentHitQuality = GetHitQuality(_currentBeatProgress);
 
         //--------------------
         // Off Beat Check
@@ -78,17 +78,7 @@ public class TempoConductor : Singleton<TempoConductor>
 
         if (currentBeat == 0 || currentBeat == 1)
         { //Check the offbeat between beats 0 - 1 (1 & 2).
-            if (offbeatProgress  <= _excellentPercent  ||
-                offbeatProgress >= (1f - _excellentPercent))
-            {
-                _currentOffHitQuality = HitQuality.Excellent;
-            }
-            else if (offbeatProgress <= _goodPercent ||
-                offbeatProgress >= (1f - _goodPercent))
-            {
-                _currentOffHitQuality = HitQuality.Good;
-            }
-            else _currentOffHitQuality = HitQuality.Miss;
+            _currentOffHitQuality = GetHitQuality(offbeatProgress);
         }
     }
 
