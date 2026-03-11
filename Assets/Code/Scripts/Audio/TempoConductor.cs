@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 public class TempoConductor : Singleton<TempoConductor>
@@ -12,7 +11,9 @@ public class TempoConductor : Singleton<TempoConductor>
     }
 
     private HitQuality _currentHitQuality;
+    private HitQuality _currentOffHitQuality;
     public HitQuality CurrentHitQuality { get { return _currentHitQuality; } }
+    public HitQuality CurrentOffHitQuality {  get {  return _currentOffHitQuality; } }
 
     //Beat Timing Values
     private float _currentBeatProgress = 0;
@@ -20,14 +21,14 @@ public class TempoConductor : Singleton<TempoConductor>
 
     public float TimeBetweenBeats { get { return _timeBetweenBeats; } }
 
-    //Hit Time --> Higher values are easier to hit within!
+    //Hit Time Window --> Higher values are easier to hit within!
     private float _excellentPercent;
     private float _goodPercent;
 
     //            Tempo Threshold
-    // Start                           End
+    //  End                           Start
     //   |--|-|-|---------------|-|-|---|
-    // BEAT 1                         BEAT 2
+    // BEAT 2                         BEAT 1
 
     // Events
     public event Action BeatTickEvent;
@@ -49,8 +50,11 @@ public class TempoConductor : Singleton<TempoConductor>
 
     private void UpdateHitQuality()
     {
+        //--------------------
+        // On Beat Check
+        //--------------------
+        //Closer to 0 or 1 is perfectly on beat. Close to 0.5 is offbeat.
         _currentBeatProgress = MusicManager.Instance.GetSampleProgress();
-        //Debug.Log(_currentBeatProgress);
 
         if (_currentBeatProgress <= _excellentPercent ||
             _currentBeatProgress >= (1f - _excellentPercent))
@@ -62,15 +66,37 @@ public class TempoConductor : Singleton<TempoConductor>
         {
             _currentHitQuality = HitQuality.Good;
         }
-        else
-        {
-            _currentHitQuality = HitQuality.Miss;
+        else _currentHitQuality = HitQuality.Miss;
+
+        //--------------------
+        // Off Beat Check
+        //--------------------
+        //Off Beats are inbetween regular beats. Denoted by &: 1 & 2 & 3 & 4 (4/4 signature)
+        int currentBeat = MusicManager.Instance.GetBeatInMeasure(); //Beats are held as 0 - 3
+        float offbeatProgress = _currentBeatProgress - 0.5f;
+        if (offbeatProgress < 0) offbeatProgress += 1f;
+
+        if (currentBeat == 0 || currentBeat == 1)
+        { //Check the offbeat between beats 0 - 1 (1 & 2).
+            if (offbeatProgress  <= _excellentPercent  ||
+                offbeatProgress >= (1f - _excellentPercent))
+            {
+                _currentOffHitQuality = HitQuality.Excellent;
+            }
+            else if (offbeatProgress <= _goodPercent ||
+                offbeatProgress >= (1f - _goodPercent))
+            {
+                _currentOffHitQuality = HitQuality.Good;
+            }
+            else _currentOffHitQuality = HitQuality.Miss;
         }
     }
 
     private void Awake()
     {
-        //Higher values are easier to hit within!
+        //--------------------
+        // Beat Accuracy Algorithm
+        //--------------------
         //This works by creating values for every 10th percentile.
         //So if your accuracy is between 90% - 100%, then it is the hardest range of 0.1 for excellent and 0.2 for good.
         //The lowest accuracy of 0% - 10% creates a range of 0.3 for excellent and 0.4 for good.

@@ -9,30 +9,20 @@ public class HUDCanvas : MonoBehaviour
 {
     [SerializeField] private InputTranslator _translator;
     [SerializeField] private TextMeshProUGUI hitQualityText;
+    [SerializeField] private TextMeshProUGUI offHitDebugText;
     [SerializeField] private Animator _textAnimator;
 
-    //[SerializeField] private GameObject      metronomeImageObject;
-    //[SerializeField] private float           flashDuration = 0.1f;
-    //private RawImage _metronomeImage;
-
-    private Canvas   _mainCanvas;
-    //private Material metronomeMaterial;
+    private Canvas  _mainCanvas;
 
     private void Awake()
     {
         _mainCanvas = GetComponent<Canvas>();
-        //_metronomeImage = metronomeImageObject.GetComponent<RawImage>();
-        //metronomeMaterial = Instantiate(_metronomeImage.material);
     }
     void Start()
     {
         //Setup UI with main camera.
         _mainCanvas.worldCamera = Camera.main;
         _mainCanvas.planeDistance = 1;
-
-        //Setup metronome image
-        //_metronomeImage.material = metronomeMaterial;
-        //TempoConductor.Instance.BeatTickEvent += FlashOutline;
 
         //_translator.OnDashEvent += UpdateHitQualityText;
         _translator.OnPrimaryActionEvent += UpdateHitQualityText;
@@ -41,8 +31,6 @@ public class HUDCanvas : MonoBehaviour
 
     private void OnDestroy()
     {
-        //if(TempoConductor.Instance != null) TempoConductor.Instance.BeatTickEvent -= FlashOutline;
-
         //_translator.OnDashEvent -= UpdateHitQualityText;
         _translator.OnPrimaryActionEvent -= UpdateHitQualityText;
         _translator.OnSecondaryActionEvent -= UpdateHitQualityText;
@@ -51,6 +39,8 @@ public class HUDCanvas : MonoBehaviour
     private void UpdateHitQualityText(bool isPressed)
     {
         if (!isPressed) return;
+
+        //On Beat Text
         switch (TempoConductor.Instance.CurrentHitQuality)
         {
             case TempoConductor.HitQuality.Excellent:
@@ -65,22 +55,20 @@ public class HUDCanvas : MonoBehaviour
         }
         hitQualityText.text = TempoConductor.Instance.CurrentHitQuality.ToString();
         _textAnimator.SetTrigger("Bounce");
-    }
 
-    /*
-    public void FlashOutline()
-    {
-        if (MusicManager.Instance.SongCurrentlyPlaying() && gameObject.activeInHierarchy)
+        //Off Beat Text
+        switch (TempoConductor.Instance.CurrentOffHitQuality)
         {
-            StartCoroutine(Flash(flashDuration));
+            case TempoConductor.HitQuality.Excellent:
+                offHitDebugText.color = new Color(110f / 255f, 44f / 255f, 222f / 255f, 1f); //purple
+                break;
+            case TempoConductor.HitQuality.Good:
+                offHitDebugText.color = new Color(47f / 255f, 235f / 255f, 81f / 255f, 1.0f);
+                break;
+            case TempoConductor.HitQuality.Miss:
+                offHitDebugText.color = Color.red;
+                break;
         }
+        offHitDebugText.text = TempoConductor.Instance.CurrentOffHitQuality.ToString();
     }
-
-    IEnumerator Flash(float duration)
-    {
-        metronomeMaterial.SetFloat("_Enabled", 1f);
-        yield return new WaitForSeconds(duration);
-        metronomeMaterial.SetFloat("_Enabled", 0f);
-    }
-    */
 }
