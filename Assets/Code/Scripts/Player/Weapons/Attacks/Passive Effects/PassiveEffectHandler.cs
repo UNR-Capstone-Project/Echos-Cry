@@ -69,7 +69,7 @@ public class PassiveEffectHandler : MonoBehaviour
         switch (effect)
         {
             case BleedPassiveEffect bleed:
-                enemyReference.Health.Damage(bleed.bleedDamage, Color.red);
+                enemyReference.Health.Damage(bleed.bleedDamage);
 
                 enemyReference.SoundStrategy.Execute(enemyReference.SoundConfig.HitSFX, enemyReference.transform, 0);
                 enemyReference.NPCAnimator.TintFlash(Color.red, 0.2f);

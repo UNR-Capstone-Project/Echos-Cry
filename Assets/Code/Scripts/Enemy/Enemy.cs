@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
         if (IsPooled)
         {
             _stateMachine.SwitchState(_stateCache.RequestState(_spawnState));
-            _health.ResetHealth();
+            _health.ResetSystem();
             _pool.ReleaseEnemy(this);
         }
         else Destroy(gameObject);

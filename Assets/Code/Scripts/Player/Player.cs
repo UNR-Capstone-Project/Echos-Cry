@@ -5,12 +5,11 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Relevant Player Components")]
-    [SerializeField] private HealthSystem _health;
+    [SerializeField] private PlayerHealth _health;
     [SerializeField] private PlayerComboMeter _comboMeter;
     [SerializeField] private PlayerAnimator _animator;
     [SerializeField] private PlayerMovement _movement;
     [SerializeField] private WeaponHolder _weaponHolder;
-//    [SerializeField] private PlayerSkillManager _skills;
     [SerializeField] private PlayerOrientation _orientation;
     [SerializeField] private PlayerCurrencySystem _currencySystem;
     [SerializeField] private PlayerXP _xp;
@@ -28,14 +27,13 @@ public class Player : MonoBehaviour
     private PlayerStateMachine _playerStateMachine;
     private PlayerStateCache _playerStateCache;
     
-    public HealthSystem Health { get => _health; }
+    public PlayerHealth Health { get => _health; }
     public PlayerComboMeter ComboMeter { get => _comboMeter; }
     public PlayerAnimator Animator { get => _animator; }
     public SoundStrategy SFX { get => _sfx; }
     public SFXConfig SFXConfig { get => _sfxConfig; }
     public PlayerMovement Movement { get => _movement; }
     public WeaponHolder WeaponHolder { get => _weaponHolder; }
- //   public PlayerSkillManager Skills { get => _skills; }
     public PlayerOrientation Orientation { get => _orientation; }
     public PlayerCurrencySystem CurrencySystem { get => _currencySystem; }
     public PlayerXP XP { get => _xp; }
@@ -82,6 +80,7 @@ public class Player : MonoBehaviour
     {
         InitStateCache();
         _playerStateMachine.Init(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Idle));
+        _health.ResetHealth();
     }
     private void OnEnable()
     {
@@ -103,14 +102,14 @@ public class Player : MonoBehaviour
     public void Reset()
     {
         _playerStateMachine.SwitchState(_playerStateCache.RequestState(PlayerStateCache.PlayerState.Idle));
-        _health.HealHealth(_health.MaxHealth);
-        _health.HealArmor(_health.MaxArmor);
+        _health.HealFullHealthAndArmor();
     }
 
     public void FullReset()
     {
         //Reset is already called on player death, so only reset other values.
         //ISSUE: Should all upgrades and levels be reset on game over?
+        _health.ResetHealth();
         _currencySystem.SetGoldCurrency(0);
     }
 
