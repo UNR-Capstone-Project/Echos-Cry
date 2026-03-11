@@ -14,6 +14,7 @@ public class PlayerHealthBar : MonoBehaviour
     private float hFraction = 0f;
     [SerializeField] private UnityEngine.UI.Image frontHealthBar;
     [SerializeField] private UnityEngine.UI.Image backHealthBar;
+    [SerializeField] private Color frontFlashColor;
 
     void Start()
     {
@@ -43,7 +44,9 @@ public class PlayerHealthBar : MonoBehaviour
         if (fillB > hFraction)
         {
             frontHealthBar.fillAmount = hFraction;
-            backHealthBar.color = Color.red;
+            //backHealthBar.color = Color.red;
+            frontHealthBar.DOKill();
+            DOTween.To(() => frontHealthBar.color, x => { frontFlashColor = x;}, frontFlashColor, 0.10f).SetEase(Ease.OutQuad);
             backHealthBar.DOKill();
             DOTween.To(() => backHealthBar.fillAmount, x => backHealthBar.fillAmount = x, hFraction, chipSpeed).SetEase(Ease.OutQuad);
         }
