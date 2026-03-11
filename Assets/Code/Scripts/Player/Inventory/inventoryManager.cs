@@ -77,11 +77,11 @@ public class InventoryManager : MonoBehaviour
         InventoryItem usedItem = inventory[index];
         if (usedItem == null || usedItem.data == null) return;
 
-        if (usedItem.data.id == "healthP")
+        if (usedItem.data.id == "health")
         {
             UseHealthPotion();
         }
-        else if (usedItem.data.id == "shieldP")
+        else if (usedItem.data.id == "shield")
         {
             UseShieldPotion();
         }

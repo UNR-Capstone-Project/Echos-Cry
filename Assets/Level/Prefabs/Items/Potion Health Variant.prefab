@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: itemData
       value: 
       objectReference: {fileID: 11400000, guid: d2683ec3837954744bfe0d3ba5a82950, type: 2}
+    - target: {fileID: 5966906622999587451, guid: 22269a7e5d2f3e1449a20451146ec498, type: 3}
+      propertyPath: particleEffect
+      value: 
+      objectReference: {fileID: 6250198881956377069, guid: b1a9a4c2a7b1a54459fae4db05f8d4a9, type: 3}
     - target: {fileID: 8109946571622884026, guid: 22269a7e5d2f3e1449a20451146ec498, type: 3}
       propertyPath: m_Name
       value: Potion Health Variant

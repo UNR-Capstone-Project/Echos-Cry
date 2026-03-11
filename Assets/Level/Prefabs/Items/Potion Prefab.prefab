@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b312a25b6d4b77f4f9430e61bfa1d0fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::inventoryItems
+  particleEffect: {fileID: 6250198881956377069, guid: b1a9a4c2a7b1a54459fae4db05f8d4a9, type: 3}
   itemData: {fileID: 0}
 --- !u!54 &7762135690846821487
 Rigidbody:
