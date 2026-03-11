@@ -40,7 +40,6 @@ public class SceneTriggerManager : MonoBehaviour
     IEnumerator HandleSceneTransition()
     {
         //Scene Transition first 
-        if(_inputTranslator != null) _inputTranslator.PlayerInputs.Disable();
 
         sceneTransitioning = true;
         OnSceneTransitionEvent?.Invoke();
@@ -65,6 +64,7 @@ public class SceneTriggerManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (_inputTranslator != null) _inputTranslator.PlayerInputs.Disable();
         MenuManager.Instance.ScreenFadeIn(_inputTranslator);
         HUDMessage.Instance.UpdateMessage("Loading...", 1f);
         SoundEffectManager.Instance.Builder
