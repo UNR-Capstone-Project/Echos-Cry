@@ -110,12 +110,12 @@ public class MenuManager : Singleton<MenuManager>
         }
     }
 
-    public void ScreenFadeIn()
+    public void ScreenFadeIn(InputTranslator translator)
     {
-        StartCoroutine(FadeInCoroutine());
+        StartCoroutine(FadeInCoroutine(translator));
     }
 
-    private IEnumerator FadeInCoroutine()
+    private IEnumerator FadeInCoroutine(InputTranslator translator)
     {
         float duration = 2f;
         float elapsedTime = 0f;
@@ -131,6 +131,7 @@ public class MenuManager : Singleton<MenuManager>
             yield return null;
         }
         canvasGroup.alpha = 0f;
+        if(translator != null) translator.PlayerInputs.Enable();
     }
 
     public void BackButton()

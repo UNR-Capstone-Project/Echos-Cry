@@ -17,6 +17,7 @@ public class SceneTriggerManager : MonoBehaviour
     [SerializeField] soundEffect portalSFX;
     [SerializeField] private bool _isFinalExit = false;
     public static event Action OnSceneTransitionEvent;
+    [SerializeField] private InputTranslator _inputTranslator;
 
     private bool sceneTransitioning = false;
 
@@ -39,6 +40,8 @@ public class SceneTriggerManager : MonoBehaviour
     IEnumerator HandleSceneTransition()
     {
         //Scene Transition first 
+        if(_inputTranslator != null) _inputTranslator.PlayerInputs.Disable();
+
         sceneTransitioning = true;
         OnSceneTransitionEvent?.Invoke();
         AsyncOperation newSceneLoad = SceneManager.LoadSceneAsync(sceneTarget.SceneName, LoadSceneMode.Single);
@@ -62,7 +65,7 @@ public class SceneTriggerManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        MenuManager.Instance.ScreenFadeIn();
+        MenuManager.Instance.ScreenFadeIn(_inputTranslator);
         HUDMessage.Instance.UpdateMessage("Loading...", 1f);
         SoundEffectManager.Instance.Builder
             .SetSound(portalSFX)
