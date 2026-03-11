@@ -22,6 +22,13 @@ public class PlayerHealth : MonoBehaviour
     private Coroutine _regenHealthTickCoroutine;
     public float RegenHealthAmount { get => _regenHealthAmount; set => _regenHealthAmount = value; }
 
+    private float _regenArmorCooldown = 5f;
+    private float _regenArmorTickTime = 10f;
+    private float _regenArmorAmount = 0f;
+    private bool _canRegenArmor = false;
+    private Coroutine _regenArmorTickCoroutine;
+    public float RegenArmorAmount { get => _regenArmorAmount; set => _regenArmorAmount = value; }
+
     private void OnEnable()
     {
         //These are called to update the starting values of each bar.
@@ -117,6 +124,43 @@ public class PlayerHealth : MonoBehaviour
                 if (_healthChannel != null) 
                     _healthChannel.Invoke(_healthSystem.CurrentHealth, _healthSystem.MaxHealth);
             }   
+        }
+    }
+
+    /// <summary>
+    /// SHIELD REGEN
+    /// </summary>
+    public void EnableArmorRegen()
+    {
+        _canRegenArmor = true;
+        _regenArmorTickCoroutine = StartCoroutine(RegenArmorTickRate());
+    }
+    public void PauseArmorRegen()
+    {
+        _canRegenArmor = false;
+        if (_regenArmorTickCoroutine != null)
+        {
+            StopCoroutine(_regenArmorTickCoroutine);
+            StartCoroutine(RegenArmorCooldown());
+        }
+    }
+    private IEnumerator RegenArmorCooldown() //After taking damage, how long should pass till health can regen once more.
+    {
+        yield return new WaitForSeconds(_regenArmorCooldown);
+        EnableArmorRegen();
+    }
+    private IEnumerator RegenArmorTickRate()
+    {
+        while (_canRegenArmor)
+        {
+            yield return new WaitForSeconds(_regenArmorTickTime);
+
+            if (_canRegenArmor)
+            {
+                _healthSystem.HealArmor(_regenArmorAmount);
+                if (_armorChannel != null)
+                    _armorChannel.Invoke(_healthSystem.CurrentArmor, _healthSystem.MaxArmor);
+            }
         }
     }
 }
