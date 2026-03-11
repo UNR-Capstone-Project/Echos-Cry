@@ -351,11 +351,11 @@ PrefabInstance:
     - target: {fileID: 6043073654320558437, guid: 33a33affa1af71348af63f11108c9dac, type: 3}
       propertyPath: ArmorHitSFX
       value: 
-      objectReference: {fileID: 11400000, guid: f83534ee1030a2941a4bef753d73a245, type: 2}
+      objectReference: {fileID: 11400000, guid: 51089fb434350ba41a45aded6bc7aac2, type: 2}
     - target: {fileID: 6043073654320558437, guid: 33a33affa1af71348af63f11108c9dac, type: 3}
       propertyPath: ArmorBreakSFX
       value: 
-      objectReference: {fileID: 11400000, guid: ae887be74a883064b9243d72a90da102, type: 2}
+      objectReference: {fileID: 11400000, guid: 4bafeadefd63ae945a54618da55cb6fb, type: 2}
     - target: {fileID: 6833263684149879958, guid: 33a33affa1af71348af63f11108c9dac, type: 3}
       propertyPath: m_LocalPosition.x
       value: 400.68744
