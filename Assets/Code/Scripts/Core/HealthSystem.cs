@@ -65,10 +65,12 @@ public class HealthSystem : MonoBehaviour
     public void DamageHealth(float damage)
     {
         _currentHealth -= Mathf.Abs(damage);
+        CameraManager.Instance.ScreenShake(.5f, .5f);
     }
     public void DamageArmor(float damage)
     {
         _currentArmor -= Mathf.Abs(damage);
+        CameraManager.Instance.ScreenShake(.5f, .5f);
     }
 
     //TODO: Move somewhere else

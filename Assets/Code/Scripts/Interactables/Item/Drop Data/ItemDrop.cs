@@ -7,3 +7,11 @@ public struct ItemDrop
     public int minDropAmount;
     public int maxDropAmount;
 }
+
+[System.Serializable]
+public struct ItemChanceDrop
+{
+    public GameObject prefab;
+    public int dropAmount;
+    public float dropChancePercent;
+}
