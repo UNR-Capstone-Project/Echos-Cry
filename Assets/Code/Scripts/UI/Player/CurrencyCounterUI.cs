@@ -1,12 +1,17 @@
 using TMPro;
 using UnityEngine;
-
+using DG.Tweening;
 public class CurrencyCounterUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI currencyText;
+    [SerializeField] private Transform currencyTransform;
+    private float transitionTime = 0.10f;
 
     public void UpdateCurrencyText(int currencyCount)
     {
+        currencyTransform.DOKill();
+        currencyTransform.localRotation = Quaternion.identity;
+        currencyTransform.DOShakeRotation(transitionTime, 45, 5, 45, true);
         currencyText.text = "Gold: " + currencyCount.ToString();
     }
 

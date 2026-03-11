@@ -1,8 +1,7 @@
 using TMPro;
 using UnityEngine;
-/// Original Author: Victor
-/// All Contributors Since Creation: Victor
-/// Last Modified By:
+using DG.Tweening;
+
 public class PlayerHealthBar : MonoBehaviour
 {
     [SerializeField] private DoubleFloatEventChannel eventChannel;
@@ -15,6 +14,7 @@ public class PlayerHealthBar : MonoBehaviour
     private float hFraction = 0f;
     [SerializeField] private UnityEngine.UI.Image frontHealthBar;
     [SerializeField] private UnityEngine.UI.Image backHealthBar;
+    [SerializeField] private Color frontFlashColor;
 
     void Start()
     {
@@ -38,11 +38,31 @@ public class PlayerHealthBar : MonoBehaviour
     {
         healthText.text = currentHealth.ToString() + "/" + maxHealth.ToString();
         hFraction = currentHealth / maxHealth;
-        lerpTimer = 0f;
+        float fillF = frontHealthBar.fillAmount;
+        float fillB = backHealthBar.fillAmount;
+        //lerpTimer = 0f;
+        if (fillB > hFraction)
+        {
+            frontHealthBar.fillAmount = hFraction;
+            //backHealthBar.color = Color.red;
+            frontHealthBar.DOKill();
+            DOTween.To(() => frontHealthBar.color, x => { frontFlashColor = x;}, frontFlashColor, 0.10f).SetEase(Ease.OutQuad);
+            backHealthBar.DOKill();
+            DOTween.To(() => backHealthBar.fillAmount, x => backHealthBar.fillAmount = x, hFraction, chipSpeed).SetEase(Ease.OutQuad);
+        }
+        if (fillF < hFraction)
+        {
+            backHealthBar.fillAmount = hFraction;
+            backHealthBar.color = Color.green;
+            frontHealthBar.DOKill();
+            DOTween.To(() => frontHealthBar.fillAmount, x => frontHealthBar.fillAmount = x, hFraction, chipSpeed).SetEase(Ease.OutQuad);
+        }
+
     }
 
     private void Update()
     {
+        /*
         //Code Section Provided Here: https://youtu.be/CFASjEuhyf4?si=ri_WpIV1OxgtQdgp at 13:19
         float fillF = frontHealthBar.fillAmount;
         float fillB = backHealthBar.fillAmount;
@@ -64,6 +84,6 @@ public class PlayerHealthBar : MonoBehaviour
             float percentComplete = lerpTimer / chipSpeed;
             percentComplete = percentComplete * percentComplete;
             frontHealthBar.fillAmount = Mathf.Lerp(fillF, backHealthBar.fillAmount, percentComplete);
-        }
+        }*/
     }
 }
