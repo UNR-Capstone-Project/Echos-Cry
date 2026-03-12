@@ -986,6 +986,7 @@ MonoBehaviour:
     m_SceneName: LevelFourScene
   portalSFX: {fileID: 11400000, guid: 3c2c25fd20eacfe4aaa9eeece1a7174c, type: 2}
   _isFinalExit: 0
+  _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
 --- !u!65 &137092495
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5440,6 +5441,7 @@ MonoBehaviour:
     m_SceneName: LevelOneScene
   portalSFX: {fileID: 11400000, guid: 3c2c25fd20eacfe4aaa9eeece1a7174c, type: 2}
   _isFinalExit: 0
+  _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
 --- !u!65 &1102349920
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8223,6 +8225,7 @@ MonoBehaviour:
     m_SceneName: LevelThreeScene
   portalSFX: {fileID: 11400000, guid: 3c2c25fd20eacfe4aaa9eeece1a7174c, type: 2}
   _isFinalExit: 0
+  _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
 --- !u!65 &1692363685
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8589,6 +8592,7 @@ MonoBehaviour:
     m_SceneName: LevelTwoScene
   portalSFX: {fileID: 11400000, guid: 3c2c25fd20eacfe4aaa9eeece1a7174c, type: 2}
   _isFinalExit: 0
+  _inputTranslator: {fileID: 11400000, guid: da8057efcf3a45a47bb320ce196e8d61, type: 2}
 --- !u!65 &1751731148
 BoxCollider:
   m_ObjectHideFlags: 0
