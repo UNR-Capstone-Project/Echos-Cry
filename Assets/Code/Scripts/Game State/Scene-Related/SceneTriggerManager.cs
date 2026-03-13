@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 /// Original Author: Victor
 /// All Contributors Since Creation: Victor, Andy
 /// Last Modified By: Andy
@@ -64,7 +65,11 @@ public class SceneTriggerManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (_inputTranslator != null) _inputTranslator.PlayerInputs.Disable();
+        if (_inputTranslator != null)
+        {
+            _inputTranslator.PlayerInputs.Gameplay.Pause.Disable();
+            _inputTranslator.PlayerInputs.Gameplay.Upgrade.Disable();
+        }
         MenuManager.Instance.ScreenFadeIn(_inputTranslator);
         HUDMessage.Instance.UpdateMessage("Loading...", 1f);
         SoundEffectManager.Instance.Builder

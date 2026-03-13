@@ -131,7 +131,12 @@ public class MenuManager : Singleton<MenuManager>
             yield return null;
         }
         canvasGroup.alpha = 0f;
-        if(translator != null) translator.PlayerInputs.Enable();
+
+        if (translator != null)
+        {
+            translator.PlayerInputs.Gameplay.Pause.Enable();
+            translator.PlayerInputs.Gameplay.Upgrade.Enable();
+        }
     }
 
     public void BackButton()
