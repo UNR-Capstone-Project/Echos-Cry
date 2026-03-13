@@ -1736,7 +1736,7 @@ GameObject:
   - component: {fileID: 475309664}
   - component: {fileID: 475309663}
   m_Layer: 0
-  m_Name: DecalPool
+  m_Name: BloodDecalPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
