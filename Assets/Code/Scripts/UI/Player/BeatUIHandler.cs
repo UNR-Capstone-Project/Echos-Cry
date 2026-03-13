@@ -5,25 +5,18 @@ using UnityEngine;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.UI;
 
-public class HUDCanvas : MonoBehaviour
+public class BeatUIHandler : MonoBehaviour
 {
     [SerializeField] private InputTranslator _translator;
     [SerializeField] private TextMeshProUGUI hitQualityText;
     [SerializeField] private TextMeshProUGUI offHitDebugText;
     [SerializeField] private Animator _textAnimator;
+    [SerializeField] private Animator _hitEffectAnimator1;
+    [SerializeField] private Animator _hitEffectAnimator2;
+    [SerializeField] private bool showHitText = true;
 
-    private Canvas  _mainCanvas;
-
-    private void Awake()
-    {
-        _mainCanvas = GetComponent<Canvas>();
-    }
     void Start()
     {
-        //Setup UI with main camera.
-        _mainCanvas.worldCamera = Camera.main;
-        _mainCanvas.planeDistance = 1;
-
         //_translator.OnDashEvent += UpdateHitQualityText;
         _translator.OnPrimaryActionEvent += UpdateHitQualityText;
         _translator.OnSecondaryActionEvent += UpdateHitQualityText;
@@ -53,8 +46,6 @@ public class HUDCanvas : MonoBehaviour
                 hitQualityText.color = Color.red;
                 break;
         }
-        hitQualityText.text = TempoConductor.Instance.CurrentHitQuality.ToString();
-        _textAnimator.SetTrigger("Bounce");
 
         //Off Beat Text
         switch (TempoConductor.Instance.CurrentOffHitQuality)
@@ -69,6 +60,15 @@ public class HUDCanvas : MonoBehaviour
                 offHitDebugText.color = Color.red;
                 break;
         }
-        offHitDebugText.text = TempoConductor.Instance.CurrentOffHitQuality.ToString();
+
+        if (showHitText)
+        {
+            offHitDebugText.text = TempoConductor.Instance.CurrentOffHitQuality.ToString();
+            hitQualityText.text = TempoConductor.Instance.CurrentHitQuality.ToString();
+            _textAnimator.SetTrigger("Bounce");
+        }
+
+        _hitEffectAnimator1.SetTrigger("Effect");
+        _hitEffectAnimator2.SetTrigger("Effect");
     }
 }
