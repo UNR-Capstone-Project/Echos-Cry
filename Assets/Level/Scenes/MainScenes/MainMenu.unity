@@ -1035,7 +1035,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -1123.455}
+  m_AnchoredPosition: {x: 960, y: -1152.7909}
   m_SizeDelta: {x: 256, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &975472688
@@ -1524,7 +1524,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -187.05054}
+  m_AnchoredPosition: {x: 960, y: -174.31012}
   m_SizeDelta: {x: 1537, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1189542617
@@ -1641,32 +1641,12 @@ PrefabInstance:
       value: BeatTiming
       objectReference: {fileID: 0}
     - target: {fileID: 1055928171036310096, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
-      propertyPath: leftColor.b
-      value: 0.09411766
+      propertyPath: offBeatLineColor.a
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1055928171036310096, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
-      propertyPath: leftColor.g
-      value: 0.7803922
-      objectReference: {fileID: 0}
-    - target: {fileID: 1055928171036310096, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
-      propertyPath: leftColor.r
-      value: 0.9568628
-      objectReference: {fileID: 0}
-    - target: {fileID: 1055928171036310096, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
-      propertyPath: onBeatLineColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1055928171036310096, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
-      propertyPath: onBeatLineColor.b
-      value: 0.09411766
-      objectReference: {fileID: 0}
-    - target: {fileID: 1055928171036310096, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
-      propertyPath: onBeatLineColor.g
-      value: 0.7803922
-      objectReference: {fileID: 0}
-    - target: {fileID: 1055928171036310096, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
-      propertyPath: onBeatLineColor.r
-      value: 0.9568628
+    - target: {fileID: 4464101143110549772, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
+      propertyPath: showHitText
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7037231287620920825, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
       propertyPath: m_Pivot.x
@@ -1698,7 +1678,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7037231287620920825, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 112
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 7037231287620920825, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1734,7 +1714,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7037231287620920825, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -489.15167
+      value: -522.9303
       objectReference: {fileID: 0}
     - target: {fileID: 7037231287620920825, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1749,32 +1729,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8419972874623715169, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
-      propertyPath: leftColor.b
-      value: 0.09411766
-      objectReference: {fileID: 0}
-    - target: {fileID: 8419972874623715169, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
-      propertyPath: leftColor.g
-      value: 0.7803922
-      objectReference: {fileID: 0}
-    - target: {fileID: 8419972874623715169, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
-      propertyPath: leftColor.r
-      value: 0.9568628
-      objectReference: {fileID: 0}
-    - target: {fileID: 8419972874623715169, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
-      propertyPath: onBeatLineColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8419972874623715169, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
-      propertyPath: onBeatLineColor.b
-      value: 0.09411766
-      objectReference: {fileID: 0}
-    - target: {fileID: 8419972874623715169, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
-      propertyPath: onBeatLineColor.g
-      value: 0.7803922
-      objectReference: {fileID: 0}
-    - target: {fileID: 8419972874623715169, guid: 2ba960b8c1b9d3a4997206480d622fc9, type: 3}
-      propertyPath: onBeatLineColor.r
-      value: 0.9568628
+      propertyPath: offBeatLineColor.a
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6781,7 +6737,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -727.25275}
+  m_AnchoredPosition: {x: 960, y: -807.55054}
   m_SizeDelta: {x: 640, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1645726409
@@ -7313,7 +7269,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -941.3539}
+  m_AnchoredPosition: {x: 960, y: -996.1707}
   m_SizeDelta: {x: 256, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1975400777
